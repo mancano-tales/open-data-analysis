@@ -1,0 +1,20 @@
+---
+title: "Average Years of Schooling by Sex"
+date: 2026-07-12
+categories: [educabr2, Escolaridade, Sexo]
+image: thumbnail.png
+description: "Average years of schooling of the population aged 15–64 in Brazil, by sex, 1925–2015."
+---
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](plot.R)
+- Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R [`educabr2`](https://github.com/mancano-tales/educabr2).
+
+## Reprodutibilidade
+
+**Tier: A (cross-repo)**
+
+Este pipeline depende do pacote R público `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), que embute os dados necessários.

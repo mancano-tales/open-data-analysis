@@ -1,0 +1,11 @@
+---
+title: "Open Data Analysis"
+listing:
+  contents: posts
+  type: grid
+  categories: true
+  sort: "date desc"
+  fields: [image, title, description, categories, date]
+page-layout: full
+title-block-banner: false
+---

@@ -1,0 +1,20 @@
+---
+title: "Grade Progression Ratio (GDR6) in São Paulo and Bahia"
+date: 2026-07-12
+categories: [educabr2, Progressão Escolar]
+image: thumbnail.png
+description: "Grade progression ratio (GDR6) in São Paulo and Bahia, 1955–2010."
+---
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](plot.R)
+- Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R [`educabr2`](https://github.com/mancano-tales/educabr2).
+
+## Reprodutibilidade
+
+**Tier: A (cross-repo)**
+
+Este pipeline depende do pacote R público `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), que embute os dados necessários.

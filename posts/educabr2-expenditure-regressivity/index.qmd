@@ -1,0 +1,20 @@
+---
+title: "Regressivity of Public Spending: Tertiary vs. Primary Education"
+date: 2026-07-12
+categories: [educabr2, Gasto Público, Regressividade]
+image: thumbnail.png
+description: "Double ratio of per-student public spending, tertiary over primary education, Brazil, 1933–2010."
+---
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](plot.R)
+- Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R [`educabr2`](https://github.com/mancano-tales/educabr2).
+
+## Reprodutibilidade
+
+**Tier: A (cross-repo)**
+
+Este pipeline depende do pacote R público `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), que embute os dados necessários.

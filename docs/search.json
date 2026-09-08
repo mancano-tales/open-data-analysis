@@ -1,0 +1,702 @@
+[
+  {
+    "objectID": "posts/wagstaff-rede-publica-privada-timeseries/index.html",
+    "href": "posts/wagstaff-rede-publica-privada-timeseries/index.html",
+    "title": "Income Inequality in Tertiary Enrollment by Network Type, Time Series (Wagstaff Index)",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R — script autocontido: baixa e processa os microdados diretamente, sem depender de outros scripts deste repositório.\nFonte de dado de referência: shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R"
+  },
+  {
+    "objectID": "posts/wagstaff-rede-publica-privada-timeseries/index.html#pipeline",
+    "href": "posts/wagstaff-rede-publica-privada-timeseries/index.html#pipeline",
+    "title": "Income Inequality in Tertiary Enrollment by Network Type, Time Series (Wagstaff Index)",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R — script autocontido: baixa e processa os microdados diretamente, sem depender de outros scripts deste repositório.\nFonte de dado de referência: shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R"
+  },
+  {
+    "objectID": "posts/wagstaff-rede-publica-privada-timeseries/index.html#reprodutibilidade",
+    "href": "posts/wagstaff-rede-publica-privada-timeseries/index.html#reprodutibilidade",
+    "title": "Income Inequality in Tertiary Enrollment by Network Type, Time Series (Wagstaff Index)",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts/renda-media-centil/index.html",
+    "href": "posts/renda-media-centil/index.html",
+    "title": "Average Household Income by Income Percentile",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/renda-media-centil/index.html#pipeline",
+    "href": "posts/renda-media-centil/index.html#pipeline",
+    "title": "Average Household Income by Income Percentile",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/renda-media-centil/index.html#reprodutibilidade",
+    "href": "posts/renda-media-centil/index.html#reprodutibilidade",
+    "title": "Average Household Income by Income Percentile",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts/populacao-limiares-sm/index.html",
+    "href": "posts/populacao-limiares-sm/index.html",
+    "title": "Population Above Fixed Real Income Thresholds",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/populacao-limiares-sm/index.html#pipeline",
+    "href": "posts/populacao-limiares-sm/index.html#pipeline",
+    "title": "Population Above Fixed Real Income Thresholds",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/populacao-limiares-sm/index.html#reprodutibilidade",
+    "href": "posts/populacao-limiares-sm/index.html#reprodutibilidade",
+    "title": "Population Above Fixed Real Income Thresholds",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts/matriculas-turno-via-acesso/index.html",
+    "href": "posts/matriculas-turno-via-acesso/index.html",
+    "title": "Enrollment by Sector, Access Route and Time of Day",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R\nshared-pipeline/sedap/010_SEDAP_Cliente.R"
+  },
+  {
+    "objectID": "posts/matriculas-turno-via-acesso/index.html#pipeline",
+    "href": "posts/matriculas-turno-via-acesso/index.html#pipeline",
+    "title": "Enrollment by Sector, Access Route and Time of Day",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R\nshared-pipeline/sedap/010_SEDAP_Cliente.R"
+  },
+  {
+    "objectID": "posts/matriculas-turno-via-acesso/index.html#reprodutibilidade",
+    "href": "posts/matriculas-turno-via-acesso/index.html#reprodutibilidade",
+    "title": "Enrollment by Sector, Access Route and Time of Day",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: B\nEste pipeline depende de dado restrito do INEP acessível via credencial SEDAP+ (variável de ambiente SEDAP_TOKEN). Sem uma credencial aprovada, os scripts em shared-pipeline/sedap/ não rodam — a lógica fica disponível para auditoria, mas a reprodução completa exige solicitar acesso ao INEP."
+  },
+  {
+    "objectID": "posts/fardo-mensalidade-decil/index.html",
+    "href": "posts/fardo-mensalidade-decil/index.html",
+    "title": "Tuition Burden Relative to Household Income by Income Decile",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R\nshared-pipeline/ipca/010_IPCA_Curso_Superior_Series.R"
+  },
+  {
+    "objectID": "posts/fardo-mensalidade-decil/index.html#pipeline",
+    "href": "posts/fardo-mensalidade-decil/index.html#pipeline",
+    "title": "Tuition Burden Relative to Household Income by Income Decile",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R\nshared-pipeline/ipca/010_IPCA_Curso_Superior_Series.R"
+  },
+  {
+    "objectID": "posts/fardo-mensalidade-decil/index.html#reprodutibilidade",
+    "href": "posts/fardo-mensalidade-decil/index.html#reprodutibilidade",
+    "title": "Tuition Burden Relative to Household Income by Income Decile",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts/em-conclusao-decil/index.html",
+    "href": "posts/em-conclusao-decil/index.html",
+    "title": "Secondary Education Completion Rate by Income Decile",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/em-conclusao-decil/index.html#pipeline",
+    "href": "posts/em-conclusao-decil/index.html#pipeline",
+    "title": "Secondary Education Completion Rate by Income Decile",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/em-conclusao-decil/index.html#reprodutibilidade",
+    "href": "posts/em-conclusao-decil/index.html#reprodutibilidade",
+    "title": "Secondary Education Completion Rate by Income Decile",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts/educabr2-schooling-sex/index.html",
+    "href": "posts/educabr2-schooling-sex/index.html",
+    "title": "Average Years of Schooling by Sex",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R educabr2."
+  },
+  {
+    "objectID": "posts/educabr2-schooling-sex/index.html#pipeline",
+    "href": "posts/educabr2-schooling-sex/index.html#pipeline",
+    "title": "Average Years of Schooling by Sex",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R educabr2."
+  },
+  {
+    "objectID": "posts/educabr2-schooling-sex/index.html#reprodutibilidade",
+    "href": "posts/educabr2-schooling-sex/index.html#reprodutibilidade",
+    "title": "Average Years of Schooling by Sex",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A (cross-repo)\nEste pipeline depende do pacote R público educabr2 (remotes::install_github(\"mancano-tales/educabr2\")), que embute os dados necessários."
+  },
+  {
+    "objectID": "posts/educabr2-expenditure-regressivity/index.html",
+    "href": "posts/educabr2-expenditure-regressivity/index.html",
+    "title": "Regressivity of Public Spending: Tertiary vs. Primary Education",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R educabr2."
+  },
+  {
+    "objectID": "posts/educabr2-expenditure-regressivity/index.html#pipeline",
+    "href": "posts/educabr2-expenditure-regressivity/index.html#pipeline",
+    "title": "Regressivity of Public Spending: Tertiary vs. Primary Education",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R educabr2."
+  },
+  {
+    "objectID": "posts/educabr2-expenditure-regressivity/index.html#reprodutibilidade",
+    "href": "posts/educabr2-expenditure-regressivity/index.html#reprodutibilidade",
+    "title": "Regressivity of Public Spending: Tertiary vs. Primary Education",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A (cross-repo)\nEste pipeline depende do pacote R público educabr2 (remotes::install_github(\"mancano-tales/educabr2\")), que embute os dados necessários."
+  },
+  {
+    "objectID": "posts/educabr2-enrollment-reconstructed/index.html",
+    "href": "posts/educabr2-enrollment-reconstructed/index.html",
+    "title": "The Distance-Education Undercount and Reconstructed Tertiary Enrollment Totals",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R educabr2."
+  },
+  {
+    "objectID": "posts/educabr2-enrollment-reconstructed/index.html#pipeline",
+    "href": "posts/educabr2-enrollment-reconstructed/index.html#pipeline",
+    "title": "The Distance-Education Undercount and Reconstructed Tertiary Enrollment Totals",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R educabr2."
+  },
+  {
+    "objectID": "posts/educabr2-enrollment-reconstructed/index.html#reprodutibilidade",
+    "href": "posts/educabr2-enrollment-reconstructed/index.html#reprodutibilidade",
+    "title": "The Distance-Education Undercount and Reconstructed Tertiary Enrollment Totals",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A (cross-repo)\nEste pipeline depende do pacote R público educabr2 (remotes::install_github(\"mancano-tales/educabr2\")), que embute os dados necessários."
+  },
+  {
+    "objectID": "posts/desigualdade-renda-gini-palma-decil/index.html",
+    "href": "posts/desigualdade-renda-gini-palma-decil/index.html",
+    "title": "Income Inequality and Real Income Growth by Decile (Gini/Palma Panel)",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/238_Serie_Desigualdade_Oficial.R\nshared-pipeline/pnadc/035_Splice_Microdados.R\nshared-pipeline/pnadc/000_PNADC_Download_Consolidate.R"
+  },
+  {
+    "objectID": "posts/desigualdade-renda-gini-palma-decil/index.html#pipeline",
+    "href": "posts/desigualdade-renda-gini-palma-decil/index.html#pipeline",
+    "title": "Income Inequality and Real Income Growth by Decile (Gini/Palma Panel)",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/238_Serie_Desigualdade_Oficial.R\nshared-pipeline/pnadc/035_Splice_Microdados.R\nshared-pipeline/pnadc/000_PNADC_Download_Consolidate.R"
+  },
+  {
+    "objectID": "posts/desigualdade-renda-gini-palma-decil/index.html#reprodutibilidade",
+    "href": "posts/desigualdade-renda-gini-palma-decil/index.html#reprodutibilidade",
+    "title": "Income Inequality and Real Income Growth by Decile (Gini/Palma Panel)",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts/delta-renda-rel-decil-governo/index.html",
+    "href": "posts/delta-renda-rel-decil-governo/index.html",
+    "title": "Change in Real Household Income by Income Decile and Presidential Term (Relative)",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/delta-renda-rel-decil-governo/index.html#pipeline",
+    "href": "posts/delta-renda-rel-decil-governo/index.html#pipeline",
+    "title": "Change in Real Household Income by Income Decile and Presidential Term (Relative)",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/delta-renda-rel-decil-governo/index.html#reprodutibilidade",
+    "href": "posts/delta-renda-rel-decil-governo/index.html#reprodutibilidade",
+    "title": "Change in Real Household Income by Income Decile and Presidential Term (Relative)",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts/delta-renda-abs-decil-governo/index.html",
+    "href": "posts/delta-renda-abs-decil-governo/index.html",
+    "title": "Change in Real Household Income by Income Decile and Presidential Term (Absolute)",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/delta-renda-abs-decil-governo/index.html#pipeline",
+    "href": "posts/delta-renda-abs-decil-governo/index.html#pipeline",
+    "title": "Change in Real Household Income by Income Decile and Presidential Term (Absolute)",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/delta-renda-abs-decil-governo/index.html#reprodutibilidade",
+    "href": "posts/delta-renda-abs-decil-governo/index.html#reprodutibilidade",
+    "title": "Change in Real Household Income by Income Decile and Presidential Term (Absolute)",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts/delta-matriculados-decil-governo/index.html",
+    "href": "posts/delta-matriculados-decil-governo/index.html",
+    "title": "Change in Higher Education Enrollment Rate by Income Decile and Presidential Term",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/delta-matriculados-decil-governo/index.html#pipeline",
+    "href": "posts/delta-matriculados-decil-governo/index.html#pipeline",
+    "title": "Change in Higher Education Enrollment Rate by Income Decile and Presidential Term",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/delta-matriculados-decil-governo/index.html#reprodutibilidade",
+    "href": "posts/delta-matriculados-decil-governo/index.html#reprodutibilidade",
+    "title": "Change in Higher Education Enrollment Rate by Income Decile and Presidential Term",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários.\nNota: a cópia deste script neste post continha um caminho absoluto de fallback apontando para a máquina local do autor (C:/Users/Mancano/...); esse caminho foi corrigido para here::here(\"data-raw\", ...) ao ser copiado para este repositório, seguindo a mesma convenção usada em shared-pipeline/."
+  },
+  {
+    "objectID": "posts/decil-acesso-serie-historica/index.html",
+    "href": "posts/decil-acesso-serie-historica/index.html",
+    "title": "Tertiary Education Access Rate by Income Decile, Historical Series",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R\nshared-pipeline/censo/040_Censo_Pontos_Validacao.R"
+  },
+  {
+    "objectID": "posts/decil-acesso-serie-historica/index.html#pipeline",
+    "href": "posts/decil-acesso-serie-historica/index.html#pipeline",
+    "title": "Tertiary Education Access Rate by Income Decile, Historical Series",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R\nshared-pipeline/censo/040_Censo_Pontos_Validacao.R"
+  },
+  {
+    "objectID": "posts/decil-acesso-serie-historica/index.html#reprodutibilidade",
+    "href": "posts/decil-acesso-serie-historica/index.html#reprodutibilidade",
+    "title": "Tertiary Education Access Rate by Income Decile, Historical Series",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts/concentracao-rede-antes-depois-cotas/index.html",
+    "href": "posts/concentracao-rede-antes-depois-cotas/index.html",
+    "title": "Income Concentration in Enrollment by Network, Before and After the Quota Law",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R — script autocontido: baixa e processa os microdados diretamente, sem depender de outros scripts deste repositório.\nFonte de dado de referência: shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R"
+  },
+  {
+    "objectID": "posts/concentracao-rede-antes-depois-cotas/index.html#pipeline",
+    "href": "posts/concentracao-rede-antes-depois-cotas/index.html#pipeline",
+    "title": "Income Concentration in Enrollment by Network, Before and After the Quota Law",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R — script autocontido: baixa e processa os microdados diretamente, sem depender de outros scripts deste repositório.\nFonte de dado de referência: shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R"
+  },
+  {
+    "objectID": "posts/concentracao-rede-antes-depois-cotas/index.html#reprodutibilidade",
+    "href": "posts/concentracao-rede-antes-depois-cotas/index.html#reprodutibilidade",
+    "title": "Income Concentration in Enrollment by Network, Before and After the Quota Law",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts/composicao-decil-ens-sup-a-18-24/index.html",
+    "href": "posts/composicao-decil-ens-sup-a-18-24/index.html",
+    "title": "Income Composition of Actively Enrolled Tertiary Students (Ages 18–24)",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/000_PNADC_Download_Consolidate.R\nshared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R\nshared-pipeline/pnadc/021_PNAD_Anual_Import_Com_Renda_Zero.R\nshared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/composicao-decil-ens-sup-a-18-24/index.html#pipeline",
+    "href": "posts/composicao-decil-ens-sup-a-18-24/index.html#pipeline",
+    "title": "Income Composition of Actively Enrolled Tertiary Students (Ages 18–24)",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/000_PNADC_Download_Consolidate.R\nshared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R\nshared-pipeline/pnadc/021_PNAD_Anual_Import_Com_Renda_Zero.R\nshared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/composicao-decil-ens-sup-a-18-24/index.html#reprodutibilidade",
+    "href": "posts/composicao-decil-ens-sup-a-18-24/index.html#reprodutibilidade",
+    "title": "Income Composition of Actively Enrolled Tertiary Students (Ages 18–24)",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts/composicao-decil-ens-sup-18-24/index.html",
+    "href": "posts/composicao-decil-ens-sup-18-24/index.html",
+    "title": "Income Composition of Tertiary Education Students (Ages 18–24)",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/000_PNADC_Download_Consolidate.R\nshared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R\nshared-pipeline/pnadc/021_PNAD_Anual_Import_Com_Renda_Zero.R\nshared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/composicao-decil-ens-sup-18-24/index.html#pipeline",
+    "href": "posts/composicao-decil-ens-sup-18-24/index.html#pipeline",
+    "title": "Income Composition of Tertiary Education Students (Ages 18–24)",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/000_PNADC_Download_Consolidate.R\nshared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R\nshared-pipeline/pnadc/021_PNAD_Anual_Import_Com_Renda_Zero.R\nshared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/composicao-decil-ens-sup-18-24/index.html#reprodutibilidade",
+    "href": "posts/composicao-decil-ens-sup-18-24/index.html#reprodutibilidade",
+    "title": "Income Composition of Tertiary Education Students (Ages 18–24)",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Open Data Analysis",
+    "section": "",
+    "text": "Tertiary Education Access Rate by Income Decile, Historical Series\n\n\n\nPNAD/PNADC\n\nCenso\n\nAcesso\n\nSérie Histórica\n\n\n\nTertiary education access rate by income decile, historical line series from 1992 onward.\n\n\n\nSep 3, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nExpansion and Composition of Undergraduate Enrollment, 1980–2024\n\n\n\neducabr2\n\nMatrículas\n\nExpansão Histórica\n\n\n\nLong-run expansion and sector composition of undergraduate enrollment in Brazil, 1980–2024.\n\n\n\nAug 27, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nInequality in Tertiary Education Access and Enrollment (Wagstaff Index)\n\n\n\nPNAD/PNADC\n\nWagstaff\n\nDesigualdade\n\nAcesso\n\n\n\nRelative inequality in tertiary education access and enrollment, by age group, measured via the Wagstaff concentration index.\n\n\n\nAug 27, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nIncome Inequality in Tertiary Enrollment by Network Type, Time Series (Wagstaff Index)\n\n\n\nPNAD/PNADC\n\nWagstaff\n\nRede Pública/Privada\n\n\n\nTime series of income inequality in tertiary enrollment by network type (public vs. private), measured via the Wagstaff concentration index.\n\n\n\nAug 10, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nIncome Composition of Tertiary Education Students (Ages 18–24)\n\n\n\nPNAD/PNADC\n\nEnsino Superior\n\nComposição por Decil\n\n\n\nStacked composition of income deciles among tertiary-education students aged 18–24, over time.\n\n\n\nAug 9, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nIncome Composition of Tertiary Education Students (Ages 18–64)\n\n\n\nPNAD/PNADC\n\nEnsino Superior\n\nComposição por Decil\n\n\n\nStacked composition of income deciles among tertiary-education students aged 18–64, over time.\n\n\n\nAug 9, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nIncome Composition of Actively Enrolled Tertiary Students (Ages 18–24)\n\n\n\nPNAD/PNADC\n\nEnsino Superior\n\nComposição por Decil\n\n\n\nStacked composition of income deciles among actively enrolled tertiary students aged 18–24, over time.\n\n\n\nAug 9, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nIncome Composition of Actively Enrolled Tertiary Students (Ages 18–64)\n\n\n\nPNAD/PNADC\n\nEnsino Superior\n\nComposição por Decil\n\n\n\nStacked composition of income deciles among actively enrolled tertiary students aged 18–64, over time.\n\n\n\nAug 9, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnnualized Real Income Growth by Income Decile and Presidential Term\n\n\n\nPNAD/PNADC\n\nRenda\n\nGoverno\n\n\n\nDot plot of annualized real per-capita household income growth by income decile and presidential term.\n\n\n\nAug 9, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nIncome Inequality and Real Income Growth by Decile (Gini/Palma Panel)\n\n\n\nPNAD/PNADC\n\nDesigualdade\n\nRenda\n\nGini\n\nPalma\n\n\n\nMulti-panel figure combining income inequality indices (Gini, Palma ratio) with real income growth by decile.\n\n\n\nAug 9, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nSecondary Education Completion Rate by Income Decile\n\n\n\nPNAD/PNADC\n\nEnsino Médio\n\nConclusão\n\n\n\nLine series of secondary education completion rate by income decile.\n\n\n\nAug 9, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nTuition Burden Relative to Household Income by Income Decile\n\n\n\nPNAD/PNADC\n\nIPCA\n\nMensalidades\n\nRenda\n\n\n\nHigher-education tuition burden relative to household income, by income decile.\n\n\n\nAug 9, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nPopulation Above Fixed Real Income Thresholds\n\n\n\nPNAD/PNADC\n\nPopulação\n\nSalário Mínimo\n\n\n\nShare of 18–24-year-olds in households above fixed real income thresholds, expressed as multiples of the minimum wage.\n\n\n\nAug 9, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nAverage Household Income by Income Percentile (Log Scale)\n\n\n\nPNAD/PNADC\n\nRenda\n\nDistribuição\n\n\n\nAverage per-capita household income by income percentile, plotted on a log scale.\n\n\n\nAug 9, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nAverage Household Income by Income Percentile\n\n\n\nPNAD/PNADC\n\nRenda\n\nDistribuição\n\n\n\nAverage per-capita household income by income percentile, linear scale.\n\n\n\nAug 9, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nChange in Tertiary Education Access Rate by Income Decile and Presidential Term\n\n\n\nPNAD/PNADC\n\nAcesso\n\nGoverno\n\n\n\nDot plot of the total change in tertiary education access rate (ever enrolled) by income decile, broken down by presidential term.\n\n\n\nAug 7, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nChange in Higher Education Enrollment Rate by Income Decile and Presidential Term (Dot Plot)\n\n\n\nPNAD/PNADC\n\nMatrículas\n\nGoverno\n\n\n\nDot plot of the total change in higher education enrollment rate (ages 18–24) by income decile and presidential term.\n\n\n\nAug 7, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nDistance Learning and the Reach of Student Aid Policies\n\n\n\nSEDAP+\n\nENEM\n\nEaD\n\nPolíticas Públicas\n\n\n\nDistance learning enrollment and the reach of student aid programs, private sector.\n\n\n\nAug 6, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nHousehold Income Distribution by Higher Education Sector\n\n\n\nSEDAP+\n\nENEM\n\nRenda\n\n\n\nDistribution of household income of entrants by higher education sector.\n\n\n\nAug 6, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nHousehold Income of Entrants by Sector and Mode of Delivery\n\n\n\nSEDAP+\n\nENEM\n\nRenda\n\nModalidade\n\n\n\nHousehold income of entrants by higher education sector and mode of delivery (in-person vs. distance).\n\n\n\nAug 6, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEnrollment by Sector, Access Route and Time of Day\n\n\n\nSEDAP+\n\nMatrículas\n\nTurno\n\nVia de Acesso\n\n\n\nEnrollment broken down by sector, access route (quota/general) and time of day (morning/evening/distance).\n\n\n\nAug 5, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe Distance-Education Undercount and Reconstructed Tertiary Enrollment Totals\n\n\n\neducabr2\n\nMatrículas\n\n\n\nThe distance-education undercount in official statistics and the reconstructed tertiary enrollment totals, 2000–2008.\n\n\n\nJul 12, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nTertiary Education Enrollment in Brazil: Harmonized Series and Competing Sources\n\n\n\neducabr2\n\nMatrículas\n\nFontes de Dado\n\n\n\nTertiary education enrollment in Brazil, 1907–2024: the harmonized educabr2 series plotted against competing sources.\n\n\n\nJul 12, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nRegressivity of Public Spending: Tertiary vs. Primary Education\n\n\n\neducabr2\n\nGasto Público\n\nRegressividade\n\n\n\nDouble ratio of per-student public spending, tertiary over primary education, Brazil, 1933–2010.\n\n\n\nJul 12, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nGrade Progression Ratio (GDR6) in São Paulo and Bahia\n\n\n\neducabr2\n\nProgressão Escolar\n\n\n\nGrade progression ratio (GDR6) in São Paulo and Bahia, 1955–2010.\n\n\n\nJul 12, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nAverage Years of Schooling by Sex\n\n\n\neducabr2\n\nEscolaridade\n\nSexo\n\n\n\nAverage years of schooling of the population aged 15–64 in Brazil, by sex, 1925–2015.\n\n\n\nJul 12, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nTemporal Coverage of Sources Harmonized by educabr2\n\n\n\neducabr2\n\nCobertura de Fontes\n\n\n\nTemporal coverage of the eleven data sources harmonized by educabr2, 1870–2024.\n\n\n\nJul 12, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nChange in Real Household Income by Income Decile and Presidential Term (Absolute)\n\n\n\nPNAD/PNADC\n\nRenda\n\nGoverno\n\n\n\nDot plot of the total change in real per-capita household income (R$/month) by income decile and presidential term.\n\n\n\nJul 8, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nChange in Real Household Income by Income Decile and Presidential Term (Relative)\n\n\n\nPNAD/PNADC\n\nRenda\n\nGoverno\n\n\n\nDot plot of the total percentage change in real per-capita household income by income decile and presidential term.\n\n\n\nJul 8, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nIncome Concentration in Tertiary Enrollment by Network Type\n\n\n\nPNAD/PNADC\n\nRede Pública/Privada\n\n\n\nIncome concentration curves for tertiary enrollment by network type (public vs. private), ages 18–24.\n\n\n\nJul 6, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nHigher-Education Tuition Prices Relative to Inflation and the Minimum Wage\n\n\n\nIPCA\n\nSIDRA\n\nMensalidades\n\n\n\nHigher-education tuition price series relative to overall consumer prices and to the minimum wage.\n\n\n\nJul 6, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nChange in Higher Education Enrollment Rate by Income Decile and Presidential Term\n\n\n\nPNAD/PNADC\n\nMatrículas\n\nGoverno\n\n\n\nPanel of bar charts showing the total change in higher education enrollment rate (ages 18–24) by income decile, one panel per presidential term.\n\n\n\nJul 4, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nIncome Concentration in Enrollment by Network, Before and After the Quota Law\n\n\n\nPNAD/PNADC\n\nCotas\n\nConcentração de Rede\n\n\n\nIncome concentration curves for tertiary enrollment by network (public vs. private), before, during, and after the 2012 quota law.\n\n\n\nJun 30, 2026\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/composicao-decil-ens-sup-18-64/index.html",
+    "href": "posts/composicao-decil-ens-sup-18-64/index.html",
+    "title": "Income Composition of Tertiary Education Students (Ages 18–64)",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/000_PNADC_Download_Consolidate.R\nshared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R\nshared-pipeline/pnadc/021_PNAD_Anual_Import_Com_Renda_Zero.R\nshared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/composicao-decil-ens-sup-18-64/index.html#pipeline",
+    "href": "posts/composicao-decil-ens-sup-18-64/index.html#pipeline",
+    "title": "Income Composition of Tertiary Education Students (Ages 18–64)",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/000_PNADC_Download_Consolidate.R\nshared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R\nshared-pipeline/pnadc/021_PNAD_Anual_Import_Com_Renda_Zero.R\nshared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/composicao-decil-ens-sup-18-64/index.html#reprodutibilidade",
+    "href": "posts/composicao-decil-ens-sup-18-64/index.html#reprodutibilidade",
+    "title": "Income Composition of Tertiary Education Students (Ages 18–64)",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts/composicao-decil-ens-sup-a-18-64/index.html",
+    "href": "posts/composicao-decil-ens-sup-a-18-64/index.html",
+    "title": "Income Composition of Actively Enrolled Tertiary Students (Ages 18–64)",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/000_PNADC_Download_Consolidate.R\nshared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R\nshared-pipeline/pnadc/021_PNAD_Anual_Import_Com_Renda_Zero.R\nshared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/composicao-decil-ens-sup-a-18-64/index.html#pipeline",
+    "href": "posts/composicao-decil-ens-sup-a-18-64/index.html#pipeline",
+    "title": "Income Composition of Actively Enrolled Tertiary Students (Ages 18–64)",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/000_PNADC_Download_Consolidate.R\nshared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R\nshared-pipeline/pnadc/021_PNAD_Anual_Import_Com_Renda_Zero.R\nshared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/composicao-decil-ens-sup-a-18-64/index.html#reprodutibilidade",
+    "href": "posts/composicao-decil-ens-sup-a-18-64/index.html#reprodutibilidade",
+    "title": "Income Composition of Actively Enrolled Tertiary Students (Ages 18–64)",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts/concentracao-rede-publica-privada/index.html",
+    "href": "posts/concentracao-rede-publica-privada/index.html",
+    "title": "Income Concentration in Tertiary Enrollment by Network Type",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R — script autocontido: baixa e processa os microdados diretamente, sem depender de outros scripts deste repositório.\nFonte de dado de referência: shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R"
+  },
+  {
+    "objectID": "posts/concentracao-rede-publica-privada/index.html#pipeline",
+    "href": "posts/concentracao-rede-publica-privada/index.html#pipeline",
+    "title": "Income Concentration in Tertiary Enrollment by Network Type",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R — script autocontido: baixa e processa os microdados diretamente, sem depender de outros scripts deste repositório.\nFonte de dado de referência: shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R"
+  },
+  {
+    "objectID": "posts/concentracao-rede-publica-privada/index.html#reprodutibilidade",
+    "href": "posts/concentracao-rede-publica-privada/index.html#reprodutibilidade",
+    "title": "Income Concentration in Tertiary Enrollment by Network Type",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts/delta-acesso-decil-governo/index.html",
+    "href": "posts/delta-acesso-decil-governo/index.html",
+    "title": "Change in Tertiary Education Access Rate by Income Decile and Presidential Term",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/delta-acesso-decil-governo/index.html#pipeline",
+    "href": "posts/delta-acesso-decil-governo/index.html#pipeline",
+    "title": "Change in Tertiary Education Access Rate by Income Decile and Presidential Term",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/delta-acesso-decil-governo/index.html#reprodutibilidade",
+    "href": "posts/delta-acesso-decil-governo/index.html#reprodutibilidade",
+    "title": "Change in Tertiary Education Access Rate by Income Decile and Presidential Term",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts/delta-matriculados-decil-governo-dotplot/index.html",
+    "href": "posts/delta-matriculados-decil-governo-dotplot/index.html",
+    "title": "Change in Higher Education Enrollment Rate by Income Decile and Presidential Term (Dot Plot)",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/delta-matriculados-decil-governo-dotplot/index.html#pipeline",
+    "href": "posts/delta-matriculados-decil-governo-dotplot/index.html#pipeline",
+    "title": "Change in Higher Education Enrollment Rate by Income Decile and Presidential Term (Dot Plot)",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/delta-matriculados-decil-governo-dotplot/index.html#reprodutibilidade",
+    "href": "posts/delta-matriculados-decil-governo-dotplot/index.html#reprodutibilidade",
+    "title": "Change in Higher Education Enrollment Rate by Income Decile and Presidential Term (Dot Plot)",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts/delta-renda-anualizada-decil-governo/index.html",
+    "href": "posts/delta-renda-anualizada-decil-governo/index.html",
+    "title": "Annualized Real Income Growth by Income Decile and Presidential Term",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/delta-renda-anualizada-decil-governo/index.html#pipeline",
+    "href": "posts/delta-renda-anualizada-decil-governo/index.html#pipeline",
+    "title": "Annualized Real Income Growth by Income Decile and Presidential Term",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/delta-renda-anualizada-decil-governo/index.html#reprodutibilidade",
+    "href": "posts/delta-renda-anualizada-decil-governo/index.html#reprodutibilidade",
+    "title": "Annualized Real Income Growth by Income Decile and Presidential Term",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts/descolamento-ead-politicas/index.html",
+    "href": "posts/descolamento-ead-politicas/index.html",
+    "title": "Distance Learning and the Reach of Student Aid Policies",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R\nshared-pipeline/sedap/010_SEDAP_Cliente.R"
+  },
+  {
+    "objectID": "posts/descolamento-ead-politicas/index.html#pipeline",
+    "href": "posts/descolamento-ead-politicas/index.html#pipeline",
+    "title": "Distance Learning and the Reach of Student Aid Policies",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R\nshared-pipeline/sedap/010_SEDAP_Cliente.R"
+  },
+  {
+    "objectID": "posts/descolamento-ead-politicas/index.html#reprodutibilidade",
+    "href": "posts/descolamento-ead-politicas/index.html#reprodutibilidade",
+    "title": "Distance Learning and the Reach of Student Aid Policies",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: B\nEste pipeline depende de dado restrito do INEP acessível via credencial SEDAP+ (variável de ambiente SEDAP_TOKEN). Sem uma credencial aprovada, os scripts em shared-pipeline/sedap/ não rodam — a lógica fica disponível para auditoria, mas a reprodução completa exige solicitar acesso ao INEP."
+  },
+  {
+    "objectID": "posts/distribuicao-renda-setor/index.html",
+    "href": "posts/distribuicao-renda-setor/index.html",
+    "title": "Household Income Distribution by Higher Education Sector",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/sedap/070_Perfil_Renda_Modalidade.R\nshared-pipeline/sedap/010_SEDAP_Cliente.R"
+  },
+  {
+    "objectID": "posts/distribuicao-renda-setor/index.html#pipeline",
+    "href": "posts/distribuicao-renda-setor/index.html#pipeline",
+    "title": "Household Income Distribution by Higher Education Sector",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/sedap/070_Perfil_Renda_Modalidade.R\nshared-pipeline/sedap/010_SEDAP_Cliente.R"
+  },
+  {
+    "objectID": "posts/distribuicao-renda-setor/index.html#reprodutibilidade",
+    "href": "posts/distribuicao-renda-setor/index.html#reprodutibilidade",
+    "title": "Household Income Distribution by Higher Education Sector",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: B\nEste pipeline depende de dado restrito do INEP acessível via credencial SEDAP+ (variável de ambiente SEDAP_TOKEN). Sem uma credencial aprovada, os scripts em shared-pipeline/sedap/ não rodam — a lógica fica disponível para auditoria, mas a reprodução completa exige solicitar acesso ao INEP."
+  },
+  {
+    "objectID": "posts/educabr2-enrollment-sources/index.html",
+    "href": "posts/educabr2-enrollment-sources/index.html",
+    "title": "Tertiary Education Enrollment in Brazil: Harmonized Series and Competing Sources",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R educabr2."
+  },
+  {
+    "objectID": "posts/educabr2-enrollment-sources/index.html#pipeline",
+    "href": "posts/educabr2-enrollment-sources/index.html#pipeline",
+    "title": "Tertiary Education Enrollment in Brazil: Harmonized Series and Competing Sources",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R educabr2."
+  },
+  {
+    "objectID": "posts/educabr2-enrollment-sources/index.html#reprodutibilidade",
+    "href": "posts/educabr2-enrollment-sources/index.html#reprodutibilidade",
+    "title": "Tertiary Education Enrollment in Brazil: Harmonized Series and Competing Sources",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A (cross-repo)\nEste pipeline depende do pacote R público educabr2 (remotes::install_github(\"mancano-tales/educabr2\")), que embute os dados necessários."
+  },
+  {
+    "objectID": "posts/educabr2-progression-gdr6/index.html",
+    "href": "posts/educabr2-progression-gdr6/index.html",
+    "title": "Grade Progression Ratio (GDR6) in São Paulo and Bahia",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R educabr2."
+  },
+  {
+    "objectID": "posts/educabr2-progression-gdr6/index.html#pipeline",
+    "href": "posts/educabr2-progression-gdr6/index.html#pipeline",
+    "title": "Grade Progression Ratio (GDR6) in São Paulo and Bahia",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R educabr2."
+  },
+  {
+    "objectID": "posts/educabr2-progression-gdr6/index.html#reprodutibilidade",
+    "href": "posts/educabr2-progression-gdr6/index.html#reprodutibilidade",
+    "title": "Grade Progression Ratio (GDR6) in São Paulo and Bahia",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A (cross-repo)\nEste pipeline depende do pacote R público educabr2 (remotes::install_github(\"mancano-tales/educabr2\")), que embute os dados necessários."
+  },
+  {
+    "objectID": "posts/educabr2-source-coverage/index.html",
+    "href": "posts/educabr2-source-coverage/index.html",
+    "title": "Temporal Coverage of Sources Harmonized by educabr2",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R educabr2."
+  },
+  {
+    "objectID": "posts/educabr2-source-coverage/index.html#pipeline",
+    "href": "posts/educabr2-source-coverage/index.html#pipeline",
+    "title": "Temporal Coverage of Sources Harmonized by educabr2",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R educabr2."
+  },
+  {
+    "objectID": "posts/educabr2-source-coverage/index.html#reprodutibilidade",
+    "href": "posts/educabr2-source-coverage/index.html#reprodutibilidade",
+    "title": "Temporal Coverage of Sources Harmonized by educabr2",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A (cross-repo)\nEste pipeline depende do pacote R público educabr2 (remotes::install_github(\"mancano-tales/educabr2\")), que embute os dados necessários."
+  },
+  {
+    "objectID": "posts/expansao-composicao-matriculas/index.html",
+    "href": "posts/expansao-composicao-matriculas/index.html",
+    "title": "Expansion and Composition of Undergraduate Enrollment, 1980–2024",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R educabr2."
+  },
+  {
+    "objectID": "posts/expansao-composicao-matriculas/index.html#pipeline",
+    "href": "posts/expansao-composicao-matriculas/index.html#pipeline",
+    "title": "Expansion and Composition of Undergraduate Enrollment, 1980–2024",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R educabr2."
+  },
+  {
+    "objectID": "posts/expansao-composicao-matriculas/index.html#reprodutibilidade",
+    "href": "posts/expansao-composicao-matriculas/index.html#reprodutibilidade",
+    "title": "Expansion and Composition of Undergraduate Enrollment, 1980–2024",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A (cross-repo)\nEste pipeline depende do pacote R público educabr2 (remotes::install_github(\"mancano-tales/educabr2\")), que embute os dados necessários."
+  },
+  {
+    "objectID": "posts/ipca-mensalidade-curso-superior/index.html",
+    "href": "posts/ipca-mensalidade-curso-superior/index.html",
+    "title": "Higher-Education Tuition Prices Relative to Inflation and the Minimum Wage",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R — este script é o próprio script canônico do pipeline, também disponível em shared-pipeline/ipca/010_IPCA_Curso_Superior_Series.R."
+  },
+  {
+    "objectID": "posts/ipca-mensalidade-curso-superior/index.html#pipeline",
+    "href": "posts/ipca-mensalidade-curso-superior/index.html#pipeline",
+    "title": "Higher-Education Tuition Prices Relative to Inflation and the Minimum Wage",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R — este script é o próprio script canônico do pipeline, também disponível em shared-pipeline/ipca/010_IPCA_Curso_Superior_Series.R."
+  },
+  {
+    "objectID": "posts/ipca-mensalidade-curso-superior/index.html#reprodutibilidade",
+    "href": "posts/ipca-mensalidade-curso-superior/index.html#reprodutibilidade",
+    "title": "Higher-Education Tuition Prices Relative to Inflation and the Minimum Wage",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts/perfil-renda-modalidade/index.html",
+    "href": "posts/perfil-renda-modalidade/index.html",
+    "title": "Household Income of Entrants by Sector and Mode of Delivery",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/sedap/070_Perfil_Renda_Modalidade.R\nshared-pipeline/sedap/010_SEDAP_Cliente.R"
+  },
+  {
+    "objectID": "posts/perfil-renda-modalidade/index.html#pipeline",
+    "href": "posts/perfil-renda-modalidade/index.html#pipeline",
+    "title": "Household Income of Entrants by Sector and Mode of Delivery",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/sedap/070_Perfil_Renda_Modalidade.R\nshared-pipeline/sedap/010_SEDAP_Cliente.R"
+  },
+  {
+    "objectID": "posts/perfil-renda-modalidade/index.html#reprodutibilidade",
+    "href": "posts/perfil-renda-modalidade/index.html#reprodutibilidade",
+    "title": "Household Income of Entrants by Sector and Mode of Delivery",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: B\nEste pipeline depende de dado restrito do INEP acessível via credencial SEDAP+ (variável de ambiente SEDAP_TOKEN). Sem uma credencial aprovada, os scripts em shared-pipeline/sedap/ não rodam — a lógica fica disponível para auditoria, mas a reprodução completa exige solicitar acesso ao INEP."
+  },
+  {
+    "objectID": "posts/renda-centil-log/index.html",
+    "href": "posts/renda-centil-log/index.html",
+    "title": "Average Household Income by Income Percentile (Log Scale)",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/renda-centil-log/index.html#pipeline",
+    "href": "posts/renda-centil-log/index.html#pipeline",
+    "title": "Average Household Income by Income Percentile (Log Scale)",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts/renda-centil-log/index.html#reprodutibilidade",
+    "href": "posts/renda-centil-log/index.html#reprodutibilidade",
+    "title": "Average Household Income by Income Percentile (Log Scale)",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts/wagstaff-acesso-matricula/index.html",
+    "href": "posts/wagstaff-acesso-matricula/index.html",
+    "title": "Inequality in Tertiary Education Access and Enrollment (Wagstaff Index)",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R\nshared-pipeline/pnadc/238_Serie_Desigualdade_Oficial.R"
+  },
+  {
+    "objectID": "posts/wagstaff-acesso-matricula/index.html#pipeline",
+    "href": "posts/wagstaff-acesso-matricula/index.html#pipeline",
+    "title": "Inequality in Tertiary Education Access and Enrollment (Wagstaff Index)",
+    "section": "",
+    "text": "Scripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R\nshared-pipeline/pnadc/238_Serie_Desigualdade_Oficial.R"
+  },
+  {
+    "objectID": "posts/wagstaff-acesso-matricula/index.html#reprodutibilidade",
+    "href": "posts/wagstaff-acesso-matricula/index.html#reprodutibilidade",
+    "title": "Inequality in Tertiary Education Access and Enrollment (Wagstaff Index)",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  }
+]

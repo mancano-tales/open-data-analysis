@@ -1,0 +1,21 @@
+---
+title: "Average Household Income by Income Percentile"
+date: 2026-08-09
+categories: [PNAD/PNADC, Renda, Distribuição]
+image: thumbnail.png
+description: "Average per-capita household income by income percentile, linear scale."
+---
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](plot.R)
+- Pipeline upstream:
+  - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R)
+
+## Reprodutibilidade
+
+**Tier: A**
+
+Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.

@@ -1,0 +1,22 @@
+---
+title: "Distance Learning and the Reach of Student Aid Policies"
+date: 2026-08-06
+categories: [SEDAP+, ENEM, EaD, Políticas Públicas]
+image: thumbnail.png
+description: "Distance learning enrollment and the reach of student aid programs, private sector."
+---
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](plot.R)
+- Pipeline upstream:
+  - [`shared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R`](../../shared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R)
+  - [`shared-pipeline/sedap/010_SEDAP_Cliente.R`](../../shared-pipeline/sedap/010_SEDAP_Cliente.R)
+
+## Reprodutibilidade
+
+**Tier: B**
+
+Este pipeline depende de dado restrito do INEP acessível via credencial SEDAP+ (variável de ambiente `SEDAP_TOKEN`). Sem uma credencial aprovada, os scripts em `shared-pipeline/sedap/` não rodam — a lógica fica disponível para auditoria, mas a reprodução completa exige solicitar acesso ao INEP.

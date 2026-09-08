@@ -1,0 +1,22 @@
+---
+title: "Tertiary Education Access Rate by Income Decile, Historical Series"
+date: 2026-09-03
+categories: [PNAD/PNADC, Censo, Acesso, Série Histórica]
+image: thumbnail.png
+description: "Tertiary education access rate by income decile, historical line series from 1992 onward."
+---
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](plot.R)
+- Pipeline upstream:
+  - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R)
+  - [`shared-pipeline/censo/040_Censo_Pontos_Validacao.R`](../../shared-pipeline/censo/040_Censo_Pontos_Validacao.R)
+
+## Reprodutibilidade
+
+**Tier: A**
+
+Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.

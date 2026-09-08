@@ -1,0 +1,20 @@
+---
+title: "Expansion and Composition of Undergraduate Enrollment, 1980–2024"
+date: 2026-08-27
+categories: [educabr2, Matrículas, Expansão Histórica]
+image: thumbnail.png
+description: "Long-run expansion and sector composition of undergraduate enrollment in Brazil, 1980–2024."
+---
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](plot.R)
+- Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R [`educabr2`](https://github.com/mancano-tales/educabr2).
+
+## Reprodutibilidade
+
+**Tier: A (cross-repo)**
+
+Este pipeline depende do pacote R público `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), que embute os dados necessários.

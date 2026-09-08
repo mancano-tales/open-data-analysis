@@ -1,0 +1,23 @@
+---
+title: "Change in Higher Education Enrollment Rate by Income Decile and Presidential Term"
+date: 2026-07-04
+categories: [PNAD/PNADC, Matrículas, Governo]
+image: thumbnail.png
+description: "Panel of bar charts showing the total change in higher education enrollment rate (ages 18–24) by income decile, one panel per presidential term."
+---
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](plot.R)
+- Pipeline upstream:
+  - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R)
+
+## Reprodutibilidade
+
+**Tier: A**
+
+Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.
+
+**Nota**: a cópia deste script neste post continha um caminho absoluto de fallback apontando para a máquina local do autor (`C:/Users/Mancano/...`); esse caminho foi corrigido para `here::here("data-raw", ...)` ao ser copiado para este repositório, seguindo a mesma convenção usada em `shared-pipeline/`.

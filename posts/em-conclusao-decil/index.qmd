@@ -1,0 +1,21 @@
+---
+title: "Secondary Education Completion Rate by Income Decile"
+date: 2026-08-09
+categories: [PNAD/PNADC, Ensino Médio, Conclusão]
+image: thumbnail.png
+description: "Line series of secondary education completion rate by income decile."
+---
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](plot.R)
+- Pipeline upstream:
+  - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R)
+
+## Reprodutibilidade
+
+**Tier: A**
+
+Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.

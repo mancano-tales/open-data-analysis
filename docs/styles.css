@@ -1,0 +1,10 @@
+/* Open Data Analysis — minimal site styling */
+
+.quarto-title-banner {
+  display: none;
+}
+
+.card-img-top {
+  object-fit: contain;
+  background-color: #fafafa;
+}

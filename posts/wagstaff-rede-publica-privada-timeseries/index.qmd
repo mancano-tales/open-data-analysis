@@ -1,0 +1,20 @@
+---
+title: "Income Inequality in Tertiary Enrollment by Network Type, Time Series (Wagstaff Index)"
+date: 2026-08-10
+categories: [PNAD/PNADC, Wagstaff, Rede Pública/Privada]
+image: thumbnail.png
+description: "Time series of income inequality in tertiary enrollment by network type (public vs. private), measured via the Wagstaff concentration index."
+---
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](plot.R) — script autocontido: baixa e processa os microdados diretamente, sem depender de outros scripts deste repositório.
+- Fonte de dado de referência: [`shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R`](../../shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R)
+
+## Reprodutibilidade
+
+**Tier: A**
+
+Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.

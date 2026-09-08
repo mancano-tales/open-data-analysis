@@ -1,0 +1,16 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Open Data Analysis"
+  description: "Análises de dados abertos, reprodutíveis — código e pipeline completos por trás de cada figura."
+  navbar:
+    left:
+      - text: "Análises"
+        href: index.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css

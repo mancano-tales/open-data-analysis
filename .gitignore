@@ -1,0 +1,13 @@
+# Cache de build do Quarto
+.quarto/
+/.luarc.json
+
+# Dado bruto/intermediário local — reconstruído rodando shared-pipeline/
+/data-raw/
+**/output/
+*.rds
+
+# R
+.Rhistory
+.RData
+.Rproj.user/

@@ -1,0 +1,22 @@
+---
+title: "Household Income of Entrants by Sector and Mode of Delivery"
+date: 2026-08-06
+categories: [SEDAP+, ENEM, Renda, Modalidade]
+image: thumbnail.png
+description: "Household income of entrants by higher education sector and mode of delivery (in-person vs. distance)."
+---
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](plot.R)
+- Pipeline upstream:
+  - [`shared-pipeline/sedap/070_Perfil_Renda_Modalidade.R`](../../shared-pipeline/sedap/070_Perfil_Renda_Modalidade.R)
+  - [`shared-pipeline/sedap/010_SEDAP_Cliente.R`](../../shared-pipeline/sedap/010_SEDAP_Cliente.R)
+
+## Reprodutibilidade
+
+**Tier: B**
+
+Este pipeline depende de dado restrito do INEP acessível via credencial SEDAP+ (variável de ambiente `SEDAP_TOKEN`). Sem uma credencial aprovada, os scripts em `shared-pipeline/sedap/` não rodam — a lógica fica disponível para auditoria, mas a reprodução completa exige solicitar acesso ao INEP.

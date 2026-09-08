@@ -1,0 +1,22 @@
+---
+title: "Enrollment by Sector, Access Route and Time of Day"
+date: 2026-08-05
+categories: [SEDAP+, Matrículas, Turno, Via de Acesso]
+image: thumbnail.png
+description: "Enrollment broken down by sector, access route (quota/general) and time of day (morning/evening/distance)."
+---
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](plot.R)
+- Pipeline upstream:
+  - [`shared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R`](../../shared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R)
+  - [`shared-pipeline/sedap/010_SEDAP_Cliente.R`](../../shared-pipeline/sedap/010_SEDAP_Cliente.R)
+
+## Reprodutibilidade
+
+**Tier: B**
+
+Este pipeline depende de dado restrito do INEP acessível via credencial SEDAP+ (variável de ambiente `SEDAP_TOKEN`). Sem uma credencial aprovada, os scripts em `shared-pipeline/sedap/` não rodam — a lógica fica disponível para auditoria, mas a reprodução completa exige solicitar acesso ao INEP.

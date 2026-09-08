@@ -1,0 +1,21 @@
+---
+title: "Change in Real Household Income by Income Decile and Presidential Term (Relative)"
+date: 2026-07-08
+categories: [PNAD/PNADC, Renda, Governo]
+image: thumbnail.png
+description: "Dot plot of the total percentage change in real per-capita household income by income decile and presidential term."
+---
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](plot.R)
+- Pipeline upstream:
+  - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R)
+
+## Reprodutibilidade
+
+**Tier: A**
+
+Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.

@@ -1,0 +1,20 @@
+---
+title: "Tertiary Education Enrollment in Brazil: Harmonized Series and Competing Sources"
+date: 2026-07-12
+categories: [educabr2, Matrículas, Fontes de Dado]
+image: thumbnail.png
+description: "Tertiary education enrollment in Brazil, 1907–2024: the harmonized educabr2 series plotted against competing sources."
+---
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](plot.R)
+- Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R [`educabr2`](https://github.com/mancano-tales/educabr2).
+
+## Reprodutibilidade
+
+**Tier: A (cross-repo)**
+
+Este pipeline depende do pacote R público `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), que embute os dados necessários.

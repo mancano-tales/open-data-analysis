@@ -1,0 +1,20 @@
+---
+title: "Temporal Coverage of Sources Harmonized by educabr2"
+date: 2026-07-12
+categories: [educabr2, Cobertura de Fontes]
+image: thumbnail.png
+description: "Temporal coverage of the eleven data sources harmonized by educabr2, 1870–2024."
+---
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](plot.R)
+- Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R [`educabr2`](https://github.com/mancano-tales/educabr2).
+
+## Reprodutibilidade
+
+**Tier: A (cross-repo)**
+
+Este pipeline depende do pacote R público `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), que embute os dados necessários.

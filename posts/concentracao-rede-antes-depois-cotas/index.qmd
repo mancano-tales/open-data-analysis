@@ -1,0 +1,20 @@
+---
+title: "Income Concentration in Enrollment by Network, Before and After the Quota Law"
+date: 2026-06-30
+categories: [PNAD/PNADC, Cotas, Concentração de Rede]
+image: thumbnail.png
+description: "Income concentration curves for tertiary enrollment by network (public vs. private), before, during, and after the 2012 quota law."
+---
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](plot.R) — script autocontido: baixa e processa os microdados diretamente, sem depender de outros scripts deste repositório.
+- Fonte de dado de referência: [`shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R`](../../shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R)
+
+## Reprodutibilidade
+
+**Tier: A**
+
+Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.

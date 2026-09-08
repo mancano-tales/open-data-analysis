@@ -1,0 +1,19 @@
+---
+title: "Higher-Education Tuition Prices Relative to Inflation and the Minimum Wage"
+date: 2026-07-06
+categories: [IPCA, SIDRA, Mensalidades]
+image: thumbnail.png
+description: "Higher-education tuition price series relative to overall consumer prices and to the minimum wage."
+---
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](plot.R) — este script é o próprio script canônico do pipeline, também disponível em [`shared-pipeline/ipca/010_IPCA_Curso_Superior_Series.R`](../../shared-pipeline/ipca/010_IPCA_Curso_Superior_Series.R).
+
+## Reprodutibilidade
+
+**Tier: A**
+
+Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.

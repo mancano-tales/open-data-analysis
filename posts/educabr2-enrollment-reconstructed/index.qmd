@@ -1,0 +1,20 @@
+---
+title: "The Distance-Education Undercount and Reconstructed Tertiary Enrollment Totals"
+date: 2026-07-12
+categories: [educabr2, Matrículas]
+image: thumbnail.png
+description: "The distance-education undercount in official statistics and the reconstructed tertiary enrollment totals, 2000–2008."
+---
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](plot.R)
+- Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R [`educabr2`](https://github.com/mancano-tales/educabr2).
+
+## Reprodutibilidade
+
+**Tier: A (cross-repo)**
+
+Este pipeline depende do pacote R público `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), que embute os dados necessários.

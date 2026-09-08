@@ -1,0 +1,22 @@
+---
+title: "Inequality in Tertiary Education Access and Enrollment (Wagstaff Index)"
+date: 2026-08-27
+categories: [PNAD/PNADC, Wagstaff, Desigualdade, Acesso]
+image: thumbnail.png
+description: "Relative inequality in tertiary education access and enrollment, by age group, measured via the Wagstaff concentration index."
+---
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](plot.R)
+- Pipeline upstream:
+  - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R)
+  - [`shared-pipeline/pnadc/238_Serie_Desigualdade_Oficial.R`](../../shared-pipeline/pnadc/238_Serie_Desigualdade_Oficial.R)
+
+## Reprodutibilidade
+
+**Tier: A**
+
+Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.
