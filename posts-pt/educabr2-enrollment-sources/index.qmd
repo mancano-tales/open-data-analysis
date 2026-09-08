@@ -16,6 +16,43 @@ Esta figura traça o crescimento da matrícula no ensino superior brasileiro ao 
 
 A linha azul emenda seis fontes de dados usando a hierarquia de deduplicação do pacote `educabr2`, na qual a fonte oficial mais desagregada prevalece sempre que as fontes se sobrepõem para o mesmo ano; os pontos cinzas mostram todas as estimativas concorrentes das fontes subjacentes. Plotar as duas juntas torna diretamente visível a concordância entre fontes, e os poucos trechos divergentes. O eixo vertical é logarítmico: a matrícula cresceu cerca de mil vezes ao longo do século.
 
+## Como Citar
+
+Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto este repositório.
+
+**Dissertação:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Dissertação de Mestrado, Programa de Pós-Graduação em Ciência Política, Universidade de São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**Esta figura e o pipeline:**
+
+> Mançano, Tales. 2026. "Matrícula no Ensino Superior no Brasil: Série Harmonizada e Fontes Concorrentes." Em *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts-pt/educabr2-enrollment-sources/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Matrícula no Ensino Superior no Brasil: Série Harmonizada e Fontes Concorrentes},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/educabr2-enrollment-sources/}
+}
+```
+
+Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL do repositório acima.
+
 ## Pipeline
 
 Scripts desta análise:

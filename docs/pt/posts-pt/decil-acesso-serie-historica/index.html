@@ -24,6 +24,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -162,6 +197,36 @@ ul.task-list li input[type="checkbox"] {
 <section id="metodologia" class="level2">
 <h2 class="anchored" data-anchor-id="metodologia">Metodologia</h2>
 <p>Cada série é a proporção de jovens de 18 a 24 anos que já ingressaram no ensino superior (<code>ens_sup</code>, acesso acumulado) alguma vez, por decil de renda domiciliar per capita e para a população como um todo. Os decis são calculados dentro de cada ano de pesquisa e de cada fonte, sobre a população com renda estritamente positiva. A série harmonizada usa a PNAD Anual até 2015 e a PNAD Contínua a partir de 2016, de modo que cada ano se apoia em uma única fonte; a região Norte rural está ausente da PNAD Anual entre 2004 e 2015. As linhas são interrompidas em anos sem pesquisa: 2000 e 2010 (anos de Censo) e 2020–2021 (excluídos por razões de qualidade de dados ligadas à pandemia). Os intervalos de confiança são intervalos de 95%: intervalos de Wilson com tamanho de amostra efetivo de Kish sob um efeito de delineamento de 2,0 para a PNAD Anual (1992–2015), e intervalos baseados no desenho amostral complexo via estimação exata (<code>survey::svydesign()</code>) para a PNAD Contínua (2016–2025). Os losangos marcam pontos de validação independentes das amostras do questionário da amostra dos Censos Demográficos de 1991, 2000, 2010 e 2022 (via <code>censobr</code>); seus intervalos de confiança de 95% têm no máximo 0,6 a 0,7 pontos percentuais de amplitude, mais estreitos que os próprios marcadores. O Censo de 1991 reporta a renda em catorze faixas ordinais, a partir das quais os decis são aproximados. Os rótulos no topo indicam o presidente em exercício.</p>
+</section>
+<section id="como-citar" class="level2">
+<h2 class="anchored" data-anchor-id="como-citar">Como Citar</h2>
+<p>Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto este repositório.</p>
+<p><strong>Dissertação:</strong></p>
+<blockquote class="blockquote">
+<p>Mançano, Tales. 2026. <em>Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)</em>. Dissertação de Mestrado, Programa de Pós-Graduação em Ciência Política, Universidade de São Paulo.</p>
+</blockquote>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@mastersthesis</span>{<span class="ot">Mancano2026</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span> = {Man<span class="ch">\c</span>{c}ano, Tales},</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>  = {Inequality in Access to Tertiary Education in Brazil: Household</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>            Incomes, Reforming Policies, and the Politics of Who Gets In</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            (1990s--2020s)},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">school</span> = {University of S<span class="ch">\~</span>{a}o Paulo},</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>   = {2026},</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">type</span>   = {Master's thesis},</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">note</span>   = {Graduate Program in Political Science}</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Esta figura e o pipeline:</strong></p>
+<blockquote class="blockquote">
+<p>Mançano, Tales. 2026. “Taxa de Acesso ao Ensino Superior por Decil de Renda, Série Histórica.” Em <em>Open Data Analysis</em>. <a href="https://github.com/mancano-tales/open-data-analysis" class="uri">https://github.com/mancano-tales/open-data-analysis</a>, <code>posts-pt/decil-acesso-serie-historica/</code>.</p>
+</blockquote>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">Mancano2026OpenDataAnalysis</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>       = {Man<span class="ch">\c</span>{c}ano, Tales},</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>        = {Open Data Analysis: Taxa de Acesso ao Ensino Superior por Decil de Renda, Série Histórica},</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>         = {2026},</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">howpublished</span> = {<span class="ch">\url</span>{https://github.com/mancano-tales/open-data-analysis}},</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">note</span>         = {posts/decil-acesso-serie-historica/}</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL do repositório acima.</p>
 </section>
 <section id="pipeline" class="level2">
 <h2 class="anchored" data-anchor-id="pipeline">Pipeline</h2>

@@ -16,6 +16,43 @@ Esta figura combina três visões da desigualdade de renda brasileira entre 1992
 
 O painel A mostra o índice de Gini da renda per capita real. O painel B mostra a razão de Palma — a participação de renda do decil mais rico dividida pela dos quatro decis mais pobres. Os painéis A e B seguem o universo oficial, que mantém os domicílios sem rendimento declarado, e reproduzem a série publicada pelo próprio IBGE (desvio médio de −0,0001). O painel C mostra a renda per capita real média por decil, em reais de janeiro de 2024, em eixo logarítmico; aqui os decis se apoiam no universo de trabalho de rendas positivas apenas, de modo que os níveis do painel C não são estritamente os oficiais. As linhas são interrompidas em anos sem pesquisa (1994, 2000, 2010, 2020–2021); marcadores vazados nos painéis A e B indicam 2020 e 2021, provenientes da quinta visita da PNAD Contínua, coletada por telefone. A unidade de renda é a família até 2015 (PNAD) e o domicílio a partir de 2016 (PNAD Contínua); as duas coincidem exceto onde várias famílias dividem uma moradia, e uma linha vertical sólida marca essa mudança de fonte. Como as duas pesquisas rodaram simultaneamente em 2012–2015, o efeito da troca de instrumento pode ser medido diretamente, em vez de suposto: para o mesmo ano, a PNAD Contínua retorna um índice de Gini em média 0,008 mais alto e uma razão de Palma em média 0,15 mais alta. Do degrau observado entre 2015 e 2016 (+0,020 no Gini, +0,44 na Palma), portanto, cerca de um terço é artefato da emenda entre pesquisas, não um aumento genuíno da desigualdade. Essa linha vertical é distinta das linhas tracejadas do painel C, que marcam trocas de governo; o bloco de governo 2015–2019 une o segundo mandato de Dilma Rousseff ao de Michel Temer, de modo que o impeachment de agosto de 2016 não aparece como fronteira na figura.
 
+## Como Citar
+
+Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto este repositório.
+
+**Dissertação:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Dissertação de Mestrado, Programa de Pós-Graduação em Ciência Política, Universidade de São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**Esta figura e o pipeline:**
+
+> Mançano, Tales. 2026. "Desigualdade de Renda e Crescimento Real da Renda por Decil (Painel Gini/Palma)." Em *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts-pt/desigualdade-renda-gini-palma-decil/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Desigualdade de Renda e Crescimento Real da Renda por Decil (Painel Gini/Palma)},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/desigualdade-renda-gini-palma-decil/}
+}
+```
+
+Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL do repositório acima.
+
 ## Pipeline
 
 Scripts desta análise:

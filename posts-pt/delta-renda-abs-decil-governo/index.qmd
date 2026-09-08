@@ -16,6 +16,43 @@ Esta figura mede a variação total da renda domiciliar real, em reais por mês,
 
 Cada ponto é a variação total na renda domiciliar per capita real média (R$/mês, preços de janeiro de 2024) para cada decil de renda, do primeiro ano disponível de um mandato presidencial ao primeiro ano disponível do mandato seguinte (azul = ganho, laranja = perda); as linhas horizontais são intervalos de confiança de 95%. O painel inferior direito cobre o período completo de 1992–2023. Os intervalos de confiança são intervalos de aproximação normal de 95% que propagam o erro padrão de cada extremo: se_Δ = √(se1² + se0²). O erro padrão de cada extremo é a variância amostral ponderada dividida pelo tamanho de amostra efetivo de Kish (efeito de delineamento = 2). Os decis de renda e a variável de renda subjacente são calculados sobre a população total (não restrita a 18–24 anos), já que a renda domiciliar per capita descreve o domicílio inteiro.
 
+## Como Citar
+
+Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto este repositório.
+
+**Dissertação:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Dissertação de Mestrado, Programa de Pós-Graduação em Ciência Política, Universidade de São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**Esta figura e o pipeline:**
+
+> Mançano, Tales. 2026. "Variação da Renda Domiciliar Real por Decil de Renda e Mandato Presidencial (Absoluta)." Em *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts-pt/delta-renda-abs-decil-governo/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Variação da Renda Domiciliar Real por Decil de Renda e Mandato Presidencial (Absoluta)},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/delta-renda-abs-decil-governo/}
+}
+```
+
+Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL do repositório acima.
+
 ## Pipeline
 
 Scripts desta análise:

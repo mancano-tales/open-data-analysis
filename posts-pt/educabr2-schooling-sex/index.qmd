@@ -16,6 +16,43 @@ Esta figura acompanha os anos médios de escolaridade de mulheres e homens brasi
 
 A faixa sombreada é o hiato de escolaridade entre os sexos; sua cor muda quando o sinal do hiato se inverte. As mulheres brasileiras passaram de um déficit persistente de escolaridade para uma vantagem duradoura ao longo do século XX — o ano da inversão é marcado diretamente na série.
 
+## Como Citar
+
+Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto este repositório.
+
+**Dissertação:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Dissertação de Mestrado, Programa de Pós-Graduação em Ciência Política, Universidade de São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**Esta figura e o pipeline:**
+
+> Mançano, Tales. 2026. "Anos Médios de Escolaridade por Sexo." Em *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts-pt/educabr2-schooling-sex/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Anos Médios de Escolaridade por Sexo},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/educabr2-schooling-sex/}
+}
+```
+
+Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL do repositório acima.
+
 ## Pipeline
 
 Scripts desta análise:

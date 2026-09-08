@@ -16,6 +16,43 @@ This figure documents a gap in Brazil's official higher-education statistics bet
 
 Between 2000 and 2008, INEP tracked distance enrollment (EAD) in a separate table and excluded it from published headline totals. The shaded band is the resulting undercount, which grows to roughly 700 thousand students by 2008; the dashed line shows the `educabr2` package's reconstructed totals (`is_derived = TRUE`), which add the separately tracked distance-learning figures back into the published in-person total.
 
+## How to Cite
+
+If you use this figure or its underlying pipeline, please cite both the dissertation and this repository.
+
+**Dissertation:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Master's thesis, Graduate Program in Political Science, University of São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**This figure and pipeline:**
+
+> Mançano, Tales. 2026. "The Distance-Education Undercount and Reconstructed Tertiary Enrollment Totals." In *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts/educabr2-enrollment-reconstructed/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: The Distance-Education Undercount and Reconstructed Tertiary Enrollment Totals},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/educabr2-enrollment-reconstructed/}
+}
+```
+
+A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the repository URL above.
+
 ## Pipeline
 
 Scripts for this analysis:

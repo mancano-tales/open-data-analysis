@@ -16,6 +16,43 @@ This figure breaks down Brazilian higher-education enrollment by sector (public 
 
 Built from student-level records of the Higher Education Census (Censo da Educação Superior), extracted via INEP's protected-access platform SEDAP+ (Serviço de Acesso a Dados Protegidos), because INEP stopped publishing the full student-level microdata after 2019. Sector follows the institution's administrative category (public vs. private). Access route is assigned by precedence within the private sector — ProUni scholarship first, then FIES loan among those without ProUni, then open admission — so categories are disjoint by construction. Within the public sector the split is reserved seat (affirmative-action quota) versus open admission. SEDAP+ answers only aggregate queries and applies differential privacy, which in practice suppresses cells with few individuals rather than adding appreciable noise; the extraction groups at exactly the granularity the figure displays, at which no cell is suppressed. Against published microdata for years where both exist, SEDAP+ totals run 0.6% to 1.1% low, a small and systematic gap.
 
+## How to Cite
+
+If you use this figure or its underlying pipeline, please cite both the dissertation and this repository.
+
+**Dissertation:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Master's thesis, Graduate Program in Political Science, University of São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**This figure and pipeline:**
+
+> Mançano, Tales. 2026. "Enrollment by Sector, Access Route and Time of Day." In *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts/matriculas-turno-via-acesso/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Enrollment by Sector, Access Route and Time of Day},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/matriculas-turno-via-acesso/}
+}
+```
+
+A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the repository URL above.
+
 ## Pipeline
 
 Scripts for this analysis:

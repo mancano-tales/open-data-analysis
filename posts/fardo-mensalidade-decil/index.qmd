@@ -16,6 +16,43 @@ This figure asks whether the same nominal tuition bill became easier or harder t
 
 The tuition-burden index divides the same real tuition-readjustment series used in the IPCA tuition figure by the weighted mean real per-capita household income of each decile, both expressed as 2002 = 100 and both deflated by the same IPCA base. Deciles are computed within each survey year and source; the harmonized series uses PNAD Anual through 2015 and PNAD Contínua from 2016 onward, with 2012–2015 restricted to PNAD Anual observations. Because the burden is a ratio of two indices anchored at the same base year, it says nothing about the absolute affordability of tuition in any single year — only about how a fixed nominal bill moved relative to each decile's own income trajectory since 2002. The underlying tuition series is a fixed-panel readjustment index and does not register the additional compositional cheapening from the post-2015 migration toward distance learning, so the burden shown is, if anything, an upper bound on how much lighter the bill became for lower deciles.
 
+## How to Cite
+
+If you use this figure or its underlying pipeline, please cite both the dissertation and this repository.
+
+**Dissertation:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Master's thesis, Graduate Program in Political Science, University of São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**This figure and pipeline:**
+
+> Mançano, Tales. 2026. "Tuition Burden Relative to Household Income by Income Decile." In *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts/fardo-mensalidade-decil/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Tuition Burden Relative to Household Income by Income Decile},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/fardo-mensalidade-decil/}
+}
+```
+
+A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the repository URL above.
+
 ## Pipeline
 
 Scripts for this analysis:

@@ -16,6 +16,43 @@ Esta figura decompõe as matrículas do ensino superior brasileiro por setor (p�
 
 Construída a partir de registros individuais de estudantes do Censo da Educação Superior, extraídos via a plataforma de acesso protegido do INEP, o SEDAP+ (Serviço de Acesso a Dados Protegidos), porque o INEP parou de publicar os microdados completos por estudante após 2019. O setor segue a categoria administrativa da instituição (pública vs. privada). A via de acesso é atribuída por precedência dentro do setor privado — primeiro bolsa ProUni, depois financiamento FIES entre os que não têm ProUni, depois ampla concorrência — de modo que as categorias são disjuntas por construção. Dentro do setor público, a divisão é vaga reservada (cota de ação afirmativa) versus ampla concorrência. O SEDAP+ responde apenas a consultas agregadas e aplica privacidade diferencial, que na prática suprime células com poucos indivíduos em vez de adicionar ruído apreciável; a extração agrupa exatamente na granularidade que a figura exibe, na qual nenhuma célula é suprimida. Contra os microdados publicados nos anos em que ambos existem, os totais do SEDAP+ ficam de 0,6% a 1,1% abaixo, uma diferença pequena e sistemática.
 
+## Como Citar
+
+Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto este repositório.
+
+**Dissertação:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Dissertação de Mestrado, Programa de Pós-Graduação em Ciência Política, Universidade de São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**Esta figura e o pipeline:**
+
+> Mançano, Tales. 2026. "Matrículas por Setor, Via de Acesso e Turno." Em *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts-pt/matriculas-turno-via-acesso/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Matrículas por Setor, Via de Acesso e Turno},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/matriculas-turno-via-acesso/}
+}
+```
+
+Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL do repositório acima.
+
 ## Pipeline
 
 Scripts desta análise:

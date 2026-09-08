@@ -82,10 +82,10 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-image','listing-title','listing-description','listing-categories','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      page: 18,
+      valueNames: ['listing-image','listing-title','listing-description','listing-categories','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      page: 30,
     pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -203,1007 +203,686 @@ window.Quarto = {
 
 
 
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="UE5BRCUyRlBOQURDJTJDQ2Vuc28lMkNBY2Vzc28lMkNTJUMzJUE5cmllJTIwSGlzdCVDMyVCM3JpY2E=" data-listing-date-sort="1788404400000" data-listing-file-modified-sort="1788862527444" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="395">
-<a href="./posts-pt/decil-acesso-serie-historica/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/decil-acesso-serie-historica/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Taxa de Acesso ao Ensino Superior por Decil de Renda, Série Histórica
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q2Vuc28='); return false;">Censo</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QWNlc3Nv'); return false;">Acesso</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UyVDMyVBOXJpZSUyMEhpc3QlQzMlQjNyaWNh'); return false;">Série Histórica</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Taxa de acesso ao ensino superior por decil de renda, série histórica de linhas a partir de 1992.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-3 de set. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="ZWR1Y2FicjIlMkNNYXRyJUMzJUFEY3VsYXMlMkNFeHBhbnMlQzMlQTNvJTIwSGlzdCVDMyVCM3JpY2E=" data-listing-date-sort="1787799600000" data-listing-file-modified-sort="1788863084210" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="201">
-<a href="./posts-pt/expansao-composicao-matriculas/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/expansao-composicao-matriculas/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Expansão e Composição da Matrícula de Graduação, 1980–2024
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZWR1Y2FicjI='); return false;">educabr2</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWF0ciVDMyVBRGN1bGFz'); return false;">Matrículas</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RXhwYW5zJUMzJUEzbyUyMEhpc3QlQzMlQjNyaWNh'); return false;">Expansão Histórica</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Expansão de longo prazo e composição setorial da matrícula de graduação no Brasil, 1980–2024.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-27 de ago. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="UE5BRCUyRlBOQURDJTJDV2Fnc3RhZmYlMkNEZXNpZ3VhbGRhZGUlMkNBY2Vzc28=" data-listing-date-sort="1787799600000" data-listing-file-modified-sort="1788862779702" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="345">
-<a href="./posts-pt/wagstaff-acesso-matricula/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/wagstaff-acesso-matricula/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Desigualdade no Acesso e na Matrícula no Ensino Superior (Índice de Wagstaff)
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('V2Fnc3RhZmY='); return false;">Wagstaff</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGVzaWd1YWxkYWRl'); return false;">Desigualdade</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QWNlc3Nv'); return false;">Acesso</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Desigualdade relativa no acesso e na matrícula no ensino superior, por faixa etária, medida pelo índice de concentração de Wagstaff.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-27 de ago. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="3" data-categories="UE5BRCUyRlBOQURDJTJDV2Fnc3RhZmYlMkNSZWRlJTIwUCVDMyVCQWJsaWNhJTJGUHJpdmFkYQ==" data-listing-date-sort="1786330800000" data-listing-file-modified-sort="1788863077807" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="202">
-<a href="./posts-pt/wagstaff-rede-publica-privada-timeseries/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/wagstaff-rede-publica-privada-timeseries/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Desigualdade de Renda na Matrícula por Tipo de Rede, Série Temporal (Índice de Wagstaff)
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('V2Fnc3RhZmY='); return false;">Wagstaff</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVkZSUyMFAlQzMlQkFibGljYSUyRlByaXZhZGE='); return false;">Rede Pública/Privada</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Série temporal da desigualdade de renda na matrícula do ensino superior por tipo de rede (pública vs.&nbsp;privada), medida pelo índice de concentração de Wagstaff.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-10 de ago. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="4" data-categories="UE5BRCUyRlBOQURDJTJDRW5zaW5vJTIwU3VwZXJpb3IlMkNDb21wb3NpJUMzJUE3JUMzJUEzbyUyMHBvciUyMERlY2ls" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788862603455" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="297">
-<a href="./posts-pt/composicao-decil-ens-sup-18-24/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/composicao-decil-ens-sup-18-24/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Composição por Renda dos Estudantes do Ensino Superior (18–24 anos)
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RW5zaW5vJTIwU3VwZXJpb3I='); return false;">Ensino Superior</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q29tcG9zaSVDMyVBNyVDMyVBM28lMjBwb3IlMjBEZWNpbA=='); return false;">Composição por Decil</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Composição empilhada de decis de renda entre estudantes do ensino superior de 18–24 anos, ao longo do tempo.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-9 de ago. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="5" data-categories="UE5BRCUyRlBOQURDJTJDRW5zaW5vJTIwU3VwZXJpb3IlMkNDb21wb3NpJUMzJUE3JUMzJUEzbyUyMHBvciUyMERlY2ls" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788862751511" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="321">
-<a href="./posts-pt/composicao-decil-ens-sup-18-64/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/composicao-decil-ens-sup-18-64/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Composição por Renda dos Estudantes do Ensino Superior (18–64 anos)
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RW5zaW5vJTIwU3VwZXJpb3I='); return false;">Ensino Superior</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q29tcG9zaSVDMyVBNyVDMyVBM28lMjBwb3IlMjBEZWNpbA=='); return false;">Composição por Decil</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Composição empilhada de decis de renda entre estudantes do ensino superior de 18–64 anos, ao longo do tempo.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-9 de ago. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="6" data-categories="UE5BRCUyRlBOQURDJTJDRW5zaW5vJTIwU3VwZXJpb3IlMkNDb21wb3NpJUMzJUE3JUMzJUEzbyUyMHBvciUyMERlY2ls" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788862761773" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="290">
-<a href="./posts-pt/composicao-decil-ens-sup-a-18-24/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/composicao-decil-ens-sup-a-18-24/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Composição por Renda dos Matriculados Ativos no Ensino Superior (18–24 anos)
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RW5zaW5vJTIwU3VwZXJpb3I='); return false;">Ensino Superior</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q29tcG9zaSVDMyVBNyVDMyVBM28lMjBwb3IlMjBEZWNpbA=='); return false;">Composição por Decil</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Composição empilhada de decis de renda entre matriculados ativos no ensino superior de 18–24 anos, ao longo do tempo.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-9 de ago. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="7" data-categories="UE5BRCUyRlBOQURDJTJDRW5zaW5vJTIwU3VwZXJpb3IlMkNDb21wb3NpJUMzJUE3JUMzJUEzbyUyMHBvciUyMERlY2ls" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788862769448" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="290">
-<a href="./posts-pt/composicao-decil-ens-sup-a-18-64/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/composicao-decil-ens-sup-a-18-64/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Composição por Renda dos Matriculados Ativos no Ensino Superior (18–64 anos)
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RW5zaW5vJTIwU3VwZXJpb3I='); return false;">Ensino Superior</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q29tcG9zaSVDMyVBNyVDMyVBM28lMjBwb3IlMjBEZWNpbA=='); return false;">Composição por Decil</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Composição empilhada de decis de renda entre matriculados ativos no ensino superior de 18–64 anos, ao longo do tempo.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-9 de ago. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="8" data-categories="UE5BRCUyRlBOQURDJTJDUmVuZGElMkNHb3Zlcm5v" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788863229315" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="246">
-<a href="./posts-pt/delta-renda-anualizada-decil-governo/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/delta-renda-anualizada-decil-governo/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Crescimento Anualizado da Renda Real por Decil de Renda e Mandato Presidencial
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVuZGE='); return false;">Renda</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('R292ZXJubw=='); return false;">Governo</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Dotplot do crescimento anualizado da renda domiciliar per capita real por decil de renda e mandato presidencial.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-9 de ago. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="9" data-categories="UE5BRCUyRlBOQURDJTJDRGVzaWd1YWxkYWRlJTJDUmVuZGElMkNHaW5pJTJDUGFsbWE=" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788863242515" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="439">
-<a href="./posts-pt/desigualdade-renda-gini-palma-decil/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/desigualdade-renda-gini-palma-decil/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Desigualdade de Renda e Crescimento Real da Renda por Decil (Painel Gini/Palma)
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGVzaWd1YWxkYWRl'); return false;">Desigualdade</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVuZGE='); return false;">Renda</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('R2luaQ=='); return false;">Gini</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UGFsbWE='); return false;">Palma</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Figura em múltiplos painéis combinando índices de desigualdade de renda (Gini, razão de Palma) com o crescimento real da renda por decil.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-9 de ago. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="10" data-categories="UE5BRCUyRlBOQURDJTJDRW5zaW5vJTIwTSVDMyVBOWRpbyUyQ0NvbmNsdXMlQzMlQTNv" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788863070980" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="181">
-<a href="./posts-pt/em-conclusao-decil/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/em-conclusao-decil/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Taxa de Conclusão do Ensino Médio por Decil de Renda
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RW5zaW5vJTIwTSVDMyVBOWRpbw=='); return false;">Ensino Médio</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q29uY2x1cyVDMyVBM28='); return false;">Conclusão</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Série de linhas da taxa de conclusão do ensino médio por decil de renda.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-9 de ago. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="11" data-categories="UE5BRCUyRlBOQURDJTJDSVBDQSUyQ01lbnNhbGlkYWRlcyUyQ1JlbmRh" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788862946067" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="292">
-<a href="./posts-pt/fardo-mensalidade-decil/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/fardo-mensalidade-decil/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Fardo da Mensalidade em Relação à Renda Domiciliar por Decil de Renda
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SVBDQQ=='); return false;">IPCA</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWVuc2FsaWRhZGVz'); return false;">Mensalidades</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVuZGE='); return false;">Renda</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Fardo da mensalidade do ensino superior em relação à renda domiciliar, por decil de renda.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-9 de ago. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="12" data-categories="UE5BRCUyRlBOQURDJTJDUG9wdWxhJUMzJUE3JUMzJUEzbyUyQ1NhbCVDMyVBMXJpbyUyME0lQzMlQURuaW1v" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788862953043" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="231">
-<a href="./posts-pt/populacao-limiares-sm/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/populacao-limiares-sm/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-População Acima de Limiares Fixos de Renda Real
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UG9wdWxhJUMzJUE3JUMzJUEzbw=='); return false;">População</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2FsJUMzJUExcmlvJTIwTSVDMyVBRG5pbW8='); return false;">Salário Mínimo</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Proporção de jovens de 18–24 anos em domicílios acima de limiares fixos de renda real, expressos como múltiplos do salário mínimo.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-9 de ago. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="13" data-categories="UE5BRCUyRlBOQURDJTJDUmVuZGElMkNEaXN0cmlidWklQzMlQTclQzMlQTNv" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788862890847" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="270">
-<a href="./posts-pt/renda-centil-log/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/renda-centil-log/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Renda Domiciliar Média por Centil de Renda (Escala Logarítmica)
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVuZGE='); return false;">Renda</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGlzdHJpYnVpJUMzJUE3JUMzJUEzbw=='); return false;">Distribuição</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Renda domiciliar per capita média por centil de renda, plotada em escala logarítmica.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-9 de ago. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="14" data-categories="UE5BRCUyRlBOQURDJTJDUmVuZGElMkNEaXN0cmlidWklQzMlQTclQzMlQTNv" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788862885395" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="250">
-<a href="./posts-pt/renda-media-centil/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/renda-media-centil/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Renda Domiciliar Média por Centil de Renda
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVuZGE='); return false;">Renda</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGlzdHJpYnVpJUMzJUE3JUMzJUEzbw=='); return false;">Distribuição</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Renda domiciliar per capita média por centil de renda, escala linear.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-9 de ago. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="15" data-categories="UE5BRCUyRlBOQURDJTJDQWNlc3NvJTJDR292ZXJubw==" data-listing-date-sort="1786071600000" data-listing-file-modified-sort="1788862849972" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="290">
-<a href="./posts-pt/delta-acesso-decil-governo/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/delta-acesso-decil-governo/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Variação da Taxa de Acesso ao Ensino Superior por Decil de Renda e Mandato Presidencial
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QWNlc3Nv'); return false;">Acesso</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('R292ZXJubw=='); return false;">Governo</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Dotplot da variação total da taxa de acesso ao ensino superior (já ingressou alguma vez) por decil de renda, decomposta por mandato presidencial.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-7 de ago. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="16" data-categories="UE5BRCUyRlBOQURDJTJDTWF0ciVDMyVBRGN1bGFzJTJDR292ZXJubw==" data-listing-date-sort="1786071600000" data-listing-file-modified-sort="1788862843393" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="302">
-<a href="./posts-pt/delta-matriculados-decil-governo-dotplot/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/delta-matriculados-decil-governo-dotplot/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Variação da Taxa de Matrícula no Ensino Superior por Decil de Renda e Mandato Presidencial (Dotplot)
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWF0ciVDMyVBRGN1bGFz'); return false;">Matrículas</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('R292ZXJubw=='); return false;">Governo</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Dotplot da variação total da taxa de matrícula no ensino superior (18–24 anos) por decil de renda e mandato presidencial.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-7 de ago. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="17" data-categories="U0VEQVAlMkIlMkNFTkVNJTJDRWFEJTJDUG9sJUMzJUFEdGljYXMlMjBQJUMzJUJBYmxpY2Fz" data-listing-date-sort="1785985200000" data-listing-file-modified-sort="1788863018905" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="276">
-<a href="./posts-pt/descolamento-ead-politicas/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./posts/descolamento-ead-politicas/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Ensino a Distância e o Alcance das Políticas de Assistência Estudantil
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U0VEQVAlMkI='); return false;">SEDAP+</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RU5FTQ=='); return false;">ENEM</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RWFE'); return false;">EaD</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UG9sJUMzJUFEdGljYXMlMjBQJUMzJUJBYmxpY2Fz'); return false;">Políticas Públicas</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Matrículas em EaD e o alcance dos programas de assistência estudantil no setor privado.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-6 de ago. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="18" data-categories="U0VEQVAlMkIlMkNFTkVNJTJDUmVuZGE=" data-listing-date-sort="1785985200000" data-listing-file-modified-sort="1788863030845" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="211">
-<a href="./posts-pt/distribuicao-renda-setor/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" data-src="./posts/distribuicao-renda-setor/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Distribuição de Renda Domiciliar por Setor do Ensino Superior
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U0VEQVAlMkI='); return false;">SEDAP+</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RU5FTQ=='); return false;">ENEM</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVuZGE='); return false;">Renda</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Distribuição da renda domiciliar dos ingressantes por setor do ensino superior.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-6 de ago. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="19" data-categories="U0VEQVAlMkIlMkNFTkVNJTJDUmVuZGElMkNNb2RhbGlkYWRl" data-listing-date-sort="1785985200000" data-listing-file-modified-sort="1788863024598" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="186">
-<a href="./posts-pt/perfil-renda-modalidade/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" data-src="./posts/perfil-renda-modalidade/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Renda Domiciliar dos Ingressantes por Setor e Modalidade de Ensino
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U0VEQVAlMkI='); return false;">SEDAP+</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RU5FTQ=='); return false;">ENEM</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVuZGE='); return false;">Renda</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TW9kYWxpZGFkZQ=='); return false;">Modalidade</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Renda domiciliar dos ingressantes por setor do ensino superior e modalidade de ensino (presencial vs.&nbsp;EaD).</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-6 de ago. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="20" data-categories="U0VEQVAlMkIlMkNNYXRyJUMzJUFEY3VsYXMlMkNUdXJubyUyQ1ZpYSUyMGRlJTIwQWNlc3Nv" data-listing-date-sort="1785898800000" data-listing-file-modified-sort="1788863010334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="291">
-<a href="./posts-pt/matriculas-turno-via-acesso/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" data-src="./posts/matriculas-turno-via-acesso/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Matrículas por Setor, Via de Acesso e Turno
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U0VEQVAlMkI='); return false;">SEDAP+</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWF0ciVDMyVBRGN1bGFz'); return false;">Matrículas</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('VHVybm8='); return false;">Turno</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('VmlhJTIwZGUlMjBBY2Vzc28='); return false;">Via de Acesso</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Matrículas decompostas por setor, via de acesso (cotas/ampla concorrência) e turno (matutino/noturno/EaD).</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-5 de ago. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="21" data-categories="ZWR1Y2FicjIlMkNNYXRyJUMzJUFEY3VsYXM=" data-listing-date-sort="1783825200000" data-listing-file-modified-sort="1788863309521" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="178">
-<a href="./posts-pt/educabr2-enrollment-reconstructed/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" data-src="./posts/educabr2-enrollment-reconstructed/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-O Subregistro do EaD e os Totais de Matrícula Reconstruídos
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZWR1Y2FicjI='); return false;">educabr2</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWF0ciVDMyVBRGN1bGFz'); return false;">Matrículas</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>O subregistro do ensino a distância nas estatísticas oficiais e os totais de matrícula no ensino superior reconstruídos, 2000–2008.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-12 de jul. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="22" data-categories="ZWR1Y2FicjIlMkNNYXRyJUMzJUFEY3VsYXMlMkNGb250ZXMlMjBkZSUyMERhZG8=" data-listing-date-sort="1783825200000" data-listing-file-modified-sort="1788863303907" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="171">
-<a href="./posts-pt/educabr2-enrollment-sources/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" data-src="./posts/educabr2-enrollment-sources/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Matrícula no Ensino Superior no Brasil: Série Harmonizada e Fontes Concorrentes
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZWR1Y2FicjI='); return false;">educabr2</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWF0ciVDMyVBRGN1bGFz'); return false;">Matrículas</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Rm9udGVzJTIwZGUlMjBEYWRv'); return false;">Fontes de Dado</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Matrícula no ensino superior no Brasil, 1907–2024: a série harmonizada do educabr2 contra fontes concorrentes.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-12 de jul. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="23" data-categories="ZWR1Y2FicjIlMkNHYXN0byUyMFAlQzMlQkFibGljbyUyQ1JlZ3Jlc3NpdmlkYWRl" data-listing-date-sort="1783825200000" data-listing-file-modified-sort="1788863320407" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="196">
-<a href="./posts-pt/educabr2-expenditure-regressivity/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" data-src="./posts/educabr2-expenditure-regressivity/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Regressividade do Gasto Público: Ensino Superior vs.&nbsp;Ensino Fundamental
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZWR1Y2FicjI='); return false;">educabr2</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('R2FzdG8lMjBQJUMzJUJBYmxpY28='); return false;">Gasto Público</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVncmVzc2l2aWRhZGU='); return false;">Regressividade</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Razão dupla do gasto público por estudante, ensino superior sobre ensino fundamental, Brasil, 1933–2010.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-12 de jul. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="24" data-categories="ZWR1Y2FicjIlMkNQcm9ncmVzcyVDMyVBM28lMjBFc2NvbGFy" data-listing-date-sort="1783825200000" data-listing-file-modified-sort="1788863326236" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="168">
-<a href="./posts-pt/educabr2-progression-gdr6/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" data-src="./posts/educabr2-progression-gdr6/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Razão de Progressão Escolar (GDR6) em São Paulo e na Bahia
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZWR1Y2FicjI='); return false;">educabr2</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHJvZ3Jlc3MlQzMlQTNvJTIwRXNjb2xhcg=='); return false;">Progressão Escolar</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Razão de progressão escolar (GDR6) em São Paulo e na Bahia, 1955–2010.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-12 de jul. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="25" data-categories="ZWR1Y2FicjIlMkNFc2NvbGFyaWRhZGUlMkNTZXhv" data-listing-date-sort="1783825200000" data-listing-file-modified-sort="1788863314764" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="143">
-<a href="./posts-pt/educabr2-schooling-sex/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" data-src="./posts/educabr2-schooling-sex/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Anos Médios de Escolaridade por Sexo
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZWR1Y2FicjI='); return false;">educabr2</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RXNjb2xhcmlkYWRl'); return false;">Escolaridade</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U2V4bw=='); return false;">Sexo</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Anos médios de escolaridade da população de 15–64 anos no Brasil, por sexo, 1925–2015.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-12 de jul. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="26" data-categories="ZWR1Y2FicjIlMkNDb2JlcnR1cmElMjBkZSUyMEZvbnRlcw==" data-listing-date-sort="1783825200000" data-listing-file-modified-sort="1788863331953" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="152">
-<a href="./posts-pt/educabr2-source-coverage/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" data-src="./posts/educabr2-source-coverage/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Cobertura Temporal das Fontes Harmonizadas pelo educabr2
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZWR1Y2FicjI='); return false;">educabr2</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q29iZXJ0dXJhJTIwZGUlMjBGb250ZXM='); return false;">Cobertura de Fontes</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Cobertura temporal das onze fontes de dados harmonizadas pelo educabr2, 1870–2024.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-12 de jul. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="27" data-categories="UE5BRCUyRlBOQURDJTJDUmVuZGElMkNHb3Zlcm5v" data-listing-date-sort="1783479600000" data-listing-file-modified-sort="1788863216692" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="250">
-<a href="./posts-pt/delta-renda-abs-decil-governo/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" data-src="./posts/delta-renda-abs-decil-governo/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Variação da Renda Domiciliar Real por Decil de Renda e Mandato Presidencial (Absoluta)
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVuZGE='); return false;">Renda</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('R292ZXJubw=='); return false;">Governo</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Dotplot da variação total da renda domiciliar per capita real (R$/mês) por decil de renda e mandato presidencial.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-8 de jul. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="28" data-categories="UE5BRCUyRlBOQURDJTJDUmVuZGElMkNHb3Zlcm5v" data-listing-date-sort="1783479600000" data-listing-file-modified-sort="1788863222353" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="205">
-<a href="./posts-pt/delta-renda-rel-decil-governo/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" data-src="./posts/delta-renda-rel-decil-governo/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Variação da Renda Domiciliar Real por Decil de Renda e Mandato Presidencial (Relativa)
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVuZGE='); return false;">Renda</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('R292ZXJubw=='); return false;">Governo</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Dotplot da variação percentual total da renda domiciliar per capita real por decil de renda e mandato presidencial.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-8 de jul. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="29" data-categories="UE5BRCUyRlBOQURDJTJDUmVkZSUyMFAlQzMlQkFibGljYSUyRlByaXZhZGE=" data-listing-date-sort="1783306800000" data-listing-file-modified-sort="1788863209452" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="306">
-<a href="./posts-pt/concentracao-rede-publica-privada/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" data-src="./posts/concentracao-rede-publica-privada/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Concentração de Renda na Matrícula do Ensino Superior por Tipo de Rede
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UmVkZSUyMFAlQzMlQkFibGljYSUyRlByaXZhZGE='); return false;">Rede Pública/Privada</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Curvas de concentração de renda na matrícula do ensino superior por tipo de rede (pública vs.&nbsp;privada), 18–24 anos.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-6 de jul. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="30" data-categories="SVBDQSUyQ1NJRFJBJTJDTWVuc2FsaWRhZGVz" data-listing-date-sort="1783306800000" data-listing-file-modified-sort="1788862937973" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="336">
-<a href="./posts-pt/ipca-mensalidade-curso-superior/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" data-src="./posts/ipca-mensalidade-curso-superior/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Preços de Mensalidades do Ensino Superior em Relação à Inflação e ao Salário Mínimo
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('SVBDQQ=='); return false;">IPCA</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('U0lEUkE='); return false;">SIDRA</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWVuc2FsaWRhZGVz'); return false;">Mensalidades</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Série de preços de mensalidades do ensino superior em relação aos preços gerais ao consumidor e ao salário mínimo.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-6 de jul. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="31" data-categories="UE5BRCUyRlBOQURDJTJDTWF0ciVDMyVBRGN1bGFzJTJDR292ZXJubw==" data-listing-date-sort="1783134000000" data-listing-file-modified-sort="1788862836506" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="338">
-<a href="./posts-pt/delta-matriculados-decil-governo/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" data-src="./posts/delta-matriculados-decil-governo/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Variação da Taxa de Matrícula no Ensino Superior por Decil de Renda e Mandato Presidencial
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWF0ciVDMyVBRGN1bGFz'); return false;">Matrículas</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('R292ZXJubw=='); return false;">Governo</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Painel de gráficos de barras mostrando a variação total da taxa de matrícula no ensino superior (18–24 anos) por decil de renda, um painel por mandato presidencial.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-4 de jul. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="32" data-categories="UE5BRCUyRlBOQURDJTJDQ290YXMlMkNDb25jZW50cmElQzMlQTclQzMlQTNvJTIwZGUlMjBSZWRl" data-listing-date-sort="1782788400000" data-listing-file-modified-sort="1788863200945" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="370">
-<a href="./posts-pt/concentracao-rede-antes-depois-cotas/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" data-src="./posts/concentracao-rede-antes-depois-cotas/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Concentração de Renda na Matrícula por Rede, Antes e Depois da Lei de Cotas
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q290YXM='); return false;">Cotas</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Q29uY2VudHJhJUMzJUE3JUMzJUEzbyUyMGRlJTIwUmVkZQ=='); return false;">Concentração de Rede</div>
-
-</div>
-<div class="card-text listing-description delink">
-<p>Curvas de concentração de renda na matrícula do ensino superior por rede (pública vs.&nbsp;privada), antes, durante e depois da Lei de Cotas de 2012.</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-30 de jun. de 2026
-</div>
-</div>
-</div>
-</div></a>
-</div>
-</div>
+<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+    <select id="listing-listing-sort" class="form-select" aria-label="Ordenar por" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+      <option value="" disabled="" selected="" hidden="">Ordenar por</option>
+      <option value="index" data-direction="asc">Pré-selecionado</option>
+      <option value="listing-date-sort" data-direction="asc">
+        Data - Mais velho
+      </option>
+      <option value="listing-date-sort" data-direction="desc">
+        Data - O mais novo
+      </option>
+      <option value="listing-title-sort" data-direction="asc">
+        Título
+      </option>
+    </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filtro">
+    </div>
+</div>
+<table class="quarto-listing-table table">
+<thead>
+<tr>
+
+<th>
+image
+</th>
+
+<th>
+<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Título</a>
+</th>
+
+<th>
+Descrição
+</th>
+
+<th>
+Categorias
+</th>
+
+<th>
+<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Data</a>
+</th>
+
+</tr>
+</thead>
+<tbody class="list">
+
+<tr data-index="0" data-categories="UE5BRCUyRlBOQURDJTJDQ2Vuc28lMkNBY2Vzc28lMkNTJUMzJUE5cmllJTIwSGlzdCVDMyVCM3JpY2E=" data-listing-date-sort="1788404400000" data-listing-file-modified-sort="1788865894948" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="646" data-listing-title-sort="Taxa de Acesso ao Ensino Superior por Decil de Renda, Série Histórica" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/decil-acesso-serie-historica/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/decil-acesso-serie-historica/index.html" class="title listing-title">Taxa de Acesso ao Ensino Superior por Decil de Renda, Série Histórica</a>
+</td>
+<td>
+<span class="listing-description">Taxa de acesso ao ensino superior por decil de renda, série histórica de linhas a partir de 1992.</span>
+</td>
+<td>
+<span class="listing-categories">PNAD/PNADC, Censo, Acesso, Série Histórica</span>
+</td>
+<td>
+<span class="listing-date">3 de set. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="1" data-categories="ZWR1Y2FicjIlMkNNYXRyJUMzJUFEY3VsYXMlMkNFeHBhbnMlQzMlQTNvJTIwSGlzdCVDMyVCM3JpY2E=" data-listing-date-sort="1787799600000" data-listing-file-modified-sort="1788865895020" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="444" data-listing-title-sort="Expansão e Composição da Matrícula de Graduação, 1980–2024" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/expansao-composicao-matriculas/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/expansao-composicao-matriculas/index.html" class="title listing-title">Expansão e Composição da Matrícula de Graduação, 1980–2024</a>
+</td>
+<td>
+<span class="listing-description">Expansão de longo prazo e composição setorial da matrícula de graduação no Brasil, 1980–2024.</span>
+</td>
+<td>
+<span class="listing-categories">educabr2, Matrículas, Expansão Histórica</span>
+</td>
+<td>
+<span class="listing-date">27 de ago. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="2" data-categories="UE5BRCUyRlBOQURDJTJDV2Fnc3RhZmYlMkNEZXNpZ3VhbGRhZGUlMkNBY2Vzc28=" data-listing-date-sort="1787799600000" data-listing-file-modified-sort="1788865895041" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="596" data-listing-title-sort="Desigualdade no Acesso e na Matrícula no Ensino Superior (Índice de Wagstaff)" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/wagstaff-acesso-matricula/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/wagstaff-acesso-matricula/index.html" class="title listing-title">Desigualdade no Acesso e na Matrícula no Ensino Superior (Índice de Wagstaff)</a>
+</td>
+<td>
+<span class="listing-description">Desigualdade relativa no acesso e na matrícula no ensino superior, por faixa etária, medida pelo índice de concentração de Wagstaff.</span>
+</td>
+<td>
+<span class="listing-categories">PNAD/PNADC, Wagstaff, Desigualdade, Acesso</span>
+</td>
+<td>
+<span class="listing-date">27 de ago. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="3" data-categories="UE5BRCUyRlBOQURDJTJDV2Fnc3RhZmYlMkNSZWRlJTIwUCVDMyVCQWJsaWNhJTJGUHJpdmFkYQ==" data-listing-date-sort="1786330800000" data-listing-file-modified-sort="1788865895044" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="457" data-listing-title-sort="Desigualdade de Renda na Matrícula por Tipo de Rede, Série Temporal (Índice de Wagstaff)" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/wagstaff-rede-publica-privada-timeseries/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/wagstaff-rede-publica-privada-timeseries/index.html" class="title listing-title">Desigualdade de Renda na Matrícula por Tipo de Rede, Série Temporal (Índice de Wagstaff)</a>
+</td>
+<td>
+<span class="listing-description">Série temporal da desigualdade de renda na matrícula do ensino superior por tipo de rede (pública vs.&nbsp;privada), medida pelo índice de concentração de Wagstaff.</span>
+</td>
+<td>
+<span class="listing-categories">PNAD/PNADC, Wagstaff, Rede Pública/Privada</span>
+</td>
+<td>
+<span class="listing-date">10 de ago. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="4" data-categories="UE5BRCUyRlBOQURDJTJDRW5zaW5vJTIwU3VwZXJpb3IlMkNDb21wb3NpJUMzJUE3JUMzJUEzbyUyMHBvciUyMERlY2ls" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788865894934" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="544" data-listing-title-sort="Composição por Renda dos Estudantes do Ensino Superior (18–24 anos)" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/composicao-decil-ens-sup-18-24/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/composicao-decil-ens-sup-18-24/index.html" class="title listing-title">Composição por Renda dos Estudantes do Ensino Superior (18–24 anos)</a>
+</td>
+<td>
+<span class="listing-description">Composição empilhada de decis de renda entre estudantes do ensino superior de 18–24 anos, ao longo do tempo.</span>
+</td>
+<td>
+<span class="listing-categories">PNAD/PNADC, Ensino Superior, Composição por Decil</span>
+</td>
+<td>
+<span class="listing-date">9 de ago. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="5" data-categories="UE5BRCUyRlBOQURDJTJDRW5zaW5vJTIwU3VwZXJpb3IlMkNDb21wb3NpJUMzJUE3JUMzJUEzbyUyMHBvciUyMERlY2ls" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788865894936" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="568" data-listing-title-sort="Composição por Renda dos Estudantes do Ensino Superior (18–64 anos)" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/composicao-decil-ens-sup-18-64/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/composicao-decil-ens-sup-18-64/index.html" class="title listing-title">Composição por Renda dos Estudantes do Ensino Superior (18–64 anos)</a>
+</td>
+<td>
+<span class="listing-description">Composição empilhada de decis de renda entre estudantes do ensino superior de 18–64 anos, ao longo do tempo.</span>
+</td>
+<td>
+<span class="listing-categories">PNAD/PNADC, Ensino Superior, Composição por Decil</span>
+</td>
+<td>
+<span class="listing-date">9 de ago. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="6" data-categories="UE5BRCUyRlBOQURDJTJDRW5zaW5vJTIwU3VwZXJpb3IlMkNDb21wb3NpJUMzJUE3JUMzJUEzbyUyMHBvciUyMERlY2ls" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788865894938" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="539" data-listing-title-sort="Composição por Renda dos Matriculados Ativos no Ensino Superior (18–24 anos)" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/composicao-decil-ens-sup-a-18-24/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/composicao-decil-ens-sup-a-18-24/index.html" class="title listing-title">Composição por Renda dos Matriculados Ativos no Ensino Superior (18–24 anos)</a>
+</td>
+<td>
+<span class="listing-description">Composição empilhada de decis de renda entre matriculados ativos no ensino superior de 18–24 anos, ao longo do tempo.</span>
+</td>
+<td>
+<span class="listing-categories">PNAD/PNADC, Ensino Superior, Composição por Decil</span>
+</td>
+<td>
+<span class="listing-date">9 de ago. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="7" data-categories="UE5BRCUyRlBOQURDJTJDRW5zaW5vJTIwU3VwZXJpb3IlMkNDb21wb3NpJUMzJUE3JUMzJUEzbyUyMHBvciUyMERlY2ls" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788865894941" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="539" data-listing-title-sort="Composição por Renda dos Matriculados Ativos no Ensino Superior (18–64 anos)" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/composicao-decil-ens-sup-a-18-64/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/composicao-decil-ens-sup-a-18-64/index.html" class="title listing-title">Composição por Renda dos Matriculados Ativos no Ensino Superior (18–64 anos)</a>
+</td>
+<td>
+<span class="listing-description">Composição empilhada de decis de renda entre matriculados ativos no ensino superior de 18–64 anos, ao longo do tempo.</span>
+</td>
+<td>
+<span class="listing-categories">PNAD/PNADC, Ensino Superior, Composição por Decil</span>
+</td>
+<td>
+<span class="listing-date">9 de ago. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="8" data-categories="UE5BRCUyRlBOQURDJTJDUmVuZGElMkNHb3Zlcm5v" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788865894976" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="497" data-listing-title-sort="Crescimento Anualizado da Renda Real por Decil de Renda e Mandato Presidencial" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/delta-renda-anualizada-decil-governo/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/delta-renda-anualizada-decil-governo/index.html" class="title listing-title">Crescimento Anualizado da Renda Real por Decil de Renda e Mandato Presidencial</a>
+</td>
+<td>
+<span class="listing-description">Dotplot do crescimento anualizado da renda domiciliar per capita real por decil de renda e mandato presidencial.</span>
+</td>
+<td>
+<span class="listing-categories">PNAD/PNADC, Renda, Governo</span>
+</td>
+<td>
+<span class="listing-date">9 de ago. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="9" data-categories="UE5BRCUyRlBOQURDJTJDRGVzaWd1YWxkYWRlJTJDUmVuZGElMkNHaW5pJTJDUGFsbWE=" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788865894992" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="690" data-listing-title-sort="Desigualdade de Renda e Crescimento Real da Renda por Decil (Painel Gini/Palma)" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/desigualdade-renda-gini-palma-decil/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/desigualdade-renda-gini-palma-decil/index.html" class="title listing-title">Desigualdade de Renda e Crescimento Real da Renda por Decil (Painel Gini/Palma)</a>
+</td>
+<td>
+<span class="listing-description">Figura em múltiplos painéis combinando índices de desigualdade de renda (Gini, razão de Palma) com o crescimento real da renda por decil.</span>
+</td>
+<td>
+<span class="listing-categories">PNAD/PNADC, Desigualdade, Renda, Gini, Palma</span>
+</td>
+<td>
+<span class="listing-date">9 de ago. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="10" data-categories="UE5BRCUyRlBOQURDJTJDRW5zaW5vJTIwTSVDMyVBOWRpbyUyQ0NvbmNsdXMlQzMlQTNv" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788865895018" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="428" data-listing-title-sort="Taxa de Conclusão do Ensino Médio por Decil de Renda" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/em-conclusao-decil/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/em-conclusao-decil/index.html" class="title listing-title">Taxa de Conclusão do Ensino Médio por Decil de Renda</a>
+</td>
+<td>
+<span class="listing-description">Série de linhas da taxa de conclusão do ensino médio por decil de renda.</span>
+</td>
+<td>
+<span class="listing-categories">PNAD/PNADC, Ensino Médio, Conclusão</span>
+</td>
+<td>
+<span class="listing-date">9 de ago. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="11" data-categories="UE5BRCUyRlBOQURDJTJDSVBDQSUyQ01lbnNhbGlkYWRlcyUyQ1JlbmRh" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788865895021" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="543" data-listing-title-sort="Fardo da Mensalidade em Relação à Renda Domiciliar por Decil de Renda" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/fardo-mensalidade-decil/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/fardo-mensalidade-decil/index.html" class="title listing-title">Fardo da Mensalidade em Relação à Renda Domiciliar por Decil de Renda</a>
+</td>
+<td>
+<span class="listing-description">Fardo da mensalidade do ensino superior em relação à renda domiciliar, por decil de renda.</span>
+</td>
+<td>
+<span class="listing-categories">PNAD/PNADC, IPCA, Mensalidades, Renda</span>
+</td>
+<td>
+<span class="listing-date">9 de ago. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="12" data-categories="UE5BRCUyRlBOQURDJTJDUG9wdWxhJUMzJUE3JUMzJUEzbyUyQ1NhbCVDMyVBMXJpbyUyME0lQzMlQURuaW1v" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788865895029" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="474" data-listing-title-sort="População Acima de Limiares Fixos de Renda Real" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/populacao-limiares-sm/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/populacao-limiares-sm/index.html" class="title listing-title">População Acima de Limiares Fixos de Renda Real</a>
+</td>
+<td>
+<span class="listing-description">Proporção de jovens de 18–24 anos em domicílios acima de limiares fixos de renda real, expressos como múltiplos do salário mínimo.</span>
+</td>
+<td>
+<span class="listing-categories">PNAD/PNADC, População, Salário Mínimo</span>
+</td>
+<td>
+<span class="listing-date">9 de ago. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="13" data-categories="UE5BRCUyRlBOQURDJTJDUmVuZGElMkNEaXN0cmlidWklQzMlQTclQzMlQTNv" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788865895031" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="515" data-listing-title-sort="Renda Domiciliar Média por Centil de Renda (Escala Logarítmica)" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/renda-centil-log/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/renda-centil-log/index.html" class="title listing-title">Renda Domiciliar Média por Centil de Renda (Escala Logarítmica)</a>
+</td>
+<td>
+<span class="listing-description">Renda domiciliar per capita média por centil de renda, plotada em escala logarítmica.</span>
+</td>
+<td>
+<span class="listing-categories">PNAD/PNADC, Renda, Distribuição</span>
+</td>
+<td>
+<span class="listing-date">9 de ago. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="14" data-categories="UE5BRCUyRlBOQURDJTJDUmVuZGElMkNEaXN0cmlidWklQzMlQTclQzMlQTNv" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788865895039" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="491" data-listing-title-sort="Renda Domiciliar Média por Centil de Renda" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/renda-media-centil/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/renda-media-centil/index.html" class="title listing-title">Renda Domiciliar Média por Centil de Renda</a>
+</td>
+<td>
+<span class="listing-description">Renda domiciliar per capita média por centil de renda, escala linear.</span>
+</td>
+<td>
+<span class="listing-categories">PNAD/PNADC, Renda, Distribuição</span>
+</td>
+<td>
+<span class="listing-date">9 de ago. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="15" data-categories="UE5BRCUyRlBOQURDJTJDQWNlc3NvJTJDR292ZXJubw==" data-listing-date-sort="1786071600000" data-listing-file-modified-sort="1788865894950" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="547" data-listing-title-sort="Variação da Taxa de Acesso ao Ensino Superior por Decil de Renda e Mandato Presidencial" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/delta-acesso-decil-governo/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/delta-acesso-decil-governo/index.html" class="title listing-title">Variação da Taxa de Acesso ao Ensino Superior por Decil de Renda e Mandato Presidencial</a>
+</td>
+<td>
+<span class="listing-description">Dotplot da variação total da taxa de acesso ao ensino superior (já ingressou alguma vez) por decil de renda, decomposta por mandato presidencial.</span>
+</td>
+<td>
+<span class="listing-categories">PNAD/PNADC, Acesso, Governo</span>
+</td>
+<td>
+<span class="listing-date">7 de ago. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="16" data-categories="UE5BRCUyRlBOQURDJTJDTWF0ciVDMyVBRGN1bGFzJTJDR292ZXJubw==" data-listing-date-sort="1786071600000" data-listing-file-modified-sort="1788865894953" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="561" data-listing-title-sort="Variação da Taxa de Matrícula no Ensino Superior por Decil de Renda e Mandato Presidencial (Dotplot)" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/delta-matriculados-decil-governo-dotplot/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/delta-matriculados-decil-governo-dotplot/index.html" class="title listing-title">Variação da Taxa de Matrícula no Ensino Superior por Decil de Renda e Mandato Presidencial (Dotplot)</a>
+</td>
+<td>
+<span class="listing-description">Dotplot da variação total da taxa de matrícula no ensino superior (18–24 anos) por decil de renda e mandato presidencial.</span>
+</td>
+<td>
+<span class="listing-categories">PNAD/PNADC, Matrículas, Governo</span>
+</td>
+<td>
+<span class="listing-date">7 de ago. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="17" data-categories="U0VEQVAlMkIlMkNFTkVNJTJDRWFEJTJDUG9sJUMzJUFEdGljYXMlMjBQJUMzJUJBYmxpY2Fz" data-listing-date-sort="1785985200000" data-listing-file-modified-sort="1788865894981" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="525" data-listing-title-sort="Ensino a Distância e o Alcance das Políticas de Assistência Estudantil" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/descolamento-ead-politicas/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/descolamento-ead-politicas/index.html" class="title listing-title">Ensino a Distância e o Alcance das Políticas de Assistência Estudantil</a>
+</td>
+<td>
+<span class="listing-description">Matrículas em EaD e o alcance dos programas de assistência estudantil no setor privado.</span>
+</td>
+<td>
+<span class="listing-categories">SEDAP+, ENEM, EaD, Políticas Públicas</span>
+</td>
+<td>
+<span class="listing-date">6 de ago. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="18" data-categories="U0VEQVAlMkIlMkNFTkVNJTJDUmVuZGE=" data-listing-date-sort="1785985200000" data-listing-file-modified-sort="1788865894999" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="456" data-listing-title-sort="Distribuição de Renda Domiciliar por Setor do Ensino Superior" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/distribuicao-renda-setor/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/distribuicao-renda-setor/index.html" class="title listing-title">Distribuição de Renda Domiciliar por Setor do Ensino Superior</a>
+</td>
+<td>
+<span class="listing-description">Distribuição da renda domiciliar dos ingressantes por setor do ensino superior.</span>
+</td>
+<td>
+<span class="listing-categories">SEDAP+, ENEM, Renda</span>
+</td>
+<td>
+<span class="listing-date">6 de ago. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="19" data-categories="U0VEQVAlMkIlMkNFTkVNJTJDUmVuZGElMkNNb2RhbGlkYWRl" data-listing-date-sort="1785985200000" data-listing-file-modified-sort="1788865895028" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="433" data-listing-title-sort="Renda Domiciliar dos Ingressantes por Setor e Modalidade de Ensino" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/perfil-renda-modalidade/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/perfil-renda-modalidade/index.html" class="title listing-title">Renda Domiciliar dos Ingressantes por Setor e Modalidade de Ensino</a>
+</td>
+<td>
+<span class="listing-description">Renda domiciliar dos ingressantes por setor do ensino superior e modalidade de ensino (presencial vs.&nbsp;EaD).</span>
+</td>
+<td>
+<span class="listing-categories">SEDAP+, ENEM, Renda, Modalidade</span>
+</td>
+<td>
+<span class="listing-date">6 de ago. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="20" data-categories="U0VEQVAlMkIlMkNNYXRyJUMzJUFEY3VsYXMlMkNUdXJubyUyQ1ZpYSUyMGRlJTIwQWNlc3Nv" data-listing-date-sort="1785898800000" data-listing-file-modified-sort="1788865895025" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="534" data-listing-title-sort="Matrículas por Setor, Via de Acesso e Turno" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/matriculas-turno-via-acesso/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/matriculas-turno-via-acesso/index.html" class="title listing-title">Matrículas por Setor, Via de Acesso e Turno</a>
+</td>
+<td>
+<span class="listing-description">Matrículas decompostas por setor, via de acesso (cotas/ampla concorrência) e turno (matutino/noturno/EaD).</span>
+</td>
+<td>
+<span class="listing-categories">SEDAP+, Matrículas, Turno, Via de Acesso</span>
+</td>
+<td>
+<span class="listing-date">5 de ago. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="21" data-categories="ZWR1Y2FicjIlMkNNYXRyJUMzJUFEY3VsYXM=" data-listing-date-sort="1783825200000" data-listing-file-modified-sort="1788865895003" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="425" data-listing-title-sort="O Subregistro do EaD e os Totais de Matrícula Reconstruídos" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/educabr2-enrollment-reconstructed/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/educabr2-enrollment-reconstructed/index.html" class="title listing-title">O Subregistro do EaD e os Totais de Matrícula Reconstruídos</a>
+</td>
+<td>
+<span class="listing-description">O subregistro do ensino a distância nas estatísticas oficiais e os totais de matrícula no ensino superior reconstruídos, 2000–2008.</span>
+</td>
+<td>
+<span class="listing-categories">educabr2, Matrículas</span>
+</td>
+<td>
+<span class="listing-date">12 de jul. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="22" data-categories="ZWR1Y2FicjIlMkNNYXRyJUMzJUFEY3VsYXMlMkNGb250ZXMlMjBkZSUyMERhZG8=" data-listing-date-sort="1783825200000" data-listing-file-modified-sort="1788865895005" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="420" data-listing-title-sort="Matrícula no Ensino Superior no Brasil: Série Harmonizada e Fontes Concorrentes" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/educabr2-enrollment-sources/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/educabr2-enrollment-sources/index.html" class="title listing-title">Matrícula no Ensino Superior no Brasil: Série Harmonizada e Fontes Concorrentes</a>
+</td>
+<td>
+<span class="listing-description">Matrícula no ensino superior no Brasil, 1907–2024: a série harmonizada do educabr2 contra fontes concorrentes.</span>
+</td>
+<td>
+<span class="listing-categories">educabr2, Matrículas, Fontes de Dado</span>
+</td>
+<td>
+<span class="listing-date">12 de jul. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="23" data-categories="ZWR1Y2FicjIlMkNHYXN0byUyMFAlQzMlQkFibGljbyUyQ1JlZ3Jlc3NpdmlkYWRl" data-listing-date-sort="1783825200000" data-listing-file-modified-sort="1788865895007" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="441" data-listing-title-sort="Regressividade do Gasto Público: Ensino Superior vs. Ensino Fundamental" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/educabr2-expenditure-regressivity/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/educabr2-expenditure-regressivity/index.html" class="title listing-title">Regressividade do Gasto Público: Ensino Superior vs.&nbsp;Ensino Fundamental</a>
+</td>
+<td>
+<span class="listing-description">Razão dupla do gasto público por estudante, ensino superior sobre ensino fundamental, Brasil, 1933–2010.</span>
+</td>
+<td>
+<span class="listing-categories">educabr2, Gasto Público, Regressividade</span>
+</td>
+<td>
+<span class="listing-date">12 de jul. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="24" data-categories="ZWR1Y2FicjIlMkNQcm9ncmVzcyVDMyVBM28lMjBFc2NvbGFy" data-listing-date-sort="1783825200000" data-listing-file-modified-sort="1788865895009" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="417" data-listing-title-sort="Razão de Progressão Escolar (GDR6) em São Paulo e na Bahia" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/educabr2-progression-gdr6/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/educabr2-progression-gdr6/index.html" class="title listing-title">Razão de Progressão Escolar (GDR6) em São Paulo e na Bahia</a>
+</td>
+<td>
+<span class="listing-description">Razão de progressão escolar (GDR6) em São Paulo e na Bahia, 1955–2010.</span>
+</td>
+<td>
+<span class="listing-categories">educabr2, Progressão Escolar</span>
+</td>
+<td>
+<span class="listing-date">12 de jul. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="25" data-categories="ZWR1Y2FicjIlMkNFc2NvbGFyaWRhZGUlMkNTZXhv" data-listing-date-sort="1783825200000" data-listing-file-modified-sort="1788865895013" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="382" data-listing-title-sort="Anos Médios de Escolaridade por Sexo" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/educabr2-schooling-sex/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/educabr2-schooling-sex/index.html" class="title listing-title">Anos Médios de Escolaridade por Sexo</a>
+</td>
+<td>
+<span class="listing-description">Anos médios de escolaridade da população de 15–64 anos no Brasil, por sexo, 1925–2015.</span>
+</td>
+<td>
+<span class="listing-categories">educabr2, Escolaridade, Sexo</span>
+</td>
+<td>
+<span class="listing-date">12 de jul. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="26" data-categories="ZWR1Y2FicjIlMkNDb2JlcnR1cmElMjBkZSUyMEZvbnRlcw==" data-listing-date-sort="1783825200000" data-listing-file-modified-sort="1788865895016" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="393" data-listing-title-sort="Cobertura Temporal das Fontes Harmonizadas pelo educabr2" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/educabr2-source-coverage/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/educabr2-source-coverage/index.html" class="title listing-title">Cobertura Temporal das Fontes Harmonizadas pelo educabr2</a>
+</td>
+<td>
+<span class="listing-description">Cobertura temporal das onze fontes de dados harmonizadas pelo educabr2, 1870–2024.</span>
+</td>
+<td>
+<span class="listing-categories">educabr2, Cobertura de Fontes</span>
+</td>
+<td>
+<span class="listing-date">12 de jul. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="27" data-categories="UE5BRCUyRlBOQURDJTJDUmVuZGElMkNHb3Zlcm5v" data-listing-date-sort="1783479600000" data-listing-file-modified-sort="1788865894975" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="503" data-listing-title-sort="Variação da Renda Domiciliar Real por Decil de Renda e Mandato Presidencial (Absoluta)" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/delta-renda-abs-decil-governo/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/delta-renda-abs-decil-governo/index.html" class="title listing-title">Variação da Renda Domiciliar Real por Decil de Renda e Mandato Presidencial (Absoluta)</a>
+</td>
+<td>
+<span class="listing-description">Dotplot da variação total da renda domiciliar per capita real (R$/mês) por decil de renda e mandato presidencial.</span>
+</td>
+<td>
+<span class="listing-categories">PNAD/PNADC, Renda, Governo</span>
+</td>
+<td>
+<span class="listing-date">8 de jul. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="28" data-categories="UE5BRCUyRlBOQURDJTJDUmVuZGElMkNHb3Zlcm5v" data-listing-date-sort="1783479600000" data-listing-file-modified-sort="1788865894979" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="458" data-listing-title-sort="Variação da Renda Domiciliar Real por Decil de Renda e Mandato Presidencial (Relativa)" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/delta-renda-rel-decil-governo/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/delta-renda-rel-decil-governo/index.html" class="title listing-title">Variação da Renda Domiciliar Real por Decil de Renda e Mandato Presidencial (Relativa)</a>
+</td>
+<td>
+<span class="listing-description">Dotplot da variação percentual total da renda domiciliar per capita real por decil de renda e mandato presidencial.</span>
+</td>
+<td>
+<span class="listing-categories">PNAD/PNADC, Renda, Governo</span>
+</td>
+<td>
+<span class="listing-date">8 de jul. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="29" data-categories="UE5BRCUyRlBOQURDJTJDUmVkZSUyMFAlQzMlQkFibGljYSUyRlByaXZhZGE=" data-listing-date-sort="1783306800000" data-listing-file-modified-sort="1788865894946" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="557" data-listing-title-sort="Concentração de Renda na Matrícula do Ensino Superior por Tipo de Rede" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" src="./posts/concentracao-rede-publica-privada/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/concentracao-rede-publica-privada/index.html" class="title listing-title">Concentração de Renda na Matrícula do Ensino Superior por Tipo de Rede</a>
+</td>
+<td>
+<span class="listing-description">Curvas de concentração de renda na matrícula do ensino superior por tipo de rede (pública vs.&nbsp;privada), 18–24 anos.</span>
+</td>
+<td>
+<span class="listing-categories">PNAD/PNADC, Rede Pública/Privada</span>
+</td>
+<td>
+<span class="listing-date">6 de jul. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="30" data-categories="SVBDQSUyQ1NJRFJBJTJDTWVuc2FsaWRhZGVz" data-listing-date-sort="1783306800000" data-listing-file-modified-sort="1788865895023" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="591" data-listing-title-sort="Preços de Mensalidades do Ensino Superior em Relação à Inflação e ao Salário Mínimo" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" data-src="./posts/ipca-mensalidade-curso-superior/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/ipca-mensalidade-curso-superior/index.html" class="title listing-title">Preços de Mensalidades do Ensino Superior em Relação à Inflação e ao Salário Mínimo</a>
+</td>
+<td>
+<span class="listing-description">Série de preços de mensalidades do ensino superior em relação aos preços gerais ao consumidor e ao salário mínimo.</span>
+</td>
+<td>
+<span class="listing-categories">IPCA, SIDRA, Mensalidades</span>
+</td>
+<td>
+<span class="listing-date">6 de jul. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="31" data-categories="UE5BRCUyRlBOQURDJTJDTWF0ciVDMyVBRGN1bGFzJTJDR292ZXJubw==" data-listing-date-sort="1783134000000" data-listing-file-modified-sort="1788865894973" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="595" data-listing-title-sort="Variação da Taxa de Matrícula no Ensino Superior por Decil de Renda e Mandato Presidencial" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" data-src="./posts/delta-matriculados-decil-governo/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/delta-matriculados-decil-governo/index.html" class="title listing-title">Variação da Taxa de Matrícula no Ensino Superior por Decil de Renda e Mandato Presidencial</a>
+</td>
+<td>
+<span class="listing-description">Painel de gráficos de barras mostrando a variação total da taxa de matrícula no ensino superior (18–24 anos) por decil de renda, um painel por mandato presidencial.</span>
+</td>
+<td>
+<span class="listing-categories">PNAD/PNADC, Matrículas, Governo</span>
+</td>
+<td>
+<span class="listing-date">4 de jul. de 2026</span>
+</td>
+
+</tr>
+
+<tr data-index="32" data-categories="UE5BRCUyRlBOQURDJTJDQ290YXMlMkNDb25jZW50cmElQzMlQTclQzMlQTNvJTIwZGUlMjBSZWRl" data-listing-date-sort="1782788400000" data-listing-file-modified-sort="1788865894943" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="625" data-listing-title-sort="Concentração de Renda na Matrícula por Rede, Antes e Depois da Lei de Cotas" data-listing-filename-sort="index.qmd">
+<td>
+<span class="listing-image"><img loading="lazy" data-src="./posts/concentracao-rede-antes-depois-cotas/thumbnail.png" style="height: 40px;"></span>
+</td>
+<td>
+<a href="./posts-pt/concentracao-rede-antes-depois-cotas/index.html" class="title listing-title">Concentração de Renda na Matrícula por Rede, Antes e Depois da Lei de Cotas</a>
+</td>
+<td>
+<span class="listing-description">Curvas de concentração de renda na matrícula do ensino superior por rede (pública vs.&nbsp;privada), antes, durante e depois da Lei de Cotas de 2012.</span>
+</td>
+<td>
+<span class="listing-categories">PNAD/PNADC, Cotas, Concentração de Rede</span>
+</td>
+<td>
+<span class="listing-date">30 de jun. de 2026</span>
+</td>
+
+</tr>
+
+</tbody>
+</table>
 <div class="listing-no-matching d-none">Nenhum item correspondente</div>
 <nav id="listing-pagination" class="listing-pagination" aria-label="Page Navigation">
   <ul class="pagination"></ul>

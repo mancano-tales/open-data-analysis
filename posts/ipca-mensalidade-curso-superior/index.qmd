@@ -16,6 +16,43 @@ This figure tracks how the cost of higher-education tuition in Brazil moved rela
 
 Both series track the higher-education tuition subitem of the IPCA, Brazil's headline consumer price index, spliced from the four vintages of the subitem-level SIDRA series (tables 655, 2938, 1419, and 7060) and expressed as a cumulative index with August 1999 = 100. The blue series deflates cumulative tuition readjustments by the headline IPCA: values above 100 indicate tuition rose faster than overall consumer prices after August 1999. The orange series divides the same tuition index by the nominal minimum wage (IPEADATA series `MTE12_SALMIN12`), measuring how the cost of the same tuition bill evolved relative to the wage floor. The IPCA subitem is a price-change index computed over a fixed panel of institutions: it measures readjustment, not the price level or the average market ticket, and does not capture compositional cheapening through migration toward distance learning and lower-priced institutions. In real terms, tuition tracked or exceeded headline inflation until 2020 and fell below the 1999 benchmark only after the nominal tuition cuts of 2021; relative to the minimum wage, tuition fell by roughly 60%, with most of the decline concentrated in 2001–2012.
 
+## How to Cite
+
+If you use this figure or its underlying pipeline, please cite both the dissertation and this repository.
+
+**Dissertation:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Master's thesis, Graduate Program in Political Science, University of São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**This figure and pipeline:**
+
+> Mançano, Tales. 2026. "Higher-Education Tuition Prices Relative to Inflation and the Minimum Wage." In *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts/ipca-mensalidade-curso-superior/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Higher-Education Tuition Prices Relative to Inflation and the Minimum Wage},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/ipca-mensalidade-curso-superior/}
+}
+```
+
+A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the repository URL above.
+
 ## Pipeline
 
 Scripts for this analysis:

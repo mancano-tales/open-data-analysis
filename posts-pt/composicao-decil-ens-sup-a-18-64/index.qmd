@@ -16,6 +16,43 @@ Esta figura mostra como a composição por renda dos estudantes brasileiros de 1
 
 Cada barra mostra a proporção de matriculados ativos de 18 a 64 anos vinda de cada decil de renda. Variável: `ens_sup_a` = matriculado atualmente (ativamente) no ensino superior. Os decis de renda são calculados dentro de cada ano de pesquisa via `Hmisc::wtd.quantile`, usando os pesos amostrais. Os anos 2000 e 2010 são excluídos porque não houve PNAD em anos de Censo; 2020–2021 são excluídos por causa da COVID-19 e do Auxílio Emergencial, que distorceu a distribuição de renda. Para 2012–2015, usam-se apenas observações da PNAD Anual, para evitar contagem dupla nos anos de sobreposição PNAD/PNADC. Rótulos percentuais são exibidos para decis com participação ≥ 6%; apenas o rótulo do decil (sem percentual) para participações ≥ 3%. As linhas horizontais tracejadas indicam equidade perfeita (cada decil = 10%). Os rótulos de governo indicam o presidente em exercício.
 
+## Como Citar
+
+Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto este repositório.
+
+**Dissertação:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Dissertação de Mestrado, Programa de Pós-Graduação em Ciência Política, Universidade de São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**Esta figura e o pipeline:**
+
+> Mançano, Tales. 2026. "Composição por Renda dos Matriculados Ativos no Ensino Superior (18–64 anos)." Em *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts-pt/composicao-decil-ens-sup-a-18-64/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Composição por Renda dos Matriculados Ativos no Ensino Superior (18–64 anos)},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/composicao-decil-ens-sup-a-18-64/}
+}
+```
+
+Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL do repositório acima.
+
 ## Pipeline
 
 Scripts desta análise:

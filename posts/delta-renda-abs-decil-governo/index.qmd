@@ -16,6 +16,43 @@ This figure measures the total change in real household income, in reais per mon
 
 Each point is the total change in mean real per-capita household income (R$/month, January 2024 prices) for each income decile, from the first available year of a presidential term to the first available year of the next (blue = gain, orange = loss); horizontal lines are 95% confidence intervals. The bottom-right panel covers the full 1992–2023 period. Confidence intervals are 95% normal-approximation intervals propagating the standard error of each endpoint: se_Δ = √(se₁² + se₀²). The standard error of each endpoint is the weighted sample variance divided by the Kish effective sample size (design effect = 2). Income deciles and the underlying income variable are computed over the full population (not restricted to 18–24-year-olds), since per-capita household income describes the whole household.
 
+## How to Cite
+
+If you use this figure or its underlying pipeline, please cite both the dissertation and this repository.
+
+**Dissertation:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Master's thesis, Graduate Program in Political Science, University of São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**This figure and pipeline:**
+
+> Mançano, Tales. 2026. "Change in Real Household Income by Income Decile and Presidential Term (Absolute)." In *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts/delta-renda-abs-decil-governo/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Change in Real Household Income by Income Decile and Presidential Term (Absolute)},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/delta-renda-abs-decil-governo/}
+}
+```
+
+A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the repository URL above.
+
 ## Pipeline
 
 Scripts for this analysis:

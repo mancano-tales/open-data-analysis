@@ -16,6 +16,43 @@ This figure shows the long-run expansion of Brazilian undergraduate enrollment f
 
 Long-run series (1980–2024) of total undergraduate enrollment and its composition by administrative category (public federal, public state, public municipal, private), drawing on the `educabr2` R package, which assembles historical Brazilian higher-education statistics from INEP's Higher Education Census and its predecessor surveys (Censo do Ensino Superior, Sinopses Estatísticas) into a single harmonized long-run series. The period before INEP's modern microdata era (pre-1995) is not covered by any of the PNAD/PNADC/CENSUP pipelines used elsewhere in this repository.
 
+## How to Cite
+
+If you use this figure or its underlying pipeline, please cite both the dissertation and this repository.
+
+**Dissertation:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Master's thesis, Graduate Program in Political Science, University of São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**This figure and pipeline:**
+
+> Mançano, Tales. 2026. "Expansion and Composition of Undergraduate Enrollment, 1980–2024." In *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts/expansao-composicao-matriculas/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Expansion and Composition of Undergraduate Enrollment, 1980–2024},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/expansao-composicao-matriculas/}
+}
+```
+
+A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the repository URL above.
+
 ## Pipeline
 
 Scripts for this analysis:

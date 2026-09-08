@@ -16,6 +16,43 @@ Esta figura mostra a distribuição de renda domiciliar dos estudantes que ingre
 
 Distribuição de renda dos ingressantes (registros combinados ENEM×Censo) por setor, comparada contra o conjunto completo de participantes do ENEM (exame nacional do ensino médio) naquela mesma coorte — ou seja, contra todos que fizeram a prova, não apenas os que se matricularam. Isso permite à figura mostrar se a turma de ingressantes de um setor é enviesada por renda em relação ao conjunto de candidatos do qual ela é extraída, e não apenas em relação à população geral.
 
+## Como Citar
+
+Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto este repositório.
+
+**Dissertação:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Dissertação de Mestrado, Programa de Pós-Graduação em Ciência Política, Universidade de São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**Esta figura e o pipeline:**
+
+> Mançano, Tales. 2026. "Distribuição de Renda Domiciliar por Setor do Ensino Superior." Em *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts-pt/distribuicao-renda-setor/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Distribuição de Renda Domiciliar por Setor do Ensino Superior},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/distribuicao-renda-setor/}
+}
+```
+
+Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL do repositório acima.
+
 ## Pipeline
 
 Scripts desta análise:

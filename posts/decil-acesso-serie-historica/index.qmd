@@ -16,6 +16,43 @@ This figure tracks, from 1992 onward, the share of young Brazilians aged 18–24
 
 Each series is the share of 18–24-year-olds who had ever enrolled in tertiary education (`ens_sup`, cumulative access), by decile of per-capita household income and for the population as a whole. Deciles are computed within each survey year and source, over the full population with strictly positive income. The harmonized series uses PNAD Anual through 2015 and PNAD Contínua from 2016 onward, so each year draws on a single source; the rural North is absent from PNAD Anual 2004–2015. Lines are interrupted in years without a survey: 2000 and 2010 (census years) and 2020–2021 (excluded for pandemic-related data-quality reasons). Confidence intervals are 95% intervals: Wilson score intervals with the Kish effective sample size under a design effect of 2.0 for PNAD Anual (1992–2015), and design-based intervals from exact complex-survey estimation via `survey::svydesign()` for PNAD Contínua (2016–2025). Diamonds mark independent validation points from the long-form samples of the 1991, 2000, 2010, and 2022 Demographic Censuses (via `censobr`); their 95% confidence intervals span at most 0.6 to 0.7 percentage points, narrower than the diamond markers themselves. The 1991 census reports income in fourteen ordinal ranges, from which deciles are approximated. Government labels indicate the president in office.
 
+## How to Cite
+
+If you use this figure or its underlying pipeline, please cite both the dissertation and this repository.
+
+**Dissertation:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Master's thesis, Graduate Program in Political Science, University of São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**This figure and pipeline:**
+
+> Mançano, Tales. 2026. "Tertiary Education Access Rate by Income Decile, Historical Series." In *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts/decil-acesso-serie-historica/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Tertiary Education Access Rate by Income Decile, Historical Series},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/decil-acesso-serie-historica/}
+}
+```
+
+A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the repository URL above.
+
 ## Pipeline
 
 Scripts for this analysis:

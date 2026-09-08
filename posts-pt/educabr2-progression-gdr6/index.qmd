@@ -16,6 +16,43 @@ Esta figura compara dois estados brasileiros, São Paulo e Bahia, quanto ao quã
 
 O GDR6 é uma proxy da retenção nos anos iniciais do ensino fundamental (matrícula nas séries 4–6 em relação às séries 1–3). A faixa cinza é o hiato São Paulo–Bahia: ele se amplia ao longo das décadas desenvolvimentistas e só se estreita substancialmente depois das reformas dos anos 1990, traçando meio século de desigualdade educacional regional numa única faixa.
 
+## Como Citar
+
+Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto este repositório.
+
+**Dissertação:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Dissertação de Mestrado, Programa de Pós-Graduação em Ciência Política, Universidade de São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**Esta figura e o pipeline:**
+
+> Mançano, Tales. 2026. "Razão de Progressão Escolar (GDR6) em São Paulo e na Bahia." Em *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts-pt/educabr2-progression-gdr6/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Razão de Progressão Escolar (GDR6) em São Paulo e na Bahia},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/educabr2-progression-gdr6/}
+}
+```
+
+Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL do repositório acima.
+
 ## Pipeline
 
 Scripts desta análise:

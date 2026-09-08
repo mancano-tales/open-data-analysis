@@ -24,6 +24,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -161,6 +196,36 @@ ul.task-list li input[type="checkbox"] {
 <section id="metodologia" class="level2">
 <h2 class="anchored" data-anchor-id="metodologia">Metodologia</h2>
 <p>Ambas as séries acompanham o subitem de mensalidade de curso superior do IPCA, o índice oficial de preços ao consumidor do Brasil, emendado a partir das quatro versões da série do SIDRA no nível de subitem (tabelas 655, 2938, 1419 e 7060) e expresso como índice acumulado com agosto de 1999 = 100. A série azul deflaciona os reajustes acumulados de mensalidade pelo IPCA geral: valores acima de 100 indicam que as mensalidades subiram mais rápido que os preços ao consumidor em geral após agosto de 1999. A série laranja divide o mesmo índice de mensalidade pelo salário mínimo nominal (série do IPEADATA <code>MTE12_SALMIN12</code>), medindo como o custo da mesma mensalidade evoluiu em relação ao piso salarial. O subitem do IPCA é um índice de variação de preços calculado sobre um painel fixo de instituições: ele mede reajuste, não o nível de preço nem o ticket médio de mercado, e não captura o barateamento composicional pela migração para o EaD e para instituições de menor preço. Em termos reais, as mensalidades acompanharam ou superaram a inflação geral até 2020 e só caíram abaixo do patamar de 1999 depois dos cortes nominais de mensalidade de 2021; em relação ao salário mínimo, as mensalidades caíram cerca de 60%, com a maior parte da queda concentrada entre 2001 e 2012.</p>
+</section>
+<section id="como-citar" class="level2">
+<h2 class="anchored" data-anchor-id="como-citar">Como Citar</h2>
+<p>Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto este repositório.</p>
+<p><strong>Dissertação:</strong></p>
+<blockquote class="blockquote">
+<p>Mançano, Tales. 2026. <em>Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)</em>. Dissertação de Mestrado, Programa de Pós-Graduação em Ciência Política, Universidade de São Paulo.</p>
+</blockquote>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@mastersthesis</span>{<span class="ot">Mancano2026</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span> = {Man<span class="ch">\c</span>{c}ano, Tales},</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>  = {Inequality in Access to Tertiary Education in Brazil: Household</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>            Incomes, Reforming Policies, and the Politics of Who Gets In</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            (1990s--2020s)},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">school</span> = {University of S<span class="ch">\~</span>{a}o Paulo},</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>   = {2026},</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">type</span>   = {Master's thesis},</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">note</span>   = {Graduate Program in Political Science}</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Esta figura e o pipeline:</strong></p>
+<blockquote class="blockquote">
+<p>Mançano, Tales. 2026. “Preços de Mensalidades do Ensino Superior em Relação à Inflação e ao Salário Mínimo.” Em <em>Open Data Analysis</em>. <a href="https://github.com/mancano-tales/open-data-analysis" class="uri">https://github.com/mancano-tales/open-data-analysis</a>, <code>posts-pt/ipca-mensalidade-curso-superior/</code>.</p>
+</blockquote>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">Mancano2026OpenDataAnalysis</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>       = {Man<span class="ch">\c</span>{c}ano, Tales},</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>        = {Open Data Analysis: Preços de Mensalidades do Ensino Superior em Relação à Inflação e ao Salário Mínimo},</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>         = {2026},</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">howpublished</span> = {<span class="ch">\url</span>{https://github.com/mancano-tales/open-data-analysis}},</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">note</span>         = {posts/ipca-mensalidade-curso-superior/}</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL do repositório acima.</p>
 </section>
 <section id="pipeline" class="level2">
 <h2 class="anchored" data-anchor-id="pipeline">Pipeline</h2>

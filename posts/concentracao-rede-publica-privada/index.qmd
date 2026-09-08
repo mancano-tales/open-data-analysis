@@ -16,6 +16,43 @@ This figure compares income concentration curves for general tertiary-education 
 
 Curves show, for each network, the cumulative share of currently enrolled tertiary students accounted for by the poorest p% of the 18–24-year-old population, ranked by per-capita household income within each year. The closer a curve sits to the 45-degree line, the more evenly access to that network is distributed across the income distribution; curves bowing below the diagonal indicate concentration among higher-income deciles. The pooled curve is a simple average of the year-specific curves for 2022, 2023, and 2024 (each resampled on a uniform 101-point percentile grid), so each year contributes equally regardless of sample size. The Erreygers concentration index is computed year by year for the same three years. The network variable is V3002A (IBGE PNADC) rather than the V3004-derived network variable used elsewhere in this project, since V3004 never covers tertiary students in any year; V3002A is its 2015+ replacement, with reversed coding (1 = private, 2 = public) relative to the V3004 convention.
 
+## How to Cite
+
+If you use this figure or its underlying pipeline, please cite both the dissertation and this repository.
+
+**Dissertation:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Master's thesis, Graduate Program in Political Science, University of São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**This figure and pipeline:**
+
+> Mançano, Tales. 2026. "Income Concentration in Tertiary Enrollment by Network Type." In *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts/concentracao-rede-publica-privada/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Income Concentration in Tertiary Enrollment by Network Type},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/concentracao-rede-publica-privada/}
+}
+```
+
+A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the repository URL above.
+
 ## Pipeline
 
 Scripts for this analysis:

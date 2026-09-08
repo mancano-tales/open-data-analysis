@@ -16,6 +16,43 @@ Esta figura mostra como mudou ao longo do tempo a proporção de jovens brasilei
 
 Para cada ano de pesquisa, o valor nominal do salário mínimo de janeiro daquele ano (série do IPEADATA `MTE12_SALMIN12`) é deflacionado a preços de janeiro de 2024 via `deflateBR::deflate()`, e o valor real de janeiro de 2002 (R$ 675 a preços de janeiro de 2024) é mantido fixo como limiar para todos os anos seguintes. As proporções ponderadas pela amostra de jovens de 18 a 24 anos com renda domiciliar per capita real igual ou superior a 1, 1,5 e 3 vezes esse limiar fixo são calculadas ano a ano a partir da série harmonizada (PNAD Anual até 2015, PNAD Contínua a partir de 2016).
 
+## Como Citar
+
+Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto este repositório.
+
+**Dissertação:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Dissertação de Mestrado, Programa de Pós-Graduação em Ciência Política, Universidade de São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**Esta figura e o pipeline:**
+
+> Mançano, Tales. 2026. "População Acima de Limiares Fixos de Renda Real." Em *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts-pt/populacao-limiares-sm/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: População Acima de Limiares Fixos de Renda Real},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/populacao-limiares-sm/}
+}
+```
+
+Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL do repositório acima.
+
 ## Pipeline
 
 Scripts desta análise:

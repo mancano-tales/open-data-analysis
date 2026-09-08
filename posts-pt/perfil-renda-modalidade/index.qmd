@@ -16,6 +16,43 @@ Esta figura compara o perfil de renda domiciliar dos estudantes que ingressam no
 
 Perfil de renda domiciliar dos ingressantes por modalidade de ensino (EaD vs. presencial), extraído de uma base do SEDAP+ que cruza o ENEM (exame nacional do ensino médio, que reporta renda domiciliar) com os registros de matrícula do Censo da Educação Superior. As faixas de renda vêm do questionário socioeconômico preenchido por todo participante do ENEM, permitindo classificar a renda domiciliar per capita declarada pelo ingressante contra as mesmas faixas de renda usadas em outras partes deste projeto.
 
+## Como Citar
+
+Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto este repositório.
+
+**Dissertação:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Dissertação de Mestrado, Programa de Pós-Graduação em Ciência Política, Universidade de São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**Esta figura e o pipeline:**
+
+> Mançano, Tales. 2026. "Renda Domiciliar dos Ingressantes por Setor e Modalidade de Ensino." Em *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts-pt/perfil-renda-modalidade/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Renda Domiciliar dos Ingressantes por Setor e Modalidade de Ensino},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/perfil-renda-modalidade/}
+}
+```
+
+Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL do repositório acima.
+
 ## Pipeline
 
 Scripts desta análise:

@@ -16,6 +16,43 @@ This figure shows how the income composition of Brazil's tertiary-education stud
 
 Each bar shows the share of students aged 18–64 from each income decile. Variable: `ens_sup` = ever enrolled in tertiary education. Income deciles are computed within each survey year via `Hmisc::wtd.quantile` using sampling weights. Years 2000 and 2010 are excluded because no PNAD was conducted in Census years; 2020–2021 are excluded because of COVID-19 and the Auxílio Emergencial income transfer, which distorts the income distribution. For 2012–2015, only PNAD Anual observations are used to avoid double-counting the PNAD/PNADC overlap years. Percentage labels are shown for deciles with share ≥ 6%; decile labels only (no percentage) for shares ≥ 3%. Dashed horizontal lines indicate perfect equity (each decile = 10%). Government labels indicate the president in office.
 
+## How to Cite
+
+If you use this figure or its underlying pipeline, please cite both the dissertation and this repository.
+
+**Dissertation:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Master's thesis, Graduate Program in Political Science, University of São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**This figure and pipeline:**
+
+> Mançano, Tales. 2026. "Income Composition of Tertiary Education Students (Ages 18–64)." In *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts/composicao-decil-ens-sup-18-64/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Income Composition of Tertiary Education Students (Ages 18–64)},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/composicao-decil-ens-sup-18-64/}
+}
+```
+
+A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the repository URL above.
+
 ## Pipeline
 
 Scripts for this analysis:

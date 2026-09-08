@@ -16,6 +16,43 @@ Esta figura acompanha ao longo do tempo a proporção de brasileiros que conclu�
 
 Proporção da população que concluiu o ensino médio, por decil de renda, calculada da mesma forma que a série de acesso ao ensino superior: decis calculados dentro de cada ano e de cada fonte, a partir de renda domiciliar per capita estritamente positiva, harmonizados entre a PNAD Anual (até 2015) e a PNAD Contínua (a partir de 2016), com 2000/2010 (anos de Censo, sem PNAD) e 2020–2021 (pandemia) excluídos.
 
+## Como Citar
+
+Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto este repositório.
+
+**Dissertação:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Dissertação de Mestrado, Programa de Pós-Graduação em Ciência Política, Universidade de São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**Esta figura e o pipeline:**
+
+> Mançano, Tales. 2026. "Taxa de Conclusão do Ensino Médio por Decil de Renda." Em *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts-pt/em-conclusao-decil/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Taxa de Conclusão do Ensino Médio por Decil de Renda},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/em-conclusao-decil/}
+}
+```
+
+Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL do repositório acima.
+
 ## Pipeline
 
 Scripts desta análise:

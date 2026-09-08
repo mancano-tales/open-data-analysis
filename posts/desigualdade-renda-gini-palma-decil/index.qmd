@@ -16,6 +16,43 @@ This figure combines three views of Brazilian income inequality from 1992 to 202
 
 Panel A shows the Gini index of real per-capita income. Panel B shows the Palma ratio — the income share of the richest decile divided by that of the poorest four deciles. Panels A and B follow the official universe, which retains households reporting no income, and reproduce IBGE's own published series (mean deviation −0.0001). Panel C shows mean real per-capita income by decile, in January-2024 reais, on a logarithmic axis; here the deciles rest on the working universe of positive incomes only, so panel C's levels are not strictly the official ones. Lines are interrupted in years without a survey (1994, 2000, 2010, 2020–2021); hollow markers in panels A and B mark 2020 and 2021, taken from the telephone-collected fifth visit of PNAD Contínua. The income unit is the family up to 2015 (PNAD) and the household from 2016 onward (PNAD Contínua); the two coincide except where several families share a dwelling, and a solid vertical rule marks that change of source. Because both surveys ran in 2012–2015, the effect of the instrument change can be measured directly rather than assumed: for the same year, PNAD Contínua returns a Gini index higher by 0.008 and a Palma ratio higher by 0.15 on average. Of the step observed between 2015 and 2016 (+0.020 Gini, +0.44 Palma), roughly a third is therefore an artefact of the survey splice rather than a genuine rise in inequality. This vertical rule is distinct from the dashed rules in panel C, which mark changes of government; the 2015–2019 government block joins Dilma Rousseff's second term to Michel Temer's, so the August-2016 impeachment does not appear as a boundary in the figure.
 
+## How to Cite
+
+If you use this figure or its underlying pipeline, please cite both the dissertation and this repository.
+
+**Dissertation:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Master's thesis, Graduate Program in Political Science, University of São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**This figure and pipeline:**
+
+> Mançano, Tales. 2026. "Income Inequality and Real Income Growth by Decile (Gini/Palma Panel)." In *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts/desigualdade-renda-gini-palma-decil/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Income Inequality and Real Income Growth by Decile (Gini/Palma Panel)},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/desigualdade-renda-gini-palma-decil/}
+}
+```
+
+A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the repository URL above.
+
 ## Pipeline
 
 Scripts for this analysis:

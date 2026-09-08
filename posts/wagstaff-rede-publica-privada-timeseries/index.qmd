@@ -16,6 +16,43 @@ This figure tracks, over time, how concentrated enrollment in each network type 
 
 Time series of the Wagstaff concentration index applied to enrollment by network type (public vs. private), rather than to access overall — measuring whether enrollment in each network is concentrated among higher-income households, and how that concentration has moved over time. Computed directly from PNAD Anual and PNAD Contínua microdata, extracted standalone in this script rather than through the shared harmonized panel.
 
+## How to Cite
+
+If you use this figure or its underlying pipeline, please cite both the dissertation and this repository.
+
+**Dissertation:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Master's thesis, Graduate Program in Political Science, University of São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**This figure and pipeline:**
+
+> Mançano, Tales. 2026. "Income Inequality in Tertiary Enrollment by Network Type, Time Series (Wagstaff Index)." In *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts/wagstaff-rede-publica-privada-timeseries/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Income Inequality in Tertiary Enrollment by Network Type, Time Series (Wagstaff Index)},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/wagstaff-rede-publica-privada-timeseries/}
+}
+```
+
+A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the repository URL above.
+
 ## Pipeline
 
 Scripts for this analysis:

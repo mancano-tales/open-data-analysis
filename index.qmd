@@ -2,10 +2,12 @@
 title: "Open Data Analysis"
 listing:
   contents: posts
-  type: grid
+  type: table
   categories: true
   sort: "date desc"
   fields: [image, title, description, categories, date]
+  field-display-names:
+    image: ""
 page-layout: full
 title-block-banner: false
 ---

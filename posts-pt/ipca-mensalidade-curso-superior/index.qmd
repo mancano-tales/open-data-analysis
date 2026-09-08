@@ -16,6 +16,43 @@ Esta figura acompanha como o custo das mensalidades do ensino superior no Brasil
 
 Ambas as séries acompanham o subitem de mensalidade de curso superior do IPCA, o índice oficial de preços ao consumidor do Brasil, emendado a partir das quatro versões da série do SIDRA no nível de subitem (tabelas 655, 2938, 1419 e 7060) e expresso como índice acumulado com agosto de 1999 = 100. A série azul deflaciona os reajustes acumulados de mensalidade pelo IPCA geral: valores acima de 100 indicam que as mensalidades subiram mais rápido que os preços ao consumidor em geral após agosto de 1999. A série laranja divide o mesmo índice de mensalidade pelo salário mínimo nominal (série do IPEADATA `MTE12_SALMIN12`), medindo como o custo da mesma mensalidade evoluiu em relação ao piso salarial. O subitem do IPCA é um índice de variação de preços calculado sobre um painel fixo de instituições: ele mede reajuste, não o nível de preço nem o ticket médio de mercado, e não captura o barateamento composicional pela migração para o EaD e para instituições de menor preço. Em termos reais, as mensalidades acompanharam ou superaram a inflação geral até 2020 e só caíram abaixo do patamar de 1999 depois dos cortes nominais de mensalidade de 2021; em relação ao salário mínimo, as mensalidades caíram cerca de 60%, com a maior parte da queda concentrada entre 2001 e 2012.
 
+## Como Citar
+
+Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto este repositório.
+
+**Dissertação:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Dissertação de Mestrado, Programa de Pós-Graduação em Ciência Política, Universidade de São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**Esta figura e o pipeline:**
+
+> Mançano, Tales. 2026. "Preços de Mensalidades do Ensino Superior em Relação à Inflação e ao Salário Mínimo." Em *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts-pt/ipca-mensalidade-curso-superior/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Preços de Mensalidades do Ensino Superior em Relação à Inflação e ao Salário Mínimo},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/ipca-mensalidade-curso-superior/}
+}
+```
+
+Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL do repositório acima.
+
 ## Pipeline
 
 Scripts desta análise:

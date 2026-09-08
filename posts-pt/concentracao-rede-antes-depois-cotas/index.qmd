@@ -16,6 +16,43 @@ Esta figura mostra curvas de concentração de renda para o acesso ao ensino sup
 
 Cada painel agrupa as curvas de concentração específicas de cada ano dentro daquele período (uma média simples entre os anos, numa grade percentual uniforme de 101 pontos), de modo que cada ano contribui igualmente independentemente do tamanho da amostra. "Antes das cotas" cobre 2001–2011 (PNAD Anual, excluindo 2010, ano de Censo sem PNAD). "Transição" cobre 2012–2016, o período de implementação gradual da Lei de Cotas (12.711/2012), durante o qual a fração de vagas reservadas cresceu linearmente até um mínimo de 50% das vagas em 2016; 2012–2015 vem da PNAD Anual e 2016 da PNAD Contínua. "Cotas maduras" cobre 2017–2024 (PNAD Contínua), excluindo 2020–2021 (sem dados padrão de primeira entrevista disponíveis nesses anos, por causa da COVID-19). A variável de rede é V6002 na PNAD Anual (2001–2015, codificada 2 = pública / 4 = privada) e V3002A na PNAD Contínua (2016+, codificada 1 = privada / 2 = pública — a codificação é invertida entre as duas fontes). O índice de concentração de Erreygers por período, para a população de referência (todos os jovens de 18–24 anos), é: acesso geral, 0,291 (antes) / 0,272 (transição) / 0,297 (maduro); rede pública, 0,064 / 0,063 / 0,067; rede privada, 0,227 / 0,209 / 0,231. O índice da rede pública permanece essencialmente estável nos três períodos.
 
+## Como Citar
+
+Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto este repositório.
+
+**Dissertação:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Dissertação de Mestrado, Programa de Pós-Graduação em Ciência Política, Universidade de São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**Esta figura e o pipeline:**
+
+> Mançano, Tales. 2026. "Concentração de Renda na Matrícula por Rede, Antes e Depois da Lei de Cotas." Em *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts-pt/concentracao-rede-antes-depois-cotas/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Concentração de Renda na Matrícula por Rede, Antes e Depois da Lei de Cotas},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/concentracao-rede-antes-depois-cotas/}
+}
+```
+
+Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL do repositório acima.
+
 ## Pipeline
 
 Scripts desta análise:

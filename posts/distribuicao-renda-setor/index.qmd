@@ -16,6 +16,43 @@ This figure shows the household income distribution of students entering each hi
 
 Income distribution of entrants (linked ENEM×Census records) by sector, benchmarked against the full pool of ENEM (Brazil's national high-school exam) examinees in the same cohort — i.e., against everyone who took the exam, not just those who enrolled. This lets the figure show whether a sector's entering class is income-skewed relative to the applicant pool it draws from, rather than only relative to the general population.
 
+## How to Cite
+
+If you use this figure or its underlying pipeline, please cite both the dissertation and this repository.
+
+**Dissertation:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Master's thesis, Graduate Program in Political Science, University of São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**This figure and pipeline:**
+
+> Mançano, Tales. 2026. "Household Income Distribution by Higher Education Sector." In *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts/distribuicao-renda-setor/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Household Income Distribution by Higher Education Sector},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/distribuicao-renda-setor/}
+}
+```
+
+A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the repository URL above.
+
 ## Pipeline
 
 Scripts for this analysis:

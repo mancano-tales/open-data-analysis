@@ -16,6 +16,43 @@ This figure shows how the income composition of Brazil's currently (actively) en
 
 Each bar shows the share of actively enrolled students aged 18–24 from each income decile. Variable: `ens_sup_a` = currently (actively) enrolled in tertiary education. Income deciles are computed within each survey year via `Hmisc::wtd.quantile` using sampling weights. Years 2000 and 2010 are excluded because no PNAD was conducted in Census years; 2020–2021 are excluded because of COVID-19 and the Auxílio Emergencial income transfer, which distorts the income distribution. For 2012–2015, only PNAD Anual observations are used to avoid double-counting the PNAD/PNADC overlap years. Percentage labels are shown for deciles with share ≥ 6%; decile labels only (no percentage) for shares ≥ 3%. Dashed horizontal lines indicate perfect equity (each decile = 10%). Government labels indicate the president in office.
 
+## How to Cite
+
+If you use this figure or its underlying pipeline, please cite both the dissertation and this repository.
+
+**Dissertation:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Master's thesis, Graduate Program in Political Science, University of São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**This figure and pipeline:**
+
+> Mançano, Tales. 2026. "Income Composition of Actively Enrolled Tertiary Students (Ages 18–24)." In *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts/composicao-decil-ens-sup-a-18-24/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: Income Composition of Actively Enrolled Tertiary Students (Ages 18–24)},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/composicao-decil-ens-sup-a-18-24/}
+}
+```
+
+A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the repository URL above.
+
 ## Pipeline
 
 Scripts for this analysis:
