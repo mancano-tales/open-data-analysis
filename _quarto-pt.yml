@@ -1,0 +1,28 @@
+# ========================================================================#
+#                  PERFIL: PORTUGUES — vive em docs/pt/                   #
+#  Uso: quarto render --profile pt                                        #
+# ========================================================================#
+
+lang: pt
+
+# `render` restringe este perfil aos arquivos em PORTUGUES -- ver comentario
+# equivalente em _quarto-en.yml sobre por que isso e necessario (perfis do
+# Quarto nao filtram automaticamente quais .qmd sao renderizados).
+project:
+  output-dir: docs/pt
+  render:
+    - "*.qmd"
+    - "posts-pt/**"
+    - "!index.qmd"
+    - "!posts/**"
+
+website:
+  title: "Open Data Analysis"
+  description: "Análises de dados abertas e reprodutíveis sobre ensino superior, mercado de trabalho e desigualdade no Brasil — código e pipeline completos por trás de cada figura."
+  navbar:
+    left:
+      - text: "Análises"
+        href: index-pt.qmd
+    right:
+      - text: "English"
+        href: /index.html

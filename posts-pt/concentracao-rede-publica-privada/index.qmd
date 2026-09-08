@@ -1,0 +1,30 @@
+---
+title: "Concentração de Renda na Matrícula do Ensino Superior por Tipo de Rede"
+date: 2026-07-06
+categories: [PNAD/PNADC, Rede Pública/Privada]
+image: ../../posts/concentracao-rede-publica-privada/thumbnail.png
+description: "Curvas de concentração de renda na matrícula do ensino superior por tipo de rede (pública vs. privada), 18–24 anos."
+---
+
+![](../../posts/concentracao-rede-publica-privada/thumbnail.png)
+
+## Visão Geral
+
+Esta figura compara curvas de concentração de renda para a matrícula geral no ensino superior contra a matrícula especificamente na rede pública e especificamente na rede privada, para jovens de 18 a 24 anos, agrupando os anos mais recentes e estáveis (2022–2024). Ela mostra qual dos dois setores recruta mais fortemente entre domicílios de renda mais alta.
+
+## Metodologia
+
+As curvas mostram, para cada rede, a participação acumulada dos estudantes atualmente matriculados no ensino superior explicada pelos p% mais pobres da população de 18 a 24 anos, ordenada por renda domiciliar per capita dentro de cada ano. Quanto mais próxima a curva estiver da linha de 45 graus, mais equilibradamente distribuído está o acesso àquela rede ao longo da distribuição de renda; curvas que se afastam abaixo da diagonal indicam concentração nos decis de renda mais alta. A curva agrupada é uma média simples das curvas específicas de 2022, 2023 e 2024 (cada uma reamostrada numa grade percentual uniforme de 101 pontos), de modo que cada ano contribui igualmente independentemente do tamanho da amostra. O índice de concentração de Erreygers é calculado ano a ano para os mesmos três anos. A variável de rede usada é V3002A (PNADC do IBGE), e não a variável de rede derivada de V3004 usada em outras partes deste projeto, já que V3004 nunca cobre estudantes do ensino superior em nenhum ano; V3002A é sua substituta a partir de 2015, com codificação invertida (1 = privada, 2 = pública) em relação à convenção de V3004.
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](../../posts/concentracao-rede-publica-privada/plot.R) — script autocontido: baixa e processa os microdados diretamente, sem depender de outros scripts deste repositório.
+- Fonte de dado de referência: [`shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R`](../../shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R)
+
+## Reprodutibilidade
+
+**Tier: A**
+
+Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.

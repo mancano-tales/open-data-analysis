@@ -6,16 +6,26 @@ image: thumbnail.png
 description: "Average per-capita household income by income percentile, plotted on a log scale."
 ---
 
+![](thumbnail.png)
+
+## Overview
+
+This figure plots average household income across the entire income distribution, from the poorest to the richest percentile, for a selection of years, using a logarithmic vertical axis. The log scale compresses the very large gap between the top and bottom of the distribution, making it easier to compare proportional differences across the full range of percentiles — including the lower and middle percentiles that a linear scale would otherwise compress into an almost flat line. Reference markers show where income crosses one, one-and-a-half, and three times the minimum wage.
+
+## Methodology
+
+This figure follows the identical methodology of the linear-scale version of this analysis, with the y-axis rendered on a logarithmic scale instead of linear. Each line shows the weighted mean real per-capita household income (deflated to January 2024 prices via the IPCA) within each income percentile group, for the selected years. Percentiles rank all individuals with strictly positive per-capita household income by income, using sampling weights. For 2012, only the PNAD Anual sample is used. Open circles mark the percentile at which mean per-capita household income equals one (1 MW), one-and-a-half (1.5 MW), and three (3 MW) times the national minimum wage in force in January of that year, deflated to January 2024 prices via `deflateBR`.
+
 ## Pipeline
 
-Scripts desta análise:
+Scripts for this analysis:
 
-- Plotagem: [`plot.R`](plot.R)
-- Pipeline upstream:
+- Plotting: [`plot.R`](plot.R)
+- Upstream pipeline:
   - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R)
 
-## Reprodutibilidade
+## Reproducibility
 
 **Tier: A**
 
-Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.
+This pipeline uses only public data, accessible via package/API without any credential (PNADcIBGE, censobr, sidrar, ipeadatar). Run the scripts in `shared-pipeline/` in numeric order to reconstruct the intermediate data.

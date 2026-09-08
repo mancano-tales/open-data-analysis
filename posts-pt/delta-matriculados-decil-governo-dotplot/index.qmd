@@ -1,0 +1,31 @@
+---
+title: "Variação da Taxa de Matrícula no Ensino Superior por Decil de Renda e Mandato Presidencial (Dotplot)"
+date: 2026-08-07
+categories: [PNAD/PNADC, Matrículas, Governo]
+image: ../../posts/delta-matriculados-decil-governo-dotplot/thumbnail.png
+description: "Dotplot da variação total da taxa de matrícula no ensino superior (18–24 anos) por decil de renda e mandato presidencial."
+---
+
+![](../../posts/delta-matriculados-decil-governo-dotplot/thumbnail.png)
+
+## Visão Geral
+
+Esta figura mede o quanto a proporção de jovens de 18 a 24 anos matriculados ativamente no ensino superior mudou durante cada mandato presidencial brasileiro, decomposta por decil de renda, em um layout de dotplot (pontos de Cleveland). Cada painel é um mandato, mostrando um ponto por decil de renda com a variação total em pontos percentuais na matrícula, do início ao fim daquele mandato. A figura oferece uma visão governo a governo de quem ganhou ou perdeu terreno no acesso ao ensino superior.
+
+## Metodologia
+
+Cada ponto mostra a variação total em pontos percentuais na proporção de jovens de 18 a 24 anos matriculados ativamente no ensino superior (`ens_sup_a`), do primeiro ano de cada mandato presidencial ao primeiro ano do mandato seguinte; as linhas horizontais são intervalos de confiança de 95%. A cor codifica significância estatística, não o sinal: um ponto fica cinza sempre que seu intervalo contém zero. O intervalo é o da própria diferença, com seu erro padrão calculado como a raiz da soma dos erros padrão ao quadrado dos dois anos, tratando as duas pesquisas como independentes — o teste é, portanto, conservador. As duas pesquisas de origem são emendadas por mandato presidencial, não por ano: cada painel de mandato usa uma única pesquisa nos dois extremos, PNAD Anual até 2015 e PNAD Contínua a partir de 2015, de modo que nenhuma diferença atravessa a troca de instrumento. O painel do período completo é o único que permanece emendado entre pesquisas. A matrícula ativa é um critério conservador que exclui coortes que já se formaram ou abandonaram o curso.
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](../../posts/delta-matriculados-decil-governo-dotplot/plot.R)
+- Pipeline upstream:
+  - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R)
+
+## Reprodutibilidade
+
+**Tier: A**
+
+Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.

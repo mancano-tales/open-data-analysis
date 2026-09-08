@@ -6,16 +6,26 @@ image: thumbnail.png
 description: "Share of 18–24-year-olds in households above fixed real income thresholds, expressed as multiples of the minimum wage."
 ---
 
+![](thumbnail.png)
+
+## Overview
+
+This figure shows how the share of young Brazilians living in households above fixed, purchasing-power-adjusted income thresholds changed over time. Instead of using a relative measure like income deciles (which always divide the population into fixed-size groups regardless of how income evolves), it fixes an absolute bar — a real income level expressed as multiples of the minimum wage — and tracks how many people cleared it each year.
+
+## Methodology
+
+For each survey year, the minimum wage nominal value of January of that year (IPEADATA series `MTE12_SALMIN12`) is deflated to January-2024 prices via `deflateBR::deflate()`, and the January-2002 real value (R$675 in Jan.-2024 prices) is held fixed as the threshold for every subsequent year. Sampling-weighted shares of 18–24-year-olds with real per-capita household income at or above 1, 1.5, and 3 times that fixed threshold are computed year by year from the harmonized series (PNAD Anual through 2015, PNAD Contínua from 2016).
+
 ## Pipeline
 
-Scripts desta análise:
+Scripts for this analysis:
 
-- Plotagem: [`plot.R`](plot.R)
-- Pipeline upstream:
+- Plotting: [`plot.R`](plot.R)
+- Upstream pipeline:
   - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R)
 
-## Reprodutibilidade
+## Reproducibility
 
 **Tier: A**
 
-Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.
+This pipeline uses only public data, accessible via package/API without any credential (PNADcIBGE, censobr, sidrar, ipeadatar). Run the scripts in `shared-pipeline/` in numeric order to reconstruct the intermediate data.

@@ -6,16 +6,26 @@ image: thumbnail.png
 description: "Average per-capita household income by income percentile, linear scale."
 ---
 
+![](thumbnail.png)
+
+## Overview
+
+This figure plots average household income across the entire income distribution, from the poorest to the richest percentile, for a selection of years. It shows the shape of income inequality directly: a flatter line across most percentiles followed by a steep rise at the very top means income is concentrated among a small elite, while a more gradual, even slope indicates a more equal distribution. Reference markers show where income crosses one, one-and-a-half, and three times the minimum wage.
+
+## Methodology
+
+Each line shows the weighted mean real per-capita household income (deflated to January 2024 prices via the IPCA) within each income percentile group, for the selected years. Percentiles rank all individuals with strictly positive per-capita household income by income, using sampling weights. For 2012, only the PNAD Anual sample is used. The y-axis is truncated at R$8,000. Open circles mark the percentile at which mean per-capita household income equals one (1 MW), one-and-a-half (1.5 MW), and three (3 MW) times the national minimum wage in force in January of that year, deflated to January 2024 prices via `deflateBR`.
+
 ## Pipeline
 
-Scripts desta análise:
+Scripts for this analysis:
 
-- Plotagem: [`plot.R`](plot.R)
-- Pipeline upstream:
+- Plotting: [`plot.R`](plot.R)
+- Upstream pipeline:
   - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R)
 
-## Reprodutibilidade
+## Reproducibility
 
 **Tier: A**
 
-Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.
+This pipeline uses only public data, accessible via package/API without any credential (PNADcIBGE, censobr, sidrar, ipeadatar). Run the scripts in `shared-pipeline/` in numeric order to reconstruct the intermediate data.

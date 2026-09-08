@@ -96,7 +96,13 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
-<span class="menu-text">Análises</span></a>
+<span class="menu-text">Analyses</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../pt/index.html"> 
+<span class="menu-text">Português</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -148,21 +154,30 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p><img src="thumbnail.png" class="img-fluid"></p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This figure shows how the share of young Brazilians living in households above fixed, purchasing-power-adjusted income thresholds changed over time. Instead of using a relative measure like income deciles (which always divide the population into fixed-size groups regardless of how income evolves), it fixes an absolute bar — a real income level expressed as multiples of the minimum wage — and tracks how many people cleared it each year.</p>
+</section>
+<section id="methodology" class="level2">
+<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
+<p>For each survey year, the minimum wage nominal value of January of that year (IPEADATA series <code>MTE12_SALMIN12</code>) is deflated to January-2024 prices via <code>deflateBR::deflate()</code>, and the January-2002 real value (R$675 in Jan.-2024 prices) is held fixed as the threshold for every subsequent year. Sampling-weighted shares of 18–24-year-olds with real per-capita household income at or above 1, 1.5, and 3 times that fixed threshold are computed year by year from the harmonized series (PNAD Anual through 2015, PNAD Contínua from 2016).</p>
+</section>
 <section id="pipeline" class="level2">
 <h2 class="anchored" data-anchor-id="pipeline">Pipeline</h2>
-<p>Scripts desta análise:</p>
+<p>Scripts for this analysis:</p>
 <ul>
-<li>Plotagem: <a href="plot.R"><code>plot.R</code></a></li>
-<li>Pipeline upstream:
+<li>Plotting: <a href="plot.R"><code>plot.R</code></a></li>
+<li>Upstream pipeline:
 <ul>
 <li><a href="../../shared-pipeline/pnadc/035_Splice_Microdados.R"><code>shared-pipeline/pnadc/035_Splice_Microdados.R</code></a></li>
 </ul></li>
 </ul>
 </section>
-<section id="reprodutibilidade" class="level2">
-<h2 class="anchored" data-anchor-id="reprodutibilidade">Reprodutibilidade</h2>
+<section id="reproducibility" class="level2">
+<h2 class="anchored" data-anchor-id="reproducibility">Reproducibility</h2>
 <p><strong>Tier: A</strong></p>
-<p>Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em <code>shared-pipeline/</code> na ordem numérica para reconstruir os dados intermediários.</p>
+<p>This pipeline uses only public data, accessible via package/API without any credential (PNADcIBGE, censobr, sidrar, ipeadatar). Run the scripts in <code>shared-pipeline/</code> in numeric order to reconstruct the intermediate data.</p>
 
 
 </section>

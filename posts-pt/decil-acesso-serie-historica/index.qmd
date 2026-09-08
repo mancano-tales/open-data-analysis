@@ -1,0 +1,32 @@
+---
+title: "Taxa de Acesso ao Ensino Superior por Decil de Renda, Série Histórica"
+date: 2026-09-03
+categories: [PNAD/PNADC, Censo, Acesso, Série Histórica]
+image: ../../posts/decil-acesso-serie-historica/thumbnail.png
+description: "Taxa de acesso ao ensino superior por decil de renda, série histórica de linhas a partir de 1992."
+---
+
+![](../../posts/decil-acesso-serie-historica/thumbnail.png)
+
+## Visão Geral
+
+Esta figura acompanha, a partir de 1992, a proporção de jovens brasileiros de 18 a 24 anos que já ingressaram no ensino superior em algum momento da vida, segmentada por decil de renda domiciliar per capita — do decil mais pobre (D1) ao mais rico (D10). Ela mostra o quão desigual foi a expansão do acesso ao ensino superior ao longo da distribuição de renda em mais de três décadas. Marcadores em losango sobrepõem quatro anos de Censo Demográfico como verificação independente da série baseada em pesquisas amostrais. Os dados vêm das principais pesquisas domiciliares do Brasil (PNAD/PNAD Contínua) e do Censo Demográfico, ambos do IBGE.
+
+## Metodologia
+
+Cada série é a proporção de jovens de 18 a 24 anos que já ingressaram no ensino superior (`ens_sup`, acesso acumulado) alguma vez, por decil de renda domiciliar per capita e para a população como um todo. Os decis são calculados dentro de cada ano de pesquisa e de cada fonte, sobre a população com renda estritamente positiva. A série harmonizada usa a PNAD Anual até 2015 e a PNAD Contínua a partir de 2016, de modo que cada ano se apoia em uma única fonte; a região Norte rural está ausente da PNAD Anual entre 2004 e 2015. As linhas são interrompidas em anos sem pesquisa: 2000 e 2010 (anos de Censo) e 2020–2021 (excluídos por razões de qualidade de dados ligadas à pandemia). Os intervalos de confiança são intervalos de 95%: intervalos de Wilson com tamanho de amostra efetivo de Kish sob um efeito de delineamento de 2,0 para a PNAD Anual (1992–2015), e intervalos baseados no desenho amostral complexo via estimação exata (`survey::svydesign()`) para a PNAD Contínua (2016–2025). Os losangos marcam pontos de validação independentes das amostras do questionário da amostra dos Censos Demográficos de 1991, 2000, 2010 e 2022 (via `censobr`); seus intervalos de confiança de 95% têm no máximo 0,6 a 0,7 pontos percentuais de amplitude, mais estreitos que os próprios marcadores. O Censo de 1991 reporta a renda em catorze faixas ordinais, a partir das quais os decis são aproximados. Os rótulos no topo indicam o presidente em exercício.
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](../../posts/decil-acesso-serie-historica/plot.R)
+- Pipeline upstream:
+  - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R)
+  - [`shared-pipeline/censo/040_Censo_Pontos_Validacao.R`](../../shared-pipeline/censo/040_Censo_Pontos_Validacao.R)
+
+## Reprodutibilidade
+
+**Tier: A**
+
+Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.

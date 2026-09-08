@@ -1,0 +1,31 @@
+---
+title: "Crescimento Anualizado da Renda Real por Decil de Renda e Mandato Presidencial"
+date: 2026-08-09
+categories: [PNAD/PNADC, Renda, Governo]
+image: ../../posts/delta-renda-anualizada-decil-governo/thumbnail.png
+description: "Dotplot do crescimento anualizado da renda domiciliar per capita real por decil de renda e mandato presidencial."
+---
+
+![](../../posts/delta-renda-anualizada-decil-governo/thumbnail.png)
+
+## Visão Geral
+
+Esta figura mede o crescimento anualizado da renda real por decil de renda ao longo dos mandatos presidenciais brasileiros, de 1995 a 2025. Expressar o crescimento como uma taxa anual composta, em vez de uma variação total, torna diretamente comparáveis mandatos de durações muito diferentes — quatro anos completos contra, no mandato mais recente mostrado, apenas dois.
+
+## Metodologia
+
+Cada ponto é a taxa de crescimento geométrico anualizado da renda real (% ao ano, preços de janeiro de 2024) para cada decil de renda, do primeiro ano disponível de um mandato presidencial ao primeiro ano disponível do mandato seguinte (azul = ganho, laranja = perda); as linhas horizontais são intervalos de confiança de 95%. O mandato de Itamar Franco (1992–1995) é omitido, já que a série usada aqui começa em 1995. O painel de Lula III cobre dois anos de crescimento (2023–2025). O painel inferior direito cobre o período completo de 1995–2025. Os intervalos de confiança são calculados pelo método delta para f(t1,t0) = ((t1/t0)^(1/n) − 1) × 100, onde n é o número de anos do mandato: se = (100/n)·(t1/t0)^(1/n)·√((se1/t1)² + (se0/t0)²). O erro padrão de cada extremo é a variância amostral ponderada dividida pelo tamanho de amostra efetivo de Kish (efeito de delineamento = 2).
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](../../posts/delta-renda-anualizada-decil-governo/plot.R)
+- Pipeline upstream:
+  - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R)
+
+## Reprodutibilidade
+
+**Tier: A**
+
+Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.

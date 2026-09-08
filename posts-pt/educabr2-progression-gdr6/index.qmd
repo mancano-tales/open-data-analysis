@@ -1,0 +1,30 @@
+---
+title: "Razão de Progressão Escolar (GDR6) em São Paulo e na Bahia"
+date: 2026-07-12
+categories: [educabr2, Progressão Escolar]
+image: ../../posts/educabr2-progression-gdr6/thumbnail.png
+description: "Razão de progressão escolar (GDR6) em São Paulo e na Bahia, 1955–2010."
+---
+
+![](../../posts/educabr2-progression-gdr6/thumbnail.png)
+
+## Visão Geral
+
+Esta figura compara dois estados brasileiros, São Paulo e Bahia, quanto ao quão bem as crianças progrediam pelas séries iniciais do ensino fundamental, entre 1955 e 2010. Ela mostra um hiato regional grande e persistente na educação básica, que só se estreita substancialmente após as reformas dos anos 1990 — muito antes de a população de qualquer um dos dois estados chegar aos pipelines de ensino superior examinados em outras partes deste catálogo.
+
+## Metodologia
+
+O GDR6 é uma proxy da retenção nos anos iniciais do ensino fundamental (matrícula nas séries 4–6 em relação às séries 1–3). A faixa cinza é o hiato São Paulo–Bahia: ele se amplia ao longo das décadas desenvolvimentistas e só se estreita substancialmente depois das reformas dos anos 1990, traçando meio século de desigualdade educacional regional numa única faixa.
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](../../posts/educabr2-progression-gdr6/plot.R)
+- Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R [`educabr2`](https://github.com/mancano-tales/educabr2).
+
+## Reprodutibilidade
+
+**Tier: A (cross-repo)**
+
+Este pipeline depende do pacote R público `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), que embute os dados necessários.

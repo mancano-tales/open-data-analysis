@@ -1,0 +1,30 @@
+---
+title: "Concentração de Renda na Matrícula por Rede, Antes e Depois da Lei de Cotas"
+date: 2026-06-30
+categories: [PNAD/PNADC, Cotas, Concentração de Rede]
+image: ../../posts/concentracao-rede-antes-depois-cotas/thumbnail.png
+description: "Curvas de concentração de renda na matrícula do ensino superior por rede (pública vs. privada), antes, durante e depois da Lei de Cotas de 2012."
+---
+
+![](../../posts/concentracao-rede-antes-depois-cotas/thumbnail.png)
+
+## Visão Geral
+
+Esta figura mostra curvas de concentração de renda para o acesso ao ensino superior, decompostas por rede (pública vs. privada), em três períodos em relação à Lei de Cotas de 2012 no Brasil: antes, durante a implementação gradual, e depois da implementação plena. Uma curva de concentração que se aproxima mais da diagonal indica acesso distribuído de forma mais equilibrada entre os níveis de renda; uma curva mais afastada indica acesso concentrado em domicílios de renda mais alta. A comparação permite ver se, e o quanto, a concentração do acesso a cada rede mudou em torno da lei de cotas.
+
+## Metodologia
+
+Cada painel agrupa as curvas de concentração específicas de cada ano dentro daquele período (uma média simples entre os anos, numa grade percentual uniforme de 101 pontos), de modo que cada ano contribui igualmente independentemente do tamanho da amostra. "Antes das cotas" cobre 2001–2011 (PNAD Anual, excluindo 2010, ano de Censo sem PNAD). "Transição" cobre 2012–2016, o período de implementação gradual da Lei de Cotas (12.711/2012), durante o qual a fração de vagas reservadas cresceu linearmente até um mínimo de 50% das vagas em 2016; 2012–2015 vem da PNAD Anual e 2016 da PNAD Contínua. "Cotas maduras" cobre 2017–2024 (PNAD Contínua), excluindo 2020–2021 (sem dados padrão de primeira entrevista disponíveis nesses anos, por causa da COVID-19). A variável de rede é V6002 na PNAD Anual (2001–2015, codificada 2 = pública / 4 = privada) e V3002A na PNAD Contínua (2016+, codificada 1 = privada / 2 = pública — a codificação é invertida entre as duas fontes). O índice de concentração de Erreygers por período, para a população de referência (todos os jovens de 18–24 anos), é: acesso geral, 0,291 (antes) / 0,272 (transição) / 0,297 (maduro); rede pública, 0,064 / 0,063 / 0,067; rede privada, 0,227 / 0,209 / 0,231. O índice da rede pública permanece essencialmente estável nos três períodos.
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](../../posts/concentracao-rede-antes-depois-cotas/plot.R) — script autocontido: baixa e processa os microdados diretamente, sem depender de outros scripts deste repositório.
+- Fonte de dado de referência: [`shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R`](../../shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R)
+
+## Reprodutibilidade
+
+**Tier: A**
+
+Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.

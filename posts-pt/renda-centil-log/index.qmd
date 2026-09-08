@@ -1,0 +1,31 @@
+---
+title: "Renda Domiciliar Média por Centil de Renda (Escala Logarítmica)"
+date: 2026-08-09
+categories: [PNAD/PNADC, Renda, Distribuição]
+image: ../../posts/renda-centil-log/thumbnail.png
+description: "Renda domiciliar per capita média por centil de renda, plotada em escala logarítmica."
+---
+
+![](../../posts/renda-centil-log/thumbnail.png)
+
+## Visão Geral
+
+Esta figura plota a renda domiciliar média ao longo de toda a distribuição de renda, do centil mais pobre ao mais rico, para um conjunto selecionado de anos, usando um eixo vertical logarítmico. A escala log comprime o enorme intervalo entre o topo e a base da distribuição, facilitando a comparação de diferenças proporcionais ao longo de toda a faixa de centis — inclusive os centis inferiores e médios, que uma escala linear comprimiria numa linha quase achatada. Marcadores de referência mostram onde a renda cruza uma, uma vez e meia e três vezes o salário mínimo.
+
+## Metodologia
+
+Esta figura segue a metodologia idêntica à versão em escala linear desta análise, com o eixo Y renderizado em escala logarítmica em vez de linear. Cada linha mostra a renda domiciliar per capita real média ponderada (deflacionada a preços de janeiro de 2024 via IPCA) dentro de cada grupo de centil de renda, para os anos selecionados. Os centis ordenam todos os indivíduos com renda domiciliar per capita estritamente positiva, usando os pesos amostrais. Para 2012, usa-se apenas a amostra da PNAD Anual. Círculos vazados marcam o centil em que a renda domiciliar per capita média se iguala a uma (1 SM), uma vez e meia (1,5 SM) e três (3 SM) vezes o salário mínimo nacional em vigor em janeiro daquele ano, deflacionado a preços de janeiro de 2024 via `deflateBR`.
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](../../posts/renda-centil-log/plot.R)
+- Pipeline upstream:
+  - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R)
+
+## Reprodutibilidade
+
+**Tier: A**
+
+Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.

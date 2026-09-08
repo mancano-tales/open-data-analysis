@@ -6,16 +6,26 @@ image: thumbnail.png
 description: "Dot plot of the total change in tertiary education access rate (ever enrolled) by income decile, broken down by presidential term."
 ---
 
+![](thumbnail.png)
+
+## Overview
+
+This figure measures how much the share of 18–24-year-olds who had ever accessed tertiary education changed during each Brazilian presidential term, broken down by income decile, using a Cleveland dot-plot layout. Each panel is one term, showing one point per income decile for the total percentage-point change in access from the start to the end of that term. It offers a government-by-government view of who gained or lost ground in access to higher education.
+
+## Methodology
+
+Each point shows the total percentage-point change in the share of 18–24-year-olds who had ever accessed tertiary education (`ens_sup`), from the first year of each presidential term to the first year of the next; horizontal lines are 95% confidence intervals. Color encodes statistical significance rather than sign: a point is grey wherever its interval contains zero. The interval is that of the difference itself, with its standard error taken as the root of the sum of the two years' squared standard errors, treating the two surveys as independent — the test is therefore conservative. The two source surveys are spliced by presidential term rather than by year: every term panel draws on a single survey at both endpoints, PNAD Anual through 2015 and PNAD Contínua from 2015 onward, so no difference straddles the change of instrument. The full-period panel is the only one that remains cross-survey.
+
 ## Pipeline
 
-Scripts desta análise:
+Scripts for this analysis:
 
-- Plotagem: [`plot.R`](plot.R)
-- Pipeline upstream:
+- Plotting: [`plot.R`](plot.R)
+- Upstream pipeline:
   - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R)
 
-## Reprodutibilidade
+## Reproducibility
 
 **Tier: A**
 
-Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.
+This pipeline uses only public data, accessible via package/API without any credential (PNADcIBGE, censobr, sidrar, ipeadatar). Run the scripts in `shared-pipeline/` in numeric order to reconstruct the intermediate data.

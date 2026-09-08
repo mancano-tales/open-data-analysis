@@ -6,15 +6,25 @@ image: thumbnail.png
 description: "Long-run expansion and sector composition of undergraduate enrollment in Brazil, 1980–2024."
 ---
 
+![](thumbnail.png)
+
+## Overview
+
+This figure shows the long-run expansion of Brazilian undergraduate enrollment from 1980 to 2024, broken down by administrative category — public federal, public state, public municipal, and private institutions. It provides the deepest historical backdrop in this catalog, reaching back well before the PNAD/PNADC microdata pipelines used elsewhere, to trace how the balance between public and private higher education shifted over four and a half decades.
+
+## Methodology
+
+Long-run series (1980–2024) of total undergraduate enrollment and its composition by administrative category (public federal, public state, public municipal, private), drawing on the `educabr2` R package, which assembles historical Brazilian higher-education statistics from INEP's Higher Education Census and its predecessor surveys (Censo do Ensino Superior, Sinopses Estatísticas) into a single harmonized long-run series. The period before INEP's modern microdata era (pre-1995) is not covered by any of the PNAD/PNADC/CENSUP pipelines used elsewhere in this repository.
+
 ## Pipeline
 
-Scripts desta análise:
+Scripts for this analysis:
 
-- Plotagem: [`plot.R`](plot.R)
-- Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R [`educabr2`](https://github.com/mancano-tales/educabr2).
+- Plotting: [`plot.R`](plot.R)
+- Upstream pipeline: no script in this repository — the data comes embedded in the R package [`educabr2`](https://github.com/mancano-tales/educabr2).
 
-## Reprodutibilidade
+## Reproducibility
 
 **Tier: A (cross-repo)**
 
-Este pipeline depende do pacote R público `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), que embute os dados necessários.
+This pipeline depends on the public R package `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), which already embeds the necessary data.

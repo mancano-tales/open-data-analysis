@@ -96,7 +96,13 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
-<span class="menu-text">Análises</span></a>
+<span class="menu-text">Analyses</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../pt/index.html"> 
+<span class="menu-text">Português</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -148,12 +154,21 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p><img src="thumbnail.png" class="img-fluid"></p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This figure shows how the income composition of Brazil’s tertiary-education students aged 18–64 has changed over time. Each bar is one year, stacked into ten income deciles of the general population (D1 = poorest tenth, D10 = richest tenth); the height of each segment is that decile’s share among people who have ever enrolled in tertiary education. A more even stack — closer to 10% per decile — indicates broader-based access across the income distribution, while segments dominated by upper deciles indicate access concentrated among higher-income households. Using the full working-age range (18–64) rather than the traditional college-age cohort also captures access gained later in life.</p>
+</section>
+<section id="methodology" class="level2">
+<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
+<p>Each bar shows the share of students aged 18–64 from each income decile. Variable: <code>ens_sup</code> = ever enrolled in tertiary education. Income deciles are computed within each survey year via <code>Hmisc::wtd.quantile</code> using sampling weights. Years 2000 and 2010 are excluded because no PNAD was conducted in Census years; 2020–2021 are excluded because of COVID-19 and the Auxílio Emergencial income transfer, which distorts the income distribution. For 2012–2015, only PNAD Anual observations are used to avoid double-counting the PNAD/PNADC overlap years. Percentage labels are shown for deciles with share ≥ 6%; decile labels only (no percentage) for shares ≥ 3%. Dashed horizontal lines indicate perfect equity (each decile = 10%). Government labels indicate the president in office.</p>
+</section>
 <section id="pipeline" class="level2">
 <h2 class="anchored" data-anchor-id="pipeline">Pipeline</h2>
-<p>Scripts desta análise:</p>
+<p>Scripts for this analysis:</p>
 <ul>
-<li>Plotagem: <a href="plot.R"><code>plot.R</code></a></li>
-<li>Pipeline upstream:
+<li>Plotting: <a href="plot.R"><code>plot.R</code></a></li>
+<li>Upstream pipeline:
 <ul>
 <li><a href="../../shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R"><code>shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R</code></a></li>
 <li><a href="../../shared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R"><code>shared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R</code></a></li>
@@ -163,10 +178,10 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="reprodutibilidade" class="level2">
-<h2 class="anchored" data-anchor-id="reprodutibilidade">Reprodutibilidade</h2>
+<section id="reproducibility" class="level2">
+<h2 class="anchored" data-anchor-id="reproducibility">Reproducibility</h2>
 <p><strong>Tier: A</strong></p>
-<p>Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em <code>shared-pipeline/</code> na ordem numérica para reconstruir os dados intermediários.</p>
+<p>This pipeline uses only public data, accessible via package/API without any credential (PNADcIBGE, censobr, sidrar, ipeadatar). Run the scripts in <code>shared-pipeline/</code> in numeric order to reconstruct the intermediate data.</p>
 
 
 </section>

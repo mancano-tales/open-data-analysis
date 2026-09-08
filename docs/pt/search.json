@@ -1,0 +1,933 @@
+[
+  {
+    "objectID": "posts-pt/wagstaff-rede-publica-privada-timeseries/index.html#visão-geral",
+    "href": "posts-pt/wagstaff-rede-publica-privada-timeseries/index.html#visão-geral",
+    "title": "Desigualdade de Renda na Matrícula por Tipo de Rede, Série Temporal (Índice de Wagstaff)",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura acompanha, ao longo do tempo, o quão concentrada em domicílios de renda mais alta está a matrícula em cada tipo de rede — ensino superior público vs. privado. Em vez de olhar para o acesso geral, ela aplica o índice de concentração de Wagstaff separadamente à matrícula em cada rede, permitindo comparar diretamente o perfil de renda dos dois setores e acompanhar como ele evolui."
+  },
+  {
+    "objectID": "posts-pt/wagstaff-rede-publica-privada-timeseries/index.html#metodologia",
+    "href": "posts-pt/wagstaff-rede-publica-privada-timeseries/index.html#metodologia",
+    "title": "Desigualdade de Renda na Matrícula por Tipo de Rede, Série Temporal (Índice de Wagstaff)",
+    "section": "Metodologia",
+    "text": "Metodologia\nSérie temporal do índice de concentração de Wagstaff aplicado à matrícula por tipo de rede (pública vs. privada), em vez de ao acesso geral — medindo se a matrícula em cada rede está concentrada em domicílios de renda mais alta, e como essa concentração se moveu ao longo do tempo. Calculado diretamente a partir dos microdados da PNAD Anual e da PNAD Contínua, extraídos de forma autônoma neste script, em vez de vir do painel harmonizado compartilhado."
+  },
+  {
+    "objectID": "posts-pt/wagstaff-rede-publica-privada-timeseries/index.html#pipeline",
+    "href": "posts-pt/wagstaff-rede-publica-privada-timeseries/index.html#pipeline",
+    "title": "Desigualdade de Renda na Matrícula por Tipo de Rede, Série Temporal (Índice de Wagstaff)",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R — script autocontido: baixa e processa os microdados diretamente, sem depender de outros scripts deste repositório.\nFonte de dado de referência: shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R"
+  },
+  {
+    "objectID": "posts-pt/wagstaff-rede-publica-privada-timeseries/index.html#reprodutibilidade",
+    "href": "posts-pt/wagstaff-rede-publica-privada-timeseries/index.html#reprodutibilidade",
+    "title": "Desigualdade de Renda na Matrícula por Tipo de Rede, Série Temporal (Índice de Wagstaff)",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts-pt/renda-media-centil/index.html#visão-geral",
+    "href": "posts-pt/renda-media-centil/index.html#visão-geral",
+    "title": "Renda Domiciliar Média por Centil de Renda",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura plota a renda domiciliar média ao longo de toda a distribuição de renda, do centil mais pobre ao mais rico, para um conjunto selecionado de anos. Ela mostra diretamente o formato da desigualdade de renda: uma linha mais achatada na maior parte dos centis seguida de uma subida abrupta bem no topo significa que a renda está concentrada numa pequena elite, enquanto uma inclinação mais gradual e uniforme indica uma distribuição mais igualitária. Marcadores de referência mostram onde a renda cruza uma, uma vez e meia e três vezes o salário mínimo."
+  },
+  {
+    "objectID": "posts-pt/renda-media-centil/index.html#metodologia",
+    "href": "posts-pt/renda-media-centil/index.html#metodologia",
+    "title": "Renda Domiciliar Média por Centil de Renda",
+    "section": "Metodologia",
+    "text": "Metodologia\nCada linha mostra a renda domiciliar per capita real média ponderada (deflacionada a preços de janeiro de 2024 via IPCA) dentro de cada grupo de centil de renda, para os anos selecionados. Os centis ordenam todos os indivíduos com renda domiciliar per capita estritamente positiva, usando os pesos amostrais. Para 2012, usa-se apenas a amostra da PNAD Anual. O eixo Y é truncado em R$ 8.000. Círculos vazados marcam o centil em que a renda domiciliar per capita média se iguala a uma (1 SM), uma vez e meia (1,5 SM) e três (3 SM) vezes o salário mínimo nacional em vigor em janeiro daquele ano, deflacionado a preços de janeiro de 2024 via deflateBR."
+  },
+  {
+    "objectID": "posts-pt/renda-media-centil/index.html#pipeline",
+    "href": "posts-pt/renda-media-centil/index.html#pipeline",
+    "title": "Renda Domiciliar Média por Centil de Renda",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts-pt/renda-media-centil/index.html#reprodutibilidade",
+    "href": "posts-pt/renda-media-centil/index.html#reprodutibilidade",
+    "title": "Renda Domiciliar Média por Centil de Renda",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts-pt/populacao-limiares-sm/index.html#visão-geral",
+    "href": "posts-pt/populacao-limiares-sm/index.html#visão-geral",
+    "title": "População Acima de Limiares Fixos de Renda Real",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura mostra como mudou ao longo do tempo a proporção de jovens brasileiros vivendo em domicílios acima de limiares fixos de renda, ajustados pelo poder de compra. Em vez de usar uma medida relativa como os decis de renda (que sempre dividem a população em grupos de tamanho fixo, independentemente de como a renda evolui), a figura fixa uma barra absoluta — um nível de renda real expresso como múltiplos do salário mínimo — e acompanha quantas pessoas superaram essa barra a cada ano."
+  },
+  {
+    "objectID": "posts-pt/populacao-limiares-sm/index.html#metodologia",
+    "href": "posts-pt/populacao-limiares-sm/index.html#metodologia",
+    "title": "População Acima de Limiares Fixos de Renda Real",
+    "section": "Metodologia",
+    "text": "Metodologia\nPara cada ano de pesquisa, o valor nominal do salário mínimo de janeiro daquele ano (série do IPEADATA MTE12_SALMIN12) é deflacionado a preços de janeiro de 2024 via deflateBR::deflate(), e o valor real de janeiro de 2002 (R$ 675 a preços de janeiro de 2024) é mantido fixo como limiar para todos os anos seguintes. As proporções ponderadas pela amostra de jovens de 18 a 24 anos com renda domiciliar per capita real igual ou superior a 1, 1,5 e 3 vezes esse limiar fixo são calculadas ano a ano a partir da série harmonizada (PNAD Anual até 2015, PNAD Contínua a partir de 2016)."
+  },
+  {
+    "objectID": "posts-pt/populacao-limiares-sm/index.html#pipeline",
+    "href": "posts-pt/populacao-limiares-sm/index.html#pipeline",
+    "title": "População Acima de Limiares Fixos de Renda Real",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts-pt/populacao-limiares-sm/index.html#reprodutibilidade",
+    "href": "posts-pt/populacao-limiares-sm/index.html#reprodutibilidade",
+    "title": "População Acima de Limiares Fixos de Renda Real",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts-pt/matriculas-turno-via-acesso/index.html#visão-geral",
+    "href": "posts-pt/matriculas-turno-via-acesso/index.html#visão-geral",
+    "title": "Matrículas por Setor, Via de Acesso e Turno",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura decompõe as matrículas do ensino superior brasileiro por setor (público vs. privado), via de acesso (como o estudante conseguiu a vaga — bolsa, financiamento, cota reservada ou ampla concorrência) e turno (matutino/noturno presencial, ou EaD). Ela oferece um mapa detalhado das diferentes portas pelas quais os estudantes entram no sistema, e de como o tamanho de cada porta mudou."
+  },
+  {
+    "objectID": "posts-pt/matriculas-turno-via-acesso/index.html#metodologia",
+    "href": "posts-pt/matriculas-turno-via-acesso/index.html#metodologia",
+    "title": "Matrículas por Setor, Via de Acesso e Turno",
+    "section": "Metodologia",
+    "text": "Metodologia\nConstruída a partir de registros individuais de estudantes do Censo da Educação Superior, extraídos via a plataforma de acesso protegido do INEP, o SEDAP+ (Serviço de Acesso a Dados Protegidos), porque o INEP parou de publicar os microdados completos por estudante após 2019. O setor segue a categoria administrativa da instituição (pública vs. privada). A via de acesso é atribuída por precedência dentro do setor privado — primeiro bolsa ProUni, depois financiamento FIES entre os que não têm ProUni, depois ampla concorrência — de modo que as categorias são disjuntas por construção. Dentro do setor público, a divisão é vaga reservada (cota de ação afirmativa) versus ampla concorrência. O SEDAP+ responde apenas a consultas agregadas e aplica privacidade diferencial, que na prática suprime células com poucos indivíduos em vez de adicionar ruído apreciável; a extração agrupa exatamente na granularidade que a figura exibe, na qual nenhuma célula é suprimida. Contra os microdados publicados nos anos em que ambos existem, os totais do SEDAP+ ficam de 0,6% a 1,1% abaixo, uma diferença pequena e sistemática."
+  },
+  {
+    "objectID": "posts-pt/matriculas-turno-via-acesso/index.html#pipeline",
+    "href": "posts-pt/matriculas-turno-via-acesso/index.html#pipeline",
+    "title": "Matrículas por Setor, Via de Acesso e Turno",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R\nshared-pipeline/sedap/010_SEDAP_Cliente.R"
+  },
+  {
+    "objectID": "posts-pt/matriculas-turno-via-acesso/index.html#reprodutibilidade",
+    "href": "posts-pt/matriculas-turno-via-acesso/index.html#reprodutibilidade",
+    "title": "Matrículas por Setor, Via de Acesso e Turno",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: B\nEste pipeline depende de dado restrito do INEP acessível via credencial SEDAP+ (variável de ambiente SEDAP_TOKEN). Sem uma credencial aprovada, os scripts em shared-pipeline/sedap/ não rodam — a lógica fica disponível para auditoria, mas a reprodução completa exige solicitar acesso ao INEP."
+  },
+  {
+    "objectID": "posts-pt/fardo-mensalidade-decil/index.html#visão-geral",
+    "href": "posts-pt/fardo-mensalidade-decil/index.html#visão-geral",
+    "title": "Fardo da Mensalidade em Relação à Renda Domiciliar por Decil de Renda",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura pergunta se a mesma mensalidade nominal ficou mais fácil ou mais difícil de pagar para domicílios em diferentes pontos da distribuição de renda. Ela combina a série de preços de mensalidade do ensino superior com a renda domiciliar por decil, acompanhando como a razão entre as duas se moveu para os decis mais pobre e mais rico desde 2002."
+  },
+  {
+    "objectID": "posts-pt/fardo-mensalidade-decil/index.html#metodologia",
+    "href": "posts-pt/fardo-mensalidade-decil/index.html#metodologia",
+    "title": "Fardo da Mensalidade em Relação à Renda Domiciliar por Decil de Renda",
+    "section": "Metodologia",
+    "text": "Metodologia\nO índice de fardo de mensalidade divide a mesma série real de reajuste de mensalidade usada na figura de mensalidade via IPCA pela renda domiciliar per capita real média ponderada de cada decil, ambas expressas com base 2002 = 100 e ambas deflacionadas pela mesma base do IPCA. Os decis são calculados dentro de cada ano de pesquisa e de cada fonte; a série harmonizada usa a PNAD Anual até 2015 e a PNAD Contínua a partir de 2016, com 2012–2015 restrito a observações da PNAD Anual. Como o fardo é uma razão entre dois índices ancorados no mesmo ano-base, ele nada diz sobre a acessibilidade absoluta da mensalidade em qualquer ano isolado — apenas sobre como uma mensalidade nominal fixa se moveu em relação à própria trajetória de renda de cada decil desde 2002. A série de mensalidade subjacente é um índice de reajuste de painel fixo e não registra o barateamento composicional adicional trazido pela migração pós-2015 para o EaD, de modo que o fardo mostrado é, se algo, um limite superior de quanto a mensalidade de fato ficou mais leve para os decis inferiores."
+  },
+  {
+    "objectID": "posts-pt/fardo-mensalidade-decil/index.html#pipeline",
+    "href": "posts-pt/fardo-mensalidade-decil/index.html#pipeline",
+    "title": "Fardo da Mensalidade em Relação à Renda Domiciliar por Decil de Renda",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R\nshared-pipeline/ipca/010_IPCA_Curso_Superior_Series.R"
+  },
+  {
+    "objectID": "posts-pt/fardo-mensalidade-decil/index.html#reprodutibilidade",
+    "href": "posts-pt/fardo-mensalidade-decil/index.html#reprodutibilidade",
+    "title": "Fardo da Mensalidade em Relação à Renda Domiciliar por Decil de Renda",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts-pt/em-conclusao-decil/index.html#visão-geral",
+    "href": "posts-pt/em-conclusao-decil/index.html#visão-geral",
+    "title": "Taxa de Conclusão do Ensino Médio por Decil de Renda",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura acompanha ao longo do tempo a proporção de brasileiros que concluíram o ensino médio, por decil de renda domiciliar. Como concluir o ensino médio é o principal pré-requisito para acessar o ensino superior, esta série oferece contexto útil para as figuras de acesso ao ensino superior em outras partes deste catálogo: ela mostra quanto da desigualdade no acesso ao ensino superior já se origina mais atrás, no nível anterior."
+  },
+  {
+    "objectID": "posts-pt/em-conclusao-decil/index.html#metodologia",
+    "href": "posts-pt/em-conclusao-decil/index.html#metodologia",
+    "title": "Taxa de Conclusão do Ensino Médio por Decil de Renda",
+    "section": "Metodologia",
+    "text": "Metodologia\nProporção da população que concluiu o ensino médio, por decil de renda, calculada da mesma forma que a série de acesso ao ensino superior: decis calculados dentro de cada ano e de cada fonte, a partir de renda domiciliar per capita estritamente positiva, harmonizados entre a PNAD Anual (até 2015) e a PNAD Contínua (a partir de 2016), com 2000/2010 (anos de Censo, sem PNAD) e 2020–2021 (pandemia) excluídos."
+  },
+  {
+    "objectID": "posts-pt/em-conclusao-decil/index.html#pipeline",
+    "href": "posts-pt/em-conclusao-decil/index.html#pipeline",
+    "title": "Taxa de Conclusão do Ensino Médio por Decil de Renda",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts-pt/em-conclusao-decil/index.html#reprodutibilidade",
+    "href": "posts-pt/em-conclusao-decil/index.html#reprodutibilidade",
+    "title": "Taxa de Conclusão do Ensino Médio por Decil de Renda",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts-pt/educabr2-schooling-sex/index.html#visão-geral",
+    "href": "posts-pt/educabr2-schooling-sex/index.html#visão-geral",
+    "title": "Anos Médios de Escolaridade por Sexo",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura acompanha os anos médios de escolaridade de mulheres e homens brasileiros, de 15 a 64 anos, entre 1925 e 2015. Ela mostra uma reversão de longo prazo: as mulheres começaram o século com menos escolaridade que os homens e o terminaram com mais, e a figura marca o ano exato em que essa inversão ocorreu."
+  },
+  {
+    "objectID": "posts-pt/educabr2-schooling-sex/index.html#metodologia",
+    "href": "posts-pt/educabr2-schooling-sex/index.html#metodologia",
+    "title": "Anos Médios de Escolaridade por Sexo",
+    "section": "Metodologia",
+    "text": "Metodologia\nA faixa sombreada é o hiato de escolaridade entre os sexos; sua cor muda quando o sinal do hiato se inverte. As mulheres brasileiras passaram de um déficit persistente de escolaridade para uma vantagem duradoura ao longo do século XX — o ano da inversão é marcado diretamente na série."
+  },
+  {
+    "objectID": "posts-pt/educabr2-schooling-sex/index.html#pipeline",
+    "href": "posts-pt/educabr2-schooling-sex/index.html#pipeline",
+    "title": "Anos Médios de Escolaridade por Sexo",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R educabr2."
+  },
+  {
+    "objectID": "posts-pt/educabr2-schooling-sex/index.html#reprodutibilidade",
+    "href": "posts-pt/educabr2-schooling-sex/index.html#reprodutibilidade",
+    "title": "Anos Médios de Escolaridade por Sexo",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A (cross-repo)\nEste pipeline depende do pacote R público educabr2 (remotes::install_github(\"mancano-tales/educabr2\")), que embute os dados necessários."
+  },
+  {
+    "objectID": "posts-pt/educabr2-expenditure-regressivity/index.html#visão-geral",
+    "href": "posts-pt/educabr2-expenditure-regressivity/index.html#visão-geral",
+    "title": "Regressividade do Gasto Público: Ensino Superior vs. Ensino Fundamental",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura acompanha o quão desigual foi o gasto público brasileiro em educação, comparando quanto o governo gastava por estudante do ensino superior contra quanto gastava por aluno dos anos iniciais do ensino fundamental, de 1933 a 2010. Uma razão bem acima de 1 significa que os estudantes do ensino superior — historicamente uma parcela pequena e mais abastada da população — recebiam muito mais dinheiro público por pessoa do que os alunos do ensino fundamental."
+  },
+  {
+    "objectID": "posts-pt/educabr2-expenditure-regressivity/index.html#metodologia",
+    "href": "posts-pt/educabr2-expenditure-regressivity/index.html#metodologia",
+    "title": "Regressividade do Gasto Público: Ensino Superior vs. Ensino Fundamental",
+    "section": "Metodologia",
+    "text": "Metodologia\nA razão dupla divide o gasto público por estudante do ensino superior pelo gasto por aluno dos anos iniciais do ensino fundamental (EF1); a linha de referência pontilhada marca o gasto igual por estudante. Na escala logarítmica, a queda de 66 vezes em 1933 para menos de 9 vezes em 2010 abrange quase uma ordem de grandeza, mas o gasto nunca chegou perto da paridade — o viés elitista no gasto público em educação brasileira diminuiu consideravelmente ao longo do século XX, sem desaparecer."
+  },
+  {
+    "objectID": "posts-pt/educabr2-expenditure-regressivity/index.html#pipeline",
+    "href": "posts-pt/educabr2-expenditure-regressivity/index.html#pipeline",
+    "title": "Regressividade do Gasto Público: Ensino Superior vs. Ensino Fundamental",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R educabr2."
+  },
+  {
+    "objectID": "posts-pt/educabr2-expenditure-regressivity/index.html#reprodutibilidade",
+    "href": "posts-pt/educabr2-expenditure-regressivity/index.html#reprodutibilidade",
+    "title": "Regressividade do Gasto Público: Ensino Superior vs. Ensino Fundamental",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A (cross-repo)\nEste pipeline depende do pacote R público educabr2 (remotes::install_github(\"mancano-tales/educabr2\")), que embute os dados necessários."
+  },
+  {
+    "objectID": "posts-pt/educabr2-enrollment-reconstructed/index.html#visão-geral",
+    "href": "posts-pt/educabr2-enrollment-reconstructed/index.html#visão-geral",
+    "title": "O Subregistro do EaD e os Totais de Matrícula Reconstruídos",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura documenta uma lacuna nas estatísticas oficiais do ensino superior brasileiro entre 2000 e 2008: a matrícula em ensino a distância era registrada separadamente pelo INEP, mas ficava de fora dos totais publicados como número principal. A figura mostra tanto o total oficialmente publicado (apenas presencial) quanto um total reconstruído que soma de volta a matrícula em EaD registrada à parte, revelando o quanto o sistema de ensino superior já era, de fato, maior."
+  },
+  {
+    "objectID": "posts-pt/educabr2-enrollment-reconstructed/index.html#metodologia",
+    "href": "posts-pt/educabr2-enrollment-reconstructed/index.html#metodologia",
+    "title": "O Subregistro do EaD e os Totais de Matrícula Reconstruídos",
+    "section": "Metodologia",
+    "text": "Metodologia\nEntre 2000 e 2008, o INEP registrava a matrícula em EaD numa tabela separada e a excluía dos totais publicados como número principal. A faixa sombreada é o subregistro resultante, que cresce para cerca de 700 mil estudantes até 2008; a linha tracejada mostra os totais reconstruídos pelo pacote educabr2 (is_derived = TRUE), que somam de volta ao total presencial publicado os números de EaD registrados separadamente."
+  },
+  {
+    "objectID": "posts-pt/educabr2-enrollment-reconstructed/index.html#pipeline",
+    "href": "posts-pt/educabr2-enrollment-reconstructed/index.html#pipeline",
+    "title": "O Subregistro do EaD e os Totais de Matrícula Reconstruídos",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R educabr2."
+  },
+  {
+    "objectID": "posts-pt/educabr2-enrollment-reconstructed/index.html#reprodutibilidade",
+    "href": "posts-pt/educabr2-enrollment-reconstructed/index.html#reprodutibilidade",
+    "title": "O Subregistro do EaD e os Totais de Matrícula Reconstruídos",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A (cross-repo)\nEste pipeline depende do pacote R público educabr2 (remotes::install_github(\"mancano-tales/educabr2\")), que embute os dados necessários."
+  },
+  {
+    "objectID": "posts-pt/desigualdade-renda-gini-palma-decil/index.html#visão-geral",
+    "href": "posts-pt/desigualdade-renda-gini-palma-decil/index.html#visão-geral",
+    "title": "Desigualdade de Renda e Crescimento Real da Renda por Decil (Painel Gini/Palma)",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura combina três visões da desigualdade de renda brasileira entre 1992 e 2024: (A) o índice de Gini, um resumo escalar padrão da desigualdade geral; (B) a razão de Palma, comparando a participação de renda do decil mais rico contra a dos 40% mais pobres; e (C) a trajetória real da renda média de cada decil individualmente, em escala logarítmica. Juntos, os três painéis vão de um único número-resumo até a anatomia completa de quem ganhou e quem ficou para trás."
+  },
+  {
+    "objectID": "posts-pt/desigualdade-renda-gini-palma-decil/index.html#metodologia",
+    "href": "posts-pt/desigualdade-renda-gini-palma-decil/index.html#metodologia",
+    "title": "Desigualdade de Renda e Crescimento Real da Renda por Decil (Painel Gini/Palma)",
+    "section": "Metodologia",
+    "text": "Metodologia\nO painel A mostra o índice de Gini da renda per capita real. O painel B mostra a razão de Palma — a participação de renda do decil mais rico dividida pela dos quatro decis mais pobres. Os painéis A e B seguem o universo oficial, que mantém os domicílios sem rendimento declarado, e reproduzem a série publicada pelo próprio IBGE (desvio médio de −0,0001). O painel C mostra a renda per capita real média por decil, em reais de janeiro de 2024, em eixo logarítmico; aqui os decis se apoiam no universo de trabalho de rendas positivas apenas, de modo que os níveis do painel C não são estritamente os oficiais. As linhas são interrompidas em anos sem pesquisa (1994, 2000, 2010, 2020–2021); marcadores vazados nos painéis A e B indicam 2020 e 2021, provenientes da quinta visita da PNAD Contínua, coletada por telefone. A unidade de renda é a família até 2015 (PNAD) e o domicílio a partir de 2016 (PNAD Contínua); as duas coincidem exceto onde várias famílias dividem uma moradia, e uma linha vertical sólida marca essa mudança de fonte. Como as duas pesquisas rodaram simultaneamente em 2012–2015, o efeito da troca de instrumento pode ser medido diretamente, em vez de suposto: para o mesmo ano, a PNAD Contínua retorna um índice de Gini em média 0,008 mais alto e uma razão de Palma em média 0,15 mais alta. Do degrau observado entre 2015 e 2016 (+0,020 no Gini, +0,44 na Palma), portanto, cerca de um terço é artefato da emenda entre pesquisas, não um aumento genuíno da desigualdade. Essa linha vertical é distinta das linhas tracejadas do painel C, que marcam trocas de governo; o bloco de governo 2015–2019 une o segundo mandato de Dilma Rousseff ao de Michel Temer, de modo que o impeachment de agosto de 2016 não aparece como fronteira na figura."
+  },
+  {
+    "objectID": "posts-pt/desigualdade-renda-gini-palma-decil/index.html#pipeline",
+    "href": "posts-pt/desigualdade-renda-gini-palma-decil/index.html#pipeline",
+    "title": "Desigualdade de Renda e Crescimento Real da Renda por Decil (Painel Gini/Palma)",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/238_Serie_Desigualdade_Oficial.R\nshared-pipeline/pnadc/035_Splice_Microdados.R\nshared-pipeline/pnadc/000_PNADC_Download_Consolidate.R"
+  },
+  {
+    "objectID": "posts-pt/desigualdade-renda-gini-palma-decil/index.html#reprodutibilidade",
+    "href": "posts-pt/desigualdade-renda-gini-palma-decil/index.html#reprodutibilidade",
+    "title": "Desigualdade de Renda e Crescimento Real da Renda por Decil (Painel Gini/Palma)",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts-pt/delta-renda-rel-decil-governo/index.html#visão-geral",
+    "href": "posts-pt/delta-renda-rel-decil-governo/index.html#visão-geral",
+    "title": "Variação da Renda Domiciliar Real por Decil de Renda e Mandato Presidencial (Relativa)",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura mede a variação percentual total da renda domiciliar real para cada decil de renda, ao longo de todos os mandatos presidenciais brasileiros desde 1992. Por expressar a variação em relação à renda inicial de cada decil, e não em reais absolutos, ela permite comparar taxas de crescimento de forma justa entre decis com níveis de renda muito diferentes."
+  },
+  {
+    "objectID": "posts-pt/delta-renda-rel-decil-governo/index.html#metodologia",
+    "href": "posts-pt/delta-renda-rel-decil-governo/index.html#metodologia",
+    "title": "Variação da Renda Domiciliar Real por Decil de Renda e Mandato Presidencial (Relativa)",
+    "section": "Metodologia",
+    "text": "Metodologia\nCada ponto é a variação percentual na renda domiciliar per capita real média para cada decil de renda, do primeiro ano disponível de um mandato presidencial ao primeiro ano disponível do mandato seguinte (azul = ganho, laranja = perda); as linhas horizontais são intervalos de confiança de 95%. O painel inferior direito cobre o período completo de 1992–2023. Os intervalos de confiança são calculados pelo método delta para f(t1,t0) = (t1/t0 − 1) × 100: se_Δ = √((100·se1/t0)² + (100·t1·se0/t0²)²). O erro padrão de cada extremo é a variância amostral ponderada dividida pelo tamanho de amostra efetivo de Kish (efeito de delineamento = 2)."
+  },
+  {
+    "objectID": "posts-pt/delta-renda-rel-decil-governo/index.html#pipeline",
+    "href": "posts-pt/delta-renda-rel-decil-governo/index.html#pipeline",
+    "title": "Variação da Renda Domiciliar Real por Decil de Renda e Mandato Presidencial (Relativa)",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts-pt/delta-renda-rel-decil-governo/index.html#reprodutibilidade",
+    "href": "posts-pt/delta-renda-rel-decil-governo/index.html#reprodutibilidade",
+    "title": "Variação da Renda Domiciliar Real por Decil de Renda e Mandato Presidencial (Relativa)",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts-pt/delta-renda-abs-decil-governo/index.html#visão-geral",
+    "href": "posts-pt/delta-renda-abs-decil-governo/index.html#visão-geral",
+    "title": "Variação da Renda Domiciliar Real por Decil de Renda e Mandato Presidencial (Absoluta)",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura mede a variação total da renda domiciliar real, em reais por mês, para cada decil de renda, ao longo de todos os mandatos presidenciais brasileiros desde 1992. Cada painel é um mandato; os pontos mostram o ganho ou a perda absoluta de cada decil em poder de compra mensal, permitindo comparar o crescimento de renda diretamente em termos monetários, e não em percentuais."
+  },
+  {
+    "objectID": "posts-pt/delta-renda-abs-decil-governo/index.html#metodologia",
+    "href": "posts-pt/delta-renda-abs-decil-governo/index.html#metodologia",
+    "title": "Variação da Renda Domiciliar Real por Decil de Renda e Mandato Presidencial (Absoluta)",
+    "section": "Metodologia",
+    "text": "Metodologia\nCada ponto é a variação total na renda domiciliar per capita real média (R$/mês, preços de janeiro de 2024) para cada decil de renda, do primeiro ano disponível de um mandato presidencial ao primeiro ano disponível do mandato seguinte (azul = ganho, laranja = perda); as linhas horizontais são intervalos de confiança de 95%. O painel inferior direito cobre o período completo de 1992–2023. Os intervalos de confiança são intervalos de aproximação normal de 95% que propagam o erro padrão de cada extremo: se_Δ = √(se1² + se0²). O erro padrão de cada extremo é a variância amostral ponderada dividida pelo tamanho de amostra efetivo de Kish (efeito de delineamento = 2). Os decis de renda e a variável de renda subjacente são calculados sobre a população total (não restrita a 18–24 anos), já que a renda domiciliar per capita descreve o domicílio inteiro."
+  },
+  {
+    "objectID": "posts-pt/delta-renda-abs-decil-governo/index.html#pipeline",
+    "href": "posts-pt/delta-renda-abs-decil-governo/index.html#pipeline",
+    "title": "Variação da Renda Domiciliar Real por Decil de Renda e Mandato Presidencial (Absoluta)",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts-pt/delta-renda-abs-decil-governo/index.html#reprodutibilidade",
+    "href": "posts-pt/delta-renda-abs-decil-governo/index.html#reprodutibilidade",
+    "title": "Variação da Renda Domiciliar Real por Decil de Renda e Mandato Presidencial (Absoluta)",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts-pt/delta-matriculados-decil-governo/index.html#visão-geral",
+    "href": "posts-pt/delta-matriculados-decil-governo/index.html#visão-geral",
+    "title": "Variação da Taxa de Matrícula no Ensino Superior por Decil de Renda e Mandato Presidencial",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura mede o quanto a proporção de jovens de 18 a 24 anos matriculados ativamente no ensino superior mudou durante cada mandato presidencial brasileiro, decomposta por decil de renda. Cada painel é um mandato, mostrando dez barras — uma por decil de renda — com a variação total em pontos percentuais na matrícula, do início ao fim daquele mandato. A figura oferece uma visão governo a governo de quem ganhou ou perdeu terreno no acesso ao ensino superior."
+  },
+  {
+    "objectID": "posts-pt/delta-matriculados-decil-governo/index.html#metodologia",
+    "href": "posts-pt/delta-matriculados-decil-governo/index.html#metodologia",
+    "title": "Variação da Taxa de Matrícula no Ensino Superior por Decil de Renda e Mandato Presidencial",
+    "section": "Metodologia",
+    "text": "Metodologia\nCada barra mostra a variação total em pontos percentuais na proporção de jovens de 18 a 24 anos matriculados ativamente no ensino superior (ens_sup_a), do primeiro ano de cada mandato presidencial ao primeiro ano do mandato seguinte; as barras de erro são intervalos de confiança de 95%. A cor codifica significância estatística, não o sinal: uma barra fica cinza sempre que seu intervalo contém zero. O intervalo é o da própria diferença, com seu erro padrão calculado como a raiz da soma dos erros padrão ao quadrado dos dois anos, tratando as duas pesquisas como independentes — o teste é, portanto, conservador. As duas pesquisas de origem são emendadas por mandato presidencial, não por ano: cada painel de mandato usa uma única pesquisa nos dois extremos, PNAD Anual até 2015 e PNAD Contínua a partir de 2015, de modo que nenhuma diferença atravessa a troca de instrumento. O painel do período completo é o único que permanece emendado entre pesquisas. A matrícula ativa é um critério conservador que exclui coortes que já se formaram ou abandonaram o curso."
+  },
+  {
+    "objectID": "posts-pt/delta-matriculados-decil-governo/index.html#pipeline",
+    "href": "posts-pt/delta-matriculados-decil-governo/index.html#pipeline",
+    "title": "Variação da Taxa de Matrícula no Ensino Superior por Decil de Renda e Mandato Presidencial",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts-pt/delta-matriculados-decil-governo/index.html#reprodutibilidade",
+    "href": "posts-pt/delta-matriculados-decil-governo/index.html#reprodutibilidade",
+    "title": "Variação da Taxa de Matrícula no Ensino Superior por Decil de Renda e Mandato Presidencial",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários.\nNota: a cópia deste script neste post continha um caminho absoluto de fallback apontando para a máquina local do autor (C:/Users/Mancano/...); esse caminho foi corrigido para here::here(\"data-raw\", ...) ao ser copiado para este repositório, seguindo a mesma convenção usada em shared-pipeline/."
+  },
+  {
+    "objectID": "posts-pt/decil-acesso-serie-historica/index.html#visão-geral",
+    "href": "posts-pt/decil-acesso-serie-historica/index.html#visão-geral",
+    "title": "Taxa de Acesso ao Ensino Superior por Decil de Renda, Série Histórica",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura acompanha, a partir de 1992, a proporção de jovens brasileiros de 18 a 24 anos que já ingressaram no ensino superior em algum momento da vida, segmentada por decil de renda domiciliar per capita — do decil mais pobre (D1) ao mais rico (D10). Ela mostra o quão desigual foi a expansão do acesso ao ensino superior ao longo da distribuição de renda em mais de três décadas. Marcadores em losango sobrepõem quatro anos de Censo Demográfico como verificação independente da série baseada em pesquisas amostrais. Os dados vêm das principais pesquisas domiciliares do Brasil (PNAD/PNAD Contínua) e do Censo Demográfico, ambos do IBGE."
+  },
+  {
+    "objectID": "posts-pt/decil-acesso-serie-historica/index.html#metodologia",
+    "href": "posts-pt/decil-acesso-serie-historica/index.html#metodologia",
+    "title": "Taxa de Acesso ao Ensino Superior por Decil de Renda, Série Histórica",
+    "section": "Metodologia",
+    "text": "Metodologia\nCada série é a proporção de jovens de 18 a 24 anos que já ingressaram no ensino superior (ens_sup, acesso acumulado) alguma vez, por decil de renda domiciliar per capita e para a população como um todo. Os decis são calculados dentro de cada ano de pesquisa e de cada fonte, sobre a população com renda estritamente positiva. A série harmonizada usa a PNAD Anual até 2015 e a PNAD Contínua a partir de 2016, de modo que cada ano se apoia em uma única fonte; a região Norte rural está ausente da PNAD Anual entre 2004 e 2015. As linhas são interrompidas em anos sem pesquisa: 2000 e 2010 (anos de Censo) e 2020–2021 (excluídos por razões de qualidade de dados ligadas à pandemia). Os intervalos de confiança são intervalos de 95%: intervalos de Wilson com tamanho de amostra efetivo de Kish sob um efeito de delineamento de 2,0 para a PNAD Anual (1992–2015), e intervalos baseados no desenho amostral complexo via estimação exata (survey::svydesign()) para a PNAD Contínua (2016–2025). Os losangos marcam pontos de validação independentes das amostras do questionário da amostra dos Censos Demográficos de 1991, 2000, 2010 e 2022 (via censobr); seus intervalos de confiança de 95% têm no máximo 0,6 a 0,7 pontos percentuais de amplitude, mais estreitos que os próprios marcadores. O Censo de 1991 reporta a renda em catorze faixas ordinais, a partir das quais os decis são aproximados. Os rótulos no topo indicam o presidente em exercício."
+  },
+  {
+    "objectID": "posts-pt/decil-acesso-serie-historica/index.html#pipeline",
+    "href": "posts-pt/decil-acesso-serie-historica/index.html#pipeline",
+    "title": "Taxa de Acesso ao Ensino Superior por Decil de Renda, Série Histórica",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R\nshared-pipeline/censo/040_Censo_Pontos_Validacao.R"
+  },
+  {
+    "objectID": "posts-pt/decil-acesso-serie-historica/index.html#reprodutibilidade",
+    "href": "posts-pt/decil-acesso-serie-historica/index.html#reprodutibilidade",
+    "title": "Taxa de Acesso ao Ensino Superior por Decil de Renda, Série Histórica",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts-pt/concentracao-rede-antes-depois-cotas/index.html#visão-geral",
+    "href": "posts-pt/concentracao-rede-antes-depois-cotas/index.html#visão-geral",
+    "title": "Concentração de Renda na Matrícula por Rede, Antes e Depois da Lei de Cotas",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura mostra curvas de concentração de renda para o acesso ao ensino superior, decompostas por rede (pública vs. privada), em três períodos em relação à Lei de Cotas de 2012 no Brasil: antes, durante a implementação gradual, e depois da implementação plena. Uma curva de concentração que se aproxima mais da diagonal indica acesso distribuído de forma mais equilibrada entre os níveis de renda; uma curva mais afastada indica acesso concentrado em domicílios de renda mais alta. A comparação permite ver se, e o quanto, a concentração do acesso a cada rede mudou em torno da lei de cotas."
+  },
+  {
+    "objectID": "posts-pt/concentracao-rede-antes-depois-cotas/index.html#metodologia",
+    "href": "posts-pt/concentracao-rede-antes-depois-cotas/index.html#metodologia",
+    "title": "Concentração de Renda na Matrícula por Rede, Antes e Depois da Lei de Cotas",
+    "section": "Metodologia",
+    "text": "Metodologia\nCada painel agrupa as curvas de concentração específicas de cada ano dentro daquele período (uma média simples entre os anos, numa grade percentual uniforme de 101 pontos), de modo que cada ano contribui igualmente independentemente do tamanho da amostra. “Antes das cotas” cobre 2001–2011 (PNAD Anual, excluindo 2010, ano de Censo sem PNAD). “Transição” cobre 2012–2016, o período de implementação gradual da Lei de Cotas (12.711/2012), durante o qual a fração de vagas reservadas cresceu linearmente até um mínimo de 50% das vagas em 2016; 2012–2015 vem da PNAD Anual e 2016 da PNAD Contínua. “Cotas maduras” cobre 2017–2024 (PNAD Contínua), excluindo 2020–2021 (sem dados padrão de primeira entrevista disponíveis nesses anos, por causa da COVID-19). A variável de rede é V6002 na PNAD Anual (2001–2015, codificada 2 = pública / 4 = privada) e V3002A na PNAD Contínua (2016+, codificada 1 = privada / 2 = pública — a codificação é invertida entre as duas fontes). O índice de concentração de Erreygers por período, para a população de referência (todos os jovens de 18–24 anos), é: acesso geral, 0,291 (antes) / 0,272 (transição) / 0,297 (maduro); rede pública, 0,064 / 0,063 / 0,067; rede privada, 0,227 / 0,209 / 0,231. O índice da rede pública permanece essencialmente estável nos três períodos."
+  },
+  {
+    "objectID": "posts-pt/concentracao-rede-antes-depois-cotas/index.html#pipeline",
+    "href": "posts-pt/concentracao-rede-antes-depois-cotas/index.html#pipeline",
+    "title": "Concentração de Renda na Matrícula por Rede, Antes e Depois da Lei de Cotas",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R — script autocontido: baixa e processa os microdados diretamente, sem depender de outros scripts deste repositório.\nFonte de dado de referência: shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R"
+  },
+  {
+    "objectID": "posts-pt/concentracao-rede-antes-depois-cotas/index.html#reprodutibilidade",
+    "href": "posts-pt/concentracao-rede-antes-depois-cotas/index.html#reprodutibilidade",
+    "title": "Concentração de Renda na Matrícula por Rede, Antes e Depois da Lei de Cotas",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts-pt/composicao-decil-ens-sup-a-18-24/index.html#visão-geral",
+    "href": "posts-pt/composicao-decil-ens-sup-a-18-24/index.html#visão-geral",
+    "title": "Composição por Renda dos Matriculados Ativos no Ensino Superior (18–24 anos)",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura mostra como a composição por renda dos estudantes brasileiros de 18 a 24 anos atualmente matriculados no ensino superior mudou ao longo do tempo. Cada barra é um ano, empilhado em dez decis de renda da população geral (D1 = decil mais pobre, D10 = mais rico); a altura de cada segmento é a participação daquele decil entre os matriculados atuais. Por restringir-se à matrícula ativa, e não ao acesso alguma vez ao ensino superior, esta figura exclui coortes que já concluíram ou abandonaram o curso, dando um retrato mais atual de quem está em sala de aula agora."
+  },
+  {
+    "objectID": "posts-pt/composicao-decil-ens-sup-a-18-24/index.html#metodologia",
+    "href": "posts-pt/composicao-decil-ens-sup-a-18-24/index.html#metodologia",
+    "title": "Composição por Renda dos Matriculados Ativos no Ensino Superior (18–24 anos)",
+    "section": "Metodologia",
+    "text": "Metodologia\nCada barra mostra a proporção de matriculados ativos de 18 a 24 anos vinda de cada decil de renda. Variável: ens_sup_a = matriculado atualmente (ativamente) no ensino superior. Os decis de renda são calculados dentro de cada ano de pesquisa via Hmisc::wtd.quantile, usando os pesos amostrais. Os anos 2000 e 2010 são excluídos porque não houve PNAD em anos de Censo; 2020–2021 são excluídos por causa da COVID-19 e do Auxílio Emergencial, que distorceu a distribuição de renda. Para 2012–2015, usam-se apenas observações da PNAD Anual, para evitar contagem dupla nos anos de sobreposição PNAD/PNADC. Rótulos percentuais são exibidos para decis com participação ≥ 6%; apenas o rótulo do decil (sem percentual) para participações ≥ 3%. As linhas horizontais tracejadas indicam equidade perfeita (cada decil = 10%). Os rótulos de governo indicam o presidente em exercício."
+  },
+  {
+    "objectID": "posts-pt/composicao-decil-ens-sup-a-18-24/index.html#pipeline",
+    "href": "posts-pt/composicao-decil-ens-sup-a-18-24/index.html#pipeline",
+    "title": "Composição por Renda dos Matriculados Ativos no Ensino Superior (18–24 anos)",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/000_PNADC_Download_Consolidate.R\nshared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R\nshared-pipeline/pnadc/021_PNAD_Anual_Import_Com_Renda_Zero.R\nshared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts-pt/composicao-decil-ens-sup-a-18-24/index.html#reprodutibilidade",
+    "href": "posts-pt/composicao-decil-ens-sup-a-18-24/index.html#reprodutibilidade",
+    "title": "Composição por Renda dos Matriculados Ativos no Ensino Superior (18–24 anos)",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts-pt/composicao-decil-ens-sup-18-24/index.html#visão-geral",
+    "href": "posts-pt/composicao-decil-ens-sup-18-24/index.html#visão-geral",
+    "title": "Composição por Renda dos Estudantes do Ensino Superior (18–24 anos)",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura mostra como a composição por renda dos estudantes brasileiros de 18 a 24 anos que já ingressaram no ensino superior mudou ao longo do tempo. Cada barra é um ano, empilhado em dez decis de renda da população geral (D1 = decil mais pobre, D10 = mais rico); a altura de cada segmento é a participação daquele decil entre os estudantes que já ingressaram no ensino superior alguma vez. Uma pilha mais equilibrada — mais próxima de 10% por decil — indica acesso mais distribuído ao longo da distribuição de renda, enquanto segmentos dominados pelos decis superiores indicam acesso concentrado entre domicílios de renda mais alta."
+  },
+  {
+    "objectID": "posts-pt/composicao-decil-ens-sup-18-24/index.html#metodologia",
+    "href": "posts-pt/composicao-decil-ens-sup-18-24/index.html#metodologia",
+    "title": "Composição por Renda dos Estudantes do Ensino Superior (18–24 anos)",
+    "section": "Metodologia",
+    "text": "Metodologia\nCada barra mostra a proporção de estudantes de 18 a 24 anos vinda de cada decil de renda. Variável: ens_sup = já ingressou no ensino superior alguma vez. Os decis de renda são calculados dentro de cada ano de pesquisa via Hmisc::wtd.quantile, usando os pesos amostrais. Os anos 2000 e 2010 são excluídos porque não houve PNAD em anos de Censo; 2020–2021 são excluídos por causa da COVID-19 e do Auxílio Emergencial, que distorceu a distribuição de renda. Para 2012–2015, usam-se apenas observações da PNAD Anual, para evitar contagem dupla nos anos de sobreposição PNAD/PNADC. Rótulos percentuais são exibidos para decis com participação ≥ 6%; apenas o rótulo do decil (sem percentual) para participações ≥ 3%. As linhas horizontais tracejadas indicam equidade perfeita (cada decil = 10%). Os rótulos de governo indicam o presidente em exercício."
+  },
+  {
+    "objectID": "posts-pt/composicao-decil-ens-sup-18-24/index.html#pipeline",
+    "href": "posts-pt/composicao-decil-ens-sup-18-24/index.html#pipeline",
+    "title": "Composição por Renda dos Estudantes do Ensino Superior (18–24 anos)",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/000_PNADC_Download_Consolidate.R\nshared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R\nshared-pipeline/pnadc/021_PNAD_Anual_Import_Com_Renda_Zero.R\nshared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts-pt/composicao-decil-ens-sup-18-24/index.html#reprodutibilidade",
+    "href": "posts-pt/composicao-decil-ens-sup-18-24/index.html#reprodutibilidade",
+    "title": "Composição por Renda dos Estudantes do Ensino Superior (18–24 anos)",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "index-pt.html",
+    "href": "index-pt.html",
+    "title": "Open Data Analysis",
+    "section": "",
+    "text": "Taxa de Acesso ao Ensino Superior por Decil de Renda, Série Histórica\n\n\n\nPNAD/PNADC\n\nCenso\n\nAcesso\n\nSérie Histórica\n\n\n\nTaxa de acesso ao ensino superior por decil de renda, série histórica de linhas a partir de 1992.\n\n\n\n3 de set. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nExpansão e Composição da Matrícula de Graduação, 1980–2024\n\n\n\neducabr2\n\nMatrículas\n\nExpansão Histórica\n\n\n\nExpansão de longo prazo e composição setorial da matrícula de graduação no Brasil, 1980–2024.\n\n\n\n27 de ago. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nDesigualdade no Acesso e na Matrícula no Ensino Superior (Índice de Wagstaff)\n\n\n\nPNAD/PNADC\n\nWagstaff\n\nDesigualdade\n\nAcesso\n\n\n\nDesigualdade relativa no acesso e na matrícula no ensino superior, por faixa etária, medida pelo índice de concentração de Wagstaff.\n\n\n\n27 de ago. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nDesigualdade de Renda na Matrícula por Tipo de Rede, Série Temporal (Índice de Wagstaff)\n\n\n\nPNAD/PNADC\n\nWagstaff\n\nRede Pública/Privada\n\n\n\nSérie temporal da desigualdade de renda na matrícula do ensino superior por tipo de rede (pública vs. privada), medida pelo índice de concentração de Wagstaff.\n\n\n\n10 de ago. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nComposição por Renda dos Estudantes do Ensino Superior (18–24 anos)\n\n\n\nPNAD/PNADC\n\nEnsino Superior\n\nComposição por Decil\n\n\n\nComposição empilhada de decis de renda entre estudantes do ensino superior de 18–24 anos, ao longo do tempo.\n\n\n\n9 de ago. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nComposição por Renda dos Estudantes do Ensino Superior (18–64 anos)\n\n\n\nPNAD/PNADC\n\nEnsino Superior\n\nComposição por Decil\n\n\n\nComposição empilhada de decis de renda entre estudantes do ensino superior de 18–64 anos, ao longo do tempo.\n\n\n\n9 de ago. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nComposição por Renda dos Matriculados Ativos no Ensino Superior (18–24 anos)\n\n\n\nPNAD/PNADC\n\nEnsino Superior\n\nComposição por Decil\n\n\n\nComposição empilhada de decis de renda entre matriculados ativos no ensino superior de 18–24 anos, ao longo do tempo.\n\n\n\n9 de ago. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nComposição por Renda dos Matriculados Ativos no Ensino Superior (18–64 anos)\n\n\n\nPNAD/PNADC\n\nEnsino Superior\n\nComposição por Decil\n\n\n\nComposição empilhada de decis de renda entre matriculados ativos no ensino superior de 18–64 anos, ao longo do tempo.\n\n\n\n9 de ago. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nCrescimento Anualizado da Renda Real por Decil de Renda e Mandato Presidencial\n\n\n\nPNAD/PNADC\n\nRenda\n\nGoverno\n\n\n\nDotplot do crescimento anualizado da renda domiciliar per capita real por decil de renda e mandato presidencial.\n\n\n\n9 de ago. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nDesigualdade de Renda e Crescimento Real da Renda por Decil (Painel Gini/Palma)\n\n\n\nPNAD/PNADC\n\nDesigualdade\n\nRenda\n\nGini\n\nPalma\n\n\n\nFigura em múltiplos painéis combinando índices de desigualdade de renda (Gini, razão de Palma) com o crescimento real da renda por decil.\n\n\n\n9 de ago. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nTaxa de Conclusão do Ensino Médio por Decil de Renda\n\n\n\nPNAD/PNADC\n\nEnsino Médio\n\nConclusão\n\n\n\nSérie de linhas da taxa de conclusão do ensino médio por decil de renda.\n\n\n\n9 de ago. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nFardo da Mensalidade em Relação à Renda Domiciliar por Decil de Renda\n\n\n\nPNAD/PNADC\n\nIPCA\n\nMensalidades\n\nRenda\n\n\n\nFardo da mensalidade do ensino superior em relação à renda domiciliar, por decil de renda.\n\n\n\n9 de ago. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nPopulação Acima de Limiares Fixos de Renda Real\n\n\n\nPNAD/PNADC\n\nPopulação\n\nSalário Mínimo\n\n\n\nProporção de jovens de 18–24 anos em domicílios acima de limiares fixos de renda real, expressos como múltiplos do salário mínimo.\n\n\n\n9 de ago. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nRenda Domiciliar Média por Centil de Renda (Escala Logarítmica)\n\n\n\nPNAD/PNADC\n\nRenda\n\nDistribuição\n\n\n\nRenda domiciliar per capita média por centil de renda, plotada em escala logarítmica.\n\n\n\n9 de ago. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nRenda Domiciliar Média por Centil de Renda\n\n\n\nPNAD/PNADC\n\nRenda\n\nDistribuição\n\n\n\nRenda domiciliar per capita média por centil de renda, escala linear.\n\n\n\n9 de ago. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nVariação da Taxa de Acesso ao Ensino Superior por Decil de Renda e Mandato Presidencial\n\n\n\nPNAD/PNADC\n\nAcesso\n\nGoverno\n\n\n\nDotplot da variação total da taxa de acesso ao ensino superior (já ingressou alguma vez) por decil de renda, decomposta por mandato presidencial.\n\n\n\n7 de ago. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nVariação da Taxa de Matrícula no Ensino Superior por Decil de Renda e Mandato Presidencial (Dotplot)\n\n\n\nPNAD/PNADC\n\nMatrículas\n\nGoverno\n\n\n\nDotplot da variação total da taxa de matrícula no ensino superior (18–24 anos) por decil de renda e mandato presidencial.\n\n\n\n7 de ago. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nEnsino a Distância e o Alcance das Políticas de Assistência Estudantil\n\n\n\nSEDAP+\n\nENEM\n\nEaD\n\nPolíticas Públicas\n\n\n\nMatrículas em EaD e o alcance dos programas de assistência estudantil no setor privado.\n\n\n\n6 de ago. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nDistribuição de Renda Domiciliar por Setor do Ensino Superior\n\n\n\nSEDAP+\n\nENEM\n\nRenda\n\n\n\nDistribuição da renda domiciliar dos ingressantes por setor do ensino superior.\n\n\n\n6 de ago. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nRenda Domiciliar dos Ingressantes por Setor e Modalidade de Ensino\n\n\n\nSEDAP+\n\nENEM\n\nRenda\n\nModalidade\n\n\n\nRenda domiciliar dos ingressantes por setor do ensino superior e modalidade de ensino (presencial vs. EaD).\n\n\n\n6 de ago. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nMatrículas por Setor, Via de Acesso e Turno\n\n\n\nSEDAP+\n\nMatrículas\n\nTurno\n\nVia de Acesso\n\n\n\nMatrículas decompostas por setor, via de acesso (cotas/ampla concorrência) e turno (matutino/noturno/EaD).\n\n\n\n5 de ago. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nO Subregistro do EaD e os Totais de Matrícula Reconstruídos\n\n\n\neducabr2\n\nMatrículas\n\n\n\nO subregistro do ensino a distância nas estatísticas oficiais e os totais de matrícula no ensino superior reconstruídos, 2000–2008.\n\n\n\n12 de jul. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nMatrícula no Ensino Superior no Brasil: Série Harmonizada e Fontes Concorrentes\n\n\n\neducabr2\n\nMatrículas\n\nFontes de Dado\n\n\n\nMatrícula no ensino superior no Brasil, 1907–2024: a série harmonizada do educabr2 contra fontes concorrentes.\n\n\n\n12 de jul. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nRegressividade do Gasto Público: Ensino Superior vs. Ensino Fundamental\n\n\n\neducabr2\n\nGasto Público\n\nRegressividade\n\n\n\nRazão dupla do gasto público por estudante, ensino superior sobre ensino fundamental, Brasil, 1933–2010.\n\n\n\n12 de jul. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nRazão de Progressão Escolar (GDR6) em São Paulo e na Bahia\n\n\n\neducabr2\n\nProgressão Escolar\n\n\n\nRazão de progressão escolar (GDR6) em São Paulo e na Bahia, 1955–2010.\n\n\n\n12 de jul. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnos Médios de Escolaridade por Sexo\n\n\n\neducabr2\n\nEscolaridade\n\nSexo\n\n\n\nAnos médios de escolaridade da população de 15–64 anos no Brasil, por sexo, 1925–2015.\n\n\n\n12 de jul. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nCobertura Temporal das Fontes Harmonizadas pelo educabr2\n\n\n\neducabr2\n\nCobertura de Fontes\n\n\n\nCobertura temporal das onze fontes de dados harmonizadas pelo educabr2, 1870–2024.\n\n\n\n12 de jul. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nVariação da Renda Domiciliar Real por Decil de Renda e Mandato Presidencial (Absoluta)\n\n\n\nPNAD/PNADC\n\nRenda\n\nGoverno\n\n\n\nDotplot da variação total da renda domiciliar per capita real (R$/mês) por decil de renda e mandato presidencial.\n\n\n\n8 de jul. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nVariação da Renda Domiciliar Real por Decil de Renda e Mandato Presidencial (Relativa)\n\n\n\nPNAD/PNADC\n\nRenda\n\nGoverno\n\n\n\nDotplot da variação percentual total da renda domiciliar per capita real por decil de renda e mandato presidencial.\n\n\n\n8 de jul. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nConcentração de Renda na Matrícula do Ensino Superior por Tipo de Rede\n\n\n\nPNAD/PNADC\n\nRede Pública/Privada\n\n\n\nCurvas de concentração de renda na matrícula do ensino superior por tipo de rede (pública vs. privada), 18–24 anos.\n\n\n\n6 de jul. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nPreços de Mensalidades do Ensino Superior em Relação à Inflação e ao Salário Mínimo\n\n\n\nIPCA\n\nSIDRA\n\nMensalidades\n\n\n\nSérie de preços de mensalidades do ensino superior em relação aos preços gerais ao consumidor e ao salário mínimo.\n\n\n\n6 de jul. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nVariação da Taxa de Matrícula no Ensino Superior por Decil de Renda e Mandato Presidencial\n\n\n\nPNAD/PNADC\n\nMatrículas\n\nGoverno\n\n\n\nPainel de gráficos de barras mostrando a variação total da taxa de matrícula no ensino superior (18–24 anos) por decil de renda, um painel por mandato presidencial.\n\n\n\n4 de jul. de 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nConcentração de Renda na Matrícula por Rede, Antes e Depois da Lei de Cotas\n\n\n\nPNAD/PNADC\n\nCotas\n\nConcentração de Rede\n\n\n\nCurvas de concentração de renda na matrícula do ensino superior por rede (pública vs. privada), antes, durante e depois da Lei de Cotas de 2012.\n\n\n\n30 de jun. de 2026\n\n\n\n\n\n\nNenhum item correspondente"
+  },
+  {
+    "objectID": "posts-pt/composicao-decil-ens-sup-18-64/index.html#visão-geral",
+    "href": "posts-pt/composicao-decil-ens-sup-18-64/index.html#visão-geral",
+    "title": "Composição por Renda dos Estudantes do Ensino Superior (18–64 anos)",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura mostra como a composição por renda dos estudantes brasileiros de 18 a 64 anos que já ingressaram no ensino superior mudou ao longo do tempo. Cada barra é um ano, empilhado em dez decis de renda da população geral (D1 = decil mais pobre, D10 = mais rico); a altura de cada segmento é a participação daquele decil entre as pessoas que já ingressaram no ensino superior alguma vez. Uma pilha mais equilibrada — mais próxima de 10% por decil — indica acesso mais distribuído ao longo da distribuição de renda, enquanto segmentos dominados pelos decis superiores indicam acesso concentrado entre domicílios de renda mais alta. Usar toda a faixa etária ativa (18–64), em vez da coorte tradicional de idade universitária, também captura o acesso obtido mais tarde na vida."
+  },
+  {
+    "objectID": "posts-pt/composicao-decil-ens-sup-18-64/index.html#metodologia",
+    "href": "posts-pt/composicao-decil-ens-sup-18-64/index.html#metodologia",
+    "title": "Composição por Renda dos Estudantes do Ensino Superior (18–64 anos)",
+    "section": "Metodologia",
+    "text": "Metodologia\nCada barra mostra a proporção de estudantes de 18 a 64 anos vinda de cada decil de renda. Variável: ens_sup = já ingressou no ensino superior alguma vez. Os decis de renda são calculados dentro de cada ano de pesquisa via Hmisc::wtd.quantile, usando os pesos amostrais. Os anos 2000 e 2010 são excluídos porque não houve PNAD em anos de Censo; 2020–2021 são excluídos por causa da COVID-19 e do Auxílio Emergencial, que distorceu a distribuição de renda. Para 2012–2015, usam-se apenas observações da PNAD Anual, para evitar contagem dupla nos anos de sobreposição PNAD/PNADC. Rótulos percentuais são exibidos para decis com participação ≥ 6%; apenas o rótulo do decil (sem percentual) para participações ≥ 3%. As linhas horizontais tracejadas indicam equidade perfeita (cada decil = 10%). Os rótulos de governo indicam o presidente em exercício."
+  },
+  {
+    "objectID": "posts-pt/composicao-decil-ens-sup-18-64/index.html#pipeline",
+    "href": "posts-pt/composicao-decil-ens-sup-18-64/index.html#pipeline",
+    "title": "Composição por Renda dos Estudantes do Ensino Superior (18–64 anos)",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/000_PNADC_Download_Consolidate.R\nshared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R\nshared-pipeline/pnadc/021_PNAD_Anual_Import_Com_Renda_Zero.R\nshared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts-pt/composicao-decil-ens-sup-18-64/index.html#reprodutibilidade",
+    "href": "posts-pt/composicao-decil-ens-sup-18-64/index.html#reprodutibilidade",
+    "title": "Composição por Renda dos Estudantes do Ensino Superior (18–64 anos)",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts-pt/composicao-decil-ens-sup-a-18-64/index.html#visão-geral",
+    "href": "posts-pt/composicao-decil-ens-sup-a-18-64/index.html#visão-geral",
+    "title": "Composição por Renda dos Matriculados Ativos no Ensino Superior (18–64 anos)",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura mostra como a composição por renda dos estudantes brasileiros de 18 a 64 anos atualmente matriculados no ensino superior mudou ao longo do tempo. Cada barra é um ano, empilhado em dez decis de renda da população geral (D1 = decil mais pobre, D10 = mais rico); a altura de cada segmento é a participação daquele decil entre os matriculados atuais. Combinar toda a faixa etária ativa com a matrícula ativa (em vez do acesso alguma vez) mostra quem está de fato em sala de aula hoje, em todas as idades, não só na coorte tradicional de idade universitária."
+  },
+  {
+    "objectID": "posts-pt/composicao-decil-ens-sup-a-18-64/index.html#metodologia",
+    "href": "posts-pt/composicao-decil-ens-sup-a-18-64/index.html#metodologia",
+    "title": "Composição por Renda dos Matriculados Ativos no Ensino Superior (18–64 anos)",
+    "section": "Metodologia",
+    "text": "Metodologia\nCada barra mostra a proporção de matriculados ativos de 18 a 64 anos vinda de cada decil de renda. Variável: ens_sup_a = matriculado atualmente (ativamente) no ensino superior. Os decis de renda são calculados dentro de cada ano de pesquisa via Hmisc::wtd.quantile, usando os pesos amostrais. Os anos 2000 e 2010 são excluídos porque não houve PNAD em anos de Censo; 2020–2021 são excluídos por causa da COVID-19 e do Auxílio Emergencial, que distorceu a distribuição de renda. Para 2012–2015, usam-se apenas observações da PNAD Anual, para evitar contagem dupla nos anos de sobreposição PNAD/PNADC. Rótulos percentuais são exibidos para decis com participação ≥ 6%; apenas o rótulo do decil (sem percentual) para participações ≥ 3%. As linhas horizontais tracejadas indicam equidade perfeita (cada decil = 10%). Os rótulos de governo indicam o presidente em exercício."
+  },
+  {
+    "objectID": "posts-pt/composicao-decil-ens-sup-a-18-64/index.html#pipeline",
+    "href": "posts-pt/composicao-decil-ens-sup-a-18-64/index.html#pipeline",
+    "title": "Composição por Renda dos Matriculados Ativos no Ensino Superior (18–64 anos)",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/000_PNADC_Download_Consolidate.R\nshared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R\nshared-pipeline/pnadc/021_PNAD_Anual_Import_Com_Renda_Zero.R\nshared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts-pt/composicao-decil-ens-sup-a-18-64/index.html#reprodutibilidade",
+    "href": "posts-pt/composicao-decil-ens-sup-a-18-64/index.html#reprodutibilidade",
+    "title": "Composição por Renda dos Matriculados Ativos no Ensino Superior (18–64 anos)",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts-pt/concentracao-rede-publica-privada/index.html#visão-geral",
+    "href": "posts-pt/concentracao-rede-publica-privada/index.html#visão-geral",
+    "title": "Concentração de Renda na Matrícula do Ensino Superior por Tipo de Rede",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura compara curvas de concentração de renda para a matrícula geral no ensino superior contra a matrícula especificamente na rede pública e especificamente na rede privada, para jovens de 18 a 24 anos, agrupando os anos mais recentes e estáveis (2022–2024). Ela mostra qual dos dois setores recruta mais fortemente entre domicílios de renda mais alta."
+  },
+  {
+    "objectID": "posts-pt/concentracao-rede-publica-privada/index.html#metodologia",
+    "href": "posts-pt/concentracao-rede-publica-privada/index.html#metodologia",
+    "title": "Concentração de Renda na Matrícula do Ensino Superior por Tipo de Rede",
+    "section": "Metodologia",
+    "text": "Metodologia\nAs curvas mostram, para cada rede, a participação acumulada dos estudantes atualmente matriculados no ensino superior explicada pelos p% mais pobres da população de 18 a 24 anos, ordenada por renda domiciliar per capita dentro de cada ano. Quanto mais próxima a curva estiver da linha de 45 graus, mais equilibradamente distribuído está o acesso àquela rede ao longo da distribuição de renda; curvas que se afastam abaixo da diagonal indicam concentração nos decis de renda mais alta. A curva agrupada é uma média simples das curvas específicas de 2022, 2023 e 2024 (cada uma reamostrada numa grade percentual uniforme de 101 pontos), de modo que cada ano contribui igualmente independentemente do tamanho da amostra. O índice de concentração de Erreygers é calculado ano a ano para os mesmos três anos. A variável de rede usada é V3002A (PNADC do IBGE), e não a variável de rede derivada de V3004 usada em outras partes deste projeto, já que V3004 nunca cobre estudantes do ensino superior em nenhum ano; V3002A é sua substituta a partir de 2015, com codificação invertida (1 = privada, 2 = pública) em relação à convenção de V3004."
+  },
+  {
+    "objectID": "posts-pt/concentracao-rede-publica-privada/index.html#pipeline",
+    "href": "posts-pt/concentracao-rede-publica-privada/index.html#pipeline",
+    "title": "Concentração de Renda na Matrícula do Ensino Superior por Tipo de Rede",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R — script autocontido: baixa e processa os microdados diretamente, sem depender de outros scripts deste repositório.\nFonte de dado de referência: shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R"
+  },
+  {
+    "objectID": "posts-pt/concentracao-rede-publica-privada/index.html#reprodutibilidade",
+    "href": "posts-pt/concentracao-rede-publica-privada/index.html#reprodutibilidade",
+    "title": "Concentração de Renda na Matrícula do Ensino Superior por Tipo de Rede",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts-pt/delta-acesso-decil-governo/index.html#visão-geral",
+    "href": "posts-pt/delta-acesso-decil-governo/index.html#visão-geral",
+    "title": "Variação da Taxa de Acesso ao Ensino Superior por Decil de Renda e Mandato Presidencial",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura mede o quanto a proporção de jovens de 18 a 24 anos que já ingressaram alguma vez no ensino superior mudou durante cada mandato presidencial brasileiro, decomposta por decil de renda, em um layout de dotplot (pontos de Cleveland). Cada painel é um mandato, mostrando um ponto por decil de renda com a variação total em pontos percentuais no acesso, do início ao fim daquele mandato. A figura oferece uma visão governo a governo de quem ganhou ou perdeu terreno no acesso ao ensino superior."
+  },
+  {
+    "objectID": "posts-pt/delta-acesso-decil-governo/index.html#metodologia",
+    "href": "posts-pt/delta-acesso-decil-governo/index.html#metodologia",
+    "title": "Variação da Taxa de Acesso ao Ensino Superior por Decil de Renda e Mandato Presidencial",
+    "section": "Metodologia",
+    "text": "Metodologia\nCada ponto mostra a variação total em pontos percentuais na proporção de jovens de 18 a 24 anos que já ingressaram alguma vez no ensino superior (ens_sup), do primeiro ano de cada mandato presidencial ao primeiro ano do mandato seguinte; as linhas horizontais são intervalos de confiança de 95%. A cor codifica significância estatística, não o sinal: um ponto fica cinza sempre que seu intervalo contém zero. O intervalo é o da própria diferença, com seu erro padrão calculado como a raiz da soma dos erros padrão ao quadrado dos dois anos, tratando as duas pesquisas como independentes — o teste é, portanto, conservador. As duas pesquisas de origem são emendadas por mandato presidencial, não por ano: cada painel de mandato usa uma única pesquisa nos dois extremos, PNAD Anual até 2015 e PNAD Contínua a partir de 2015, de modo que nenhuma diferença atravessa a troca de instrumento. O painel do período completo é o único que permanece emendado entre pesquisas."
+  },
+  {
+    "objectID": "posts-pt/delta-acesso-decil-governo/index.html#pipeline",
+    "href": "posts-pt/delta-acesso-decil-governo/index.html#pipeline",
+    "title": "Variação da Taxa de Acesso ao Ensino Superior por Decil de Renda e Mandato Presidencial",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts-pt/delta-acesso-decil-governo/index.html#reprodutibilidade",
+    "href": "posts-pt/delta-acesso-decil-governo/index.html#reprodutibilidade",
+    "title": "Variação da Taxa de Acesso ao Ensino Superior por Decil de Renda e Mandato Presidencial",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts-pt/delta-matriculados-decil-governo-dotplot/index.html#visão-geral",
+    "href": "posts-pt/delta-matriculados-decil-governo-dotplot/index.html#visão-geral",
+    "title": "Variação da Taxa de Matrícula no Ensino Superior por Decil de Renda e Mandato Presidencial (Dotplot)",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura mede o quanto a proporção de jovens de 18 a 24 anos matriculados ativamente no ensino superior mudou durante cada mandato presidencial brasileiro, decomposta por decil de renda, em um layout de dotplot (pontos de Cleveland). Cada painel é um mandato, mostrando um ponto por decil de renda com a variação total em pontos percentuais na matrícula, do início ao fim daquele mandato. A figura oferece uma visão governo a governo de quem ganhou ou perdeu terreno no acesso ao ensino superior."
+  },
+  {
+    "objectID": "posts-pt/delta-matriculados-decil-governo-dotplot/index.html#metodologia",
+    "href": "posts-pt/delta-matriculados-decil-governo-dotplot/index.html#metodologia",
+    "title": "Variação da Taxa de Matrícula no Ensino Superior por Decil de Renda e Mandato Presidencial (Dotplot)",
+    "section": "Metodologia",
+    "text": "Metodologia\nCada ponto mostra a variação total em pontos percentuais na proporção de jovens de 18 a 24 anos matriculados ativamente no ensino superior (ens_sup_a), do primeiro ano de cada mandato presidencial ao primeiro ano do mandato seguinte; as linhas horizontais são intervalos de confiança de 95%. A cor codifica significância estatística, não o sinal: um ponto fica cinza sempre que seu intervalo contém zero. O intervalo é o da própria diferença, com seu erro padrão calculado como a raiz da soma dos erros padrão ao quadrado dos dois anos, tratando as duas pesquisas como independentes — o teste é, portanto, conservador. As duas pesquisas de origem são emendadas por mandato presidencial, não por ano: cada painel de mandato usa uma única pesquisa nos dois extremos, PNAD Anual até 2015 e PNAD Contínua a partir de 2015, de modo que nenhuma diferença atravessa a troca de instrumento. O painel do período completo é o único que permanece emendado entre pesquisas. A matrícula ativa é um critério conservador que exclui coortes que já se formaram ou abandonaram o curso."
+  },
+  {
+    "objectID": "posts-pt/delta-matriculados-decil-governo-dotplot/index.html#pipeline",
+    "href": "posts-pt/delta-matriculados-decil-governo-dotplot/index.html#pipeline",
+    "title": "Variação da Taxa de Matrícula no Ensino Superior por Decil de Renda e Mandato Presidencial (Dotplot)",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts-pt/delta-matriculados-decil-governo-dotplot/index.html#reprodutibilidade",
+    "href": "posts-pt/delta-matriculados-decil-governo-dotplot/index.html#reprodutibilidade",
+    "title": "Variação da Taxa de Matrícula no Ensino Superior por Decil de Renda e Mandato Presidencial (Dotplot)",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts-pt/delta-renda-anualizada-decil-governo/index.html#visão-geral",
+    "href": "posts-pt/delta-renda-anualizada-decil-governo/index.html#visão-geral",
+    "title": "Crescimento Anualizado da Renda Real por Decil de Renda e Mandato Presidencial",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura mede o crescimento anualizado da renda real por decil de renda ao longo dos mandatos presidenciais brasileiros, de 1995 a 2025. Expressar o crescimento como uma taxa anual composta, em vez de uma variação total, torna diretamente comparáveis mandatos de durações muito diferentes — quatro anos completos contra, no mandato mais recente mostrado, apenas dois."
+  },
+  {
+    "objectID": "posts-pt/delta-renda-anualizada-decil-governo/index.html#metodologia",
+    "href": "posts-pt/delta-renda-anualizada-decil-governo/index.html#metodologia",
+    "title": "Crescimento Anualizado da Renda Real por Decil de Renda e Mandato Presidencial",
+    "section": "Metodologia",
+    "text": "Metodologia\nCada ponto é a taxa de crescimento geométrico anualizado da renda real (% ao ano, preços de janeiro de 2024) para cada decil de renda, do primeiro ano disponível de um mandato presidencial ao primeiro ano disponível do mandato seguinte (azul = ganho, laranja = perda); as linhas horizontais são intervalos de confiança de 95%. O mandato de Itamar Franco (1992–1995) é omitido, já que a série usada aqui começa em 1995. O painel de Lula III cobre dois anos de crescimento (2023–2025). O painel inferior direito cobre o período completo de 1995–2025. Os intervalos de confiança são calculados pelo método delta para f(t1,t0) = ((t1/t0)^(1/n) − 1) × 100, onde n é o número de anos do mandato: se = (100/n)·(t1/t0)^(1/n)·√((se1/t1)² + (se0/t0)²). O erro padrão de cada extremo é a variância amostral ponderada dividida pelo tamanho de amostra efetivo de Kish (efeito de delineamento = 2)."
+  },
+  {
+    "objectID": "posts-pt/delta-renda-anualizada-decil-governo/index.html#pipeline",
+    "href": "posts-pt/delta-renda-anualizada-decil-governo/index.html#pipeline",
+    "title": "Crescimento Anualizado da Renda Real por Decil de Renda e Mandato Presidencial",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts-pt/delta-renda-anualizada-decil-governo/index.html#reprodutibilidade",
+    "href": "posts-pt/delta-renda-anualizada-decil-governo/index.html#reprodutibilidade",
+    "title": "Crescimento Anualizado da Renda Real por Decil de Renda e Mandato Presidencial",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts-pt/descolamento-ead-politicas/index.html#visão-geral",
+    "href": "posts-pt/descolamento-ead-politicas/index.html#visão-geral",
+    "title": "Ensino a Distância e o Alcance das Políticas de Assistência Estudantil",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura pergunta se os principais programas de assistência estudantil do setor privado brasileiro (bolsas ProUni e financiamentos FIES) acompanharam o crescimento explosivo das matrículas em ensino a distância (EaD). Em vez de olhar para o número bruto de estudantes cobertos pela assistência, ela olha para qual fração da matrícula privada, dentro de cada modalidade de ensino, está coberta — uma forma mais relevante, do ponto de vista de política pública, de perguntar se a assistência chegou onde o sistema de fato cresceu."
+  },
+  {
+    "objectID": "posts-pt/descolamento-ead-politicas/index.html#metodologia",
+    "href": "posts-pt/descolamento-ead-politicas/index.html#metodologia",
+    "title": "Ensino a Distância e o Alcance das Políticas de Assistência Estudantil",
+    "section": "Metodologia",
+    "text": "Metodologia\nExtraída da mesma base do SEDAP+ usada na figura de matrículas por setor e via de acesso. A grandeza plotada é uma razão dentro de cada modalidade de ensino (EaD vs. presencial): matrículas com bolsa ProUni ou financiamento FIES, sobre o total de matrículas privadas naquela modalidade. As matrículas do setor público são excluídas, já que uma vaga sem preço não pode ser descrita como coberta ou descoberta por assistência. Em termos absolutos, a cobertura do ProUni no EaD parece estável — mas a razão mostrada aqui revela que essa mesma contagem absoluta passou a cobrir uma fração cada vez menor de uma modalidade que mais que dobrou de tamanho, o que é a leitura mais relevante, do ponto de vista de política pública, sobre se os instrumentos de assistência chegaram onde o sistema de fato cresceu."
+  },
+  {
+    "objectID": "posts-pt/descolamento-ead-politicas/index.html#pipeline",
+    "href": "posts-pt/descolamento-ead-politicas/index.html#pipeline",
+    "title": "Ensino a Distância e o Alcance das Políticas de Assistência Estudantil",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R\nshared-pipeline/sedap/010_SEDAP_Cliente.R"
+  },
+  {
+    "objectID": "posts-pt/descolamento-ead-politicas/index.html#reprodutibilidade",
+    "href": "posts-pt/descolamento-ead-politicas/index.html#reprodutibilidade",
+    "title": "Ensino a Distância e o Alcance das Políticas de Assistência Estudantil",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: B\nEste pipeline depende de dado restrito do INEP acessível via credencial SEDAP+ (variável de ambiente SEDAP_TOKEN). Sem uma credencial aprovada, os scripts em shared-pipeline/sedap/ não rodam — a lógica fica disponível para auditoria, mas a reprodução completa exige solicitar acesso ao INEP."
+  },
+  {
+    "objectID": "posts-pt/distribuicao-renda-setor/index.html#visão-geral",
+    "href": "posts-pt/distribuicao-renda-setor/index.html#visão-geral",
+    "title": "Distribuição de Renda Domiciliar por Setor do Ensino Superior",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura mostra a distribuição de renda domiciliar dos estudantes que ingressam em cada setor do ensino superior, comparada não com a população geral, mas com todos os que fizeram o mesmo exame nacional de acesso à universidade naquela coorte. Isso permite mostrar se um setor recruta desproporcionalmente candidatos de renda mais alta ou mais baixa em relação ao conjunto de pessoas que de fato disputaram uma vaga, e não apenas em relação à sociedade em geral."
+  },
+  {
+    "objectID": "posts-pt/distribuicao-renda-setor/index.html#metodologia",
+    "href": "posts-pt/distribuicao-renda-setor/index.html#metodologia",
+    "title": "Distribuição de Renda Domiciliar por Setor do Ensino Superior",
+    "section": "Metodologia",
+    "text": "Metodologia\nDistribuição de renda dos ingressantes (registros combinados ENEM×Censo) por setor, comparada contra o conjunto completo de participantes do ENEM (exame nacional do ensino médio) naquela mesma coorte — ou seja, contra todos que fizeram a prova, não apenas os que se matricularam. Isso permite à figura mostrar se a turma de ingressantes de um setor é enviesada por renda em relação ao conjunto de candidatos do qual ela é extraída, e não apenas em relação à população geral."
+  },
+  {
+    "objectID": "posts-pt/distribuicao-renda-setor/index.html#pipeline",
+    "href": "posts-pt/distribuicao-renda-setor/index.html#pipeline",
+    "title": "Distribuição de Renda Domiciliar por Setor do Ensino Superior",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/sedap/070_Perfil_Renda_Modalidade.R\nshared-pipeline/sedap/010_SEDAP_Cliente.R"
+  },
+  {
+    "objectID": "posts-pt/distribuicao-renda-setor/index.html#reprodutibilidade",
+    "href": "posts-pt/distribuicao-renda-setor/index.html#reprodutibilidade",
+    "title": "Distribuição de Renda Domiciliar por Setor do Ensino Superior",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: B\nEste pipeline depende de dado restrito do INEP acessível via credencial SEDAP+ (variável de ambiente SEDAP_TOKEN). Sem uma credencial aprovada, os scripts em shared-pipeline/sedap/ não rodam — a lógica fica disponível para auditoria, mas a reprodução completa exige solicitar acesso ao INEP."
+  },
+  {
+    "objectID": "posts-pt/educabr2-enrollment-sources/index.html#visão-geral",
+    "href": "posts-pt/educabr2-enrollment-sources/index.html#visão-geral",
+    "title": "Matrícula no Ensino Superior no Brasil: Série Harmonizada e Fontes Concorrentes",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura traça o crescimento da matrícula no ensino superior brasileiro ao longo de mais de um século, de 1907 a 2024, em escala logarítmica. Ela sobrepõe uma única série harmonizada a todas as estimativas históricas concorrentes disponíveis, permitindo ao leitor ver diretamente onde as fontes concordam e onde divergem, em vez de aceitar a harmonização por fé."
+  },
+  {
+    "objectID": "posts-pt/educabr2-enrollment-sources/index.html#metodologia",
+    "href": "posts-pt/educabr2-enrollment-sources/index.html#metodologia",
+    "title": "Matrícula no Ensino Superior no Brasil: Série Harmonizada e Fontes Concorrentes",
+    "section": "Metodologia",
+    "text": "Metodologia\nA linha azul emenda seis fontes de dados usando a hierarquia de deduplicação do pacote educabr2, na qual a fonte oficial mais desagregada prevalece sempre que as fontes se sobrepõem para o mesmo ano; os pontos cinzas mostram todas as estimativas concorrentes das fontes subjacentes. Plotar as duas juntas torna diretamente visível a concordância entre fontes, e os poucos trechos divergentes. O eixo vertical é logarítmico: a matrícula cresceu cerca de mil vezes ao longo do século."
+  },
+  {
+    "objectID": "posts-pt/educabr2-enrollment-sources/index.html#pipeline",
+    "href": "posts-pt/educabr2-enrollment-sources/index.html#pipeline",
+    "title": "Matrícula no Ensino Superior no Brasil: Série Harmonizada e Fontes Concorrentes",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R educabr2."
+  },
+  {
+    "objectID": "posts-pt/educabr2-enrollment-sources/index.html#reprodutibilidade",
+    "href": "posts-pt/educabr2-enrollment-sources/index.html#reprodutibilidade",
+    "title": "Matrícula no Ensino Superior no Brasil: Série Harmonizada e Fontes Concorrentes",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A (cross-repo)\nEste pipeline depende do pacote R público educabr2 (remotes::install_github(\"mancano-tales/educabr2\")), que embute os dados necessários."
+  },
+  {
+    "objectID": "posts-pt/educabr2-progression-gdr6/index.html#visão-geral",
+    "href": "posts-pt/educabr2-progression-gdr6/index.html#visão-geral",
+    "title": "Razão de Progressão Escolar (GDR6) em São Paulo e na Bahia",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura compara dois estados brasileiros, São Paulo e Bahia, quanto ao quão bem as crianças progrediam pelas séries iniciais do ensino fundamental, entre 1955 e 2010. Ela mostra um hiato regional grande e persistente na educação básica, que só se estreita substancialmente após as reformas dos anos 1990 — muito antes de a população de qualquer um dos dois estados chegar aos pipelines de ensino superior examinados em outras partes deste catálogo."
+  },
+  {
+    "objectID": "posts-pt/educabr2-progression-gdr6/index.html#metodologia",
+    "href": "posts-pt/educabr2-progression-gdr6/index.html#metodologia",
+    "title": "Razão de Progressão Escolar (GDR6) em São Paulo e na Bahia",
+    "section": "Metodologia",
+    "text": "Metodologia\nO GDR6 é uma proxy da retenção nos anos iniciais do ensino fundamental (matrícula nas séries 4–6 em relação às séries 1–3). A faixa cinza é o hiato São Paulo–Bahia: ele se amplia ao longo das décadas desenvolvimentistas e só se estreita substancialmente depois das reformas dos anos 1990, traçando meio século de desigualdade educacional regional numa única faixa."
+  },
+  {
+    "objectID": "posts-pt/educabr2-progression-gdr6/index.html#pipeline",
+    "href": "posts-pt/educabr2-progression-gdr6/index.html#pipeline",
+    "title": "Razão de Progressão Escolar (GDR6) em São Paulo e na Bahia",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R educabr2."
+  },
+  {
+    "objectID": "posts-pt/educabr2-progression-gdr6/index.html#reprodutibilidade",
+    "href": "posts-pt/educabr2-progression-gdr6/index.html#reprodutibilidade",
+    "title": "Razão de Progressão Escolar (GDR6) em São Paulo e na Bahia",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A (cross-repo)\nEste pipeline depende do pacote R público educabr2 (remotes::install_github(\"mancano-tales/educabr2\")), que embute os dados necessários."
+  },
+  {
+    "objectID": "posts-pt/educabr2-source-coverage/index.html#visão-geral",
+    "href": "posts-pt/educabr2-source-coverage/index.html#visão-geral",
+    "title": "Cobertura Temporal das Fontes Harmonizadas pelo educabr2",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura explica por que o pacote educabr2 existe: ela mostra as onze fontes de dados históricas que ele harmoniza, e exatamente quais anos cada uma cobre, de 1870 a 2024. Nenhuma fonte isolada cobre todo o período — o trabalho do pacote é costurar registros oficiais, compilações históricas e reconstruções acadêmicas num único painel contínuo."
+  },
+  {
+    "objectID": "posts-pt/educabr2-source-coverage/index.html#metodologia",
+    "href": "posts-pt/educabr2-source-coverage/index.html#metodologia",
+    "title": "Cobertura Temporal das Fontes Harmonizadas pelo educabr2",
+    "section": "Metodologia",
+    "text": "Metodologia\nCada barra abrange os anos cobertos por uma das fontes incluídas no pacote. Nenhuma fonte isolada cobre o século inteiro: os registros oficiais começam apenas em 1995, as compilações históricas param em 1980, e a lacuna entre elas é preenchida por reconstruções acadêmicas. Harmonizar essas séries parciais e sobrepostas num único painel contínuo é a razão de existir do pacote."
+  },
+  {
+    "objectID": "posts-pt/educabr2-source-coverage/index.html#pipeline",
+    "href": "posts-pt/educabr2-source-coverage/index.html#pipeline",
+    "title": "Cobertura Temporal das Fontes Harmonizadas pelo educabr2",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R educabr2."
+  },
+  {
+    "objectID": "posts-pt/educabr2-source-coverage/index.html#reprodutibilidade",
+    "href": "posts-pt/educabr2-source-coverage/index.html#reprodutibilidade",
+    "title": "Cobertura Temporal das Fontes Harmonizadas pelo educabr2",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A (cross-repo)\nEste pipeline depende do pacote R público educabr2 (remotes::install_github(\"mancano-tales/educabr2\")), que embute os dados necessários."
+  },
+  {
+    "objectID": "posts-pt/expansao-composicao-matriculas/index.html#visão-geral",
+    "href": "posts-pt/expansao-composicao-matriculas/index.html#visão-geral",
+    "title": "Expansão e Composição da Matrícula de Graduação, 1980–2024",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura mostra a expansão de longo prazo da matrícula de graduação brasileira entre 1980 e 2024, decomposta por categoria administrativa — federal pública, estadual pública, municipal pública e privada. Ela oferece o pano de fundo histórico mais profundo deste catálogo, remontando a bem antes dos pipelines de microdados da PNAD/PNADC usados no restante do projeto, para traçar como o equilíbrio entre ensino superior público e privado mudou ao longo de quatro décadas e meia."
+  },
+  {
+    "objectID": "posts-pt/expansao-composicao-matriculas/index.html#metodologia",
+    "href": "posts-pt/expansao-composicao-matriculas/index.html#metodologia",
+    "title": "Expansão e Composição da Matrícula de Graduação, 1980–2024",
+    "section": "Metodologia",
+    "text": "Metodologia\nSérie de longo prazo (1980–2024) da matrícula total de graduação e de sua composição por categoria administrativa (federal pública, estadual pública, municipal pública, privada), a partir do pacote R educabr2, que reúne estatísticas históricas do ensino superior brasileiro do Censo da Educação Superior do INEP e de suas pesquisas antecessoras (Censo do Ensino Superior, Sinopses Estatísticas) numa única série harmonizada de longo prazo. O período anterior à era moderna de microdados do INEP (antes de 1995) não é coberto por nenhum dos pipelines de PNAD/PNADC/CENSUP usados no restante deste repositório."
+  },
+  {
+    "objectID": "posts-pt/expansao-composicao-matriculas/index.html#pipeline",
+    "href": "posts-pt/expansao-composicao-matriculas/index.html#pipeline",
+    "title": "Expansão e Composição da Matrícula de Graduação, 1980–2024",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R educabr2."
+  },
+  {
+    "objectID": "posts-pt/expansao-composicao-matriculas/index.html#reprodutibilidade",
+    "href": "posts-pt/expansao-composicao-matriculas/index.html#reprodutibilidade",
+    "title": "Expansão e Composição da Matrícula de Graduação, 1980–2024",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A (cross-repo)\nEste pipeline depende do pacote R público educabr2 (remotes::install_github(\"mancano-tales/educabr2\")), que embute os dados necessários."
+  },
+  {
+    "objectID": "posts-pt/ipca-mensalidade-curso-superior/index.html#visão-geral",
+    "href": "posts-pt/ipca-mensalidade-curso-superior/index.html#visão-geral",
+    "title": "Preços de Mensalidades do Ensino Superior em Relação à Inflação e ao Salário Mínimo",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura acompanha como o custo das mensalidades do ensino superior no Brasil se moveu em relação a dois referenciais desde 1999: a inflação geral ao consumidor e o salário mínimo. Ela mostra se as mensalidades ficaram mais ou menos caras em termos reais e, separadamente, se ficaram mais ou menos acessíveis em relação ao piso salarial ao qual a renda de boa parte dos domicílios brasileiros está ancorada."
+  },
+  {
+    "objectID": "posts-pt/ipca-mensalidade-curso-superior/index.html#metodologia",
+    "href": "posts-pt/ipca-mensalidade-curso-superior/index.html#metodologia",
+    "title": "Preços de Mensalidades do Ensino Superior em Relação à Inflação e ao Salário Mínimo",
+    "section": "Metodologia",
+    "text": "Metodologia\nAmbas as séries acompanham o subitem de mensalidade de curso superior do IPCA, o índice oficial de preços ao consumidor do Brasil, emendado a partir das quatro versões da série do SIDRA no nível de subitem (tabelas 655, 2938, 1419 e 7060) e expresso como índice acumulado com agosto de 1999 = 100. A série azul deflaciona os reajustes acumulados de mensalidade pelo IPCA geral: valores acima de 100 indicam que as mensalidades subiram mais rápido que os preços ao consumidor em geral após agosto de 1999. A série laranja divide o mesmo índice de mensalidade pelo salário mínimo nominal (série do IPEADATA MTE12_SALMIN12), medindo como o custo da mesma mensalidade evoluiu em relação ao piso salarial. O subitem do IPCA é um índice de variação de preços calculado sobre um painel fixo de instituições: ele mede reajuste, não o nível de preço nem o ticket médio de mercado, e não captura o barateamento composicional pela migração para o EaD e para instituições de menor preço. Em termos reais, as mensalidades acompanharam ou superaram a inflação geral até 2020 e só caíram abaixo do patamar de 1999 depois dos cortes nominais de mensalidade de 2021; em relação ao salário mínimo, as mensalidades caíram cerca de 60%, com a maior parte da queda concentrada entre 2001 e 2012."
+  },
+  {
+    "objectID": "posts-pt/ipca-mensalidade-curso-superior/index.html#pipeline",
+    "href": "posts-pt/ipca-mensalidade-curso-superior/index.html#pipeline",
+    "title": "Preços de Mensalidades do Ensino Superior em Relação à Inflação e ao Salário Mínimo",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R — este script é o próprio script canônico do pipeline, também disponível em shared-pipeline/ipca/010_IPCA_Curso_Superior_Series.R."
+  },
+  {
+    "objectID": "posts-pt/ipca-mensalidade-curso-superior/index.html#reprodutibilidade",
+    "href": "posts-pt/ipca-mensalidade-curso-superior/index.html#reprodutibilidade",
+    "title": "Preços de Mensalidades do Ensino Superior em Relação à Inflação e ao Salário Mínimo",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts-pt/perfil-renda-modalidade/index.html#visão-geral",
+    "href": "posts-pt/perfil-renda-modalidade/index.html#visão-geral",
+    "title": "Renda Domiciliar dos Ingressantes por Setor e Modalidade de Ensino",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura compara o perfil de renda domiciliar dos estudantes que ingressam no ensino superior por diferentes setores e modalidades de ensino (EaD vs. presencial). Ela mostra se o EaD e o ensino presencial, e as instituições públicas e privadas, recrutam suas turmas de ingressantes em pontos diferentes da distribuição de renda."
+  },
+  {
+    "objectID": "posts-pt/perfil-renda-modalidade/index.html#metodologia",
+    "href": "posts-pt/perfil-renda-modalidade/index.html#metodologia",
+    "title": "Renda Domiciliar dos Ingressantes por Setor e Modalidade de Ensino",
+    "section": "Metodologia",
+    "text": "Metodologia\nPerfil de renda domiciliar dos ingressantes por modalidade de ensino (EaD vs. presencial), extraído de uma base do SEDAP+ que cruza o ENEM (exame nacional do ensino médio, que reporta renda domiciliar) com os registros de matrícula do Censo da Educação Superior. As faixas de renda vêm do questionário socioeconômico preenchido por todo participante do ENEM, permitindo classificar a renda domiciliar per capita declarada pelo ingressante contra as mesmas faixas de renda usadas em outras partes deste projeto."
+  },
+  {
+    "objectID": "posts-pt/perfil-renda-modalidade/index.html#pipeline",
+    "href": "posts-pt/perfil-renda-modalidade/index.html#pipeline",
+    "title": "Renda Domiciliar dos Ingressantes por Setor e Modalidade de Ensino",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/sedap/070_Perfil_Renda_Modalidade.R\nshared-pipeline/sedap/010_SEDAP_Cliente.R"
+  },
+  {
+    "objectID": "posts-pt/perfil-renda-modalidade/index.html#reprodutibilidade",
+    "href": "posts-pt/perfil-renda-modalidade/index.html#reprodutibilidade",
+    "title": "Renda Domiciliar dos Ingressantes por Setor e Modalidade de Ensino",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: B\nEste pipeline depende de dado restrito do INEP acessível via credencial SEDAP+ (variável de ambiente SEDAP_TOKEN). Sem uma credencial aprovada, os scripts em shared-pipeline/sedap/ não rodam — a lógica fica disponível para auditoria, mas a reprodução completa exige solicitar acesso ao INEP."
+  },
+  {
+    "objectID": "posts-pt/renda-centil-log/index.html#visão-geral",
+    "href": "posts-pt/renda-centil-log/index.html#visão-geral",
+    "title": "Renda Domiciliar Média por Centil de Renda (Escala Logarítmica)",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura plota a renda domiciliar média ao longo de toda a distribuição de renda, do centil mais pobre ao mais rico, para um conjunto selecionado de anos, usando um eixo vertical logarítmico. A escala log comprime o enorme intervalo entre o topo e a base da distribuição, facilitando a comparação de diferenças proporcionais ao longo de toda a faixa de centis — inclusive os centis inferiores e médios, que uma escala linear comprimiria numa linha quase achatada. Marcadores de referência mostram onde a renda cruza uma, uma vez e meia e três vezes o salário mínimo."
+  },
+  {
+    "objectID": "posts-pt/renda-centil-log/index.html#metodologia",
+    "href": "posts-pt/renda-centil-log/index.html#metodologia",
+    "title": "Renda Domiciliar Média por Centil de Renda (Escala Logarítmica)",
+    "section": "Metodologia",
+    "text": "Metodologia\nEsta figura segue a metodologia idêntica à versão em escala linear desta análise, com o eixo Y renderizado em escala logarítmica em vez de linear. Cada linha mostra a renda domiciliar per capita real média ponderada (deflacionada a preços de janeiro de 2024 via IPCA) dentro de cada grupo de centil de renda, para os anos selecionados. Os centis ordenam todos os indivíduos com renda domiciliar per capita estritamente positiva, usando os pesos amostrais. Para 2012, usa-se apenas a amostra da PNAD Anual. Círculos vazados marcam o centil em que a renda domiciliar per capita média se iguala a uma (1 SM), uma vez e meia (1,5 SM) e três (3 SM) vezes o salário mínimo nacional em vigor em janeiro daquele ano, deflacionado a preços de janeiro de 2024 via deflateBR."
+  },
+  {
+    "objectID": "posts-pt/renda-centil-log/index.html#pipeline",
+    "href": "posts-pt/renda-centil-log/index.html#pipeline",
+    "title": "Renda Domiciliar Média por Centil de Renda (Escala Logarítmica)",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R"
+  },
+  {
+    "objectID": "posts-pt/renda-centil-log/index.html#reprodutibilidade",
+    "href": "posts-pt/renda-centil-log/index.html#reprodutibilidade",
+    "title": "Renda Domiciliar Média por Centil de Renda (Escala Logarítmica)",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  },
+  {
+    "objectID": "posts-pt/wagstaff-acesso-matricula/index.html#visão-geral",
+    "href": "posts-pt/wagstaff-acesso-matricula/index.html#visão-geral",
+    "title": "Desigualdade no Acesso e na Matrícula no Ensino Superior (Índice de Wagstaff)",
+    "section": "Visão Geral",
+    "text": "Visão Geral\nEsta figura mostra o quão fortemente o acesso e a matrícula no ensino superior estiveram atrelados à renda domiciliar no Brasil, e como essa relação evoluiu ao longo do tempo. Ela compara dois resultados — já ter acessado o ensino superior e estar atualmente matriculado — com um painel complementar mostrando o índice de Gini da renda geral como referência. Um valor próximo de zero no índice de concentração significa que o acesso está distribuído de forma equilibrada entre os níveis de renda (independente da capacidade de pagar); um valor alto significa que o acesso continua concentrado entre os mais ricos."
+  },
+  {
+    "objectID": "posts-pt/wagstaff-acesso-matricula/index.html#metodologia",
+    "href": "posts-pt/wagstaff-acesso-matricula/index.html#metodologia",
+    "title": "Desigualdade no Acesso e na Matrícula no Ensino Superior (Índice de Wagstaff)",
+    "section": "Metodologia",
+    "text": "Metodologia\nPainel A. O índice de concentração de Wagstaff (W) é um escalar do tipo Gini, delimitado para resultados binários: W próximo de zero indica que o acesso se tornou descomodificado — independente da renda domiciliar —, enquanto um W alto e positivo indica que o acesso continua sendo uma mercadoria, alocada principalmente pela capacidade de pagar. W é calculado via regressão GLM ponderada de survey, sob uma aproximação uniforme de efeito de delineamento de Kish (DEFF = 2,0) tanto na PNAD Anual quanto na PNAD Contínua, para preservar a comparabilidade longitudinal ao longo da transição de instrumento. As faixas cinzas são intervalos de confiança de 95%. Linhas/círculos sólidos denotam já ter acessado o ensino superior (ens_sup); linhas/triângulos tracejados denotam matrícula atual (ens_sup_a). Os rótulos no topo marcam o mandato de cada governo. Painel B. O índice de Gini da renda domiciliar per capita, da mesma série oficial do IBGE usada em todo o projeto, validada contra os números publicados pelo próprio IBGE (desvio médio de −0,0001). A linha vertical marca a emenda PNAD Anual/PNAD Contínua de 2015/2016; círculos vazados marcam a PNAD Contínua retroponderada e coletada por telefone de 2020–2021, plotada mas não tratada como comparável ao restante da série."
+  },
+  {
+    "objectID": "posts-pt/wagstaff-acesso-matricula/index.html#pipeline",
+    "href": "posts-pt/wagstaff-acesso-matricula/index.html#pipeline",
+    "title": "Desigualdade no Acesso e na Matrícula no Ensino Superior (Índice de Wagstaff)",
+    "section": "Pipeline",
+    "text": "Pipeline\nScripts desta análise:\n\nPlotagem: plot.R\nPipeline upstream:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R\nshared-pipeline/pnadc/238_Serie_Desigualdade_Oficial.R"
+  },
+  {
+    "objectID": "posts-pt/wagstaff-acesso-matricula/index.html#reprodutibilidade",
+    "href": "posts-pt/wagstaff-acesso-matricula/index.html#reprodutibilidade",
+    "title": "Desigualdade no Acesso e na Matrícula no Ensino Superior (Índice de Wagstaff)",
+    "section": "Reprodutibilidade",
+    "text": "Reprodutibilidade\nTier: A\nEste pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em shared-pipeline/ na ordem numérica para reconstruir os dados intermediários."
+  }
+]

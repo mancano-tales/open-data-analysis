@@ -1,0 +1,30 @@
+---
+title: "Expansão e Composição da Matrícula de Graduação, 1980–2024"
+date: 2026-08-27
+categories: [educabr2, Matrículas, Expansão Histórica]
+image: ../../posts/expansao-composicao-matriculas/thumbnail.png
+description: "Expansão de longo prazo e composição setorial da matrícula de graduação no Brasil, 1980–2024."
+---
+
+![](../../posts/expansao-composicao-matriculas/thumbnail.png)
+
+## Visão Geral
+
+Esta figura mostra a expansão de longo prazo da matrícula de graduação brasileira entre 1980 e 2024, decomposta por categoria administrativa — federal pública, estadual pública, municipal pública e privada. Ela oferece o pano de fundo histórico mais profundo deste catálogo, remontando a bem antes dos pipelines de microdados da PNAD/PNADC usados no restante do projeto, para traçar como o equilíbrio entre ensino superior público e privado mudou ao longo de quatro décadas e meia.
+
+## Metodologia
+
+Série de longo prazo (1980–2024) da matrícula total de graduação e de sua composição por categoria administrativa (federal pública, estadual pública, municipal pública, privada), a partir do pacote R `educabr2`, que reúne estatísticas históricas do ensino superior brasileiro do Censo da Educação Superior do INEP e de suas pesquisas antecessoras (Censo do Ensino Superior, Sinopses Estatísticas) numa única série harmonizada de longo prazo. O período anterior à era moderna de microdados do INEP (antes de 1995) não é coberto por nenhum dos pipelines de PNAD/PNADC/CENSUP usados no restante deste repositório.
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](../../posts/expansao-composicao-matriculas/plot.R)
+- Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R [`educabr2`](https://github.com/mancano-tales/educabr2).
+
+## Reprodutibilidade
+
+**Tier: A (cross-repo)**
+
+Este pipeline depende do pacote R público `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), que embute os dados necessários.

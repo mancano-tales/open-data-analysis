@@ -1,0 +1,30 @@
+---
+title: "Desigualdade de Renda na Matrícula por Tipo de Rede, Série Temporal (Índice de Wagstaff)"
+date: 2026-08-10
+categories: [PNAD/PNADC, Wagstaff, Rede Pública/Privada]
+image: ../../posts/wagstaff-rede-publica-privada-timeseries/thumbnail.png
+description: "Série temporal da desigualdade de renda na matrícula do ensino superior por tipo de rede (pública vs. privada), medida pelo índice de concentração de Wagstaff."
+---
+
+![](../../posts/wagstaff-rede-publica-privada-timeseries/thumbnail.png)
+
+## Visão Geral
+
+Esta figura acompanha, ao longo do tempo, o quão concentrada em domicílios de renda mais alta está a matrícula em cada tipo de rede — ensino superior público vs. privado. Em vez de olhar para o acesso geral, ela aplica o índice de concentração de Wagstaff separadamente à matrícula em cada rede, permitindo comparar diretamente o perfil de renda dos dois setores e acompanhar como ele evolui.
+
+## Metodologia
+
+Série temporal do índice de concentração de Wagstaff aplicado à matrícula por tipo de rede (pública vs. privada), em vez de ao acesso geral — medindo se a matrícula em cada rede está concentrada em domicílios de renda mais alta, e como essa concentração se moveu ao longo do tempo. Calculado diretamente a partir dos microdados da PNAD Anual e da PNAD Contínua, extraídos de forma autônoma neste script, em vez de vir do painel harmonizado compartilhado.
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](../../posts/wagstaff-rede-publica-privada-timeseries/plot.R) — script autocontido: baixa e processa os microdados diretamente, sem depender de outros scripts deste repositório.
+- Fonte de dado de referência: [`shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R`](../../shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R)
+
+## Reprodutibilidade
+
+**Tier: A**
+
+Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.

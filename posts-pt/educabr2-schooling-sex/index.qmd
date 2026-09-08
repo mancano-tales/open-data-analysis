@@ -1,0 +1,30 @@
+---
+title: "Anos Médios de Escolaridade por Sexo"
+date: 2026-07-12
+categories: [educabr2, Escolaridade, Sexo]
+image: ../../posts/educabr2-schooling-sex/thumbnail.png
+description: "Anos médios de escolaridade da população de 15–64 anos no Brasil, por sexo, 1925–2015."
+---
+
+![](../../posts/educabr2-schooling-sex/thumbnail.png)
+
+## Visão Geral
+
+Esta figura acompanha os anos médios de escolaridade de mulheres e homens brasileiros, de 15 a 64 anos, entre 1925 e 2015. Ela mostra uma reversão de longo prazo: as mulheres começaram o século com menos escolaridade que os homens e o terminaram com mais, e a figura marca o ano exato em que essa inversão ocorreu.
+
+## Metodologia
+
+A faixa sombreada é o hiato de escolaridade entre os sexos; sua cor muda quando o sinal do hiato se inverte. As mulheres brasileiras passaram de um déficit persistente de escolaridade para uma vantagem duradoura ao longo do século XX — o ano da inversão é marcado diretamente na série.
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](../../posts/educabr2-schooling-sex/plot.R)
+- Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R [`educabr2`](https://github.com/mancano-tales/educabr2).
+
+## Reprodutibilidade
+
+**Tier: A (cross-repo)**
+
+Este pipeline depende do pacote R público `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), que embute os dados necessários.

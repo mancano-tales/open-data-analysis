@@ -1,0 +1,30 @@
+---
+title: "O Subregistro do EaD e os Totais de Matrícula Reconstruídos"
+date: 2026-07-12
+categories: [educabr2, Matrículas]
+image: ../../posts/educabr2-enrollment-reconstructed/thumbnail.png
+description: "O subregistro do ensino a distância nas estatísticas oficiais e os totais de matrícula no ensino superior reconstruídos, 2000–2008."
+---
+
+![](../../posts/educabr2-enrollment-reconstructed/thumbnail.png)
+
+## Visão Geral
+
+Esta figura documenta uma lacuna nas estatísticas oficiais do ensino superior brasileiro entre 2000 e 2008: a matrícula em ensino a distância era registrada separadamente pelo INEP, mas ficava de fora dos totais publicados como número principal. A figura mostra tanto o total oficialmente publicado (apenas presencial) quanto um total reconstruído que soma de volta a matrícula em EaD registrada à parte, revelando o quanto o sistema de ensino superior já era, de fato, maior.
+
+## Metodologia
+
+Entre 2000 e 2008, o INEP registrava a matrícula em EaD numa tabela separada e a excluía dos totais publicados como número principal. A faixa sombreada é o subregistro resultante, que cresce para cerca de 700 mil estudantes até 2008; a linha tracejada mostra os totais reconstruídos pelo pacote `educabr2` (`is_derived = TRUE`), que somam de volta ao total presencial publicado os números de EaD registrados separadamente.
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](../../posts/educabr2-enrollment-reconstructed/plot.R)
+- Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R [`educabr2`](https://github.com/mancano-tales/educabr2).
+
+## Reprodutibilidade
+
+**Tier: A (cross-repo)**
+
+Este pipeline depende do pacote R público `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), que embute os dados necessários.

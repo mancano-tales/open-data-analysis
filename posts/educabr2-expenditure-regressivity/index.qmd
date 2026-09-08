@@ -6,15 +6,25 @@ image: thumbnail.png
 description: "Double ratio of per-student public spending, tertiary over primary education, Brazil, 1933–2010."
 ---
 
+![](thumbnail.png)
+
+## Overview
+
+This figure tracks how unequal Brazilian public spending on education was, comparing how much the government spent per tertiary student against how much it spent per early-primary pupil, from 1933 to 2010. A ratio far above 1 means tertiary students — historically a small, better-off share of the population — received far more public money per head than primary pupils.
+
+## Methodology
+
+The double ratio divides public spending per tertiary student by spending per pupil in early primary education (EF1); the dotted reference line marks equal per-student spending. On the logarithmic scale, the fall from 66 times in 1933 to under 9 times in 2010 spans nearly an order of magnitude, yet spending never approached parity — the elitist bias in Brazilian public education spending narrowed considerably over the twentieth century without disappearing.
+
 ## Pipeline
 
-Scripts desta análise:
+Scripts for this analysis:
 
-- Plotagem: [`plot.R`](plot.R)
-- Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R [`educabr2`](https://github.com/mancano-tales/educabr2).
+- Plotting: [`plot.R`](plot.R)
+- Upstream pipeline: no script in this repository — the data comes embedded in the R package [`educabr2`](https://github.com/mancano-tales/educabr2).
 
-## Reprodutibilidade
+## Reproducibility
 
 **Tier: A (cross-repo)**
 
-Este pipeline depende do pacote R público `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), que embute os dados necessários.
+This pipeline depends on the public R package `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), which already embeds the necessary data.

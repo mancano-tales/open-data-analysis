@@ -96,7 +96,13 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
-<span class="menu-text">Análises</span></a>
+<span class="menu-text">Analyses</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../pt/index.html"> 
+<span class="menu-text">Português</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -149,22 +155,31 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p><img src="thumbnail.png" class="img-fluid"></p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This figure asks whether Brazil’s main private-sector student aid programs (ProUni scholarships and FIES loans) kept pace with the explosive growth of distance-learning (EaD) enrollment. Rather than looking at the raw number of students covered by aid, it looks at what fraction of private enrollment, within each mode of delivery, is covered — a more policy-relevant way of asking whether aid reached where the system actually grew.</p>
+</section>
+<section id="methodology" class="level2">
+<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
+<p>Drawn from the same SEDAP+ extraction as the enrollment-by-sector-and-route figure. The quantity plotted is a ratio within each mode of delivery (distance vs.&nbsp;in-person): enrollment holding a ProUni scholarship or a FIES loan, over all private enrollment in that mode. Public-sector enrollment is excluded, since a seat that carries no price cannot be described as covered or uncovered by aid. In absolute terms, ProUni coverage in distance learning looks stable — but the ratio shown here reveals that the same absolute count covered a shrinking fraction of a modality that more than doubled in size, which is the more policy-relevant reading of whether the aid instruments reached where the system actually grew.</p>
+</section>
 <section id="pipeline" class="level2">
 <h2 class="anchored" data-anchor-id="pipeline">Pipeline</h2>
-<p>Scripts desta análise:</p>
+<p>Scripts for this analysis:</p>
 <ul>
-<li>Plotagem: <a href="plot.R"><code>plot.R</code></a></li>
-<li>Pipeline upstream:
+<li>Plotting: <a href="plot.R"><code>plot.R</code></a></li>
+<li>Upstream pipeline:
 <ul>
 <li><a href="../../shared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R"><code>shared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R</code></a></li>
 <li><a href="../../shared-pipeline/sedap/010_SEDAP_Cliente.R"><code>shared-pipeline/sedap/010_SEDAP_Cliente.R</code></a></li>
 </ul></li>
 </ul>
 </section>
-<section id="reprodutibilidade" class="level2">
-<h2 class="anchored" data-anchor-id="reprodutibilidade">Reprodutibilidade</h2>
+<section id="reproducibility" class="level2">
+<h2 class="anchored" data-anchor-id="reproducibility">Reproducibility</h2>
 <p><strong>Tier: B</strong></p>
-<p>Este pipeline depende de dado restrito do INEP acessível via credencial SEDAP+ (variável de ambiente <code>SEDAP_TOKEN</code>). Sem uma credencial aprovada, os scripts em <code>shared-pipeline/sedap/</code> não rodam — a lógica fica disponível para auditoria, mas a reprodução completa exige solicitar acesso ao INEP.</p>
+<p>This pipeline depends on restricted INEP data accessible via SEDAP+ credentials (<code>SEDAP_TOKEN</code> environment variable). Without an approved credential, the scripts in <code>shared-pipeline/sedap/</code> will not run — the logic remains available for audit, but full reproduction requires requesting access.</p>
 
 
 </section>

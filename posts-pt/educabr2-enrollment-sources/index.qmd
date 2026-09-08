@@ -1,0 +1,30 @@
+---
+title: "Matrícula no Ensino Superior no Brasil: Série Harmonizada e Fontes Concorrentes"
+date: 2026-07-12
+categories: [educabr2, Matrículas, Fontes de Dado]
+image: ../../posts/educabr2-enrollment-sources/thumbnail.png
+description: "Matrícula no ensino superior no Brasil, 1907–2024: a série harmonizada do educabr2 contra fontes concorrentes."
+---
+
+![](../../posts/educabr2-enrollment-sources/thumbnail.png)
+
+## Visão Geral
+
+Esta figura traça o crescimento da matrícula no ensino superior brasileiro ao longo de mais de um século, de 1907 a 2024, em escala logarítmica. Ela sobrepõe uma única série harmonizada a todas as estimativas históricas concorrentes disponíveis, permitindo ao leitor ver diretamente onde as fontes concordam e onde divergem, em vez de aceitar a harmonização por fé.
+
+## Metodologia
+
+A linha azul emenda seis fontes de dados usando a hierarquia de deduplicação do pacote `educabr2`, na qual a fonte oficial mais desagregada prevalece sempre que as fontes se sobrepõem para o mesmo ano; os pontos cinzas mostram todas as estimativas concorrentes das fontes subjacentes. Plotar as duas juntas torna diretamente visível a concordância entre fontes, e os poucos trechos divergentes. O eixo vertical é logarítmico: a matrícula cresceu cerca de mil vezes ao longo do século.
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](../../posts/educabr2-enrollment-sources/plot.R)
+- Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R [`educabr2`](https://github.com/mancano-tales/educabr2).
+
+## Reprodutibilidade
+
+**Tier: A (cross-repo)**
+
+Este pipeline depende do pacote R público `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), que embute os dados necessários.

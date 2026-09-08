@@ -6,17 +6,27 @@ image: thumbnail.png
 description: "Distance learning enrollment and the reach of student aid programs, private sector."
 ---
 
+![](thumbnail.png)
+
+## Overview
+
+This figure asks whether Brazil's main private-sector student aid programs (ProUni scholarships and FIES loans) kept pace with the explosive growth of distance-learning (EaD) enrollment. Rather than looking at the raw number of students covered by aid, it looks at what fraction of private enrollment, within each mode of delivery, is covered — a more policy-relevant way of asking whether aid reached where the system actually grew.
+
+## Methodology
+
+Drawn from the same SEDAP+ extraction as the enrollment-by-sector-and-route figure. The quantity plotted is a ratio within each mode of delivery (distance vs. in-person): enrollment holding a ProUni scholarship or a FIES loan, over all private enrollment in that mode. Public-sector enrollment is excluded, since a seat that carries no price cannot be described as covered or uncovered by aid. In absolute terms, ProUni coverage in distance learning looks stable — but the ratio shown here reveals that the same absolute count covered a shrinking fraction of a modality that more than doubled in size, which is the more policy-relevant reading of whether the aid instruments reached where the system actually grew.
+
 ## Pipeline
 
-Scripts desta análise:
+Scripts for this analysis:
 
-- Plotagem: [`plot.R`](plot.R)
-- Pipeline upstream:
+- Plotting: [`plot.R`](plot.R)
+- Upstream pipeline:
   - [`shared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R`](../../shared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R)
   - [`shared-pipeline/sedap/010_SEDAP_Cliente.R`](../../shared-pipeline/sedap/010_SEDAP_Cliente.R)
 
-## Reprodutibilidade
+## Reproducibility
 
 **Tier: B**
 
-Este pipeline depende de dado restrito do INEP acessível via credencial SEDAP+ (variável de ambiente `SEDAP_TOKEN`). Sem uma credencial aprovada, os scripts em `shared-pipeline/sedap/` não rodam — a lógica fica disponível para auditoria, mas a reprodução completa exige solicitar acesso ao INEP.
+This pipeline depends on restricted INEP data accessible via SEDAP+ credentials (`SEDAP_TOKEN` environment variable). Without an approved credential, the scripts in `shared-pipeline/sedap/` will not run — the logic remains available for audit, but full reproduction requires requesting access.

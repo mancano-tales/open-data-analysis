@@ -6,15 +6,25 @@ image: thumbnail.png
 description: "Average years of schooling of the population aged 15–64 in Brazil, by sex, 1925–2015."
 ---
 
+![](thumbnail.png)
+
+## Overview
+
+This figure tracks average years of schooling for Brazilian women and men, ages 15–64, from 1925 to 2015. It shows a long-run reversal: women started the century with less schooling than men and ended it with more, and the figure marks the exact year that crossover happened.
+
+## Methodology
+
+The shaded band is the schooling gap between the sexes; its color switches when the sign of the gap flips. Brazilian women moved from a persistent schooling deficit to a durable advantage over the twentieth century — the crossover year is marked directly on the series.
+
 ## Pipeline
 
-Scripts desta análise:
+Scripts for this analysis:
 
-- Plotagem: [`plot.R`](plot.R)
-- Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R [`educabr2`](https://github.com/mancano-tales/educabr2).
+- Plotting: [`plot.R`](plot.R)
+- Upstream pipeline: no script in this repository — the data comes embedded in the R package [`educabr2`](https://github.com/mancano-tales/educabr2).
 
-## Reprodutibilidade
+## Reproducibility
 
 **Tier: A (cross-repo)**
 
-Este pipeline depende do pacote R público `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), que embute os dados necessários.
+This pipeline depends on the public R package `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), which already embeds the necessary data.

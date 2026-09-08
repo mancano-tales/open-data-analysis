@@ -6,16 +6,26 @@ image: thumbnail.png
 description: "Dot plot of the total percentage change in real per-capita household income by income decile and presidential term."
 ---
 
+![](thumbnail.png)
+
+## Overview
+
+This figure measures the total percentage change in real household income for each income decile, across every Brazilian presidential term since 1992. Because it expresses change relative to each decile's own starting income rather than in absolute reais, it makes it possible to compare growth rates fairly across deciles at very different income levels.
+
+## Methodology
+
+Each point is the percentage change in mean real per-capita household income for each income decile, from the first available year of a presidential term to the first available year of the next (blue = gain, orange = loss); horizontal lines are 95% confidence intervals. The bottom-right panel covers the full 1992–2023 period. Confidence intervals are computed via the delta method for f(t1,t0) = (t1/t0 − 1) × 100: se_Δ = √((100·se₁/t0)² + (100·t1·se₀/t0²)²). The standard error of each endpoint is the weighted sample variance divided by the Kish effective sample size (design effect = 2).
+
 ## Pipeline
 
-Scripts desta análise:
+Scripts for this analysis:
 
-- Plotagem: [`plot.R`](plot.R)
-- Pipeline upstream:
+- Plotting: [`plot.R`](plot.R)
+- Upstream pipeline:
   - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R)
 
-## Reprodutibilidade
+## Reproducibility
 
 **Tier: A**
 
-Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.
+This pipeline uses only public data, accessible via package/API without any credential (PNADcIBGE, censobr, sidrar, ipeadatar). Run the scripts in `shared-pipeline/` in numeric order to reconstruct the intermediate data.

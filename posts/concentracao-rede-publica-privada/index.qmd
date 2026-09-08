@@ -6,15 +6,25 @@ image: thumbnail.png
 description: "Income concentration curves for tertiary enrollment by network type (public vs. private), ages 18–24."
 ---
 
+![](thumbnail.png)
+
+## Overview
+
+This figure compares income concentration curves for general tertiary-education enrollment against enrollment in the public network specifically and the private network specifically, for 18–24-year-olds, pooling the most recent stable years (2022–2024). It shows which of the two sectors draws more heavily from higher-income households.
+
+## Methodology
+
+Curves show, for each network, the cumulative share of currently enrolled tertiary students accounted for by the poorest p% of the 18–24-year-old population, ranked by per-capita household income within each year. The closer a curve sits to the 45-degree line, the more evenly access to that network is distributed across the income distribution; curves bowing below the diagonal indicate concentration among higher-income deciles. The pooled curve is a simple average of the year-specific curves for 2022, 2023, and 2024 (each resampled on a uniform 101-point percentile grid), so each year contributes equally regardless of sample size. The Erreygers concentration index is computed year by year for the same three years. The network variable is V3002A (IBGE PNADC) rather than the V3004-derived network variable used elsewhere in this project, since V3004 never covers tertiary students in any year; V3002A is its 2015+ replacement, with reversed coding (1 = private, 2 = public) relative to the V3004 convention.
+
 ## Pipeline
 
-Scripts desta análise:
+Scripts for this analysis:
 
-- Plotagem: [`plot.R`](plot.R) — script autocontido: baixa e processa os microdados diretamente, sem depender de outros scripts deste repositório.
-- Fonte de dado de referência: [`shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R`](../../shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R)
+- Plotting: [`plot.R`](plot.R) — self-contained script: downloads and processes the microdata directly, without depending on other scripts in this repository.
+- Reference data source: [`shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R`](../../shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R)
 
-## Reprodutibilidade
+## Reproducibility
 
 **Tier: A**
 
-Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.
+This pipeline uses only public data, accessible via package/API without any credential (PNADcIBGE, censobr, sidrar, ipeadatar). Run the scripts in `shared-pipeline/` in numeric order to reconstruct the intermediate data.

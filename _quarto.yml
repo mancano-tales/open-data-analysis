@@ -2,13 +2,15 @@ project:
   type: website
   output-dir: docs
 
-website:
-  title: "Open Data Analysis"
-  description: "Análises de dados abertos, reprodutíveis — código e pipeline completos por trás de cada figura."
-  navbar:
-    left:
-      - text: "Análises"
-        href: index.qmd
+# Perfil padrao: `quarto render` puro produz a versao em INGLES (raiz de docs/).
+# Mesmo padrao usado no repositorio da dissertacao (ver
+# 9-vers/plan/2026-08-23_Plano_Dissertacao_Bilingue.md la): listas de
+# conteudo (aqui, `listing: contents:` e a pagina index) NAO ficam neste
+# arquivo base porque perfis do Quarto fundem alguns valores por chave —
+# manter tudo especifico de idioma em _quarto-en.yml/_quarto-pt.yml evita
+# qualquer risco de mistura entre os dois idiomas.
+profile:
+  default: en
 
 format:
   html:

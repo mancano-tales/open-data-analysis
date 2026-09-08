@@ -1,0 +1,30 @@
+---
+title: "Regressividade do Gasto Público: Ensino Superior vs. Ensino Fundamental"
+date: 2026-07-12
+categories: [educabr2, Gasto Público, Regressividade]
+image: ../../posts/educabr2-expenditure-regressivity/thumbnail.png
+description: "Razão dupla do gasto público por estudante, ensino superior sobre ensino fundamental, Brasil, 1933–2010."
+---
+
+![](../../posts/educabr2-expenditure-regressivity/thumbnail.png)
+
+## Visão Geral
+
+Esta figura acompanha o quão desigual foi o gasto público brasileiro em educação, comparando quanto o governo gastava por estudante do ensino superior contra quanto gastava por aluno dos anos iniciais do ensino fundamental, de 1933 a 2010. Uma razão bem acima de 1 significa que os estudantes do ensino superior — historicamente uma parcela pequena e mais abastada da população — recebiam muito mais dinheiro público por pessoa do que os alunos do ensino fundamental.
+
+## Metodologia
+
+A razão dupla divide o gasto público por estudante do ensino superior pelo gasto por aluno dos anos iniciais do ensino fundamental (EF1); a linha de referência pontilhada marca o gasto igual por estudante. Na escala logarítmica, a queda de 66 vezes em 1933 para menos de 9 vezes em 2010 abrange quase uma ordem de grandeza, mas o gasto nunca chegou perto da paridade — o viés elitista no gasto público em educação brasileira diminuiu consideravelmente ao longo do século XX, sem desaparecer.
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](../../posts/educabr2-expenditure-regressivity/plot.R)
+- Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R [`educabr2`](https://github.com/mancano-tales/educabr2).
+
+## Reprodutibilidade
+
+**Tier: A (cross-repo)**
+
+Este pipeline depende do pacote R público `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), que embute os dados necessários.

@@ -1,0 +1,29 @@
+---
+title: "Preços de Mensalidades do Ensino Superior em Relação à Inflação e ao Salário Mínimo"
+date: 2026-07-06
+categories: [IPCA, SIDRA, Mensalidades]
+image: ../../posts/ipca-mensalidade-curso-superior/thumbnail.png
+description: "Série de preços de mensalidades do ensino superior em relação aos preços gerais ao consumidor e ao salário mínimo."
+---
+
+![](../../posts/ipca-mensalidade-curso-superior/thumbnail.png)
+
+## Visão Geral
+
+Esta figura acompanha como o custo das mensalidades do ensino superior no Brasil se moveu em relação a dois referenciais desde 1999: a inflação geral ao consumidor e o salário mínimo. Ela mostra se as mensalidades ficaram mais ou menos caras em termos reais e, separadamente, se ficaram mais ou menos acessíveis em relação ao piso salarial ao qual a renda de boa parte dos domicílios brasileiros está ancorada.
+
+## Metodologia
+
+Ambas as séries acompanham o subitem de mensalidade de curso superior do IPCA, o índice oficial de preços ao consumidor do Brasil, emendado a partir das quatro versões da série do SIDRA no nível de subitem (tabelas 655, 2938, 1419 e 7060) e expresso como índice acumulado com agosto de 1999 = 100. A série azul deflaciona os reajustes acumulados de mensalidade pelo IPCA geral: valores acima de 100 indicam que as mensalidades subiram mais rápido que os preços ao consumidor em geral após agosto de 1999. A série laranja divide o mesmo índice de mensalidade pelo salário mínimo nominal (série do IPEADATA `MTE12_SALMIN12`), medindo como o custo da mesma mensalidade evoluiu em relação ao piso salarial. O subitem do IPCA é um índice de variação de preços calculado sobre um painel fixo de instituições: ele mede reajuste, não o nível de preço nem o ticket médio de mercado, e não captura o barateamento composicional pela migração para o EaD e para instituições de menor preço. Em termos reais, as mensalidades acompanharam ou superaram a inflação geral até 2020 e só caíram abaixo do patamar de 1999 depois dos cortes nominais de mensalidade de 2021; em relação ao salário mínimo, as mensalidades caíram cerca de 60%, com a maior parte da queda concentrada entre 2001 e 2012.
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](../../posts/ipca-mensalidade-curso-superior/plot.R) — este script é o próprio script canônico do pipeline, também disponível em [`shared-pipeline/ipca/010_IPCA_Curso_Superior_Series.R`](../../shared-pipeline/ipca/010_IPCA_Curso_Superior_Series.R).
+
+## Reprodutibilidade
+
+**Tier: A**
+
+Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.

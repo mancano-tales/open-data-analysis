@@ -1,0 +1,32 @@
+---
+title: "Renda Domiciliar dos Ingressantes por Setor e Modalidade de Ensino"
+date: 2026-08-06
+categories: [SEDAP+, ENEM, Renda, Modalidade]
+image: ../../posts/perfil-renda-modalidade/thumbnail.png
+description: "Renda domiciliar dos ingressantes por setor do ensino superior e modalidade de ensino (presencial vs. EaD)."
+---
+
+![](../../posts/perfil-renda-modalidade/thumbnail.png)
+
+## Visão Geral
+
+Esta figura compara o perfil de renda domiciliar dos estudantes que ingressam no ensino superior por diferentes setores e modalidades de ensino (EaD vs. presencial). Ela mostra se o EaD e o ensino presencial, e as instituições públicas e privadas, recrutam suas turmas de ingressantes em pontos diferentes da distribuição de renda.
+
+## Metodologia
+
+Perfil de renda domiciliar dos ingressantes por modalidade de ensino (EaD vs. presencial), extraído de uma base do SEDAP+ que cruza o ENEM (exame nacional do ensino médio, que reporta renda domiciliar) com os registros de matrícula do Censo da Educação Superior. As faixas de renda vêm do questionário socioeconômico preenchido por todo participante do ENEM, permitindo classificar a renda domiciliar per capita declarada pelo ingressante contra as mesmas faixas de renda usadas em outras partes deste projeto.
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](../../posts/perfil-renda-modalidade/plot.R)
+- Pipeline upstream:
+  - [`shared-pipeline/sedap/070_Perfil_Renda_Modalidade.R`](../../shared-pipeline/sedap/070_Perfil_Renda_Modalidade.R)
+  - [`shared-pipeline/sedap/010_SEDAP_Cliente.R`](../../shared-pipeline/sedap/010_SEDAP_Cliente.R)
+
+## Reprodutibilidade
+
+**Tier: B**
+
+Este pipeline depende de dado restrito do INEP acessível via credencial SEDAP+ (variável de ambiente `SEDAP_TOKEN`). Sem uma credencial aprovada, os scripts em `shared-pipeline/sedap/` não rodam — a lógica fica disponível para auditoria, mas a reprodução completa exige solicitar acesso ao INEP.

@@ -1,0 +1,30 @@
+# ========================================================================#
+#            PROFILE: ENGLISH — default, occupies the root of docs/       #
+#  Usage: quarto render --profile en   (or plain `quarto render`)          #
+# ========================================================================#
+
+lang: en
+
+# `render` restringe este perfil aos arquivos em INGLES. Sem esta lista, um
+# projeto Quarto do tipo `website` renderiza TODOS os .qmd do projeto
+# independentemente do perfil ativo (perfis so afetam metadados/config, nao
+# quais arquivos sao processados) -- e index-pt.qmd/posts-pt/ vazariam para
+# dentro de docs/ (raiz em ingles) junto com index.qmd/posts/.
+project:
+  output-dir: docs
+  render:
+    - "*.qmd"
+    - "posts/**"
+    - "!index-pt.qmd"
+    - "!posts-pt/**"
+
+website:
+  title: "Open Data Analysis"
+  description: "Open, reproducible data analyses on Brazilian higher education, labor markets, and inequality — full pipeline and code behind every figure."
+  navbar:
+    left:
+      - text: "Analyses"
+        href: index.qmd
+    right:
+      - text: "Português"
+        href: /pt/index.html

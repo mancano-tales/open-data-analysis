@@ -1,0 +1,30 @@
+---
+title: "Cobertura Temporal das Fontes Harmonizadas pelo educabr2"
+date: 2026-07-12
+categories: [educabr2, Cobertura de Fontes]
+image: ../../posts/educabr2-source-coverage/thumbnail.png
+description: "Cobertura temporal das onze fontes de dados harmonizadas pelo educabr2, 1870–2024."
+---
+
+![](../../posts/educabr2-source-coverage/thumbnail.png)
+
+## Visão Geral
+
+Esta figura explica por que o pacote `educabr2` existe: ela mostra as onze fontes de dados históricas que ele harmoniza, e exatamente quais anos cada uma cobre, de 1870 a 2024. Nenhuma fonte isolada cobre todo o período — o trabalho do pacote é costurar registros oficiais, compilações históricas e reconstruções acadêmicas num único painel contínuo.
+
+## Metodologia
+
+Cada barra abrange os anos cobertos por uma das fontes incluídas no pacote. Nenhuma fonte isolada cobre o século inteiro: os registros oficiais começam apenas em 1995, as compilações históricas param em 1980, e a lacuna entre elas é preenchida por reconstruções acadêmicas. Harmonizar essas séries parciais e sobrepostas num único painel contínuo é a razão de existir do pacote.
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](../../posts/educabr2-source-coverage/plot.R)
+- Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R [`educabr2`](https://github.com/mancano-tales/educabr2).
+
+## Reprodutibilidade
+
+**Tier: A (cross-repo)**
+
+Este pipeline depende do pacote R público `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), que embute os dados necessários.

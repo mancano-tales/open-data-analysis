@@ -96,7 +96,13 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
-<span class="menu-text">Análises</span></a>
+<span class="menu-text">Analyses</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../pt/index.html"> 
+<span class="menu-text">Português</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -148,21 +154,30 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p><img src="thumbnail.png" class="img-fluid"></p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This figure plots average household income across the entire income distribution, from the poorest to the richest percentile, for a selection of years. It shows the shape of income inequality directly: a flatter line across most percentiles followed by a steep rise at the very top means income is concentrated among a small elite, while a more gradual, even slope indicates a more equal distribution. Reference markers show where income crosses one, one-and-a-half, and three times the minimum wage.</p>
+</section>
+<section id="methodology" class="level2">
+<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
+<p>Each line shows the weighted mean real per-capita household income (deflated to January 2024 prices via the IPCA) within each income percentile group, for the selected years. Percentiles rank all individuals with strictly positive per-capita household income by income, using sampling weights. For 2012, only the PNAD Anual sample is used. The y-axis is truncated at R$8,000. Open circles mark the percentile at which mean per-capita household income equals one (1 MW), one-and-a-half (1.5 MW), and three (3 MW) times the national minimum wage in force in January of that year, deflated to January 2024 prices via <code>deflateBR</code>.</p>
+</section>
 <section id="pipeline" class="level2">
 <h2 class="anchored" data-anchor-id="pipeline">Pipeline</h2>
-<p>Scripts desta análise:</p>
+<p>Scripts for this analysis:</p>
 <ul>
-<li>Plotagem: <a href="plot.R"><code>plot.R</code></a></li>
-<li>Pipeline upstream:
+<li>Plotting: <a href="plot.R"><code>plot.R</code></a></li>
+<li>Upstream pipeline:
 <ul>
 <li><a href="../../shared-pipeline/pnadc/035_Splice_Microdados.R"><code>shared-pipeline/pnadc/035_Splice_Microdados.R</code></a></li>
 </ul></li>
 </ul>
 </section>
-<section id="reprodutibilidade" class="level2">
-<h2 class="anchored" data-anchor-id="reprodutibilidade">Reprodutibilidade</h2>
+<section id="reproducibility" class="level2">
+<h2 class="anchored" data-anchor-id="reproducibility">Reproducibility</h2>
 <p><strong>Tier: A</strong></p>
-<p>Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em <code>shared-pipeline/</code> na ordem numérica para reconstruir os dados intermediários.</p>
+<p>This pipeline uses only public data, accessible via package/API without any credential (PNADcIBGE, censobr, sidrar, ipeadatar). Run the scripts in <code>shared-pipeline/</code> in numeric order to reconstruct the intermediate data.</p>
 
 
 </section>

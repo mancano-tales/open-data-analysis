@@ -6,15 +6,25 @@ image: thumbnail.png
 description: "Grade progression ratio (GDR6) in São Paulo and Bahia, 1955–2010."
 ---
 
+![](thumbnail.png)
+
+## Overview
+
+This figure compares two Brazilian states, São Paulo and Bahia, on how well children progressed through the early grades of primary school, from 1955 to 2010. It shows a large and persistent regional gap in basic education that narrows only after reforms in the 1990s — long before either state's population would reach the tertiary-education pipelines examined elsewhere in this catalog.
+
+## Methodology
+
+GDR6 proxies early-primary retention: enrollment in grades 4–6 relative to grades 1–3. The grey band is the São Paulo–Bahia gap; it widens through the developmentalist decades and only narrows substantially after the 1990s reforms, tracing half a century of regional educational inequality in a single band.
+
 ## Pipeline
 
-Scripts desta análise:
+Scripts for this analysis:
 
-- Plotagem: [`plot.R`](plot.R)
-- Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R [`educabr2`](https://github.com/mancano-tales/educabr2).
+- Plotting: [`plot.R`](plot.R)
+- Upstream pipeline: no script in this repository — the data comes embedded in the R package [`educabr2`](https://github.com/mancano-tales/educabr2).
 
-## Reprodutibilidade
+## Reproducibility
 
 **Tier: A (cross-repo)**
 
-Este pipeline depende do pacote R público `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), que embute os dados necessários.
+This pipeline depends on the public R package `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), which already embeds the necessary data.

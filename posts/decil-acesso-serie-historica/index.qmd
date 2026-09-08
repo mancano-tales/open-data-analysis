@@ -6,17 +6,27 @@ image: thumbnail.png
 description: "Tertiary education access rate by income decile, historical line series from 1992 onward."
 ---
 
+![](thumbnail.png)
+
+## Overview
+
+This figure tracks, from 1992 onward, the share of young Brazilians aged 18–24 who had ever enrolled in tertiary education at some point in their lives, broken down by household income decile — from the poorest tenth (D1) to the richest tenth (D10). It shows how unevenly access to higher education expanded across the income distribution over more than three decades. Diamond markers overlay four Demographic Census years as an independent check on the survey-based series. Data come from Brazil's main household surveys (PNAD/PNAD Contínua) and the Demographic Census, both from IBGE.
+
+## Methodology
+
+Each series is the share of 18–24-year-olds who had ever enrolled in tertiary education (`ens_sup`, cumulative access), by decile of per-capita household income and for the population as a whole. Deciles are computed within each survey year and source, over the full population with strictly positive income. The harmonized series uses PNAD Anual through 2015 and PNAD Contínua from 2016 onward, so each year draws on a single source; the rural North is absent from PNAD Anual 2004–2015. Lines are interrupted in years without a survey: 2000 and 2010 (census years) and 2020–2021 (excluded for pandemic-related data-quality reasons). Confidence intervals are 95% intervals: Wilson score intervals with the Kish effective sample size under a design effect of 2.0 for PNAD Anual (1992–2015), and design-based intervals from exact complex-survey estimation via `survey::svydesign()` for PNAD Contínua (2016–2025). Diamonds mark independent validation points from the long-form samples of the 1991, 2000, 2010, and 2022 Demographic Censuses (via `censobr`); their 95% confidence intervals span at most 0.6 to 0.7 percentage points, narrower than the diamond markers themselves. The 1991 census reports income in fourteen ordinal ranges, from which deciles are approximated. Government labels indicate the president in office.
+
 ## Pipeline
 
-Scripts desta análise:
+Scripts for this analysis:
 
-- Plotagem: [`plot.R`](plot.R)
-- Pipeline upstream:
+- Plotting: [`plot.R`](plot.R)
+- Upstream pipeline:
   - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R)
   - [`shared-pipeline/censo/040_Censo_Pontos_Validacao.R`](../../shared-pipeline/censo/040_Censo_Pontos_Validacao.R)
 
-## Reprodutibilidade
+## Reproducibility
 
 **Tier: A**
 
-Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.
+This pipeline uses only public data, accessible via package/API without any credential (PNADcIBGE, censobr, sidrar, ipeadatar). Run the scripts in `shared-pipeline/` in numeric order to reconstruct the intermediate data.

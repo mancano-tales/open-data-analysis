@@ -1,0 +1,31 @@
+---
+title: "Taxa de Conclusão do Ensino Médio por Decil de Renda"
+date: 2026-08-09
+categories: [PNAD/PNADC, Ensino Médio, Conclusão]
+image: ../../posts/em-conclusao-decil/thumbnail.png
+description: "Série de linhas da taxa de conclusão do ensino médio por decil de renda."
+---
+
+![](../../posts/em-conclusao-decil/thumbnail.png)
+
+## Visão Geral
+
+Esta figura acompanha ao longo do tempo a proporção de brasileiros que concluíram o ensino médio, por decil de renda domiciliar. Como concluir o ensino médio é o principal pré-requisito para acessar o ensino superior, esta série oferece contexto útil para as figuras de acesso ao ensino superior em outras partes deste catálogo: ela mostra quanto da desigualdade no acesso ao ensino superior já se origina mais atrás, no nível anterior.
+
+## Metodologia
+
+Proporção da população que concluiu o ensino médio, por decil de renda, calculada da mesma forma que a série de acesso ao ensino superior: decis calculados dentro de cada ano e de cada fonte, a partir de renda domiciliar per capita estritamente positiva, harmonizados entre a PNAD Anual (até 2015) e a PNAD Contínua (a partir de 2016), com 2000/2010 (anos de Censo, sem PNAD) e 2020–2021 (pandemia) excluídos.
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](../../posts/em-conclusao-decil/plot.R)
+- Pipeline upstream:
+  - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R)
+
+## Reprodutibilidade
+
+**Tier: A**
+
+Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.

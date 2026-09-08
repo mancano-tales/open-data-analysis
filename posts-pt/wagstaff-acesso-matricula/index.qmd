@@ -1,0 +1,32 @@
+---
+title: "Desigualdade no Acesso e na Matrícula no Ensino Superior (Índice de Wagstaff)"
+date: 2026-08-27
+categories: [PNAD/PNADC, Wagstaff, Desigualdade, Acesso]
+image: ../../posts/wagstaff-acesso-matricula/thumbnail.png
+description: "Desigualdade relativa no acesso e na matrícula no ensino superior, por faixa etária, medida pelo índice de concentração de Wagstaff."
+---
+
+![](../../posts/wagstaff-acesso-matricula/thumbnail.png)
+
+## Visão Geral
+
+Esta figura mostra o quão fortemente o acesso e a matrícula no ensino superior estiveram atrelados à renda domiciliar no Brasil, e como essa relação evoluiu ao longo do tempo. Ela compara dois resultados — já ter acessado o ensino superior e estar atualmente matriculado — com um painel complementar mostrando o índice de Gini da renda geral como referência. Um valor próximo de zero no índice de concentração significa que o acesso está distribuído de forma equilibrada entre os níveis de renda (independente da capacidade de pagar); um valor alto significa que o acesso continua concentrado entre os mais ricos.
+
+## Metodologia
+
+Painel A. O índice de concentração de Wagstaff (W) é um escalar do tipo Gini, delimitado para resultados binários: W próximo de zero indica que o acesso se tornou descomodificado — independente da renda domiciliar —, enquanto um W alto e positivo indica que o acesso continua sendo uma mercadoria, alocada principalmente pela capacidade de pagar. W é calculado via regressão GLM ponderada de survey, sob uma aproximação uniforme de efeito de delineamento de Kish (DEFF = 2,0) tanto na PNAD Anual quanto na PNAD Contínua, para preservar a comparabilidade longitudinal ao longo da transição de instrumento. As faixas cinzas são intervalos de confiança de 95%. Linhas/círculos sólidos denotam já ter acessado o ensino superior (`ens_sup`); linhas/triângulos tracejados denotam matrícula atual (`ens_sup_a`). Os rótulos no topo marcam o mandato de cada governo. Painel B. O índice de Gini da renda domiciliar per capita, da mesma série oficial do IBGE usada em todo o projeto, validada contra os números publicados pelo próprio IBGE (desvio médio de −0,0001). A linha vertical marca a emenda PNAD Anual/PNAD Contínua de 2015/2016; círculos vazados marcam a PNAD Contínua retroponderada e coletada por telefone de 2020–2021, plotada mas não tratada como comparável ao restante da série.
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](../../posts/wagstaff-acesso-matricula/plot.R)
+- Pipeline upstream:
+  - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R)
+  - [`shared-pipeline/pnadc/238_Serie_Desigualdade_Oficial.R`](../../shared-pipeline/pnadc/238_Serie_Desigualdade_Oficial.R)
+
+## Reprodutibilidade
+
+**Tier: A**
+
+Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.

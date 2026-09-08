@@ -6,15 +6,25 @@ image: thumbnail.png
 description: "Tertiary education enrollment in Brazil, 1907–2024: the harmonized educabr2 series plotted against competing sources."
 ---
 
+![](thumbnail.png)
+
+## Overview
+
+This figure traces the growth of tertiary education enrollment in Brazil across more than a century, from 1907 to 2024, on a logarithmic scale. It overlays a single harmonized series against every competing historical estimate available, letting the reader see directly where sources agree and where they diverge, rather than taking the harmonization on faith.
+
+## Methodology
+
+The blue line splices six data sources using the `educabr2` package's deduplication hierarchy, in which the most disaggregated official source wins wherever sources overlap for the same year; grey points show every competing estimate from the underlying sources. Plotting both together makes the cross-source agreement, and the few divergent stretches, directly visible. The vertical axis is logarithmic: enrollment grew roughly a thousandfold across the century.
+
 ## Pipeline
 
-Scripts desta análise:
+Scripts for this analysis:
 
-- Plotagem: [`plot.R`](plot.R)
-- Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R [`educabr2`](https://github.com/mancano-tales/educabr2).
+- Plotting: [`plot.R`](plot.R)
+- Upstream pipeline: no script in this repository — the data comes embedded in the R package [`educabr2`](https://github.com/mancano-tales/educabr2).
 
-## Reprodutibilidade
+## Reproducibility
 
 **Tier: A (cross-repo)**
 
-Este pipeline depende do pacote R público `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), que embute os dados necessários.
+This pipeline depends on the public R package `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), which already embeds the necessary data.

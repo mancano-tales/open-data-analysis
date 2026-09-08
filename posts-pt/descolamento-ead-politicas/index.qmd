@@ -1,0 +1,32 @@
+---
+title: "Ensino a Distância e o Alcance das Políticas de Assistência Estudantil"
+date: 2026-08-06
+categories: [SEDAP+, ENEM, EaD, Políticas Públicas]
+image: ../../posts/descolamento-ead-politicas/thumbnail.png
+description: "Matrículas em EaD e o alcance dos programas de assistência estudantil no setor privado."
+---
+
+![](../../posts/descolamento-ead-politicas/thumbnail.png)
+
+## Visão Geral
+
+Esta figura pergunta se os principais programas de assistência estudantil do setor privado brasileiro (bolsas ProUni e financiamentos FIES) acompanharam o crescimento explosivo das matrículas em ensino a distância (EaD). Em vez de olhar para o número bruto de estudantes cobertos pela assistência, ela olha para qual fração da matrícula privada, dentro de cada modalidade de ensino, está coberta — uma forma mais relevante, do ponto de vista de política pública, de perguntar se a assistência chegou onde o sistema de fato cresceu.
+
+## Metodologia
+
+Extraída da mesma base do SEDAP+ usada na figura de matrículas por setor e via de acesso. A grandeza plotada é uma razão dentro de cada modalidade de ensino (EaD vs. presencial): matrículas com bolsa ProUni ou financiamento FIES, sobre o total de matrículas privadas naquela modalidade. As matrículas do setor público são excluídas, já que uma vaga sem preço não pode ser descrita como coberta ou descoberta por assistência. Em termos absolutos, a cobertura do ProUni no EaD parece estável — mas a razão mostrada aqui revela que essa mesma contagem absoluta passou a cobrir uma fração cada vez menor de uma modalidade que mais que dobrou de tamanho, o que é a leitura mais relevante, do ponto de vista de política pública, sobre se os instrumentos de assistência chegaram onde o sistema de fato cresceu.
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](../../posts/descolamento-ead-politicas/plot.R)
+- Pipeline upstream:
+  - [`shared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R`](../../shared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R)
+  - [`shared-pipeline/sedap/010_SEDAP_Cliente.R`](../../shared-pipeline/sedap/010_SEDAP_Cliente.R)
+
+## Reprodutibilidade
+
+**Tier: B**
+
+Este pipeline depende de dado restrito do INEP acessível via credencial SEDAP+ (variável de ambiente `SEDAP_TOKEN`). Sem uma credencial aprovada, os scripts em `shared-pipeline/sedap/` não rodam — a lógica fica disponível para auditoria, mas a reprodução completa exige solicitar acesso ao INEP.

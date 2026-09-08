@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Open Data Analysis</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-image','listing-title','listing-description','listing-categories','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      page: 18,
+    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Open Data Analysis</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index-pt.html" aria-current="page"> 
+<span class="menu-text">Análises</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">English</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <h5 class="quarto-listing-category-title">Categorias</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">Tudo <span class="quarto-category-count">(33)</span></div><div class="category" data-category="QWNlc3Nv">Acesso <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Q2Vuc28=">Censo <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q29iZXJ0dXJhJTIwZGUlMjBGb250ZXM=">Cobertura de Fontes <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q29tcG9zaSVDMyVBNyVDMyVBM28lMjBwb3IlMjBEZWNpbA==">Composição por Decil <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Q29uY2VudHJhJUMzJUE3JUMzJUEzbyUyMGRlJTIwUmVkZQ==">Concentração de Rede <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q29uY2x1cyVDMyVBM28=">Conclusão <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q290YXM=">Cotas <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGVzaWd1YWxkYWRl">Desigualdade <span class="quarto-category-count">(2)</span></div><div class="category" data-category="RGlzdHJpYnVpJUMzJUE3JUMzJUEzbw==">Distribuição <span class="quarto-category-count">(2)</span></div><div class="category" data-category="RWFE">EaD <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZWR1Y2FicjI=">educabr2 <span class="quarto-category-count">(7)</span></div><div class="category" data-category="RU5FTQ==">ENEM <span class="quarto-category-count">(3)</span></div><div class="category" data-category="RW5zaW5vJTIwTSVDMyVBOWRpbw==">Ensino Médio <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RW5zaW5vJTIwU3VwZXJpb3I=">Ensino Superior <span class="quarto-category-count">(4)</span></div><div class="category" data-category="RXNjb2xhcmlkYWRl">Escolaridade <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RXhwYW5zJUMzJUEzbyUyMEhpc3QlQzMlQjNyaWNh">Expansão Histórica <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Rm9udGVzJTIwZGUlMjBEYWRv">Fontes de Dado <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R2FzdG8lMjBQJUMzJUJBYmxpY28=">Gasto Público <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R2luaQ==">Gini <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R292ZXJubw==">Governo <span class="quarto-category-count">(6)</span></div><div class="category" data-category="SVBDQQ==">IPCA <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TWF0ciVDMyVBRGN1bGFz">Matrículas <span class="quarto-category-count">(6)</span></div><div class="category" data-category="TWVuc2FsaWRhZGVz">Mensalidades <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TW9kYWxpZGFkZQ==">Modalidade <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UGFsbWE=">Palma <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UE5BRCUyRlBOQURD">PNAD/PNADC <span class="quarto-category-count">(21)</span></div><div class="category" data-category="UG9sJUMzJUFEdGljYXMlMjBQJUMzJUJBYmxpY2Fz">Políticas Públicas <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UG9wdWxhJUMzJUE3JUMzJUEzbw==">População <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHJvZ3Jlc3MlQzMlQTNvJTIwRXNjb2xhcg==">Progressão Escolar <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVkZSUyMFAlQzMlQkFibGljYSUyRlByaXZhZGE=">Rede Pública/Privada <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UmVncmVzc2l2aWRhZGU=">Regressividade <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVuZGE=">Renda <span class="quarto-category-count">(9)</span></div><div class="category" data-category="U2FsJUMzJUExcmlvJTIwTSVDMyVBRG5pbW8=">Salário Mínimo <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U0VEQVAlMkI=">SEDAP+ <span class="quarto-category-count">(4)</span></div><div class="category" data-category="UyVDMyVBOXJpZSUyMEhpc3QlQzMlQjNyaWNh">Série Histórica <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2V4bw==">Sexo <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U0lEUkE=">SIDRA <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VHVybm8=">Turno <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VmlhJTIwZGUlMjBBY2Vzc28=">Via de Acesso <span class="quarto-category-count">(1)</span></div><div class="category" data-category="V2Fnc3RhZmY=">Wagstaff <span class="quarto-category-count">(2)</span></div></div></div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Open Data Analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+
+
+
+
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="UE5BRCUyRlBOQURDJTJDQ2Vuc28lMkNBY2Vzc28lMkNTJUMzJUE5cmllJTIwSGlzdCVDMyVCM3JpY2E=" data-listing-date-sort="1788404400000" data-listing-file-modified-sort="1788862527444" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="395">
+<a href="./posts-pt/decil-acesso-serie-historica/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/decil-acesso-serie-historica/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Taxa de Acesso ao Ensino Superior por Decil de Renda, Série Histórica
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q2Vuc28='); return false;">Censo</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWNlc3Nv'); return false;">Acesso</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UyVDMyVBOXJpZSUyMEhpc3QlQzMlQjNyaWNh'); return false;">Série Histórica</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Taxa de acesso ao ensino superior por decil de renda, série histórica de linhas a partir de 1992.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+3 de set. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="ZWR1Y2FicjIlMkNNYXRyJUMzJUFEY3VsYXMlMkNFeHBhbnMlQzMlQTNvJTIwSGlzdCVDMyVCM3JpY2E=" data-listing-date-sort="1787799600000" data-listing-file-modified-sort="1788863084210" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="201">
+<a href="./posts-pt/expansao-composicao-matriculas/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/expansao-composicao-matriculas/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Expansão e Composição da Matrícula de Graduação, 1980–2024
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZWR1Y2FicjI='); return false;">educabr2</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWF0ciVDMyVBRGN1bGFz'); return false;">Matrículas</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RXhwYW5zJUMzJUEzbyUyMEhpc3QlQzMlQjNyaWNh'); return false;">Expansão Histórica</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Expansão de longo prazo e composição setorial da matrícula de graduação no Brasil, 1980–2024.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+27 de ago. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="UE5BRCUyRlBOQURDJTJDV2Fnc3RhZmYlMkNEZXNpZ3VhbGRhZGUlMkNBY2Vzc28=" data-listing-date-sort="1787799600000" data-listing-file-modified-sort="1788862779702" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="345">
+<a href="./posts-pt/wagstaff-acesso-matricula/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/wagstaff-acesso-matricula/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Desigualdade no Acesso e na Matrícula no Ensino Superior (Índice de Wagstaff)
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('V2Fnc3RhZmY='); return false;">Wagstaff</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGVzaWd1YWxkYWRl'); return false;">Desigualdade</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWNlc3Nv'); return false;">Acesso</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Desigualdade relativa no acesso e na matrícula no ensino superior, por faixa etária, medida pelo índice de concentração de Wagstaff.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+27 de ago. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="3" data-categories="UE5BRCUyRlBOQURDJTJDV2Fnc3RhZmYlMkNSZWRlJTIwUCVDMyVCQWJsaWNhJTJGUHJpdmFkYQ==" data-listing-date-sort="1786330800000" data-listing-file-modified-sort="1788863077807" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="202">
+<a href="./posts-pt/wagstaff-rede-publica-privada-timeseries/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/wagstaff-rede-publica-privada-timeseries/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Desigualdade de Renda na Matrícula por Tipo de Rede, Série Temporal (Índice de Wagstaff)
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('V2Fnc3RhZmY='); return false;">Wagstaff</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmVkZSUyMFAlQzMlQkFibGljYSUyRlByaXZhZGE='); return false;">Rede Pública/Privada</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Série temporal da desigualdade de renda na matrícula do ensino superior por tipo de rede (pública vs.&nbsp;privada), medida pelo índice de concentração de Wagstaff.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+10 de ago. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="4" data-categories="UE5BRCUyRlBOQURDJTJDRW5zaW5vJTIwU3VwZXJpb3IlMkNDb21wb3NpJUMzJUE3JUMzJUEzbyUyMHBvciUyMERlY2ls" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788862603455" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="297">
+<a href="./posts-pt/composicao-decil-ens-sup-18-24/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/composicao-decil-ens-sup-18-24/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Composição por Renda dos Estudantes do Ensino Superior (18–24 anos)
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RW5zaW5vJTIwU3VwZXJpb3I='); return false;">Ensino Superior</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q29tcG9zaSVDMyVBNyVDMyVBM28lMjBwb3IlMjBEZWNpbA=='); return false;">Composição por Decil</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Composição empilhada de decis de renda entre estudantes do ensino superior de 18–24 anos, ao longo do tempo.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+9 de ago. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="5" data-categories="UE5BRCUyRlBOQURDJTJDRW5zaW5vJTIwU3VwZXJpb3IlMkNDb21wb3NpJUMzJUE3JUMzJUEzbyUyMHBvciUyMERlY2ls" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788862751511" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="321">
+<a href="./posts-pt/composicao-decil-ens-sup-18-64/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/composicao-decil-ens-sup-18-64/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Composição por Renda dos Estudantes do Ensino Superior (18–64 anos)
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RW5zaW5vJTIwU3VwZXJpb3I='); return false;">Ensino Superior</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q29tcG9zaSVDMyVBNyVDMyVBM28lMjBwb3IlMjBEZWNpbA=='); return false;">Composição por Decil</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Composição empilhada de decis de renda entre estudantes do ensino superior de 18–64 anos, ao longo do tempo.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+9 de ago. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="6" data-categories="UE5BRCUyRlBOQURDJTJDRW5zaW5vJTIwU3VwZXJpb3IlMkNDb21wb3NpJUMzJUE3JUMzJUEzbyUyMHBvciUyMERlY2ls" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788862761773" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="290">
+<a href="./posts-pt/composicao-decil-ens-sup-a-18-24/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/composicao-decil-ens-sup-a-18-24/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Composição por Renda dos Matriculados Ativos no Ensino Superior (18–24 anos)
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RW5zaW5vJTIwU3VwZXJpb3I='); return false;">Ensino Superior</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q29tcG9zaSVDMyVBNyVDMyVBM28lMjBwb3IlMjBEZWNpbA=='); return false;">Composição por Decil</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Composição empilhada de decis de renda entre matriculados ativos no ensino superior de 18–24 anos, ao longo do tempo.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+9 de ago. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="7" data-categories="UE5BRCUyRlBOQURDJTJDRW5zaW5vJTIwU3VwZXJpb3IlMkNDb21wb3NpJUMzJUE3JUMzJUEzbyUyMHBvciUyMERlY2ls" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788862769448" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="290">
+<a href="./posts-pt/composicao-decil-ens-sup-a-18-64/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/composicao-decil-ens-sup-a-18-64/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Composição por Renda dos Matriculados Ativos no Ensino Superior (18–64 anos)
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RW5zaW5vJTIwU3VwZXJpb3I='); return false;">Ensino Superior</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q29tcG9zaSVDMyVBNyVDMyVBM28lMjBwb3IlMjBEZWNpbA=='); return false;">Composição por Decil</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Composição empilhada de decis de renda entre matriculados ativos no ensino superior de 18–64 anos, ao longo do tempo.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+9 de ago. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="8" data-categories="UE5BRCUyRlBOQURDJTJDUmVuZGElMkNHb3Zlcm5v" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788863229315" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="246">
+<a href="./posts-pt/delta-renda-anualizada-decil-governo/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/delta-renda-anualizada-decil-governo/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Crescimento Anualizado da Renda Real por Decil de Renda e Mandato Presidencial
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmVuZGE='); return false;">Renda</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('R292ZXJubw=='); return false;">Governo</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Dotplot do crescimento anualizado da renda domiciliar per capita real por decil de renda e mandato presidencial.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+9 de ago. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="9" data-categories="UE5BRCUyRlBOQURDJTJDRGVzaWd1YWxkYWRlJTJDUmVuZGElMkNHaW5pJTJDUGFsbWE=" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788863242515" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="439">
+<a href="./posts-pt/desigualdade-renda-gini-palma-decil/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/desigualdade-renda-gini-palma-decil/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Desigualdade de Renda e Crescimento Real da Renda por Decil (Painel Gini/Palma)
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGVzaWd1YWxkYWRl'); return false;">Desigualdade</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmVuZGE='); return false;">Renda</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('R2luaQ=='); return false;">Gini</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UGFsbWE='); return false;">Palma</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Figura em múltiplos painéis combinando índices de desigualdade de renda (Gini, razão de Palma) com o crescimento real da renda por decil.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+9 de ago. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="10" data-categories="UE5BRCUyRlBOQURDJTJDRW5zaW5vJTIwTSVDMyVBOWRpbyUyQ0NvbmNsdXMlQzMlQTNv" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788863070980" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="181">
+<a href="./posts-pt/em-conclusao-decil/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/em-conclusao-decil/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Taxa de Conclusão do Ensino Médio por Decil de Renda
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RW5zaW5vJTIwTSVDMyVBOWRpbw=='); return false;">Ensino Médio</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q29uY2x1cyVDMyVBM28='); return false;">Conclusão</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Série de linhas da taxa de conclusão do ensino médio por decil de renda.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+9 de ago. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="11" data-categories="UE5BRCUyRlBOQURDJTJDSVBDQSUyQ01lbnNhbGlkYWRlcyUyQ1JlbmRh" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788862946067" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="292">
+<a href="./posts-pt/fardo-mensalidade-decil/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/fardo-mensalidade-decil/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Fardo da Mensalidade em Relação à Renda Domiciliar por Decil de Renda
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SVBDQQ=='); return false;">IPCA</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWVuc2FsaWRhZGVz'); return false;">Mensalidades</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmVuZGE='); return false;">Renda</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Fardo da mensalidade do ensino superior em relação à renda domiciliar, por decil de renda.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+9 de ago. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="12" data-categories="UE5BRCUyRlBOQURDJTJDUG9wdWxhJUMzJUE3JUMzJUEzbyUyQ1NhbCVDMyVBMXJpbyUyME0lQzMlQURuaW1v" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788862953043" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="231">
+<a href="./posts-pt/populacao-limiares-sm/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/populacao-limiares-sm/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+População Acima de Limiares Fixos de Renda Real
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UG9wdWxhJUMzJUE3JUMzJUEzbw=='); return false;">População</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2FsJUMzJUExcmlvJTIwTSVDMyVBRG5pbW8='); return false;">Salário Mínimo</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Proporção de jovens de 18–24 anos em domicílios acima de limiares fixos de renda real, expressos como múltiplos do salário mínimo.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+9 de ago. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="13" data-categories="UE5BRCUyRlBOQURDJTJDUmVuZGElMkNEaXN0cmlidWklQzMlQTclQzMlQTNv" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788862890847" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="270">
+<a href="./posts-pt/renda-centil-log/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/renda-centil-log/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Renda Domiciliar Média por Centil de Renda (Escala Logarítmica)
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmVuZGE='); return false;">Renda</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGlzdHJpYnVpJUMzJUE3JUMzJUEzbw=='); return false;">Distribuição</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Renda domiciliar per capita média por centil de renda, plotada em escala logarítmica.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+9 de ago. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="14" data-categories="UE5BRCUyRlBOQURDJTJDUmVuZGElMkNEaXN0cmlidWklQzMlQTclQzMlQTNv" data-listing-date-sort="1786244400000" data-listing-file-modified-sort="1788862885395" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="250">
+<a href="./posts-pt/renda-media-centil/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/renda-media-centil/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Renda Domiciliar Média por Centil de Renda
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmVuZGE='); return false;">Renda</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGlzdHJpYnVpJUMzJUE3JUMzJUEzbw=='); return false;">Distribuição</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Renda domiciliar per capita média por centil de renda, escala linear.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+9 de ago. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="15" data-categories="UE5BRCUyRlBOQURDJTJDQWNlc3NvJTJDR292ZXJubw==" data-listing-date-sort="1786071600000" data-listing-file-modified-sort="1788862849972" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="290">
+<a href="./posts-pt/delta-acesso-decil-governo/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/delta-acesso-decil-governo/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Variação da Taxa de Acesso ao Ensino Superior por Decil de Renda e Mandato Presidencial
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWNlc3Nv'); return false;">Acesso</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('R292ZXJubw=='); return false;">Governo</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Dotplot da variação total da taxa de acesso ao ensino superior (já ingressou alguma vez) por decil de renda, decomposta por mandato presidencial.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+7 de ago. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="16" data-categories="UE5BRCUyRlBOQURDJTJDTWF0ciVDMyVBRGN1bGFzJTJDR292ZXJubw==" data-listing-date-sort="1786071600000" data-listing-file-modified-sort="1788862843393" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="302">
+<a href="./posts-pt/delta-matriculados-decil-governo-dotplot/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/delta-matriculados-decil-governo-dotplot/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Variação da Taxa de Matrícula no Ensino Superior por Decil de Renda e Mandato Presidencial (Dotplot)
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWF0ciVDMyVBRGN1bGFz'); return false;">Matrículas</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('R292ZXJubw=='); return false;">Governo</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Dotplot da variação total da taxa de matrícula no ensino superior (18–24 anos) por decil de renda e mandato presidencial.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+7 de ago. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="17" data-categories="U0VEQVAlMkIlMkNFTkVNJTJDRWFEJTJDUG9sJUMzJUFEdGljYXMlMjBQJUMzJUJBYmxpY2Fz" data-listing-date-sort="1785985200000" data-listing-file-modified-sort="1788863018905" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="276">
+<a href="./posts-pt/descolamento-ead-politicas/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./posts/descolamento-ead-politicas/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Ensino a Distância e o Alcance das Políticas de Assistência Estudantil
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('U0VEQVAlMkI='); return false;">SEDAP+</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RU5FTQ=='); return false;">ENEM</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RWFE'); return false;">EaD</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UG9sJUMzJUFEdGljYXMlMjBQJUMzJUJBYmxpY2Fz'); return false;">Políticas Públicas</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Matrículas em EaD e o alcance dos programas de assistência estudantil no setor privado.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+6 de ago. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="18" data-categories="U0VEQVAlMkIlMkNFTkVNJTJDUmVuZGE=" data-listing-date-sort="1785985200000" data-listing-file-modified-sort="1788863030845" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="211">
+<a href="./posts-pt/distribuicao-renda-setor/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" data-src="./posts/distribuicao-renda-setor/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Distribuição de Renda Domiciliar por Setor do Ensino Superior
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('U0VEQVAlMkI='); return false;">SEDAP+</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RU5FTQ=='); return false;">ENEM</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmVuZGE='); return false;">Renda</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Distribuição da renda domiciliar dos ingressantes por setor do ensino superior.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+6 de ago. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="19" data-categories="U0VEQVAlMkIlMkNFTkVNJTJDUmVuZGElMkNNb2RhbGlkYWRl" data-listing-date-sort="1785985200000" data-listing-file-modified-sort="1788863024598" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="186">
+<a href="./posts-pt/perfil-renda-modalidade/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" data-src="./posts/perfil-renda-modalidade/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Renda Domiciliar dos Ingressantes por Setor e Modalidade de Ensino
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('U0VEQVAlMkI='); return false;">SEDAP+</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RU5FTQ=='); return false;">ENEM</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmVuZGE='); return false;">Renda</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TW9kYWxpZGFkZQ=='); return false;">Modalidade</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Renda domiciliar dos ingressantes por setor do ensino superior e modalidade de ensino (presencial vs.&nbsp;EaD).</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+6 de ago. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="20" data-categories="U0VEQVAlMkIlMkNNYXRyJUMzJUFEY3VsYXMlMkNUdXJubyUyQ1ZpYSUyMGRlJTIwQWNlc3Nv" data-listing-date-sort="1785898800000" data-listing-file-modified-sort="1788863010334" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="291">
+<a href="./posts-pt/matriculas-turno-via-acesso/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" data-src="./posts/matriculas-turno-via-acesso/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Matrículas por Setor, Via de Acesso e Turno
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('U0VEQVAlMkI='); return false;">SEDAP+</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWF0ciVDMyVBRGN1bGFz'); return false;">Matrículas</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('VHVybm8='); return false;">Turno</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('VmlhJTIwZGUlMjBBY2Vzc28='); return false;">Via de Acesso</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Matrículas decompostas por setor, via de acesso (cotas/ampla concorrência) e turno (matutino/noturno/EaD).</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+5 de ago. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="21" data-categories="ZWR1Y2FicjIlMkNNYXRyJUMzJUFEY3VsYXM=" data-listing-date-sort="1783825200000" data-listing-file-modified-sort="1788863309521" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="178">
+<a href="./posts-pt/educabr2-enrollment-reconstructed/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" data-src="./posts/educabr2-enrollment-reconstructed/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+O Subregistro do EaD e os Totais de Matrícula Reconstruídos
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZWR1Y2FicjI='); return false;">educabr2</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWF0ciVDMyVBRGN1bGFz'); return false;">Matrículas</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>O subregistro do ensino a distância nas estatísticas oficiais e os totais de matrícula no ensino superior reconstruídos, 2000–2008.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+12 de jul. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="22" data-categories="ZWR1Y2FicjIlMkNNYXRyJUMzJUFEY3VsYXMlMkNGb250ZXMlMjBkZSUyMERhZG8=" data-listing-date-sort="1783825200000" data-listing-file-modified-sort="1788863303907" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="171">
+<a href="./posts-pt/educabr2-enrollment-sources/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" data-src="./posts/educabr2-enrollment-sources/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Matrícula no Ensino Superior no Brasil: Série Harmonizada e Fontes Concorrentes
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZWR1Y2FicjI='); return false;">educabr2</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWF0ciVDMyVBRGN1bGFz'); return false;">Matrículas</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Rm9udGVzJTIwZGUlMjBEYWRv'); return false;">Fontes de Dado</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Matrícula no ensino superior no Brasil, 1907–2024: a série harmonizada do educabr2 contra fontes concorrentes.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+12 de jul. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="23" data-categories="ZWR1Y2FicjIlMkNHYXN0byUyMFAlQzMlQkFibGljbyUyQ1JlZ3Jlc3NpdmlkYWRl" data-listing-date-sort="1783825200000" data-listing-file-modified-sort="1788863320407" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="196">
+<a href="./posts-pt/educabr2-expenditure-regressivity/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" data-src="./posts/educabr2-expenditure-regressivity/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Regressividade do Gasto Público: Ensino Superior vs.&nbsp;Ensino Fundamental
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZWR1Y2FicjI='); return false;">educabr2</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('R2FzdG8lMjBQJUMzJUJBYmxpY28='); return false;">Gasto Público</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmVncmVzc2l2aWRhZGU='); return false;">Regressividade</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Razão dupla do gasto público por estudante, ensino superior sobre ensino fundamental, Brasil, 1933–2010.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+12 de jul. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="24" data-categories="ZWR1Y2FicjIlMkNQcm9ncmVzcyVDMyVBM28lMjBFc2NvbGFy" data-listing-date-sort="1783825200000" data-listing-file-modified-sort="1788863326236" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="168">
+<a href="./posts-pt/educabr2-progression-gdr6/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" data-src="./posts/educabr2-progression-gdr6/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Razão de Progressão Escolar (GDR6) em São Paulo e na Bahia
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZWR1Y2FicjI='); return false;">educabr2</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHJvZ3Jlc3MlQzMlQTNvJTIwRXNjb2xhcg=='); return false;">Progressão Escolar</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Razão de progressão escolar (GDR6) em São Paulo e na Bahia, 1955–2010.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+12 de jul. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="25" data-categories="ZWR1Y2FicjIlMkNFc2NvbGFyaWRhZGUlMkNTZXhv" data-listing-date-sort="1783825200000" data-listing-file-modified-sort="1788863314764" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="143">
+<a href="./posts-pt/educabr2-schooling-sex/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" data-src="./posts/educabr2-schooling-sex/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Anos Médios de Escolaridade por Sexo
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZWR1Y2FicjI='); return false;">educabr2</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RXNjb2xhcmlkYWRl'); return false;">Escolaridade</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2V4bw=='); return false;">Sexo</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Anos médios de escolaridade da população de 15–64 anos no Brasil, por sexo, 1925–2015.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+12 de jul. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="26" data-categories="ZWR1Y2FicjIlMkNDb2JlcnR1cmElMjBkZSUyMEZvbnRlcw==" data-listing-date-sort="1783825200000" data-listing-file-modified-sort="1788863331953" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="152">
+<a href="./posts-pt/educabr2-source-coverage/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" data-src="./posts/educabr2-source-coverage/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Cobertura Temporal das Fontes Harmonizadas pelo educabr2
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZWR1Y2FicjI='); return false;">educabr2</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q29iZXJ0dXJhJTIwZGUlMjBGb250ZXM='); return false;">Cobertura de Fontes</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Cobertura temporal das onze fontes de dados harmonizadas pelo educabr2, 1870–2024.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+12 de jul. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="27" data-categories="UE5BRCUyRlBOQURDJTJDUmVuZGElMkNHb3Zlcm5v" data-listing-date-sort="1783479600000" data-listing-file-modified-sort="1788863216692" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="250">
+<a href="./posts-pt/delta-renda-abs-decil-governo/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" data-src="./posts/delta-renda-abs-decil-governo/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Variação da Renda Domiciliar Real por Decil de Renda e Mandato Presidencial (Absoluta)
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmVuZGE='); return false;">Renda</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('R292ZXJubw=='); return false;">Governo</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Dotplot da variação total da renda domiciliar per capita real (R$/mês) por decil de renda e mandato presidencial.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+8 de jul. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="28" data-categories="UE5BRCUyRlBOQURDJTJDUmVuZGElMkNHb3Zlcm5v" data-listing-date-sort="1783479600000" data-listing-file-modified-sort="1788863222353" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="205">
+<a href="./posts-pt/delta-renda-rel-decil-governo/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" data-src="./posts/delta-renda-rel-decil-governo/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Variação da Renda Domiciliar Real por Decil de Renda e Mandato Presidencial (Relativa)
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmVuZGE='); return false;">Renda</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('R292ZXJubw=='); return false;">Governo</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Dotplot da variação percentual total da renda domiciliar per capita real por decil de renda e mandato presidencial.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+8 de jul. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="29" data-categories="UE5BRCUyRlBOQURDJTJDUmVkZSUyMFAlQzMlQkFibGljYSUyRlByaXZhZGE=" data-listing-date-sort="1783306800000" data-listing-file-modified-sort="1788863209452" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="306">
+<a href="./posts-pt/concentracao-rede-publica-privada/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" data-src="./posts/concentracao-rede-publica-privada/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Concentração de Renda na Matrícula do Ensino Superior por Tipo de Rede
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmVkZSUyMFAlQzMlQkFibGljYSUyRlByaXZhZGE='); return false;">Rede Pública/Privada</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Curvas de concentração de renda na matrícula do ensino superior por tipo de rede (pública vs.&nbsp;privada), 18–24 anos.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+6 de jul. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="30" data-categories="SVBDQSUyQ1NJRFJBJTJDTWVuc2FsaWRhZGVz" data-listing-date-sort="1783306800000" data-listing-file-modified-sort="1788862937973" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="336">
+<a href="./posts-pt/ipca-mensalidade-curso-superior/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" data-src="./posts/ipca-mensalidade-curso-superior/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Preços de Mensalidades do Ensino Superior em Relação à Inflação e ao Salário Mínimo
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('SVBDQQ=='); return false;">IPCA</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U0lEUkE='); return false;">SIDRA</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWVuc2FsaWRhZGVz'); return false;">Mensalidades</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Série de preços de mensalidades do ensino superior em relação aos preços gerais ao consumidor e ao salário mínimo.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+6 de jul. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="31" data-categories="UE5BRCUyRlBOQURDJTJDTWF0ciVDMyVBRGN1bGFzJTJDR292ZXJubw==" data-listing-date-sort="1783134000000" data-listing-file-modified-sort="1788862836506" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="338">
+<a href="./posts-pt/delta-matriculados-decil-governo/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" data-src="./posts/delta-matriculados-decil-governo/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Variação da Taxa de Matrícula no Ensino Superior por Decil de Renda e Mandato Presidencial
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWF0ciVDMyVBRGN1bGFz'); return false;">Matrículas</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('R292ZXJubw=='); return false;">Governo</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Painel de gráficos de barras mostrando a variação total da taxa de matrícula no ensino superior (18–24 anos) por decil de renda, um painel por mandato presidencial.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+4 de jul. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="32" data-categories="UE5BRCUyRlBOQURDJTJDQ290YXMlMkNDb25jZW50cmElQzMlQTclQzMlQTNvJTIwZGUlMjBSZWRl" data-listing-date-sort="1782788400000" data-listing-file-modified-sort="1788863200945" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="370">
+<a href="./posts-pt/concentracao-rede-antes-depois-cotas/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" data-src="./posts/concentracao-rede-antes-depois-cotas/thumbnail.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Concentração de Renda na Matrícula por Rede, Antes e Depois da Lei de Cotas
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UE5BRCUyRlBOQURD'); return false;">PNAD/PNADC</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q290YXM='); return false;">Cotas</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q29uY2VudHJhJUMzJUE3JUMzJUEzbyUyMGRlJTIwUmVkZQ=='); return false;">Concentração de Rede</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Curvas de concentração de renda na matrícula do ensino superior por rede (pública vs.&nbsp;privada), antes, durante e depois da Lei de Cotas de 2012.</p>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+30 de jun. de 2026
+</div>
+</div>
+</div>
+</div></a>
+</div>
+</div>
+<div class="listing-no-matching d-none">Nenhum item correspondente</div>
+<nav id="listing-pagination" class="listing-pagination" aria-label="Page Navigation">
+  <ul class="pagination"></ul>
+</nav>
+</div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

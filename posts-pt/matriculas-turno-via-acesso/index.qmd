@@ -1,0 +1,32 @@
+---
+title: "Matrículas por Setor, Via de Acesso e Turno"
+date: 2026-08-05
+categories: [SEDAP+, Matrículas, Turno, Via de Acesso]
+image: ../../posts/matriculas-turno-via-acesso/thumbnail.png
+description: "Matrículas decompostas por setor, via de acesso (cotas/ampla concorrência) e turno (matutino/noturno/EaD)."
+---
+
+![](../../posts/matriculas-turno-via-acesso/thumbnail.png)
+
+## Visão Geral
+
+Esta figura decompõe as matrículas do ensino superior brasileiro por setor (público vs. privado), via de acesso (como o estudante conseguiu a vaga — bolsa, financiamento, cota reservada ou ampla concorrência) e turno (matutino/noturno presencial, ou EaD). Ela oferece um mapa detalhado das diferentes portas pelas quais os estudantes entram no sistema, e de como o tamanho de cada porta mudou.
+
+## Metodologia
+
+Construída a partir de registros individuais de estudantes do Censo da Educação Superior, extraídos via a plataforma de acesso protegido do INEP, o SEDAP+ (Serviço de Acesso a Dados Protegidos), porque o INEP parou de publicar os microdados completos por estudante após 2019. O setor segue a categoria administrativa da instituição (pública vs. privada). A via de acesso é atribuída por precedência dentro do setor privado — primeiro bolsa ProUni, depois financiamento FIES entre os que não têm ProUni, depois ampla concorrência — de modo que as categorias são disjuntas por construção. Dentro do setor público, a divisão é vaga reservada (cota de ação afirmativa) versus ampla concorrência. O SEDAP+ responde apenas a consultas agregadas e aplica privacidade diferencial, que na prática suprime células com poucos indivíduos em vez de adicionar ruído apreciável; a extração agrupa exatamente na granularidade que a figura exibe, na qual nenhuma célula é suprimida. Contra os microdados publicados nos anos em que ambos existem, os totais do SEDAP+ ficam de 0,6% a 1,1% abaixo, uma diferença pequena e sistemática.
+
+## Pipeline
+
+Scripts desta análise:
+
+- Plotagem: [`plot.R`](../../posts/matriculas-turno-via-acesso/plot.R)
+- Pipeline upstream:
+  - [`shared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R`](../../shared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R)
+  - [`shared-pipeline/sedap/010_SEDAP_Cliente.R`](../../shared-pipeline/sedap/010_SEDAP_Cliente.R)
+
+## Reprodutibilidade
+
+**Tier: B**
+
+Este pipeline depende de dado restrito do INEP acessível via credencial SEDAP+ (variável de ambiente `SEDAP_TOKEN`). Sem uma credencial aprovada, os scripts em `shared-pipeline/sedap/` não rodam — a lógica fica disponível para auditoria, mas a reprodução completa exige solicitar acesso ao INEP.

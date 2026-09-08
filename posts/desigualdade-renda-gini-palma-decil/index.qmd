@@ -6,18 +6,28 @@ image: thumbnail.png
 description: "Multi-panel figure combining income inequality indices (Gini, Palma ratio) with real income growth by decile."
 ---
 
+![](thumbnail.png)
+
+## Overview
+
+This figure combines three views of Brazilian income inequality from 1992 to 2024: (A) the Gini index, a standard scalar summary of overall inequality; (B) the Palma ratio, comparing the income share of the richest tenth against the poorest 40%; and (C) the actual trajectory of mean real income for each individual decile, on a logarithmic scale. Together they move from a single summary number down to the full anatomy of who gained and who fell behind.
+
+## Methodology
+
+Panel A shows the Gini index of real per-capita income. Panel B shows the Palma ratio — the income share of the richest decile divided by that of the poorest four deciles. Panels A and B follow the official universe, which retains households reporting no income, and reproduce IBGE's own published series (mean deviation −0.0001). Panel C shows mean real per-capita income by decile, in January-2024 reais, on a logarithmic axis; here the deciles rest on the working universe of positive incomes only, so panel C's levels are not strictly the official ones. Lines are interrupted in years without a survey (1994, 2000, 2010, 2020–2021); hollow markers in panels A and B mark 2020 and 2021, taken from the telephone-collected fifth visit of PNAD Contínua. The income unit is the family up to 2015 (PNAD) and the household from 2016 onward (PNAD Contínua); the two coincide except where several families share a dwelling, and a solid vertical rule marks that change of source. Because both surveys ran in 2012–2015, the effect of the instrument change can be measured directly rather than assumed: for the same year, PNAD Contínua returns a Gini index higher by 0.008 and a Palma ratio higher by 0.15 on average. Of the step observed between 2015 and 2016 (+0.020 Gini, +0.44 Palma), roughly a third is therefore an artefact of the survey splice rather than a genuine rise in inequality. This vertical rule is distinct from the dashed rules in panel C, which mark changes of government; the 2015–2019 government block joins Dilma Rousseff's second term to Michel Temer's, so the August-2016 impeachment does not appear as a boundary in the figure.
+
 ## Pipeline
 
-Scripts desta análise:
+Scripts for this analysis:
 
-- Plotagem: [`plot.R`](plot.R)
-- Pipeline upstream:
+- Plotting: [`plot.R`](plot.R)
+- Upstream pipeline:
   - [`shared-pipeline/pnadc/238_Serie_Desigualdade_Oficial.R`](../../shared-pipeline/pnadc/238_Serie_Desigualdade_Oficial.R)
   - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R)
   - [`shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R`](../../shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R)
 
-## Reprodutibilidade
+## Reproducibility
 
 **Tier: A**
 
-Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.
+This pipeline uses only public data, accessible via package/API without any credential (PNADcIBGE, censobr, sidrar, ipeadatar). Run the scripts in `shared-pipeline/` in numeric order to reconstruct the intermediate data.

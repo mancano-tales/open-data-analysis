@@ -96,7 +96,13 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
-<span class="menu-text">Análises</span></a>
+<span class="menu-text">Analyses</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../pt/index.html"> 
+<span class="menu-text">Português</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -148,18 +154,27 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p><img src="thumbnail.png" class="img-fluid"></p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This figure tracks average years of schooling for Brazilian women and men, ages 15–64, from 1925 to 2015. It shows a long-run reversal: women started the century with less schooling than men and ended it with more, and the figure marks the exact year that crossover happened.</p>
+</section>
+<section id="methodology" class="level2">
+<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
+<p>The shaded band is the schooling gap between the sexes; its color switches when the sign of the gap flips. Brazilian women moved from a persistent schooling deficit to a durable advantage over the twentieth century — the crossover year is marked directly on the series.</p>
+</section>
 <section id="pipeline" class="level2">
 <h2 class="anchored" data-anchor-id="pipeline">Pipeline</h2>
-<p>Scripts desta análise:</p>
+<p>Scripts for this analysis:</p>
 <ul>
-<li>Plotagem: <a href="plot.R"><code>plot.R</code></a></li>
-<li>Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R <a href="https://github.com/mancano-tales/educabr2"><code>educabr2</code></a>.</li>
+<li>Plotting: <a href="plot.R"><code>plot.R</code></a></li>
+<li>Upstream pipeline: no script in this repository — the data comes embedded in the R package <a href="https://github.com/mancano-tales/educabr2"><code>educabr2</code></a>.</li>
 </ul>
 </section>
-<section id="reprodutibilidade" class="level2">
-<h2 class="anchored" data-anchor-id="reprodutibilidade">Reprodutibilidade</h2>
+<section id="reproducibility" class="level2">
+<h2 class="anchored" data-anchor-id="reproducibility">Reproducibility</h2>
 <p><strong>Tier: A (cross-repo)</strong></p>
-<p>Este pipeline depende do pacote R público <code>educabr2</code> (<code>remotes::install_github("mancano-tales/educabr2")</code>), que embute os dados necessários.</p>
+<p>This pipeline depends on the public R package <code>educabr2</code> (<code>remotes::install_github("mancano-tales/educabr2")</code>), which already embeds the necessary data.</p>
 
 
 </section>

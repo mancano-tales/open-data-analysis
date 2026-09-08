@@ -6,17 +6,27 @@ image: thumbnail.png
 description: "Household income of entrants by higher education sector and mode of delivery (in-person vs. distance)."
 ---
 
+![](thumbnail.png)
+
+## Overview
+
+This figure compares the household income profile of students entering higher education through different sectors and modes of delivery (distance vs. in-person). It shows whether distance learning and in-person study, and public vs. private institutions, draw their entering classes from different points of the income distribution.
+
+## Methodology
+
+Household income profile of entrants by mode of delivery (distance vs. in-person), drawn from a SEDAP+ extraction crossing ENEM (Brazil's national high-school exam, which reports household income) with Higher Education Census enrollment records. Income bands come from the socioeconomic questionnaire filled out by every ENEM examinee, allowing the entering student's declared per-capita household income to be classified against the same income bands used elsewhere in this project.
+
 ## Pipeline
 
-Scripts desta análise:
+Scripts for this analysis:
 
-- Plotagem: [`plot.R`](plot.R)
-- Pipeline upstream:
+- Plotting: [`plot.R`](plot.R)
+- Upstream pipeline:
   - [`shared-pipeline/sedap/070_Perfil_Renda_Modalidade.R`](../../shared-pipeline/sedap/070_Perfil_Renda_Modalidade.R)
   - [`shared-pipeline/sedap/010_SEDAP_Cliente.R`](../../shared-pipeline/sedap/010_SEDAP_Cliente.R)
 
-## Reprodutibilidade
+## Reproducibility
 
 **Tier: B**
 
-Este pipeline depende de dado restrito do INEP acessível via credencial SEDAP+ (variável de ambiente `SEDAP_TOKEN`). Sem uma credencial aprovada, os scripts em `shared-pipeline/sedap/` não rodam — a lógica fica disponível para auditoria, mas a reprodução completa exige solicitar acesso ao INEP.
+This pipeline depends on restricted INEP data accessible via SEDAP+ credentials (`SEDAP_TOKEN` environment variable). Without an approved credential, the scripts in `shared-pipeline/sedap/` will not run — the logic remains available for audit, but full reproduction requires requesting access.

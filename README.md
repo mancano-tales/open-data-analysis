@@ -69,6 +69,17 @@ conforme novas figuras são produzidas; posts antigos não são removidos, só
 eventualmente reclassificados de tier se uma fonte de dado mudar de status
 de acesso.
 
+## Site bilíngue
+
+O catálogo é publicado em dois idiomas a partir do mesmo repositório, via perfis do Quarto:
+
+- **Inglês** (padrão): `quarto render --profile en` (ou simplesmente `quarto render`) publica em `docs/`.
+- **Português**: `quarto render --profile pt` publica em `docs/pt/`.
+
+Os dois perfis (`_quarto-en.yml`, `_quarto-pt.yml`) herdam a configuração comum de `_quarto.yml` e definem apenas o que é específico de idioma (título/descrição do site, `lang`, `output-dir` e o link de troca de idioma na navbar).
+
+Os posts em português vivem em `posts-pt/<fig-label>/index.qmd` e referenciam os mesmos `plot.R` e `thumbnail.png` já publicados em `posts/<fig-label>/` — os arquivos de script e imagem **não são duplicados**, apenas linkados com caminho relativo (`../../posts/<fig-label>/...`). Para atualizar uma figura, basta editar o script/imagem uma única vez em `posts/<fig-label>/`; os dois posts (EN e PT) passam a apontar para a versão atualizada automaticamente. Ao criar uma nova figura em `posts/`, replique a página em `posts-pt/` traduzindo Overview/Metodologia e ajustando os caminhos relativos.
+
 ## Licença
 
 MIT — ver [`LICENSE`](LICENSE).

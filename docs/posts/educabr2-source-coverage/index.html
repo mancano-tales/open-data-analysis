@@ -96,7 +96,13 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
-<span class="menu-text">Análises</span></a>
+<span class="menu-text">Analyses</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../pt/index.html"> 
+<span class="menu-text">Português</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -147,18 +153,27 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p><img src="thumbnail.png" class="img-fluid"></p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This figure explains why the <code>educabr2</code> package exists in the first place: it shows the eleven historical data sources it harmonizes, and exactly which years each one covers, from 1870 to 2024. No single source spans the whole period — the package’s job is to stitch together official registers, historical compilations, and academic reconstructions into one continuous panel.</p>
+</section>
+<section id="methodology" class="level2">
+<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
+<p>Each bar spans the years covered by one bundled source. No single source covers the full century: official registers begin only in 1995, historical compilations stop in 1980, and the gap between them is bridged by academic reconstructions. Harmonizing these overlapping, partial series into one continuous panel is the package’s reason to exist.</p>
+</section>
 <section id="pipeline" class="level2">
 <h2 class="anchored" data-anchor-id="pipeline">Pipeline</h2>
-<p>Scripts desta análise:</p>
+<p>Scripts for this analysis:</p>
 <ul>
-<li>Plotagem: <a href="plot.R"><code>plot.R</code></a></li>
-<li>Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R <a href="https://github.com/mancano-tales/educabr2"><code>educabr2</code></a>.</li>
+<li>Plotting: <a href="plot.R"><code>plot.R</code></a></li>
+<li>Upstream pipeline: no script in this repository — the data comes embedded in the R package <a href="https://github.com/mancano-tales/educabr2"><code>educabr2</code></a>.</li>
 </ul>
 </section>
-<section id="reprodutibilidade" class="level2">
-<h2 class="anchored" data-anchor-id="reprodutibilidade">Reprodutibilidade</h2>
+<section id="reproducibility" class="level2">
+<h2 class="anchored" data-anchor-id="reproducibility">Reproducibility</h2>
 <p><strong>Tier: A (cross-repo)</strong></p>
-<p>Este pipeline depende do pacote R público <code>educabr2</code> (<code>remotes::install_github("mancano-tales/educabr2")</code>), que embute os dados necessários.</p>
+<p>This pipeline depends on the public R package <code>educabr2</code> (<code>remotes::install_github("mancano-tales/educabr2")</code>), which already embeds the necessary data.</p>
 
 
 </section>

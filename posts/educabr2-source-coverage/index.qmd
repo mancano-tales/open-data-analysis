@@ -6,15 +6,25 @@ image: thumbnail.png
 description: "Temporal coverage of the eleven data sources harmonized by educabr2, 1870–2024."
 ---
 
+![](thumbnail.png)
+
+## Overview
+
+This figure explains why the `educabr2` package exists in the first place: it shows the eleven historical data sources it harmonizes, and exactly which years each one covers, from 1870 to 2024. No single source spans the whole period — the package's job is to stitch together official registers, historical compilations, and academic reconstructions into one continuous panel.
+
+## Methodology
+
+Each bar spans the years covered by one bundled source. No single source covers the full century: official registers begin only in 1995, historical compilations stop in 1980, and the gap between them is bridged by academic reconstructions. Harmonizing these overlapping, partial series into one continuous panel is the package's reason to exist.
+
 ## Pipeline
 
-Scripts desta análise:
+Scripts for this analysis:
 
-- Plotagem: [`plot.R`](plot.R)
-- Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R [`educabr2`](https://github.com/mancano-tales/educabr2).
+- Plotting: [`plot.R`](plot.R)
+- Upstream pipeline: no script in this repository — the data comes embedded in the R package [`educabr2`](https://github.com/mancano-tales/educabr2).
 
-## Reprodutibilidade
+## Reproducibility
 
 **Tier: A (cross-repo)**
 
-Este pipeline depende do pacote R público `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), que embute os dados necessários.
+This pipeline depends on the public R package `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), which already embeds the necessary data.
