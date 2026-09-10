@@ -155,7 +155,7 @@ sedap_token <- function() {
 #'
 #' O log grava, para cada chamada: timestamp, SQL exato, parametros de
 #' privacidade, e as estatisticas de perda devolvidas pela API.
-SEDAP_LOG <- here::here("4-DA-Code", "2026-08_SEDAP", "log_consultas_sedap.tsv")
+SEDAP_LOG <- here::here("data-raw", "sedap", "log_consultas_sedap.tsv")
 
 .sedap_registrar <- function(sql, epsilon, delta, linhas, row_loss, group_loss) {
   dir.create(dirname(SEDAP_LOG), showWarnings = FALSE, recursive = TRUE)

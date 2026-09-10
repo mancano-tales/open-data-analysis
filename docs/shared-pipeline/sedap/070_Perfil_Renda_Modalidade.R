@@ -11,7 +11,7 @@ suppressPackageStartupMessages({
   library(tidyr)
 })
 
-source(here::here("4-DA-Code", "2026-08_SEDAP", "010_SEDAP_Cliente.R"))
+source(here::here("shared-pipeline", "sedap", "010_SEDAP_Cliente.R"))
 
 cat("======================================================================\n")
 cat("1. EXTRAINDO Q006 DE INGRESSANTES (2014-2024) POR MODALIDADE E SETOR\n")
@@ -96,7 +96,7 @@ for (ano in anos) {
 
 df_extraido_completo <- bind_rows(lista_resultados)
 
-out_csv <- here::here("4-DA-Code", "2026-08_SEDAP", "060_Analise_ENEM_Renda", "extraido_perfil_renda_modalidade_2014_2024.csv")
+out_csv <- here::here("data-raw", "sedap", "extraido_perfil_renda_modalidade_2014_2024.csv")
 write_csv(df_extraido_completo, out_csv)
 cat(sprintf("\n======================================================================\n"))
 cat(sprintf("[WP1 CONCLUÍDO] Total de registros: %.0f | Salvo em: %s\n", sum(df_extraido_completo$N), out_csv))

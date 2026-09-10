@@ -83,7 +83,7 @@ regiao_de_uf <- function(uf) {
   )
 }
 
-BASE_DIR   <- here::here("4-DA-Code", "2026-06_Harmonizing-BR-Data")
+BASE_DIR   <- here::here("data-raw", "harmonizing-br-data")
 OUTPUT_DIR <- file.path(BASE_DIR, "output")
 # 2026-08-09: cache estendido para 2025 (o IBGE publicou PNADC_2025_visita1 em
 # 2026-05-08). O nome do cache deriva de min/max ano no script 000, por isso

@@ -42,11 +42,11 @@ suppressPackageStartupMessages({
   library(ggplot2); library(scales); library(here)
   library(sidrar); library(ipeadatar)
 })
-source(here::here("4-DA-Code", "utils", "plot_theme.R"))
+source(here::here("shared-pipeline", "utils", "plot_theme.R"))
 theme_set(thesis_theme())
 options(scipen = 999)
 
-BASE_DIR  <- here::here("4-DA-Code", "2026-07_IPCA-Mensalidades")
+BASE_DIR  <- here::here("data-raw", "ipca-mensalidades")
 CACHE_DIR <- file.path(BASE_DIR, "output")
 if (!dir.exists(CACHE_DIR)) dir.create(CACHE_DIR, recursive = TRUE)
 

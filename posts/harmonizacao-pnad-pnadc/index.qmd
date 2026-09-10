@@ -1,0 +1,102 @@
+---
+title: "PNAD / PNAD Contínua Harmonization, 1992–2025"
+date: 2026-09-10
+categories: [PNAD/PNADC, Harmonization, Methodology, Data]
+image: "../decil-acesso-serie-historica/thumbnail.png"
+description: "The harmonized survey panel underlying most of this catalog: PNAD Anual (1992–2015) spliced with PNAD Contínua (2016–2025) into a single analysis-ready dataset."
+---
+
+![The historical tertiary-access series is one direct product of this harmonization — used here as a cover image, not a separate finding.](../decil-acesso-serie-historica/thumbnail.png)
+
+## Overview
+
+Twenty-one of the figures in this catalog do not read from a single household survey — they read from a **harmonized panel** that splices two different surveys into one internally consistent series: PNAD Anual (Brazil's main annual household survey, 1992–2015) and PNAD Contínua (the continuous survey that replaced it, 2016–2025). Combining them lets every figure in this catalog treat 1992–2025 as one comparable stretch of time, instead of two incompatible fragments. This page documents that harmonization itself — the sources, the decisions, the resulting variables, and how the result was validated — rather than any single figure built on top of it.
+
+## Methodology
+
+**Data sources.** PNAD Anual (1992–2011, collected by IBGE) provides annual microdata on income, education, and labor-market outcomes; its rural North was excluded in 2004–2015 for comparability with PNAD Contínua's initial geographic coverage. PNAD Contínua (2012–2025) is the redesigned continuous survey, with a more complex sample design (rotating panels, stratified primary sampling units) requiring exact complex-survey estimation via `survey::svydesign()`. Decennial Demographic Censuses (1991, 2000, 2010, 2022), accessed via the `censobr` R package, are used separately as independent validation points — not as part of the harmonized panel itself.
+
+**Key methodological decisions.** A numbered decision log documents every consequential choice made while harmonizing the two surveys. The most important:
+
+| Decision | Description |
+|---|---|
+| D01 | Deflate all monetary values to January 2024 prices using the IPCA (via `deflateBR`) |
+| D02 | Exclude observations with zero per-capita household income |
+| D03 | Exclude the rural North (Brazilian states 11–16) from PNAD Anual 2004–2015, for comparability with PNAD Contínua's initial coverage |
+| D11 | Exclude 2020–2021 from the harmonized series (pandemic-era PNAD Contínua data-quality issues) |
+| D19 | Tertiary enrollment indicator = currently enrolled (a separate variable from ever-enrolled) |
+| D20 | Treat the PNAD 1992–1999 non-declared-income sentinel code as missing at import, rather than letting it rank at the top of the income distribution |
+| D21 | Retain each survey's own income-aggregation unit across the splice — family in PNAD Anual, household in PNAD Contínua — rather than rebuilding both on a single unit |
+
+**Resulting datasets and variables.** The pipeline produces two analysis-ready files: the 18–24 age subset used for tertiary-access figures, and the full population with valid income, used for income-decile construction. Both are restricted to individuals with strictly positive per-capita household income; PNAD Contínua is restricted to first-interview respondents to avoid its panel structure inflating sample size. The series covers 1992–1999, 2001–2009, 2011–2019, and 2022–2025 — 2000 and 2010 are absent because no PNAD was fielded in census years. Core variables include income (nominal and inflation-adjusted), a tertiary-education access indicator validated against an external reference series to within ±0.3 percentage points nationally, income decile and vintile (computed within each year and source, using sampling weights), and a source flag (2012–2015 exists in both surveys, an intentional overlap kept to validate the splice — any analysis spanning those years must pick one source to avoid double-counting).
+
+**External validation.** The harmonized tertiary-access series was benchmarked against the independent series of Salata et al. (2025), which uses a different data-processing pipeline entirely. After correcting an initial coding error (the original construction had omitted respondents who already completed or withdrew from tertiary education, concentrated in the top income decile), the two series agree closely across the full window:
+
+| Period | Source | Difference vs. reference | Assessment |
+|---|---|---|---|
+| 1992–1999 | PNAD histórica | −0.08 to +0.09 pp | Aligned |
+| 2001–2006 | PNAD Anual | +1.47 to +1.66 pp | Documented — rural North exclusion |
+| 2007–2015 | PNAD Anual | +0.09 to +0.33 pp | Aligned |
+| 2016–2019 | PNAD Contínua | −0.01 to −0.08 pp | Aligned |
+| 2022 | PNAD Contínua | −0.71 pp | Acceptable — rural North retained |
+
+No artificial break was detected at the PNAD/PNAD Contínua splice point (2012–2015), where the two sources independently track the reference series within 0.4 percentage points of each other.
+
+## How to Cite
+
+If you use this harmonized panel or any figure built on it, please cite both the dissertation and this repository.
+
+**Dissertation:**
+
+> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Master's thesis, Graduate Program in Political Science, University of São Paulo.
+
+```bibtex
+@mastersthesis{Mancano2026,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Graduate Program in Political Science}
+}
+```
+
+**This harmonized panel:**
+
+> Mançano, Tales. 2026. "PNAD / PNAD Contínua Harmonization, 1992–2025." In *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts/harmonizacao-pnad-pnadc/`.
+
+```bibtex
+@misc{Mancano2026OpenDataAnalysis,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Open Data Analysis: PNAD / PNAD Contínua Harmonization, 1992--2025},
+  year         = {2026},
+  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
+  note         = {posts/harmonizacao-pnad-pnadc/}
+}
+```
+
+A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the repository URL above.
+
+## Pipeline
+
+Scripts for this harmonization, run in order:
+
+- [`shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R`](../../shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R) — downloads and consolidates PNAD Contínua, 2012–2025
+- [`shared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R`](../../shared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R) — imports PNAD Anual 2001–2015 from raw SAS-format microdata
+- [`shared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R`](../../shared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R) — imports PNAD Anual 1992–1999
+- [`shared-pipeline/pnadc/021_PNAD_Anual_Import_Com_Renda_Zero.R`](../../shared-pipeline/pnadc/021_PNAD_Anual_Import_Com_Renda_Zero.R) — alternative PNAD Anual import, used by a subset of figures
+- [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R) — splices everything above into the two harmonized analytic datasets
+- [`shared-pipeline/pnadc/238_Serie_Desigualdade_Oficial.R`](../../shared-pipeline/pnadc/238_Serie_Desigualdade_Oficial.R) — derives the official income-inequality series (Gini, Palma) from the harmonized panel
+- [`shared-pipeline/censo/040_Censo_Pontos_Validacao.R`](../../shared-pipeline/censo/040_Censo_Pontos_Validacao.R) — independent Demographic Census validation points (not part of the panel itself)
+
+Or run [`shared-pipeline/build_public_data.R`](../../shared-pipeline/build_public_data.R), which sources these in the correct order automatically.
+
+**Figures in this catalog built on this harmonization:** every post tagged "PNAD/PNADC" links back to this page from its own Pipeline section.
+
+## Reproducibility
+
+**Tier: A**
+
+This pipeline uses only public data, accessible via package/API without any credential (PNADcIBGE, censobr). Run the scripts above — or `shared-pipeline/build_public_data.R` — in order to reconstruct the harmonized panel from scratch.

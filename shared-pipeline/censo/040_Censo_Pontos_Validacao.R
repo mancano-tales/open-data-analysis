@@ -52,7 +52,7 @@ suppressPackageStartupMessages({
 
 options(scipen = 999)
 
-BASE_DIR <- here::here("4-DA-Code", "2026-06_Harmonizing-BR-Data")
+BASE_DIR <- here::here("data-raw", "harmonizing-br-data")
 OUTPUT_DIR <- here::here("6-images-tables", "graphs")
 PARQUET_PNAD <- file.path(BASE_DIR, "output", "Microdados_Jovens_18_24_1992_2025.parquet")
 SALATA_PATH <- here::here("data-raw", "Salata-etal-2025", "Agregada.parquet")

@@ -42,7 +42,7 @@ suppressPackageStartupMessages({
   library(here)
 })
 
-source(here::here("4-DA-Code", "2026-08_SEDAP", "010_SEDAP_Cliente.R"))
+source(here::here("shared-pipeline", "sedap", "010_SEDAP_Cliente.R"))
 
 OUT_DIR <- here::here("data-raw", "INEP", "derived")
 dir.create(OUT_DIR, showWarnings = FALSE, recursive = TRUE)

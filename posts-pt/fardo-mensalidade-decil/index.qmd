@@ -55,6 +55,9 @@ Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que
 
 ## Pipeline
 
+Esta figura usa o painel da [Harmonização PNAD / PNAD Contínua, 1992–2025](../harmonizacao-pnad-pnadc/).
+
+
 Scripts desta análise:
 
 - Plotagem: [`plot.R`](../../posts/fardo-mensalidade-decil/plot.R)

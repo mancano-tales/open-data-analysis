@@ -47,7 +47,7 @@ suppressPackageStartupMessages({
 })
 options(scipen = 999)
 
-BASE_DIR <- here::here("4-DA-Code", "2026-06_Harmonizing-BR-Data")
+BASE_DIR <- here::here("data-raw", "harmonizing-br-data")
 OUT      <- file.path(BASE_DIR, "output")
 PQ_90    <- file.path(OUT, "PNAD_Anual_1992_1999.parquet")
 PQ_00    <- file.path(OUT, "PNAD_Anual_2001_2015_com_zero.parquet")

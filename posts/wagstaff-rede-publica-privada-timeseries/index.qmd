@@ -55,6 +55,9 @@ A permanent version (Git tag + Zenodo DOI) will be linked here once the disserta
 
 ## Pipeline
 
+This figure draws on the [PNAD / PNAD Contínua Harmonization, 1992–2025](../harmonizacao-pnad-pnadc/) panel.
+
+
 Scripts for this analysis:
 
 - Plotting: [`plot.R`](plot.R) — self-contained script: downloads and processes the microdata directly, without depending on other scripts in this repository.

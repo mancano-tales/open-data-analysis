@@ -19,7 +19,7 @@ library(rvest)
 
 options(scipen = 999)
 
-BASE_DIR   <- here::here("4-DA-Code", "2026-06_Harmonizing-BR-Data")
+BASE_DIR   <- here::here("data-raw", "harmonizing-br-data")
 OUTPUT_DIR <- file.path(BASE_DIR, "output")
 CACHE_DIR  <- here::here("data-raw", "pnad_anual_raw")
 dir.create(CACHE_DIR, showWarnings = FALSE, recursive = TRUE)
