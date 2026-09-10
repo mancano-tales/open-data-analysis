@@ -67,6 +67,6 @@ Scripts for this analysis:
 
 ## Reproducibility
 
-**Tier: A**
+**Tier: A/B**
 
-This pipeline uses only public data, accessible via package/API without any credential (PNADcIBGE, censobr, sidrar, ipeadatar). Run the scripts in `shared-pipeline/` in numeric order to reconstruct the intermediate data.
+The PNAD/PNADC series and the 1991, 2000, and 2010 census diamonds are Tier A: public data, accessible via package/API without any credential (PNADcIBGE, censobr, sidrar, ipeadatar). The 2022 census diamond is Tier B: it depends on the sample microdata's controlled-access release from IBGE, requested manually at [microdados.ibge.gov.br](https://microdados.ibge.gov.br/) — `censobr::import_microdata22_controlado()` only processes a zip file you already have in hand, it does not fetch it for you. Run the scripts in `shared-pipeline/` in numeric order to reconstruct the intermediate data; reproducing everything except the 2022 diamond needs no prior request.

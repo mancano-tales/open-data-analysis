@@ -67,6 +67,6 @@ Scripts desta análise:
 
 ## Reprodutibilidade
 
-**Tier: A**
+**Tier: A/B**
 
-Este pipeline usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários.
+A série PNAD/PNADC e os losangos dos Censos de 1991, 2000 e 2010 são Tier A: dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). O losango do Censo 2022 é Tier B: depende dos microdados da amostra em acesso controlado do IBGE, solicitados manualmente em [microdados.ibge.gov.br](https://microdados.ibge.gov.br/) — `censobr::import_microdata22_controlado()` só processa um arquivo zip que você já tem em mãos, não o baixa por conta própria. Rode os scripts em `shared-pipeline/` na ordem numérica para reconstruir os dados intermediários; reproduzir tudo exceto o losango de 2022 não exige nenhuma solicitação prévia.
