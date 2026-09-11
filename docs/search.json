@@ -1202,5 +1202,40 @@
     "title": "Inequality in Tertiary Education Access and Enrollment (Wagstaff Index)",
     "section": "Reproducibility",
     "text": "Reproducibility\nTier: A\nThis pipeline uses only public data, accessible via package/API without any credential (PNADcIBGE, censobr, sidrar, ipeadatar). Run the scripts in shared-pipeline/ in numeric order to reconstruct the intermediate data."
+  },
+  {
+    "objectID": "posts/rra-renda-decil-quintil/index.html#overview",
+    "href": "posts/rra-renda-decil-quintil/index.html#overview",
+    "title": "Adjusted Relative Risk of Tertiary Education Access by Income (Decile and Quintile)",
+    "section": "Overview",
+    "text": "Overview\nThis figure tracks the adjusted relative risk (RRA) of ever enrolling in tertiary education, for Brazilians aged 18-24, comparing the richest and poorest strata of the household per-capita income distribution — decile 10 versus decile 1 on the left, quintile 5 versus quintile 1 on the right — from 1992 to 2025. The RRA is the ratio between the model-adjusted probability of access for the top stratum and the bottom stratum, holding age, sex, race, region, and urban/rural location fixed across strata. It is an adapted replication of the REN (income) panel of Figure 3 in Salata, Bringhenti & Miranda (2025), Dados, which uses the same logit + adjusted-predictions design but a narrower population (18-24-year-olds still living with their parents) and stops in 2022."
+  },
+  {
+    "objectID": "posts/rra-renda-decil-quintil/index.html#methodology",
+    "href": "posts/rra-renda-decil-quintil/index.html#methodology",
+    "title": "Adjusted Relative Risk of Tertiary Education Access by Income (Decile and Quintile)",
+    "section": "Methodology",
+    "text": "Methodology\nFor each year, a logit model of ens_sup (ever enrolled in tertiary education) is fit on income decile/quintile plus age, sex, race, region, and urban/rural status, with survey weights. The RRA is the ratio of the average adjusted predicted probability for the top stratum over the bottom stratum — computed with marginaleffects::avg_predictions() and hypotheses(), the R equivalent of the Stata margins/nlcom pair the original article uses. Confidence intervals are computed via the delta method on the log scale (log(top) - log(bottom), then exponentiated): applying the delta method directly on the ratio scale produces implausible intervals — including negative bounds, impossible for a probability ratio — whenever the poorest stratum’s estimated access is very close to zero, which is common in the 1990s (e.g. the poorest decile’s raw access rate was 0.1% in 1992). Years without a usable PNAD/PNADC estimate (1994, 2000, 2010 — no survey; 2020-2021 — excluded for pandemic-era data-quality reasons) show as a break in the line, following the same convention as this repository’s Wagstaff index time series post; the underlying data file does carry a linearly interpolated value for those years (replicating footnote 21 of the original article), but it is not plotted.\nDifferences from Salata, Bringhenti & Miranda (2025). Two deliberate design choices make this an adapted replication rather than an exact one, and the RRA magnitude does not match the published Figure 3 point for point: (1) this figure uses the general population of 18-24-year-olds, not only those still living with their parents (the original article’s rec_mod restriction, needed there because the model also requires the household head’s own characteristics) — for consistency with every other figure in this repository’s PNAD/PNADC panel; (2) as a consequence, income decile/quintile cut points are computed over the general population rather than within that narrower subsample, which — especially in the 1990s, when the poorest stratum’s access was close to zero — can widen the gap further. Comparing against the article’s own reported values, the gap between this replication and the original is large in the noisy 1990s (roughly 3-7x), moderate around 2011 (roughly 2.5x, 12.3 here versus 5.0 in the article), and nearly closes by 2017-2022 (roughly 1.15-1.25x) — the ratio is not constant nor does it grow over time, it shrinks as both series approach the present."
+  },
+  {
+    "objectID": "posts/rra-renda-decil-quintil/index.html#how-to-cite",
+    "href": "posts/rra-renda-decil-quintil/index.html#how-to-cite",
+    "title": "Adjusted Relative Risk of Tertiary Education Access by Income (Decile and Quintile)",
+    "section": "How to Cite",
+    "text": "How to Cite\nIf you use this figure or its underlying pipeline, please cite both the dissertation and this repository.\nDissertation:\n\nMançano, Tales. 2026. Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s). Master’s thesis, Graduate Program in Political Science, University of São Paulo.\n\n@mastersthesis{Mancano2026,\n  author = {Man\\c{c}ano, Tales},\n  title  = {Inequality in Access to Tertiary Education in Brazil: Household\n            Incomes, Reforming Policies, and the Politics of Who Gets In\n            (1990s--2020s)},\n  school = {University of S\\~{a}o Paulo},\n  year   = {2026},\n  type   = {Master's thesis},\n  note   = {Graduate Program in Political Science}\n}\nThis figure and pipeline:\n\nMançano, Tales. 2026. “Adjusted Relative Risk of Tertiary Education Access by Income (Decile and Quintile).” In Open Data Analysis. https://github.com/mancano-tales/open-data-analysis, posts/rra-renda-decil-quintil/.\n\n@misc{Mancano2026OpenDataAnalysis,\n  author       = {Man\\c{c}ano, Tales},\n  title        = {Open Data Analysis: Adjusted Relative Risk of Tertiary Education Access by Income (Decile and Quintile)},\n  year         = {2026},\n  howpublished = {\\url{https://github.com/mancano-tales/open-data-analysis}},\n  note         = {posts/rra-renda-decil-quintil/}\n}\nA permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the repository URL above.\nOriginal figure design replicated here:\n\nSalata, André Ricardo; Bringhenti, Taiane Fabiele da Silva; Miranda, Ana Carolina Homem de. 2025. “Origem Social e Acesso ao Ensino Superior no Brasil entre 1992 e 2022.” Dados: Revista de Ciências Sociais 68 (3): e20230188. https://doi.org/10.1590/dados.2025.68.3.376."
+  },
+  {
+    "objectID": "posts/rra-renda-decil-quintil/index.html#pipeline",
+    "href": "posts/rra-renda-decil-quintil/index.html#pipeline",
+    "title": "Adjusted Relative Risk of Tertiary Education Access by Income (Decile and Quintile)",
+    "section": "Pipeline",
+    "text": "Pipeline\nThis figure draws on the PNAD / PNAD Contínua Harmonization, 1992–2025 panel.\nScripts for this analysis, run in order:\n\nshared-pipeline/pnadc/035_Splice_Microdados.R — builds the harmonized panel, including income decile/quintile and the demographic controls used below.\nshared-pipeline/pnadc/037_Modelos_Logit_RRA_Renda.R — fits the 58 yearly logit models (decile and quintile) and computes the RRA with confidence intervals.\nPlotting: plot.R"
+  },
+  {
+    "objectID": "posts/rra-renda-decil-quintil/index.html#reproducibility",
+    "href": "posts/rra-renda-decil-quintil/index.html#reproducibility",
+    "title": "Adjusted Relative Risk of Tertiary Education Access by Income (Decile and Quintile)",
+    "section": "Reproducibility",
+    "text": "Reproducibility\nTier: A\nThis pipeline uses only public data, accessible via package/API without any credential (PNADcIBGE). Run the scripts in shared-pipeline/pnadc/ in numeric order to reconstruct the intermediate data, then plot.R."
   }
 ]
