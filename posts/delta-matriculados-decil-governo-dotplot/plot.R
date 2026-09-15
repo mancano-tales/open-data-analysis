@@ -99,8 +99,12 @@ df_dec_anual <- pnad_anual |>
 cat("Carregando cache PNADC...\n")
 raw_pnadc <- readRDS(CACHED_PNADC)
 names(raw_pnadc) <- tolower(names(raw_pnadc))
-raw_pnadc <- raw_pnadc |>
-  filter(!(as.integer(uf) %in% c(11L, 12L, 13L, 14L, 15L, 16L) & as.integer(local) == 2L))
+# NAO excluir rural Norte do cache (2026-09-15, plano de correcao WP5): a
+# serie de referencia retem o rural Norte na PNADC (codebook B.3) e o `decil`
+# herdado do parquet foi calculado com ele. O filtro antigo
+# (`!(uf %in% 11:16 & local == 2)`) derrubava ~1.500-2.100 linhas/ano no
+# inner_join em silencio e deixava esta figura num universo diferente de
+# 041H/041K/245D/097D (nacional +0,4 pp; D1 2019: 5,66 vs 5,39).
 raw_pnadc_f <- raw_pnadc |>
   filter(
     !is.na(peso), peso > 0, !is.na(renda_dom_pcta), renda_dom_pcta > 0,
@@ -120,6 +124,16 @@ pnadc_d <- inner_join(pnad_cont_p, raw_pnadc_p,
   by = c("ano", "idade", "peso", "renda_dom_pcta", "ens_sup_a", "occ")
 ) |>
   select(-occ)
+
+# Merge parcial silencioso enviesaria os SEs — abortar, nao avisar (mesma
+# trava de 041H/041K; acrescentada em 2026-09-15, WP5).
+if (nrow(pnadc_d) != nrow(pnad_cont)) {
+  stop(sprintf(
+    "Mismatch no merge das variaveis de desenho: esperado %d, obtido %d.",
+    nrow(pnad_cont), nrow(pnadc_d)
+  ))
+}
+cat(sprintf("  Merge exato: %s linhas PNADC\n", format(nrow(pnadc_d), big.mark = ".")))
 
 cat("Calculando SE com desenho complexo para PNADC...\n")
 pnadc_decil <- lapply(sort(unique(pnadc_d$ano)), function(yr) {

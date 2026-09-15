@@ -30,12 +30,13 @@ Vinte e uma das figuras deste catálogo não leem de uma única pesquisa domicil
 
 **Bancos e variáveis resultantes.** O pipeline produz dois arquivos prontos para análise: o subconjunto de 18–24 anos usado nas figuras de acesso ao ensino superior, e a população total com renda válida, usada na construção dos decis de renda. Ambos são restritos a indivíduos com renda domiciliar per capita estritamente positiva; a PNAD Contínua é restrita aos respondentes da primeira entrevista para evitar que sua estrutura de painel infle o tamanho da amostra. A série cobre 1992–1999, 2001–2009, 2011–2019 e 2022–2025 — 2000 e 2010 estão ausentes porque não houve PNAD em anos de Censo. As variáveis centrais incluem renda (nominal e corrigida pela inflação), um indicador de acesso ao ensino superior validado contra uma série de referência externa com precisão de ±0,3 pontos percentuais no nível nacional, decil e vintil de renda (calculados dentro de cada ano e fonte, usando pesos amostrais), e uma flag de fonte (2012–2015 existe nas duas pesquisas, uma sobreposição intencional mantida para validar a emenda — qualquer análise que atravesse esses anos precisa escolher uma única fonte para não contar em dobro).
 
-**Validação externa.** A série harmonizada de acesso ao ensino superior foi comparada contra a série independente de Salata et al. (2025), que usa um pipeline de processamento de dado inteiramente diferente. Depois de corrigir um erro de codificação inicial (a construção original omitia respondentes que já haviam concluído ou abandonado o ensino superior, concentrado no decil de renda mais alto), as duas séries concordam de perto em toda a janela:
+**Validação externa.** A série harmonizada de acesso ao ensino superior foi comparada contra a série independente de Salata et al. (2025), que usa um pipeline de processamento de dado inteiramente diferente. Depois de corrigir dois erros de codificação — a construção original omitia respondentes que já haviam concluído ou abandonado o ensino superior, concentrado no decil de renda mais alto; e, achado numa auditoria de código em 2026-09-15, os dicionários da PNAD de 2001–2006 codificam o pré-vestibular sob o número que os dicionários dos anos 1990 usam para mestrado/doutorado, de modo que por seis anos vestibulandos foram contados como ingressantes no superior (cerca de +1,5 ponto percentual no nacional, até +4,8 no decil mais alto) — as duas séries concordam de perto em toda a janela:
 
 | Período | Fonte | Diferença vs. referência | Avaliação |
 |---|---|---|---|
 | 1992–1999 | PNAD histórica | −0,08 a +0,09 pp | Alinhado |
-| 2001–2006 | PNAD Anual | +1,47 a +1,66 pp | Documentado — exclusão do Norte rural |
+| 2001–2003 | PNAD Anual | −0,16 a −0,04 pp | Alinhado |
+| 2004–2006 | PNAD Anual | +0,16 a +0,24 pp | Alinhado — exclusão do Norte rural |
 | 2007–2015 | PNAD Anual | +0,09 a +0,33 pp | Alinhado |
 | 2016–2019 | PNAD Contínua | −0,01 a −0,08 pp | Alinhado |
 | 2022 | PNAD Contínua | −0,71 pp | Aceitável — Norte rural mantido |
@@ -88,6 +89,7 @@ Scripts desta harmonização, em ordem de execução:
 - [`shared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R`](../../shared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R) — importa a PNAD Anual 1992–1999
 - [`shared-pipeline/pnadc/021_PNAD_Anual_Import_Com_Renda_Zero.R`](../../shared-pipeline/pnadc/021_PNAD_Anual_Import_Com_Renda_Zero.R) — importação alternativa da PNAD Anual, usada por um subconjunto de figuras
 - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R) — emenda tudo acima nos dois bancos analíticos harmonizados
+- [`shared-pipeline/utils/codigos_curso_pnad.R`](../../shared-pipeline/utils/codigos_curso_pnad.R) — códigos de curso da PNAD Anual por regime de dicionário (1992–99 / 2001–06 / 2007+), carregado pelo 035 e pelos posts por rede de ensino
 - [`shared-pipeline/pnadc/238_Serie_Desigualdade_Oficial.R`](../../shared-pipeline/pnadc/238_Serie_Desigualdade_Oficial.R) — deriva a série oficial de desigualdade de renda (Gini, Palma) a partir do painel harmonizado
 - [`shared-pipeline/censo/040_Censo_Pontos_Validacao.R`](../../shared-pipeline/censo/040_Censo_Pontos_Validacao.R) — pontos de validação independentes via Censo Demográfico (não fazem parte do painel em si)
 

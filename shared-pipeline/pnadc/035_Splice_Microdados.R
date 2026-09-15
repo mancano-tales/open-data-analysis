@@ -38,6 +38,10 @@ library(deflateBR)
 library(arrow)
 library(here)
 
+# Códigos de curso da PNAD Anual por regime de dicionário (D22, 2026-09-15):
+# cur_superior(), cur_pre_vestibular(), ant_superior().
+source(here::here("shared-pipeline", "utils", "codigos_curso_pnad.R"))
+
 options(scipen = 999)
 
 # ── PARÂMETROS ────────────────────────────────────────────────────────────────
@@ -106,20 +110,30 @@ for (df_check in list(df_90, df_00)) {
   }
 }
 
-# ── Variáveis de educação PNAD (D19) ─────────────────────────────────────────
+# ── Variáveis de educação PNAD (D19 + D22) ───────────────────────────────────
 # Construídas aqui a partir das colunas brutas preservadas nos parquets 020/050.
-# Codificações confirmadas nos dicionários oficiais do IBGE (CATEGORI.TXT 1992;
-# "Dicionário de variáveis de pessoas - 2007.xls") e validadas empiricamente:
+# Os códigos de curso por regime de dicionário (TRÊS regimes, não dois) vivem
+# em R/utils/codigos_curso_pnad.R (cur_superior, cur_pre_vestibular,
+# ant_superior) — carregado no topo deste script e também usado por
+# 2026-05_PNADcIBGE/042 e 043. Resumo (dicionários oficiais do IBGE):
 #
 #   Curso ATUAL  (V0603 1992-2006; V6003 2007+ — no parquet 2001-15 são cópias):
-#     1992-2006: 1=reg.fund, 2=reg.médio, 3=supl.fund, 4=supl.médio, 5=SUPERIOR,
-#                6=alfab.adultos(92-99: alfab; 01-06 idem), 8=pré-vestibular, 9=MESTRADO/DOUT
+#     1992-1999 (1 dígito): 5=SUPERIOR, 8=pré-vestibular, 9=MESTRADO/DOUT
+#     2001-2006 (2 dígitos): 5=SUPERIOR, 7=creche, 8=PRÉ-ESCOLAR, 9=PRÉ-VESTIBULAR,
+#                10=MESTRADO/DOUT
 #     2007+    : 1=reg.fund, 2=reg.médio, 3=EJA fund, 4=EJA médio, 5=SUPERIOR,
 #                6=alfab.adultos, 7=creche, 8=CA, 9=MATERNAL/JARDIM(!), 10=pré-vest,
 #                11=MESTRADO/DOUT  (não existem códigos 12-14)
 #     ⚠ Correção D19: o 020 aplicava {5,9} a todos os anos; em 2007+ o código 9 é
 #       "maternal" — crianças eram marcadas ens_sup=1 na base de todas as idades.
-#       Aqui: superior atual = {5,9} até 2006 e {5,11} em 2007+.
+#     ⚠ Correção D22 (2026-09-15): até aqui este script usava {5,9} para todo
+#       ano < 2007, mas em 2001-2006 o 9 é PRÉ-VESTIBULAR (idade média 22,0) e o
+#       mestrado é 10 (idade média 35,1) — ver "Dicionário de variáveis de
+#       pessoas - 2001/2005.xls". Efeito do erro: ens_sup e ens_sup_a dos 18-24
+#       inflados em +1,3 a +1,8 pp nacionais (até +4,8 pp no D10) em 2001-2006 —
+#       a "divergência vs Salata" que o Apêndice B.4 atribuía ao rural Norte.
+#       Do mesmo modo, o 8 (tratado como pré-vestibular em ing_medio) é
+#       pré-escolar em 2001-2006: 81 mil crianças ficavam com ing_medio=1.
 #   Curso ANTERIOR (V0607 1992-2006; V6007 2007+):
 #     1992-2006: 1=elementar, 2=médio 1ºciclo(ginásio), 3=médio 2ºciclo(colegial),
 #                4=1ºgrau, 5=2ºgrau, 6=SUPERIOR, 7=MESTRADO/DOUT
@@ -139,20 +153,16 @@ df_pnad <- bind_rows(df_90, df_00) %>%   # bind_rows preenche V6003/V6007 com NA
                         suppressWarnings(as.integer(V6007)),
                         suppressWarnings(as.integer(V0607))),
     # ── ens_sup_a: matriculado no ensino superior AGORA (inclui pós, como ens_sup)
-    ens_sup_a = as.integer(
-      !is.na(freq_) & freq_ & !is.na(cur_) &
-      ((ano <  2007 & cur_ %in% c(5L, 9L)) |
-       (ano >= 2007 & cur_ %in% c(5L, 11L)))
-    ),
-    # ── ens_sup: ingressou no superior em qualquer momento (D10 + correção D19)
-    # Recomputado com os códigos corrigidos por regime. Para 18-24 é idêntico ao
-    # ens_sup dos parquets 020/050 (validado vs Salata); difere apenas nas
-    # crianças 2007+ em maternal (falso positivo do código antigo).
+    # Códigos por regime (1992-99 / 2001-06 / 2007+) em codigos_curso_pnad.R (D22).
+    ens_sup_a = as.integer(!is.na(freq_) & freq_ & cur_superior(ano, cur_)),
+    # ── ens_sup: ingressou no superior em qualquer momento (D10 + D19 + D22)
+    # Recomputado com os códigos corrigidos por regime. Difere do ens_sup dos
+    # parquets 020/050 (a) nas crianças 2007+ em maternal (D19) e (b) nos
+    # pré-vestibulandos de 2001-2006, que o código antigo contava como
+    # universitários (D22).
     ens_sup = as.integer(
       ens_sup_a == 1L |
-      (!is.na(ja_freq_) & ja_freq_ & !is.na(ant_) &
-       ((ano <  2007 & ant_ %in% c(6L, 7L)) |
-        (ano >= 2007 & ant_ %in% c(8L, 9L))))
+      (!is.na(ja_freq_) & ja_freq_ & ant_superior(ano, ant_))
     ),
     # ── ing_medio: ingressou no ensino médio alguma vez ──────────────────────
     # = cursa médio agora (regular ou EJA/supletivo) ∪ curso anterior ≥ colegial
@@ -160,9 +170,7 @@ df_pnad <- bind_rows(df_90, df_00) %>%   # bind_rows preenche V6003/V6007 com NA
     #   ∪ ens_sup (quem entrou no superior passou pelo médio)
     ing_medio = as.integer(
       (!is.na(freq_) & freq_ & !is.na(cur_) &
-        (cur_ %in% c(2L, 4L) |
-         (ano <  2007 & cur_ == 8L) |        # pré-vestibular (92-2006)
-         (ano >= 2007 & cur_ == 10L))) |     # pré-vestibular (2007+)
+        (cur_ %in% c(2L, 4L) | cur_pre_vestibular(ano, cur_))) |
       (!is.na(ja_freq_) & ja_freq_ & !is.na(ant_) &
         ((ano <  2007 & ant_ %in% c(3L, 5L, 6L, 7L)) |
          (ano >= 2007 & ant_ %in% c(3L, 5L, 7L, 8L, 9L)))) |

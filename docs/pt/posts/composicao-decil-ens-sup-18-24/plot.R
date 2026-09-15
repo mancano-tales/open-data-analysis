@@ -108,7 +108,7 @@ COR_TEXTO <- c(
 cat("Carregando parquet...\n")
 dados <- arrow::read_parquet(
   parquet_path,
-  col_select = c("ano", "fonte", "idade", "peso", "renda_dom_pcta", cfg$var)
+  col_select = c("ano", "fonte", "idade", "peso", "renda_dom_pcta", "decil", cfg$var)
 ) |>
   filter(
     idade >= 18L, idade <= cfg$idade_max,
@@ -126,16 +126,17 @@ cat(sprintf("  %s obs em %d anos\n",
 # ==============================================================================
 # 2. CALCULO DE DECIS E COMPOSICAO
 # ==============================================================================
+# Decis NACIONAIS por ano x fonte (D18), os mesmos de 041H/041K/097D/232/236,
+# lidos do parquet. Ate 2026-09-15 esta figura recalculava decis DENTRO da
+# amostra 18-24 (renda nominal), o que chamava de "D10" um grupo diferente
+# do das figuras-irmas: so 6,2% dos 18-24 estao no D10 nacional em 2025, e a
+# fatia de estudantes vinda do D10 era 23,3% (decis dos jovens) contra 15,4%
+# (decis nacionais). Tambem usava `include_lowest =` (grafia errada, cai em
+# `...` de cut() e e ignorada). Decisao do autor: decis nacionais (plano de
+# correcao 2026-09-15, WP6).
 base <- dados |>
-  mutate(sup_total = coalesce(as.integer(.data[[cfg$var]]), 0L)) |>
-  group_by(ano) |>
-  mutate(decil = as.integer(as.character(cut(
-    renda_dom_pcta,
-    breaks = Hmisc::wtd.quantile(renda_dom_pcta, weights = peso,
-                                  probs = seq(0, 1, 0.1), na.rm = TRUE),
-    labels = 1:10, include_lowest = TRUE
-  )))) |>
-  ungroup() |>
+  mutate(sup_total = coalesce(as.integer(.data[[cfg$var]]), 0L),
+         decil = as.integer(decil)) |>
   filter(!is.na(decil))
 
 comp <- base |>
@@ -186,9 +187,11 @@ p <- ggplot(comp, aes(x = ano, y = share_mat, fill = decil_f)) +
     show.legend = FALSE
   ) +
 
-  # Linhas horizontais de referencia de equidade (cada decil = 10% se perfeito)
-  geom_hline(yintercept = seq(10, 90, 10),
-             colour = "white", linewidth = 0.25, linetype = "dashed", alpha = 0.5) +
+  # As linhas tracejadas de "equidade perfeita" (10% por decil) sairam em
+  # 2026-09-15 (WP6, decisao do autor): com decis NACIONAIS a referencia de
+  # equidade nao e 10% — e a fatia da populacao 18-24 que cai em cada decil
+  # (6,2% no D10 em 2025), que muda por ano. A leitura "10% = equidade" so
+  # valia para os decis calculados dentro da amostra de jovens.
 
   # Linhas verticais de transicao de governo
   # Transicoes de governo NAO recebem vertical tracejada (padrao do 097D,
@@ -282,7 +285,8 @@ salvar_grafico(p,
 var_lbl_curto <- if (cfg$var == "ens_sup") "ever enrolled" else "currently enrolled"
 nota <- paste0(
   "Each bar is the share of students aged 18--", cfg$idade_max,
-  " (", var_lbl_curto, ") from each income decile. Dashed lines: perfect equity (10\\% each). ",
+  " (", var_lbl_curto, ") from each national income decile --- the same deciles as the ",
+  "access-rate series, computed over the full population of each survey year. ",
   "Government labels abbreviated for short periods (D.~= Dilma II; L.~= Lula III)."
 )
 

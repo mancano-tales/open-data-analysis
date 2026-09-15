@@ -251,15 +251,23 @@ processar_ano_pnadc <- function(ano, entrevista = 1) {
         #   2015:      ens_sup_a = 1 if (V3003A>=8 & V3003A<=11) | (V3003>=7 & V3003<=9)
         #   2016+:     ens_sup_a = 1 if V3003A >= 8 & V3003A <= 11
         # V3003_curso + V3003_curso_old (2015 apenas) cobrem todos os casos
+        # CADA `if` ENTRE PARENTESES (correcao 2026-09-15, plano de correcao
+        # da auditoria, WP1): `if` tem a menor precedencia do R, entao
+        # `A | if (c) B else FALSE | C` parseia como
+        # `A | (if (c) B else (FALSE | C))` — com c = TRUE (so 2015, o ano
+        # com os dois questionarios) o termo C e descartado. Foi isso que
+        # zerou o "ja frequentou" de 2015 no cache _2012_2025 (ens_sup =
+        # ens_sup_a = 18,45% em vez de 23,83%). O 001 remenda caches ja
+        # gerados; este bloco garante que o proximo cache nasca certo.
         ens_sup_a = as.integer(
           # Questionário novo (2016+) ou único (2012-2014)
           (!is.na(V3002) & as.numeric(V3002) == 1 &
            !is.na(V3003_curso) & V3003_curso %in% sup_freq_codes) |
           # 2015: respondentes do questionário antigo (V3003_curso_old só existe em 2015)
-          if (has_old_codes) {
+          (if (has_old_codes) {
             !is.na(V3002) & as.numeric(V3002) == 1 &
             !is.na(V3003_curso_old) & V3003_curso_old %in% 7:9
-          } else { FALSE }
+          } else { FALSE })
         ),
 
         # ── ENSINO SUPERIOR — INGRESSOU EM QUALQUER MOMENTO (= ens_sup Salata) ──
@@ -270,15 +278,15 @@ processar_ano_pnadc <- function(ano, entrevista = 1) {
           # Atualmente no superior (quest. novo OU antigo)
           (!is.na(V3002) & as.numeric(V3002) == 1 &
            !is.na(V3003_curso) & V3003_curso %in% sup_freq_codes) |
-          if (has_old_codes) {
+          (if (has_old_codes) {
             !is.na(V3002) & as.numeric(V3002) == 1 &
             !is.na(V3003_curso_old) & V3003_curso_old %in% 7:9
-          } else { FALSE } |
+          } else { FALSE }) |
           # Já frequentou superior (quest. novo OU antigo)
           (!is.na(V3009_curso) & V3009_curso %in% sup_nfreq_codes) |
-          if (has_old_codes) {
+          (if (has_old_codes) {
             !is.na(V3009_curso_old) & V3009_curso_old %in% 10:12
-          } else { FALSE }
+          } else { FALSE })
         ),
 
         # ── ENSINO SUPERIOR COMPLETO ──────────────────────────────────────

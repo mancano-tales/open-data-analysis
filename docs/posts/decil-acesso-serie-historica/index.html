@@ -244,8 +244,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="reproducibility" class="level2">
 <h2 class="anchored" data-anchor-id="reproducibility">Reproducibility</h2>
-<p><strong>Tier: A</strong></p>
-<p>This pipeline uses only public data, accessible via package/API without any credential (PNADcIBGE, censobr, sidrar, ipeadatar). Run the scripts in <code>shared-pipeline/</code> in numeric order to reconstruct the intermediate data.</p>
+<p><strong>Tier: A/B</strong></p>
+<p>The PNAD/PNADC series and the 1991, 2000, and 2010 census diamonds are Tier A: public data, accessible via package/API without any credential (PNADcIBGE, censobr, sidrar, ipeadatar). The 2022 census diamond is Tier B: it depends on the sample microdata’s controlled-access release from IBGE, requested manually at <a href="https://microdados.ibge.gov.br/">microdados.ibge.gov.br</a> — <code>censobr::import_microdata22_controlado()</code> only processes a zip file you already have in hand, it does not fetch it for you. Run the scripts in <code>shared-pipeline/</code> in numeric order to reconstruct the intermediate data; reproducing everything except the 2022 diamond needs no prior request.</p>
 
 
 </section>

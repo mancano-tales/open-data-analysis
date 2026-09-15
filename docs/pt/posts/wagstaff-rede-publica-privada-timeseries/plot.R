@@ -57,6 +57,8 @@ suppressPackageStartupMessages({
   library(patchwork)
 })
 source(here::here("shared-pipeline", "utils", "plot_theme.R"))
+# Codigos de curso da PNAD Anual por regime de dicionario (D22): cur_superior().
+source(here::here("shared-pipeline", "utils", "codigos_curso_pnad.R"))
 theme_set(thesis_theme())
 
 PNAD_RAW_DIR <- file.path(dirname(here::here()), "5-data", "pnad_anual_raw")
@@ -126,17 +128,29 @@ extrair_pnad_anual <- function(ano) {
   # corrigidos em 020_PNAD_Anual_Manual_Import_2001_2015.R em 2026-06-30
   # (ver aquele script e 042 para o achado completo).
   cur_ <- coalesce(suppressWarnings(as.integer(df$V6003)), suppressWarnings(as.integer(df$V0603)))
-  cur_codes <- if (ano >= 2007) c(5L, 11L) else c(5L, 9L)
+  # Codigos de superior por regime (1992-99 / 2001-06 / 2007+) em
+  # codigos_curso_pnad.R (D22, 2026-09-15). O `if (ano >= 2007) c(5, 11) else
+  # c(5, 9)` anterior contava pre-vestibulandos (cod. 9 em 2001-2006) como
+  # universitarios.
 
   df %>%
     mutate(
       ano_ = as.integer(ano),
       idade_ = suppressWarnings(as.integer(V8005)),
       peso_ = suppressWarnings(as.numeric(V4729)),
-      renda_ = suppressWarnings(as.numeric(V4722)) / suppressWarnings(as.numeric(V4724)),
+      # V4722 usa 999999999999 (doze noves) para "sem declaracao" — mesma
+      # sentinela tratada no 050 (D20). Sem isto, 1,5-5,2% dos 18-24 por ano
+      # (pico 2011-2013) entravam com renda 1e12 e ocupavam o topo do ranking
+      # de renda, rebaixando o indice em ~5% nos anos PNAD (plano 2026-09-15,
+      # WP3). O NA cai no filtro renda > 0 abaixo.
+      renda_ = {
+        v <- suppressWarnings(as.numeric(V4722))
+        ifelse(!is.na(v) & v >= 999999999999, NA_real_, v) /
+          suppressWarnings(as.numeric(V4724))
+      },
       ens_sup_a_ = as.integer(
         !is.na(suppressWarnings(as.integer(V0602))) & suppressWarnings(as.integer(V0602)) == 2L &
-          !is.na(cur_) & cur_ %in% cur_codes
+          cur_superior(ano_, cur_)
       ),
       # V6002: 2 = Rede PÚBLICA, 4 = Rede PRIVADA
       rede_pub_ = as.integer(ens_sup_a_ == 1L & V6002 == "2"),

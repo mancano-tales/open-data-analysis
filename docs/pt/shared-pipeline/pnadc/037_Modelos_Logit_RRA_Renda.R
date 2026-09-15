@@ -54,7 +54,11 @@ df <- arrow::read_parquet(
   file.path(OUTPUT_DIR, "Microdados_Jovens_18_24_1992_2025.parquet"),
   col_select = c("ano", "fonte", "idade", "peso", "ens_sup",
                  "decil", "quintil", "sexo", "cor", "regiao", "rural")
-)
+) %>%
+  # Fonte unica por ano no overlap 2012-2015 (mesma regra das figuras de
+  # acesso por decil): PNAD Anual ate 2015, PNADC de 2016. Sem isto o logit
+  # de 2012-2015 empilhava as duas pesquisas (correcao de 2026-09-15).
+  filter(!(fonte == "PNAD Contínua" & ano <= 2015L))
 
 anos_disponiveis <- sort(unique(df$ano))
 cat(sprintf("Anos com dado no painel: %d (%d a %d). Faltantes a interpolar: %s\n",

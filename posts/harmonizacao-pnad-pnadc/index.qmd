@@ -30,12 +30,13 @@ Twenty-one of the figures in this catalog do not read from a single household su
 
 **Resulting datasets and variables.** The pipeline produces two analysis-ready files: the 18–24 age subset used for tertiary-access figures, and the full population with valid income, used for income-decile construction. Both are restricted to individuals with strictly positive per-capita household income; PNAD Contínua is restricted to first-interview respondents to avoid its panel structure inflating sample size. The series covers 1992–1999, 2001–2009, 2011–2019, and 2022–2025 — 2000 and 2010 are absent because no PNAD was fielded in census years. Core variables include income (nominal and inflation-adjusted), a tertiary-education access indicator validated against an external reference series to within ±0.3 percentage points nationally, income decile and vintile (computed within each year and source, using sampling weights), and a source flag (2012–2015 exists in both surveys, an intentional overlap kept to validate the splice — any analysis spanning those years must pick one source to avoid double-counting).
 
-**External validation.** The harmonized tertiary-access series was benchmarked against the independent series of Salata et al. (2025), which uses a different data-processing pipeline entirely. After correcting an initial coding error (the original construction had omitted respondents who already completed or withdrew from tertiary education, concentrated in the top income decile), the two series agree closely across the full window:
+**External validation.** The harmonized tertiary-access series was benchmarked against the independent series of Salata et al. (2025), which uses a different data-processing pipeline entirely. After correcting two coding errors — the original construction had omitted respondents who already completed or withdrew from tertiary education, concentrated in the top income decile; and, found in a code audit on 2026-09-15, the 2001–2006 PNAD dictionaries code university-entrance preparation (*pré-vestibular*) under the number that the 1990s dictionaries use for graduate study, so that for six years entrance-exam students had been counted as tertiary entrants (about +1.5 percentage points nationally, up to +4.8 in the top decile) — the two series agree closely across the full window:
 
 | Period | Source | Difference vs. reference | Assessment |
 |---|---|---|---|
 | 1992–1999 | PNAD histórica | −0.08 to +0.09 pp | Aligned |
-| 2001–2006 | PNAD Anual | +1.47 to +1.66 pp | Documented — rural North exclusion |
+| 2001–2003 | PNAD Anual | −0.16 to −0.04 pp | Aligned |
+| 2004–2006 | PNAD Anual | +0.16 to +0.24 pp | Aligned — rural North exclusion |
 | 2007–2015 | PNAD Anual | +0.09 to +0.33 pp | Aligned |
 | 2016–2019 | PNAD Contínua | −0.01 to −0.08 pp | Aligned |
 | 2022 | PNAD Contínua | −0.71 pp | Acceptable — rural North retained |
@@ -88,6 +89,7 @@ Scripts for this harmonization, run in order:
 - [`shared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R`](../../shared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R) — imports PNAD Anual 1992–1999
 - [`shared-pipeline/pnadc/021_PNAD_Anual_Import_Com_Renda_Zero.R`](../../shared-pipeline/pnadc/021_PNAD_Anual_Import_Com_Renda_Zero.R) — alternative PNAD Anual import, used by a subset of figures
 - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R) — splices everything above into the two harmonized analytic datasets
+- [`shared-pipeline/utils/codigos_curso_pnad.R`](../../shared-pipeline/utils/codigos_curso_pnad.R) — course-code lookup for PNAD Anual by dictionary regime (1992–99 / 2001–06 / 2007+), sourced by 035 and by the network-level posts
 - [`shared-pipeline/pnadc/238_Serie_Desigualdade_Oficial.R`](../../shared-pipeline/pnadc/238_Serie_Desigualdade_Oficial.R) — derives the official income-inequality series (Gini, Palma) from the harmonized panel
 - [`shared-pipeline/censo/040_Censo_Pontos_Validacao.R`](../../shared-pipeline/censo/040_Censo_Pontos_Validacao.R) — independent Demographic Census validation points (not part of the panel itself)
 

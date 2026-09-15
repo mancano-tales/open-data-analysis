@@ -45,7 +45,9 @@
 #   Salata et al. (2025): "72,7% das matrículas em 2005 estavam na rede
 #   privada" (docs/references/2026-06-10_Salata_et_al_2025_Origem_Social.md,
 #   linha 287). Para anos < 2007 (regime antigo, variável V0603 em vez de
-#   V6003), os códigos usados são 5 e 9 (idem 035_Splice_Microdados.R).
+#   V6003) os códigos vêm de codigos_curso_pnad.R (D22, 2026-09-15): {5, 9}
+#   em 1992-99 e {5, 10} em 2001-06 — o 9 de 2001-06 é pré-vestibular, e até
+#   2026-09-15 este script (como o 035) o contava como superior.
 #
 #   Cobertura testada e confirmada (100% de V6002 não-NA entre quem atende
 #   à fórmula ens_sup_a acima) em: 2001, 2007, 2011 (antes), 2012, 2013,
@@ -90,6 +92,8 @@ suppressPackageStartupMessages({
   library(ggplot2); library(here)
 })
 source(here::here("shared-pipeline", "utils", "plot_theme.R"))
+# Codigos de curso da PNAD Anual por regime de dicionario (D22): cur_superior().
+source(here::here("shared-pipeline", "utils", "codigos_curso_pnad.R"))
 theme_set(thesis_theme())
 
 PNAD_RAW_DIR  <- "C:/Users/Mancano/Documents/MancanoSync/5-data/pnad_anual_raw"
@@ -157,17 +161,29 @@ extrair_pnad_anual <- function(ano) {
   # cur_: curso atual, harmonizado entre regimes -- mesma lógica de coalesce
   # de 035_Splice_Microdados.R (V6003 2007+, V0603 pré-2007)
   cur_ <- coalesce(suppressWarnings(as.integer(df$V6003)), suppressWarnings(as.integer(df$V0603)))
-  cur_codes <- if (ano >= 2007) c(5L, 11L) else c(5L, 9L)
+  # Codigos de superior por regime (1992-99 / 2001-06 / 2007+) em
+  # codigos_curso_pnad.R (D22, 2026-09-15). O `if (ano >= 2007) c(5, 11) else
+  # c(5, 9)` anterior contava pre-vestibulandos (cod. 9 em 2001-2006) como
+  # universitarios.
 
   df %>%
     mutate(
       ano_      = as.integer(ano),
       idade_    = suppressWarnings(as.integer(V8005)),
       peso_     = suppressWarnings(as.numeric(V4729)),
-      renda_    = suppressWarnings(as.numeric(V4722)) / suppressWarnings(as.numeric(V4724)),
+      # V4722 usa 999999999999 (doze noves) para "sem declaracao" — mesma
+      # sentinela tratada no 050 (D20). Sem isto, 1,5-5,2% dos 18-24 por ano
+      # (pico 2011-2013) entravam com renda 1e12 e ocupavam o topo do ranking
+      # de renda, rebaixando o indice em ~5% nos anos PNAD (plano 2026-09-15,
+      # WP3). O NA cai no filtro renda > 0 abaixo.
+      renda_    = {
+        v <- suppressWarnings(as.numeric(V4722))
+        ifelse(!is.na(v) & v >= 999999999999, NA_real_, v) /
+          suppressWarnings(as.numeric(V4724))
+      },
       ens_sup_a_ = as.integer(
         !is.na(suppressWarnings(as.integer(V0602))) & suppressWarnings(as.integer(V0602)) == 2L &
-        !is.na(cur_) & cur_ %in% cur_codes
+        cur_superior(ano_, cur_)
       ),
       # V6002: 2 = Rede PÚBLICA, 4 = Rede PRIVADA (verificado nesta sessão --
       # ver achado crítico #2 no cabeçalho)
@@ -396,13 +412,22 @@ salvar_grafico(p_curva, prefixo = "042_Curva_Concentracao_Rede_Antes_Depois_Cota
 # um efeito de composição racial/de renda DENTRO da rede pública, por
 # exemplo, não aparece nesta curva.
 # ──────────────────────────────────────────────────────────────────────────
+# Os indices citados na nota vem de tab_E_periodo, nao de numeros digitados:
+# ate 2026-09-15 a nota trazia valores fixos (0.291/0.272/0.297 etc.) que
+# ficaram obsoletos quando a extracao mudou (D22 + sentinela de renda, plano
+# de correcao WP2/WP3). Formato: "<serie> = a (before) / b (transition) / c (mature)".
+fmt_E <- function(col, rotulo) {
+  v <- tab_E_periodo[[col]]
+  sprintf("%s = %.3f (before) / %.3f (transition) / %.3f (mature)", rotulo, v[1], v[2], v[3])
+}
+
 finalizar_figura(
   plot        = p_curva,
   fig_label   = "concentracao-rede-antes-depois-cotas",
   fig_cap     = "Income concentration curves for tertiary education enrollment by network (public vs. private), before, during, and after the 2012 Lei de Cotas, Brazil 2001-2024 (PNAD Anual + PNAD Contínua, pooled by period).",
   fonte       = "IBGE — PNAD Anual (2001-2015) and PNAD Contínua via PNADcIBGE (2016-2024)",
   nota        = paste0(
-    "Each panel pools the year-specific concentration curves within that period (simple average across years, uniform 101-point percentile grid), so each year contributes equally regardless of sample size. 'Before quotas' = 2001-2011 (PNAD Anual, excludes 2010, a census year with no PNAD). 'Transition' = 2012-2016, the Lei de Cotas (12.711/2012) phase-in period (quota share rising linearly toward a minimum of 50% of seats by 2016); 2012-2015 from PNAD Anual, 2016 from PNAD Contínua (the last year covered by PNAD Anual in this project's pipeline). 'Mature quotas' = 2017-2024 (PNAD Contínua), excluding 2020-2021 (no standard first-interview data available for those years, COVID-19). Network variable: V6002 (PNAD Anual, 2001-2015, coded 2 = public / 4 = private) and V3002A (PNAD Contínua, 2016+, coded 1 = private / 2 = public -- note the reversed coding between sources). Erreygers concentration index by period (population of reference: all 18-24-year-olds): overall = 0.291 (before) / 0.272 (transition) / 0.297 (mature); public network = 0.064 / 0.063 / 0.067; private network = 0.227 / 0.209 / 0.231 (see script console output for year-by-year values). The public-network index is essentially flat across all three periods -- this specific measure (concentration of public-network access relative to the general 18-24 population) does not show a clear redistributive shift after the quota law, which does not necessarily mean the law had no effect, only that this particular cut (network relative to the general population) may not be the most sensitive lens for it; a composition shift by race or income *within* the public network, for instance, would not be visible in this curve. See script header for the full discovery and verification log, including a correction to a stale course-code comment in 020_PNAD_Anual_Manual_Import_2001_2015.R."
+    "Each panel pools the year-specific concentration curves within that period (simple average across years, uniform 101-point percentile grid), so each year contributes equally regardless of sample size. 'Before quotas' = 2001-2011 (PNAD Anual, excludes 2010, a census year with no PNAD). 'Transition' = 2012-2016, the Lei de Cotas (12.711/2012) phase-in period (quota share rising linearly toward a minimum of 50% of seats by 2016); 2012-2015 from PNAD Anual, 2016 from PNAD Contínua (the last year covered by PNAD Anual in this project's pipeline). 'Mature quotas' = 2017-2024 (PNAD Contínua), excluding 2020-2021 (no standard first-interview data available for those years, COVID-19). Network variable: V6002 (PNAD Anual, 2001-2015, coded 2 = public / 4 = private) and V3002A (PNAD Contínua, 2016+, coded 1 = private / 2 = public -- note the reversed coding between sources). Erreygers concentration index by period (population of reference: all 18-24-year-olds): ", fmt_E("E_overall", "overall"), "; ", fmt_E("E_publica", "public network"), "; ", fmt_E("E_privada", "private network"), " (see script console output for year-by-year values). The public-network index is essentially flat across all three periods -- this specific measure (concentration of public-network access relative to the general 18-24 population) does not show a clear redistributive shift after the quota law, which does not necessarily mean the law had no effect, only that this particular cut (network relative to the general population) may not be the most sensitive lens for it; a composition shift by race or income *within* the public network, for instance, would not be visible in this curve. See script header for the full discovery and verification log, including a correction to a stale course-code comment in 020_PNAD_Anual_Manual_Import_2001_2015.R."
   ),
   script_path = here::here("4-DA-Code", "2026-05_PNADcIBGE",
                             "042_Curva_Concentracao_Rede_Antes_Depois_Cotas.R"),

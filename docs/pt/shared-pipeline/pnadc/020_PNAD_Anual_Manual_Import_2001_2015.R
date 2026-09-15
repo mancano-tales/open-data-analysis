@@ -239,7 +239,10 @@ for (ano_i in anos) {
         # DATAZOOM harmoniza os códigos brutos do IBGE para uma escala unificada.
         # Mapeamento de códigos brutos → DATAZOOM (confirmado nos arquivos SPSS e empiricamente):
         #
-        #   2001-2006:  V0602=2 (SIM freq.atual), V0603="05" (sup.atual), V0603="09" (mestrado)
+        #   2001-2006:  V0602=2 (SIM freq.atual), V0603="05" (sup.atual), V0603="10" (mestrado)
+        #               ⚠ V0603="09" e PRE-VESTIBULAR nesse regime (dicionario IBGE 2001/2005;
+        #                 idade media 22,0) — ate 2026-09-15 este comentario e o codigo
+        #                 diziam "09 = mestrado". Ver D22 e R/utils/codigos_curso_pnad.R.
         #               V0606=2 (SIM freq.ant.),  V0607="06" (sup.ant.),  V0607="07" (mestrado)
         #
         #   2007-2015:  V0602=2 (SIM freq.atual), V6003="05" (sup.atual), V6003="11" (mestrado/dout.)
@@ -267,11 +270,11 @@ for (ano_i in anos) {
           # Caso 1: estudante ATUALMENTE no superior
           suppressWarnings(as.integer(V0602)) == 2L &
             (
-              # 2001-2006: V0603/V6003 = 5 (superior), 9 (mestrado/doutorado)
-              suppressWarnings(as.integer(V6003)) %in% c(5L, 9L) |
-              suppressWarnings(as.integer(V0603)) %in% c(5L, 9L) |
-              # 2007+: V6003 = 5 (superior graduação), 11 (mestrado/doutorado)
-              suppressWarnings(as.integer(V6003)) %in% c(5L, 11L)
+              # 2001-2006: V0603/V6003 = 5 (superior), 10 (mestrado/doutorado); 9 = PRE-VESTIBULAR (D22)
+              (ano_i <= 2006L & suppressWarnings(as.integer(V6003)) %in% c(5L, 10L)) |
+              (ano_i <= 2006L & suppressWarnings(as.integer(V0603)) %in% c(5L, 10L)) |
+              # 2007+: V6003 = 5 (superior graduação), 11 (mestrado/doutorado); 10 = pre-vestibular
+              (ano_i >= 2007L & suppressWarnings(as.integer(V6003)) %in% c(5L, 11L))
             )                                                                             ~ 1L,
           # Caso 2: JÁ FREQUENTOU o superior (graduado ou desistente)
           suppressWarnings(as.integer(V0602)) == 4L &

@@ -2,18 +2,17 @@
 # SCRIPT: 040_Censo_Pontos_Validacao.R
 #
 # Diamantes de validação censitária para a série PNAD/PNADC 1992–2025.
-# Censos incluídos: 1991, 2000, 2010 (via censobr, promovidos na tese).
+# Censos incluídos: 1991, 2000, 2010, e 2022 -- os quatro promovidos na tese
+# desde 2026-09-03 (ver NEWS.md e docs/harmonization_decisions.md D12,
+# adendo "promoção da Figura 2.1", no repositório da dissertação).
 #
-# Censo 2022: RASCUNHO. Fonte: censobr::read_population()/read_households()
-# (branch dev do pacote, apos censobr::import_microdata22_controlado() ter
-# sido rodado uma vez -- ver vinheta "Working with 2022 microdata" do pacote
-# e docs/harmonization_decisions.md D12, adendo 2026-09-03). Substitui o
-# pipeline proprio usado em 2026-09-02 (01_pipeline/042_Ingest_Censo_2022.R +
-# utils/censobr_compat.R, movidos para R/deprecated/ em 2026-09-03): esse
-# pipeline reconstruia renda_dom_pcta manualmente duplicando D0360, que o
-# IBGE ja entrega pronto -- ver docs/audits/2026-09-03_Auditoria_Ingestao_
-# Censo_2022.md. A migracao foi validada cruzando os resultados dos dois
-# pipelines (D1/D5/D9/D10/Nacional batem exatos ao decimo).
+# Censo 2022: fonte censobr::read_population()/read_households() (branch dev
+# do pacote, apos censobr::import_microdata22_controlado() ter sido rodado
+# uma vez -- ver vinheta "Working with 2022 microdata" do pacote). Substitui
+# um pipeline proprio anterior que reconstruia renda_dom_pcta manualmente
+# duplicando D0360, que o IBGE ja entrega pronto. A migracao foi validada
+# cruzando os resultados dos dois pipelines (D1/D5/D9/D10/Nacional batem
+# exatos ao decimo).
 #
 # Pinagem de reprodutibilidade: testado com censobr commit
 # dd48725f6d8763874acd15d2eff222e2024470ee (2026-09-03), instalado via
@@ -22,18 +21,22 @@
 # pacote (o cache do censobr e versionado por "data release": uma nova
 # versao pode nao encontrar os arquivos importados sob a anterior, exigindo
 # rodar import_microdata22_controlado() de novo a partir do zip original do
-# IBGE, guardado em 5-data/IBGE/Censo_2022_amostra/raw_zip/).
+# IBGE). Diferente dos demais anos (baixados automaticamente pelo censobr,
+# sem credencial), o Censo 2022 exige que o zip de acesso controlado tenha
+# sido solicitado manualmente ao IBGE em https://microdados.ibge.gov.br/ --
+# import_microdata22_controlado() so processa um arquivo que o usuario ja
+# tem em maos (ver secao "Reproducibility" do post, Tier B para 2022).
 #
-# Os pontos de 2022 vão só para Censo_Pontos_Validacao_1991_2022.parquet --
-# NÃO promovido, NÃO referenciado em nenhuma figura final da tese. Antes de
-# promover: reconferir a alegação de IC <= 0,6pp (herdada de 1991/2000/2010)
-# especificamente para 2022 -- na versão anterior do pipeline o D10 de 2022
-# já excedia esse limite (IC de 0,69pp; ver auditoria).
+# A alegação de IC do post foi corrigida na promoção (2026-09-03): "até
+# 0,6pp" para 1991/2000/2010, "até 0,7pp" para 2022 (D10 = 0,69pp, o mais
+# largo).
 #
 # Outputs:
-#   output/Censo_Pontos_Validacao_1991_2022.parquet (rascunho, com 2022)
-#   output/Censo_Pontos_Validacao_1991_2000_2010.parquet (legado -- consumido
-#     por 041H_Tese_Decil_Lines_Censo.R / Figura 2.1; NUNCA inclui 2022)
+#   output/Censo_Pontos_Validacao_1991_2022.parquet (com 2022; fonte da
+#     Figura 2.1 promovida via 041H_Tese_Decil_Lines_Censo.R)
+#   output/Censo_Pontos_Validacao_1991_2000_2010.parquet (legado -- mantido
+#     por retrocompatibilidade com quem ainda referencia esse arquivo;
+#     NUNCA inclui 2022)
 #   graphs/HHMM_040A_Censo_Validacao_Nossa_Harmonizacao.png
 #   graphs/HHMM_040B_Censo_Validacao_Salata_2025.png
 # ==============================================================================
@@ -312,7 +315,7 @@ rm(jovens_2010, brks_2010)
 invisible(gc())
 
 # ==============================================================================
-# 4. CENSO 2022 [RASCUNHO -- ver nota no cabecalho do script]
+# 4. CENSO 2022 [promovido na tese desde 2026-09-03 -- ver nota no cabecalho]
 # ==============================================================================
 #
 # Fonte: censobr::read_population()/read_households(year=2022) (branch dev,
@@ -341,14 +344,12 @@ invisible(gc())
 #     P0650==3 (nunca frequentou), então o segundo ramo nunca dispara para
 #     quem nunca estudou; verificado linha a linha contra o dicionário.
 #
-# Limitação em aberto: a amostra do Censo 2022 teve desenho e cobertura
-# distintos dos censos 1991/2000/2010; a alegação "IC <= 0,6pp" do Data
-# Codebook (herdada dos censos anteriores) NÃO foi reverificada para 2022 --
-# checar os ICs impressos abaixo antes de estender essa alegação ao ano de
-# 2022 em qualquer texto (na versão anterior do pipeline o D10 de 2022 já
-# excedia esse limite, IC de 0,69pp; ver docs/audits/).
+# Limitação registrada: a amostra do Censo 2022 teve desenho e cobertura
+# distintos dos censos 1991/2000/2010. O post já reflete o número real (não
+# uma alegação genérica herdada dos censos anteriores): IC de até 0,6pp para
+# 1991/2000/2010 e até 0,7pp para 2022 (D10 = 0,69pp, o mais largo).
 # ==============================================================================
-cat("\n══ Censo 2022 (rascunho) ══\n")
+cat("\n══ Censo 2022 ══\n")
 
 CHAVE_DOM_2022 <- c("code_state", "code_muni", "code_weighting")
 
@@ -447,12 +448,12 @@ censo_out_2022 <- file.path(BASE_DIR, "output", "Censo_Pontos_Validacao_1991_202
 censo_out_leg <- file.path(BASE_DIR, "output", "Censo_Pontos_Validacao_1991_2000_2010.parquet")
 
 arrow::write_parquet(censo_pontos, censo_out_2022)
-# O arquivo legado NAO recebe o Censo 2022: ele e a fonte que a Figura 2.1
-# promovida na tese consome (via 041H_Tese_Decil_Lines_Censo.R). O Censo 2022
-# e rascunho -- ainda sob revisao (ver docs/audits/) -- e nao deve alterar
-# silenciosamente um artefato do qual uma figura ja publicada depende.
+# censo_out_2022 e a fonte que a Figura 2.1 promovida na tese consome (via
+# 041H_Tese_Decil_Lines_Censo.R, PARQUET_CENSO). censo_out_leg (legado, sem
+# 2022) e mantido por retrocompatibilidade com qualquer script ainda
+# referenciando o nome antigo -- nunca sobrescrito com dados de 2022.
 arrow::write_parquet(censo_pontos_leg, censo_out_leg)
-cat(sprintf("✅ Parquet 1991-2022 (rascunho): %s\n", censo_out_2022))
+cat(sprintf("✅ Parquet 1991-2022 (fonte da Figura 2.1): %s\n", censo_out_2022))
 cat(sprintf("✅ Parquet 1991-2000-2010 (legado, inalterado): %s\n", censo_out_leg))
 
 cat("\nResumo da Validação Censitária por Decil (1991, 2000, 2010, 2022):\n")
