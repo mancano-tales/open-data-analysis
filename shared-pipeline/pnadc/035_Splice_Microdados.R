@@ -395,6 +395,7 @@ cat("  → Hierarquia educacional OK (0 violações)\n")
 output_todas <- file.path(OUTPUT_DIR, "Microdados_Todas_Idades_1992_2025.parquet")
 cat(sprintf("  → Salvando base todas as idades (%d obs) em %s...\n",
             nrow(df_todas), output_todas))
+dir.create(dirname(output_todas), showWarnings = FALSE, recursive = TRUE)
 write_parquet(df_todas, output_todas)
 
 # 6. Salvar base 18-24 (backwards-compatible — mantém mesmo nome)

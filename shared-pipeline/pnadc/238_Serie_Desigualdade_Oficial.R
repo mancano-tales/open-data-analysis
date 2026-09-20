@@ -266,6 +266,7 @@ if (file.exists(PQ_V5)) {
   serie_final <- serie_oficial |> mutate(retroponderado = FALSE)
 }
 
+dir.create(OUT, showWarnings = FALSE, recursive = TRUE)
 saveRDS(list(oficial = serie_final, d02 = serie_d02),
         file.path(OUT, "238_serie_desigualdade_oficial.rds"))
 
