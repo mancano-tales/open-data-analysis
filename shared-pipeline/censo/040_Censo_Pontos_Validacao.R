@@ -56,7 +56,7 @@ suppressPackageStartupMessages({
 options(scipen = 999)
 
 BASE_DIR <- here::here("data-raw", "harmonizing-br-data")
-OUTPUT_DIR <- here::here("6-images-tables", "graphs")
+OUTPUT_DIR <- here::here("output", "graphs")   # PNGs de diagnostico (output/ e gitignored)
 PARQUET_PNAD <- file.path(BASE_DIR, "output", "Microdados_Jovens_18_24_1992_2025.parquet")
 SALATA_PATH <- here::here("data-raw", "Salata-etal-2025", "Agregada.parquet")
 DATE_PREFIX <- format(Sys.time(), "%Y-%m-%d_%H%M")
@@ -467,7 +467,19 @@ censo_pontos |>
 
 # ==============================================================================
 # 6. PREPARAR SÉRIES PNAD/PNADC E SALATA
+#
+# Tudo daqui para baixo e' DIAGNOSTICO (comparacao da nossa harmonizacao com
+# Salata et al. 2025 e com os pontos censitarios). Os parquets que os posts
+# deste catalogo leem ja foram gravados na secao 5. O parquet agregado de
+# Salata et al. (2025) e' material de replicacao de terceiros, nao
+# redistribuido aqui: sem ele em data-raw/Salata-etal-2025/Agregada.parquet
+# o script termina neste ponto, com os outputs essenciais completos.
 # ==============================================================================
+if (!file.exists(SALATA_PATH)) {
+  cat("\n[040] Agregada.parquet (Salata et al. 2025) nao encontrado em",
+      "data-raw/Salata-etal-2025/ — comparacao diagnostica pulada;",
+      "os parquets de validacao censitaria acima estao completos.\n")
+} else {
 cat("\n══ Preparando séries PNAD/PNADC e Salata ══\n")
 
 dados_harm <- arrow::read_parquet(PARQUET_PNAD)
@@ -745,5 +757,6 @@ p_harm_full <- p_harm +
 png_harm <- file.path(OUTPUT_DIR, paste0(DATE_PREFIX, "_040A_Validacao_Nossa_Harmonizacao.png"))
 ggsave(png_harm, plot = p_harm_full, width = 22, height = 13, units = "cm", dpi = 300)
 cat(sprintf("✅ Nossa harm.: %s\n", png_harm))
+}  # fim do bloco diagnostico condicional (Salata et al. 2025)
 
 cat("\n══════ Script 040 concluído com sucesso ══════\n")

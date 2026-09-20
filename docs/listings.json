@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/renda-media-centil/index.html",
       "/posts/harmonizacao-pnad-pnadc/index.html",
       "/posts/rra-renda-decil-quintil/index.html",
       "/posts/decil-acesso-serie-historica/index.html",
@@ -18,7 +19,6 @@
       "/posts/fardo-mensalidade-decil/index.html",
       "/posts/populacao-limiares-sm/index.html",
       "/posts/renda-centil-log/index.html",
-      "/posts/renda-media-centil/index.html",
       "/posts/delta-acesso-decil-governo/index.html",
       "/posts/delta-matriculados-decil-governo-dotplot/index.html",
       "/posts/descolamento-ead-politicas/index.html",
@@ -31,8 +31,6 @@
       "/posts/educabr2-progression-gdr6/index.html",
       "/posts/educabr2-schooling-sex/index.html",
       "/posts/educabr2-source-coverage/index.html",
-      "/posts/delta-renda-abs-decil-governo/index.html",
-      "/posts/delta-renda-rel-decil-governo/index.html",
       "/posts/concentracao-rede-publica-privada/index.html",
       "/posts/ipca-mensalidade-curso-superior/index.html",
       "/posts/delta-matriculados-decil-governo/index.html",

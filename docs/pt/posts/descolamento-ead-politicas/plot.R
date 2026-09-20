@@ -64,9 +64,8 @@ theme_set(thesis_theme())
 
 INCLUIR_PUBLICO <- FALSE # ver alternativa (iv) no cabecalho
 
-BASE <- file.path(
-  dirname(here::here()), "5-data", "INEP", "derived",
-  "nicho_agregado_sedap_2010_2024.csv"
+BASE <- here::here(   # escrito por shared-pipeline/sedap/020 (Tier B: exige SEDAP_TOKEN)
+  "data-raw", "INEP", "derived", "nicho_agregado_sedap_2010_2024.csv"
 )
 stopifnot(file.exists(BASE))
 d <- fread(BASE)
@@ -235,9 +234,6 @@ finalizar_figura(
     "match the published microdata for 2010--2019 to within 0.1 percentage point."
   ),
   apendice = "sec-fignote-descolamento-ead-politicas",
-  script_path = here::here(
-    "4-DA-Code", "2026-08_SEDAP",
-    "040_Fig_Descolamento_EaD_Politicas.R"
-  ),
+  script_path = here::here("posts", "descolamento-ead-politicas", "plot.R"),
   largura = LARGURA_TEXTO, altura = 3.1
 )

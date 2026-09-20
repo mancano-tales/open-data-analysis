@@ -36,9 +36,8 @@ options(scipen = 999)
 ANOS_SEL    <- c(2002L, 2007L, 2012L, 2017L, 2025L)
 MULTS       <- c(1.0, 1.5, 3.0)
 LABELS_MW   <- c("1 MW", "1.5 MW", "3 MW")
-SCRIPT_PATH <- here::here("4-DA-Code", "2026-06_Harmonizing-BR-Data",
-                           "R", "02_validation", "220C_Tese_Renda_Centil_Log.R")
-BASE_DIR    <- here::here("4-DA-Code", "2026-06_Harmonizing-BR-Data")
+SCRIPT_PATH <- here::here("posts", "renda-centil-log", "plot.R")
+BASE_DIR    <- here::here("data-raw", "harmonizing-br-data")
 PARQUET     <- file.path(BASE_DIR, "output",
                           "Microdados_Todas_Idades_1992_2025.parquet")
 CACHE_SM    <- file.path(BASE_DIR, "output", "220B_sm_real_cache.rds")

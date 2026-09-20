@@ -46,11 +46,13 @@ options(scipen = 999, survey.lonely.psu = "adjust")
 
 ANO_FIM <- 2023L   # último ano de dados usados (exclui Lula III)
 
-BASE_DIR     <- here::here("4-DA-Code", "2026-06_Harmonizing-BR-Data")
-PARQUET_PNAD <- file.path(BASE_DIR, "output", "Microdados_Jovens_18_24_1992_2024.parquet")
-CACHED_PNADC <- here::here("data-raw", "pnadc_consolidado_2012_2024_interview1.rds")
-if (!file.exists(CACHED_PNADC))
-  CACHED_PNADC <- here::here("data-raw", "pnadc_consolidado_2012_2024_interview1.rds")
+BASE_DIR     <- here::here("data-raw", "harmonizing-br-data")
+PARQUET_PNAD <- file.path(BASE_DIR, "output", "Microdados_Jovens_18_24_1992_2025.parquet")
+CACHED_PNADC <- here::here("data-raw", "pnadc_consolidado_2012_2025_interview1.rds")
+if (!file.exists(CACHED_PNADC)) {
+  stop("Cache PNADC nao encontrado em data-raw/. Rode antes: ",
+       "shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R", call. = FALSE)
+}
 
 # ==============================================================================
 # 1. CARREGAR MICRODADOS
@@ -279,8 +281,7 @@ finalizar_figura(
   fig_cap     = "Total change in higher education enrollment rate (ages 18–24) by income decile and presidential term, Brazil 1992–2023.",
   fonte       = "IBGE — PNAD (1992–2011) and PNAD Contínua (2012–2023)",
   nota        = "Each bar shows the total percentage-point change in the share of 18–24-year-olds actively enrolled in tertiary education, from the first year of each presidential term to the first year of the next (blue = gain, orange = loss). Panels are ordered chronologically left to right, top to bottom; the bottom-right panel shows the full 1992–2023 period as reference. Error bars are 95% confidence intervals computed via Kish design-effect approximation (PNAD Anual, 1992–2011) and exact complex-survey estimation via `survey::svydesign()` (PNAD Contínua, 2012–2023). For full harmonization methodology linking the two survey instruments, see the Technical Appendix [@sec-decisions] and @sec-p2-datamethods above.",
-  script_path = here::here("4-DA-Code", "2026-06_Harmonizing-BR-Data", "R",
-                            "02_validation", "042C_Tese.R"),
+  script_path = here::here("posts", "delta-matriculados-decil-governo", "plot.R"),
   largura = LARGURA_PAISAGEM, altura = ALTURA_PAISAGEM, unidades = "cm"
 )
 

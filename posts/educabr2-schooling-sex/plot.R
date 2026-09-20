@@ -23,7 +23,7 @@ suppressPackageStartupMessages({
 
 source(here::here("shared-pipeline", "utils", "plot_theme.R"))
 
-script_path <- here::here("4-DA-Code", "2026-07_educabr2-appendix", "300_educabr2_appendix_figures.R")
+script_path <- here::here("posts", "educabr2-schooling-sex", "plot.R")
 
 # Cores semânticas fixas (Okabe-Ito) usadas em todo o conjunto
 COR_SERIE    <- "#0072B2"  # série protagonista / azul

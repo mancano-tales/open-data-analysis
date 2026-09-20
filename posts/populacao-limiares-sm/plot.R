@@ -30,7 +30,7 @@ source(here::here("shared-pipeline", "utils", "plot_theme.R"))
 theme_set(thesis_theme())
 options(scipen = 999)
 
-BASE_DIR <- here::here("4-DA-Code", "2026-06_Harmonizing-BR-Data")
+BASE_DIR <- here::here("data-raw", "harmonizing-br-data")
 PARQUET  <- file.path(BASE_DIR, "output",
                        "Microdados_Jovens_18_24_1992_2025.parquet")
 CACHE_SM <- file.path(BASE_DIR, "output", "233_sm_real_todos_anos.rds")
@@ -209,8 +209,7 @@ finalizar_figura(
   fonte       = "IBGE --- PNAD (1992--2015) and PNAD Contínua (2016--2025), harmonized series; IPEADATA (minimum wage series \\texttt{MTE12\\_SALMIN12})",
   nota        = "Share of 18--24-year-olds in households with real per-capita income at or above 1\\texttimes, 1.5\\texttimes, and 3\\texttimes\\ the January-2002 real minimum wage (R\\$675 in Jan.\\ 2024 prices), held fixed across the whole period --- the reading appropriate for tracking the stock of families able to afford a roughly constant tuition bill. A complementary variant using the current-year minimum wage (a falling share, since the wage floor itself rose faster than the distribution compressed) is available but not used as evidence of the paying pool; \\hyperref[sec-decisions]{Appendix~\\ref*{sec-decisions}}, Decisions D01--D03.",
   apendice    = "sec-fignote-populacao-limiares-sm",
-  script_path = here::here("4-DA-Code", "2026-06_Harmonizing-BR-Data", "R",
-                            "02_validation", "233_Tese_Pop_Acima_Limiares_SM.R"),
+  script_path = here::here("posts", "populacao-limiares-sm", "plot.R"),
   largura = LARGURA_TEXTO, altura = ALTURA_PADRAO
 )
 

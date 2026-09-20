@@ -18,14 +18,22 @@ As curvas mostram, para cada rede, a participação acumulada dos estudantes atu
 
 ## Como Citar
 
-Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto este repositório.
+Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto esta análise específica. As referências seguem a 7ª edição da APA.
 
-**Dissertação:**
+**Dissertação (em elaboração; a entrada será atualizada após a defesa):**
 
-> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Dissertação de Mestrado, Programa de Pós-Graduação em Ciência Política, Universidade de São Paulo.
+> Mançano, T. (2026). *Inequality in access to tertiary education in Brazil: Household incomes, reforming policies, and the politics of who gets in (1990s–2020s)* [Dissertação de mestrado não publicada]. Universidade de São Paulo.
+
+**Esta figura e o pipeline:**
+
+> Mançano, T. (2026, 6 de julho). *Concentração de renda na matrícula do ensino superior por tipo de rede* [Figura e pipeline reprodutível]. Open Data Analysis. https://mancano-tales.github.io/open-data-analysis/pt/posts-pt/concentracao-rede-publica-privada/
+
+**No texto:** (Mançano, 2026) — ao citar várias análises deste catálogo no mesmo trabalho, a APA as distingue como 2026a, 2026b, … na ordem em que aparecem na lista de referências.
+
+**BibTeX:**
 
 ```bibtex
-@mastersthesis{Mancano2026,
+@mastersthesis{Mancano2026Thesis,
   author = {Man\c{c}ano, Tales},
   title  = {Inequality in Access to Tertiary Education in Brazil: Household
             Incomes, Reforming Policies, and the Politics of Who Gets In
@@ -33,35 +41,27 @@ Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação q
   school = {University of S\~{a}o Paulo},
   year   = {2026},
   type   = {Master's thesis},
-  note   = {Graduate Program in Political Science}
+  note   = {Unpublished; Graduate Program in Political Science}
 }
-```
 
-**Esta figura e o pipeline:**
-
-> Mançano, Tales. 2026. "Concentração de Renda na Matrícula do Ensino Superior por Tipo de Rede." Em *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts-pt/concentracao-rede-publica-privada/`.
-
-```bibtex
-@misc{Mancano2026OpenDataAnalysis,
+@misc{Mancano2026_concentracao_rede_publica_privada_pt,
   author       = {Man\c{c}ano, Tales},
-  title        = {Open Data Analysis: Concentração de Renda na Matrícula do Ensino Superior por Tipo de Rede},
+  title        = {Concentra\c{c}\~{a}o de renda na matr\'{\i}cula do ensino superior por tipo de rede},
   year         = {2026},
-  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
-  note         = {posts/concentracao-rede-publica-privada/}
+  month        = jul,
+  howpublished = {Open Data Analysis, \url{https://mancano-tales.github.io/open-data-analysis/pt/posts-pt/concentracao-rede-publica-privada/}},
+  note         = {Figura e pipeline reprodutível. Código-fonte: \url{https://github.com/mancano-tales/open-data-analysis}, pasta posts-pt/concentracao-rede-publica-privada/. Acesso em AAAA-MM-DD}
 }
 ```
 
-Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL do repositório acima.
+Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL da página acima e acrescente a data de acesso (código-fonte: https://github.com/mancano-tales/open-data-analysis, pasta `posts-pt/concentracao-rede-publica-privada/`).
 
 ## Pipeline
 
-Esta figura usa o painel da [Harmonização PNAD / PNAD Contínua, 1992–2025](../harmonizacao-pnad-pnadc/).
+Rode estes scripts nesta ordem, a partir da raiz do projeto (cada um grava em `data-raw/`, de onde o seguinte lê):
 
-
-Scripts desta análise:
-
-- Plotagem: [`plot.R`](../../posts/concentracao-rede-publica-privada/plot.R) — script autocontido: baixa e processa os microdados diretamente, sem depender de outros scripts deste repositório.
-- Fonte de dado de referência: [`shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R`](../../shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R)
+1. [`shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R`](../../shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R) — *(opcional)* pré-popula o cache da PNAD Contínua em `data-raw/pnadc_raw/`; se pulado, o `plot.R` baixa os anos necessários com `PNADcIBGE::get_pnadc()` para a mesma pasta
+2. [`plot.R`](../../posts/concentracao-rede-publica-privada/plot.R) — baixa a PNAD Contínua 2022–2024 com `PNADcIBGE::get_pnadc()` para `data-raw/pnadc_raw/` e constrói a figura diretamente dos microdados; grava a figura em `output/figures/concentracao-rede-publica-privada/` — compare com o `thumbnail.png` deste post
 
 ## Reprodutibilidade
 

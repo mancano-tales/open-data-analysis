@@ -90,7 +90,7 @@ suppressPackageStartupMessages({
 source(here::here("shared-pipeline", "utils", "plot_theme.R"))
 theme_set(thesis_theme())
 
-SAVE_DIR <- "C:/Users/Mancano/Documents/MancanoSync/5-data/pnadc_raw"
+SAVE_DIR <- here::here("data-raw", "pnadc_raw")   # mesmo cache de shared-pipeline/pnadc/000
 ANOS     <- c(2022L, 2023L, 2024L)
 N_PONTOS <- 101L
 
@@ -99,7 +99,7 @@ N_PONTOS <- 101L
 #    ver decisão de escopo no cabeçalho)
 # ==============================================================================
 extrair_ano <- function(ano) {
-  cat(sprintf("Lendo PNADC %d (cache local em 5-data/pnadc_raw/)...\n", ano))
+  cat(sprintf("Lendo PNADC %d (cache local em data-raw/pnadc_raw/)...\n", ano))
   d <- get_pnadc(
     year = ano, interview = 1,
     vars = c("V2009", "V3002", "V3003A", "V3002A", "VD5008"),
@@ -294,8 +294,7 @@ finalizar_figura(
     "Curves show the cumulative share of currently-enrolled tertiary students accounted for by the poorest $p\\%$ of the 18--24 population, by network. A curve closer to the 45-degree line indicates access more evenly distributed across income; bowing below it indicates concentration among the rich. Pooled across 2022--2024."
   ),
   apendice    = "sec-fignote-concentracao-rede-publica-privada",
-  script_path = here::here("4-DA-Code", "2026-05_PNADcIBGE",
-                            "041_Curva_Concentracao_Rede_Publica_Privada.R"),
+  script_path = here::here("posts", "concentracao-rede-publica-privada", "plot.R"),
   largura = LARGURA_TEXTO, altura = ALTURA_ALTA, unidades = "in"
 )
 

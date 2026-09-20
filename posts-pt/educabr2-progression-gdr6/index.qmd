@@ -18,14 +18,22 @@ O GDR6 é uma proxy da retenção nos anos iniciais do ensino fundamental (matr�
 
 ## Como Citar
 
-Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto este repositório.
+Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto esta análise específica. As referências seguem a 7ª edição da APA.
 
-**Dissertação:**
+**Dissertação (em elaboração; a entrada será atualizada após a defesa):**
 
-> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Dissertação de Mestrado, Programa de Pós-Graduação em Ciência Política, Universidade de São Paulo.
+> Mançano, T. (2026). *Inequality in access to tertiary education in Brazil: Household incomes, reforming policies, and the politics of who gets in (1990s–2020s)* [Dissertação de mestrado não publicada]. Universidade de São Paulo.
+
+**Esta figura e o pipeline:**
+
+> Mançano, T. (2026, 12 de julho). *Razão de progressão escolar (GDR6) em São Paulo e na Bahia* [Figura e pipeline reprodutível]. Open Data Analysis. https://mancano-tales.github.io/open-data-analysis/pt/posts-pt/educabr2-progression-gdr6/
+
+**No texto:** (Mançano, 2026) — ao citar várias análises deste catálogo no mesmo trabalho, a APA as distingue como 2026a, 2026b, … na ordem em que aparecem na lista de referências.
+
+**BibTeX:**
 
 ```bibtex
-@mastersthesis{Mancano2026,
+@mastersthesis{Mancano2026Thesis,
   author = {Man\c{c}ano, Tales},
   title  = {Inequality in Access to Tertiary Education in Brazil: Household
             Incomes, Reforming Policies, and the Politics of Who Gets In
@@ -33,32 +41,27 @@ Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação q
   school = {University of S\~{a}o Paulo},
   year   = {2026},
   type   = {Master's thesis},
-  note   = {Graduate Program in Political Science}
+  note   = {Unpublished; Graduate Program in Political Science}
 }
-```
 
-**Esta figura e o pipeline:**
-
-> Mançano, Tales. 2026. "Razão de Progressão Escolar (GDR6) em São Paulo e na Bahia." Em *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts-pt/educabr2-progression-gdr6/`.
-
-```bibtex
-@misc{Mancano2026OpenDataAnalysis,
+@misc{Mancano2026_educabr2_progression_gdr6_pt,
   author       = {Man\c{c}ano, Tales},
-  title        = {Open Data Analysis: Razão de Progressão Escolar (GDR6) em São Paulo e na Bahia},
+  title        = {Raz\~{a}o de progress\~{a}o escolar (GDR6) em S\~{a}o Paulo e na Bahia},
   year         = {2026},
-  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
-  note         = {posts/educabr2-progression-gdr6/}
+  month        = jul,
+  howpublished = {Open Data Analysis, \url{https://mancano-tales.github.io/open-data-analysis/pt/posts-pt/educabr2-progression-gdr6/}},
+  note         = {Figura e pipeline reprodutível. Código-fonte: \url{https://github.com/mancano-tales/open-data-analysis}, pasta posts-pt/educabr2-progression-gdr6/. Acesso em AAAA-MM-DD}
 }
 ```
 
-Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL do repositório acima.
+Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL da página acima e acrescente a data de acesso (código-fonte: https://github.com/mancano-tales/open-data-analysis, pasta `posts-pt/educabr2-progression-gdr6/`).
 
 ## Pipeline
 
 Scripts desta análise:
 
-- Plotagem: [`plot.R`](../../posts/educabr2-progression-gdr6/plot.R)
-- Pipeline upstream: nenhum script neste repositório — os dados vêm embutidos no pacote R [`educabr2`](https://github.com/mancano-tales/educabr2).
+- Plotagem: [`plot.R`](../../posts/educabr2-progression-gdr6/plot.R) — grava a figura em `output/figures/educabr2-progression-gdr6/` — compare com o `thumbnail.png` deste post
+- Pipeline upstream: nenhum script upstream neste repositório — os dados vêm embutidos no pacote R [`educabr2`](https://github.com/mancano-tales/educabr2) (`remotes::install_github("mancano-tales/educabr2")`).
 
 ## Reprodutibilidade
 

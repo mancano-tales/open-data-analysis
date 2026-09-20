@@ -24,11 +24,13 @@ open-data-analysis/
 │   ├── censup/          # download e organização de microdados do Censo da Educação Superior
 │   ├── sedap/           # cliente e extração via SEDAP+ (INEP, dado restrito)
 │   └── ipca/            # série de mensalidades via IPCA/SIDRA
-└── posts/
-    └── <fig-label>/
-        ├── index.qmd    # página do post (frontmatter + pipeline + reprodutibilidade)
-        ├── plot.R       # script canônico que gera a figura
-        └── thumbnail.png
+├── posts/
+│   └── <fig-label>/
+│       ├── index.qmd    # página do post (frontmatter + pipeline + reprodutibilidade)
+│       ├── plot.R       # script canônico que gera a figura
+│       └── thumbnail.png  # versão publicada da figura
+├── data-raw/            # (gitignored) dado bruto/intermediário escrito por shared-pipeline/
+└── output/              # (gitignored) figuras geradas ao rodar um plot.R
 ```
 
 ## Como rodar
@@ -38,17 +40,24 @@ open-data-analysis/
    `ipeadatar`, `httr2`, `archive`, `data.table`, `ggh4x`, `patchwork`. Cada
    script declara seus próprios `library()` no topo — instale conforme os
    erros de pacote ausente aparecerem.
-2. Crie uma pasta `data-raw/` na raiz do projeto. Os scripts de
-   `shared-pipeline/` escrevem e leem os dados brutos/intermediários ali.
-3. Rode os scripts de `shared-pipeline/` na ordem numérica indicada pelo
-   prefixo do nome do arquivo (ex.: `pnadc/000_...` antes de
-   `pnadc/035_...`), dentro de cada subpasta de fonte. Isso baixa e
-   harmoniza os microdados necessários em `data-raw/`.
-4. Só então rode o `plot.R` de um post específico em `posts/<fig-label>/`.
+2. Abra o projeto pela raiz (o `.Rproj` ou `here::here()` apontando para esta
+   pasta). Todos os caminhos são relativos à raiz: os scripts de
+   `shared-pipeline/` criam `data-raw/` e escrevem os dados brutos e
+   intermediários ali; os `plot.R` leem de `data-raw/` e gravam a figura em
+   `output/figures/<fig-label>/`. Nenhum script depende de caminho fora do
+   repositório.
+3. Rode os scripts upstream **na ordem listada na seção "Pipeline" do post**
+   que você quer reproduzir (cada post lista a cadeia completa, do download ao
+   dado intermediário, e o que cada script grava). Para reconstruir de uma vez
+   todos os dados públicos (Tier A), rode
+   `shared-pipeline/build_public_data.R`.
+4. Só então rode o `plot.R` do post em `posts/<fig-label>/`. Compare o PNG
+   gerado em `output/figures/<fig-label>/` com o `thumbnail.png` do post — é a
+   versão publicada.
 
-Cada post documenta, na sua própria página (`index.qmd`), exatamente quais
-scripts de `shared-pipeline/` ele depende — não é preciso rodar tudo para
-reproduzir uma figura isolada.
+Rodar a cadeia PNAD/PNADC completa baixa alguns GB de microdados do IBGE e
+leva horas; o script `000` sozinho leva 30–90 minutos. Os caches em
+`data-raw/` evitam repetir downloads.
 
 ## Tiers de reprodutibilidade
 
@@ -65,9 +74,20 @@ para reproduzi-lo do zero:
 
 Este catálogo cresce ao longo do tempo com novas análises — não é um
 snapshot estático de uma única dissertação. Novos posts são adicionados
-conforme novas figuras são produzidas; posts antigos não são removidos, só
-eventualmente reclassificados de tier se uma fonte de dado mudar de status
-de acesso.
+conforme novas figuras são produzidas. Um post é removido quando a figura é
+**superada** por uma versão mais recente da mesma análise (por exemplo, as
+variações de renda por mandato em termos relativos e absolutos, de julho de
+2026, foram substituídas pela versão anualizada, que exclui o mandato Itamar
+e inclui Lula III); o histórico fica no Git. Posts também podem ser
+reclassificados de tier se uma fonte de dado mudar de status de acesso.
+
+## Como citar
+
+Cada post traz uma seção "How to Cite" / "Como Citar" em APA 7ª edição, com
+a referência da dissertação, a referência da figura específica (com a URL da
+página) e entradas BibTeX com chave única por figura
+(`Mancano2026_<fig-label>`). Até a defesa, cite a URL da página e a data de
+acesso; depois, uma tag do Git e um DOI no Zenodo serão linkados aqui.
 
 ## Site bilíngue
 

@@ -29,7 +29,7 @@ theme_set(thesis_theme())
 csv_sedap <- here::here("data-raw", "INEP", "derived", "nicho_agregado_sedap_2010_2024.csv")
 
 if (!file.exists(csv_sedap)) {
-  stop("O arquivo 'nicho_agregado_sedap_2010_2024.csv' nao foi encontrado em 5-data/INEP/derived/.", call. = FALSE)
+  stop("O arquivo 'nicho_agregado_sedap_2010_2024.csv' nao foi encontrado em data-raw/INEP/derived/. Rode antes shared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R (Tier B: exige SEDAP_TOKEN).", call. = FALSE)
 }
 
 df_raw <- read_csv(csv_sedap, show_col_types = FALSE)
@@ -201,7 +201,7 @@ finalizar_figura(
     "enrolment counts in millions. Reconstructed 100% from INEP SEDAP API microdata (2010--2024)."
   ),
   apendice    = "sec-fignote-matriculas-turno-via-acesso",
-  script_path = here::here("4-DA-Code", "2026-08_SEDAP", "050_Plot_Nicho_100pct_SEDAP.R"),
+  script_path = here::here("posts", "matriculas-turno-via-acesso", "plot.R"),
   largura     = LARGURA_TEXTO, altura = ALTURA_FIG
 )
 

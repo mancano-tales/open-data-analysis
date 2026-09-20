@@ -18,14 +18,22 @@ Each point shows the total percentage-point change in the share of 18–24-year-
 
 ## How to Cite
 
-If you use this figure or its underlying pipeline, please cite both the dissertation and this repository.
+If you use this figure or the pipeline behind it, please cite both the dissertation and this specific analysis. References follow APA 7th edition.
 
-**Dissertation:**
+**Dissertation (in preparation; the entry will be updated after the defense):**
 
-> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Master's thesis, Graduate Program in Political Science, University of São Paulo.
+> Mançano, T. (2026). *Inequality in access to tertiary education in Brazil: Household incomes, reforming policies, and the politics of who gets in (1990s–2020s)* [Unpublished master's thesis]. University of São Paulo.
+
+**This figure and pipeline:**
+
+> Mançano, T. (2026, August 7). *Change in higher education enrollment rate by income decile and presidential term (dot plot)* [Figure and reproducible pipeline]. Open Data Analysis. https://mancano-tales.github.io/open-data-analysis/posts/delta-matriculados-decil-governo-dotplot/
+
+**In text:** (Mançano, 2026) — when citing several analyses from this catalog in the same work, APA distinguishes them as 2026a, 2026b, … in the order they appear in the reference list.
+
+**BibTeX:**
 
 ```bibtex
-@mastersthesis{Mancano2026,
+@mastersthesis{Mancano2026Thesis,
   author = {Man\c{c}ano, Tales},
   title  = {Inequality in Access to Tertiary Education in Brazil: Household
             Incomes, Reforming Policies, and the Politics of Who Gets In
@@ -33,36 +41,34 @@ If you use this figure or its underlying pipeline, please cite both the disserta
   school = {University of S\~{a}o Paulo},
   year   = {2026},
   type   = {Master's thesis},
-  note   = {Graduate Program in Political Science}
+  note   = {Unpublished; Graduate Program in Political Science}
 }
-```
 
-**This figure and pipeline:**
-
-> Mançano, Tales. 2026. "Change in Higher Education Enrollment Rate by Income Decile and Presidential Term (Dot Plot)." In *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts/delta-matriculados-decil-governo-dotplot/`.
-
-```bibtex
-@misc{Mancano2026OpenDataAnalysis,
+@misc{Mancano2026_delta_matriculados_decil_governo_dotplot,
   author       = {Man\c{c}ano, Tales},
-  title        = {Open Data Analysis: Change in Higher Education Enrollment Rate by Income Decile and Presidential Term (Dot Plot)},
+  title        = {Change in higher education enrollment rate by income decile and presidential term (dot plot)},
   year         = {2026},
-  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
-  note         = {posts/delta-matriculados-decil-governo-dotplot/}
+  month        = aug,
+  howpublished = {Open Data Analysis, \url{https://mancano-tales.github.io/open-data-analysis/posts/delta-matriculados-decil-governo-dotplot/}},
+  note         = {Figure and reproducible pipeline. Source code: \url{https://github.com/mancano-tales/open-data-analysis}, folder posts/delta-matriculados-decil-governo-dotplot/. Accessed YYYY-MM-DD}
 }
 ```
 
-A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the repository URL above.
+A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the page URL above and add the date you accessed it (source code: https://github.com/mancano-tales/open-data-analysis, folder `posts/delta-matriculados-decil-governo-dotplot/`).
 
 ## Pipeline
 
 This figure draws on the [PNAD / PNAD Contínua Harmonization, 1992–2025](../harmonizacao-pnad-pnadc/) panel.
 
+Run these scripts in this order, from the project root (each one writes to `data-raw/`, which the next one reads):
 
-Scripts for this analysis:
+1. [`shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R`](../../shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R) — downloads PNAD Contínua 2012–2025 (1st interview) with `PNADcIBGE::get_pnadc()` into `data-raw/pnadc_raw/` and consolidates it into `data-raw/pnadc_consolidado_2012_2025_interview1.rds`
+2. [`shared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R`](../../shared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R) — downloads the PNAD Anual 2001–2015 microdata from the IBGE FTP into `data-raw/pnad_anual_raw/` and imports them into `data-raw/harmonizing-br-data/output/PNAD_Anual_2001_2015.parquet`
+3. [`shared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R`](../../shared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R) — same for PNAD Anual 1992–1999 (`PNAD_Anual_1992_1999.parquet`)
+4. [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R) — splices PNAD Anual and PNAD Contínua into the harmonized panel — `Microdados_Todas_Idades_1992_2025.parquet` and `Microdados_Jovens_18_24_1992_2025.parquet` in `data-raw/harmonizing-br-data/output/` (sources `shared-pipeline/utils/codigos_curso_pnad.R`)
+5. [`plot.R`](plot.R) — reads `Microdados_Jovens_18_24_1992_2025.parquet` plus `data-raw/pnadc_consolidado_2012_2025_interview1.rds` (survey design variables for the PNAD Contínua years); writes the figure to `output/figures/delta-matriculados-decil-governo-dotplot/` — compare it with this post's `thumbnail.png`
 
-- Plotting: [`plot.R`](plot.R)
-- Upstream pipeline:
-  - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R)
+All of the upstream steps above are Tier A and are also run, in this same order, by [`shared-pipeline/build_public_data.R`](../../shared-pipeline/build_public_data.R).
 
 ## Reproducibility
 

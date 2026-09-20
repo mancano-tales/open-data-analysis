@@ -18,14 +18,22 @@ O painel A mostra o índice de Gini da renda per capita real. O painel B mostra 
 
 ## Como Citar
 
-Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto este repositório.
+Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto esta análise específica. As referências seguem a 7ª edição da APA.
 
-**Dissertação:**
+**Dissertação (em elaboração; a entrada será atualizada após a defesa):**
 
-> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Dissertação de Mestrado, Programa de Pós-Graduação em Ciência Política, Universidade de São Paulo.
+> Mançano, T. (2026). *Inequality in access to tertiary education in Brazil: Household incomes, reforming policies, and the politics of who gets in (1990s–2020s)* [Dissertação de mestrado não publicada]. Universidade de São Paulo.
+
+**Esta figura e o pipeline:**
+
+> Mançano, T. (2026, 9 de agosto). *Desigualdade de renda e crescimento real da renda por decil (painel Gini/Palma)* [Figura e pipeline reprodutível]. Open Data Analysis. https://mancano-tales.github.io/open-data-analysis/pt/posts-pt/desigualdade-renda-gini-palma-decil/
+
+**No texto:** (Mançano, 2026) — ao citar várias análises deste catálogo no mesmo trabalho, a APA as distingue como 2026a, 2026b, … na ordem em que aparecem na lista de referências.
+
+**BibTeX:**
 
 ```bibtex
-@mastersthesis{Mancano2026,
+@mastersthesis{Mancano2026Thesis,
   author = {Man\c{c}ano, Tales},
   title  = {Inequality in Access to Tertiary Education in Brazil: Household
             Incomes, Reforming Policies, and the Politics of Who Gets In
@@ -33,38 +41,36 @@ Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação q
   school = {University of S\~{a}o Paulo},
   year   = {2026},
   type   = {Master's thesis},
-  note   = {Graduate Program in Political Science}
+  note   = {Unpublished; Graduate Program in Political Science}
 }
-```
 
-**Esta figura e o pipeline:**
-
-> Mançano, Tales. 2026. "Desigualdade de Renda e Crescimento Real da Renda por Decil (Painel Gini/Palma)." Em *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts-pt/desigualdade-renda-gini-palma-decil/`.
-
-```bibtex
-@misc{Mancano2026OpenDataAnalysis,
+@misc{Mancano2026_desigualdade_renda_gini_palma_decil_pt,
   author       = {Man\c{c}ano, Tales},
-  title        = {Open Data Analysis: Desigualdade de Renda e Crescimento Real da Renda por Decil (Painel Gini/Palma)},
+  title        = {Desigualdade de renda e crescimento real da renda por decil (painel Gini/Palma)},
   year         = {2026},
-  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
-  note         = {posts/desigualdade-renda-gini-palma-decil/}
+  month        = aug,
+  howpublished = {Open Data Analysis, \url{https://mancano-tales.github.io/open-data-analysis/pt/posts-pt/desigualdade-renda-gini-palma-decil/}},
+  note         = {Figura e pipeline reprodutível. Código-fonte: \url{https://github.com/mancano-tales/open-data-analysis}, pasta posts-pt/desigualdade-renda-gini-palma-decil/. Acesso em AAAA-MM-DD}
 }
 ```
 
-Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL do repositório acima.
+Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL da página acima e acrescente a data de acesso (código-fonte: https://github.com/mancano-tales/open-data-analysis, pasta `posts-pt/desigualdade-renda-gini-palma-decil/`).
 
 ## Pipeline
 
 Esta figura usa o painel da [Harmonização PNAD / PNAD Contínua, 1992–2025](../harmonizacao-pnad-pnadc/).
 
+Rode estes scripts nesta ordem, a partir da raiz do projeto (cada um grava em `data-raw/`, de onde o seguinte lê):
 
-Scripts desta análise:
+1. [`shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R`](../../shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R) — baixa a PNAD Contínua 2012–2025 (1ª entrevista) com `PNADcIBGE::get_pnadc()` para `data-raw/pnadc_raw/` e a consolida em `data-raw/pnadc_consolidado_2012_2025_interview1.rds`
+2. [`shared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R`](../../shared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R) — baixa os microdados da PNAD Anual 2001–2015 do FTP do IBGE para `data-raw/pnad_anual_raw/` e os importa em `data-raw/harmonizing-br-data/output/PNAD_Anual_2001_2015.parquet`
+3. [`shared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R`](../../shared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R) — o mesmo para a PNAD Anual 1992–1999 (`PNAD_Anual_1992_1999.parquet`)
+4. [`shared-pipeline/pnadc/021_PNAD_Anual_Import_Com_Renda_Zero.R`](../../shared-pipeline/pnadc/021_PNAD_Anual_Import_Com_Renda_Zero.R) — reimporta a PNAD Anual 2001–2015 mantendo domicílios com renda zero (`PNAD_Anual_2001_2015_com_zero.parquet`), exigido pelo script 238
+5. [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R) — emenda PNAD Anual e PNAD Contínua no painel harmonizado — `Microdados_Todas_Idades_1992_2025.parquet` e `Microdados_Jovens_18_24_1992_2025.parquet` em `data-raw/harmonizing-br-data/output/` (carrega `shared-pipeline/utils/codigos_curso_pnad.R`)
+6. [`shared-pipeline/pnadc/238_Serie_Desigualdade_Oficial.R`](../../shared-pipeline/pnadc/238_Serie_Desigualdade_Oficial.R) — deriva a série oficial de desigualdade de renda (`238_serie_desigualdade_oficial.rds`). Entrada opcional: `PNADC_Visita5_2019_2022.parquet` (microdados da 5ª entrevista da PNAD Contínua, não gerado por nenhum script deste repositório) enxerta os pontos de 2020–2021; sem ele, esses dois anos simplesmente não aparecem
+7. [`plot.R`](../../posts/desigualdade-renda-gini-palma-decil/plot.R) — lê `Microdados_Todas_Idades_1992_2025.parquet` e `238_serie_desigualdade_oficial.rds`; grava a figura em `output/figures/desigualdade-renda-gini-palma-decil/` — compare com o `thumbnail.png` deste post
 
-- Plotagem: [`plot.R`](../../posts/desigualdade-renda-gini-palma-decil/plot.R)
-- Pipeline upstream:
-  - [`shared-pipeline/pnadc/238_Serie_Desigualdade_Oficial.R`](../../shared-pipeline/pnadc/238_Serie_Desigualdade_Oficial.R)
-  - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R)
-  - [`shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R`](../../shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R)
+Todas as etapas upstream acima são Tier A e também são executadas, nesta mesma ordem, por [`shared-pipeline/build_public_data.R`](../../shared-pipeline/build_public_data.R).
 
 ## Reprodutibilidade
 

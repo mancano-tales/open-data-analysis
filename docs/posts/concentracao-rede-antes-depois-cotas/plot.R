@@ -96,8 +96,8 @@ source(here::here("shared-pipeline", "utils", "plot_theme.R"))
 source(here::here("shared-pipeline", "utils", "codigos_curso_pnad.R"))
 theme_set(thesis_theme())
 
-PNAD_RAW_DIR  <- "C:/Users/Mancano/Documents/MancanoSync/5-data/pnad_anual_raw"
-PNADC_RAW_DIR <- "C:/Users/Mancano/Documents/MancanoSync/5-data/pnadc_raw"
+PNAD_RAW_DIR  <- here::here("data-raw", "pnad_anual_raw")   # escrito por shared-pipeline/pnadc/020
+PNADC_RAW_DIR <- here::here("data-raw", "pnadc_raw")        # escrito por shared-pipeline/pnadc/000
 N_PONTOS      <- 101L
 
 ANOS_ANTES           <- c(2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2011)
@@ -145,7 +145,7 @@ achar_arquivo <- function(dir, padrao) {
 }
 
 extrair_pnad_anual <- function(ano) {
-  cat(sprintf("Lendo PNAD Anual %d (cache local em 5-data/pnad_anual_raw/)...\n", ano))
+  cat(sprintf("Lendo PNAD Anual %d (cache local em data-raw/pnad_anual_raw/)...\n", ano))
   dir_ano  <- file.path(PNAD_RAW_DIR, as.character(ano))
   sas_path <- achar_arquivo(dir_ano, "input.*PES.*\\.(txt|sas)$")
   txt_path <- achar_arquivo(dir_ano, "^PES[0-9]+\\.(txt|dat)$")
@@ -202,7 +202,7 @@ extrair_pnad_anual <- function(ano) {
 # Idêntica a extrair_ano() em 041_Curva_Concentracao_Rede_Publica_Privada.R
 # ==============================================================================
 extrair_pnadc <- function(ano) {
-  cat(sprintf("Lendo PNADC %d (cache local em 5-data/pnadc_raw/)...\n", ano))
+  cat(sprintf("Lendo PNADC %d (cache local em data-raw/pnadc_raw/)...\n", ano))
   d <- get_pnadc(
     year = ano, interview = 1,
     vars = c("V2009", "V3002", "V3003A", "V3002A", "VD5008"),
@@ -429,8 +429,7 @@ finalizar_figura(
   nota        = paste0(
     "Each panel pools the year-specific concentration curves within that period (simple average across years, uniform 101-point percentile grid), so each year contributes equally regardless of sample size. 'Before quotas' = 2001-2011 (PNAD Anual, excludes 2010, a census year with no PNAD). 'Transition' = 2012-2016, the Lei de Cotas (12.711/2012) phase-in period (quota share rising linearly toward a minimum of 50% of seats by 2016); 2012-2015 from PNAD Anual, 2016 from PNAD Contínua (the last year covered by PNAD Anual in this project's pipeline). 'Mature quotas' = 2017-2024 (PNAD Contínua), excluding 2020-2021 (no standard first-interview data available for those years, COVID-19). Network variable: V6002 (PNAD Anual, 2001-2015, coded 2 = public / 4 = private) and V3002A (PNAD Contínua, 2016+, coded 1 = private / 2 = public -- note the reversed coding between sources). Erreygers concentration index by period (population of reference: all 18-24-year-olds): ", fmt_E("E_overall", "overall"), "; ", fmt_E("E_publica", "public network"), "; ", fmt_E("E_privada", "private network"), " (see script console output for year-by-year values). The public-network index is essentially flat across all three periods -- this specific measure (concentration of public-network access relative to the general 18-24 population) does not show a clear redistributive shift after the quota law, which does not necessarily mean the law had no effect, only that this particular cut (network relative to the general population) may not be the most sensitive lens for it; a composition shift by race or income *within* the public network, for instance, would not be visible in this curve. See script header for the full discovery and verification log, including a correction to a stale course-code comment in 020_PNAD_Anual_Manual_Import_2001_2015.R."
   ),
-  script_path = here::here("4-DA-Code", "2026-05_PNADcIBGE",
-                            "042_Curva_Concentracao_Rede_Antes_Depois_Cotas.R"),
+  script_path = here::here("posts", "concentracao-rede-antes-depois-cotas", "plot.R"),
   largura = LARGURA_PAISAGEM, altura = 10, unidades = "cm"
 )
 

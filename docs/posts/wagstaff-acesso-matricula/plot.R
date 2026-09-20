@@ -57,7 +57,7 @@ source(here::here("shared-pipeline", "utils", "plot_theme.R"))
 theme_set(thesis_theme(base_size = 14))
 options(survey.lonely.psu = "adjust")
 
-BASE_DIR <- here::here("4-DA-Code", "2026-06_Harmonizing-BR-Data")
+BASE_DIR <- here::here("data-raw", "harmonizing-br-data")
 
 # ==============================================================================
 # 1. FUNÇÕES DE CÁLCULO — idênticas ao script original
@@ -516,8 +516,7 @@ if (PROMOVER) {
                          ANO_MAX_SERIE, ")"),
     nota        = "Wagstaff index (W): a Gini-like scalar bounded for binary outcomes; W near zero means access is de-commodified (income-independent), high W means access remains a commodity. Solid/circles = ever accessed; dashed/triangles = currently enrolled. Grey bands: 95\\% CIs. Panel B: Gini index of household per-capita income, official IBGE universe (238_Serie_Desigualdade_Oficial.R).",
     apendice    = "sec-fignote-wagstaff-acesso-matricula",
-    script_path = here::here("4-DA-Code", "2026-06_Harmonizing-BR-Data", "R",
-                              "02_validation", "097D_Tese_Wagstaff_Acesso_Matricula.R"),
+    script_path = here::here("posts", "wagstaff-acesso-matricula", "plot.R"),
     largura = LARGURA_TEXTO, altura = ALTURA_TRIPLO, unidades = "in"
   )
 } else {

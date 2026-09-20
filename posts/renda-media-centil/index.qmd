@@ -1,6 +1,6 @@
 ---
 title: "Average Household Income by Income Percentile"
-date: 2026-08-09
+date: 2026-09-16
 categories: [PNAD/PNADC, Renda, Distribuição]
 image: thumbnail.png
 description: "Average per-capita household income by income percentile, linear scale."
@@ -14,18 +14,28 @@ This figure plots average household income across the entire income distribution
 
 ## Methodology
 
-Each line shows the weighted mean real per-capita household income (deflated to January 2024 prices via the IPCA) within each income percentile group, for the selected years. Percentiles rank all individuals with strictly positive per-capita household income by income, using sampling weights. For 2012, only the PNAD Anual sample is used. The y-axis is truncated at R$8,000. Open circles mark the percentile at which mean per-capita household income equals one (1 MW), one-and-a-half (1.5 MW), and three (3 MW) times the national minimum wage in force in January of that year, deflated to January 2024 prices via `deflateBR`.
+Each line shows the weighted mean real per-capita household income within each income percentile group, for the selected years (2002, 2007, 2012, 2017, 2022, 2025 — five-year snapshots of a continuous annual series). Income is per-capita *household* income throughout — for PNAD Anual (up to 2015) it is rebuilt from the raw microdata as total household income (`V4721`) divided by the number of residents, excluding boarders, domestic workers and their relatives; for PNAD Contínua (2016 onwards) it is `VD5008` — and households reporting no income are retained, so the series is on the same footing as the official statistics. Incomes are deflated to January 2024 prices via the IPCA from each survey's reference month (September for PNAD Anual, mid-year for PNAD Contínua). Percentiles rank individuals using sampling weights; percentiles 1 and 100 are dropped for sampling instability, and the y-axis is truncated at R$8,000. Open circles mark the percentile at which mean per-capita household income equals one (1 MW), one-and-a-half (1.5 MW), and three (3 MW) times the national minimum wage in force in the survey's reference month, deflated from that same date.
+
+This version (2026-09-16) replaces the one published on 2026-08-09, which ranked only individuals with strictly positive income, used family rather than household income for the PNAD Anual years, and took the January minimum wage deflated from January — inconsistencies measured in the pipeline audit of 2026-09-16 (the 1 MW marker moved by up to 4 percentiles in some years).
 
 ## How to Cite
 
-If you use this figure or its underlying pipeline, please cite both the dissertation and this repository.
+If you use this figure or the pipeline behind it, please cite both the dissertation and this specific analysis. References follow APA 7th edition.
 
-**Dissertation:**
+**Dissertation (in preparation; the entry will be updated after the defense):**
 
-> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Master's thesis, Graduate Program in Political Science, University of São Paulo.
+> Mançano, T. (2026). *Inequality in access to tertiary education in Brazil: Household incomes, reforming policies, and the politics of who gets in (1990s–2020s)* [Unpublished master's thesis]. University of São Paulo.
+
+**This figure and pipeline:**
+
+> Mançano, T. (2026, September 16). *Average household income by income percentile* [Figure and reproducible pipeline]. Open Data Analysis. https://mancano-tales.github.io/open-data-analysis/posts/renda-media-centil/
+
+**In text:** (Mançano, 2026) — when citing several analyses from this catalog in the same work, APA distinguishes them as 2026a, 2026b, … in the order they appear in the reference list.
+
+**BibTeX:**
 
 ```bibtex
-@mastersthesis{Mancano2026,
+@mastersthesis{Mancano2026Thesis,
   author = {Man\c{c}ano, Tales},
   title  = {Inequality in Access to Tertiary Education in Brazil: Household
             Incomes, Reforming Policies, and the Politics of Who Gets In
@@ -33,36 +43,30 @@ If you use this figure or its underlying pipeline, please cite both the disserta
   school = {University of S\~{a}o Paulo},
   year   = {2026},
   type   = {Master's thesis},
-  note   = {Graduate Program in Political Science}
+  note   = {Unpublished; Graduate Program in Political Science}
 }
-```
 
-**This figure and pipeline:**
-
-> Mançano, Tales. 2026. "Average Household Income by Income Percentile." In *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts/renda-media-centil/`.
-
-```bibtex
-@misc{Mancano2026OpenDataAnalysis,
+@misc{Mancano2026_renda_media_centil,
   author       = {Man\c{c}ano, Tales},
-  title        = {Open Data Analysis: Average Household Income by Income Percentile},
+  title        = {Average household income by income percentile},
   year         = {2026},
-  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
-  note         = {posts/renda-media-centil/}
+  month        = sep,
+  howpublished = {Open Data Analysis, \url{https://mancano-tales.github.io/open-data-analysis/posts/renda-media-centil/}},
+  note         = {Figure and reproducible pipeline. Source code: \url{https://github.com/mancano-tales/open-data-analysis}, folder posts/renda-media-centil/. Accessed YYYY-MM-DD}
 }
 ```
 
-A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the repository URL above.
+A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the page URL above and add the date you accessed it (source code: https://github.com/mancano-tales/open-data-analysis, folder `posts/renda-media-centil/`).
 
 ## Pipeline
 
-This figure draws on the [PNAD / PNAD Contínua Harmonization, 1992–2025](../harmonizacao-pnad-pnadc/) panel.
+Run these scripts in this order, from the project root (each one writes to `data-raw/`, which the next one reads):
 
+1. [`shared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R`](../../shared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R) — downloads the raw PNAD Anual 2001–2015 microdata (fixed-width `.txt` + SAS layouts) from the IBGE FTP into `data-raw/pnad_anual_raw/<year>/` — `plot.R` reads these raw files directly
+2. [`shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R`](../../shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R) — downloads PNAD Contínua 2012–2025 (1st interview) with `PNADcIBGE::get_pnadc()` into `data-raw/pnadc_raw/` and consolidates it into `data-raw/pnadc_consolidado_2012_2025_interview1.rds`
+3. [`plot.R`](plot.R) — rebuilds per-capita household income from the raw PNAD Anual files in `data-raw/pnad_anual_raw/` (via `shared-pipeline/utils/renda_domiciliar_pnad.R`) and reads the PNAD Contínua years from `data-raw/pnadc_consolidado_2012_2025_interview1.rds`; the minimum-wage series is fetched online from IPEADATA (`ipeadatar`) on first run; writes the figure to `output/figures/renda-media-centil/` — compare it with this post's `thumbnail.png`
 
-Scripts for this analysis:
-
-- Plotting: [`plot.R`](plot.R)
-- Upstream pipeline:
-  - [`shared-pipeline/pnadc/035_Splice_Microdados.R`](../../shared-pipeline/pnadc/035_Splice_Microdados.R)
+All of the upstream steps above are Tier A and are also run, in this same order, by [`shared-pipeline/build_public_data.R`](../../shared-pipeline/build_public_data.R).
 
 ## Reproducibility
 

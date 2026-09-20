@@ -200,12 +200,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="how-to-cite" class="level2">
 <h2 class="anchored" data-anchor-id="how-to-cite">How to Cite</h2>
-<p>If you use this figure or its underlying pipeline, please cite both the dissertation and this repository.</p>
-<p><strong>Dissertation:</strong></p>
+<p>If you use this figure or the pipeline behind it, please cite both the dissertation and this specific analysis. References follow APA 7th edition.</p>
+<p><strong>Dissertation (in preparation; the entry will be updated after the defense):</strong></p>
 <blockquote class="blockquote">
-<p>Mançano, Tales. 2026. <em>Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)</em>. Master’s thesis, Graduate Program in Political Science, University of São Paulo.</p>
+<p>Mançano, T. (2026). <em>Inequality in access to tertiary education in Brazil: Household incomes, reforming policies, and the politics of who gets in (1990s–2020s)</em> [Unpublished master’s thesis]. University of São Paulo.</p>
 </blockquote>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@mastersthesis</span>{<span class="ot">Mancano2026</span>,</span>
+<p><strong>This figure and pipeline:</strong></p>
+<blockquote class="blockquote">
+<p>Mançano, T. (2026, August 7). <em>Change in higher education enrollment rate by income decile and presidential term (dot plot)</em> [Figure and reproducible pipeline]. Open Data Analysis. https://mancano-tales.github.io/open-data-analysis/posts/delta-matriculados-decil-governo-dotplot/</p>
+</blockquote>
+<p><strong>In text:</strong> (Mançano, 2026) — when citing several analyses from this catalog in the same work, APA distinguishes them as 2026a, 2026b, … in the order they appear in the reference list.</p>
+<p><strong>BibTeX:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@mastersthesis</span>{<span class="ot">Mancano2026Thesis</span>,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span> = {Man<span class="ch">\c</span>{c}ano, Tales},</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>  = {Inequality in Access to Tertiary Education in Brazil: Household</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>            Incomes, Reforming Policies, and the Politics of Who Gets In</span>
@@ -213,32 +219,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">school</span> = {University of S<span class="ch">\~</span>{a}o Paulo},</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>   = {2026},</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">type</span>   = {Master's thesis},</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">note</span>   = {Graduate Program in Political Science}</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>This figure and pipeline:</strong></p>
-<blockquote class="blockquote">
-<p>Mançano, Tales. 2026. “Change in Higher Education Enrollment Rate by Income Decile and Presidential Term (Dot Plot).” In <em>Open Data Analysis</em>. <a href="https://github.com/mancano-tales/open-data-analysis" class="uri">https://github.com/mancano-tales/open-data-analysis</a>, <code>posts/delta-matriculados-decil-governo-dotplot/</code>.</p>
-</blockquote>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">Mancano2026OpenDataAnalysis</span>,</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>       = {Man<span class="ch">\c</span>{c}ano, Tales},</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>        = {Open Data Analysis: Change in Higher Education Enrollment Rate by Income Decile and Presidential Term (Dot Plot)},</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>         = {2026},</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">howpublished</span> = {<span class="ch">\url</span>{https://github.com/mancano-tales/open-data-analysis}},</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">note</span>         = {posts/delta-matriculados-decil-governo-dotplot/}</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the repository URL above.</p>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">note</span>   = {Unpublished; Graduate Program in Political Science}</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">Mancano2026_delta_matriculados_decil_governo_dotplot</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>       = {Man<span class="ch">\c</span>{c}ano, Tales},</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>        = {Change in higher education enrollment rate by income decile and presidential term (dot plot)},</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>         = {2026},</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">month</span>        = <span class="st">aug</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">howpublished</span> = {Open Data Analysis, <span class="ch">\url</span>{https://mancano-tales.github.io/open-data-analysis/posts/delta-matriculados-decil-governo-dotplot/}},</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">note</span>         = {Figure and reproducible pipeline. Source code: <span class="ch">\url</span>{https://github.com/mancano-tales/open-data-analysis}, folder posts/delta-matriculados-decil-governo-dotplot/. Accessed YYYY-MM-DD}</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the page URL above and add the date you accessed it (source code: https://github.com/mancano-tales/open-data-analysis, folder <code>posts/delta-matriculados-decil-governo-dotplot/</code>).</p>
 </section>
 <section id="pipeline" class="level2">
 <h2 class="anchored" data-anchor-id="pipeline">Pipeline</h2>
 <p>This figure draws on the <a href="../harmonizacao-pnad-pnadc/">PNAD / PNAD Contínua Harmonization, 1992–2025</a> panel.</p>
-<p>Scripts for this analysis:</p>
-<ul>
-<li>Plotting: <a href="plot.R"><code>plot.R</code></a></li>
-<li>Upstream pipeline:
-<ul>
-<li><a href="../../shared-pipeline/pnadc/035_Splice_Microdados.R"><code>shared-pipeline/pnadc/035_Splice_Microdados.R</code></a></li>
-</ul></li>
-</ul>
+<p>Run these scripts in this order, from the project root (each one writes to <code>data-raw/</code>, which the next one reads):</p>
+<ol type="1">
+<li><a href="../../shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R"><code>shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R</code></a> — downloads PNAD Contínua 2012–2025 (1st interview) with <code>PNADcIBGE::get_pnadc()</code> into <code>data-raw/pnadc_raw/</code> and consolidates it into <code>data-raw/pnadc_consolidado_2012_2025_interview1.rds</code></li>
+<li><a href="../../shared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R"><code>shared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R</code></a> — downloads the PNAD Anual 2001–2015 microdata from the IBGE FTP into <code>data-raw/pnad_anual_raw/</code> and imports them into <code>data-raw/harmonizing-br-data/output/PNAD_Anual_2001_2015.parquet</code></li>
+<li><a href="../../shared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R"><code>shared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R</code></a> — same for PNAD Anual 1992–1999 (<code>PNAD_Anual_1992_1999.parquet</code>)</li>
+<li><a href="../../shared-pipeline/pnadc/035_Splice_Microdados.R"><code>shared-pipeline/pnadc/035_Splice_Microdados.R</code></a> — splices PNAD Anual and PNAD Contínua into the harmonized panel — <code>Microdados_Todas_Idades_1992_2025.parquet</code> and <code>Microdados_Jovens_18_24_1992_2025.parquet</code> in <code>data-raw/harmonizing-br-data/output/</code> (sources <code>shared-pipeline/utils/codigos_curso_pnad.R</code>)</li>
+<li><a href="plot.R"><code>plot.R</code></a> — reads <code>Microdados_Jovens_18_24_1992_2025.parquet</code> plus <code>data-raw/pnadc_consolidado_2012_2025_interview1.rds</code> (survey design variables for the PNAD Contínua years); writes the figure to <code>output/figures/delta-matriculados-decil-governo-dotplot/</code> — compare it with this post’s <code>thumbnail.png</code></li>
+</ol>
+<p>All of the upstream steps above are Tier A and are also run, in this same order, by <a href="../../shared-pipeline/build_public_data.R"><code>shared-pipeline/build_public_data.R</code></a>.</p>
 </section>
 <section id="reproducibility" class="level2">
 <h2 class="anchored" data-anchor-id="reproducibility">Reproducibility</h2>

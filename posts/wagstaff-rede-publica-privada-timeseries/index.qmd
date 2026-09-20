@@ -18,14 +18,22 @@ Time series of the Wagstaff concentration index applied to enrollment by network
 
 ## How to Cite
 
-If you use this figure or its underlying pipeline, please cite both the dissertation and this repository.
+If you use this figure or the pipeline behind it, please cite both the dissertation and this specific analysis. References follow APA 7th edition.
 
-**Dissertation:**
+**Dissertation (in preparation; the entry will be updated after the defense):**
 
-> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Master's thesis, Graduate Program in Political Science, University of São Paulo.
+> Mançano, T. (2026). *Inequality in access to tertiary education in Brazil: Household incomes, reforming policies, and the politics of who gets in (1990s–2020s)* [Unpublished master's thesis]. University of São Paulo.
+
+**This figure and pipeline:**
+
+> Mançano, T. (2026, August 10). *Income inequality in tertiary enrollment by network type, time series (Wagstaff index)* [Figure and reproducible pipeline]. Open Data Analysis. https://mancano-tales.github.io/open-data-analysis/posts/wagstaff-rede-publica-privada-timeseries/
+
+**In text:** (Mançano, 2026) — when citing several analyses from this catalog in the same work, APA distinguishes them as 2026a, 2026b, … in the order they appear in the reference list.
+
+**BibTeX:**
 
 ```bibtex
-@mastersthesis{Mancano2026,
+@mastersthesis{Mancano2026Thesis,
   author = {Man\c{c}ano, Tales},
   title  = {Inequality in Access to Tertiary Education in Brazil: Household
             Incomes, Reforming Policies, and the Politics of Who Gets In
@@ -33,35 +41,28 @@ If you use this figure or its underlying pipeline, please cite both the disserta
   school = {University of S\~{a}o Paulo},
   year   = {2026},
   type   = {Master's thesis},
-  note   = {Graduate Program in Political Science}
+  note   = {Unpublished; Graduate Program in Political Science}
 }
-```
 
-**This figure and pipeline:**
-
-> Mançano, Tales. 2026. "Income Inequality in Tertiary Enrollment by Network Type, Time Series (Wagstaff Index)." In *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts/wagstaff-rede-publica-privada-timeseries/`.
-
-```bibtex
-@misc{Mancano2026OpenDataAnalysis,
+@misc{Mancano2026_wagstaff_rede_publica_privada_timeseries,
   author       = {Man\c{c}ano, Tales},
-  title        = {Open Data Analysis: Income Inequality in Tertiary Enrollment by Network Type, Time Series (Wagstaff Index)},
+  title        = {Income inequality in tertiary enrollment by network type, time series (Wagstaff index)},
   year         = {2026},
-  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
-  note         = {posts/wagstaff-rede-publica-privada-timeseries/}
+  month        = aug,
+  howpublished = {Open Data Analysis, \url{https://mancano-tales.github.io/open-data-analysis/posts/wagstaff-rede-publica-privada-timeseries/}},
+  note         = {Figure and reproducible pipeline. Source code: \url{https://github.com/mancano-tales/open-data-analysis}, folder posts/wagstaff-rede-publica-privada-timeseries/. Accessed YYYY-MM-DD}
 }
 ```
 
-A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the repository URL above.
+A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the page URL above and add the date you accessed it (source code: https://github.com/mancano-tales/open-data-analysis, folder `posts/wagstaff-rede-publica-privada-timeseries/`).
 
 ## Pipeline
 
-This figure draws on the [PNAD / PNAD Contínua Harmonization, 1992–2025](../harmonizacao-pnad-pnadc/) panel.
+Run these scripts in this order, from the project root (each one writes to `data-raw/`, which the next one reads):
 
-
-Scripts for this analysis:
-
-- Plotting: [`plot.R`](plot.R) — self-contained script: downloads and processes the microdata directly, without depending on other scripts in this repository.
-- Reference data source: [`shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R`](../../shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R)
+1. [`shared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R`](../../shared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R) — downloads the raw PNAD Anual 2001–2015 microdata (fixed-width `.txt` + SAS layouts) from the IBGE FTP into `data-raw/pnad_anual_raw/<year>/` — `plot.R` reads these raw files directly
+2. [`shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R`](../../shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R) — *(optional)* pre-populates the PNAD Contínua cache in `data-raw/pnadc_raw/`; if you skip it, `plot.R` downloads the years it needs with `PNADcIBGE::get_pnadc()` into the same folder
+3. [`plot.R`](plot.R) — reads the raw PNAD Anual files in `data-raw/pnad_anual_raw/` and the PNAD Contínua years in `data-raw/pnadc_raw/`; caches its extraction and bootstrap in `data-raw/rede-publica-privada/` (sources `shared-pipeline/utils/codigos_curso_pnad.R`); writes the figure to `output/figures/wagstaff-rede-publica-privada-timeseries/` — compare it with this post's `thumbnail.png`
 
 ## Reproducibility
 

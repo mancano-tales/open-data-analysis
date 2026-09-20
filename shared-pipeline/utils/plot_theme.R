@@ -1,7 +1,7 @@
 # ==============================================================================
 # plot_theme.R — Sistema de estilo visual compartilhado da dissertação
 #
-# USO: source(here::here("4-DA-Code", "utils", "plot_theme.R"))
+# USO: source(here::here("shared-pipeline", "utils", "plot_theme.R"))
 #      Depois: theme_set(thesis_theme())
 #
 # CONTEÚDO:
@@ -15,7 +15,9 @@
 #   5. Helpers de escala: thesis/decil/delta (fill e colour) + diverging (mapas)
 #   6. camada_destaque() — padrão "Layer, Highlight, Repeat" (Healy Cap. 8)
 #   7. salvar_grafico() — wrapper padronizado para ggsave() (PNG ou PDF)
-#   8. finalizar_figura() — pacote .pdf+.R+.qmd em 6-images-tables/final/
+#   8. finalizar_figura() — pacote .pdf+.png+.R+.qmd em output/figures/<fig_label>/
+#      (neste repositório público, output/ é gitignored — o thumbnail.png de cada
+#      post é a versão publicada; compare o PNG gerado com ele)
 #   9. Modelo de bloco de comentário para inserção de figuras no .qmd
 #
 # REFERÊNCIA: Healy, K. (2026). Data Visualization: A Practical Introduction
@@ -638,7 +640,7 @@ salvar_grafico <- function(
   dpi = DPI_IMPRESSAO,
   formato = "png" # "png" (padrão, compatível com scripts existentes) ou "pdf"
 ) {
-  if (is.null(dir)) dir <- here::here("6-images-tables", "graphs")
+  if (is.null(dir)) dir <- here::here("output", "graphs")
   if (!dir.exists(dir)) dir.create(dir, recursive = TRUE)
   nome <- file.path(
     dir,
@@ -667,7 +669,7 @@ salvar_grafico <- function(
 # 8. FINALIZAR FIGURA — pacote PDF + snapshot do .R + snippet .qmd
 # "Promoção manual" para o texto da dissertação (chamar UMA VEZ, quando a
 # figura estiver pronta — continue iterando com salvar_grafico() normalmente
-# até esse momento). Gera, em 6-images-tables/final/<fig_label>/, três
+# até esse momento). Gera, em output/figures/<fig_label>/, três
 # arquivos com o MESMO nome-base (timestamp + nome do script gerador):
 #   <stem>.pdf  — figura vetorial (cairo_pdf, embute a fonte showtext)
 #   <stem>.R    — cópia exata do script que gerou esta versão da figura
@@ -683,7 +685,7 @@ salvar_grafico <- function(
 #     fig_cap     = "Change in enrollment rate by decile and term, Brazil, 1992–2023.",
 #     fonte       = "IBGE --- PNAD (1992--2011) and PNAD Contínua (2012--2023).",
 #     nota        = "Each bar shows the pp-change in 18--24-year-old enrollment rate... 95\\% CI...",
-#     script_path = here::here("4-DA-Code", "...", "042C_Tese.R"),
+#     script_path = here::here("posts", "delta-matriculados-decil-governo", "plot.R"),
 #     largura = 44, altura = 24, unidades = "cm"
 #   )
 # ------------------------------------------------------------------------------
@@ -694,7 +696,7 @@ finalizar_figura <- function(
 ) {
   nome_script <- tools::file_path_sans_ext(basename(script_path))
   stem <- paste0(format(Sys.time(), "%Y-%m-%d_%H%M"), "_", nome_script)
-  dir_fig <- here::here("6-images-tables", "final", fig_label)
+  dir_fig <- here::here("output", "figures", fig_label)
   if (!dir.exists(dir_fig)) dir.create(dir_fig, recursive = TRUE)
 
   # Mesma sobrescrita de familia de fonte que salvar_grafico() aplica para PDF
@@ -739,16 +741,20 @@ finalizar_figura <- function(
   # composição), e nesse caso o stem — timestamp + nome do script — é idêntico
   # entre elas. Sem o rótulo, as três últimas sobrescrevem a primeira e a pasta
   # passa a mostrar a figura errada sob um nome plausível, que é pior do que
-  # não ter cópia nenhuma.
+  # não ter cópia nenhuma. Neste repositório público, output/ é gitignored.
   caminho_png_flat <- here::here(
-    "6-images-tables", "graphs",
+    "output", "graphs",
     paste0(stem, "__", fig_label, ".png")
   )
   dir.create(dirname(caminho_png_flat), showWarnings = FALSE, recursive = TRUE)
   file.copy(caminho_png, caminho_png_flat, overwrite = TRUE)
 
   caminho_r <- file.path(dir_fig, paste0(stem, ".R"))
-  file.copy(script_path, caminho_r, overwrite = TRUE)
+  if (file.exists(script_path)) {
+    file.copy(script_path, caminho_r, overwrite = TRUE)
+  } else {
+    warning(sprintf("[finalizar_figura] script_path nao encontrado, snapshot .R nao copiado: %s", script_path))
+  }
 
   # `nota` deve ser texto LaTeX-pronto e enxuto (Sec 13.7 WRITING-STYLE.md:
   # ate ~5 linhas impressas; escapa %, usa \texttt{}, etc.). `apendice`, se
@@ -777,15 +783,19 @@ finalizar_figura <- function(
     ""
   }
   qmd_txt <- paste0(
-    "![", fig_cap, "](../../6-images-tables/final/", fig_label, "/",
+    "![", fig_cap, "](../../output/figures/", fig_label, "/",
     stem, ".pdf){#fig-", fig_label, " width=100%}", fignote_block, "\n"
   )
   caminho_qmd <- file.path(dir_fig, paste0(stem, ".qmd"))
   writeLines(qmd_txt, caminho_qmd, useBytes = TRUE)
 
   cat(sprintf(
-    "[finalizar_figura] Pacote salvo em %s/ com stem '%s' (.pdf/.R/.qmd)\n",
+    "[finalizar_figura] Pacote salvo em %s/ com stem '%s' (.pdf/.png/.R/.qmd)\n",
     dir_fig, stem
+  ))
+  cat(sprintf(
+    "[finalizar_figura] Compare o PNG gerado com a versao publicada: posts/%s/thumbnail.png\n",
+    fig_label
   ))
   invisible(list(pdf = caminho_pdf, r = caminho_r, qmd = caminho_qmd))
 }

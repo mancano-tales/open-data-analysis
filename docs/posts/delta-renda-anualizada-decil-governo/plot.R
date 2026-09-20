@@ -36,7 +36,7 @@ options(scipen = 999)
 
 DEFF <- 2.0  # design effect (Kish) — mesmo critério de 042C/042D
 
-BASE_DIR <- here::here("4-DA-Code", "2026-06_Harmonizing-BR-Data")
+BASE_DIR <- here::here("data-raw", "harmonizing-br-data")
 PARQUET  <- file.path(BASE_DIR, "output", "Microdados_Todas_Idades_1992_2025.parquet")
 
 # ==============================================================================
@@ -261,8 +261,7 @@ if (PROMOVER) {
     fonte       = "IBGE --- PNAD (1995--2015) and PNAD Cont\\'{i}nua (2016--2025)",
     nota        = "Each point is the annualized geometric real income growth rate (\\% per year, January 2024 prices) for each income decile, from the first available year of a presidential term to the first available year of the next (blue = gain, orange = loss); horizontal lines are 95\\% CIs. Itamar Franco (1992--1995) omitted. Lula III panel covers two years of growth (2023--2025). Bottom-right panel: full 1995--2025 period. CIs via delta method for $f(t_1,t_0)=((t_1/t_0)^{1/n}-1)\\times 100$: $\\text{se}=\\frac{100}{n}\\cdot(t_1/t_0)^{1/n}\\cdot\\sqrt{(\\text{se}_1/t_1)^2+(\\text{se}_0/t_0)^2}$. SE of each endpoint: weighted sample variance divided by Kish effective sample size (DEFF~=~2). \\hyperref[sec-fignote-delta-renda-anualizada-decil-governo]{Appendix~\\ref*{sec-fignote-delta-renda-anualizada-decil-governo}}.",
     apendice    = NULL,
-    script_path = here::here("4-DA-Code", "2026-06_Harmonizing-BR-Data", "R",
-                              "02_validation", "042D_Tese_Dotplot_Renda_Anualizada.R"),
+    script_path = here::here("posts", "delta-renda-anualizada-decil-governo", "plot.R"),
     largura = LARGURA_PAISAGEM, altura = ALTURA_PAISAGEM, unidades = "cm"
   )
 }

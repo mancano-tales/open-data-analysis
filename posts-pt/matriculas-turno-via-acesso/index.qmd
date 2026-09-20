@@ -18,14 +18,22 @@ Construída a partir de registros individuais de estudantes do Censo da Educaç�
 
 ## Como Citar
 
-Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto este repositório.
+Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto esta análise específica. As referências seguem a 7ª edição da APA.
 
-**Dissertação:**
+**Dissertação (em elaboração; a entrada será atualizada após a defesa):**
 
-> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Dissertação de Mestrado, Programa de Pós-Graduação em Ciência Política, Universidade de São Paulo.
+> Mançano, T. (2026). *Inequality in access to tertiary education in Brazil: Household incomes, reforming policies, and the politics of who gets in (1990s–2020s)* [Dissertação de mestrado não publicada]. Universidade de São Paulo.
+
+**Esta figura e o pipeline:**
+
+> Mançano, T. (2026, 5 de agosto). *Matrículas por setor, via de acesso e turno* [Figura e pipeline reprodutível]. Open Data Analysis. https://mancano-tales.github.io/open-data-analysis/pt/posts-pt/matriculas-turno-via-acesso/
+
+**No texto:** (Mançano, 2026) — ao citar várias análises deste catálogo no mesmo trabalho, a APA as distingue como 2026a, 2026b, … na ordem em que aparecem na lista de referências.
+
+**BibTeX:**
 
 ```bibtex
-@mastersthesis{Mancano2026,
+@mastersthesis{Mancano2026Thesis,
   author = {Man\c{c}ano, Tales},
   title  = {Inequality in Access to Tertiary Education in Brazil: Household
             Incomes, Reforming Policies, and the Politics of Who Gets In
@@ -33,34 +41,30 @@ Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação q
   school = {University of S\~{a}o Paulo},
   year   = {2026},
   type   = {Master's thesis},
-  note   = {Graduate Program in Political Science}
+  note   = {Unpublished; Graduate Program in Political Science}
 }
-```
 
-**Esta figura e o pipeline:**
-
-> Mançano, Tales. 2026. "Matrículas por Setor, Via de Acesso e Turno." Em *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts-pt/matriculas-turno-via-acesso/`.
-
-```bibtex
-@misc{Mancano2026OpenDataAnalysis,
+@misc{Mancano2026_matriculas_turno_via_acesso_pt,
   author       = {Man\c{c}ano, Tales},
-  title        = {Open Data Analysis: Matrículas por Setor, Via de Acesso e Turno},
+  title        = {Matr\'{\i}culas por setor, via de acesso e turno},
   year         = {2026},
-  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
-  note         = {posts/matriculas-turno-via-acesso/}
+  month        = aug,
+  howpublished = {Open Data Analysis, \url{https://mancano-tales.github.io/open-data-analysis/pt/posts-pt/matriculas-turno-via-acesso/}},
+  note         = {Figura e pipeline reprodutível. Código-fonte: \url{https://github.com/mancano-tales/open-data-analysis}, pasta posts-pt/matriculas-turno-via-acesso/. Acesso em AAAA-MM-DD}
 }
 ```
 
-Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL do repositório acima.
+Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL da página acima e acrescente a data de acesso (código-fonte: https://github.com/mancano-tales/open-data-analysis, pasta `posts-pt/matriculas-turno-via-acesso/`).
 
 ## Pipeline
 
-Scripts desta análise:
+Rode estes scripts nesta ordem, a partir da raiz do projeto (cada um grava em `data-raw/`, de onde o seguinte lê):
 
-- Plotagem: [`plot.R`](../../posts/matriculas-turno-via-acesso/plot.R)
-- Pipeline upstream:
-  - [`shared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R`](../../shared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R)
-  - [`shared-pipeline/sedap/010_SEDAP_Cliente.R`](../../shared-pipeline/sedap/010_SEDAP_Cliente.R)
+1. [`shared-pipeline/sedap/010_SEDAP_Cliente.R`](../../shared-pipeline/sedap/010_SEDAP_Cliente.R) — cliente da API SEDAP+, carregado pelo script abaixo — exige a variável de ambiente `SEDAP_TOKEN`
+2. [`shared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R`](../../shared-pipeline/sedap/020_Extrair_Nicho_2020_2024.R) — extrai matrículas por setor × via de acesso × turno/modalidade das tabelas SUP_ALUNO 2010–2024 via SEDAP+ e grava `data-raw/INEP/derived/nicho_agregado_sedap_2010_2024.csv`
+3. [`plot.R`](../../posts/matriculas-turno-via-acesso/plot.R) — lê `data-raw/INEP/derived/nicho_agregado_sedap_2010_2024.csv`; grava a figura em `output/figures/matriculas-turno-via-acesso/` — compare com o `thumbnail.png` deste post
+
+As etapas via SEDAP+ só rodam com uma credencial aprovada pelo INEP exportada como `SEDAP_TOKEN` (ver Reprodutibilidade abaixo); o CSV extraído não é redistribuído aqui.
 
 ## Reprodutibilidade
 

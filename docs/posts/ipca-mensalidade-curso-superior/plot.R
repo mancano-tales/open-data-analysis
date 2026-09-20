@@ -46,7 +46,7 @@ source(here::here("shared-pipeline", "utils", "plot_theme.R"))
 theme_set(thesis_theme())
 options(scipen = 999)
 
-BASE_DIR  <- here::here("4-DA-Code", "2026-07_IPCA-Mensalidades")
+BASE_DIR  <- here::here("data-raw", "ipca-mensalidades")
 CACHE_DIR <- file.path(BASE_DIR, "output")
 if (!dir.exists(CACHE_DIR)) dir.create(CACHE_DIR, recursive = TRUE)
 
@@ -421,7 +421,7 @@ if (PROMOVER) {
       "1419, 7060) and headline IPCA (table 1737); IPEADATA (minimum wage ",
       "series \\texttt{MTE12\\_SALMIN12})"
     ),
-    script_path = file.path(BASE_DIR, "R", "010_IPCA_Curso_Superior_Series.R"),
+    script_path = here::here("posts", "ipca-mensalidade-curso-superior", "plot.R"),
     largura     = LARGURA_TEXTO,
     altura      = ALTURA_PADRAO
   )

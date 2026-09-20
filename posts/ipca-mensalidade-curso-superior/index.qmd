@@ -18,14 +18,22 @@ Both series track the higher-education tuition subitem of the IPCA, Brazil's hea
 
 ## How to Cite
 
-If you use this figure or its underlying pipeline, please cite both the dissertation and this repository.
+If you use this figure or the pipeline behind it, please cite both the dissertation and this specific analysis. References follow APA 7th edition.
 
-**Dissertation:**
+**Dissertation (in preparation; the entry will be updated after the defense):**
 
-> Mançano, Tales. 2026. *Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)*. Master's thesis, Graduate Program in Political Science, University of São Paulo.
+> Mançano, T. (2026). *Inequality in access to tertiary education in Brazil: Household incomes, reforming policies, and the politics of who gets in (1990s–2020s)* [Unpublished master's thesis]. University of São Paulo.
+
+**This figure and pipeline:**
+
+> Mançano, T. (2026, July 6). *Higher-education tuition prices relative to inflation and the minimum wage* [Figure and reproducible pipeline]. Open Data Analysis. https://mancano-tales.github.io/open-data-analysis/posts/ipca-mensalidade-curso-superior/
+
+**In text:** (Mançano, 2026) — when citing several analyses from this catalog in the same work, APA distinguishes them as 2026a, 2026b, … in the order they appear in the reference list.
+
+**BibTeX:**
 
 ```bibtex
-@mastersthesis{Mancano2026,
+@mastersthesis{Mancano2026Thesis,
   author = {Man\c{c}ano, Tales},
   title  = {Inequality in Access to Tertiary Education in Brazil: Household
             Incomes, Reforming Policies, and the Politics of Who Gets In
@@ -33,31 +41,27 @@ If you use this figure or its underlying pipeline, please cite both the disserta
   school = {University of S\~{a}o Paulo},
   year   = {2026},
   type   = {Master's thesis},
-  note   = {Graduate Program in Political Science}
+  note   = {Unpublished; Graduate Program in Political Science}
 }
-```
 
-**This figure and pipeline:**
-
-> Mançano, Tales. 2026. "Higher-Education Tuition Prices Relative to Inflation and the Minimum Wage." In *Open Data Analysis*. <https://github.com/mancano-tales/open-data-analysis>, `posts/ipca-mensalidade-curso-superior/`.
-
-```bibtex
-@misc{Mancano2026OpenDataAnalysis,
+@misc{Mancano2026_ipca_mensalidade_curso_superior,
   author       = {Man\c{c}ano, Tales},
-  title        = {Open Data Analysis: Higher-Education Tuition Prices Relative to Inflation and the Minimum Wage},
+  title        = {Higher-education tuition prices relative to inflation and the minimum wage},
   year         = {2026},
-  howpublished = {\url{https://github.com/mancano-tales/open-data-analysis}},
-  note         = {posts/ipca-mensalidade-curso-superior/}
+  month        = jul,
+  howpublished = {Open Data Analysis, \url{https://mancano-tales.github.io/open-data-analysis/posts/ipca-mensalidade-curso-superior/}},
+  note         = {Figure and reproducible pipeline. Source code: \url{https://github.com/mancano-tales/open-data-analysis}, folder posts/ipca-mensalidade-curso-superior/. Accessed YYYY-MM-DD}
 }
 ```
 
-A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the repository URL above.
+A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the page URL above and add the date you accessed it (source code: https://github.com/mancano-tales/open-data-analysis, folder `posts/ipca-mensalidade-curso-superior/`).
 
 ## Pipeline
 
 Scripts for this analysis:
 
-- Plotting: [`plot.R`](plot.R) — this script is itself the pipeline's canonical script, also available at [`shared-pipeline/ipca/010_IPCA_Curso_Superior_Series.R`](../../shared-pipeline/ipca/010_IPCA_Curso_Superior_Series.R).
+- Plotting: [`plot.R`](plot.R) — writes the figure to `output/figures/ipca-mensalidade-curso-superior/` — compare it with this post's `thumbnail.png`
+- Upstream pipeline: self-contained — downloads the IPCA sub-item series (SIDRA) and the minimum wage (IPEADATA) and caches them in `data-raw/ipca-mensalidades/output/`. It is the same script as [`shared-pipeline/ipca/010_IPCA_Curso_Superior_Series.R`](../../shared-pipeline/ipca/010_IPCA_Curso_Superior_Series.R).
 
 ## Reproducibility
 

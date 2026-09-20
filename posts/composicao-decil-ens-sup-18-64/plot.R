@@ -48,9 +48,8 @@ options(scipen = 999)
 MODO <- "ens_sup_18_64"   # fixo: um script por figura
 
 # ── CAMINHOS ──────────────────────────────────────────────────────────────────
-BASE_HARM   <- here::here("4-DA-Code", "2026-06_Harmonizing-BR-Data", "output")
-SCRIPT_PATH <- here::here("4-DA-Code", "2026-06_Harmonizing-BR-Data",
-                           "R", "03_analysis_plots", "245E_Tese_Composicao_ens_sup_18_64.R")
+BASE_HARM   <- here::here("data-raw", "harmonizing-br-data", "output")
+SCRIPT_PATH <- here::here("posts", "composicao-decil-ens-sup-18-64", "plot.R")
 
 # ── LÓGICA DE CONFIGURAÇÃO POR MODO ──────────────────────────────────────────
 cfg <- switch(MODO,

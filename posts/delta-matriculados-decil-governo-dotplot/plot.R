@@ -51,15 +51,12 @@ options(scipen = 999, survey.lonely.psu = "adjust")
 
 ANO_FIM <- 2023L
 
-BASE_DIR <- here::here("4-DA-Code", "2026-06_Harmonizing-BR-Data")
-PARQUET_PNAD <- file.path(BASE_DIR, "output", "Microdados_Jovens_18_24_1992_2024.parquet")
-CACHED_PNADC <- here::here("data-raw", "pnadc_consolidado_2012_2024_interview1.rds")
+BASE_DIR <- here::here("data-raw", "harmonizing-br-data")
+PARQUET_PNAD <- file.path(BASE_DIR, "output", "Microdados_Jovens_18_24_1992_2025.parquet")
+CACHED_PNADC <- here::here("data-raw", "pnadc_consolidado_2012_2025_interview1.rds")
 if (!file.exists(CACHED_PNADC)) {
-  # Fallback: 5-data e um diretorio irmao desta tese, um nivel acima na arvore.
-  CACHED_PNADC <- file.path(
-    dirname(here::here()), "5-data",
-    "pnadc_consolidado_2012_2024_interview1.rds"
-  )
+  stop("Cache PNADC nao encontrado em data-raw/. Rode antes: ",
+       "shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R", call. = FALSE)
 }
 
 # ==============================================================================
@@ -404,10 +401,7 @@ finalizar_figura(
   fonte = "IBGE — PNAD (1992–2015) and PNAD Contínua (2015–2023)",
   nota = "Each point is the pp change in the 18--24 active-enrollment rate from the first year of a presidential term to the next, with its 95\\% confidence interval. Points are grey where that interval contains zero, so the change is not distinguishable from none at the 5\\% level; blue and orange mark gains and losses whose intervals lie entirely on one side of zero. Each term panel draws on a single survey at both endpoints --- PNAD through 2015, PNAD Cont\\'{\\i}nua from 2015 --- so that no difference straddles the change of instrument; 2015, covered by both, therefore enters as PNAD in the Dilma I panel and as PNAD Cont\\'{\\i}nua in the next. Bottom-right panel: full 1992--2023 period, the one comparison no single survey spans.",
   apendice = "sec-fignote-delta-matriculados-decil-governo",
-  script_path = here::here(
-    "4-DA-Code", "2026-06_Harmonizing-BR-Data", "R",
-    "02_validation", "042C_Tese_Dotplot.R"
-  ),
+  script_path = here::here("posts", "delta-matriculados-decil-governo-dotplot", "plot.R"),
   largura = LARGURA_PAISAGEM, altura = ALTURA_PAISAGEM, unidades = "cm"
 )
 

@@ -56,9 +56,8 @@ theme_set(thesis_theme())
 
 ANOS_VALIDOS <- 2015:2023
 
-CSV <- here::here(
-  "4-DA-Code", "2026-08_SEDAP", "060_Analise_ENEM_Renda",
-  "extraido_perfil_renda_modalidade_2014_2024.csv"
+CSV <- here::here(   # escrito por shared-pipeline/sedap/070 (Tier B: exige SEDAP_TOKEN)
+  "data-raw", "sedap", "extraido_perfil_renda_modalidade_2014_2024.csv"
 )
 stopifnot(file.exists(CSV))
 d <- fread(CSV)
@@ -148,9 +147,6 @@ finalizar_figura(
     "public-sector records show the same defect while the private-sector records of that year do not."
   ),
   apendice = "sec-fignote-perfil-renda-modalidade",
-  script_path = here::here(
-    "4-DA-Code", "2026-08_SEDAP", "060_Analise_ENEM_Renda",
-    "090_Fig_Perfil_Renda_Modalidade.R"
-  ),
+  script_path = here::here("posts", "perfil-renda-modalidade", "plot.R"),
   largura = LARGURA_TEXTO, altura = 3.2
 )

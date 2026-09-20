@@ -309,7 +309,7 @@ if (sys.nframe() == 0L) {
   # arquivos publicos usavam o prefixo CO_ (CO_TURNO_ALUNO). Isso e vantagem
   # propria do SEDAP+ sobre o acervo local, onde 011_ precisa de logica
   # condicional por faixa de ano.
-  ANOS <- as.integer(Sys.getenv("SEDAP_ANOS_INI", "2009")):
+  ANOS <- as.integer(Sys.getenv("SEDAP_ANOS_INI", "2010")):  # 2010: casa com nicho_agregado_sedap_2010_2024.csv lido pelos posts
   as.integer(Sys.getenv("SEDAP_ANOS_FIM", "2024"))
 
   for (a in ANOS) {

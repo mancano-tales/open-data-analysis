@@ -103,11 +103,10 @@ source(here::here("shared-pipeline", "utils", "plot_theme.R"))
 theme_set(thesis_theme())
 options(scipen = 999)
 
-BASE_DIR <- here::here("4-DA-Code", "2026-06_Harmonizing-BR-Data")
+BASE_DIR <- here::here("data-raw", "harmonizing-br-data")
 PARQUET  <- file.path(BASE_DIR, "output",
                        "Microdados_Todas_Idades_1992_2025.parquet")
-SCRIPT_PATH <- file.path(BASE_DIR, "R", "02_validation",
-                          "236_Tese_Desigualdade_Renda_Painel.R")
+SCRIPT_PATH <- here::here("posts", "desigualdade-renda-gini-palma-decil", "plot.R")
 FIG_LABEL <- "desigualdade-renda-gini-palma-decil"
 ANO_BASE  <- 2002L
 

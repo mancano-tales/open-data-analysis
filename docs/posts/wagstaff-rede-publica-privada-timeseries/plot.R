@@ -61,8 +61,8 @@ source(here::here("shared-pipeline", "utils", "plot_theme.R"))
 source(here::here("shared-pipeline", "utils", "codigos_curso_pnad.R"))
 theme_set(thesis_theme())
 
-PNAD_RAW_DIR <- file.path(dirname(here::here()), "5-data", "pnad_anual_raw")
-PNADC_RAW_DIR <- file.path(dirname(here::here()), "5-data", "pnadc_raw")
+PNAD_RAW_DIR <- here::here("data-raw", "pnad_anual_raw")   # escrito por shared-pipeline/pnadc/020
+PNADC_RAW_DIR <- here::here("data-raw", "pnadc_raw")       # escrito por shared-pipeline/pnadc/000
 
 ANOS_PNAD_ANUAL <- c(
   2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2011,
@@ -110,7 +110,7 @@ achar_arquivo <- function(dir, padrao) {
 }
 
 extrair_pnad_anual <- function(ano) {
-  cat(sprintf("Lendo PNAD Anual %d (cache local em 5-data/pnad_anual_raw/)...\n", ano))
+  cat(sprintf("Lendo PNAD Anual %d (cache local em data-raw/pnad_anual_raw/)...\n", ano))
   dir_ano <- file.path(PNAD_RAW_DIR, as.character(ano))
   sas_path <- achar_arquivo(dir_ano, "input.*PES.*\\.(txt|sas)$")
   txt_path <- achar_arquivo(dir_ano, "^PES[0-9]+\\.(txt|dat)$")
@@ -168,7 +168,7 @@ extrair_pnad_anual <- function(ano) {
 }
 
 extrair_pnadc <- function(ano) {
-  cat(sprintf("Lendo PNADC %d (cache local em 5-data/pnadc_raw/)...\n", ano))
+  cat(sprintf("Lendo PNADC %d (cache local em data-raw/pnadc_raw/)...\n", ano))
   d <- get_pnadc(
     year = ano, interview = 1,
     vars = c("V2009", "V3002", "V3003A", "V3002A", "VD5008"),
@@ -199,7 +199,9 @@ extrair_pnadc <- function(ano) {
     )
 }
 
-CACHE_RDS <- here::here("4-DA-Code", "output", "dados_rede_publica_privada_2001_2025.rds")
+OUTPUT_DIR_RES <- here::here("data-raw", "rede-publica-privada")   # caches/resultados deste script
+dir.create(OUTPUT_DIR_RES, showWarnings = FALSE, recursive = TRUE)
+CACHE_RDS <- file.path(OUTPUT_DIR_RES, "dados_rede_publica_privada_2001_2025.rds")
 if (file.exists(CACHE_RDS)) {
   cat(sprintf("[cache] Reaproveitando extração já salva em %s\n", CACHE_RDS))
   dados <- readRDS(CACHE_RDS)
@@ -274,7 +276,6 @@ tab_idx <- lapply(anos_disponiveis, function(a) {
 cat("\n══ Índices CI / Wagstaff / Erreygers por ano e série ══════════════════\n")
 print(tab_idx %>% mutate(across(c(mu, CI, W, E), \(x) round(x, 4))), row.names = FALSE)
 
-OUTPUT_DIR_RES <- here::here("4-DA-Code", "output")
 write.csv(tab_idx %>% mutate(across(c(mu, CI, W, E), \(x) round(x, 6))),
   file.path(OUTPUT_DIR_RES, "wagstaff_timeseries_rede_publica_privada_2001_2025.csv"),
   row.names = FALSE
@@ -293,8 +294,8 @@ write.csv(tab_idx %>% mutate(across(c(mu, CI, W, E), \(x) round(x, 6))),
 # Wagstaff nacional), mas é adequado para comunicar incerteza na série temporal.
 # ==============================================================================
 
-BOOT_CACHE <- here::here(
-  "4-DA-Code", "output",
+BOOT_CACHE <- file.path(
+  OUTPUT_DIR_RES,
   "wagstaff_bootstrap_rede_publica_privada_2001_2025.rds"
 )
 B_BOOTSTRAP <- 200
@@ -418,10 +419,7 @@ finalizar_figura(
     "Each line is the Wagstaff concentration index (W) of currently-enrolled tertiary students aged 18--24 by income rank, by network. Shaded bands: 95\\% bootstrap CIs (individual resampling, $B=200$). Lines break at 2010 and 2020--2021 (no standard-design survey those years)."
   ),
   apendice = "sec-fignote-wagstaff-rede-publica-privada-timeseries",
-  script_path = here::here(
-    "4-DA-Code", "2026-05_PNADcIBGE",
-    "043_Wagstaff_TimeSeries_Rede_Publica_Privada.R"
-  ),
+  script_path = here::here("posts", "wagstaff-rede-publica-privada-timeseries", "plot.R"),
   largura = LARGURA_TEXTO, altura = ALTURA_ALTA, unidades = "in"
 )
 

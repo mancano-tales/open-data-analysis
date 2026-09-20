@@ -176,7 +176,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Data de Publicação</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">9 de agosto de 2026</p>
+      <p class="date">16 de setembro de 2026</p>
     </div>
   </div>
   
@@ -195,16 +195,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="metodologia" class="level2">
 <h2 class="anchored" data-anchor-id="metodologia">Metodologia</h2>
-<p>Cada linha mostra a renda domiciliar per capita real média ponderada (deflacionada a preços de janeiro de 2024 via IPCA) dentro de cada grupo de centil de renda, para os anos selecionados. Os centis ordenam todos os indivíduos com renda domiciliar per capita estritamente positiva, usando os pesos amostrais. Para 2012, usa-se apenas a amostra da PNAD Anual. O eixo Y é truncado em R$ 8.000. Círculos vazados marcam o centil em que a renda domiciliar per capita média se iguala a uma (1 SM), uma vez e meia (1,5 SM) e três (3 SM) vezes o salário mínimo nacional em vigor em janeiro daquele ano, deflacionado a preços de janeiro de 2024 via <code>deflateBR</code>.</p>
+<p>Cada linha mostra a renda domiciliar per capita real média ponderada dentro de cada grupo de centil de renda, para os anos selecionados (2002, 2007, 2012, 2017, 2022, 2025 — recortes quinquenais de uma série anual contínua). A renda é <em>domiciliar</em> per capita em toda a série — na PNAD Anual (até 2015) é reconstruída do microdado bruto como o rendimento domiciliar total (<code>V4721</code>) dividido pelo número de moradores, excluindo pensionistas, empregados domésticos e seus parentes; na PNAD Contínua (2016 em diante) é a <code>VD5008</code> — e os domicílios sem rendimento são mantidos, de modo que a série fica na mesma base das estatísticas oficiais. As rendas são deflacionadas a preços de janeiro de 2024 via IPCA a partir do mês de referência de cada pesquisa (setembro na PNAD Anual, meio do ano na PNAD Contínua). Os centis ordenam os indivíduos com os pesos amostrais; os centis 1 e 100 são descartados por instabilidade amostral, e o eixo Y é truncado em R$ 8.000. Círculos vazados marcam o centil em que a renda domiciliar per capita média se iguala a uma (1 SM), uma vez e meia (1,5 SM) e três (3 SM) vezes o salário mínimo nacional em vigor no mês de referência da pesquisa, deflacionado da mesma data.</p>
+<p>Esta versão (16/09/2026) substitui a publicada em 09/08/2026, que ordenava apenas indivíduos com renda estritamente positiva, usava renda familiar (e não domiciliar) nos anos da PNAD Anual e tomava o salário mínimo de janeiro deflacionado de janeiro — incoerências medidas na auditoria do pipeline de 16/09/2026 (o marcador de 1 SM se deslocava em até 4 centis em alguns anos).</p>
 </section>
 <section id="como-citar" class="level2">
 <h2 class="anchored" data-anchor-id="como-citar">Como Citar</h2>
-<p>Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto este repositório.</p>
-<p><strong>Dissertação:</strong></p>
+<p>Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto esta análise específica. As referências seguem a 7ª edição da APA.</p>
+<p><strong>Dissertação (em elaboração; a entrada será atualizada após a defesa):</strong></p>
 <blockquote class="blockquote">
-<p>Mançano, Tales. 2026. <em>Inequality in Access to Tertiary Education in Brazil: Household Incomes, Reforming Policies, and the Politics of Who Gets In (1990s–2020s)</em>. Dissertação de Mestrado, Programa de Pós-Graduação em Ciência Política, Universidade de São Paulo.</p>
+<p>Mançano, T. (2026). <em>Inequality in access to tertiary education in Brazil: Household incomes, reforming policies, and the politics of who gets in (1990s–2020s)</em> [Dissertação de mestrado não publicada]. Universidade de São Paulo.</p>
 </blockquote>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@mastersthesis</span>{<span class="ot">Mancano2026</span>,</span>
+<p><strong>Esta figura e o pipeline:</strong></p>
+<blockquote class="blockquote">
+<p>Mançano, T. (2026, 16 de setembro). <em>Renda domiciliar média por centil de renda</em> [Figura e pipeline reprodutível]. Open Data Analysis. https://mancano-tales.github.io/open-data-analysis/pt/posts-pt/renda-media-centil/</p>
+</blockquote>
+<p><strong>No texto:</strong> (Mançano, 2026) — ao citar várias análises deste catálogo no mesmo trabalho, a APA as distingue como 2026a, 2026b, … na ordem em que aparecem na lista de referências.</p>
+<p><strong>BibTeX:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@mastersthesis</span>{<span class="ot">Mancano2026Thesis</span>,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span> = {Man<span class="ch">\c</span>{c}ano, Tales},</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>  = {Inequality in Access to Tertiary Education in Brazil: Household</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>            Incomes, Reforming Policies, and the Politics of Who Gets In</span>
@@ -212,32 +219,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">school</span> = {University of S<span class="ch">\~</span>{a}o Paulo},</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>   = {2026},</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">type</span>   = {Master's thesis},</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">note</span>   = {Graduate Program in Political Science}</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Esta figura e o pipeline:</strong></p>
-<blockquote class="blockquote">
-<p>Mançano, Tales. 2026. “Renda Domiciliar Média por Centil de Renda.” Em <em>Open Data Analysis</em>. <a href="https://github.com/mancano-tales/open-data-analysis" class="uri">https://github.com/mancano-tales/open-data-analysis</a>, <code>posts-pt/renda-media-centil/</code>.</p>
-</blockquote>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">Mancano2026OpenDataAnalysis</span>,</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>       = {Man<span class="ch">\c</span>{c}ano, Tales},</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>        = {Open Data Analysis: Renda Domiciliar Média por Centil de Renda},</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>         = {2026},</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">howpublished</span> = {<span class="ch">\url</span>{https://github.com/mancano-tales/open-data-analysis}},</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">note</span>         = {posts/renda-media-centil/}</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL do repositório acima.</p>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">note</span>   = {Unpublished; Graduate Program in Political Science}</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">Mancano2026_renda_media_centil_pt</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>       = {Man<span class="ch">\c</span>{c}ano, Tales},</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>        = {Renda domiciliar m<span class="ch">\'</span>{e}dia por centil de renda},</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>         = {2026},</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">month</span>        = <span class="st">sep</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">howpublished</span> = {Open Data Analysis, <span class="ch">\url</span>{https://mancano-tales.github.io/open-data-analysis/pt/posts-pt/renda-media-centil/}},</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">note</span>         = {Figura e pipeline reprodutível. Código-fonte: <span class="ch">\url</span>{https://github.com/mancano-tales/open-data-analysis}, pasta posts-pt/renda-media-centil/. Acesso em AAAA-MM-DD}</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL da página acima e acrescente a data de acesso (código-fonte: https://github.com/mancano-tales/open-data-analysis, pasta <code>posts-pt/renda-media-centil/</code>).</p>
 </section>
 <section id="pipeline" class="level2">
 <h2 class="anchored" data-anchor-id="pipeline">Pipeline</h2>
-<p>Esta figura usa o painel da <a href="../harmonizacao-pnad-pnadc/">Harmonização PNAD / PNAD Contínua, 1992–2025</a>.</p>
-<p>Scripts desta análise:</p>
-<ul>
-<li>Plotagem: <a href="../../posts/renda-media-centil/plot.R"><code>plot.R</code></a></li>
-<li>Pipeline upstream:
-<ul>
-<li><a href="../../shared-pipeline/pnadc/035_Splice_Microdados.R"><code>shared-pipeline/pnadc/035_Splice_Microdados.R</code></a></li>
-</ul></li>
-</ul>
+<p>Rode estes scripts nesta ordem, a partir da raiz do projeto (cada um grava em <code>data-raw/</code>, de onde o seguinte lê):</p>
+<ol type="1">
+<li><a href="../../shared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R"><code>shared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R</code></a> — baixa os microdados brutos da PNAD Anual 2001–2015 (<code>.txt</code> de largura fixa + layouts SAS) do FTP do IBGE para <code>data-raw/pnad_anual_raw/&lt;ano&gt;/</code> — o <code>plot.R</code> lê esses arquivos brutos diretamente</li>
+<li><a href="../../shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R"><code>shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R</code></a> — baixa a PNAD Contínua 2012–2025 (1ª entrevista) com <code>PNADcIBGE::get_pnadc()</code> para <code>data-raw/pnadc_raw/</code> e a consolida em <code>data-raw/pnadc_consolidado_2012_2025_interview1.rds</code></li>
+<li><a href="../../posts/renda-media-centil/plot.R"><code>plot.R</code></a> — reconstrói a renda domiciliar per capita dos arquivos brutos da PNAD Anual em <code>data-raw/pnad_anual_raw/</code> (via <code>shared-pipeline/utils/renda_domiciliar_pnad.R</code>) e lê os anos da PNAD Contínua de <code>data-raw/pnadc_consolidado_2012_2025_interview1.rds</code>; a série de salário mínimo é buscada online no IPEADATA (<code>ipeadatar</code>) na primeira execução; grava a figura em <code>output/figures/renda-media-centil/</code> — compare com o <code>thumbnail.png</code> deste post</li>
+</ol>
+<p>Todas as etapas upstream acima são Tier A e também são executadas, nesta mesma ordem, por <a href="../../shared-pipeline/build_public_data.R"><code>shared-pipeline/build_public_data.R</code></a>.</p>
 </section>
 <section id="reprodutibilidade" class="level2">
 <h2 class="anchored" data-anchor-id="reprodutibilidade">Reprodutibilidade</h2>

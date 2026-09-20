@@ -44,20 +44,14 @@ source(here::here("shared-pipeline", "utils", "plot_theme.R"))
 theme_set(thesis_theme())
 options(scipen = 999, survey.lonely.psu = "adjust")
 
-BASE_DIR <- here::here("4-DA-Code", "2026-06_Harmonizing-BR-Data")
+BASE_DIR <- here::here("data-raw", "harmonizing-br-data")
 PARQUET_PNAD <- file.path(BASE_DIR, "output", "Microdados_Jovens_18_24_1992_2025.parquet")
 CACHED_PNADC <- here::here("data-raw", "pnadc_consolidado_2012_2025_interview1.rds")
 if (!file.exists(CACHED_PNADC)) {
-  # Fallback: 5-data e um diretorio irmao desta tese, um nivel acima na arvore.
-  CACHED_PNADC <- file.path(
-    dirname(here::here()), "5-data",
-    "pnadc_consolidado_2012_2025_interview1.rds"
-  )
+  stop("Cache PNADC nao encontrado em data-raw/. Rode antes: ",
+       "shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R", call. = FALSE)
 }
-SCRIPT_PATH <- here::here(
-  "4-DA-Code", "2026-06_Harmonizing-BR-Data",
-  "R", "02_validation", "041K_Tese_EM_Conclusao_Decil_Lines.R"
-)
+SCRIPT_PATH <- here::here("posts", "em-conclusao-decil", "plot.R")
 FIG_LABEL <- "em-conclusao-decil"
 
 ANO_SPLICE <- 2015L # PNAD Anual ate ANO_SPLICE; PNADC a partir de ANO_SPLICE+1

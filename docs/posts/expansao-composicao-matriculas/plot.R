@@ -62,10 +62,17 @@ library(patchwork)
 source(here::here("shared-pipeline", "utils", "plot_theme.R"))
 theme_set(thesis_theme())
 
-CAMINHO_V6 <- file.path(
-  dirname(here::here()), "educabr2",
-  "data-raw", "sources", "tertiary_multisource", "data_tertiary_v6_clean.xlsx"
-)
+# Planilha-fonte versionada no repositorio publico do pacote educabr2
+# (data-raw/sources/tertiary_multisource/). Baixada uma vez para data-raw/.
+CAMINHO_V6 <- here::here("data-raw", "educabr2", "data_tertiary_v6_clean.xlsx")
+if (!file.exists(CAMINHO_V6)) {
+  dir.create(dirname(CAMINHO_V6), showWarnings = FALSE, recursive = TRUE)
+  download.file(
+    paste0("https://raw.githubusercontent.com/mancano-tales/educabr2/main/",
+           "data-raw/sources/tertiary_multisource/data_tertiary_v6_clean.xlsx"),
+    CAMINHO_V6, mode = "wb", quiet = TRUE
+  )
+}
 stopifnot(file.exists(CAMINHO_V6))
 
 source_priority <- function(src) {
@@ -305,10 +312,7 @@ finalizar_figura(
     "the public/private split in those years"
   ),
   apendice = "sec-fignote-expansao-composicao-matriculas",
-  script_path = here::here(
-    "4-DA-Code", "2026-02_CENSUP_Public",
-    "222_Tese_Expansao_Composicao_Matriculas.R"
-  ),
+  script_path = here::here("posts", "expansao-composicao-matriculas", "plot.R"),
   largura = LARGURA_TEXTO,
   altura = 5.4
 )

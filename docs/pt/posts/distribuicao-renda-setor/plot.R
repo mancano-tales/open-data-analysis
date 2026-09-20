@@ -47,7 +47,7 @@ suppressPackageStartupMessages({
 })
 
 source(here::here("shared-pipeline", "utils", "plot_theme.R"))
-source(here::here("4-DA-Code", "2026-08_SEDAP", "010_SEDAP_Cliente.R"))
+source(here::here("shared-pipeline", "sedap", "010_SEDAP_Cliente.R"))
 theme_set(thesis_theme())
 
 ANO <- 2023L
@@ -59,9 +59,8 @@ LIM_SM <- c(
 )
 
 # --- Ingressantes, por destino ------------------------------------------------
-d <- fread(here::here(
-  "4-DA-Code", "2026-08_SEDAP", "060_Analise_ENEM_Renda",
-  "extraido_perfil_renda_modalidade_2014_2024.csv"
+d <- fread(here::here(   # escrito por shared-pipeline/sedap/070 (Tier B: exige SEDAP_TOKEN)
+  "data-raw", "sedap", "extraido_perfil_renda_modalidade_2014_2024.csv"
 ))[ano == ANO]
 
 d[, grupo := fifelse(setor == "Privado" & Modalidade == "EaD", "Private, distance",
@@ -181,9 +180,6 @@ finalizar_figura(
     "minimum wages and is therefore not drawn, which is why no curve reaches 100\\%."
   ),
   apendice = "sec-fignote-distribuicao-renda-setor",
-  script_path = here::here(
-    "4-DA-Code", "2026-08_SEDAP", "060_Analise_ENEM_Renda",
-    "095_Fig_Distribuicao_Renda_Setor.R"
-  ),
+  script_path = here::here("posts", "distribuicao-renda-setor", "plot.R"),
   largura = LARGURA_TEXTO, altura = 3.6
 )

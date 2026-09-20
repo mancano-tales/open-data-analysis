@@ -38,16 +38,16 @@ source(here::here("shared-pipeline", "utils", "plot_theme.R"))
 theme_set(thesis_theme())
 options(scipen = 999)
 
-BASE_DIR  <- here::here("4-DA-Code", "2026-06_Harmonizing-BR-Data")
+BASE_DIR  <- here::here("data-raw", "harmonizing-br-data")
 PARQUET   <- file.path(BASE_DIR, "output",
                         "Microdados_Todas_Idades_1992_2025.parquet")
-SERIE_MEN <- here::here("4-DA-Code", "2026-07_IPCA-Mensalidades", "output",
+SERIE_MEN <- here::here("data-raw", "ipca-mensalidades", "output",
                          "serie_mensalidade_mensal.rds")
 ANO_BASE  <- 2002L
 
 if (!file.exists(SERIE_MEN))
   stop("Serie de mensalidade nao encontrada. Rodar antes: ",
-       "4-DA-Code/2026-07_IPCA-Mensalidades/R/010_IPCA_Curso_Superior_Series.R")
+       "shared-pipeline/ipca/010_IPCA_Curso_Superior_Series.R")
 
 # Paleta/labels identicos a 041H/231/245D
 LEVELS_SERIE <- paste0("D", 10:1)
@@ -180,8 +180,7 @@ finalizar_figura(
   fonte       = "IBGE --- PNAD (2002--2015) and PNAD Contínua (2016--2025), harmonized series; IBGE --- IPCA subitem-level series via SIDRA (real tuition index); IPEADATA (minimum wage series \\texttt{MTE12\\_SALMIN12})",
   nota        = "Burden$_d$(year) $= 100 \\times$ [tuition index(year)/tuition index(2002)] / [decile-$d$ income index(year)/decile-$d$ income index(2002)] --- the same tuition bill expressed in units of decile-$d$ income, 2002 = 100. A falling line means the bill became more affordable for that stratum. Deciles computed within each survey year and source (\\hyperref[sec-decisions]{Appendix~\\ref*{sec-decisions}}, Decisions D01, D02); single source per year (PNAD Anual through 2015, PNAD Contínua from 2016). The tuition index is a fixed-panel readjustment series and does not capture compositional cheapening via distance learning, so the true market-channel burden likely fell even further than shown.",
   apendice    = "sec-fignote-fardo-mensalidade-decil",
-  script_path = here::here("4-DA-Code", "2026-06_Harmonizing-BR-Data", "R",
-                            "02_validation", "232_Tese_Fardo_Mensalidade_Decil.R"),
+  script_path = here::here("posts", "fardo-mensalidade-decil", "plot.R"),
   largura = LARGURA_TEXTO, altura = ALTURA_ALTA
 )
 
