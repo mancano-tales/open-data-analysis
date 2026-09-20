@@ -1,0 +1,88 @@
+---
+title: "Acesso por Desempenho no ENEM e Decil de Renda: as Coortes de 2012 e 2019 (Replicação de Senkevics et al., 2024)"
+date: 2026-09-14
+categories: [SEDAP+, ENEM, Renda, Replication]
+image: ../../posts/replicacao-senkevics2024-coortes/thumbnail.png
+description: "Probabilidade prevista de não acesso, ingresso no setor público e no setor privado por decil de desempenho no ENEM, para os decis de renda mais pobre e mais rico, coortes do ensino médio de 2012 e 2019."
+---
+
+![](../../posts/replicacao-senkevics2024-coortes/thumbnail.png)
+
+## Visão Geral
+
+Esta figura replica a Figura 3 de Senkevics, Barbosa, Carvalhaes e Ribeiro (2024) para a coorte de estudantes na última série do ensino médio em 2012 e a estende à coorte de 2019. Para os decis de renda mais pobre e mais rico, mostra a probabilidade de não ingressar em nenhuma instituição de ensino superior, de ingressar numa pública ou numa privada em cinco anos, por decil de desempenho no ENEM. A área do círculo é a distribuição condicional do desempenho dentro de cada decil de renda. Os dados são registros administrativos vinculados (Censo Escolar, ENEM, Censo da Educação Superior) consultados pela plataforma SEDAP+ do INEP, que devolve tabelas agregadas sob privacidade diferencial; as tabelas de contingência de 300 células que a figura lê são redistribuídas com este post, de modo que a figura em si reproduz sem credencial.
+
+## Metodologia
+
+**Desenho.** A coorte é todo estudante matriculado na última série do ensino médio no Censo Escolar do ano da coorte (`TP_ETAPA_ENSINO` em 27, 28, 29, 32, 33, 34, 37, 38), com 16 a 22 anos, seguido nas edições do ENEM dos cinco anos seguintes e no Censo da Educação Superior dos cinco anos posteriores; o estudante conta como ingressante se qualquer primeira matrícula aparece na janela, e o setor é o da mais antiga (`TP_CATEGORIA_ADMINISTRATIVA` 1–3 público, 4–9 privado). O desempenho é a média das quatro provas objetivas do ENEM, convertida em decis dentro da coorte. A renda familiar per capita divide o ponto médio da faixa de renda declarada (em salários mínimos da edição do ENEM, deflacionados pelo INPC para março de 2023) pelo número declarado de moradores, cortada em decis dentro da coorte. As constantes vêm do pacote de replicação dos autores (`015_Especificacao.R` registra a linha de origem de cada uma). As amostras analíticas têm 977.450 estudantes (2012) e 746.852 (2019), em 300 células cada.
+
+**Estimação.** As probabilidades previstas vêm de um logit multinomial do destino sobre a interação completa de decil de renda e decil de desempenho, ajustado com `nnet::multinom` na tabela de contingência com as contagens de célula como pesos — a especificação reduzida dos autores. Com um parâmetro por célula o modelo é saturado, de modo que as previsões coincidem com as proporções observadas; a figura publicada acrescenta controles (sexo, cor, idade, rede escolar, localização rural, UF, edição do ENEM), razão pela qual seus níveis diferem onde a composição mais difere entre estratos de renda.
+
+**Desvios em relação ao original, impostos pela camada de acesso.** O SEDAP+ devolve apenas consultas agregadas sob privacidade diferencial ($\varepsilon = 1$). (D1) A coorte é de estudantes *matriculados* na última série, não de concluintes aprovados. (D2) Os oito controles são omitidos. (D3) Um estudante com várias provas do ENEM é pontuado na *última* edição. (D4) Sem desempate aleatório para matrículas simultâneas; o ano mais antigo decide. (D5) As contagens de célula carregam ruído de privacidade de cerca de três estudantes por célula (no máximo 27 observados). (D6) As faixas de renda são ancoradas no salário mínimo impresso no questionário de cada edição. (D7) Estudantes sem questionário socioeconômico são excluídos (330 em 2012, 2.091 em 2019). Validação para 2012: 74,8% privado / 25,2% público entre ingressantes (publicado 75,8 / 24,2); 67,1% da coorte ingressando em cinco anos (publicado 68,9%).
+
+**Lendo as duas coortes.** Os decis são cortados dentro de cada coorte, de modo que um decil é uma posição relativa entre os examinandos daquela coorte. A cobertura da coorte escolar cai de 44,9% (2012) para 35,0% (2019), porque menos estudantes têm CPF vinculável e a participação no ENEM desabou nas edições da pandemia. A menor célula tem 749 estudantes e todo intervalo de Wilson de 95% é mais estreito que ±3,3 pontos percentuais; nenhum intervalo é desenhado. Entre as coortes, a probabilidade de não acesso do decil mais pobre cai 14–18 pontos nos decis de desempenho 1–7, e seu ingresso no setor privado no decil de desempenho mais baixo dobra; o decil mais rico pouco se move.
+
+## Como Citar
+
+Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto esta análise específica, e o artigo original replicado. As referências seguem a 7ª edição da APA.
+
+**Artigo original:**
+
+> Senkevics, A., Barbosa, R., Carvalhaes, F., & Ribeiro, C. C. (2024). Decomposing heterogeneity in inequality of educational opportunities: Family income and academic performance in Brazilian higher education. *Sociological Science, 11*, 854–885. https://doi.org/10.15195/v11.a31
+
+**Dissertação (em elaboração; a entrada será atualizada após a defesa):**
+
+> Mançano, T. (2026). *Inequality in access to tertiary education in Brazil: Household incomes, reforming policies, and the politics of who gets in (1990s–2020s)* [Dissertação de mestrado não publicada]. Universidade de São Paulo.
+
+**Esta figura e o pipeline:**
+
+> Mançano, T. (2026, 14 de setembro). *Acesso por desempenho no ENEM e decil de renda: As coortes de 2012 e 2019 (replicação de Senkevics et al., 2024)* [Figura e pipeline reprodutível]. Open Data Analysis. https://mancano-tales.github.io/open-data-analysis/pt/posts-pt/replicacao-senkevics2024-coortes/
+
+**No texto:** (Mançano, 2026) — ao citar várias análises deste catálogo no mesmo trabalho, a APA as distingue como 2026a, 2026b, … na ordem em que aparecem na lista de referências.
+
+**BibTeX:**
+
+```bibtex
+@mastersthesis{Mancano2026Thesis,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Unpublished; Graduate Program in Political Science}
+}
+
+@misc{Mancano2026_replicacao_senkevics2024_coortes_pt,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Acesso por desempenho no ENEM e decil de renda: As coortes de 2012 e 2019 (replica\c{c}\~{a}o de Senkevics et al., 2024)},
+  year         = {2026},
+  month        = sep,
+  howpublished = {Open Data Analysis, \url{https://mancano-tales.github.io/open-data-analysis/pt/posts-pt/replicacao-senkevics2024-coortes/}},
+  note         = {Figura e pipeline reprodutível. Código-fonte: \url{https://github.com/mancano-tales/open-data-analysis}, pasta posts/replicacao-senkevics2024-coortes/. Acesso em AAAA-MM-DD}
+}
+```
+
+Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL da página acima e acrescente a data de acesso (código-fonte: https://github.com/mancano-tales/open-data-analysis, pasta `posts/replicacao-senkevics2024-coortes/`).
+
+## Pipeline
+
+A figura lê duas tabelas agregadas redistribuídas na pasta [`data/`](../../posts/replicacao-senkevics2024-coortes/data/) do post — [`coorte_2012_030_matriz_final.csv`](../../posts/replicacao-senkevics2024-coortes/data/coorte_2012_030_matriz_final.csv) e [`coorte_2019_030_matriz_final.csv`](../../posts/replicacao-senkevics2024-coortes/data/coorte_2019_030_matriz_final.csv), cada uma com 300 linhas (`income_D`, `performance`, `choice`, `n`). Para desenhar a figura a partir delas:
+
+1. [`plot.R`](../../posts/replicacao-senkevics2024-coortes/plot.R) — ajusta o logit multinomial saturado por coorte e grava a figura em `output/figures/replicacao-senkevics2024-coortes/` — compare com o `thumbnail.png` deste post
+
+Para reextrair as tabelas dos microdados vinculados (exige credencial SEDAP+ do INEP exportada como `SEDAP_TOKEN`), rode, a partir da raiz do projeto e uma vez por coorte com `COORTE_ANO=2012` e `COORTE_ANO=2019` no ambiente:
+
+1. [`shared-pipeline/sedap/010_SEDAP_Cliente.R`](../../shared-pipeline/sedap/010_SEDAP_Cliente.R) — cliente da API SEDAP+, carregado pelos scripts abaixo
+2. [`shared-pipeline/sedap/senkevics/015_Especificacao.R`](../../shared-pipeline/sedap/senkevics/015_Especificacao.R) — todas as constantes do desenho (ano da coorte, janelas do ENEM e do Censo Superior, pontos médios das faixas de renda, deflator), cada uma anotada com a linha de origem no pacote de replicação dos autores; carregado pelos scripts abaixo
+3. [`shared-pipeline/sedap/senkevics/010_Coorte.R`](../../shared-pipeline/sedap/senkevics/010_Coorte.R) — dimensiona a coorte e mede quanto dela se vincula ao ENEM
+4. [`shared-pipeline/sedap/senkevics/020_Distribuicoes_Marginais.R`](../../shared-pipeline/sedap/senkevics/020_Distribuicoes_Marginais.R) — distribuições marginais de renda e nota necessárias aos pontos de corte dos decis
+5. [`shared-pipeline/sedap/senkevics/025_Pontos_Corte.R`](../../shared-pipeline/sedap/senkevics/025_Pontos_Corte.R) — calcula os pontos de corte dos decis de renda e desempenho
+6. [`shared-pipeline/sedap/senkevics/030_Extrair_Matriz_Final.R`](../../shared-pipeline/sedap/senkevics/030_Extrair_Matriz_Final.R) — consulta a tabela de 300 células e grava `data-raw/sedap/senkevics/coorte_<ano>/030_matriz_final.csv`; quando esse arquivo existe, o `plot.R` o lê de preferência à cópia redistribuída
+
+## Reprodutibilidade
+
+**Tier: B** — figura reprodutível sem credencial a partir das tabelas agregadas redistribuídas; a reextração exige acesso ao SEDAP+.
+
+As tabelas agregadas não carregam registro individual: cada linha é uma contagem de estudantes numa célula de dez decis de renda × dez decis de desempenho × três destinos, a menor célula com 749 estudantes, e as contagens já incluem o ruído de privacidade diferencial da plataforma. Os scripts de extração em `shared-pipeline/sedap/senkevics/` só rodam com credencial aprovada do INEP exportada como `SEDAP_TOKEN`; sem ela, a lógica permanece disponível para auditoria.
