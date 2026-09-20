@@ -1,0 +1,77 @@
+---
+title: "Renda Domiciliar per Capita Mediana Real, Brasil 1992–2025"
+date: 2026-09-16
+categories: [PNAD/PNADC, Renda, Série Histórica]
+image: ../../posts/renda-mediana-domiciliar-pc/thumbnail.png
+description: "Mediana ponderada da renda domiciliar per capita real, em reais de janeiro de 2024, 1992–2025, com a emenda PNAD/PNAD Contínua deixada visível."
+---
+
+![](../../posts/renda-mediana-domiciliar-pc/thumbnail.png)
+
+## Visão Geral
+
+Esta figura acompanha a renda disponível ao domicílio brasileiro do meio da distribuição: a mediana ponderada da renda domiciliar per capita real, em reais de janeiro de 2024, de 1992 a 2025. Reporta-se a mediana, e não a média, porque a média fica entre 1,5 e 1,7 vez a mediana ao longo do período e se move com o decil mais rico de um modo que uma série de nível para o domicílio típico não exige. A série é construída por uma extração dedicada dos microdados brutos da PNAD e da PNAD Contínua (IBGE), com o domicílio como unidade de renda em toda a série e mantendo os domicílios sem renda declarada, como faz a convenção do próprio IBGE.
+
+## Metodologia
+
+A unidade de renda é o domicílio em toda a série: na PNAD Anual (1992–2015) o numerador é a `V4721`, o agregado de renda domiciliar do IBGE, que exclui a renda de pensionistas, empregados domésticos e seus parentes, e o denominador é o número de moradores fora dessas mesmas três condições (`V0401` fora de 6, 7, 8); a partir de 2016 a PNAD Contínua fornece a `VD5008`, que já é renda domiciliar per capita na mesma convenção. O universo é o oficial, mantendo os domicílios que não declaram renda; excluí-los eleva a mediana em 4,9% em 2003, 2,4% em 2009 e 1,4% em 2014. Os valores são deflacionados pelo IPCA para janeiro de 2024. A linha é interrompida em 1994, 2000 e 2010, anos sem PNAD. Os marcadores vazados de 2020 e 2021 vêm da quinta visita da PNAD Contínua, o único arquivo anual desses anos, coletado em grande parte por telefone, um modo que sabidamente subenumera renda e sub-representa domicílios mais pobres e rurais; são indicativos, não comparáveis. A linha vertical sólida marca a troca de pesquisa em 2015–2016; o degrau não é reescalado. Nos quatro anos de sobreposição, com a unidade de renda homogeneizada dos dois lados, a mediana da PNAD Contínua fica 5,0%, 4,1% e 3,7% abaixo da mediana da PNAD Anual em 2012–2014 e 0,8% acima em 2015 (média de −2,6%). A construção domiciliar segue o procedimento documentado no pacote de replicação divulgado por Souza e Hecksher (2026) com seu estudo da renda domiciliar brasileira, gentilmente compartilhado por Pedro H. G. Ferreira de Souza; quando o `results/renda.csv` desse pacote é colocado em `data-raw/Souza-Hecksher/`, o `plot.R` imprime a comparação ano a ano. Os rótulos de governo indicam o presidente em exercício.
+
+## Como Citar
+
+Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto esta análise específica. As referências seguem a 7ª edição da APA.
+
+**Dissertação (em elaboração; a entrada será atualizada após a defesa):**
+
+> Mançano, T. (2026). *Inequality in access to tertiary education in Brazil: Household incomes, reforming policies, and the politics of who gets in (1990s–2020s)* [Dissertação de mestrado não publicada]. Universidade de São Paulo.
+
+**Esta figura e o pipeline:**
+
+> Mançano, T. (2026, 16 de setembro). *Renda domiciliar per capita mediana real, Brasil 1992–2025* [Figura e pipeline reprodutível]. Open Data Analysis. https://mancano-tales.github.io/open-data-analysis/pt/posts-pt/renda-mediana-domiciliar-pc/
+
+**No texto:** (Mançano, 2026) — ao citar várias análises deste catálogo no mesmo trabalho, a APA as distingue como 2026a, 2026b, … na ordem em que aparecem na lista de referências.
+
+**BibTeX:**
+
+```bibtex
+@mastersthesis{Mancano2026Thesis,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Unpublished; Graduate Program in Political Science}
+}
+
+@misc{Mancano2026_renda_mediana_domiciliar_pc_pt,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Renda domiciliar per capita mediana real, Brasil 1992--2025},
+  year         = {2026},
+  month        = sep,
+  howpublished = {Open Data Analysis, \url{https://mancano-tales.github.io/open-data-analysis/pt/posts-pt/renda-mediana-domiciliar-pc/}},
+  note         = {Figura e pipeline reprodutível. Código-fonte: \url{https://github.com/mancano-tales/open-data-analysis}, pasta posts/renda-mediana-domiciliar-pc/. Acesso em AAAA-MM-DD}
+}
+```
+
+Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL da página acima e acrescente a data de acesso (código-fonte: https://github.com/mancano-tales/open-data-analysis, pasta `posts/renda-mediana-domiciliar-pc/`).
+
+## Pipeline
+
+Esta figura **não** lê o painel harmonizado usado pela maioria dos posts: ela extrai a renda domiciliar diretamente dos microdados brutos, porque o painel carrega renda familiar (não domiciliar) até 2015 e descarta os domicílios sem renda. Ela reaproveita os arquivos brutos que os scripts de importação do painel baixam.
+
+Rode estes scripts nesta ordem, a partir da raiz do projeto (cada um grava em `data-raw/`, de onde o seguinte lê):
+
+1. [`shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R`](../../shared-pipeline/pnadc/000_PNADC_Download_Consolidate.R) — baixa a PNAD Contínua 2012–2025 (1ª entrevista) com `PNADcIBGE::get_pnadc()` em `data-raw/pnadc_raw/` e consolida em `data-raw/pnadc_consolidado_2012_2025_interview1.rds`
+2. [`shared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R`](../../shared-pipeline/pnadc/050_PNAD_Historica_Manual_Import_1992_1999.R) — baixa os microdados brutos da PNAD Anual 1992–1999 (arquivos de largura fixa + layouts SAS) do FTP do IBGE em `data-raw/pnad_anual_raw/<ano>/` — o `plot.R` lê esses arquivos brutos diretamente
+3. [`shared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R`](../../shared-pipeline/pnadc/020_PNAD_Anual_Manual_Import_2001_2015.R) — o mesmo para a PNAD Anual 2001–2015
+4. [`shared-pipeline/pnadc/022_PNADC_Visita5_2020_2021.R`](../../shared-pipeline/pnadc/022_PNADC_Visita5_2020_2021.R) — *(opcional)* baixa os arquivos da quinta visita da PNAD Contínua para 2019–2022 do FTP do IBGE em `data-raw/pnadc_raw/` e grava `data-raw/harmonizing-br-data/output/PNADC_Visita5_2019_2022.parquet`; sem ele, a figura sai sem os marcadores vazados de 2020–2021
+5. [`plot.R`](../../posts/renda-mediana-domiciliar-pc/plot.R) — lê os arquivos brutos da PNAD Anual, o cache da PNAD Contínua e (se existir) o parquet da quinta visita; guarda a série extraída em `data-raw/harmonizing-br-data/output/242_serie_renda_domiciliar.rds` (apague-o para reextrair); grava a figura em `output/figures/renda-mediana-domiciliar-pc/` — compare com o `thumbnail.png` deste post
+
+Todas as etapas upstream acima são Tier A e também são executadas, nesta mesma ordem, por [`shared-pipeline/build_public_data.R`](../../shared-pipeline/build_public_data.R).
+
+## Reprodutibilidade
+
+**Tier: A**
+
+Esta figura usa apenas dados públicos, acessíveis sem credencial (PNADcIBGE e o FTP do IBGE). A extração dos microdados brutos lê todos os arquivos da PNAD Anual de 1992 a 2015 e leva dezenas de minutos depois dos downloads; o cache em `data-raw/` torna as execuções seguintes imediatas. A comparação opcional com o pacote de replicação de Souza e Hecksher exige o `results/renda.csv` deles, que não é redistribuído aqui.
