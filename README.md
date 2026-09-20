@@ -40,12 +40,15 @@ open-data-analysis/
    `ipeadatar`, `httr2`, `archive`, `data.table`, `ggh4x`, `patchwork`. Cada
    script declara seus próprios `library()` no topo — instale conforme os
    erros de pacote ausente aparecerem.
-2. Abra o projeto pela raiz (o `.Rproj` ou `here::here()` apontando para esta
-   pasta). Todos os caminhos são relativos à raiz: os scripts de
-   `shared-pipeline/` criam `data-raw/` e escrevem os dados brutos e
-   intermediários ali; os `plot.R` leem de `data-raw/` e gravam a figura em
+2. Abra o projeto pela raiz (`here::here()` apontando para esta pasta). A raiz
+   é marcada por um arquivo `.here` vazio, reconhecido pelo pacote `here` —
+   vale também para quem baixa o ZIP do GitHub em vez de clonar (sem `.git`).
+   Todos os caminhos são relativos à raiz: os scripts de `shared-pipeline/`
+   criam `data-raw/` e escrevem os dados brutos e intermediários ali; os
+   `plot.R` leem de `data-raw/` e gravam a figura em
    `output/figures/<fig-label>/`. Nenhum script depende de caminho fora do
-   repositório.
+   repositório; se um `plot.R` não encontra seu dado, ele para com a mensagem
+   de qual script de `shared-pipeline/` rodar antes.
 3. Rode os scripts upstream **na ordem listada na seção "Pipeline" do post**
    que você quer reproduzir (cada post lista a cadeia completa, do download ao
    dado intermediário, e o que cada script grava). Para reconstruir de uma vez
@@ -69,6 +72,7 @@ para reproduzi-lo do zero:
 | **A** | Usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rodar os scripts de `shared-pipeline/` na ordem numérica reconstrói os dados intermediários. |
 | **A (cross-repo)** | Depende do pacote R público `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), que já embute os dados necessários — nada para baixar manualmente. |
 | **B** | Depende de dado restrito do INEP acessível via credencial SEDAP+ (variável de ambiente `SEDAP_TOKEN`). Sem uma credencial aprovada pelo INEP, os scripts em `shared-pipeline/sedap/` não rodam — a lógica fica disponível para auditoria, mas a reprodução completa exige solicitar acesso. |
+| **B (agregado redistribuído)** | A extração exige credencial SEDAP+, mas as tabelas agregadas que a figura lê (contagens por célula, sem registro individual) são redistribuídas na pasta `data/` do post, de modo que o `plot.R` roda sem credencial. Hoje: `replicacao-senkevics2024-coortes`. |
 
 ## Projeto vivo
 
