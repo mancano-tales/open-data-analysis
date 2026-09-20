@@ -2,7 +2,11 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/vagas-focalizadas/index.html",
       "/posts/renda-media-centil/index.html",
+      "/posts/renda-mediana-domiciliar-pc/index.html",
+      "/posts/wagstaff-transicao-condicional/index.html",
+      "/posts/replicacao-senkevics2024-coortes/index.html",
       "/posts/harmonizacao-pnad-pnadc/index.html",
       "/posts/rra-renda-decil-quintil/index.html",
       "/posts/decil-acesso-serie-historica/index.html",

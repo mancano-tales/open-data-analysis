@@ -3,9 +3,9 @@
 #
 # OBJETIVO / PURPOSE:
 #   Criar bancos unificados de microdados unindo PNAD Anual (1992-2015) e
-#   PNAD Contínua (2012-2024). Gera dois outputs:
-#     - Microdados_Todas_Idades_1992_2024.parquet  (toda a população)
-#     - Microdados_Jovens_18_24_1992_2024.parquet  (apenas 18-24 anos)
+#   PNAD Contínua (2012-2025). Gera dois outputs:
+#     - Microdados_Todas_Idades_1992_2025.parquet  (toda a população)
+#     - Microdados_Jovens_18_24_1992_2025.parquet  (apenas 18-24 anos)
 #
 # PASSOS:
 #   1. Carrega os parquet da PNAD Anual
@@ -21,14 +21,28 @@
 #      PNADC: ens_sup/ens_sup_a do cache (script 000) + VD3004
 #      (substitui a antiga ens_medio, que era inconsistente entre fontes — D19)
 #   4. Aplica conversões cambiais e IPCA (base Jan/2024)
-#   5. Calcula decis, vintis E quintis de renda em nível NACIONAL (toda pop. com renda > 0)
-#   6. Salva Microdados_Todas_Idades_1992_2024.parquet
-#   7. Filtra 18-24 e salva Microdados_Jovens_18_24_1992_2024.parquet
+#   5. Calcula decis, vintis E quintis de renda em nível NACIONAL (toda pop. com
+#      renda > 0), com desempate reproduzível nos pontos de massa (D28)
+#   6. Salva Microdados_Todas_Idades_1992_2025.parquet
+#   7. Filtra 18-24 e salva Microdados_Jovens_18_24_1992_2025.parquet
 #
 # 2026-09-03 (WP1/WP2 do plano 9-vers/plan/2026-09-03_Plano_RRA_Renda_Salata.md):
 #   acrescentadas colunas sexo/cor/regiao/rural (controles demográficos) e
 #   quintil de renda — ADITIVO, nenhuma coluna/filtro pré-existente mudou.
 #   Verificado por diff byte-a-byte das colunas antigas antes/depois do commit.
+#
+# 2026-09-19 (revisão de código, D28):
+#   (a) decil/vintil/quintil deixam de usar cut() sobre wtd.quantile(), que
+#       jogava todos os empates de um ponto de massa para o mesmo grupo (em
+#       2025, 3,7% da população tem exatamente 1 SM per capita; D8 ficava com
+#       11,1% e D9 com 8,8% da população; em 1995 o D6 tinha 13,3%). Agora a
+#       posição de cada registro é o ponto médio da sua massa na CDF ponderada,
+#       com empates ordenados por sorteio de semente fixa; grupos balanceados
+#       ate' o peso de um registro. Nao altera ranks fracionarios (Wagstaff).
+#   (b) filtro idade <= 120: a PNAD codifica idade ignorada como 999 (13-97
+#       linhas/ano em 1992-2005) e elas entravam na base de todas as idades.
+#   (c) checagem de hierarquia passa a incluir ens_sup ⊆ medio_completo, que
+#       a decomposicao do 097F exige e ate' aqui so' ele verificava.
 # ==============================================================================
 
 library(dplyr)
@@ -95,7 +109,7 @@ OUTPUT_DIR <- file.path(BASE_DIR, "output")
 # snapshots .R das figuras já promovidas continuem reproduzíveis.
 CACHED_PNADC <- here::here("data-raw", "pnadc_consolidado_2012_2025_interview1.rds")
 
-cat("══════ Iniciando Splice de Microdados (1992-2024) ══════\n")
+cat("══════ Iniciando Splice de Microdados (1992-2025) ══════\n")
 
 # 1. Carrega PNAD Anual
 cat("  → Carregando PNAD Anual (1992-2015)...\n")
@@ -228,7 +242,7 @@ df_pnad <- bind_rows(df_90, df_00) %>%   # bind_rows preenche V6003/V6007 com NA
 rm(df_90, df_00); gc()
 
 # 2. Carrega PNADC
-cat("  → Carregando PNADC (2012-2024)...\n")
+cat("  → Carregando PNADC (2012-2025)...\n")
 df_pnadc <- readRDS(CACHED_PNADC)
 
   # Filtro geográfico rural Norte (D03) — equivalente ao rec_geo de Salata
@@ -337,39 +351,60 @@ df_all <- df_all %>%
   ) %>%
   select(-ref_date, -renda_corrigida)
 
-# 4. Cálculo dos Decis, Vintis e Quintis
+# Idade ignorada (999 na PNAD Anual) — ver nota 2026-09-19 (b) no cabeçalho.
+n_idade_invalida <- sum(is.na(df_all$idade) | df_all$idade > 120)
+if (n_idade_invalida > 0) {
+  cat(sprintf("  → Removendo %d linha(s) com idade ausente ou > 120 (código de ignorado)\n",
+              n_idade_invalida))
+  df_all <- df_all %>% filter(!is.na(idade), idade <= 120)
+}
+
+# 4. Cálculo dos Decis, Vintis e Quintis (D08/D18 + D28)
 # Quintil acrescentado em 2026-09-03 (WP2 do plano do RRA de renda) — mesma
 # lógica de corte por ano × fonte que decil/vintil já usam, não um derivado
 # aritmético do decil (evita assumir que os pontos de corte batem exatamente).
-cat("  → Calculando decis, vintis e quintis de renda para toda a população...\n")
+#
+# D28 (2026-09-19): posição de cada registro = ponto médio da sua massa na CDF
+# ponderada de renda_real, dentro de ano × fonte; empates (pontos de massa,
+# ex. exatamente 1 SM per capita) ordenados por sorteio de semente fixa, de modo
+# que um ponto de massa que atravessa uma fronteira é repartido entre os dois
+# grupos na proporção que a CDF pede, em vez de cair inteiro de um lado como
+# fazia cut() sobre wtd.quantile(). A ordem das linhas do parquet NÃO muda
+# (o 041H/041K casam as variáveis de desenho da PNADC por ordem de ocorrência).
+cat("  → Calculando decis, vintis e quintis de renda para toda a população (D28)...\n")
+set.seed(20260919)
+posicao_cdf <- function(renda, peso, desempate) {
+  o <- order(renda, desempate)
+  cm <- numeric(length(renda))
+  cm[o] <- (cumsum(peso[o]) - peso[o] / 2) / sum(peso[o])
+  cm
+}
+grupo_cdf <- function(pos, k) pmin(pmax(as.integer(ceiling(pos * k)), 1L), k)
+
 df_all <- df_all %>%
+  mutate(.desempate = runif(n())) %>%
   group_by(ano, fonte) %>%
-  mutate(
-    limites_decil = list({
-      brks <- wtd.quantile(renda_real, weights = peso, probs = seq(0, 1, by = 0.10), na.rm = TRUE)
-      brks[1] <- -Inf; brks[11] <- Inf; brks
-    }),
-    limites_vintil = list({
-      brks <- wtd.quantile(renda_real, weights = peso, probs = seq(0, 1, by = 0.05), na.rm = TRUE)
-      brks[1] <- -Inf; brks[21] <- Inf; brks
-    }),
-    limites_quintil = list({
-      brks <- wtd.quantile(renda_real, weights = peso, probs = seq(0, 1, by = 0.20), na.rm = TRUE)
-      brks[1] <- -Inf; brks[6] <- Inf; brks
-    })
-  ) %>%
-  mutate(
-    decil   = cut(renda_real, breaks = limites_decil[[1]],   labels = 1:10, include.lowest = TRUE),
-    vintil  = cut(renda_real, breaks = limites_vintil[[1]],  labels = 1:20, include.lowest = TRUE),
-    quintil = cut(renda_real, breaks = limites_quintil[[1]], labels = 1:5,  include.lowest = TRUE)
-  ) %>%
+  mutate(.pos = posicao_cdf(renda_real, peso, .desempate)) %>%
   ungroup() %>%
-  select(-limites_decil, -limites_vintil, -limites_quintil) %>%
   mutate(
-    decil   = as.integer(as.character(decil)),
-    vintil  = as.integer(as.character(vintil)),
-    quintil = as.integer(as.character(quintil))
-  )
+    decil   = grupo_cdf(.pos, 10L),
+    vintil  = grupo_cdf(.pos, 20L),
+    quintil = grupo_cdf(.pos, 5L)
+  ) %>%
+  select(-.desempate, -.pos)
+
+# Sanidade D28: nenhum decil pode se afastar de 10% da massa em mais de 0,5 pp
+# (o resíduo é o peso de um registro na fronteira).
+bal <- df_all %>%
+  group_by(ano, fonte, decil) %>%
+  summarise(w = sum(peso), .groups = "drop_last") %>%
+  mutate(s = 100 * w / sum(w)) %>%
+  summarise(desvio = max(abs(s - 10)), .groups = "drop")
+if (any(bal$desvio > 0.5)) {
+  print(bal %>% filter(desvio > 0.5))
+  stop("D28: decis desbalanceados além de 0,5 pp em pelo menos um ano × fonte.")
+}
+cat(sprintf("  → Decis balanceados (desvio máximo %.3f pp)\n", max(bal$desvio)))
 
 # 5. Salvar base completa — todas as idades
 # Colunas: ano, idade, peso, renda_dom_pcta, renda_real,
@@ -384,17 +419,19 @@ viol <- df_todas %>%
     a = sum(ens_sup_a > ens_sup, na.rm = TRUE),
     b = sum(sup_completo > medio_completo, na.rm = TRUE),
     c = sum(medio_completo > ing_medio, na.rm = TRUE),
-    d = sum(ens_sup > ing_medio, na.rm = TRUE)
+    d = sum(ens_sup > ing_medio, na.rm = TRUE),
+    e = sum(ens_sup > medio_completo, na.rm = TRUE) # exigida pela decomposicao do 097F
   )
 if (sum(unlist(viol)) > 0) {
   print(viol)
-  stop("Violação da hierarquia educacional (ens_sup_a ⊆ ens_sup; sup_completo ⊆ medio_completo ⊆ ing_medio; ens_sup ⊆ ing_medio).")
+  stop("Violação da hierarquia educacional (ens_sup_a ⊆ ens_sup ⊆ medio_completo ⊆ ing_medio; sup_completo ⊆ medio_completo).")
 }
 cat("  → Hierarquia educacional OK (0 violações)\n")
 
 output_todas <- file.path(OUTPUT_DIR, "Microdados_Todas_Idades_1992_2025.parquet")
 cat(sprintf("  → Salvando base todas as idades (%d obs) em %s...\n",
             nrow(df_todas), output_todas))
+dir.create(dirname(output_todas), showWarnings = FALSE, recursive = TRUE)
 write_parquet(df_todas, output_todas)
 
 # 6. Salvar base 18-24 (backwards-compatible — mantém mesmo nome)

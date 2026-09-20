@@ -447,6 +447,7 @@ censo_pontos_leg <- bind_rows(taxa_1991, taxa_2000, taxa_2010)
 censo_out_2022 <- file.path(BASE_DIR, "output", "Censo_Pontos_Validacao_1991_2022.parquet")
 censo_out_leg <- file.path(BASE_DIR, "output", "Censo_Pontos_Validacao_1991_2000_2010.parquet")
 
+dir.create(dirname(censo_out_2022), showWarnings = FALSE, recursive = TRUE)
 arrow::write_parquet(censo_pontos, censo_out_2022)
 # censo_out_2022 e a fonte que a Figura 2.1 promovida na tese consome (via
 # 041H_Tese_Decil_Lines_Censo.R, PARQUET_CENSO). censo_out_leg (legado, sem

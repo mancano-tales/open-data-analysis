@@ -16,11 +16,11 @@
 #
 # PREREQUISITES: R packages used across these scripts — arrow, dplyr, tidyr,
 # Hmisc, deflateBR, here, PNADcIBGE, censobr, sidrar, ipeadatar, httr2,
-# archive, readr, stringr, survey.
+# archive, readr, readxl, stringr, survey.
 # ==============================================================================
 
 here_root <- here::here()
-cat("Building public datasets into:", file.path(dirname(here_root), "..", "data-raw"), "\n\n")
+cat("Building public datasets into:", file.path(here_root, "data-raw"), "\n\n")
 
 # ── 1. PNAD Anual + PNAD Contínua (harmonized panel) ─────────────────────────
 # 000 downloads/consolidates PNAD Contínua; 020/050 manually import the PNAD
@@ -39,15 +39,21 @@ source(here::here("shared-pipeline", "pnadc", "021_PNAD_Anual_Import_Com_Renda_Z
 cat("\n[3/5] Splice PNAD Anual + PNAD Contínua into the harmonized panel (035)\n")
 source(here::here("shared-pipeline", "pnadc", "035_Splice_Microdados.R"))
 
-cat("\n[3b/5] Official income-inequality series, Gini/Palma (238)\n")
+cat("\n[3b/5] PNAD Contínua fifth visit, 2019-2022 — the 2020-21 points of 238 and of the median-income post (022)\n")
+source(here::here("shared-pipeline", "pnadc", "022_PNADC_Visita5_2020_2021.R"))
+
+cat("\n[3c/5] Official income-inequality series, Gini/Palma (238)\n")
 source(here::here("shared-pipeline", "pnadc", "238_Serie_Desigualdade_Oficial.R"))
+
+cat("\n[3d/5] Wagstaff index of upper-secondary completion, tertiary access and the conditional transition — cache of the wagstaff-transicao-condicional post (097F)\n")
+source(here::here("shared-pipeline", "pnadc", "097F_Diag_Wagstaff_Transicao_Decomposicao.R"))
 
 # ── 2. Demographic Census validation points (via {censobr}) ──────────────────
 cat("\n[4/5] Demographic Census validation points (censo/040)\n")
 source(here::here("shared-pipeline", "censo", "040_Censo_Pontos_Validacao.R"))
 
 # ── 3. Higher Education Census (CENSUP), public microdata ────────────────────
-cat("\n[5/5] CENSUP: download + decompress public microdata (censup/001)\n")
+cat("\n[5/5] CENSUP: download + decompress public microdata 2009-2024 (censup/001)\n")
 source(here::here("shared-pipeline", "censup", "001_Code_Download_Decompress_all_Public_CENSUP_data.R"))
 
 # ── 4. IPCA tuition subitem (via {sidrar}/{ipeadatar}) ────────────────────────
