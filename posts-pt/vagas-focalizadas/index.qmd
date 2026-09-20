@@ -1,0 +1,72 @@
+---
+title: "Vagas Alocadas por Política Focalizada, 2009–2024"
+date: 2026-09-19
+categories: [CENSUP, Cotas, ProUni, FIES, Políticas Públicas]
+image: ../../posts/vagas-focalizadas/thumbnail.png
+description: "Vagas de cotas, bolsas do ProUni e contratos do FIES como proporção da matrícula total no ensino superior brasileiro, e em números absolutos, 2009–2024."
+---
+
+![](../../posts/vagas-focalizadas/thumbnail.png)
+
+## Visão Geral
+
+Esta figura pergunta quanto do ensino superior brasileiro é alocado por um critério de necessidade. Ela empilha os três instrumentos que atribuem uma vaga por origem em escola pública, renda familiar, raça ou deficiência — vagas reservadas (cotas) na rede pública, bolsas do ProUni e contratos do FIES na rede privada — como proporção da matrícula total (painel A) e em números absolutos (painel B), de 2009 a 2024. As vagas públicas de ampla concorrência, gratuitas mas não focalizadas, ficam de fora. Cotas e ProUni compartilham uma família de cor porque nenhum dos dois gera dívida; o FIES é um empréstimo e fica à parte. Os dados são os microdados públicos por curso do Censo da Educação Superior do INEP.
+
+## Metodologia
+
+Cada ano é agregado do arquivo `CADASTRO_CURSOS` dos microdados públicos do Censo da Educação Superior: setor por `TP_CATEGORIA_ADMINISTRATIVA` (1–3 público, demais privado); matrícula (`QT_MAT`); vagas reservadas (`QT_MAT_RESERVA_VAGA`); ProUni como soma das bolsas integrais e parciais (`QT_MAT_PROUNII + QT_MAT_PROUNIP`); FIES (`QT_MAT_FIES`). ProUni e FIES são contados só na rede privada e cotas só na rede pública; registros fora da rede legal são ruído de preenchimento (< 0,1%). A sobreposição entre ProUni parcial e FIES não é separável e os dois são tratados como disjuntos. "Vagas" aqui são estoques de matrícula, não vagas ofertadas. `QT_MAT_RESERVA_VAGA` conta todo estudante matriculado por qualquer programa de reserva registrado pelo Censo — escola pública, renda, raça, deficiência e "outros" — inclusive programas institucionais anteriores à Lei 12.711/2012; os campos por subtipo (`QT_MAT_RV_*`) existem no microdado mas não são usados aqui, de modo que a figura não separa a lei federal de cotas dos esquemas anteriores e estaduais. A parcela focalizada sobe de 9,2% da matrícula em 2009 para 27,7% em 2016 e recua para 12,1% em 2024; quase todo o bojo é FIES, que atinge 1,34 milhão de contratos em 2015. A parcela sem dívida (cotas mais ProUni) sobe de 7,0% para 13,7% em 2019 e se acomoda em 10,5%; dentro dela, o ProUni cai de 616 mil (2019) para 435 mil (2024) enquanto a matrícula por cotas cresce de 85 mil para 642 mil e é, em termos absolutos, o maior dos três instrumentos desde 2021.
+
+## Como Citar
+
+Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação quanto esta análise específica. As referências seguem a 7ª edição da APA.
+
+**Dissertação (em elaboração; a entrada será atualizada após a defesa):**
+
+> Mançano, T. (2026). *Inequality in access to tertiary education in Brazil: Household incomes, reforming policies, and the politics of who gets in (1990s–2020s)* [Dissertação de mestrado não publicada]. Universidade de São Paulo.
+
+**Esta figura e o pipeline:**
+
+> Mançano, T. (2026, 19 de setembro). *Vagas alocadas por política focalizada, 2009–2024* [Figura e pipeline reprodutível]. Open Data Analysis. https://mancano-tales.github.io/open-data-analysis/pt/posts-pt/vagas-focalizadas/
+
+**No texto:** (Mançano, 2026) — ao citar várias análises deste catálogo no mesmo trabalho, a APA as distingue como 2026a, 2026b, … na ordem em que aparecem na lista de referências.
+
+**BibTeX:**
+
+```bibtex
+@mastersthesis{Mancano2026Thesis,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Unpublished; Graduate Program in Political Science}
+}
+
+@misc{Mancano2026_vagas_focalizadas_pt,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Vagas alocadas por pol\'{i}tica focalizada, 2009--2024},
+  year         = {2026},
+  month        = sep,
+  howpublished = {Open Data Analysis, \url{https://mancano-tales.github.io/open-data-analysis/pt/posts-pt/vagas-focalizadas/}},
+  note         = {Figura e pipeline reprodutível. Código-fonte: \url{https://github.com/mancano-tales/open-data-analysis}, pasta posts/vagas-focalizadas/. Acesso em AAAA-MM-DD}
+}
+```
+
+Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que a dissertação for defendida; até lá, cite a URL da página acima e acrescente a data de acesso (código-fonte: https://github.com/mancano-tales/open-data-analysis, pasta `posts/vagas-focalizadas/`).
+
+## Pipeline
+
+Rode estes scripts nesta ordem, a partir da raiz do projeto (cada um grava em `data-raw/`, de onde o seguinte lê):
+
+1. [`shared-pipeline/censup/001_Code_Download_Decompress_all_Public_CENSUP_data.R`](../../shared-pipeline/censup/001_Code_Download_Decompress_all_Public_CENSUP_data.R) — baixa e descompacta os microdados públicos do Censo da Educação Superior de 2009–2024 do INEP em `data-raw/INEP/CENSUP_Publico/<ano>/dados/`
+2. [`plot.R`](../../posts/vagas-focalizadas/plot.R) — agrega o arquivo `CADASTRO_CURSOS` de cada ano por setor (guardando o resultado em `data-raw/INEP/derived/censup_agg_vagas_focalizadas.rds`); grava a figura em `output/figures/vagas-focalizadas/` — compare com o `thumbnail.png` deste post
+
+A etapa upstream é Tier A e também é executada por [`shared-pipeline/build_public_data.R`](../../shared-pipeline/build_public_data.R).
+
+## Reprodutibilidade
+
+**Tier: A**
+
+Esta figura usa apenas dados públicos (microdados públicos do INEP, baixados sem credencial). Os dezesseis arquivos anuais somam vários GB; a agregação lê um CSV grande por ano e leva alguns minutos, depois dos quais o cache torna as execuções seguintes imediatas.

@@ -13,7 +13,7 @@ main_folder <- "WWWWCenso_Educ_Superior_Auto_R"
 main_path   <- file.path(base_dir, main_folder)
 base_url    <- "https://download.inep.gov.br/microdados/microdados_censo_da_educacao_superior_"
 
-anos <- 2009:2023
+anos <- 2009:2024  # 2024 acrescentado em 2026-09-20 (post vagas-focalizadas)
 
 dir.create(main_path, showWarnings = FALSE, recursive = TRUE)
 
