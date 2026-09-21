@@ -1,10 +1,15 @@
 ---
 title: "Change in Higher Education Enrollment Rate by Income Decile and Presidential Term"
 date: 2026-07-04
-categories: [PNAD/PNADC, Matrículas, Governo]
+draft: true
+categories: [Deprecated, PNAD/PNADC, Matrículas, Governo]
 image: thumbnail.png
 description: "Panel of bar charts showing the total change in higher education enrollment rate (ages 18–24) by income decile, one panel per presidential term."
 ---
+
+::: {.callout-warning title="Deprecated — do not cite"}
+This bar-chart version dates from 2026-07-04 and predates both the extension of the harmonized series to 2025 and the pipeline audit of 2026-09-15; its numbers are known to be wrong. The page is kept only for the record and is not listed in the catalog. Use the current analysis instead: [Change in Higher Education Enrollment Rate by Income Decile and Presidential Term (Dot Plot)](../delta-matriculados-decil-governo-dotplot/).
+:::
 
 ![](thumbnail.png)
 

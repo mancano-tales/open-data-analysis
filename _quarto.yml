@@ -12,6 +12,12 @@ project:
 profile:
   default: en
 
+website:
+  # Posts com `draft: true` (descontinuados) continuam sendo renderizados, para
+  # que links antigos nao quebrem, mas ficam fora da listagem, da busca e do
+  # sitemap. Cada um traz um aviso no topo apontando a analise que o substitui.
+  draft-mode: unlinked
+
 format:
   html:
     theme: cosmo

@@ -1,10 +1,15 @@
 ---
 title: "Income Concentration in Enrollment by Network, Before and After the Quota Law"
 date: 2026-06-30
-categories: [PNAD/PNADC, Cotas, Concentração de Rede]
+draft: true
+categories: [Deprecated, PNAD/PNADC, Cotas, Concentração de Rede]
 image: thumbnail.png
 description: "Income concentration curves for tertiary enrollment by network (public vs. private), before, during, and after the 2012 quota law."
 ---
+
+::: {.callout-warning title="Deprecated — do not cite"}
+This figure contains known errors in how the PNAD Anual and PNAD Contínua years are made comparable; the year-by-year Wagstaff series supersedes it. The page is kept only for the record and is not listed in the catalog. Use the current analysis instead: [Income Inequality in Tertiary Enrollment by Network Type, Time Series (Wagstaff Index)](../wagstaff-rede-publica-privada-timeseries/).
+:::
 
 ![](thumbnail.png)
 

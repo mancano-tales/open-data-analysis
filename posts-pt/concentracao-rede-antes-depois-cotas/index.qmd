@@ -1,10 +1,15 @@
 ---
 title: "Concentração de Renda na Matrícula por Rede, Antes e Depois da Lei de Cotas"
 date: 2026-06-30
-categories: [PNAD/PNADC, Cotas, Concentração de Rede]
+draft: true
+categories: [Deprecated, PNAD/PNADC, Cotas, Concentração de Rede]
 image: ../../posts/concentracao-rede-antes-depois-cotas/thumbnail.png
 description: "Curvas de concentração de renda na matrícula do ensino superior por rede (pública vs. privada), antes, durante e depois da Lei de Cotas de 2012."
 ---
+
+::: {.callout-warning title="Descontinuada — não cite"}
+Esta figura contém erros conhecidos na forma de tornar comparáveis os anos da PNAD Anual e da PNAD Contínua; a série ano a ano do índice de Wagstaff a substitui. A página é mantida apenas como registro e não aparece na listagem do catálogo. Use a análise atual: [Desigualdade de Renda na Matrícula por Tipo de Rede, Série Temporal (Índice de Wagstaff)](../wagstaff-rede-publica-privada-timeseries/).
+:::
 
 ![](../../posts/concentracao-rede-antes-depois-cotas/thumbnail.png)
 

@@ -1,10 +1,15 @@
 ---
 title: "Variação da Taxa de Matrícula no Ensino Superior por Decil de Renda e Mandato Presidencial"
 date: 2026-07-04
-categories: [PNAD/PNADC, Matrículas, Governo]
+draft: true
+categories: [Deprecated, PNAD/PNADC, Matrículas, Governo]
 image: ../../posts/delta-matriculados-decil-governo/thumbnail.png
 description: "Painel de gráficos de barras mostrando a variação total da taxa de matrícula no ensino superior (18–24 anos) por decil de renda, um painel por mandato presidencial."
 ---
+
+::: {.callout-warning title="Descontinuada — não cite"}
+Esta versão em barras é de 04/07/2026 e antecede tanto a extensão da série harmonizada até 2025 quanto a auditoria do pipeline de 15/09/2026; seus números estão sabidamente errados. A página é mantida apenas como registro e não aparece na listagem do catálogo. Use a análise atual: [Variação da Taxa de Matrícula no Ensino Superior por Decil de Renda e Mandato Presidencial (Dotplot)](../delta-matriculados-decil-governo-dotplot/).
+:::
 
 ![](../../posts/delta-matriculados-decil-governo/thumbnail.png)
 

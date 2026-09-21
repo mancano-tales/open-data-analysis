@@ -82,7 +82,12 @@ conforme novas figuras são produzidas. Um post é removido quando a figura é
 **superada** por uma versão mais recente da mesma análise (por exemplo, as
 variações de renda por mandato em termos relativos e absolutos, de julho de
 2026, foram substituídas pela versão anualizada, que exclui o mandato Itamar
-e inclui Lula III); o histórico fica no Git. Posts também podem ser
+e inclui Lula III); o histórico fica no Git. Quando vale preservar a URL, o
+post é **descontinuado** em vez de removido: recebe `draft: true` (o site usa
+`draft-mode: unlinked`, então a página continua no ar mas sai da listagem, da
+busca e do sitemap), a categoria `Deprecated` e um aviso no topo apontando a
+análise que o substitui — hoje, `delta-matriculados-decil-governo` e
+`concentracao-rede-antes-depois-cotas`. Posts também podem ser
 reclassificados de tier se uma fonte de dado mudar de status de acesso.
 
 ## Como citar
