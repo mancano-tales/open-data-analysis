@@ -72,7 +72,7 @@ para reproduzi-lo do zero:
 | **A** | Usa apenas dados públicos, acessíveis via pacote/API sem necessidade de credencial (PNADcIBGE, censobr, sidrar, ipeadatar). Rodar os scripts de `shared-pipeline/` na ordem numérica reconstrói os dados intermediários. |
 | **A (cross-repo)** | Depende do pacote R público `educabr2` (`remotes::install_github("mancano-tales/educabr2")`), que já embute os dados necessários — nada para baixar manualmente. |
 | **B** | Depende de dado restrito do INEP acessível via credencial SEDAP+ (variável de ambiente `SEDAP_TOKEN`). Sem uma credencial aprovada pelo INEP, os scripts em `shared-pipeline/sedap/` não rodam — a lógica fica disponível para auditoria, mas a reprodução completa exige solicitar acesso. |
-| **B (agregado redistribuído)** | A extração exige credencial SEDAP+, mas as tabelas agregadas que a figura lê (contagens por célula, sem registro individual) são redistribuídas na pasta `data/` do post, de modo que o `plot.R` roda sem credencial. Hoje: `replicacao-senkevics2024-coortes`. |
+| **B (agregado redistribuído)** | A extração exige credencial SEDAP+, mas as tabelas agregadas que a figura lê (contagens por célula, sem registro individual) são redistribuídas na pasta `data/` do post, de modo que o `plot.R` roda sem credencial. Hoje: `replicacao-senkevics2024-coortes`, `portas-renda-coortes-empilhado` e `portas-renda-coortes-ead`. |
 
 ## Projeto vivo
 

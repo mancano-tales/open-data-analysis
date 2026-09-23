@@ -1,0 +1,101 @@
+---
+title: "Distance Learning and In-Person Entry by Per-Capita Income Decile: the 2013 and 2020 Secondary-School Cohorts"
+date: 2026-09-23
+categories: [SEDAP+, ENEM, Renda, EaD, Modalidade]
+image: thumbnail.png
+description: "Probability of entering tertiary education within three years, split into distance learning and in-person study, by decile of per-capita family income, secondary-school cohorts of 2013 and 2020."
+resources:
+  - data/
+  - sql/
+  - thumbnail-in-matricula.png
+---
+
+![](thumbnail.png)
+
+## Overview
+
+Each bar is the share of an income decile of a secondary-school cohort that entered tertiary education within three years of its final school year, split into distance learning (EaD) and in-person study. The percentage above each bar is distance learning's share of that decile's entrants. Between the 2013 and 2020 cohorts, in-person entry falls in every decile, by 4.4 percentage points in the poorest and by up to 13.5 in the middle, while distance-learning entry rises in every decile. Total entry rises 9.4 points in the poorest decile and 0.2 in the richest. In the poorest decile, distance learning goes from 20% to 52% of entrants; in the richest, from 2% to 11%.
+
+The data are linked administrative records (Censo Escolar, ENEM, Censo da Educação Superior) queried through INEP's SEDAP+ platform, which returns only aggregate tables. The aggregate tables that the figure reads, and the exact SQL of every query that produced them, are published with this post, so the figure reproduces without a credential.
+
+## Methodology
+
+**Cohort, linkage and deciles.** Same design as the [companion figure on access routes](../portas-renda-coortes-empilhado/): every student enrolled in the final year of secondary education in the Censo Escolar of 2013 or 2020, aged 16–22, who sat the ENEM of the same year, linked by masked CPF; deciles of per-capita family income built from the ENEM income bracket divided by the household-size group, cut within each cohort.
+
+**Entry and mode of delivery.** A student counts as having entered if any enrolment record with a year of entry within the three following years appears in the Censo da Educação Superior, whatever that record's later status. Mode of delivery is read from `TP_MODALIDADE_ENSINO` (1 in-person, 2 distance). When the same person has both an in-person and a distance enrolment in the window, distance learning takes priority by convention: the question is who studies at a distance at all.
+
+**Why this is a floor for distance learning.** Admission to distance learning does not require the ENEM, so many distance entrants never appear in an ENEM-based cohort. The linkage coverage is also differential by mode: measured for 2022, it reached about 0.68 times the expected count for private distance learning against 1.71 times for public in-person study. Every distance-learning proportion here should be read as "at least this much"; the change between cohorts is a conservative reading of the shift for the same reason.
+
+**Privacy layer.** SEDAP+ returns counts under a differential-privacy budget ($\varepsilon = 1$) and suppresses small result cells: 0.49% of cells in 2013 and none in 2020. The counts are otherwise exact at this level of aggregation, so no confidence bands are drawn.
+
+## An earlier definition of entry
+
+The first version of this figure counted only enrolment records flagged `IN_MATRICULA = 1`, which marks a record active or completed at the census date. Under that definition, a student who entered and left before the census of the entry year was counted as never having entered. The difference is largest for distance learning: in the 2020 cohort, distance entry rises by 4 to 5 percentage points in the lower eight deciles once the flag is dropped, and in the poorest decile it goes from 15.5% to 19.5%. The figure below reproduces the earlier definition for comparison.
+
+![Earlier definition: only enrolments active at the census date count as entry.](thumbnail-in-matricula.png)
+
+## How to Cite
+
+If you use this figure or the pipeline behind it, please cite both the dissertation and this specific analysis. References follow APA 7th edition.
+
+**Dissertation (in preparation; the entry will be updated after the defense):**
+
+> Mançano, T. (2026). *Inequality in access to tertiary education in Brazil: Household incomes, reforming policies, and the politics of who gets in (1990s–2020s)* [Unpublished master's thesis]. University of São Paulo.
+
+**This figure and pipeline:**
+
+> Mançano, T. (2026, September 23). *Distance learning and in-person entry by per-capita income decile: The 2013 and 2020 secondary-school cohorts* [Figure and reproducible pipeline]. Open Data Analysis. https://mancano-tales.github.io/open-data-analysis/posts/portas-renda-coortes-ead/
+
+**In text:** (Mançano, 2026) — when citing several analyses from this catalog in the same work, APA distinguishes them as 2026a, 2026b, … in the order they appear in the reference list.
+
+**BibTeX:**
+
+```bibtex
+@mastersthesis{Mancano2026Thesis,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Unpublished; Graduate Program in Political Science}
+}
+
+@misc{Mancano2026_portas_renda_coortes_ead,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Distance learning and in-person entry by per-capita income decile: The 2013 and 2020 secondary-school cohorts},
+  year         = {2026},
+  month        = sep,
+  howpublished = {Open Data Analysis, \url{https://mancano-tales.github.io/open-data-analysis/posts/portas-renda-coortes-ead/}},
+  note         = {Figure and reproducible pipeline. Source code: \url{https://github.com/mancano-tales/open-data-analysis}, folder posts/portas-renda-coortes-ead/. Accessed YYYY-MM-DD}
+}
+```
+
+A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the page URL above and add the date you accessed it (source code: https://github.com/mancano-tales/open-data-analysis, folder `posts/portas-renda-coortes-ead/`).
+
+## Pipeline
+
+The figure reads four aggregated tables redistributed in this post's [`data/`](data/) folder, one per cohort and definition of entry. Each row is a count of students in a cell of income bracket (`FAIXA_RENDA`, A–Q) × household-size group (`MORADORES_GRUPO`) × mode (`COD_MODALIDADE`: 0 no entry, 1 distance learning, 2 in-person).
+
+| Table | Cohort | Entry definition | SQL sent to SEDAP+ |
+|---|---|---|---|
+| [`matriz_2013_fina_ead.csv`](data/matriz_2013_fina_ead.csv) | 2013 | any record (figure above) | [`sql/matriz_2013_fina_ead.sql`](sql/matriz_2013_fina_ead.sql) |
+| [`matriz_2020_fina_ead.csv`](data/matriz_2020_fina_ead.csv) | 2020 | any record (figure above) | [`sql/matriz_2020_fina_ead.sql`](sql/matriz_2020_fina_ead.sql) |
+| [`matriz_2013_fina_ead_com_in_matricula.csv`](data/matriz_2013_fina_ead_com_in_matricula.csv) | 2013 | `IN_MATRICULA = 1` (earlier) | [`sql/matriz_2013_fina_ead_com_in_matricula.sql`](sql/matriz_2013_fina_ead_com_in_matricula.sql) |
+| [`matriz_2020_fina_ead_com_in_matricula.csv`](data/matriz_2020_fina_ead_com_in_matricula.csv) | 2020 | `IN_MATRICULA = 1` (earlier) | [`sql/matriz_2020_fina_ead_com_in_matricula.sql`](sql/matriz_2020_fina_ead_com_in_matricula.sql) |
+
+Each `.sql` file is the exact text sent to the SEDAP+ API, copied from the query log, with a header recording when it ran, the privacy parameters and the share of cells suppressed. To draw both figures from the tables:
+
+1. [`plot.R`](plot.R) — builds the per-capita income deciles and writes both figures to `output/figures/portas-renda-coortes-ead/` and `output/figures/portas-renda-coortes-ead-in-matricula/` — compare them with this post's `thumbnail.png` and `thumbnail-in-matricula.png`
+
+To re-extract the tables from the linked microdata (requires an INEP SEDAP+ credential exported as `SEDAP_TOKEN`), run, from the project root:
+
+1. [`shared-pipeline/sedap/010_SEDAP_Cliente.R`](../../shared-pipeline/sedap/010_SEDAP_Cliente.R) — SEDAP+ API client, sourced by the script below
+2. [`shared-pipeline/sedap/portas/054_Extrair_EaD.R`](../../shared-pipeline/sedap/portas/054_Extrair_EaD.R) — builds and runs the queries for both cohorts and writes `data-raw/sedap/portas/matriz_<year>_fina_ead.csv`; run it again with `FILTRO_IN_MATRICULA=TRUE` in the environment to reproduce the earlier definition. When these files exist, `plot.R` reads them in preference to the redistributed copies
+
+## Reproducibility
+
+**Tier: B (redistributed aggregate)** — the figure reproduces without credentials from the tables in `data/`; re-extraction requires SEDAP+ access.
+
+The tables carry no individual record: each row is a count of students in a cell of income bracket × household-size group × mode of delivery, as released by the platform after its own disclosure control. The extraction script only runs with an approved INEP credential; without one, its logic and the exact SQL remain available for audit.
