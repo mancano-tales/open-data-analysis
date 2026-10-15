@@ -22,6 +22,26 @@ income of household heads with income in Census 2022, from the poorest 1%
 of eligible tracts to the richest 1%. These are groups of tracts, rather
 than population or voter percentiles.
 
+::: {.callout-warning title="Income describes the census tract, not the voter"}
+**A higher vote share associated with higher-income census tracts does not
+establish that higher-income voters voted for that candidate.** Income is
+the mean for household heads in the tract in Census 2022; we do not know
+the income of the person who cast each vote.
+
+Vote share is a **territorial estimate**: each tract receives the share from
+the nearest eligible polling place in the same municipality, within 5 km.
+Proximity does not establish where residents vote. The curve averages these
+shares across observed tracts in each percentile, without weighting by
+the number of residents or voters.
+
+**Coverage can differ substantially across income groups.** A curve segment
+may represent very few tracts even when overall coverage is high. Check the
+included/total tracts in the hover; low-coverage points require caution.
+Reconciliation with TSE totals checks the input votes, but does not validate
+the spatial assignment or identify individual voting behavior. This analysis
+does not certify an exact replication of Folha's method.
+:::
+
 ::: {.callout-note}
 This is an **independent spatial reconstruction** of the approach illustrated
 by [Daniel Mariani's analysis in Folha de S.Paulo](https://www1.folha.uol.com.br/poder/2026/10/flavio-bolsonaro-supera-votos-do-pai-em-todas-as-rendas-e-lula-cresce-entre-mais-ricos.shtml).

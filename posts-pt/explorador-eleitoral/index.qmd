@@ -16,11 +16,31 @@ format:
         <script src="../../posts/explorador-eleitoral/app.js?v=income-reference-20261015"></script>
 ---
 
-Em quais faixas de renda cada candidato recebe mais apoio? Explore as curvas
+Como varia a votação associada a áreas de diferentes rendas? Explore as curvas
 abaixo. Os percentis ordenam os **setores censitários pela renda média dos
 responsáveis com rendimento**, segundo o Censo 2022: do 1% mais pobre ao 1%
 mais rico dos setores elegíveis. São grupos de setores, não percentis da
 população ou do eleitorado.
+
+::: {.callout-warning title="A renda é do setor censitário, não do eleitor"}
+**Uma votação maior em setores censitários de renda mais alta não demonstra
+que eleitores de renda mais alta votaram naquele candidato.** A renda usada
+é uma média dos responsáveis pelos domicílios do setor no Censo 2022;
+não conhecemos a renda de quem deu cada voto.
+
+A votação é uma **estimativa territorial**: cada setor recebe o percentual
+do local de votação elegível mais próximo, no mesmo município e a até 5 km.
+Essa proximidade não comprova onde os moradores votam. A curva apresenta
+a média desses percentuais entre os setores observados de cada centil,
+sem ponderação pelo número de moradores ou eleitores.
+
+**A cobertura pode variar muito entre faixas de renda.** Um trecho da curva
+pode representar poucos setores, mesmo quando a cobertura geral é alta.
+Consulte os setores incluídos/total no hover; pontos com baixa cobertura
+exigem cautela. A conferência dos totais com o TSE verifica os votos de
+entrada, mas não valida a associação espacial nem permite identificar o
+voto individual. Esta análise não certifica reprodução exata do método da Folha.
+:::
 
 ::: {.callout-note}
 Esta é uma **reconstrução espacial independente** da abordagem ilustrada na
