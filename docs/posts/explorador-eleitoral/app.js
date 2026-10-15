@@ -16,11 +16,13 @@
     const availability=document.createElement('p');availability.className='available-series';controls.before(availability);
     const auditPanel=document.createElement('div');auditPanel.className='audit';auditPanel.setAttribute('role','status');coverage.before(auditPanel);
     root.querySelector('legend').textContent=t.candidates;
-    const keys=['year','round','office','uf'], selects={};
+    const keys=['year','round','office','uf','income_reference'], selects={};
+    t.income_reference=lang==='pt'?'Referência de renda':'Income reference';
     const text=(tag,value,parent)=>{const el=document.createElement(tag);el.textContent=value;parent.append(el);return el;};
     keys.forEach(key=>{const label=text('label',t[key],controls);const select=document.createElement('select');select.setAttribute('aria-label',t[key]);label.append(select);selects[key]=select;});
     status.textContent=t.loading;
-    let manifest, selected, data, request=0, activeIds=new Set(), rankedCandidates=[];
+    let manifest, selected, data, request=0, activeIds=new Set(), rankedCandidates=[], preferredReference=null, previousOffice=null, loadedContestKey=null;
+    const referenceNotice=document.createElement('p');referenceNotice.className='reference-notice';referenceNotice.setAttribute('role','status');controls.after(referenceNotice);
     const searchLabel=text('label',lang==='pt'?'Buscar candidato por nome, número ou partido':'Search candidates by name, number or party',root.querySelector('fieldset'));
     const search=document.createElement('input');search.type='search';search.placeholder=lang==='pt'?'Digite um nome ou número…':'Enter a name or number…';search.setAttribute('aria-label',searchLabel.textContent);searchLabel.append(search);searchLabel.className='candidate-search';
     const candidateTools=document.createElement('div');candidateTools.className='candidate-tools';
@@ -47,10 +49,13 @@
     const seriesUrl=entry=>new URL(entry.url,base);
     function link(parent,label,url) { const a=text('a',label,parent);a.href=url;return a; }
     function localized(value) { return typeof value==='object' ? (value[lang]||value.pt||value.en||'') : value; }
-    async function read(url) {const response=await fetch(url);if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.json();}
+    async function read(url,options) {const response=await fetch(url,options);if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.json();}
+    const referenceOf=entry=>entry.income_reference||'national';
+    const referenceLabel=value=>value==='state'?(lang==='pt'?'UF — renda relativa ao estado':'State — income relative to state'):(lang==='pt'?'Brasil — renda relativa ao país':'Brazil — income relative to country');
+    const contestKey=entry=>['year','round','office','uf'].map(key=>entry[key]).join('|');
     function resolve(changedIndex=-1) {
-      let subset=manifest.series.filter(s=>s.status==='available');
-      keys.forEach((key,index)=>{
+      let subset=manifest.series.filter(s=>s.status==='available'&&!(s.uf==='BR'&&referenceOf(s)==='state'));
+      keys.slice(0,4).forEach(key=>{
         const wanted=selects[key].value;
         const values=[...new Set(subset.map(s=>String(s[key])))];
         if(key==='year')values.sort((a,b)=>Number(b)-Number(a));
@@ -61,7 +66,19 @@
         if(values.includes(wanted))selects[key].value=wanted;
         subset=subset.filter(s=>String(s[key])===selects[key].value);
       });
-      selected=subset[0];
+      const office=selects.office.value;
+      if(preferredReference===null||office!==previousOffice||changedIndex===2)preferredReference=office==='1'||office==='presidente'?'national':'state';
+      if(changedIndex===4)preferredReference=selects.income_reference.value;
+      previousOffice=office;
+      const references=[...new Set(subset.map(referenceOf))].sort((a,b)=>a==='national'?-1:b==='national'?1:a.localeCompare(b));
+      selects.income_reference.replaceChildren();
+      references.forEach(value=>{const option=text('option',referenceLabel(value),selects.income_reference);option.value=value;});
+      const actualReference=references.includes(preferredReference)?preferredReference:references[0];
+      selects.income_reference.value=actualReference;
+      referenceNotice.textContent=actualReference===preferredReference?'':(lang==='pt'?`A referência ${preferredReference==='state'?'estadual':'nacional'} não está disponível nesta combinação${selects.uf.value==='BR'?' (Brasil permite somente a referência nacional)':''}. Exibindo ${referenceLabel(actualReference)}. A preferência será mantida ao trocar de UF.`:`The ${preferredReference==='state'?'state':'national'} reference is unavailable for this selection${selects.uf.value==='BR'?' (Brazil allows the national reference only)':''}. Showing ${referenceLabel(actualReference)}. Your preference is retained when changing state.`);
+      const matches=subset.filter(s=>referenceOf(s)===actualReference);
+      if(matches.length!==1){status.textContent=t.error;status.classList.add('error');console.error(new Error('Missing or duplicate series for selected income reference'));return;}
+      selected=matches[0];
       return load();
     }
     function draw() {
@@ -71,17 +88,22 @@
         return {type:'scatter',mode:'lines',name:`${candidate.name}${candidate.party?` (${candidate.party})`:''}`,x:rows.map(p=>p.centil),y:rows.map(p=>p.votacao),customdata:rows.map(p=>[fmt(p.renda_sm,2),fmt(p.n_setores),p.n_setores_total==null?'':` / ${fmt(p.n_setores_total)}`]),line:{width:3,color:candidate.color},connectgaps:false,hovertemplate:`<b>%{fullData.name}</b><br>${t.centil} %{x}<br><b>%{y:.2f}%</b> ${t.votes}<br>${t.income}: %{customdata[0]} SM (2022)<br>${t.tracts}: %{customdata[1]}%{customdata[2]}<extra></extra>`};
       });
       status.textContent=traces.length?'':t.none;
-      Plotly.react(chart,traces,{autosize:true,height:window.innerWidth<600?410:510,margin:{l:58,r:20,t:30,b:85},paper_bgcolor:'#fff',plot_bgcolor:'#fff',font:{family:'system-ui, sans-serif',color:'#425361',size:12},xaxis:{title:{text:t.x,standoff:22},range:[1,100],tickvals:[1,20,40,60,80,100],gridcolor:'#edf0f2',zeroline:false},yaxis:{title:{text:t.y,standoff:12},range:[0,100],ticksuffix:'%',gridcolor:'#edf0f2',zeroline:false},legend:{orientation:'h',y:1.13,x:0},hovermode:'closest',dragmode:false},{responsive:true,displaylogo:false,scrollZoom:false,modeBarButtonsToRemove:['select2d','lasso2d','pan2d','zoomIn2d','zoomOut2d','autoScale2d'],toImageButtonOptions:{filename:`votacao-renda-${selected.id}`,format:'png',scale:2}});
+      const incomeScope=data.metadata.percentile_scope;
+      const xTitle=incomeScope==='UF'?(lang==='pt'?`Centis de renda dentro de ${selected.uf} (mais pobres → mais ricos)`:`Income percentiles within ${selected.uf} (poorest → richest)`):incomeScope==='BR'?(lang==='pt'?'Centis de renda do Brasil (mais pobres → mais ricos)':'Brazil income percentiles (poorest → richest)'):t.x;
+      Plotly.react(chart,traces,{autosize:true,height:window.innerWidth<600?410:510,margin:{l:58,r:20,t:30,b:85},paper_bgcolor:'#fff',plot_bgcolor:'#fff',font:{family:'system-ui, sans-serif',color:'#425361',size:12},xaxis:{title:{text:xTitle,standoff:22},range:[1,100],tickvals:[1,20,40,60,80,100],gridcolor:'#edf0f2',zeroline:false},yaxis:{title:{text:t.y,standoff:12},range:[0,100],ticksuffix:'%',gridcolor:'#edf0f2',zeroline:false},legend:{orientation:'h',y:1.13,x:0},hovermode:'closest',dragmode:false},{responsive:true,displaylogo:false,scrollZoom:false,modeBarButtonsToRemove:['select2d','lasso2d','pan2d','zoomIn2d','zoomOut2d','autoScale2d'],toImageButtonOptions:{filename:`votacao-renda-${selected.id}`,format:'png',scale:2}});
     }
     async function load() {
         const current=++request;status.textContent=t.loading;status.classList.remove('error');
       try {
+        const preserveSelection=loadedContestKey===contestKey(selected),previousSelection=new Set(activeIds);
         const loaded=await read(seriesUrl(selected));if(current!==request)return;data=loaded;
         const scores=new Map(data.candidates.map(c=>[c.id,0]));
         data.points.forEach(point=>scores.set(point.candidate_id,(scores.get(point.candidate_id)||0)+(point.votacao||0)));
         rankedCandidates=[...data.candidates].sort((a,b)=>scores.get(b.id)-scores.get(a.id));
-        activeIds=new Set((data.metadata.default_candidates||rankedCandidates.slice(0,6).map(c=>c.id)).filter(id=>scores.has(id)));
-        search.value='';topButton.disabled=false;clearButton.disabled=false;search.disabled=false;renderCandidates();
+        const retained=[...previousSelection].filter(id=>scores.has(id));
+        activeIds=new Set(preserveSelection&&(retained.length||previousSelection.size===0)?retained:(data.metadata.default_candidates||rankedCandidates.slice(0,6).map(c=>c.id)).filter(id=>scores.has(id)));
+        loadedContestKey=contestKey(selected);
+        if(!preserveSelection)search.value='';topButton.disabled=false;clearButton.disabled=false;search.disabled=false;renderCandidates();
         coverage.replaceChildren();
         const meta=data.metadata,cov=meta.coverage;
         auditPanel.replaceChildren();auditPanel.className='audit';
@@ -110,7 +132,7 @@
           });
         }
         text('p',`${t.coverage}: ${fmt(cov.included_tracts)} ${t.of} ${fmt(cov.total_tracts)} ${t.included} (${fmt(100*cov.included_tracts/cov.total_tracts,2)}%).`,coverage);
-        const scope=meta.percentile_scope==='BR' ? (lang==='pt'?'Centis nacionais fixos do Censo 2022, definidos antes de excluir setores sem estimativa de votação. Filtros por UF preservam esses grupos nacionais. A renda média representa o grupo completo; a contagem de setores mostra a cobertura eleitoral.':'Fixed national Census 2022 percentiles, defined before excluding tracts without vote estimates. State filters preserve these national groups. Mean income describes the complete group; tract counts describe electoral coverage.') : (lang==='pt'?'Snapshot legado: centis recalculados na amostra de setores com renda e votação estimada em 2026. Este eixo difere dos centis nacionais fixos usados na expansão histórica.':'Legacy snapshot: percentiles calculated within the 2026 sample of tracts with income and estimated votes. This axis differs from the fixed national percentiles used for historical expansion.');
+        const scope=meta.percentile_scope==='UF'?(lang==='pt'?`Referência estadual: os setores de ${selected.uf} são ordenados pela renda do Censo 2022 e divididos em 100 grupos antes das exclusões eleitorais. O primeiro centil reúne o 1% de setores mais pobres desta UF, não do Brasil. A renda média representa o grupo completo; a contagem de setores mostra a cobertura eleitoral.`:`State reference: ${selected.uf} tracts are ranked by Census 2022 income and divided into 100 groups before electoral exclusions. The first percentile contains this state's poorest 1% of tracts, rather than Brazil's. Mean income describes the complete group; tract counts describe electoral coverage.`):meta.percentile_scope==='BR' ? (lang==='pt'?'Referência nacional: centis do Censo 2022 definidos no Brasil inteiro antes de excluir setores sem estimativa de votação. Filtros por UF preservam esses grupos nacionais; algumas faixas podem ter poucos setores na UF. A renda média representa o grupo completo no território selecionado; a contagem de setores mostra a cobertura eleitoral.':'National reference: Census 2022 percentiles defined across Brazil before excluding tracts without vote estimates. State filters preserve these national groups; some groups may have few tracts in a state. Mean income describes the complete group within the selected territory; tract counts describe electoral coverage.') : (lang==='pt'?'Snapshot legado: centis recalculados na amostra de setores com renda e votação estimada em 2026. Este eixo difere das referências de renda fixadas antes das exclusões eleitorais.':'Legacy snapshot: percentiles calculated within the 2026 sample of tracts with income and estimated votes. This axis differs from income references fixed before electoral exclusions.');
         text('p',scope,coverage);
         text('p',`${t.method}: ${localized(meta.method)}`,coverage);
         text('p',`${t.incomeDef}: ${localized(meta.income_definition)}`,coverage);
@@ -124,7 +146,7 @@
       }catch(error){if(current!==request)return;status.textContent=t.error;status.classList.add('error');console.error(error);}
     }
     try {
-      manifest=await read(new URL('manifest.json',base));
+      manifest=await read(new URL('manifest.json',base),{cache:'no-cache'});
       if(!manifest.series?.some(s=>s.status==='available'))throw new Error('No available series');
       const available=manifest.series.filter(s=>s.status==='available');
       const electionCount=new Set(available.map(s=>s.year)).size;

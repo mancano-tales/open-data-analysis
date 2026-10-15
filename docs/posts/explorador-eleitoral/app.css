@@ -1,5 +1,8 @@
 .election-explorer { margin: 1.5rem 0; padding: clamp(.7rem, 2vw, 1.6rem); border: 1px solid #e0e4e8; border-radius: 12px; background: #fff; color: #253441; }
 .election-explorer .explorer-controls { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 1rem; }
+.election-explorer .explorer-controls label:last-child { grid-column: span 2; }
+.election-explorer .reference-notice { color: #634700; font-size: .9rem; margin: .6rem 0; }
+.election-explorer .reference-notice:empty { display: none; }
 .election-explorer label { display: grid; min-width: 0; gap: .3rem; font-size: .85rem; font-weight: 600; }
 .election-explorer select { width: 100%; padding: .55rem; background: #fff; color: inherit; border: 1px solid #aeb9c2; border-radius: 5px; font: inherit; }
 .election-explorer fieldset { border: 0; padding: 0; margin: 1rem 0; }
@@ -26,4 +29,4 @@
 .election-explorer .download-links { display: flex; flex-wrap: wrap; gap: 1rem; font-size: .9rem; }
 .election-explorer .error { color: #9e2626; }
 @media(max-width:600px) { .election-explorer .explorer-controls { grid-template-columns: repeat(2,minmax(0,1fr)); gap: .6rem; } .election-explorer .chart { min-height: 380px; } .election-explorer .candidate-list label { min-height: 42px; } }
-@media(max-width:360px) { .election-explorer .explorer-controls { grid-template-columns: minmax(0,1fr); } }
+@media(max-width:360px) { .election-explorer .explorer-controls { grid-template-columns: minmax(0,1fr); } .election-explorer .explorer-controls label:last-child { grid-column: auto; } }
