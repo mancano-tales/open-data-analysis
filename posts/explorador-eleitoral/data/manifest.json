@@ -7076,6 +7076,1326 @@
       "label": "2014 · 2º turno · Presidente · TO",
       "url": "series/2014-2-1-TO-state.json",
       "status": "available"
+    },
+    {
+      "id": "2010-1-1-AC",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "AC",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · AC",
+      "url": "series/2010-1-1-AC.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-AC-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "AC",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · AC",
+      "url": "series/2010-1-1-AC-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-AL",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "AL",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · AL",
+      "url": "series/2010-1-1-AL.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-AL-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "AL",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · AL",
+      "url": "series/2010-1-1-AL-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-AM",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "AM",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · AM",
+      "url": "series/2010-1-1-AM.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-AM-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "AM",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · AM",
+      "url": "series/2010-1-1-AM-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-AP",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "AP",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · AP",
+      "url": "series/2010-1-1-AP.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-AP-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "AP",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · AP",
+      "url": "series/2010-1-1-AP-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-BA",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "BA",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · BA",
+      "url": "series/2010-1-1-BA.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-BA-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "BA",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · BA",
+      "url": "series/2010-1-1-BA-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-BR",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "BR",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · BR",
+      "url": "series/2010-1-1-BR.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-CE",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "CE",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · CE",
+      "url": "series/2010-1-1-CE.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-CE-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "CE",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · CE",
+      "url": "series/2010-1-1-CE-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-DF",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "DF",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · DF",
+      "url": "series/2010-1-1-DF.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-DF-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "DF",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · DF",
+      "url": "series/2010-1-1-DF-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-ES",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "ES",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · ES",
+      "url": "series/2010-1-1-ES.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-ES-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "ES",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · ES",
+      "url": "series/2010-1-1-ES-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-GO",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "GO",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · GO",
+      "url": "series/2010-1-1-GO.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-GO-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "GO",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · GO",
+      "url": "series/2010-1-1-GO-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-MA",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "MA",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · MA",
+      "url": "series/2010-1-1-MA.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-MA-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "MA",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · MA",
+      "url": "series/2010-1-1-MA-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-MG",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "MG",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · MG",
+      "url": "series/2010-1-1-MG.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-MG-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "MG",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · MG",
+      "url": "series/2010-1-1-MG-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-MS",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "MS",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · MS",
+      "url": "series/2010-1-1-MS.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-MS-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "MS",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · MS",
+      "url": "series/2010-1-1-MS-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-MT",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "MT",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · MT",
+      "url": "series/2010-1-1-MT.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-MT-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "MT",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · MT",
+      "url": "series/2010-1-1-MT-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-PA",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "PA",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · PA",
+      "url": "series/2010-1-1-PA.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-PA-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "PA",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · PA",
+      "url": "series/2010-1-1-PA-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-PB",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "PB",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · PB",
+      "url": "series/2010-1-1-PB.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-PB-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "PB",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · PB",
+      "url": "series/2010-1-1-PB-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-PE",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "PE",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · PE",
+      "url": "series/2010-1-1-PE.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-PE-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "PE",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · PE",
+      "url": "series/2010-1-1-PE-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-PI",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "PI",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · PI",
+      "url": "series/2010-1-1-PI.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-PI-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "PI",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · PI",
+      "url": "series/2010-1-1-PI-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-PR",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "PR",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · PR",
+      "url": "series/2010-1-1-PR.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-PR-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "PR",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · PR",
+      "url": "series/2010-1-1-PR-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-RJ",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "RJ",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · RJ",
+      "url": "series/2010-1-1-RJ.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-RJ-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "RJ",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · RJ",
+      "url": "series/2010-1-1-RJ-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-RN",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "RN",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · RN",
+      "url": "series/2010-1-1-RN.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-RN-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "RN",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · RN",
+      "url": "series/2010-1-1-RN-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-RO",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "RO",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · RO",
+      "url": "series/2010-1-1-RO.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-RO-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "RO",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · RO",
+      "url": "series/2010-1-1-RO-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-RR",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "RR",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · RR",
+      "url": "series/2010-1-1-RR.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-RR-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "RR",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · RR",
+      "url": "series/2010-1-1-RR-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-RS",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "RS",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · RS",
+      "url": "series/2010-1-1-RS.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-RS-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "RS",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · RS",
+      "url": "series/2010-1-1-RS-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-SC",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "SC",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · SC",
+      "url": "series/2010-1-1-SC.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-SC-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "SC",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · SC",
+      "url": "series/2010-1-1-SC-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-SE",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "SE",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · SE",
+      "url": "series/2010-1-1-SE.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-SE-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "SE",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · SE",
+      "url": "series/2010-1-1-SE-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-SP",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "SP",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · SP",
+      "url": "series/2010-1-1-SP.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-SP-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "SP",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · SP",
+      "url": "series/2010-1-1-SP-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-TO",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "TO",
+      "income_reference": "national",
+      "label": "2010 · 1º turno · Presidente · TO",
+      "url": "series/2010-1-1-TO.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-1-1-TO-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "TO",
+      "income_reference": "state",
+      "label": "2010 · 1º turno · Presidente · TO",
+      "url": "series/2010-1-1-TO-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-AC",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "AC",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · AC",
+      "url": "series/2010-2-1-AC.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-AC-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "AC",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · AC",
+      "url": "series/2010-2-1-AC-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-AL",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "AL",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · AL",
+      "url": "series/2010-2-1-AL.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-AL-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "AL",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · AL",
+      "url": "series/2010-2-1-AL-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-AM",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "AM",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · AM",
+      "url": "series/2010-2-1-AM.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-AM-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "AM",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · AM",
+      "url": "series/2010-2-1-AM-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-AP",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "AP",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · AP",
+      "url": "series/2010-2-1-AP.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-AP-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "AP",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · AP",
+      "url": "series/2010-2-1-AP-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-BA",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "BA",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · BA",
+      "url": "series/2010-2-1-BA.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-BA-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "BA",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · BA",
+      "url": "series/2010-2-1-BA-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-BR",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "BR",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · BR",
+      "url": "series/2010-2-1-BR.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-CE",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "CE",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · CE",
+      "url": "series/2010-2-1-CE.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-CE-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "CE",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · CE",
+      "url": "series/2010-2-1-CE-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-DF",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "DF",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · DF",
+      "url": "series/2010-2-1-DF.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-DF-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "DF",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · DF",
+      "url": "series/2010-2-1-DF-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-ES",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "ES",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · ES",
+      "url": "series/2010-2-1-ES.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-ES-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "ES",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · ES",
+      "url": "series/2010-2-1-ES-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-GO",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "GO",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · GO",
+      "url": "series/2010-2-1-GO.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-GO-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "GO",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · GO",
+      "url": "series/2010-2-1-GO-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-MA",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "MA",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · MA",
+      "url": "series/2010-2-1-MA.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-MA-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "MA",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · MA",
+      "url": "series/2010-2-1-MA-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-MG",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "MG",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · MG",
+      "url": "series/2010-2-1-MG.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-MG-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "MG",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · MG",
+      "url": "series/2010-2-1-MG-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-MS",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "MS",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · MS",
+      "url": "series/2010-2-1-MS.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-MS-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "MS",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · MS",
+      "url": "series/2010-2-1-MS-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-MT",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "MT",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · MT",
+      "url": "series/2010-2-1-MT.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-MT-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "MT",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · MT",
+      "url": "series/2010-2-1-MT-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-PA",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "PA",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · PA",
+      "url": "series/2010-2-1-PA.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-PA-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "PA",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · PA",
+      "url": "series/2010-2-1-PA-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-PB",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "PB",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · PB",
+      "url": "series/2010-2-1-PB.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-PB-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "PB",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · PB",
+      "url": "series/2010-2-1-PB-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-PE",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "PE",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · PE",
+      "url": "series/2010-2-1-PE.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-PE-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "PE",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · PE",
+      "url": "series/2010-2-1-PE-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-PI",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "PI",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · PI",
+      "url": "series/2010-2-1-PI.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-PI-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "PI",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · PI",
+      "url": "series/2010-2-1-PI-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-PR",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "PR",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · PR",
+      "url": "series/2010-2-1-PR.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-PR-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "PR",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · PR",
+      "url": "series/2010-2-1-PR-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-RJ",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "RJ",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · RJ",
+      "url": "series/2010-2-1-RJ.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-RJ-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "RJ",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · RJ",
+      "url": "series/2010-2-1-RJ-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-RN",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "RN",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · RN",
+      "url": "series/2010-2-1-RN.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-RN-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "RN",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · RN",
+      "url": "series/2010-2-1-RN-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-RO",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "RO",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · RO",
+      "url": "series/2010-2-1-RO.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-RO-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "RO",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · RO",
+      "url": "series/2010-2-1-RO-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-RR",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "RR",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · RR",
+      "url": "series/2010-2-1-RR.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-RR-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "RR",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · RR",
+      "url": "series/2010-2-1-RR-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-RS",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "RS",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · RS",
+      "url": "series/2010-2-1-RS.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-RS-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "RS",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · RS",
+      "url": "series/2010-2-1-RS-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-SC",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "SC",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · SC",
+      "url": "series/2010-2-1-SC.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-SC-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "SC",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · SC",
+      "url": "series/2010-2-1-SC-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-SE",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "SE",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · SE",
+      "url": "series/2010-2-1-SE.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-SE-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "SE",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · SE",
+      "url": "series/2010-2-1-SE-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-SP",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "SP",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · SP",
+      "url": "series/2010-2-1-SP.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-SP-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "SP",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · SP",
+      "url": "series/2010-2-1-SP-state.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-TO",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "TO",
+      "income_reference": "national",
+      "label": "2010 · 2º turno · Presidente · TO",
+      "url": "series/2010-2-1-TO.json",
+      "status": "available"
+    },
+    {
+      "id": "2010-2-1-TO-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "office_label": "Presidente",
+      "uf": "TO",
+      "income_reference": "state",
+      "label": "2010 · 2º turno · Presidente · TO",
+      "url": "series/2010-2-1-TO-state.json",
+      "status": "available"
     }
   ],
   "availability": [
@@ -7085,9 +8405,10 @@
       "round": 1,
       "office": "1",
       "uf": "AC",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-AL",
@@ -7095,9 +8416,10 @@
       "round": 1,
       "office": "1",
       "uf": "AL",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-AM",
@@ -7105,9 +8427,10 @@
       "round": 1,
       "office": "1",
       "uf": "AM",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-AP",
@@ -7115,9 +8438,10 @@
       "round": 1,
       "office": "1",
       "uf": "AP",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-BA",
@@ -7125,9 +8449,10 @@
       "round": 1,
       "office": "1",
       "uf": "BA",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-BR",
@@ -7135,9 +8460,10 @@
       "round": 1,
       "office": "1",
       "uf": "BR",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-CE",
@@ -7145,9 +8471,10 @@
       "round": 1,
       "office": "1",
       "uf": "CE",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-DF",
@@ -7155,9 +8482,10 @@
       "round": 1,
       "office": "1",
       "uf": "DF",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-ES",
@@ -7165,9 +8493,10 @@
       "round": 1,
       "office": "1",
       "uf": "ES",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-GO",
@@ -7175,9 +8504,10 @@
       "round": 1,
       "office": "1",
       "uf": "GO",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-MA",
@@ -7185,9 +8515,10 @@
       "round": 1,
       "office": "1",
       "uf": "MA",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-MG",
@@ -7195,9 +8526,10 @@
       "round": 1,
       "office": "1",
       "uf": "MG",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-MS",
@@ -7205,9 +8537,10 @@
       "round": 1,
       "office": "1",
       "uf": "MS",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-MT",
@@ -7215,9 +8548,10 @@
       "round": 1,
       "office": "1",
       "uf": "MT",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-PA",
@@ -7225,9 +8559,10 @@
       "round": 1,
       "office": "1",
       "uf": "PA",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-PB",
@@ -7235,9 +8570,10 @@
       "round": 1,
       "office": "1",
       "uf": "PB",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-PE",
@@ -7245,9 +8581,10 @@
       "round": 1,
       "office": "1",
       "uf": "PE",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-PI",
@@ -7255,9 +8592,10 @@
       "round": 1,
       "office": "1",
       "uf": "PI",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-PR",
@@ -7265,9 +8603,10 @@
       "round": 1,
       "office": "1",
       "uf": "PR",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-RJ",
@@ -7275,9 +8614,10 @@
       "round": 1,
       "office": "1",
       "uf": "RJ",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-RN",
@@ -7285,9 +8625,10 @@
       "round": 1,
       "office": "1",
       "uf": "RN",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-RO",
@@ -7295,9 +8636,10 @@
       "round": 1,
       "office": "1",
       "uf": "RO",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-RR",
@@ -7305,9 +8647,10 @@
       "round": 1,
       "office": "1",
       "uf": "RR",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-RS",
@@ -7315,9 +8658,10 @@
       "round": 1,
       "office": "1",
       "uf": "RS",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-SC",
@@ -7325,9 +8669,10 @@
       "round": 1,
       "office": "1",
       "uf": "SC",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-SE",
@@ -7335,9 +8680,10 @@
       "round": 1,
       "office": "1",
       "uf": "SE",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-SP",
@@ -7345,9 +8691,10 @@
       "round": 1,
       "office": "1",
       "uf": "SP",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-1-1-TO",
@@ -7355,9 +8702,10 @@
       "round": 1,
       "office": "1",
       "uf": "TO",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-AC",
@@ -7365,9 +8713,10 @@
       "round": 2,
       "office": "1",
       "uf": "AC",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-AL",
@@ -7375,9 +8724,10 @@
       "round": 2,
       "office": "1",
       "uf": "AL",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-AM",
@@ -7385,9 +8735,10 @@
       "round": 2,
       "office": "1",
       "uf": "AM",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-AP",
@@ -7395,9 +8746,10 @@
       "round": 2,
       "office": "1",
       "uf": "AP",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-BA",
@@ -7405,9 +8757,10 @@
       "round": 2,
       "office": "1",
       "uf": "BA",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-BR",
@@ -7415,9 +8768,10 @@
       "round": 2,
       "office": "1",
       "uf": "BR",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-CE",
@@ -7425,9 +8779,10 @@
       "round": 2,
       "office": "1",
       "uf": "CE",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-DF",
@@ -7435,9 +8790,10 @@
       "round": 2,
       "office": "1",
       "uf": "DF",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-ES",
@@ -7445,9 +8801,10 @@
       "round": 2,
       "office": "1",
       "uf": "ES",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-GO",
@@ -7455,9 +8812,10 @@
       "round": 2,
       "office": "1",
       "uf": "GO",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-MA",
@@ -7465,9 +8823,10 @@
       "round": 2,
       "office": "1",
       "uf": "MA",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-MG",
@@ -7475,9 +8834,10 @@
       "round": 2,
       "office": "1",
       "uf": "MG",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-MS",
@@ -7485,9 +8845,10 @@
       "round": 2,
       "office": "1",
       "uf": "MS",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-MT",
@@ -7495,9 +8856,10 @@
       "round": 2,
       "office": "1",
       "uf": "MT",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-PA",
@@ -7505,9 +8867,10 @@
       "round": 2,
       "office": "1",
       "uf": "PA",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-PB",
@@ -7515,9 +8878,10 @@
       "round": 2,
       "office": "1",
       "uf": "PB",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-PE",
@@ -7525,9 +8889,10 @@
       "round": 2,
       "office": "1",
       "uf": "PE",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-PI",
@@ -7535,9 +8900,10 @@
       "round": 2,
       "office": "1",
       "uf": "PI",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-PR",
@@ -7545,9 +8911,10 @@
       "round": 2,
       "office": "1",
       "uf": "PR",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-RJ",
@@ -7555,9 +8922,10 @@
       "round": 2,
       "office": "1",
       "uf": "RJ",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-RN",
@@ -7565,9 +8933,10 @@
       "round": 2,
       "office": "1",
       "uf": "RN",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-RO",
@@ -7575,9 +8944,10 @@
       "round": 2,
       "office": "1",
       "uf": "RO",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-RR",
@@ -7585,9 +8955,10 @@
       "round": 2,
       "office": "1",
       "uf": "RR",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-RS",
@@ -7595,9 +8966,10 @@
       "round": 2,
       "office": "1",
       "uf": "RS",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-SC",
@@ -7605,9 +8977,10 @@
       "round": 2,
       "office": "1",
       "uf": "SC",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-SE",
@@ -7615,9 +8988,10 @@
       "round": 2,
       "office": "1",
       "uf": "SE",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-SP",
@@ -7625,9 +8999,10 @@
       "round": 2,
       "office": "1",
       "uf": "SP",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2010-2-1-TO",
@@ -7635,9 +9010,10 @@
       "round": 2,
       "office": "1",
       "uf": "TO",
+      "income_reference": "national",
       "office_label": "Presidente",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2014-1-1-AC",
@@ -14656,6 +16032,600 @@
     {
       "id": "2014-2-1-TO-state",
       "year": 2014,
+      "round": 2,
+      "office": "1",
+      "uf": "TO",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-AC-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "AC",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-AL-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "AL",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-AM-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "AM",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-AP-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "AP",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-BA-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "BA",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-CE-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "CE",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-DF-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "DF",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-ES-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "ES",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-GO-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "GO",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-MA-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "MA",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-MG-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "MG",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-MS-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "MS",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-MT-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "MT",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-PA-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "PA",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-PB-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "PB",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-PE-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "PE",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-PI-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "PI",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-PR-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "PR",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-RJ-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "RJ",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-RN-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "RN",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-RO-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "RO",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-RR-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "RR",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-RS-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "RS",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-SC-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "SC",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-SE-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "SE",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-SP-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "SP",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-1-1-TO-state",
+      "year": 2010,
+      "round": 1,
+      "office": "1",
+      "uf": "TO",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-AC-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "AC",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-AL-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "AL",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-AM-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "AM",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-AP-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "AP",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-BA-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "BA",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-CE-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "CE",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-DF-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "DF",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-ES-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "ES",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-GO-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "GO",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-MA-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "MA",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-MG-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "MG",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-MS-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "MS",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-MT-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "MT",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-PA-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "PA",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-PB-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "PB",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-PE-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "PE",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-PI-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "PI",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-PR-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "PR",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-RJ-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "RJ",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-RN-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "RN",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-RO-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "RO",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-RR-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "RR",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-RS-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "RS",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-SC-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "SC",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-SE-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "SE",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-SP-state",
+      "year": 2010,
+      "round": 2,
+      "office": "1",
+      "uf": "SP",
+      "income_reference": "state",
+      "office_label": "Presidente",
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
+    },
+    {
+      "id": "2010-2-1-TO-state",
+      "year": 2010,
       "round": 2,
       "office": "1",
       "uf": "TO",
