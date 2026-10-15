@@ -86,11 +86,15 @@ eleicao_vote_audit <- function(votes, year, round, office, uf = "BR") {
 eleicao_aggregate_contest <- function(votes, universe, links, year, round, office,
                                       uf = "BR", max_distance_m = 5000,
                                       sources = list(), include_party_series = FALSE,
-                                      require_reconciled = TRUE) {
+                                      require_reconciled = TRUE, income_reference = "national") {
   eleicao_require()
   year_arg <- as.integer(year); round_arg <- as.integer(round); office_arg <- as.integer(office)
   uf_arg <- toupper(uf)
+  income_reference <- as.character(income_reference)
+  if (length(income_reference) != 1L || is.na(income_reference) ||
+      !income_reference %in% c("national", "state")) stop("Invalid income reference: use national or state")
   if (length(uf_arg) != 1L || !uf_arg %in% c("BR", unname(eleicao_ufs))) stop("Invalid UF")
+  if (income_reference == "state" && uf_arg == "BR") stop("State income reference requires an explicit UF")
   if (!office_arg %in% as.integer(names(eleicao_office_labels))) stop("Unsupported office")
   if (uf_arg == "BR" && office_arg != 1L) stop("State offices require an explicit UF")
   if (length(max_distance_m) != 1L || !is.finite(max_distance_m) || max_distance_m <= 0) stop("Invalid distance")
@@ -133,6 +137,12 @@ eleicao_aggregate_contest <- function(votes, universe, links, year, round, offic
   if (!all(c("code_tract", "income", "uf", "centil") %in% names(u)) || anyDuplicated(u$code_tract)) stop("Invalid fixed income universe")
   if (uf_arg != "BR") u <- u[uf == uf_arg]
   if (!nrow(u)) stop("No income tracts in requested UF")
+  if (income_reference == "state") {
+    # Re-rank the COMPLETE state income universe before any distance/vote
+    # exclusions. National ranks remain untouched in the default reference.
+    data.table::setorder(u, income, code_tract)
+    u[, centil := as.integer(floor((seq_len(.N) - 1L) * 100 / .N) + 1L)]
+  }
   # Census labels are computed from the COMPLETE group, before vote/spatial exclusions.
   census_groups <- u[, .(renda_sm = mean(income) / 1212, n_setores_total = .N), by = centil]
   census_groups <- merge(data.table::data.table(centil = 1:100), census_groups, by = "centil", all.x = TRUE)
@@ -171,7 +181,9 @@ eleicao_aggregate_contest <- function(votes, universe, links, year, round, offic
   if (any(totals$total > 100 + 1e-7, na.rm = TRUE)) stop("Displayed shares exceed complete denominator")
   metadata <- list(method = "Média simples dos percentuais do local mais próximo atribuídos aos setores; universo de renda fixo antes das exclusões.",
     income_definition = "Rendimento nominal médio mensal dos responsáveis pelos domicílios do setor (V06004), Censo 2022; salários mínimos de 2022 (R$ 1.212).",
-    percentile_scope = "BR", income_year = 2022L, minimum_wage_brl = 1212,
+    income_reference = income_reference,
+    percentile_scope = if (income_reference == "state") uf_arg else "BR",
+    income_year = 2022L, minimum_wage_brl = 1212,
     year = year_arg, round = round_arg, office = as.character(office_arg), uf = uf_arg,
     max_distance_m = max_distance_m,
     denominator = if (proportional) "Soma dos votos nominais e de legenda do cargo/local, excluídos os códigos especiais 95/96/97" else "Soma dos votos dos candidatos do cargo/local, excluídos os códigos especiais 95/96/97",
@@ -186,9 +198,13 @@ eleicao_aggregate_contest <- function(votes, universe, links, year, round, offic
 
 eleicao_manifest_item <- function(dataset, url) {
   m <- dataset$metadata
+  income_reference <- if (is.null(m$income_reference)) "national" else m$income_reference
+  id <- paste(m$year, m$round, m$office, m$uf, sep = "-")
+  if (income_reference == "state") id <- paste0(id, "-state")
   office_label <- unname(eleicao_office_labels[m$office])
-  list(id = paste(m$year, m$round, m$office, m$uf, sep = "-"), year = m$year,
+  list(id = id, year = m$year,
        round = m$round, office = m$office, office_label = office_label, uf = m$uf,
+       income_reference = income_reference,
        label = paste(m$year, paste0(m$round, "º turno"), office_label, m$uf, sep = " · "),
        url = url, status = "available")
 }

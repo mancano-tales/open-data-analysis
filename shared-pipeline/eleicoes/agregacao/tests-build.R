@@ -46,6 +46,21 @@ invalidated <- eleicao_build_explorer(output,cache,spatial,file.path(folder,"ren
   targets[year==2026 & round==1 & office==1 & uf=="SP"],incremental=TRUE)
 stopifnot(length(invalidated$series)==1L,invalidated$series[[1L]]$uf=="BR")
 saveRDS(votes,file.path(cache,"places-2026-BR-1.rds"))
+dual_targets <- data.table(year=2026L, round=1L, office=1L, uf="SP",
+  income_reference=c("national","state"))
+dual <- eleicao_build_explorer(output,cache,spatial,file.path(folder,"renda.rds"),
+  dual_targets,incremental=TRUE)
+stopifnot(length(dual$series)==3L,
+  all(c("2026-1-1-SP","2026-1-1-SP-state") %in% vapply(dual$series,`[[`,"","id")))
+state_payload <- jsonlite::read_json(file.path(output,"series","2026-1-1-SP-state.json"))
+stopifnot(state_payload$metadata$income_reference=="state",state_payload$metadata$percentile_scope=="SP")
+eleicao_aggregate_contest <- function(...) stop("Reference cache was not reused")
+dual_reused <- eleicao_build_explorer(output,cache,spatial,file.path(folder,"renda.rds"),
+  dual_targets,incremental=TRUE)
+eleicao_aggregate_contest <- original_aggregate
+stopifnot(length(dual_reused$series)==3L)
+expect_error(eleicao_build_explorer(output,cache,spatial,file.path(folder,"renda.rds"),
+  data.table(year=2026L,round=1L,office=1L,uf="BR",income_reference="state")))
 planned <- eleicao_prepare_ufs(c("SP", "DF", "SP"), dry_run = TRUE)
 stopifnot(nrow(planned) == 2L, all(planned$status == "planned"), all(is.na(planned$exit_code)))
 # A missing national link cannot be promoted from fragments to available.
