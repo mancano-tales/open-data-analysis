@@ -41,7 +41,8 @@ ALL Brazilian census tracts with eligible income before any electoral/spatial
 exclusions, using mean income of household heads with income (V06004). Its
 national groups remain fixed between elections and within UF filters.
 State reference (`income_reference: "state"`, `metadata.percentile_scope:
-"UF"`) instead ranks all income-eligible tracts within the selected UF before
+"AC"` for Acre, `"SP"` for São Paulo, or the corresponding actual UF code)
+instead ranks all income-eligible tracts within the selected UF before
 the same exclusions, with approximately 1% of that state's tracts in each
 group. Its state groups likewise remain fixed between elections. `renda_sm`
 describes the complete income-eligible group in the selected territory,
@@ -53,6 +54,13 @@ BRL 1,212. `n_setores` is repeated for each candidate and must sum to
 `included_tracts` separately for every candidate. Document any changed
 universe, percentile ranking, weighting or income variable in metadata;
 never silently mix these estimators in one chart.
+
+The scope value is the exact UF abbreviation, never the literal `"UF"`.
+Before displaying curves, the UI requires `percentile_scope` to equal `"BR"`
+for a national reference or the selected territory code for a state reference.
+Missing or conflicting scope metadata are rejected visibly; the UI must not
+silently relabel an incompatible series. If `metadata.income_reference` is
+present, it must also match the manifest entry.
 
 The fifth selector, after year/round/office/territory, chooses income reference.
 Presidential contests default to national reference, including their UF

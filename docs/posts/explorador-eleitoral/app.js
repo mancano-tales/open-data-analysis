@@ -53,6 +53,14 @@
     const referenceOf=entry=>entry.income_reference||'national';
     const referenceLabel=value=>value==='state'?(lang==='pt'?'UF — renda relativa ao estado':'State — income relative to state'):(lang==='pt'?'Brasil — renda relativa ao país':'Brazil — income relative to country');
     const contestKey=entry=>['year','round','office','uf'].map(key=>entry[key]).join('|');
+    function validateIncomeScope(entry,metadata) {
+      const expected=referenceOf(entry)==='state'?entry.uf:'BR';
+      if(metadata?.percentile_scope!==expected||(referenceOf(entry)==='state'&&entry.uf==='BR')||(metadata.income_reference&&metadata.income_reference!==referenceOf(entry))){
+        const error=new Error(`Income reference mismatch: expected ${expected}, received ${metadata?.percentile_scope}`);
+        error.userMessage=lang==='pt'?`Série recusada: a referência de renda selecionada exige o universo ${expected}, mas os metadados não correspondem. Nenhuma curva desta série foi exibida.`:`Series rejected: the selected income reference requires scope ${expected}, but its metadata do not match. No curves from this series were displayed.`;
+        throw error;
+      }
+    }
     function resolve(changedIndex=-1) {
       let subset=manifest.series.filter(s=>s.status==='available'&&!(s.uf==='BR'&&referenceOf(s)==='state'));
       keys.slice(0,4).forEach(key=>{
@@ -89,14 +97,14 @@
       });
       status.textContent=traces.length?'':t.none;
       const incomeScope=data.metadata.percentile_scope;
-      const xTitle=incomeScope==='UF'?(lang==='pt'?`Centis de renda dentro de ${selected.uf} (mais pobres → mais ricos)`:`Income percentiles within ${selected.uf} (poorest → richest)`):incomeScope==='BR'?(lang==='pt'?'Centis de renda do Brasil (mais pobres → mais ricos)':'Brazil income percentiles (poorest → richest)'):t.x;
+      const xTitle=incomeScope===selected.uf&&selected.uf!=='BR'?(lang==='pt'?`Centis de renda dentro de ${selected.uf} (mais pobres → mais ricos)`:`Income percentiles within ${selected.uf} (poorest → richest)`):(lang==='pt'?'Centis de renda do Brasil (mais pobres → mais ricos)':'Brazil income percentiles (poorest → richest)');
       Plotly.react(chart,traces,{autosize:true,height:window.innerWidth<600?410:510,margin:{l:58,r:20,t:30,b:85},paper_bgcolor:'#fff',plot_bgcolor:'#fff',font:{family:'system-ui, sans-serif',color:'#425361',size:12},xaxis:{title:{text:xTitle,standoff:22},range:[1,100],tickvals:[1,20,40,60,80,100],gridcolor:'#edf0f2',zeroline:false},yaxis:{title:{text:t.y,standoff:12},range:[0,100],ticksuffix:'%',gridcolor:'#edf0f2',zeroline:false},legend:{orientation:'h',y:1.13,x:0},hovermode:'closest',dragmode:false},{responsive:true,displaylogo:false,scrollZoom:false,modeBarButtonsToRemove:['select2d','lasso2d','pan2d','zoomIn2d','zoomOut2d','autoScale2d'],toImageButtonOptions:{filename:`votacao-renda-${selected.id}`,format:'png',scale:2}});
     }
     async function load() {
         const current=++request;status.textContent=t.loading;status.classList.remove('error');
       try {
         const preserveSelection=loadedContestKey===contestKey(selected),previousSelection=new Set(activeIds);
-        const loaded=await read(seriesUrl(selected));if(current!==request)return;data=loaded;
+        const loaded=await read(seriesUrl(selected));if(current!==request)return;validateIncomeScope(selected,loaded.metadata);data=loaded;
         const scores=new Map(data.candidates.map(c=>[c.id,0]));
         data.points.forEach(point=>scores.set(point.candidate_id,(scores.get(point.candidate_id)||0)+(point.votacao||0)));
         rankedCandidates=[...data.candidates].sort((a,b)=>scores.get(b.id)-scores.get(a.id));
@@ -132,7 +140,7 @@
           });
         }
         text('p',`${t.coverage}: ${fmt(cov.included_tracts)} ${t.of} ${fmt(cov.total_tracts)} ${t.included} (${fmt(100*cov.included_tracts/cov.total_tracts,2)}%).`,coverage);
-        const scope=meta.percentile_scope==='UF'?(lang==='pt'?`Referência estadual: os setores de ${selected.uf} são ordenados pela renda do Censo 2022 e divididos em 100 grupos antes das exclusões eleitorais. O primeiro centil reúne o 1% de setores mais pobres desta UF, não do Brasil. A renda média representa o grupo completo; a contagem de setores mostra a cobertura eleitoral.`:`State reference: ${selected.uf} tracts are ranked by Census 2022 income and divided into 100 groups before electoral exclusions. The first percentile contains this state's poorest 1% of tracts, rather than Brazil's. Mean income describes the complete group; tract counts describe electoral coverage.`):meta.percentile_scope==='BR' ? (lang==='pt'?'Referência nacional: centis do Censo 2022 definidos no Brasil inteiro antes de excluir setores sem estimativa de votação. Filtros por UF preservam esses grupos nacionais; algumas faixas podem ter poucos setores na UF. A renda média representa o grupo completo no território selecionado; a contagem de setores mostra a cobertura eleitoral.':'National reference: Census 2022 percentiles defined across Brazil before excluding tracts without vote estimates. State filters preserve these national groups; some groups may have few tracts in a state. Mean income describes the complete group within the selected territory; tract counts describe electoral coverage.') : (lang==='pt'?'Snapshot legado: centis recalculados na amostra de setores com renda e votação estimada em 2026. Este eixo difere das referências de renda fixadas antes das exclusões eleitorais.':'Legacy snapshot: percentiles calculated within the 2026 sample of tracts with income and estimated votes. This axis differs from income references fixed before electoral exclusions.');
+        const scope=meta.percentile_scope===selected.uf&&selected.uf!=='BR'?(lang==='pt'?`Referência estadual: os setores de ${selected.uf} são ordenados pela renda do Censo 2022 e divididos em 100 grupos antes das exclusões eleitorais. O primeiro centil reúne o 1% de setores mais pobres desta UF, não do Brasil. A renda média representa o grupo completo; a contagem de setores mostra a cobertura eleitoral.`:`State reference: ${selected.uf} tracts are ranked by Census 2022 income and divided into 100 groups before electoral exclusions. The first percentile contains this state's poorest 1% of tracts, rather than Brazil's. Mean income describes the complete group; tract counts describe electoral coverage.`):(lang==='pt'?'Referência nacional: centis do Censo 2022 definidos no Brasil inteiro antes de excluir setores sem estimativa de votação. Filtros por UF preservam esses grupos nacionais; algumas faixas podem ter poucos setores na UF. A renda média representa o grupo completo no território selecionado; a contagem de setores mostra a cobertura eleitoral.':'National reference: Census 2022 percentiles defined across Brazil before excluding tracts without vote estimates. State filters preserve these national groups; some groups may have few tracts in a state. Mean income describes the complete group within the selected territory; tract counts describe electoral coverage.');
         text('p',scope,coverage);
         text('p',`${t.method}: ${localized(meta.method)}`,coverage);
         text('p',`${t.incomeDef}: ${localized(meta.income_definition)}`,coverage);
@@ -143,7 +151,7 @@
         (meta.sources||[]).forEach((source,index)=>{if(index)sources.append(document.createTextNode(' · '));link(sources,source.label||source.name||source.url,source.url);});
         const downloads=root.querySelector('.download-links');downloads.replaceChildren();link(downloads,t.download,seriesUrl(selected));link(downloads,t.manifest,new URL('manifest.json',base));
         draw();
-      }catch(error){if(current!==request)return;status.textContent=t.error;status.classList.add('error');console.error(error);}
+      }catch(error){if(current!==request)return;status.textContent=error.userMessage||t.error;status.classList.add('error');if(error.userMessage){if(typeof Plotly.purge==='function')Plotly.purge(chart);coverage.replaceChildren();auditPanel.replaceChildren();candidateBox.replaceChildren();topButton.disabled=true;clearButton.disabled=true;search.disabled=true;}console.error(error);}
     }
     try {
       manifest=await read(new URL('manifest.json',base),{cache:'no-cache'});

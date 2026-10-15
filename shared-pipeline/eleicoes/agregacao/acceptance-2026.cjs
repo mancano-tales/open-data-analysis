@@ -22,6 +22,8 @@ function expectedContests(reference = 'national') {
 }
 function evaluateManifest(manifest, loadSeries, { bothReferences = false } = {}) {
   const errors = [], available = new Set(), ids = new Set();
+  // Retain only small comparison summaries. Never retain points or full payloads.
+  const summaries = new Map();
   const references = bothReferences ? ['national', 'state'] : ['national'];
   const expected = references.flatMap(reference => expectedContests(reference));
   const records = Array.isArray(manifest?.series) ? manifest.series : [];
@@ -74,10 +76,47 @@ function evaluateManifest(manifest, loadSeries, { bothReferences = false } = {})
       if (uf === 'BR' ? !UFS.every(state => auditedUfs.includes(state)) : !auditedUfs.includes(uf)) {
         throw new Error('audit does not cover the contest territory');
       }
+      const coverage = meta.coverage || {};
+      for (const field of ['total_tracts', 'included_tracts']) {
+        if (coverage[field] !== undefined && coverage[field] !== null &&
+            (!Number.isInteger(coverage[field]) || coverage[field] < 0)) throw new Error(`coverage ${field} must be a nonnegative integer`);
+      }
+      const candidateIds = Array.isArray(series.candidates) ? series.candidates.map(candidate => {
+        if (candidate?.id === undefined || candidate.id === null) throw new Error('candidate missing id');
+        return String(candidate.id);
+      }) : undefined;
+      const summary = {
+        total_tracts: coverage.total_tracts, included_tracts: coverage.included_tracts,
+        candidate_ids: candidateIds === undefined ? undefined : [...new Set(candidateIds)].sort(),
+        official_valid_votes: audit.official_valid_votes, computed_valid_votes: audit.computed_valid_votes,
+        difference: audit.difference
+      };
+      const baseId = key({ ...item, income_reference: 'national' });
+      if (!summaries.has(baseId)) summaries.set(baseId, {});
+      summaries.get(baseId)[reference] = summary;
       available.add(id);
     } catch (error) {
       errors.push(`${id} (${item.url}): ${error.message}`);
     }
+  }
+  const paired = { pairs: 0, fully_compared_pairs: 0, mismatched_pairs: 0,
+    field_checks: { total_tracts: 0, included_tracts: 0, candidate_ids: 0, official_valid_votes: 0, computed_valid_votes: 0, difference: 0 } };
+  for (const [baseId, pair] of summaries) {
+    if (!pair.national || !pair.state) continue;
+    paired.pairs++;
+    let checked = 0, mismatched = false;
+    for (const field of Object.keys(paired.field_checks)) {
+      const a = pair.national[field], b = pair.state[field];
+      // Legacy fixtures may omit coverage/candidates. Real exports supply all six.
+      if (a === undefined || a === null || b === undefined || b === null) continue;
+      checked++; paired.field_checks[field]++;
+      if (field === 'candidate_ids' ? JSON.stringify(a) !== JSON.stringify(b) : a !== b) {
+        errors.push(`${baseId}: national/state ${field} differs`);
+        mismatched = true;
+      }
+    }
+    if (checked === Object.keys(paired.field_checks).length) paired.fully_compared_pairs++;
+    if (mismatched) paired.mismatched_pairs++;
   }
   const missing = expected.filter(item => !available.has(key(item)));
   const byOffice = references.flatMap(reference => Object.keys(LABELS).map(office => {
@@ -96,7 +135,7 @@ function evaluateManifest(manifest, loadSeries, { bothReferences = false } = {})
     year: 2026, round: 1, requested_references: references, expected: expected.length, available: expected.length - missing.length,
     manifest_series: records.length, checked_files: checkedFiles,
     additional_available_series: [...available].filter(id => !expected.some(item => key(item) === id)).length,
-    by_reference: byReference, by_office: byOffice, missing: missing.map(key), errors
+    paired_references: paired, by_reference: byReference, by_office: byOffice, missing: missing.map(key), errors
   };
 }
 function exitCodeFor(result, progress = false) {
@@ -130,6 +169,39 @@ function selfTest() {
   const completeBoth = run(both, { bothReferences: true });
   assert.equal(completeBoth.state, 'COMPLETE'); assert.equal(completeBoth.available, 271);
   assert.equal(completeBoth.by_reference[0].available, 136); assert.equal(completeBoth.by_reference[1].available, 135);
+  assert.equal(completeBoth.paired_references.pairs, 135);
+  assert.equal(completeBoth.paired_references.fully_compared_pairs, 0); // Minimal legacy fixtures omit optional summaries.
+  const nationalPairItem = fixture.find(item => item.uf === 'AC' && item.office === '1');
+  const statePairItem = stateFixture.find(item => item.uf === 'AC' && item.office === '1');
+  for (const [index, item] of [nationalPairItem, statePairItem].entries()) {
+    const full = structuredClone(payloads.get(item.url));
+    full.metadata.coverage = { total_tracts: 100, included_tracts: 80 };
+    full.candidates = index ? [{ id: '22' }, { id: '13' }] : [{ id: '13' }, { id: '22' }];
+    full.points = [{ centil: 1, votacao: index ? 20 : 10 }]; // Different curves/scopes are expected after reranking.
+    payloads.set(item.url, full);
+  }
+  const pairedComplete = run(both, { bothReferences: true });
+  assert.equal(pairedComplete.state, 'COMPLETE'); assert.equal(pairedComplete.paired_references.fully_compared_pairs, 1);
+  assert.equal(pairedComplete.paired_references.field_checks.candidate_ids, 1);
+  const pairedOriginal = structuredClone(payloads.get(statePairItem.url));
+  for (const field of ['total_tracts', 'included_tracts']) {
+    const changedPair = structuredClone(pairedOriginal); changedPair.metadata.coverage[field]++;
+    payloads.set(statePairItem.url, changedPair);
+    const badPair = run(both, { bothReferences: true });
+    assert.equal(badPair.state, 'INVALID'); assert.equal(badPair.paired_references.mismatched_pairs, 1);
+    assert(badPair.errors.some(error => error.includes(`${field} differs`)));
+  }
+  const differentCandidates = structuredClone(pairedOriginal); differentCandidates.candidates[0].id = '99';
+  payloads.set(statePairItem.url, differentCandidates);
+  assert(run(both).errors.some(error => error.includes('candidate_ids differs')));
+  const differentVotes = structuredClone(pairedOriginal);
+  differentVotes.metadata.vote_audit.official_valid_votes = 2;
+  differentVotes.metadata.vote_audit.computed_valid_votes = 2; // Each audit still reconciles individually.
+  payloads.set(statePairItem.url, differentVotes);
+  assert(run(both).errors.some(error => error.includes('official_valid_votes differs')));
+  assert.equal(exitCodeFor(run(both), true), 1); // Progress must not conceal a paired-data mismatch.
+  payloads.set(statePairItem.url, pairedOriginal);
+  assert.equal(run(both, { bothReferences: true }).state, 'COMPLETE');
   assert.equal(run(both).available, 136); // Extra state series never increase national coverage.
   const nationalOnlyBoth = run(fixture, { bothReferences: true });
   assert.equal(nationalOnlyBoth.state, 'IN_PROGRESS'); assert.equal(nationalOnlyBoth.missing.length, 135);
@@ -169,7 +241,7 @@ function selfTest() {
   assert.equal(run(fixture).state, 'INVALID'); assert.equal(exitCodeFor(run(fixture), true), 1);
   assert.throws(() => readLocalSeries(__dirname, '../outside.json'));
   assert.throws(() => readLocalSeries(__dirname, '%2e%2e/outside.json'));
-  console.log('PASS acceptance self-tests: 136 national/135 state/271 combined, separate coverage, legacy IDs, reference/scope mismatch, state BR rejection, progress, history and integrity checks');
+  console.log('PASS acceptance self-tests: 136 national/135 state/271 combined, paired coverage/candidate/audit equality, ranking/scopes allowed to differ, legacy omissions, progress, history and integrity checks');
 }
 function main(args) {
   const known = new Set(['--progress', '--json', '--self-test', '--both-references']);
@@ -183,6 +255,7 @@ function main(args) {
   if (args.includes('--json')) console.log(JSON.stringify(result, null, 2));
   else {
     console.log(`${result.state}: 2026 round 1 coverage ${result.available}/${result.expected} (${result.requested_references.join('+')}); ${result.checked_files} published JSON files checked`);
+    console.log(`Paired national/state: ${result.paired_references.pairs}; fully compared ${result.paired_references.fully_compared_pairs}; mismatched ${result.paired_references.mismatched_pairs}`);
     for (const row of result.by_office) console.log(`  [${row.income_reference}] ${row.label}: ${row.available}/${row.expected}${row.missing_ufs.length ? `; missing ${row.missing_ufs.join(', ')}` : ''}`);
     if (result.missing.length) console.log(`Missing contest IDs: ${result.missing.join(', ')}`);
     for (const error of result.errors) console.error(`ERROR: ${error}`);
