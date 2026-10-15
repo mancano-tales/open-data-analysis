@@ -156,6 +156,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<a class="language-switch" href="../../pt/posts-pt/explorador-eleitoral/" hreflang="pt-BR" lang="pt-BR" aria-label="Ir para a versão em português desta página"><span aria-hidden="true">PT ↗</span> Português</a>
 <p>Which candidates receive more support in poorer and richer areas? Explore the curves below. The horizontal axis ranks <strong>census tracts</strong> by the mean income of household heads with income in Census 2022, from the poorest 1% of eligible tracts to the richest 1%. These are groups of tracts, rather than population or voter percentiles.</p>
 <div class="callout callout-style-default callout-warning callout-titled" title="Income describes the census tract, not the voter">
 <div class="callout-header d-flex align-content-center">
@@ -614,6 +615,11 @@ Note
 </div> <!-- /content -->
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 <script src="app.js?v=income-reference-20261015"></script>
+<script>
+document.querySelectorAll('.navbar .nav-link').forEach(link => {
+  if (link.textContent.trim() === 'Português') link.href = document.querySelector('.language-switch').href;
+});
+</script>
 
 
 

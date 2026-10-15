@@ -14,7 +14,16 @@ format:
       text: |
         <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
         <script src="../../posts/explorador-eleitoral/app.js?v=income-reference-20261015"></script>
+        <script>
+        document.querySelectorAll('.navbar .nav-link').forEach(link => {
+          if (link.textContent.trim() === 'English') link.href = document.querySelector('.language-switch').href;
+        });
+        </script>
 ---
+
+```{=html}
+<a class="language-switch" href="../../../posts/explorador-eleitoral/" hreflang="en" lang="en" aria-label="Switch to the English version of this page"><span aria-hidden="true">EN ↗</span> English</a>
+```
 
 Como varia a votação associada a áreas de diferentes rendas? Explore as curvas
 abaixo. Os percentis ordenam os **setores censitários pela renda média dos

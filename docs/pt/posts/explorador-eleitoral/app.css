@@ -30,3 +30,9 @@
 .election-explorer .error { color: #9e2626; }
 @media(max-width:600px) { .election-explorer .explorer-controls { grid-template-columns: repeat(2,minmax(0,1fr)); gap: .6rem; } .election-explorer .chart { min-height: 380px; } .election-explorer .candidate-list label { min-height: 42px; } }
 @media(max-width:360px) { .election-explorer .explorer-controls { grid-template-columns: minmax(0,1fr); } .election-explorer .explorer-controls label:last-child { grid-column: auto; } }
+.language-switch { position: fixed; right: max(1rem, env(safe-area-inset-right)); bottom: max(1rem, env(safe-area-inset-bottom)); z-index: 1030; display: inline-flex; align-items: center; gap: .6rem; min-height: 48px; padding: .65rem 1rem; border: 1px solid #fff; border-radius: 999px; background: #183d57; color: #fff; box-shadow: 0 3px 14px #0003; font-size: .95rem; font-weight: 600; text-decoration: none; }
+.language-switch span { padding-right: .6rem; border-right: 1px solid #ffffff70; font-size: .8rem; }
+.language-switch:hover { background: #102c40; color: #fff; text-decoration: underline; }
+.language-switch:focus-visible { outline: 3px solid #dd9e00; outline-offset: 3px; }
+body:has(.language-switch) { padding-bottom: 5rem; }
+@media print { .language-switch { display: none; } }

@@ -155,6 +155,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<a class="language-switch" href="../../../posts/explorador-eleitoral/" hreflang="en" lang="en" aria-label="Switch to the English version of this page"><span aria-hidden="true">EN ↗</span> English</a>
 <p>Como varia a votação associada a áreas de diferentes rendas? Explore as curvas abaixo. Os percentis ordenam os <strong>setores censitários pela renda média dos responsáveis com rendimento</strong>, segundo o Censo 2022: do 1% mais pobre ao 1% mais rico dos setores elegíveis. São grupos de setores, não percentis da população ou do eleitorado.</p>
 <div class="callout callout-style-default callout-warning callout-titled" title="A renda é do setor censitário, não do eleitor">
 <div class="callout-header d-flex align-content-center">
@@ -613,6 +614,11 @@ Nota
 </div> <!-- /content -->
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 <script src="../../posts/explorador-eleitoral/app.js?v=income-reference-20261015"></script>
+<script>
+document.querySelectorAll('.navbar .nav-link').forEach(link => {
+  if (link.textContent.trim() === 'English') link.href = document.querySelector('.language-switch').href;
+});
+</script>
 
 
 

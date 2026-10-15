@@ -14,7 +14,16 @@ format:
       text: |
         <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
         <script src="app.js?v=income-reference-20261015"></script>
+        <script>
+        document.querySelectorAll('.navbar .nav-link').forEach(link => {
+          if (link.textContent.trim() === 'Português') link.href = document.querySelector('.language-switch').href;
+        });
+        </script>
 ---
+
+```{=html}
+<a class="language-switch" href="../../pt/posts-pt/explorador-eleitoral/" hreflang="pt-BR" lang="pt-BR" aria-label="Ir para a versão em português desta página"><span aria-hidden="true">PT ↗</span> Português</a>
+```
 
 Which candidates receive more support in poorer and richer areas? Explore
 the curves below. The horizontal axis ranks **census tracts** by the mean
