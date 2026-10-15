@@ -45,6 +45,9 @@ eleicao_vote_audit <- function(votes, year, round, office, uf = "BR") {
   expected <- unique(as.character(votes$uf[votes$year == yr & votes$round == tr & votes$office == oc & votes$uf != "ZZ"]))
   if (state == "BR") expected <- unname(eleicao_ufs)
   else { checks <- checks[uf == state]; expected <- intersect(expected, state) }
+  # The spatial explorer covers domestic tracts only. Historical audits may
+  # also certify overseas votes (ZZ); do not add those to the displayed scope.
+  checks <- checks[uf %in% expected]
   if (!length(expected) || !nrow(checks) || !all(expected %in% checks$uf)) stop("Auditoria não cobre todas as UFs desta disputa")
   if (anyNA(checks[, ..required]) || any(!is.finite(checks$difference)) ||
       any(abs(checks$difference) > 1e-8) ||
