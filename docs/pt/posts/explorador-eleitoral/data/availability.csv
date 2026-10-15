@@ -223,136 +223,110 @@ id,year,round,office,uf,office_label,status,reason
 2022-2-1-SE,2022,2,1,SE,Presidente,unavailable,Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional
 2022-2-1-SP,2022,2,1,SP,Presidente,unavailable,Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional
 2022-2-1-TO,2022,2,1,TO,Presidente,unavailable,Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional
-2026-1-3-AL,2026,1,3,AL,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-3-AM,2026,1,3,AM,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-3-AP,2026,1,3,AP,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-3-BA,2026,1,3,BA,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-3-CE,2026,1,3,CE,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-3-AL,2026,1,3,AL,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-3-AM,2026,1,3,AM,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-3-AP,2026,1,3,AP,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-3-BA,2026,1,3,BA,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-3-CE,2026,1,3,CE,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-3-ES,2026,1,3,ES,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-3-GO,2026,1,3,GO,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-3-MA,2026,1,3,MA,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-3-MA,2026,1,3,MA,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-3-MG,2026,1,3,MG,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-3-MS,2026,1,3,MS,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-3-MT,2026,1,3,MT,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-3-PA,2026,1,3,PA,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-3-PB,2026,1,3,PB,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-3-PE,2026,1,3,PE,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-3-PI,2026,1,3,PI,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-3-PA,2026,1,3,PA,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-3-PB,2026,1,3,PB,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-3-PE,2026,1,3,PE,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-3-PI,2026,1,3,PI,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-3-PR,2026,1,3,PR,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-3-RJ,2026,1,3,RJ,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-3-RN,2026,1,3,RN,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-3-RO,2026,1,3,RO,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-3-RR,2026,1,3,RR,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-3-RN,2026,1,3,RN,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-3-RO,2026,1,3,RO,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-3-RR,2026,1,3,RR,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-3-RS,2026,1,3,RS,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-3-SC,2026,1,3,SC,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-3-SE,2026,1,3,SE,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-3-SE,2026,1,3,SE,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-3-SP,2026,1,3,SP,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-3-TO,2026,1,3,TO,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-5-AL,2026,1,5,AL,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-5-AM,2026,1,5,AM,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-5-AP,2026,1,5,AP,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-5-BA,2026,1,5,BA,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-5-CE,2026,1,5,CE,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-3-TO,2026,1,3,TO,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-5-AL,2026,1,5,AL,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-5-AM,2026,1,5,AM,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-5-AP,2026,1,5,AP,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-5-BA,2026,1,5,BA,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-5-CE,2026,1,5,CE,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-ES,2026,1,5,ES,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-5-GO,2026,1,5,GO,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-5-MA,2026,1,5,MA,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-5-MA,2026,1,5,MA,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-MG,2026,1,5,MG,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-5-MS,2026,1,5,MS,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-5-MT,2026,1,5,MT,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-5-PA,2026,1,5,PA,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-5-PB,2026,1,5,PB,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-5-PE,2026,1,5,PE,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-5-PI,2026,1,5,PI,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-5-PA,2026,1,5,PA,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-5-PB,2026,1,5,PB,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-5-PE,2026,1,5,PE,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-5-PI,2026,1,5,PI,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-PR,2026,1,5,PR,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-5-RJ,2026,1,5,RJ,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-5-RN,2026,1,5,RN,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-5-RO,2026,1,5,RO,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-5-RR,2026,1,5,RR,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-5-RN,2026,1,5,RN,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-5-RO,2026,1,5,RO,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-5-RR,2026,1,5,RR,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-RS,2026,1,5,RS,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-5-SC,2026,1,5,SC,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-5-SE,2026,1,5,SE,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-5-SE,2026,1,5,SE,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-SP,2026,1,5,SP,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-5-TO,2026,1,5,TO,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-6-AL,2026,1,6,AL,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-6-AM,2026,1,6,AM,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-6-AP,2026,1,6,AP,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-6-BA,2026,1,6,BA,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-6-CE,2026,1,6,CE,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-5-TO,2026,1,5,TO,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-6-AL,2026,1,6,AL,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-6-AM,2026,1,6,AM,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-6-AP,2026,1,6,AP,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-6-BA,2026,1,6,BA,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-6-CE,2026,1,6,CE,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-ES,2026,1,6,ES,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-6-GO,2026,1,6,GO,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-6-MA,2026,1,6,MA,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-6-MA,2026,1,6,MA,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-MG,2026,1,6,MG,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-6-MS,2026,1,6,MS,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-6-MT,2026,1,6,MT,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-6-PA,2026,1,6,PA,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-6-PB,2026,1,6,PB,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-6-PE,2026,1,6,PE,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-6-PI,2026,1,6,PI,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-6-PA,2026,1,6,PA,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-6-PB,2026,1,6,PB,Deputado federal,unavailable,Sem auditoria oficial reconciliada para esta disputa
+2026-1-6-PE,2026,1,6,PE,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-6-PI,2026,1,6,PI,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-PR,2026,1,6,PR,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-6-RJ,2026,1,6,RJ,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-6-RN,2026,1,6,RN,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-6-RO,2026,1,6,RO,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-6-RR,2026,1,6,RR,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-6-RN,2026,1,6,RN,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-6-RO,2026,1,6,RO,Deputado federal,unavailable,Auditoria não cobre todas as UFs desta disputa
+2026-1-6-RR,2026,1,6,RR,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-RS,2026,1,6,RS,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-6-SC,2026,1,6,SC,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-6-SE,2026,1,6,SE,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-6-SP,2026,1,6,SP,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-6-TO,2026,1,6,TO,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-7-AL,2026,1,7,AL,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-7-AM,2026,1,7,AM,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-7-AP,2026,1,7,AP,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-7-BA,2026,1,7,BA,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-7-CE,2026,1,7,CE,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-6-TO,2026,1,6,TO,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-7-AL,2026,1,7,AL,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-7-AM,2026,1,7,AM,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-7-AP,2026,1,7,AP,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-7-BA,2026,1,7,BA,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-7-CE,2026,1,7,CE,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-ES,2026,1,7,ES,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-7-GO,2026,1,7,GO,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-7-MA,2026,1,7,MA,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-7-MA,2026,1,7,MA,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-MG,2026,1,7,MG,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-7-MS,2026,1,7,MS,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-7-MT,2026,1,7,MT,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-7-PA,2026,1,7,PA,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-7-PB,2026,1,7,PB,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-7-PE,2026,1,7,PE,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-7-PI,2026,1,7,PI,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-7-PA,2026,1,7,PA,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-7-PB,2026,1,7,PB,Deputado estadual,unavailable,Sem auditoria oficial reconciliada para esta disputa
+2026-1-7-PE,2026,1,7,PE,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-7-PI,2026,1,7,PI,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-PR,2026,1,7,PR,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-7-RJ,2026,1,7,RJ,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-7-RN,2026,1,7,RN,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-7-RO,2026,1,7,RO,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-7-RR,2026,1,7,RR,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-7-RN,2026,1,7,RN,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-7-RO,2026,1,7,RO,Deputado estadual,unavailable,Auditoria não cobre todas as UFs desta disputa
+2026-1-7-RR,2026,1,7,RR,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-RS,2026,1,7,RS,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-7-SC,2026,1,7,SC,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-7-SE,2026,1,7,SE,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-7-SP,2026,1,7,SP,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-7-TO,2026,1,7,TO,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-AL,2026,1,8,AL,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-AM,2026,1,8,AM,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-AP,2026,1,8,AP,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-BA,2026,1,8,BA,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-CE,2026,1,8,CE,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-ES,2026,1,8,ES,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-GO,2026,1,8,GO,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-MA,2026,1,8,MA,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-MG,2026,1,8,MG,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-MS,2026,1,8,MS,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-MT,2026,1,8,MT,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-PA,2026,1,8,PA,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-PB,2026,1,8,PB,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-PE,2026,1,8,PE,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-PI,2026,1,8,PI,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-PR,2026,1,8,PR,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-RJ,2026,1,8,RJ,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-RN,2026,1,8,RN,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-RO,2026,1,8,RO,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-RR,2026,1,8,RR,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-RS,2026,1,8,RS,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-SC,2026,1,8,SC,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-SE,2026,1,8,SE,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-SP,2026,1,8,SP,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-8-TO,2026,1,8,TO,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-7-TO,2026,1,7,TO,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-3-AC,2026,1,3,AC,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-AC,2026,1,5,AC,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-AC,2026,1,6,AC,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-AC,2026,1,7,AC,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-8-AC,2026,1,8,AC,Deputado distrital,unavailable,Auditoria não cobre todas as UFs desta disputa
 2026-1-1-AC,2026,1,1,AC,Presidente,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-1-AL,2026,1,1,AL,Presidente,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-1-AM,2026,1,1,AM,Presidente,available,Dados processados com universo de renda fixo e cobertura documentada
@@ -384,7 +358,6 @@ id,year,round,office,uf,office_label,status,reason
 2026-1-3-DF,2026,1,3,DF,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-DF,2026,1,5,DF,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-DF,2026,1,6,DF,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-7-DF,2026,1,7,DF,Deputado estadual,unavailable,Auditoria não cobre todas as UFs desta disputa
 2026-1-8-DF,2026,1,8,DF,Deputado distrital,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-2-3-AL,2026,2,3,AL,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-2-3-AM,2026,2,3,AM,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
@@ -411,111 +384,7 @@ id,year,round,office,uf,office_label,status,reason
 2026-2-3-SE,2026,2,3,SE,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-2-3-SP,2026,2,3,SP,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-2-3-TO,2026,2,3,TO,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-AL,2026,2,5,AL,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-AM,2026,2,5,AM,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-AP,2026,2,5,AP,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-BA,2026,2,5,BA,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-CE,2026,2,5,CE,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-ES,2026,2,5,ES,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-GO,2026,2,5,GO,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-MA,2026,2,5,MA,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-MG,2026,2,5,MG,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-MS,2026,2,5,MS,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-MT,2026,2,5,MT,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-PA,2026,2,5,PA,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-PB,2026,2,5,PB,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-PE,2026,2,5,PE,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-PI,2026,2,5,PI,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-PR,2026,2,5,PR,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-RJ,2026,2,5,RJ,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-RN,2026,2,5,RN,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-RO,2026,2,5,RO,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-RR,2026,2,5,RR,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-RS,2026,2,5,RS,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-SC,2026,2,5,SC,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-SE,2026,2,5,SE,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-SP,2026,2,5,SP,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-5-TO,2026,2,5,TO,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-AL,2026,2,6,AL,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-AM,2026,2,6,AM,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-AP,2026,2,6,AP,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-BA,2026,2,6,BA,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-CE,2026,2,6,CE,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-ES,2026,2,6,ES,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-GO,2026,2,6,GO,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-MA,2026,2,6,MA,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-MG,2026,2,6,MG,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-MS,2026,2,6,MS,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-MT,2026,2,6,MT,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-PA,2026,2,6,PA,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-PB,2026,2,6,PB,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-PE,2026,2,6,PE,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-PI,2026,2,6,PI,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-PR,2026,2,6,PR,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-RJ,2026,2,6,RJ,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-RN,2026,2,6,RN,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-RO,2026,2,6,RO,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-RR,2026,2,6,RR,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-RS,2026,2,6,RS,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-SC,2026,2,6,SC,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-SE,2026,2,6,SE,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-SP,2026,2,6,SP,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-6-TO,2026,2,6,TO,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-AL,2026,2,7,AL,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-AM,2026,2,7,AM,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-AP,2026,2,7,AP,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-BA,2026,2,7,BA,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-CE,2026,2,7,CE,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-ES,2026,2,7,ES,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-GO,2026,2,7,GO,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-MA,2026,2,7,MA,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-MG,2026,2,7,MG,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-MS,2026,2,7,MS,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-MT,2026,2,7,MT,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-PA,2026,2,7,PA,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-PB,2026,2,7,PB,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-PE,2026,2,7,PE,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-PI,2026,2,7,PI,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-PR,2026,2,7,PR,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-RJ,2026,2,7,RJ,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-RN,2026,2,7,RN,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-RO,2026,2,7,RO,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-RR,2026,2,7,RR,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-RS,2026,2,7,RS,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-SC,2026,2,7,SC,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-SE,2026,2,7,SE,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-SP,2026,2,7,SP,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-7-TO,2026,2,7,TO,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-AL,2026,2,8,AL,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-AM,2026,2,8,AM,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-AP,2026,2,8,AP,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-BA,2026,2,8,BA,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-CE,2026,2,8,CE,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-ES,2026,2,8,ES,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-GO,2026,2,8,GO,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-MA,2026,2,8,MA,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-MG,2026,2,8,MG,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-MS,2026,2,8,MS,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-MT,2026,2,8,MT,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-PA,2026,2,8,PA,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-PB,2026,2,8,PB,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-PE,2026,2,8,PE,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-PI,2026,2,8,PI,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-PR,2026,2,8,PR,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-RJ,2026,2,8,RJ,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-RN,2026,2,8,RN,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-RO,2026,2,8,RO,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-RR,2026,2,8,RR,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-RS,2026,2,8,RS,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-SC,2026,2,8,SC,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-SE,2026,2,8,SE,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-SP,2026,2,8,SP,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-2-8-TO,2026,2,8,TO,Deputado distrital,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-2-3-AC,2026,2,3,AC,Governador,unavailable,Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional
-2026-2-5-AC,2026,2,5,AC,Senador,unavailable,Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional
-2026-2-6-AC,2026,2,6,AC,Deputado federal,unavailable,Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional
-2026-2-7-AC,2026,2,7,AC,Deputado estadual,unavailable,Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional
-2026-2-8-AC,2026,2,8,AC,Deputado distrital,unavailable,Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional
 2026-2-1-AC,2026,2,1,AC,Presidente,unavailable,Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional
 2026-2-1-AL,2026,2,1,AL,Presidente,unavailable,Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional
 2026-2-1-AM,2026,2,1,AM,Presidente,unavailable,Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional
@@ -545,7 +414,3 @@ id,year,round,office,uf,office_label,status,reason
 2026-2-1-SP,2026,2,1,SP,Presidente,unavailable,Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional
 2026-2-1-TO,2026,2,1,TO,Presidente,unavailable,Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional
 2026-2-3-DF,2026,2,3,DF,Governador,unavailable,Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional
-2026-2-5-DF,2026,2,5,DF,Senador,unavailable,Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional
-2026-2-6-DF,2026,2,6,DF,Deputado federal,unavailable,Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional
-2026-2-7-DF,2026,2,7,DF,Deputado estadual,unavailable,Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional
-2026-2-8-DF,2026,2,8,DF,Deputado distrital,unavailable,Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional

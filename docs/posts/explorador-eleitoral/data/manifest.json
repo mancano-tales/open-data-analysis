@@ -396,6 +396,600 @@
       "label": "2026 · 1º turno · Deputado distrital · DF",
       "url": "series/2026-1-8-DF.json",
       "status": "available"
+    },
+    {
+      "id": "2026-1-3-AM",
+      "year": 2026,
+      "round": 1,
+      "office": "3",
+      "office_label": "Governador",
+      "uf": "AM",
+      "label": "2026 · 1º turno · Governador · AM",
+      "url": "series/2026-1-3-AM.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-5-AM",
+      "year": 2026,
+      "round": 1,
+      "office": "5",
+      "office_label": "Senador",
+      "uf": "AM",
+      "label": "2026 · 1º turno · Senador · AM",
+      "url": "series/2026-1-5-AM.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-6-AM",
+      "year": 2026,
+      "round": 1,
+      "office": "6",
+      "office_label": "Deputado federal",
+      "uf": "AM",
+      "label": "2026 · 1º turno · Deputado federal · AM",
+      "url": "series/2026-1-6-AM.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-7-AM",
+      "year": 2026,
+      "round": 1,
+      "office": "7",
+      "office_label": "Deputado estadual",
+      "uf": "AM",
+      "label": "2026 · 1º turno · Deputado estadual · AM",
+      "url": "series/2026-1-7-AM.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-3-AP",
+      "year": 2026,
+      "round": 1,
+      "office": "3",
+      "office_label": "Governador",
+      "uf": "AP",
+      "label": "2026 · 1º turno · Governador · AP",
+      "url": "series/2026-1-3-AP.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-5-AP",
+      "year": 2026,
+      "round": 1,
+      "office": "5",
+      "office_label": "Senador",
+      "uf": "AP",
+      "label": "2026 · 1º turno · Senador · AP",
+      "url": "series/2026-1-5-AP.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-6-AP",
+      "year": 2026,
+      "round": 1,
+      "office": "6",
+      "office_label": "Deputado federal",
+      "uf": "AP",
+      "label": "2026 · 1º turno · Deputado federal · AP",
+      "url": "series/2026-1-6-AP.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-7-AP",
+      "year": 2026,
+      "round": 1,
+      "office": "7",
+      "office_label": "Deputado estadual",
+      "uf": "AP",
+      "label": "2026 · 1º turno · Deputado estadual · AP",
+      "url": "series/2026-1-7-AP.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-3-CE",
+      "year": 2026,
+      "round": 1,
+      "office": "3",
+      "office_label": "Governador",
+      "uf": "CE",
+      "label": "2026 · 1º turno · Governador · CE",
+      "url": "series/2026-1-3-CE.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-5-CE",
+      "year": 2026,
+      "round": 1,
+      "office": "5",
+      "office_label": "Senador",
+      "uf": "CE",
+      "label": "2026 · 1º turno · Senador · CE",
+      "url": "series/2026-1-5-CE.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-6-CE",
+      "year": 2026,
+      "round": 1,
+      "office": "6",
+      "office_label": "Deputado federal",
+      "uf": "CE",
+      "label": "2026 · 1º turno · Deputado federal · CE",
+      "url": "series/2026-1-6-CE.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-7-CE",
+      "year": 2026,
+      "round": 1,
+      "office": "7",
+      "office_label": "Deputado estadual",
+      "uf": "CE",
+      "label": "2026 · 1º turno · Deputado estadual · CE",
+      "url": "series/2026-1-7-CE.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-3-MA",
+      "year": 2026,
+      "round": 1,
+      "office": "3",
+      "office_label": "Governador",
+      "uf": "MA",
+      "label": "2026 · 1º turno · Governador · MA",
+      "url": "series/2026-1-3-MA.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-5-MA",
+      "year": 2026,
+      "round": 1,
+      "office": "5",
+      "office_label": "Senador",
+      "uf": "MA",
+      "label": "2026 · 1º turno · Senador · MA",
+      "url": "series/2026-1-5-MA.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-6-MA",
+      "year": 2026,
+      "round": 1,
+      "office": "6",
+      "office_label": "Deputado federal",
+      "uf": "MA",
+      "label": "2026 · 1º turno · Deputado federal · MA",
+      "url": "series/2026-1-6-MA.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-7-MA",
+      "year": 2026,
+      "round": 1,
+      "office": "7",
+      "office_label": "Deputado estadual",
+      "uf": "MA",
+      "label": "2026 · 1º turno · Deputado estadual · MA",
+      "url": "series/2026-1-7-MA.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-3-PA",
+      "year": 2026,
+      "round": 1,
+      "office": "3",
+      "office_label": "Governador",
+      "uf": "PA",
+      "label": "2026 · 1º turno · Governador · PA",
+      "url": "series/2026-1-3-PA.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-5-PA",
+      "year": 2026,
+      "round": 1,
+      "office": "5",
+      "office_label": "Senador",
+      "uf": "PA",
+      "label": "2026 · 1º turno · Senador · PA",
+      "url": "series/2026-1-5-PA.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-6-PA",
+      "year": 2026,
+      "round": 1,
+      "office": "6",
+      "office_label": "Deputado federal",
+      "uf": "PA",
+      "label": "2026 · 1º turno · Deputado federal · PA",
+      "url": "series/2026-1-6-PA.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-7-PA",
+      "year": 2026,
+      "round": 1,
+      "office": "7",
+      "office_label": "Deputado estadual",
+      "uf": "PA",
+      "label": "2026 · 1º turno · Deputado estadual · PA",
+      "url": "series/2026-1-7-PA.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-3-PI",
+      "year": 2026,
+      "round": 1,
+      "office": "3",
+      "office_label": "Governador",
+      "uf": "PI",
+      "label": "2026 · 1º turno · Governador · PI",
+      "url": "series/2026-1-3-PI.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-5-PI",
+      "year": 2026,
+      "round": 1,
+      "office": "5",
+      "office_label": "Senador",
+      "uf": "PI",
+      "label": "2026 · 1º turno · Senador · PI",
+      "url": "series/2026-1-5-PI.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-6-PI",
+      "year": 2026,
+      "round": 1,
+      "office": "6",
+      "office_label": "Deputado federal",
+      "uf": "PI",
+      "label": "2026 · 1º turno · Deputado federal · PI",
+      "url": "series/2026-1-6-PI.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-7-PI",
+      "year": 2026,
+      "round": 1,
+      "office": "7",
+      "office_label": "Deputado estadual",
+      "uf": "PI",
+      "label": "2026 · 1º turno · Deputado estadual · PI",
+      "url": "series/2026-1-7-PI.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-3-RN",
+      "year": 2026,
+      "round": 1,
+      "office": "3",
+      "office_label": "Governador",
+      "uf": "RN",
+      "label": "2026 · 1º turno · Governador · RN",
+      "url": "series/2026-1-3-RN.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-5-RN",
+      "year": 2026,
+      "round": 1,
+      "office": "5",
+      "office_label": "Senador",
+      "uf": "RN",
+      "label": "2026 · 1º turno · Senador · RN",
+      "url": "series/2026-1-5-RN.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-6-RN",
+      "year": 2026,
+      "round": 1,
+      "office": "6",
+      "office_label": "Deputado federal",
+      "uf": "RN",
+      "label": "2026 · 1º turno · Deputado federal · RN",
+      "url": "series/2026-1-6-RN.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-7-RN",
+      "year": 2026,
+      "round": 1,
+      "office": "7",
+      "office_label": "Deputado estadual",
+      "uf": "RN",
+      "label": "2026 · 1º turno · Deputado estadual · RN",
+      "url": "series/2026-1-7-RN.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-3-RR",
+      "year": 2026,
+      "round": 1,
+      "office": "3",
+      "office_label": "Governador",
+      "uf": "RR",
+      "label": "2026 · 1º turno · Governador · RR",
+      "url": "series/2026-1-3-RR.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-5-RR",
+      "year": 2026,
+      "round": 1,
+      "office": "5",
+      "office_label": "Senador",
+      "uf": "RR",
+      "label": "2026 · 1º turno · Senador · RR",
+      "url": "series/2026-1-5-RR.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-6-RR",
+      "year": 2026,
+      "round": 1,
+      "office": "6",
+      "office_label": "Deputado federal",
+      "uf": "RR",
+      "label": "2026 · 1º turno · Deputado federal · RR",
+      "url": "series/2026-1-6-RR.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-7-RR",
+      "year": 2026,
+      "round": 1,
+      "office": "7",
+      "office_label": "Deputado estadual",
+      "uf": "RR",
+      "label": "2026 · 1º turno · Deputado estadual · RR",
+      "url": "series/2026-1-7-RR.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-3-TO",
+      "year": 2026,
+      "round": 1,
+      "office": "3",
+      "office_label": "Governador",
+      "uf": "TO",
+      "label": "2026 · 1º turno · Governador · TO",
+      "url": "series/2026-1-3-TO.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-5-TO",
+      "year": 2026,
+      "round": 1,
+      "office": "5",
+      "office_label": "Senador",
+      "uf": "TO",
+      "label": "2026 · 1º turno · Senador · TO",
+      "url": "series/2026-1-5-TO.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-6-TO",
+      "year": 2026,
+      "round": 1,
+      "office": "6",
+      "office_label": "Deputado federal",
+      "uf": "TO",
+      "label": "2026 · 1º turno · Deputado federal · TO",
+      "url": "series/2026-1-6-TO.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-7-TO",
+      "year": 2026,
+      "round": 1,
+      "office": "7",
+      "office_label": "Deputado estadual",
+      "uf": "TO",
+      "label": "2026 · 1º turno · Deputado estadual · TO",
+      "url": "series/2026-1-7-TO.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-3-AL",
+      "year": 2026,
+      "round": 1,
+      "office": "3",
+      "office_label": "Governador",
+      "uf": "AL",
+      "label": "2026 · 1º turno · Governador · AL",
+      "url": "series/2026-1-3-AL.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-5-AL",
+      "year": 2026,
+      "round": 1,
+      "office": "5",
+      "office_label": "Senador",
+      "uf": "AL",
+      "label": "2026 · 1º turno · Senador · AL",
+      "url": "series/2026-1-5-AL.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-6-AL",
+      "year": 2026,
+      "round": 1,
+      "office": "6",
+      "office_label": "Deputado federal",
+      "uf": "AL",
+      "label": "2026 · 1º turno · Deputado federal · AL",
+      "url": "series/2026-1-6-AL.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-7-AL",
+      "year": 2026,
+      "round": 1,
+      "office": "7",
+      "office_label": "Deputado estadual",
+      "uf": "AL",
+      "label": "2026 · 1º turno · Deputado estadual · AL",
+      "url": "series/2026-1-7-AL.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-3-PB",
+      "year": 2026,
+      "round": 1,
+      "office": "3",
+      "office_label": "Governador",
+      "uf": "PB",
+      "label": "2026 · 1º turno · Governador · PB",
+      "url": "series/2026-1-3-PB.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-5-PB",
+      "year": 2026,
+      "round": 1,
+      "office": "5",
+      "office_label": "Senador",
+      "uf": "PB",
+      "label": "2026 · 1º turno · Senador · PB",
+      "url": "series/2026-1-5-PB.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-3-PE",
+      "year": 2026,
+      "round": 1,
+      "office": "3",
+      "office_label": "Governador",
+      "uf": "PE",
+      "label": "2026 · 1º turno · Governador · PE",
+      "url": "series/2026-1-3-PE.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-5-PE",
+      "year": 2026,
+      "round": 1,
+      "office": "5",
+      "office_label": "Senador",
+      "uf": "PE",
+      "label": "2026 · 1º turno · Senador · PE",
+      "url": "series/2026-1-5-PE.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-6-PE",
+      "year": 2026,
+      "round": 1,
+      "office": "6",
+      "office_label": "Deputado federal",
+      "uf": "PE",
+      "label": "2026 · 1º turno · Deputado federal · PE",
+      "url": "series/2026-1-6-PE.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-7-PE",
+      "year": 2026,
+      "round": 1,
+      "office": "7",
+      "office_label": "Deputado estadual",
+      "uf": "PE",
+      "label": "2026 · 1º turno · Deputado estadual · PE",
+      "url": "series/2026-1-7-PE.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-3-RO",
+      "year": 2026,
+      "round": 1,
+      "office": "3",
+      "office_label": "Governador",
+      "uf": "RO",
+      "label": "2026 · 1º turno · Governador · RO",
+      "url": "series/2026-1-3-RO.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-5-RO",
+      "year": 2026,
+      "round": 1,
+      "office": "5",
+      "office_label": "Senador",
+      "uf": "RO",
+      "label": "2026 · 1º turno · Senador · RO",
+      "url": "series/2026-1-5-RO.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-3-SE",
+      "year": 2026,
+      "round": 1,
+      "office": "3",
+      "office_label": "Governador",
+      "uf": "SE",
+      "label": "2026 · 1º turno · Governador · SE",
+      "url": "series/2026-1-3-SE.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-5-SE",
+      "year": 2026,
+      "round": 1,
+      "office": "5",
+      "office_label": "Senador",
+      "uf": "SE",
+      "label": "2026 · 1º turno · Senador · SE",
+      "url": "series/2026-1-5-SE.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-3-BA",
+      "year": 2026,
+      "round": 1,
+      "office": "3",
+      "office_label": "Governador",
+      "uf": "BA",
+      "label": "2026 · 1º turno · Governador · BA",
+      "url": "series/2026-1-3-BA.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-5-BA",
+      "year": 2026,
+      "round": 1,
+      "office": "5",
+      "office_label": "Senador",
+      "uf": "BA",
+      "label": "2026 · 1º turno · Senador · BA",
+      "url": "series/2026-1-5-BA.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-6-BA",
+      "year": 2026,
+      "round": 1,
+      "office": "6",
+      "office_label": "Deputado federal",
+      "uf": "BA",
+      "label": "2026 · 1º turno · Deputado federal · BA",
+      "url": "series/2026-1-6-BA.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-7-BA",
+      "year": 2026,
+      "round": 1,
+      "office": "7",
+      "office_label": "Deputado estadual",
+      "uf": "BA",
+      "label": "2026 · 1º turno · Deputado estadual · BA",
+      "url": "series/2026-1-7-BA.json",
+      "status": "available"
     }
   ],
   "availability": [
@@ -2646,8 +3240,8 @@
       "office": "3",
       "uf": "AL",
       "office_label": "Governador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-3-AM",
@@ -2656,8 +3250,8 @@
       "office": "3",
       "uf": "AM",
       "office_label": "Governador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-3-AP",
@@ -2666,8 +3260,8 @@
       "office": "3",
       "uf": "AP",
       "office_label": "Governador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-3-BA",
@@ -2676,8 +3270,8 @@
       "office": "3",
       "uf": "BA",
       "office_label": "Governador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-3-CE",
@@ -2686,8 +3280,8 @@
       "office": "3",
       "uf": "CE",
       "office_label": "Governador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-3-ES",
@@ -2716,8 +3310,8 @@
       "office": "3",
       "uf": "MA",
       "office_label": "Governador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-3-MG",
@@ -2756,8 +3350,8 @@
       "office": "3",
       "uf": "PA",
       "office_label": "Governador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-3-PB",
@@ -2766,8 +3360,8 @@
       "office": "3",
       "uf": "PB",
       "office_label": "Governador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-3-PE",
@@ -2776,8 +3370,8 @@
       "office": "3",
       "uf": "PE",
       "office_label": "Governador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-3-PI",
@@ -2786,8 +3380,8 @@
       "office": "3",
       "uf": "PI",
       "office_label": "Governador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-3-PR",
@@ -2816,8 +3410,8 @@
       "office": "3",
       "uf": "RN",
       "office_label": "Governador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-3-RO",
@@ -2826,8 +3420,8 @@
       "office": "3",
       "uf": "RO",
       "office_label": "Governador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-3-RR",
@@ -2836,8 +3430,8 @@
       "office": "3",
       "uf": "RR",
       "office_label": "Governador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-3-RS",
@@ -2866,8 +3460,8 @@
       "office": "3",
       "uf": "SE",
       "office_label": "Governador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-3-SP",
@@ -2886,8 +3480,8 @@
       "office": "3",
       "uf": "TO",
       "office_label": "Governador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-5-AL",
@@ -2896,8 +3490,8 @@
       "office": "5",
       "uf": "AL",
       "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-5-AM",
@@ -2906,8 +3500,8 @@
       "office": "5",
       "uf": "AM",
       "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-5-AP",
@@ -2916,8 +3510,8 @@
       "office": "5",
       "uf": "AP",
       "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-5-BA",
@@ -2926,8 +3520,8 @@
       "office": "5",
       "uf": "BA",
       "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-5-CE",
@@ -2936,8 +3530,8 @@
       "office": "5",
       "uf": "CE",
       "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-5-ES",
@@ -2966,8 +3560,8 @@
       "office": "5",
       "uf": "MA",
       "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-5-MG",
@@ -3006,8 +3600,8 @@
       "office": "5",
       "uf": "PA",
       "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-5-PB",
@@ -3016,8 +3610,8 @@
       "office": "5",
       "uf": "PB",
       "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-5-PE",
@@ -3026,8 +3620,8 @@
       "office": "5",
       "uf": "PE",
       "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-5-PI",
@@ -3036,8 +3630,8 @@
       "office": "5",
       "uf": "PI",
       "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-5-PR",
@@ -3066,8 +3660,8 @@
       "office": "5",
       "uf": "RN",
       "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-5-RO",
@@ -3076,8 +3670,8 @@
       "office": "5",
       "uf": "RO",
       "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-5-RR",
@@ -3086,8 +3680,8 @@
       "office": "5",
       "uf": "RR",
       "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-5-RS",
@@ -3116,8 +3710,8 @@
       "office": "5",
       "uf": "SE",
       "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-5-SP",
@@ -3136,8 +3730,8 @@
       "office": "5",
       "uf": "TO",
       "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-6-AL",
@@ -3146,8 +3740,8 @@
       "office": "6",
       "uf": "AL",
       "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-6-AM",
@@ -3156,8 +3750,8 @@
       "office": "6",
       "uf": "AM",
       "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-6-AP",
@@ -3166,8 +3760,8 @@
       "office": "6",
       "uf": "AP",
       "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-6-BA",
@@ -3176,8 +3770,8 @@
       "office": "6",
       "uf": "BA",
       "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-6-CE",
@@ -3186,8 +3780,8 @@
       "office": "6",
       "uf": "CE",
       "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-6-ES",
@@ -3216,8 +3810,8 @@
       "office": "6",
       "uf": "MA",
       "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-6-MG",
@@ -3256,8 +3850,8 @@
       "office": "6",
       "uf": "PA",
       "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-6-PB",
@@ -3267,7 +3861,7 @@
       "uf": "PB",
       "office_label": "Deputado federal",
       "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "reason": "Sem auditoria oficial reconciliada para esta disputa"
     },
     {
       "id": "2026-1-6-PE",
@@ -3276,8 +3870,8 @@
       "office": "6",
       "uf": "PE",
       "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-6-PI",
@@ -3286,8 +3880,8 @@
       "office": "6",
       "uf": "PI",
       "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-6-PR",
@@ -3316,8 +3910,8 @@
       "office": "6",
       "uf": "RN",
       "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-6-RO",
@@ -3327,7 +3921,7 @@
       "uf": "RO",
       "office_label": "Deputado federal",
       "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "reason": "Auditoria não cobre todas as UFs desta disputa"
     },
     {
       "id": "2026-1-6-RR",
@@ -3336,8 +3930,8 @@
       "office": "6",
       "uf": "RR",
       "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-6-RS",
@@ -3386,8 +3980,8 @@
       "office": "6",
       "uf": "TO",
       "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-7-AL",
@@ -3396,8 +3990,8 @@
       "office": "7",
       "uf": "AL",
       "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-7-AM",
@@ -3406,8 +4000,8 @@
       "office": "7",
       "uf": "AM",
       "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-7-AP",
@@ -3416,8 +4010,8 @@
       "office": "7",
       "uf": "AP",
       "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-7-BA",
@@ -3426,8 +4020,8 @@
       "office": "7",
       "uf": "BA",
       "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-7-CE",
@@ -3436,8 +4030,8 @@
       "office": "7",
       "uf": "CE",
       "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-7-ES",
@@ -3466,8 +4060,8 @@
       "office": "7",
       "uf": "MA",
       "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-7-MG",
@@ -3506,8 +4100,8 @@
       "office": "7",
       "uf": "PA",
       "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-7-PB",
@@ -3517,7 +4111,7 @@
       "uf": "PB",
       "office_label": "Deputado estadual",
       "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "reason": "Sem auditoria oficial reconciliada para esta disputa"
     },
     {
       "id": "2026-1-7-PE",
@@ -3526,8 +4120,8 @@
       "office": "7",
       "uf": "PE",
       "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-7-PI",
@@ -3536,8 +4130,8 @@
       "office": "7",
       "uf": "PI",
       "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-7-PR",
@@ -3566,8 +4160,8 @@
       "office": "7",
       "uf": "RN",
       "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-7-RO",
@@ -3577,7 +4171,7 @@
       "uf": "RO",
       "office_label": "Deputado estadual",
       "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "reason": "Auditoria não cobre todas as UFs desta disputa"
     },
     {
       "id": "2026-1-7-RR",
@@ -3586,8 +4180,8 @@
       "office": "7",
       "uf": "RR",
       "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-7-RS",
@@ -3636,258 +4230,8 @@
       "office": "7",
       "uf": "TO",
       "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-AL",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "AL",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-AM",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "AM",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-AP",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "AP",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-BA",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "BA",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-CE",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "CE",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-ES",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "ES",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-GO",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "GO",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-MA",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "MA",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-MG",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "MG",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-MS",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "MS",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-MT",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "MT",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-PA",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "PA",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-PB",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "PB",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-PE",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "PE",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-PI",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "PI",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-PR",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "PR",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-RJ",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "RJ",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-RN",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "RN",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-RO",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "RO",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-RR",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "RR",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-RS",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "RS",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-SC",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "SC",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-SE",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "SE",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-SP",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "SP",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-1-8-TO",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "TO",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-3-AC",
@@ -3928,16 +4272,6 @@
       "office_label": "Deputado estadual",
       "status": "available",
       "reason": "Dados processados com universo de renda fixo e cobertura documentada"
-    },
-    {
-      "id": "2026-1-8-AC",
-      "year": 2026,
-      "round": 1,
-      "office": "8",
-      "uf": "AC",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Auditoria não cobre todas as UFs desta disputa"
     },
     {
       "id": "2026-1-1-AC",
@@ -4250,16 +4584,6 @@
       "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
-      "id": "2026-1-7-DF",
-      "year": 2026,
-      "round": 1,
-      "office": "7",
-      "uf": "DF",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Auditoria não cobre todas as UFs desta disputa"
-    },
-    {
       "id": "2026-1-8-DF",
       "year": 2026,
       "round": 1,
@@ -4520,1052 +4844,12 @@
       "reason": "Sem cache normalizado de votação por local para esta disputa"
     },
     {
-      "id": "2026-2-5-AL",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "AL",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-AM",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "AM",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-AP",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "AP",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-BA",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "BA",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-CE",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "CE",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-ES",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "ES",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-GO",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "GO",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-MA",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "MA",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-MG",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "MG",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-MS",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "MS",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-MT",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "MT",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-PA",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "PA",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-PB",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "PB",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-PE",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "PE",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-PI",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "PI",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-PR",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "PR",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-RJ",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "RJ",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-RN",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "RN",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-RO",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "RO",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-RR",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "RR",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-RS",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "RS",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-SC",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "SC",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-SE",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "SE",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-SP",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "SP",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-5-TO",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "TO",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-AL",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "AL",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-AM",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "AM",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-AP",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "AP",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-BA",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "BA",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-CE",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "CE",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-ES",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "ES",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-GO",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "GO",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-MA",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "MA",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-MG",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "MG",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-MS",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "MS",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-MT",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "MT",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-PA",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "PA",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-PB",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "PB",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-PE",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "PE",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-PI",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "PI",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-PR",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "PR",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-RJ",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "RJ",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-RN",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "RN",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-RO",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "RO",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-RR",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "RR",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-RS",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "RS",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-SC",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "SC",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-SE",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "SE",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-SP",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "SP",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-6-TO",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "TO",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-AL",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "AL",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-AM",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "AM",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-AP",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "AP",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-BA",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "BA",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-CE",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "CE",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-ES",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "ES",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-GO",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "GO",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-MA",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "MA",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-MG",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "MG",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-MS",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "MS",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-MT",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "MT",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-PA",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "PA",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-PB",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "PB",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-PE",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "PE",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-PI",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "PI",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-PR",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "PR",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-RJ",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "RJ",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-RN",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "RN",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-RO",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "RO",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-RR",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "RR",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-RS",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "RS",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-SC",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "SC",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-SE",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "SE",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-SP",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "SP",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-7-TO",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "TO",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-AL",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "AL",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-AM",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "AM",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-AP",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "AP",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-BA",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "BA",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-CE",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "CE",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-ES",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "ES",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-GO",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "GO",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-MA",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "MA",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-MG",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "MG",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-MS",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "MS",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-MT",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "MT",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-PA",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "PA",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-PB",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "PB",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-PE",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "PE",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-PI",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "PI",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-PR",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "PR",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-RJ",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "RJ",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-RN",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "RN",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-RO",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "RO",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-RR",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "RR",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-RS",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "RS",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-SC",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "SC",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-SE",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "SE",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-SP",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "SP",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
-      "id": "2026-2-8-TO",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "TO",
-      "office_label": "Deputado distrital",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
-    },
-    {
       "id": "2026-2-3-AC",
       "year": 2026,
       "round": 2,
       "office": "3",
       "uf": "AC",
       "office_label": "Governador",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
-    },
-    {
-      "id": "2026-2-5-AC",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "AC",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
-    },
-    {
-      "id": "2026-2-6-AC",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "AC",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
-    },
-    {
-      "id": "2026-2-7-AC",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "AC",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
-    },
-    {
-      "id": "2026-2-8-AC",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "AC",
-      "office_label": "Deputado distrital",
       "status": "unavailable",
       "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
     },
@@ -5856,46 +5140,6 @@
       "office": "3",
       "uf": "DF",
       "office_label": "Governador",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
-    },
-    {
-      "id": "2026-2-5-DF",
-      "year": 2026,
-      "round": 2,
-      "office": "5",
-      "uf": "DF",
-      "office_label": "Senador",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
-    },
-    {
-      "id": "2026-2-6-DF",
-      "year": 2026,
-      "round": 2,
-      "office": "6",
-      "uf": "DF",
-      "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
-    },
-    {
-      "id": "2026-2-7-DF",
-      "year": 2026,
-      "round": 2,
-      "office": "7",
-      "uf": "DF",
-      "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
-    },
-    {
-      "id": "2026-2-8-DF",
-      "year": 2026,
-      "round": 2,
-      "office": "8",
-      "uf": "DF",
-      "office_label": "Deputado distrital",
       "status": "unavailable",
       "reason": "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
     }
