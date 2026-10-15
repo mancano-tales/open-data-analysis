@@ -21,6 +21,7 @@ open-data-analysis/
 ├── shared-pipeline/     # scripts upstream compartilhados por várias figuras
 │   ├── pnadc/           # download, harmonização e splicing de PNAD/PNAD Contínua
 │   ├── censo/           # pontos de validação via Censo Demográfico
+│   ├── eleicoes/        # votos do TSE e renda setorial do Censo 2022 via censobr/geobr
 │   ├── censup/          # download e organização de microdados do Censo da Educação Superior
 │   ├── sedap/           # cliente e extração via SEDAP+ (INEP, dado restrito)
 │   └── ipca/            # série de mensalidades via IPCA/SIDRA
@@ -37,7 +38,7 @@ open-data-analysis/
 
 1. Instale os pacotes R usados pelos scripts — entre os mais comuns:
    `tidyverse`, `arrow`, `here`, `survey`, `PNADcIBGE`, `censobr`, `sidrar`,
-   `ipeadatar`, `httr2`, `archive`, `data.table`, `ggh4x`, `patchwork`. Cada
+   `ipeadatar`, `httr2`, `archive`, `data.table`, `ggh4x`, `patchwork`, `geobr`, `sf`. Cada
    script declara seus próprios `library()` no topo — instale conforme os
    erros de pacote ausente aparecerem.
 2. Abra o projeto pela raiz (`here::here()` apontando para esta pasta). A raiz
