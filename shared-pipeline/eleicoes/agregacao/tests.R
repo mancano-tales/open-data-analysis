@@ -117,6 +117,21 @@ attr(certified_senate, "vote_audit") <- senate_audit
 senate_certified <- eleicao_vote_audit(certified_senate, 2026, 1, 5, "SP")
 stopifnot(!senate_certified$provisional, !length(senate_certified$snapshots))
 
+# Domestic national audits must exclude overseas votes even when the source
+# cache legitimately certifies them. Missing domestic states still fail.
+domestic <- data.table(year=2010L, round=1L, office=1L,
+  uf=c(unname(eleicao_ufs), "ZZ"), votes=c(rep(10,27), 999), vote_type="candidate")
+domestic_checks <- domestic[, .(year, round, office, uf,
+  official_valid_votes=votes, computed_valid_votes=votes, difference=0)]
+attr(domestic,"vote_audit") <- list(status="reconciled", method="test fixture", checks=domestic_checks)
+domestic_audit <- eleicao_vote_audit(domestic,2010,1,1,"BR")
+stopifnot(domestic_audit$official_valid_votes==270, domestic_audit$computed_valid_votes==270,
+  domestic_audit$checked_units==27, !"ZZ" %in% domestic_audit$ufs)
+incomplete_domestic <- copy(domestic)
+attr(incomplete_domestic,"vote_audit") <- list(status="reconciled", method="test fixture",
+  checks=domestic_checks[uf!="AC"])
+expect_error(eleicao_vote_audit(incomplete_domestic,2010,1,1,"BR"))
+
 # National and state income references share votes/audit/coverage, but use
 # different COMPLETE income universes. SP incomes 1..100 and RJ 101..200
 # deliberately differ, so a national percentile is not a state percentile.

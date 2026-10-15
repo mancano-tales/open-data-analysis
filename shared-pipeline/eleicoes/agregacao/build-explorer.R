@@ -136,7 +136,8 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
           fingerprint <- paste(if(reference == "state") "state-income-valid-v1" else "fixed-income-valid-v1",income_hash,link_hash,vote_hash,max_distance_m,id,sep=":")
           cached <- if(file.exists(destination))tryCatch(jsonlite::read_json(destination),error=function(e)NULL) else NULL
           if(!is.null(cached) && identical(cached$metadata$export_fingerprint,fingerprint) &&
-             identical(cached$metadata$vote_audit$status,"reconciled")) {
+             identical(cached$metadata$vote_audit$status,"reconciled") &&
+             !"ZZ" %in% cached$metadata$vote_audit$ufs) {
             item <- eleicao_manifest_item(cached,paste0("series/",name))
           } else {
             dataset <- eleicao_aggregate_contest(votes, universe, links, yr, tr, oc, state,

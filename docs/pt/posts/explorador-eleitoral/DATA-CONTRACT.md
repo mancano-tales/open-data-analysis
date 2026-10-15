@@ -1,6 +1,11 @@
 # Static aggregate explorer data contract, version 1
 
 `app.js` reads `data/manifest.json`, then fetches only the selected series.
+Source aggregates are plain `.json`; the published manifest keeps the same
+schema but points to `.json.gz` files. The browser decodes gzip before parsing
+the same data structure. EN and PT share the canonical published data under
+`posts/explorador-eleitoral/data/`; no second PT dataset copy is required.
+See [PUBLISHING.md](PUBLISHING.md) for build order, backup checks and URL migration.
 No raw electoral or census microdata belong in this directory. Serve through
 Quarto preview or an HTTP server; browser `file://` blocks JSON fetches.
 
