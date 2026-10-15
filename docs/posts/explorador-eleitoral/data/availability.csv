@@ -285,17 +285,17 @@ id,year,round,office,uf,office_label,status,reason
 2026-1-6-MS,2026,1,6,MS,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-6-MT,2026,1,6,MT,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-6-PA,2026,1,6,PA,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-6-PB,2026,1,6,PB,Deputado federal,unavailable,Sem auditoria oficial reconciliada para esta disputa
+2026-1-6-PB,2026,1,6,PB,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-PE,2026,1,6,PE,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-PI,2026,1,6,PI,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-PR,2026,1,6,PR,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-6-RJ,2026,1,6,RJ,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-6-RN,2026,1,6,RN,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-6-RO,2026,1,6,RO,Deputado federal,unavailable,Auditoria não cobre todas as UFs desta disputa
+2026-1-6-RO,2026,1,6,RO,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-RR,2026,1,6,RR,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-RS,2026,1,6,RS,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-6-SC,2026,1,6,SC,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-6-SE,2026,1,6,SE,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-6-SE,2026,1,6,SE,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-SP,2026,1,6,SP,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-6-TO,2026,1,6,TO,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-AL,2026,1,7,AL,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
@@ -310,17 +310,17 @@ id,year,round,office,uf,office_label,status,reason
 2026-1-7-MS,2026,1,7,MS,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-7-MT,2026,1,7,MT,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-7-PA,2026,1,7,PA,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-7-PB,2026,1,7,PB,Deputado estadual,unavailable,Sem auditoria oficial reconciliada para esta disputa
+2026-1-7-PB,2026,1,7,PB,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-PE,2026,1,7,PE,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-PI,2026,1,7,PI,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-PR,2026,1,7,PR,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-7-RJ,2026,1,7,RJ,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-7-RN,2026,1,7,RN,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-7-RO,2026,1,7,RO,Deputado estadual,unavailable,Auditoria não cobre todas as UFs desta disputa
+2026-1-7-RO,2026,1,7,RO,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-RR,2026,1,7,RR,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-RS,2026,1,7,RS,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-7-SC,2026,1,7,SC,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-7-SE,2026,1,7,SE,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-7-SE,2026,1,7,SE,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-SP,2026,1,7,SP,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
 2026-1-7-TO,2026,1,7,TO,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-3-AC,2026,1,3,AC,Governador,available,Dados processados com universo de renda fixo e cobertura documentada

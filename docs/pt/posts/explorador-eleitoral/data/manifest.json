@@ -990,6 +990,72 @@
       "label": "2026 · 1º turno · Deputado estadual · BA",
       "url": "series/2026-1-7-BA.json",
       "status": "available"
+    },
+    {
+      "id": "2026-1-6-PB",
+      "year": 2026,
+      "round": 1,
+      "office": "6",
+      "office_label": "Deputado federal",
+      "uf": "PB",
+      "label": "2026 · 1º turno · Deputado federal · PB",
+      "url": "series/2026-1-6-PB.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-7-PB",
+      "year": 2026,
+      "round": 1,
+      "office": "7",
+      "office_label": "Deputado estadual",
+      "uf": "PB",
+      "label": "2026 · 1º turno · Deputado estadual · PB",
+      "url": "series/2026-1-7-PB.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-6-RO",
+      "year": 2026,
+      "round": 1,
+      "office": "6",
+      "office_label": "Deputado federal",
+      "uf": "RO",
+      "label": "2026 · 1º turno · Deputado federal · RO",
+      "url": "series/2026-1-6-RO.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-7-RO",
+      "year": 2026,
+      "round": 1,
+      "office": "7",
+      "office_label": "Deputado estadual",
+      "uf": "RO",
+      "label": "2026 · 1º turno · Deputado estadual · RO",
+      "url": "series/2026-1-7-RO.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-6-SE",
+      "year": 2026,
+      "round": 1,
+      "office": "6",
+      "office_label": "Deputado federal",
+      "uf": "SE",
+      "label": "2026 · 1º turno · Deputado federal · SE",
+      "url": "series/2026-1-6-SE.json",
+      "status": "available"
+    },
+    {
+      "id": "2026-1-7-SE",
+      "year": 2026,
+      "round": 1,
+      "office": "7",
+      "office_label": "Deputado estadual",
+      "uf": "SE",
+      "label": "2026 · 1º turno · Deputado estadual · SE",
+      "url": "series/2026-1-7-SE.json",
+      "status": "available"
     }
   ],
   "availability": [
@@ -3860,8 +3926,8 @@
       "office": "6",
       "uf": "PB",
       "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-6-PE",
@@ -3920,8 +3986,8 @@
       "office": "6",
       "uf": "RO",
       "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Auditoria não cobre todas as UFs desta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-6-RR",
@@ -3960,8 +4026,8 @@
       "office": "6",
       "uf": "SE",
       "office_label": "Deputado federal",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-6-SP",
@@ -4110,8 +4176,8 @@
       "office": "7",
       "uf": "PB",
       "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem auditoria oficial reconciliada para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-7-PE",
@@ -4170,8 +4236,8 @@
       "office": "7",
       "uf": "RO",
       "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Auditoria não cobre todas as UFs desta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-7-RR",
@@ -4210,8 +4276,8 @@
       "office": "7",
       "uf": "SE",
       "office_label": "Deputado estadual",
-      "status": "unavailable",
-      "reason": "Sem cache normalizado de votação por local para esta disputa"
+      "status": "available",
+      "reason": "Dados processados com universo de renda fixo e cobertura documentada"
     },
     {
       "id": "2026-1-7-SP",
