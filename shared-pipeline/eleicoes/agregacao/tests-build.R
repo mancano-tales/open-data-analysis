@@ -32,6 +32,20 @@ stopifnot(manifest$schema_version == 1L, length(manifest$series) == 2L,
           file.exists(file.path(output, "availability.csv")))
 parsed <- jsonlite::read_json(file.path(output, "manifest.json"), simplifyVector = TRUE)
 stopifnot(nrow(parsed$series) == 2L, parsed$metadata$percentile_scope == "BR")
+# Incremental export preserves unrelated published series and reuses an exact
+# input fingerprint. A changed vote cache must invalidate that shortcut.
+original_aggregate <- eleicao_aggregate_contest
+eleicao_aggregate_contest <- function(...) stop("Unexpected aggregation on unchanged inputs")
+incremental <- eleicao_build_explorer(output,cache,spatial,file.path(folder,"renda.rds"),
+  targets[year==2026 & round==1 & office==1 & uf=="SP"],incremental=TRUE,flush_progress=TRUE)
+eleicao_aggregate_contest <- original_aggregate
+stopifnot(length(incremental$series)==2L)
+changed_votes <- copy(votes);changed_votes[1L,votes:=votes+1]
+saveRDS(changed_votes,file.path(cache,"places-2026-BR-1.rds"))
+invalidated <- eleicao_build_explorer(output,cache,spatial,file.path(folder,"renda.rds"),
+  targets[year==2026 & round==1 & office==1 & uf=="SP"],incremental=TRUE)
+stopifnot(length(invalidated$series)==1L,invalidated$series[[1L]]$uf=="BR")
+saveRDS(votes,file.path(cache,"places-2026-BR-1.rds"))
 planned <- eleicao_prepare_ufs(c("SP", "DF", "SP"), dry_run = TRUE)
 stopifnot(nrow(planned) == 2L, all(planned$status == "planned"), all(is.na(planned$exit_code)))
 # A missing national link cannot be promoted from fragments to available.

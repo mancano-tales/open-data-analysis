@@ -19,8 +19,9 @@ eleicao_tract_code <- function(x) {
 
 eleicao_income_universe <- function(renda) {
   eleicao_require()
-  x <- data.table::copy(data.table::as.data.table(renda))
+  x <- data.table::as.data.table(renda)
   if (!all(c("code_tract", "V06001", "V06004") %in% names(x))) stop("Missing census income columns")
+  x <- x[, .(code_tract, V06001, V06004)]
   x[, code_tract := eleicao_tract_code(code_tract)]
   if (anyNA(x$code_tract) || anyDuplicated(x$code_tract)) stop("Missing/duplicate census tract")
   x <- x[!is.na(V06001) & V06001 > 0 & is.finite(V06004) & V06004 > 0,
@@ -77,12 +78,12 @@ eleicao_aggregate_contest <- function(votes, universe, links, year, round, offic
   if (length(max_distance_m) != 1L || !is.finite(max_distance_m) || max_distance_m <= 0) stop("Invalid distance")
   vote_audit <- if (require_reconciled) eleicao_vote_audit(votes, year_arg, round_arg, office_arg, uf_arg) else
     list(status = "unreconciled", method = "Desativado explicitamente para verificação de fixtures; não publicar")
-  x <- data.table::copy(data.table::as.data.table(votes))
+  x <- data.table::as.data.table(votes)
   required <- c("year", "round", "uf", "municipality_tse", "zone", "place", "office",
                 "candidate_id", "candidate_name", "votes", "vote_type")
   if (!all(required %in% names(x))) stop("Missing normalized vote columns")
-  x <- x[year == year_arg & round == round_arg & office == office_arg & uf != "ZZ"]
-  if (uf_arg != "BR") x <- x[uf == uf_arg]
+  x <- x[year == year_arg & round == round_arg & office == office_arg & uf != "ZZ" &
+           (uf_arg == "BR" | uf == uf_arg)]
   if (!nrow(x)) stop("No results for requested contest")
   if ("election_id" %in% names(x) && data.table::uniqueN(x$election_id[!is.na(x$election_id)]) > 1L) {
     stop("Multiple election identities: do not pool supplemental elections")

@@ -4,7 +4,7 @@ source("shared-pipeline/eleicoes/agregacao/centis.R")
 
 eleicao_prepare_ufs <- function(ufs = unname(eleicao_ufs), dry_run = FALSE, year = 2026L,
                                 offices = c(3L, 5L, 6L, 7L, 8L),
-                                prepare_script = "shared-pipeline/eleicoes/historico/prepare.R") {
+                                prepare_script = "shared-pipeline/eleicoes/historico/legal-validity.R") {
   ufs <- unique(toupper(ufs)); year <- as.integer(year); offices <- unique(as.integer(offices))
   if (anyNA(ufs) || !length(ufs) || any(!ufs %in% unname(eleicao_ufs))) stop("Invalid state list")
   if (length(year) != 1L || is.na(year) || year %% 4L != 2L) stop("Expected general-election year")

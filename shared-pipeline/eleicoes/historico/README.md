@@ -42,8 +42,11 @@ todos os votos sejam válidos ou que nenhum seja válido. Uma validade parcial
 provoca erro: não há rateio de totais oficiais entre seções. Códigos nominais
 sem correspondência no cadastro precisam fechar exatamente com os nulos
 técnicos oficiais. A soma nominal válida, a legenda válida e o total válido
-precisam coincidir em **todas** as zonas. Qualquer divergência impede salvar
-o cache certificado. Os CSVs de auditoria ficam junto aos RDS.
+precisam coincidir em **todas** as zonas de uma disputa (ano, turno, eleição,
+cargo e UF). Disputas divergentes são excluídas integralmente do cache
+certificado e registradas em `vote_audit$unavailable`. Outras disputas da
+mesma UF podem ser aceitas se todos os seus testes passarem. Os CSVs de
+auditoria preservam também as divergências e ficam junto aos RDS.
 
 Tabelas históricas sem campo de destinação/validade nominal usam um caminho
 mais restrito: mantêm provisoriamente todos os votos nominais e só são

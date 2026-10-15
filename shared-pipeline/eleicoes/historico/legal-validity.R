@@ -11,6 +11,15 @@ legal_resource_csv <- function(year, dataset_prefix, uf, cache_dir="data-raw/ele
     httr2::request(hit$url) |> httr2::req_timeout(1800) |> httr2::req_retry(max_tries=3) |> httr2::req_perform(path=paste0(zip,".part"))
     if(!file.rename(paste0(zip,".part"),zip)) stop("Cannot save legal ZIP")
   }
+  if(dataset_prefix=="votacao_candidato_munzona" && uf!="BR") {
+    catalog <- file.path(cache_dir,paste0("candidate-catalog-",year))
+    provenance <- file.path(catalog,"provenance.json")
+    target_catalog <- file.path(catalog,paste0(uf,".csv"))
+    if(file.exists(provenance)&&file.exists(target_catalog)) {
+      info <- jsonlite::read_json(provenance)
+      if(identical(info$source_md5,unname(tools::md5sum(zip)))) return(target_catalog)
+    }
+  }
   members <- unzip(zip,list=TRUE)$Name
   member <- members[grepl(paste0("(^|/)",dataset_prefix,"_",year,"_",uf,"[.]csv$"),members,ignore.case=TRUE)]
   if(length(member)!=1L) stop("No unique legal CSV for ",year,"/",uf)
@@ -31,8 +40,23 @@ legal_all_or_zero <- function(total,valid) {
 legal_reconcile_places <- function(year,uf,offices=c(3L,5L,6L,7L,8L),cache_dir="data-raw/eleicoes-renda/historico") {
   tse_require()
   path <- tse_download(year,uf,cache_dir)
-  raw <- tse_read_votes(path,year,offices=offices,rounds=c(1L,2L),ufs=if(uf=="BR")NULL else uf)
+  raw_cache <- file.path(cache_dir,paste0("places-",year,"-",uf,"-",paste(offices,collapse="_"),".rds"))
+  raw <- if(file.exists(raw_cache))readRDS(raw_cache) else NULL
+  source_md5 <- unname(tools::md5sum(path))
+  if(is.null(raw)||!identical(attr(raw,"normalizer_version"),2L)||!identical(attr(raw,"source_md5"),source_md5))
+    raw <- tse_read_votes(path,year,offices=offices,rounds=c(1L,2L),ufs=if(uf=="BR")NULL else uf)
   raw <- raw[uf != "ZZ"]
+  # Validity is decided at municipality/zone/ballot-number level. Grouping
+  # places first is exact for all-or-zero decisions and bounds join memory.
+  # If replacement candidates share a number with mixed validity, the partial
+  # count is rejected below rather than guessed at section level.
+  if("section" %in% names(raw)) {
+    raw <- tse_place_votes(raw)
+    attr(raw,"normalizer_version") <- 2L
+    attr(raw,"source_md5") <- source_md5
+    saveRDS(raw,raw_cache)
+    invisible(gc())
+  }
   cand_path <- legal_resource_csv(year,"votacao_candidato_munzona",uf,cache_dir)
   cand_columns <- c("ANO_ELEICAO","NR_TURNO","CD_ELEICAO","SG_UF","CD_MUNICIPIO","NR_ZONA",
     "CD_CARGO","SQ_CANDIDATO","NR_CANDIDATO","NR_PARTIDO","SG_PARTIDO","NM_TIPO_DESTINACAO_VOTOS",
@@ -115,13 +139,21 @@ legal_reconcile_places <- function(year,uf,offices=c(3L,5L,6L,7L,8L),cache_dir="
       computed_party_valid==official_party_valid & technical_computed==technical_official]
   output <- file.path(cache_dir,paste0("places-",year,"-",uf,"-",paste(offices,collapse="_"),"-legal.rds"))
   data.table::fwrite(checks,sub("[.]rds$","-audit.csv",output))
-  if(anyNA(checks$reconciled)||!all(checks$reconciled)) stop("Legal reconciliation failed; inspect ",sub("[.]rds$","-audit.csv",output))
+  contest_keys <- c("year","round","election_id","office","uf")
+  contests <- checks[,.(reconciled=all(!is.na(reconciled)&reconciled)),by=contest_keys]
+  failed_contests <- contests[reconciled==FALSE]
+  good_contests <- contests[reconciled==TRUE,..contest_keys]
+  if(!nrow(good_contests)) stop("No reconciled contest; inspect ",sub("[.]rds$","-audit.csv",output))
+  if(nrow(failed_contests)) warning("Some contests failed official reconciliation and are EXCLUDED from certified cache. Inspect audit CSV.")
+  legal <- merge(legal,good_contests,by=contest_keys,all=FALSE,sort=FALSE)
+  checks <- merge(checks,good_contests,by=contest_keys,all=FALSE,sort=FALSE)
   places <- tse_place_votes(legal)
   aggregate_checks <- checks[,.(official_valid_votes=sum(official_valid_votes),computed_valid_votes=sum(computed_valid_votes),
       difference=sum(difference),zones=.N,reconciled=all(reconciled)),by=.(year,round,election_id,office,uf)]
   audit_method <- if(legacy_nominal) "Legacy candidate totals without legal-allocation fields: all nominal votes retained only after exact official nominal, party, valid-total and technical-null checks in EVERY municipality/zone; no allocation" else "Official candidate municipality/zone all-or-zero validity; official party conversion; exact zone/cargo totals and technical null checks; no allocation"
-  attr(places,"vote_audit") <- list(status="reconciled",method=audit_method,checks=as.data.frame(aggregate_checks))
-  attr(places,"source_md5") <- unname(tools::md5sum(path))
+  attr(places,"vote_audit") <- list(status="reconciled",method=audit_method,checks=as.data.frame(aggregate_checks),
+    unavailable=as.data.frame(failed_contests))
+  attr(places,"source_md5") <- source_md5
   attr(places,"normalizer_version") <- 2L
   saveRDS(places,output)
   message("Legal reconciliation PASS: ",output)
@@ -132,5 +164,7 @@ if(sys.nframe()==0L) {
   args<-commandArgs(trailingOnly=TRUE)
   year<-if(length(args))as.integer(args[1]) else 2026L
   ufs<-if(length(args)>=2)strsplit(args[2],",",fixed=TRUE)[[1]] else c("AC","DF")
-  for(state in ufs) {x<-legal_reconcile_places(year,state);rm(x);invisible(gc())}
+  offices<-if(length(args)>=3)as.integer(strsplit(args[3],",",fixed=TRUE)[[1]]) else c(3L,5L,6L,7L,8L)
+  data.table::setDTthreads(2L)
+  for(state in ufs) {x<-legal_reconcile_places(year,state,offices);rm(x);invisible(gc())}
 }

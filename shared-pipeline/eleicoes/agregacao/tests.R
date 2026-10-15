@@ -1,3 +1,5 @@
+if (.Platform$OS.type == "windows" && !isTRUE(l10n_info()[["UTF-8"]]))
+  invisible(Sys.setlocale("LC_CTYPE", ".UTF-8"))
 source("shared-pipeline/eleicoes/agregacao/centis.R", encoding = "UTF-8")
 library(data.table)
 setDTthreads(2L)

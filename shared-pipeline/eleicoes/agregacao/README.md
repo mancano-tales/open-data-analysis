@@ -89,7 +89,9 @@ normalizador versão 2 e prefere `places-ANO-UF-CARGOS-legal.rds`, com votos
 legalmente válidos e auditoria oficial. Lê mapas completos
 `espacial/links-ANO-TURNO.rds`.
 Seu padrão considera presidência nacional e por UF em 2010, 2014, 2018,
-2022 e 2026, nos dois turnos, além de cargos estaduais de 2026 nas 27 UFs.
+2022 e 2026, nos dois turnos, além dos cargos estaduais desses mesmos anos.
+Somente o DF recebe deputado distrital e as demais UFs recebem deputado
+estadual; segundo turno estadual é considerado somente para governador.
 Somente disputas com votos e mapa efetivamente disponíveis são exportadas.
 Um turno não encontrado recebe razão explícita, sem fabricar resultado.
 
@@ -99,6 +101,14 @@ com `schema_version: 1`, `series`, `availability` e `metadata`, uma tabela
 Os argumentos opcionais são pasta de saída, pasta dos caches históricos e
 pasta dos mapas. A função `eleicao_build_explorer()` permite fornecer um
 subconjunto de combinações para execução incremental ou testes.
+
+Para acrescentar estados sem recalcular as séries já publicadas, use
+`eleicao_build_explorer(targets = alvos, incremental = TRUE,
+flush_progress = TRUE)`. O manifesto preserva as outras combinações e é
+atualizado após cada grupo de insumos concluído. Uma impressão digital dos
+arquivos de renda, vínculos espaciais, votos certificados e parâmetros
+permite reutilizar resultados idênticos. Mudanças nesses insumos obrigam
+nova agregação; uma disputa que falha na conferência sai do manifesto.
 
 O manifesto é refeito apenas com o universo fixo; não incorpora curvas
 anteriores que usavam ranking após exclusões. Arquivos antigos que não
@@ -113,8 +123,9 @@ Rscript shared-pipeline/eleicoes/agregacao/prepare-2026-all-ufs.R
 Rscript shared-pipeline/eleicoes/agregacao/prepare-2026-all-ufs.R SP,DF
 ```
 
-Esse CLI invoca `historico/prepare.R` uma UF por vez, para cargos 3, 5, 6,
-7 e 8. O helper original reaproveita caches com hash e versão compatíveis.
+Esse CLI invoca `historico/legal-validity.R` uma UF por vez, para cargos 3,
+5, 6, 7 e 8, incluindo reconciliação oficial. O helper reaproveita agregados
+brutos por local com hash e versão compatíveis para reduzir a memória.
 Cada processo filho termina antes do seguinte, liberando sua memória. Falhas
 são registradas e a lista continua; um relatório final permite retomar as
 UFs necessárias. `--dry-run` não baixa nem normaliza dados.
