@@ -103,3 +103,23 @@ No benchmark local pequeno de 20 mil chaves únicas, a referência levou
 servem para identificar o custo dos callbacks; não são previsão do tempo
 de SP ou garantia de aceleração do pipeline completo, que inclui leitura,
 junções e outros controles. Nenhum benchmark nacional foi iniciado.
+
+## Retomada sequencial com as duas correções
+
+O CLI `../resume-2026-optimized.R` combina os dois adaptadores no mesmo
+ambiente privado: separação exata das legendas técnicas e fastpath de chaves
+de candidatos. O helper histórico original permanece intacto. O padrão
+retoma MG, ES, RJ, SP, PR, SC, RS, MS, MT, GO e DF, uma UF por vez. Um argumento
+com lista de UFs restringe a retomada. Cada estado concluído atualiza o
+relatório `historico/resume-2026-optimized-status.csv`.
+
+```sh
+Rscript shared-pipeline/eleicoes/agregacao/validacao/test-optimized-resume.R
+Rscript shared-pipeline/eleicoes/agregacao/resume-2026-optimized.R --dry-run
+Rscript shared-pipeline/eleicoes/agregacao/resume-2026-optimized.R ES,RJ,SP
+```
+
+O teste composto exercita a reconciliação legal completa com as duas
+substituições ativas, incluindo rejeição das divergências reconhecidas e
+dos técnicos, além de verificar a lista e ordem do plano de retomada.
+O modo `--dry-run` não processa dados nacionais.
