@@ -58,11 +58,29 @@ eleicao_vote_audit <- function(votes, year, round, office, uf = "BR") {
     certified <- sum(checks$computed_valid_votes[checks$uf == state_checked])
     if (!is.finite(actual) || abs(actual - certified) > 1e-8) stop("Votos do cache divergem da auditoria oficial anexada")
   }
+  # Combined caches can contain EA20 provisional snapshots for deputies and
+  # final/ordinary checks for other offices. Carry only this contest's evidence.
+  snapshots <- audit$snapshots
+  if (!is.null(snapshots)) {
+    snapshots <- Filter(function(snapshot) {
+      is.list(snapshot) &&
+        (is.null(snapshot$office) || identical(as.integer(snapshot$office), oc)) &&
+        (is.null(snapshot$year) || identical(as.integer(snapshot$year), yr)) &&
+        (is.null(snapshot$round) || identical(as.integer(snapshot$round), tr)) &&
+        (is.null(snapshot$uf) || state == "BR" || toupper(snapshot$uf) == state)
+    }, snapshots)
+    provisional <- length(snapshots) > 0L && any(vapply(snapshots, function(snapshot) {
+      isTRUE(snapshot$provisional) || identical(snapshot$status, "provisional") ||
+        (!is.null(snapshot$final_totalization) && !identical(snapshot$final_totalization, "s")) ||
+        (is.null(snapshot$status) && is.null(snapshot$final_totalization) && isTRUE(audit$provisional))
+    }, logical(1)))
+  } else provisional <- isTRUE(audit$provisional)
   list(status = "reconciled", scope = "official-valid-votes", method = audit$method,
        source = list(label = "TSE — resultados oficiais", url = "https://dadosabertos.tse.jus.br/"),
        official_valid_votes = sum(checks$official_valid_votes),
        computed_valid_votes = sum(checks$computed_valid_votes),
-       difference = sum(checks$difference), checked_units = nrow(checks), ufs = sort(unique(checks$uf)))
+       difference = sum(checks$difference), checked_units = nrow(checks), ufs = sort(unique(checks$uf)),
+       provisional = provisional, snapshots = snapshots)
 }
 
 eleicao_aggregate_contest <- function(votes, universe, links, year, round, office,

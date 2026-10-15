@@ -17,6 +17,7 @@
 .election-explorer .audit.passed { background: #edf7f0; border-color: #28733d; }
 .election-explorer .audit.failed { background: #fff1f1; border-color: #aa2727; }
 .election-explorer .audit p { margin: .3rem 0; }
+.election-explorer .audit .provisional-warning { margin-top: .7rem; padding: .65rem; border-left: 4px solid #926700; background: #fff4cf; color: #634700; font-weight: 600; }
 .election-explorer .available-series { font-size: .85rem; color: #425361; }
 .election-explorer .chart { width: 100%; min-height: 420px; }
 .election-explorer .chart-status { padding: .5rem 0; font-size: .9rem; }

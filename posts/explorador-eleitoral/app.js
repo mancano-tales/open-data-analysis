@@ -99,6 +99,16 @@
         }
         text('p',lang==='pt'?'A conferência compara votos válidos aos agregados do TSE por disputa. Ela não certifica a associação espacial dos locais de votação aos setores censitários.':'This check compares valid votes with TSE aggregates for the contest. It does not certify the spatial assignment of polling places to census tracts.',auditPanel);
         if(audit?.source?.url)link(auditPanel,audit.source.label||'TSE',audit.source.url);
+        if(audit?.provisional===true){
+          const warning=text('p',lang==='pt'?'Dados provisórios: a igualdade dos totais não significa totalização jurídica final. Os resultados podem mudar conforme o TSE atualiza a apuração e a situação dos votos.':'Provisional data: matching totals do not establish final legal totalization. Results may change as the TSE updates the count and vote status.',auditPanel);
+          warning.className='provisional-warning';
+          const snapshots=Array.isArray(audit.snapshots)?audit.snapshots:Object.values(audit.snapshots||{});
+          snapshots.forEach(snapshot=>{
+            const generated=[snapshot.generation_date,snapshot.generation_time].filter(Boolean).join(' ');
+            const info=text('p',`${lang==='pt'?'Snapshot oficial':'Official snapshot'}${generated?`: ${generated}`:''}${snapshot.progress?` · ${lang==='pt'?'andamento':'progress'}: ${snapshot.progress}`:''}${snapshot.final_totalization?` · tf: ${snapshot.final_totalization}`:''}.`,auditPanel);
+            if(snapshot.url){info.append(document.createTextNode(' '));link(info,lang==='pt'?'Fonte do snapshot':'Snapshot source',snapshot.url);}
+          });
+        }
         text('p',`${t.coverage}: ${fmt(cov.included_tracts)} ${t.of} ${fmt(cov.total_tracts)} ${t.included} (${fmt(100*cov.included_tracts/cov.total_tracts,2)}%).`,coverage);
         const scope=meta.percentile_scope==='BR' ? (lang==='pt'?'Centis nacionais fixos do Censo 2022, definidos antes de excluir setores sem estimativa de votação. Filtros por UF preservam esses grupos nacionais. A renda média representa o grupo completo; a contagem de setores mostra a cobertura eleitoral.':'Fixed national Census 2022 percentiles, defined before excluding tracts without vote estimates. State filters preserve these national groups. Mean income describes the complete group; tract counts describe electoral coverage.') : (lang==='pt'?'Snapshot legado: centis recalculados na amostra de setores com renda e votação estimada em 2026. Este eixo difere dos centis nacionais fixos usados na expansão histórica.':'Legacy snapshot: percentiles calculated within the 2026 sample of tracts with income and estimated votes. This axis differs from the fixed national percentiles used for historical expansion.');
         text('p',scope,coverage);

@@ -87,6 +87,36 @@ stopifnot(nrow(dep$candidates) == 2L, dp[centil == 1 & candidate_id == "1313", v
 dep_party <- fixture_aggregate(deputies, universe, links, 2026, 1, 6, uf = "SP", include_party_series = TRUE)
 stopifnot(nrow(dep_party$candidates) == 3L, sum(as.data.table(dep_party$points)[centil == 1, votacao]) == 100)
 
+# A provisional official snapshot remains provisional after successful vote
+# reconciliation, and its provenance survives aggregation/JSON export.
+certified_deputies <- copy(deputies)
+snapshot <- list(office = 6L, status = "provisional", generation_date = "13/10/2026",
+                 generation_time = "16:26:47", final_totalization = "n", progress = "p",
+                 url = "https://resultados.tse.jus.br/test-only.json", md5 = "fixture-md5")
+attr(certified_deputies, "vote_audit") <- list(status = "reconciled", method = "test fixture",
+  checks = data.frame(year = 2026L, round = 1L, office = 6L, uf = "SP",
+    official_valid_votes = 100, computed_valid_votes = 100, difference = 0),
+  provisional = TRUE, snapshots = list(`6` = snapshot))
+provisional_result <- eleicao_aggregate_contest(certified_deputies, universe, links, 2026, 1, 6, uf = "SP")
+stopifnot(isTRUE(provisional_result$metadata$vote_audit$provisional),
+          identical(provisional_result$metadata$vote_audit$snapshots[[1]], snapshot))
+provisional_path <- tempfile(fileext = ".json")
+eleicao_write_dataset(provisional_result, provisional_path, "test-only.json")
+provisional_json <- jsonlite::read_json(provisional_path)
+stopifnot(isTRUE(provisional_json$metadata$vote_audit$provisional),
+          provisional_json$metadata$vote_audit$snapshots[[1]]$md5 == "fixture-md5")
+unlink(provisional_path)
+
+# The same combined-cache flag must not mark an unrelated office provisional.
+certified_senate <- copy(senate)
+senate_audit <- attr(certified_deputies, "vote_audit")
+senate_audit$checks$office <- 5L
+senate_audit$checks$official_valid_votes <- 200
+senate_audit$checks$computed_valid_votes <- 200
+attr(certified_senate, "vote_audit") <- senate_audit
+senate_certified <- eleicao_vote_audit(certified_senate, 2026, 1, 5, "SP")
+stopifnot(!senate_certified$provisional, !length(senate_certified$snapshots))
+
 # Essential rejection paths avoid pooling UFs or duplicating census weights.
 expect_error(fixture_aggregate(deputies, universe, links, 2026, 1, 6))
 expect_error(fixture_aggregate(votes, universe, rbind(links, links[1]), 2026, 1, 1))

@@ -36,7 +36,9 @@ eleitoral ou geográfica.
 Chaves de local com coordenadas conflitantes são excluídas. Também são
 excluídos pontos fora dos limites do Brasil ou incompatíveis com o município
 declarado, usando a malha municipal de 2022. Cada setor recebe o local mais
-próximo dentro do mesmo município de 2022, com distância métrica em EPSG:5880.
+próximo dentro do mesmo município de 2022, com distância geodésica em metros
+calculada por `sf`/S2 nas coordenadas EPSG:4326. A projeção EPSG:5880 é usada
+na preparação do ponto interno e na validação dos limites municipais.
 Setores sem local permanecem no universo com vínculo ausente. O limite de
 5 km é aplicado posteriormente na agregação, permitindo documentar a cobertura
 sem alterar os centis. Mudanças municipais entre eleições podem reduzir essa

@@ -58,6 +58,15 @@ The UI displays reconciled status only when `status` is `reconciled`,
 party-list votes count as legally applicable; blank/invalid votes do not.
 The builder, rather than the UI, enforces which disputes may be published.
 
+`vote_audit.provisional: true` requires a visible provisional-results warning
+even when vote totals reconcile exactly. `vote_audit.snapshots` may be an
+array or an object keyed by office. Preserve each relevant snapshot's URL,
+MD5, `generation_date`, `generation_time`, `idg`, `final_totalization`,
+`progress` and `status`. Combined caches must scope this evidence to the
+selected contest: provisional deputy snapshots must not label unrelated
+governor or senate contests provisional. Numerical agreement with a later
+CSV never establishes final legal totalization of an earlier EA20 snapshot.
+
 Optional `candidates[].number` adds the ballot number to labels and search.
 Optional `metadata.default_candidates` is an array of candidate IDs to show
 initially. Otherwise the interface selects the six candidates with greatest
