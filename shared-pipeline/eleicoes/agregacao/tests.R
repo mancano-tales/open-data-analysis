@@ -1,6 +1,7 @@
-source("shared-pipeline/eleicoes/agregacao/centis.R")
+source("shared-pipeline/eleicoes/agregacao/centis.R", encoding = "UTF-8")
 library(data.table)
 setDTthreads(2L)
+fixture_aggregate <- function(...) eleicao_aggregate_contest(..., require_reconciled = FALSE)
 
 expect_error <- function(expr) {
   failed <- tryCatch({ force(expr); FALSE }, error = function(e) TRUE)
@@ -20,7 +21,7 @@ make_rows <- function(uf, place, ids, counts, office = 1L, type = "candidate") {
 votes <- rbindlist(list(make_rows("SP", 1L, c(13, 22), c(80, 20)),
                         make_rows("SP", 2L, c(22, 30), c(10, 90)),
                         make_rows("RJ", 1L, c(13, 22), c(60, 40))))
-result <- eleicao_aggregate_contest(votes, universe, links, 2026, 1, 1)
+result <- fixture_aggregate(votes, universe, links, 2026, 1, 1)
 p <- as.data.table(result$points)
 stopifnot(nrow(p) == 300L, nrow(result$candidates) == 3L,
           result$metadata$coverage$included_tracts == 150L,
@@ -35,7 +36,7 @@ stopifnot(nrow(p) == 300L, nrow(result$candidates) == 3L,
 # Multiple tracts at the same place/percentile must contribute their full weight.
 replicated_links <- copy(links)
 replicated_links[code_tract %in% universe[centil == 1, code_tract], place_key := "SP:1:1:1"]
-replicated <- eleicao_aggregate_contest(votes, universe, replicated_links, 2026, 1, 1)
+replicated <- fixture_aggregate(votes, universe, replicated_links, 2026, 1, 1)
 rp <- as.data.table(replicated$points)
 stopifnot(rp[centil == 1 & candidate_id == "13", votacao] == 80,
           rp[centil == 1 & candidate_id == "13", n_setores] == 2L)
@@ -43,7 +44,7 @@ stopifnot(rp[centil == 1 & candidate_id == "13", votacao] == 80,
 # A missing local/cargo changes coverage; an absent candidate at an observed
 # local is zero. Neither operation changes income ranks or census mean income.
 filtered_links <- links[place_key != "RJ:1:1:1"]
-missing <- eleicao_aggregate_contest(votes, universe, filtered_links, 2026, 1, 1)
+missing <- fixture_aggregate(votes, universe, filtered_links, 2026, 1, 1)
 pm <- as.data.table(missing$points)
 stopifnot(pm[centil == 51 & candidate_id == "13", n_setores] == 0L,
           is.na(pm[centil == 51 & candidate_id == "13", votacao]),
@@ -66,7 +67,7 @@ for (candidate in c(13, 22, 30)) {
 
 # Senate shares use valid votes, even when two votes per elector are allowed.
 senate <- make_rows("SP", 1L, c(111, 222), c(100, 100), office = 5L)
-sen <- eleicao_aggregate_contest(senate, universe, links, 2026, 1, 5, uf = "SP")
+sen <- fixture_aggregate(senate, universe, links, 2026, 1, 5, uf = "SP")
 sp <- as.data.table(sen$points)
 stopifnot(all(sp$votacao[sp$n_setores > 0] == 50),
           sen$metadata$coverage$total_tracts == 100L,
@@ -76,21 +77,21 @@ stopifnot(all(sp$votacao[sp$n_setores > 0] == 50),
 # Deputies: two nominal candidates plus party-only votes in the denominator.
 deputies <- make_rows("SP", 1L, c(1313, 2222, 13, 95), c(30, 50, 20, 1000), office = 6L,
                       type = c("candidate", "candidate", "party", "special"))
-dep <- eleicao_aggregate_contest(deputies, universe, links, 2026, 1, 6, uf = "SP")
+dep <- fixture_aggregate(deputies, universe, links, 2026, 1, 6, uf = "SP")
 dp <- as.data.table(dep$points)
 stopifnot(nrow(dep$candidates) == 2L, dp[centil == 1 & candidate_id == "1313", votacao] == 30,
           dp[centil == 1 & candidate_id == "2222", votacao] == 50,
           sum(dp[centil == 1, votacao]) == 80)
-dep_party <- eleicao_aggregate_contest(deputies, universe, links, 2026, 1, 6, uf = "SP", include_party_series = TRUE)
+dep_party <- fixture_aggregate(deputies, universe, links, 2026, 1, 6, uf = "SP", include_party_series = TRUE)
 stopifnot(nrow(dep_party$candidates) == 3L, sum(as.data.table(dep_party$points)[centil == 1, votacao]) == 100)
 
 # Essential rejection paths avoid pooling UFs or duplicating census weights.
-expect_error(eleicao_aggregate_contest(deputies, universe, links, 2026, 1, 6))
-expect_error(eleicao_aggregate_contest(votes, universe, rbind(links, links[1]), 2026, 1, 1))
+expect_error(fixture_aggregate(deputies, universe, links, 2026, 1, 6))
+expect_error(fixture_aggregate(votes, universe, rbind(links, links[1]), 2026, 1, 1))
 bad <- copy(votes); bad[, votes := -1]
-expect_error(eleicao_aggregate_contest(bad, universe, links, 2026, 1, 1))
+expect_error(fixture_aggregate(bad, universe, links, 2026, 1, 1))
 pooled <- copy(votes); pooled[, election_id := seq_len(.N)]
-expect_error(eleicao_aggregate_contest(pooled, universe, links, 2026, 1, 1))
+expect_error(fixture_aggregate(pooled, universe, links, 2026, 1, 1))
 
 # JSON must retain arrays with one candidate and explicitly null missing values.
 path <- tempfile(fileext = ".json")

@@ -23,6 +23,16 @@ caso contrário a chave é construída como `UF:municipality_tse:zone:place`.
 Os tipos de voto aceitos são `candidate`, `party`, `special` e `invalid_code`.
 Votos positivos sem classificação são recusados.
 
+Por padrão, a agregação exige `attr(votes, "vote_audit")` com `status`
+igual a `reconciled`, método e tabela `checks` por ano/turno/cargo/UF.
+Essa tabela contém `official_valid_votes`, `computed_valid_votes` e
+`difference`, e deve cobrir todas as UFs da disputa, com diferenças zero.
+As somas do cache recebido também são comparadas à auditoria anexada.
+Nenhuma curva, inclusive presidencial, pode ser exportada pelo orquestrador
+sem essa reconciliação. A opção `require_reconciled = FALSE` existe somente
+para fixtures e grava status `unreconciled` nos metadados; não é usada no
+orquestrador de publicação.
+
 `links` contém `code_tract`, `place_key`, `distancia_m`, com uma linha por
 setor; os códigos são normalizados para texto. Ligações que cruzam UFs são
 recusadas. A construção espacial continua sendo responsabilidade de outro
@@ -67,3 +77,50 @@ Rscript shared-pipeline/eleicoes/agregacao/tests.R
 O teste compara a agregação por pesos com uma implementação independente
 que cruza cada setor na fixture. Verifica também ausência versus zero,
 legenda, senador, ranking fixo, preservação da renda do universo e JSON.
+
+## Exportação das séries disponíveis
+
+```sh
+Rscript shared-pipeline/eleicoes/agregacao/build-explorer.R
+```
+
+O orquestrador lê caches `historico/places-ANO-UF-CARGOS.rds` produzidos pelo
+normalizador versão 2 e prefere `places-ANO-UF-CARGOS-legal.rds`, com votos
+legalmente válidos e auditoria oficial. Lê mapas completos
+`espacial/links-ANO-TURNO.rds`.
+Seu padrão considera presidência nacional e por UF em 2010, 2014, 2018,
+2022 e 2026, nos dois turnos, além de cargos estaduais de 2026 nas 27 UFs.
+Somente disputas com votos e mapa efetivamente disponíveis são exportadas.
+Um turno não encontrado recebe razão explícita, sem fabricar resultado.
+
+O destino padrão é `posts/explorador-eleitoral/data/`. Contém `manifest.json`
+com `schema_version: 1`, `series`, `availability` e `metadata`, uma tabela
+`availability.csv` e os JSONs em `series/ANO-TURNO-CARGO-UF.json`.
+Os argumentos opcionais são pasta de saída, pasta dos caches históricos e
+pasta dos mapas. A função `eleicao_build_explorer()` permite fornecer um
+subconjunto de combinações para execução incremental ou testes.
+
+O manifesto é refeito apenas com o universo fixo; não incorpora curvas
+anteriores que usavam ranking após exclusões. Arquivos antigos que não
+constam do manifesto ficam sem referência. Mapas parciais de uma UF não
+são promovidos silenciosamente a mapa nacional.
+
+Antes de exportar, prepare os caches de votos estaduais sequencialmente:
+
+```sh
+Rscript shared-pipeline/eleicoes/agregacao/prepare-2026-all-ufs.R --dry-run
+Rscript shared-pipeline/eleicoes/agregacao/prepare-2026-all-ufs.R
+Rscript shared-pipeline/eleicoes/agregacao/prepare-2026-all-ufs.R SP,DF
+```
+
+Esse CLI invoca `historico/prepare.R` uma UF por vez, para cargos 3, 5, 6,
+7 e 8. O helper original reaproveita caches com hash e versão compatíveis.
+Cada processo filho termina antes do seguinte, liberando sua memória. Falhas
+são registradas e a lista continua; um relatório final permite retomar as
+UFs necessárias. `--dry-run` não baixa nem normaliza dados.
+
+Verifique o orquestrador sem usar dados nacionais:
+
+```sh
+Rscript shared-pipeline/eleicoes/agregacao/tests-build.R
+```

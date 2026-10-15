@@ -33,9 +33,41 @@ eleicao_income_universe <- function(renda) {
   x[]
 }
 
+eleicao_vote_audit <- function(votes, year, round, office, uf = "BR") {
+  audit <- attr(votes, "vote_audit")
+  if (is.null(audit) || !identical(audit$status, "reconciled")) stop("Sem auditoria oficial reconciliada para esta disputa")
+  checks <- data.table::as.data.table(audit$checks)
+  required <- c("year", "round", "office", "uf", "official_valid_votes", "computed_valid_votes", "difference")
+  if (!all(required %in% names(checks))) stop("Auditoria oficial incompleta")
+  yr <- as.integer(year); tr <- as.integer(round); oc <- as.integer(office); state <- toupper(uf)
+  checks <- checks[year == yr & round == tr & office == oc]
+  expected <- unique(as.character(votes$uf[votes$year == yr & votes$round == tr & votes$office == oc & votes$uf != "ZZ"]))
+  if (state == "BR") expected <- unname(eleicao_ufs)
+  else { checks <- checks[uf == state]; expected <- intersect(expected, state) }
+  if (!length(expected) || !nrow(checks) || !all(expected %in% checks$uf)) stop("Auditoria não cobre todas as UFs desta disputa")
+  if (anyNA(checks[, ..required]) || any(!is.finite(checks$difference)) ||
+      any(abs(checks$difference) > 1e-8) ||
+      any(abs(checks$computed_valid_votes - checks$official_valid_votes) > 1e-8)) {
+    stop("Auditoria oficial apresenta divergência de votos válidos")
+  }
+  selected <- votes$year == yr & votes$round == tr & votes$office == oc &
+    votes$uf %in% expected & votes$vote_type %in% c("candidate", "party")
+  for (state_checked in expected) {
+    actual <- sum(votes$votes[selected & votes$uf == state_checked])
+    certified <- sum(checks$computed_valid_votes[checks$uf == state_checked])
+    if (!is.finite(actual) || abs(actual - certified) > 1e-8) stop("Votos do cache divergem da auditoria oficial anexada")
+  }
+  list(status = "reconciled", scope = "official-valid-votes", method = audit$method,
+       source = list(label = "TSE — resultados oficiais", url = "https://dadosabertos.tse.jus.br/"),
+       official_valid_votes = sum(checks$official_valid_votes),
+       computed_valid_votes = sum(checks$computed_valid_votes),
+       difference = sum(checks$difference), checked_units = nrow(checks), ufs = sort(unique(checks$uf)))
+}
+
 eleicao_aggregate_contest <- function(votes, universe, links, year, round, office,
                                       uf = "BR", max_distance_m = 5000,
-                                      sources = list(), include_party_series = FALSE) {
+                                      sources = list(), include_party_series = FALSE,
+                                      require_reconciled = TRUE) {
   eleicao_require()
   year_arg <- as.integer(year); round_arg <- as.integer(round); office_arg <- as.integer(office)
   uf_arg <- toupper(uf)
@@ -43,6 +75,8 @@ eleicao_aggregate_contest <- function(votes, universe, links, year, round, offic
   if (!office_arg %in% as.integer(names(eleicao_office_labels))) stop("Unsupported office")
   if (uf_arg == "BR" && office_arg != 1L) stop("State offices require an explicit UF")
   if (length(max_distance_m) != 1L || !is.finite(max_distance_m) || max_distance_m <= 0) stop("Invalid distance")
+  vote_audit <- if (require_reconciled) eleicao_vote_audit(votes, year_arg, round_arg, office_arg, uf_arg) else
+    list(status = "unreconciled", method = "Desativado explicitamente para verificação de fixtures; não publicar")
   x <- data.table::copy(data.table::as.data.table(votes))
   required <- c("year", "round", "uf", "municipality_tse", "zone", "place", "office",
                 "candidate_id", "candidate_name", "votes", "vote_type")
@@ -123,6 +157,7 @@ eleicao_aggregate_contest <- function(votes, universe, links, year, round, offic
     max_distance_m = max_distance_m,
     denominator = if (proportional) "Soma dos votos nominais e de legenda do cargo/local, excluídos os códigos especiais 95/96/97" else "Soma dos votos dos candidatos do cargo/local, excluídos os códigos especiais 95/96/97",
     vote_status_note = "O arquivo de votação por seção não certifica sozinho a situação jurídica dos votos; os denominadores devem ser reconciliados com os totais oficiais.",
+    vote_audit = vote_audit,
     senate_note = if (office_arg == 5L) "Participação em votos válidos; não corresponde a percentual de eleitores, especialmente em eleições com dois votos." else NULL,
     coverage = list(included_tracts = sum(base$n_setores), total_tracts = sum(base$n_setores_total),
       observed_places = data.table::uniqueN(weights$place_key), unlocated_valid_votes = unlocated_votes),

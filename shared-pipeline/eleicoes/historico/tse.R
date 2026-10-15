@@ -79,7 +79,7 @@ tse_normalize <- function(x, expected_year = NULL) {
   aliases <- list(year = c("ANO_ELEICAO", "AA_ELEICAO"), round = "NR_TURNO",
     uf = "SG_UF", municipality_tse = "CD_MUNICIPIO", zone = "NR_ZONA", section = "NR_SECAO",
     place = "NR_LOCAL_VOTACAO", office = "CD_CARGO", candidate_id = "NR_VOTAVEL",
-    candidate_name = "NM_VOTAVEL", votes = "QT_VOTOS", election_id = "CD_ELEICAO",
+    candidate_name = "NM_VOTAVEL", candidate_seq = "SQ_CANDIDATO", votes = "QT_VOTOS", election_id = "CD_ELEICAO",
     election_type = "CD_TIPO_ELEICAO", election_date = "DT_ELEICAO")
   required <- c("year", "round", "uf", "municipality_tse", "zone", "section", "office", "candidate_id", "votes")
   output <- list()
@@ -94,7 +94,7 @@ tse_normalize <- function(x, expected_year = NULL) {
   numeric_columns <- c("year", "round", "zone", "section", "place", "office", "candidate_id", "election_id", "election_type")
   for (column in numeric_columns) data.table::set(output, j = column, value = as.integer(output[[column]]))
   output[, `:=`(uf = toupper(as.character(uf)), municipality_tse = as.character(municipality_tse),
-    candidate_name = as.character(candidate_name), votes = as.numeric(votes))]
+    candidate_name = as.character(candidate_name), candidate_seq = as.character(candidate_seq), votes = as.numeric(votes))]
   if (anyNA(output$votes) || any(!is.finite(output$votes)) || any(output$votes < 0) || any(output$votes %% 1 != 0)) {
     stop("Negative, fractional, missing or nonfinite votes")
   }
@@ -124,7 +124,7 @@ tse_read_votes <- function(path, year, offices = 1L, rounds = c(1L, 2L), ufs = N
   header <- names(data.table::fread(csv, nrows = 0L, encoding = "Latin-1"))
   wanted <- c("ANO_ELEICAO", "AA_ELEICAO", "NR_TURNO", "SG_UF", "CD_MUNICIPIO", "NR_ZONA",
     "NR_SECAO", "NR_LOCAL_VOTACAO", "CD_CARGO", "NR_VOTAVEL", "NM_VOTAVEL", "QT_VOTOS",
-    "CD_ELEICAO", "CD_TIPO_ELEICAO", "DT_ELEICAO")
+    "CD_ELEICAO", "CD_TIPO_ELEICAO", "DT_ELEICAO", "SQ_CANDIDATO")
   x <- data.table::fread(csv, select = intersect(wanted, header), encoding = "Latin-1",
                         showProgress = interactive())
   # Restrict before normalizing to keep the duplicated long table small.
