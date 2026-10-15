@@ -45,6 +45,7 @@ function validateSeries(item, series) {
   if (!meta || key(meta) !== id || ref(meta) !== reference) throw new Error('metadata contest/reference differs from manifest');
   if (meta.percentile_scope !== (reference === 'state' ? uf : 'BR')) throw new Error('wrong percentile_scope for income reference');
   if (meta.income_year !== 2022) throw new Error('income_year must remain 2022');
+  if (meta.spatial && (Number(meta.spatial.year) !== item.year || Number(meta.spatial.round) !== item.round)) throw new Error('spatial year/round differs from contest');
   const audit = meta.vote_audit;
   if (audit?.status !== 'reconciled') throw new Error('missing reconciled official audit');
   for (const field of ['official_valid_votes', 'computed_valid_votes', 'difference']) integer(audit[field], `audit ${field}`);
@@ -93,7 +94,7 @@ function evaluateHistorical(manifest, loadSeries, { years = [2022, 2018, 2014, 2
   const errors = [], summaries = new Map(), ids = new Set(), available = new Set();
   const expected = expectedPresidential(years, rounds, references);
   if (manifest?.schema_version !== 1 || !Array.isArray(manifest?.series)) errors.push('invalid manifest schema/series');
-  for (const item of manifest?.series || []) {
+  for (const item of Array.isArray(manifest?.series) ? manifest.series : []) {
     if (!years.includes(Number(item.year))) continue;
     const id = key(item);
     if (item.id !== id || ids.has(id)) { errors.push(`${id}: noncanonical/duplicate id`); continue; }

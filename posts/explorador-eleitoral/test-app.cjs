@@ -1,5 +1,5 @@
 // Unit-level DOM substitute; visual/browser verification is a separate check.
-const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict'),zlib=require('node:zlib');
 const source=__dirname,base='http://localhost/posts/explorador-eleitoral/';
 const manifest=JSON.parse(fs.readFileSync(path.join(source,'data/manifest.json'),'utf8'));
 assert.ok(manifest.series.length>0);
@@ -30,7 +30,7 @@ const selectors={};for(const s of ['.chart-status','.chart','.explorer-controls'
 selectors.fieldset.append(selectors.legend,selectors['.candidate-list']);
 root.append(selectors['.explorer-controls'],selectors.fieldset,selectors['.chart-status'],selectors['.chart'],selectors['.coverage'],selectors['.download-links']);root.querySelector=s=>selectors[s];
 const errors=[],draws=[],fetchCalls=[],purges=[];
-const context={URL,Set,Map,console:{error:e=>errors.push(e)},window:{innerWidth:1200},document:{baseURI:base,createElement:t=>new Element(t),createTextNode:t=>({textContent:t}),querySelectorAll:()=>[root]},Plotly:{react:(chart,traces,layout)=>draws.push({traces,layout}),purge:chart=>purges.push(chart)},fetch:async (url,options)=>{fetchCalls.push({url:String(url),options});return {ok:true,json:async()=>{const relative=new URL(url).pathname.replace('/posts/explorador-eleitoral/','');const data=fixtures?JSON.parse(JSON.stringify(fixtures[relative])):JSON.parse(fs.readFileSync(path.join(source,relative),'utf8'));if(data.metadata&&auditOverride)data.metadata.vote_audit={...data.metadata.vote_audit,...auditOverride};return data;}};}};
+const context={URL,Set,Map,Uint8Array,TextDecoder,Response,Blob,DecompressionStream,console:{error:e=>errors.push(e)},window:{innerWidth:1200},document:{baseURI:base,createElement:t=>new Element(t),createTextNode:t=>({textContent:t}),querySelectorAll:()=>[root]},Plotly:{react:(chart,traces,layout)=>draws.push({traces,layout}),purge:chart=>purges.push(chart)},fetch:async (url,options)=>{fetchCalls.push({url:String(url),options});const relative=new URL(url).pathname.replace('/posts/explorador-eleitoral/','');const bytes=fixtures?(Buffer.isBuffer(fixtures[relative])?fixtures[relative]:Buffer.from(JSON.stringify(fixtures[relative]))):fs.readFileSync(path.join(source,relative));return {ok:true,arrayBuffer:async()=>bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),json:async()=>{const data=JSON.parse(bytes.toString('utf8'));if(data.metadata&&auditOverride)data.metadata.vote_audit={...data.metadata.vote_audit,...auditOverride};return data;}};}};
 return {root,selectors,errors,draws,context,fetchCalls,purges};
 }
 const flush=()=>new Promise(resolve=>setImmediate(resolve));
@@ -97,6 +97,17 @@ const textContent=element=>[element.textContent||'',...(element.children||[]).ma
     await change(2,'1');assert.equal(controls[4].value,'national');
     assert.equal(h.errors.length,0);
   }
+  // Browser gzip decoding, including a host that already decoded transport gzip.
+  const compressedEntry={...fixtureEntries[0],url:fixtureEntries[0].url+'.gz'};
+  const originalBytes=Buffer.from(JSON.stringify(fixtures[`data/${fixtureEntries[0].url}`]));
+  for(const bytes of [zlib.gzipSync(originalBytes,{level:9}),originalBytes]){
+    const compactFixtures={'data/manifest.json':{series:[compressedEntry]},[`data/${compressedEntry.url}`]:bytes};
+    const h=harness('pt',null,compactFixtures);vm.runInNewContext(fs.readFileSync(path.join(source,'app.js'),'utf8'),h.context);
+    for(let step=0;step<30&&!h.draws.length&&!h.errors.length;step++)await new Promise(resolve=>setTimeout(resolve,5));
+    assert.equal(h.errors.length,0);assert.equal(h.draws.at(-1).traces[0].y[0],70);
+    assert.match(h.selectors['.download-links'].children[0].textContent,/JSON.gz/);
+    assert.ok(String(h.selectors['.download-links'].children[0].href).endsWith('.json.gz'));
+  }
   // Reject the former literal-UF bug and incompatible state/national data.
   for(const scope of ['UF','DF','BR',undefined]){
     const mismatch=JSON.parse(JSON.stringify(fixtures));
@@ -121,5 +132,5 @@ const textContent=element=>[element.textContent||'',...(element.children||[]).ma
     assert.match(textContent(h.selectors['.coverage']),lang==='pt'?/Referência estadual.*setores de AC/:/State reference.*AC tracts/);
     assert.doesNotMatch(textContent(h.selectors['.coverage']),/Snapshot legado|Legacy snapshot/);
   }
-  console.log(`PASS: UI selection/search/reload; PT/EN provisional warnings; national/state defaults, preferences, explicit fallback, candidate preservation, legacy manifest, no-cache refresh, real AC-state scope and rejection of incompatible scope; ${process.argv.includes('--ui-only')?'dataset sweep skipped':manifest.series.length+' real datasets validated'}.`);
+  console.log(`PASS: UI selection/search/reload; PT/EN provisional warnings; income-reference defaults/fallback/preservation; gzip/plain browser decoding; no-cache manifest; real AC-state and incompatible-scope rejection; ${process.argv.includes('--ui-only')?'dataset sweep skipped':manifest.series.length+' real datasets validated'}.`);
 })().catch(e=>{console.error(e);process.exitCode=1;});

@@ -3,6 +3,7 @@
 if (.Platform$OS.type == "windows") invisible(Sys.setlocale("LC_CTYPE", ".UTF-8"))
 source("shared-pipeline/eleicoes/agregacao/build-explorer.R", encoding = "UTF-8")
 args <- commandArgs(trailingOnly = TRUE)
+if (!length(args)) stop("Choose one historical year: 2022, 2018, 2014 or 2010")
 year <- suppressWarnings(as.integer(args[[1L]]))
 if (length(year) != 1L || is.na(year) || !year %in% c(2022L, 2018L, 2014L, 2010L))
   stop("Choose one historical year: 2022, 2018, 2014 or 2010")

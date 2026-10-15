@@ -49,7 +49,18 @@
     const seriesUrl=entry=>new URL(entry.url,base);
     function link(parent,label,url) { const a=text('a',label,parent);a.href=url;return a; }
     function localized(value) { return typeof value==='object' ? (value[lang]||value.pt||value.en||'') : value; }
-    async function read(url,options) {const response=await fetch(url,options);if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.json();}
+    async function read(url,options) {
+      const response=await fetch(url,options);if(!response.ok)throw new Error(`HTTP ${response.status}`);
+      if(!new URL(url).pathname.endsWith('.json.gz'))return response.json();
+      const bytes=new Uint8Array(await response.arrayBuffer());
+      // Pages serves .gz as a file. Also accept hosts that already decoded an
+      // HTTP Content-Encoding gzip response before exposing it to fetch().
+      if(bytes[0]!==31||bytes[1]!==139)return JSON.parse(new TextDecoder().decode(bytes));
+      if(typeof DecompressionStream==='undefined'){
+        const error=new Error('Gzip decompression unavailable');error.userMessage=lang==='pt'?'Este navegador não oferece descompactação gzip. Atualize o navegador ou baixe o arquivo JSON.gz para consultar os dados.':'This browser cannot decompress gzip. Update it or download the JSON.gz file to inspect the data.';throw error;
+      }
+      return new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).json();
+    }
     const referenceOf=entry=>entry.income_reference||'national';
     const referenceLabel=value=>value==='state'?(lang==='pt'?'UF — renda relativa ao estado':'State — income relative to state'):(lang==='pt'?'Brasil — renda relativa ao país':'Brazil — income relative to country');
     const contestKey=entry=>['year','round','office','uf'].map(key=>entry[key]).join('|');
@@ -149,7 +160,7 @@
         if(meta.warning)text('p',localized(meta.warning),coverage);
         const sources=text('p',`${t.sources}: `,coverage);
         (meta.sources||[]).forEach((source,index)=>{if(index)sources.append(document.createTextNode(' · '));link(sources,source.label||source.name||source.url,source.url);});
-        const downloads=root.querySelector('.download-links');downloads.replaceChildren();link(downloads,t.download,seriesUrl(selected));link(downloads,t.manifest,new URL('manifest.json',base));
+        const downloads=root.querySelector('.download-links');downloads.replaceChildren();link(downloads,new URL(seriesUrl(selected)).pathname.endsWith('.json.gz')?(lang==='pt'?'Baixar esta série (JSON.gz compactado)':'Download this series (compressed JSON.gz)'):t.download,seriesUrl(selected));link(downloads,t.manifest,new URL('manifest.json',base));
         draw();
       }catch(error){if(current!==request)return;status.textContent=error.userMessage||t.error;status.classList.add('error');if(error.userMessage){if(typeof Plotly.purge==='function')Plotly.purge(chart);coverage.replaceChildren();auditPanel.replaceChildren();candidateBox.replaceChildren();topButton.disabled=true;clearButton.disabled=true;search.disabled=true;}console.error(error);}
     }
