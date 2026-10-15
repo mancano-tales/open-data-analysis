@@ -45,9 +45,12 @@ legal_group_candidates_fast <- function(cand, keys) {
 
 # Optional private-environment adapter. It refuses to patch a changed source
 # shape and leaves all legal validity/reconciliation assertions untouched.
-legal_candidate_fast_environment <- function(source_path = "shared-pipeline/eleicoes/historico/legal-validity.R") {
-  env <- new.env(parent = globalenv())
-  sys.source(source_path, envir = env)
+legal_candidate_fast_environment <- function(source_path = "shared-pipeline/eleicoes/historico/legal-validity.R",
+                                              base_environment = NULL) {
+  env <- if (is.null(base_environment)) new.env(parent = globalenv()) else base_environment
+  if (!is.environment(env)) stop("Expected private helper environment")
+  if (is.null(base_environment)) sys.source(source_path, envir = env)
+  if (!is.function(env$legal_reconcile_places)) stop("Missing legal reconciliation function")
   env$legal_group_candidates_fast <- legal_group_candidates_fast
   fn <- env$legal_reconcile_places
   replacements <- 0L
