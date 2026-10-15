@@ -229,24 +229,24 @@ id,year,round,office,uf,office_label,status,reason
 2026-1-3-BA,2026,1,3,BA,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-3-CE,2026,1,3,CE,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-3-ES,2026,1,3,ES,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-3-GO,2026,1,3,GO,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-3-GO,2026,1,3,GO,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-3-MA,2026,1,3,MA,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-3-MG,2026,1,3,MG,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-3-MS,2026,1,3,MS,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-3-MT,2026,1,3,MT,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-3-MS,2026,1,3,MS,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-3-MT,2026,1,3,MT,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-3-PA,2026,1,3,PA,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-3-PB,2026,1,3,PB,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-3-PE,2026,1,3,PE,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-3-PI,2026,1,3,PI,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-3-PR,2026,1,3,PR,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-3-PR,2026,1,3,PR,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-3-RJ,2026,1,3,RJ,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-3-RN,2026,1,3,RN,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-3-RO,2026,1,3,RO,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-3-RR,2026,1,3,RR,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-3-RS,2026,1,3,RS,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-3-SC,2026,1,3,SC,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-3-RS,2026,1,3,RS,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-3-SC,2026,1,3,SC,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-3-SE,2026,1,3,SE,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-3-SP,2026,1,3,SP,Governador,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-3-SP,2026,1,3,SP,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-3-TO,2026,1,3,TO,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-AL,2026,1,5,AL,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-AM,2026,1,5,AM,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
@@ -254,24 +254,24 @@ id,year,round,office,uf,office_label,status,reason
 2026-1-5-BA,2026,1,5,BA,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-CE,2026,1,5,CE,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-ES,2026,1,5,ES,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-5-GO,2026,1,5,GO,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-5-GO,2026,1,5,GO,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-MA,2026,1,5,MA,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-MG,2026,1,5,MG,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-5-MS,2026,1,5,MS,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-5-MT,2026,1,5,MT,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-5-MS,2026,1,5,MS,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-5-MT,2026,1,5,MT,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-PA,2026,1,5,PA,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-PB,2026,1,5,PB,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-PE,2026,1,5,PE,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-PI,2026,1,5,PI,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-5-PR,2026,1,5,PR,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-5-PR,2026,1,5,PR,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-RJ,2026,1,5,RJ,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-RN,2026,1,5,RN,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-RO,2026,1,5,RO,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-RR,2026,1,5,RR,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-5-RS,2026,1,5,RS,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-5-SC,2026,1,5,SC,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-5-RS,2026,1,5,RS,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-5-SC,2026,1,5,SC,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-SE,2026,1,5,SE,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-5-SP,2026,1,5,SP,Senador,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-5-SP,2026,1,5,SP,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-TO,2026,1,5,TO,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-AL,2026,1,6,AL,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-AM,2026,1,6,AM,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
@@ -279,24 +279,24 @@ id,year,round,office,uf,office_label,status,reason
 2026-1-6-BA,2026,1,6,BA,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-CE,2026,1,6,CE,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-ES,2026,1,6,ES,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-6-GO,2026,1,6,GO,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-6-GO,2026,1,6,GO,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-MA,2026,1,6,MA,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-MG,2026,1,6,MG,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-6-MS,2026,1,6,MS,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-6-MT,2026,1,6,MT,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-6-MS,2026,1,6,MS,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-6-MT,2026,1,6,MT,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-PA,2026,1,6,PA,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-PB,2026,1,6,PB,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-PE,2026,1,6,PE,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-PI,2026,1,6,PI,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-6-PR,2026,1,6,PR,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-6-PR,2026,1,6,PR,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-RJ,2026,1,6,RJ,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-RN,2026,1,6,RN,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-RO,2026,1,6,RO,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-RR,2026,1,6,RR,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-6-RS,2026,1,6,RS,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-6-SC,2026,1,6,SC,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-6-RS,2026,1,6,RS,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-6-SC,2026,1,6,SC,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-SE,2026,1,6,SE,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-6-SP,2026,1,6,SP,Deputado federal,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-6-SP,2026,1,6,SP,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-6-TO,2026,1,6,TO,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-AL,2026,1,7,AL,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-AM,2026,1,7,AM,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
@@ -304,24 +304,24 @@ id,year,round,office,uf,office_label,status,reason
 2026-1-7-BA,2026,1,7,BA,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-CE,2026,1,7,CE,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-ES,2026,1,7,ES,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-7-GO,2026,1,7,GO,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-7-GO,2026,1,7,GO,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-MA,2026,1,7,MA,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-MG,2026,1,7,MG,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-7-MS,2026,1,7,MS,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-7-MT,2026,1,7,MT,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-7-MS,2026,1,7,MS,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-7-MT,2026,1,7,MT,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-PA,2026,1,7,PA,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-PB,2026,1,7,PB,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-PE,2026,1,7,PE,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-PI,2026,1,7,PI,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-7-PR,2026,1,7,PR,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-7-PR,2026,1,7,PR,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-RJ,2026,1,7,RJ,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-RN,2026,1,7,RN,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-RO,2026,1,7,RO,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-RR,2026,1,7,RR,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-7-RS,2026,1,7,RS,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
-2026-1-7-SC,2026,1,7,SC,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-7-RS,2026,1,7,RS,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2026-1-7-SC,2026,1,7,SC,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-SE,2026,1,7,SE,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
-2026-1-7-SP,2026,1,7,SP,Deputado estadual,unavailable,Sem cache normalizado de votação por local para esta disputa
+2026-1-7-SP,2026,1,7,SP,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-7-TO,2026,1,7,TO,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-3-AC,2026,1,3,AC,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2026-1-5-AC,2026,1,5,AC,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
