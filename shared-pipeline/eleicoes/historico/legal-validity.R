@@ -46,6 +46,12 @@ legal_reconcile_places <- function(year,uf,offices=c(3L,5L,6L,7L,8L),cache_dir="
   if(is.null(raw)||!identical(attr(raw,"normalizer_version"),2L)||!identical(attr(raw,"source_md5"),source_md5))
     raw <- tse_read_votes(path,year,offices=offices,rounds=c(1L,2L),ufs=if(uf=="BR")NULL else uf)
   raw <- raw[uf != "ZZ"]
+  # Annual CKAN tables can also contain later extraordinary elections (e.g.
+  # RR's 2026 supplementary governor election inside the 2022 nominal table).
+  # The section reader selects ordinary elections; retain those same election
+  # IDs in EVERY legal source instead of pooling an unrelated later contest.
+  ordinary_elections <- unique(raw$election_id)
+  if(!length(ordinary_elections)||anyNA(ordinary_elections))stop("Missing ordinary election identity in section source")
   # Validity is decided at municipality/zone/ballot-number level. Grouping
   # places first is exact for all-or-zero decisions and bounds join memory.
   # If replacement candidates share a number with mixed validity, the partial
@@ -74,7 +80,7 @@ legal_reconcile_places <- function(year,uf,offices=c(3L,5L,6L,7L,8L),cache_dir="
   data.table::setnames(cand,cand_columns,c("year","round","election_id","uf","municipality_tse","zone",
     "office","candidate_seq","candidate_id","party_id","party","destination","official_nominal","official_nominal_valid"))
   cand[,`:=`(municipality_tse=as.character(municipality_tse),candidate_seq=as.character(candidate_seq))]
-  cand <- cand[office %in% offices & uf != "ZZ"]
+  cand <- cand[office %in% offices & uf != "ZZ" & election_id %in% ordinary_elections]
   basekeys <- c("year","round","election_id","uf","municipality_tse","zone","office")
   keys <- c(basekeys,"candidate_id")
   # Contemporary section files carry the sequence. Older presidency files may not.
@@ -109,7 +115,7 @@ legal_reconcile_places <- function(year,uf,offices=c(3L,5L,6L,7L,8L),cache_dir="
     data.table::setnames(party_official,party_cols,c(basekeys,"candidate_id","party_valid","party_pending","party_void"))
     party_official[,municipality_tse:=as.character(municipality_tse)]
     pkeys <- c(basekeys,"candidate_id")
-    party_official <- party_official[office %in% offices & uf != "ZZ",
+    party_official <- party_official[office %in% offices & uf != "ZZ" & election_id %in% ordinary_elections,
       .(party_valid=sum(as.numeric(party_valid)),party_total=sum(as.numeric(party_valid)+party_pending+party_void)),by=pkeys]
     party_official[,keep_party:=legal_all_or_zero(party_total,party_valid)]
     party_valid <- merge(party_valid,party_official,by=pkeys,all.x=TRUE,sort=FALSE)
@@ -127,7 +133,7 @@ legal_reconcile_places <- function(year,uf,offices=c(3L,5L,6L,7L,8L),cache_dir="
   detail <- data.table::fread(detail_path,select=detail_cols,encoding="Latin-1")
   data.table::setnames(detail,detail_cols,c(basekeys,"official_valid_votes","official_nominal_valid","official_party_valid","technical_official"))
   detail[,municipality_tse:=as.character(municipality_tse)]
-  detail <- detail[office %in% offices & uf != "ZZ", lapply(.SD,function(z)sum(as.numeric(z))),by=basekeys,
+  detail <- detail[office %in% offices & uf != "ZZ" & election_id %in% ordinary_elections, lapply(.SD,function(z)sum(as.numeric(z))),by=basekeys,
     .SDcols=c("official_valid_votes","official_nominal_valid","official_party_valid","technical_official")]
   computed <- legal[,.(computed_valid_votes=sum(votes),computed_nominal_valid=sum(votes[vote_type=="candidate"]),
       computed_party_valid=sum(votes[vote_type=="party"])),by=basekeys]
@@ -152,7 +158,8 @@ legal_reconcile_places <- function(year,uf,offices=c(3L,5L,6L,7L,8L),cache_dir="
       difference=sum(difference),zones=.N,reconciled=all(reconciled)),by=.(year,round,election_id,office,uf)]
   audit_method <- if(legacy_nominal) "Legacy candidate totals without legal-allocation fields: all nominal votes retained only after exact official nominal, party, valid-total and technical-null checks in EVERY municipality/zone; no allocation" else "Official candidate municipality/zone all-or-zero validity; official party conversion; exact zone/cargo totals and technical null checks; no allocation"
   attr(places,"vote_audit") <- list(status="reconciled",method=audit_method,checks=as.data.frame(aggregate_checks),
-    unavailable=as.data.frame(failed_contests))
+    unavailable=as.data.frame(failed_contests),election_ids=ordinary_elections,
+    election_scope="Ordinary election IDs selected in the section source; unrelated supplementary contests excluded")
   attr(places,"source_md5") <- source_md5
   attr(places,"normalizer_version") <- 2L
   saveRDS(places,output)

@@ -1,0 +1,51 @@
+# Preparação histórica estadual retomável
+
+`prepare-historical-all-ufs.R` prepara, normaliza e reconcilia os votos estaduais com fontes oficiais, uma UF por vez em subprocessos isolados. O padrão é **somente 2022**. Os anos aceitos são 2022, 2018, 2014 e 2010; se uma lista explícita for passada, a ordem é sempre essa, sem executar anos não pedidos.
+
+```sh
+Rscript --vanilla shared-pipeline/eleicoes/historico/prepare-historical-all-ufs.R 2022 --dry-run
+Rscript --vanilla shared-pipeline/eleicoes/historico/prepare-historical-all-ufs.R 2022
+Rscript --vanilla shared-pipeline/eleicoes/historico/prepare-historical-all-ufs.R 2022 AC,DF
+Rscript --vanilla shared-pipeline/eleicoes/historico/prepare-historical-all-ufs.R 2018
+Rscript --vanilla shared-pipeline/eleicoes/historico/test-prepare-historical.R
+```
+
+Cada subprocesso usa no máximo duas threads de `data.table`; as UFs pequenas vêm primeiro e SP por último. Nenhum download ou processamento de UFs é paralelo. Os arquivos de 2026 permanecem intocados. Processar duas UFs grandes simultaneamente pode exceder a memória disponível; o orquestrador encerra cada subprocesso antes de iniciar o seguinte.
+
+## Correção histórica reproduzível
+
+O runner utiliza o código **versionado** `agregacao/validacao/legal-party-technical-wrapper.R`, que carrega `historico/legal-validity.R` em ambiente privado e aplica a correção já comprovada de legenda sem cadastro. Não depende de scripts locais de diagnóstico e não modifica o reconciliador comum em disco.
+
+Em AC2022 foram encontrados três votos para o número de partido 29 sem registro na totalização partidária: um voto em uma zona e dois em outra. Esses votos só são classificados como nulos técnicos se o residual nominal + legenda fechar **exatamente em cada município/zona** contra `QT_VOTOS_NULOS_TECNICOS`. Nominais válidos, legenda válida e total válido também precisam fechar exatamente nas mesmas unidades. Não há rateio, inferência de elegibilidade ou tolerância de diferenças.
+
+O probe real de AC2022 certificou os quatro cargos e suas 23 zonas, com diferença zero: governador 426.600, senador 411.949, deputado federal 434.253 e deputado estadual 435.770 votos válidos. Isso prova a viabilidade de 2022; não declara automaticamente viáveis as demais UFs ou anos. Cada execução posterior pode terminar `complete`, `partial` ou `failed` conforme sua própria reconciliação. Tabelas históricas com esquema insuficiente ou votos sem alocação jurídica demonstrável precisam de investigação; não são liberadas por aproximação.
+
+## Retomada e proveniência
+
+Checkpoints e logs ficam em `data-raw/eleicoes-renda/historico/historical-status/ANO/UF.json` e `UF.log`. Um resumo é gravado em `prepare-ANO-historical-status.csv`. Cada checkpoint registra status, disputas certificadas, indisponibilidades, duração e **MD5** de todos os ZIPs de entrada disponíveis (seção da UF, nominal, partidário e detalhe), metadados CKAN, código do runner/normalizador/reconciliador/wrapper e cache legal de saída.
+
+A retomada só pula um resultado `complete` ou `partial` quando os hashes permanecem idênticos. `--retry-partial` repete resultados parciais; `--rebuild` reexecuta a reconciliação de todos os alvos pedidos reutilizando os downloads. Checkpoints `failed` ou `running` são tentados novamente. Mudança em qualquer código ou insumo também invalida a retomada. Os hashes são memoizados por tamanho/data de alteração durante o processo controlador, evitando reprocessar o mesmo ZIP nacional a cada verificação de checkpoint.
+
+O runner exige que cada disputa ordinária do detalhe oficial apareça em `checks` certificados ou em `unavailable`; um desaparecimento silencioso causa erro. Só retorna exit 0 se todas as UFs pedidas estiverem `complete`. Resultados parciais são registrados e não impedem as UFs seguintes, mas o lote termina com exit 1 para não confundir progresso com conclusão. `--dry-run` não baixa nem escreve dados.
+
+## Limpeza das extrações recriáveis
+
+```sh
+Rscript --vanilla shared-pipeline/eleicoes/historico/cleanup-historical-extractions.R 2022 --dry-run
+Rscript --vanilla shared-pipeline/eleicoes/historico/cleanup-historical-extractions.R 2022 --apply
+Rscript --vanilla shared-pipeline/eleicoes/historico/test-cleanup-historical.R
+```
+
+A limpeza exige checkpoint `complete` da UF. Confere o MD5 do ZIP contra o checkpoint, normaliza e valida os caminhos absolutos dentro de `historico`, exige correspondência exata entre diretório de extração e nome do ZIP e seleciona apenas o membro CSV daquela UF listado no arquivo. Antes de remover cada arquivo, também confere tamanho e **CRC32 do conteúdo**, preservando inclusive alterações de mesmo tamanho feitas por outra sessão. A remoção é individual: não remove diretórios e não usa exclusão recursiva. Mantém ZIPs, RDS, metadados, logs, catálogos e probes. Dependências adicionais: `zip` e `digest`.
+
+O teste sintético cobre checkpoint parcial, MD5 incorreto, CSV alterado com tamanho diferente e igual, preservação de probes e ZIPs e idempotência. Um relatório da execução de limpeza fica no cache. Somente as extrações de UFs já completas são elegíveis; um worker ainda ativo não tem seus arquivos removidos.
+
+## Eleições extraordinárias nas tabelas anuais
+
+RR2022 mostrou outra particularidade real: o arquivo nominal daquele ano também inclui a eleição extraordinária 6278, denominada suplementar de governador de 2026 (21/06/2026). A fonte de seções é filtrada para eleição ordinária. O reconciliador agora restringe **todas** as tabelas jurídicas — candidatos, partidos e detalhe — aos mesmos `election_id` selecionados na fonte de seções. Isso impede comparar ou somar pleitos diferentes. `test-historical-ordinary.R` contém uma suplementar positiva na fixture e comprova a exclusão; também comprova que três votos técnicos fecham e que um quarto voto indevido é rejeitado. O teste preexistente da correção de legenda em 2026 passou sem alteração nos caches reais de 2026.
+
+O worker usa também o agrupamento exato otimizado `candidate-group-fastpath.R`, já comparado à implementação de referência para chaves únicas, duplicadas e valores ausentes. As conferências jurídicas permanecem inalteradas. Os hashes do código são coletados antes de carregar os helpers; se o código mudar durante uma execução, o checkpoint exige repetição em vez de atribuir a uma execução antiga o hash novo.
+
+Nos novos workers, a limpeza ocorre automaticamente depois do checkpoint completo. A remoção exige também uma **extração real de verificação** do membro em diretório temporário ignorado, seguida de tamanho/CRC da cópia recém-descomprimida. Assim um índice ZIP legível com payload corrompido não autoriza apagar o CSV original. O teste corrompe o payload, recalcula deliberadamente o MD5 do checkpoint e comprova a recusa. As cópias de verificação são removidas individualmente ao terminar.
+
+`--cache-dir DIRETORIO` pode selecionar outro cache tanto no controlador quanto no worker filho; caminhos com espaços são testados por um subprocesso R real. O teste correspondente é `test-historical-cache-dir.R`. A proveniência inclui ainda o código da limpeza e do agrupamento rápido.

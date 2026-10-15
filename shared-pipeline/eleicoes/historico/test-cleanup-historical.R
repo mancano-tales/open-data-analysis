@@ -1,0 +1,55 @@
+source("shared-pipeline/eleicoes/historico/cleanup-historical-extractions.R")
+stopifnot(requireNamespace("zip",quietly=TRUE),requireNamespace("jsonlite",quietly=TRUE))
+root<-tempfile("historical-cleanup-fixture-");dir.create(root)
+year<-2022L;uf<-"AC";sources<-character()
+for(prefix in c("votacao_secao","votacao_candidato_munzona","votacao_partido_munzona","detalhe_votacao_munzona")) {
+ name<-if(prefix=="votacao_secao")paste0(prefix,"_2022_AC") else paste0(prefix,"_2022")
+ folder<-file.path(root,name);dir.create(folder);member<-paste0(prefix,"_2022_AC.csv")
+ writeLines("synthetic reproducible source",file.path(folder,member))
+ zip_path<-file.path(root,paste0(name,".zip"));zip::zipr(zip_path,member,root=folder)
+ sources<-c(sources,zip_path)
+}
+record<-list(status="complete",fingerprints=historical_identity(sources))
+historical_write_json(record,historical_checkpoint_path(root,2022L,"AC"))
+probe<-file.path(root,"votacao_secao_2022_AC","probe.csv");writeLines("must survive",probe)
+preview<-historical_cleanup_state(2022L,"AC",root,FALSE)
+stopifnot(nrow(preview)==4L,all(preview$status=="would_remove"),all(file.exists(preview$target)))
+record$status<-"partial";historical_write_json(record,historical_checkpoint_path(root,2022L,"AC"))
+stopifnot(historical_cleanup_state(2022L,"AC",root,TRUE)$status=="not_complete",all(file.exists(preview$target)))
+record$status<-"complete";historical_write_json(record,historical_checkpoint_path(root,2022L,"AC"))
+write("modified by another session",preview$target[1],append=TRUE)
+stopifnot(inherits(try(historical_cleanup_state(2022L,"AC",root,TRUE),silent=TRUE),"try-error"),all(file.exists(preview$target)))
+writeLines("synthetic reproducible source",preview$target[1])
+# Preserve modifications even when the byte count is unchanged.
+original_bytes<-readBin(preview$target[1],what="raw",n=file.info(preview$target[1])$size)
+changed_bytes<-original_bytes;changed_bytes[1]<-as.raw(bitwXor(as.integer(changed_bytes[1]),1L))
+writeBin(changed_bytes,preview$target[1])
+stopifnot(inherits(try(historical_cleanup_state(2022L,"AC",root,TRUE),silent=TRUE),"try-error"),all(file.exists(preview$target)))
+writeBin(original_bytes,preview$target[1])
+# A bad checkpoint hash must stop cleanup before deleting any source member.
+bad<-record;bad$fingerprints[[1]]$md5<-paste(rep("0",32),collapse="")
+historical_write_json(bad,historical_checkpoint_path(root,2022L,"AC"))
+stopifnot(inherits(try(historical_cleanup_state(2022L,"AC",root,TRUE),silent=TRUE),"try-error"),all(file.exists(preview$target)))
+historical_write_json(record,historical_checkpoint_path(root,2022L,"AC"))
+# Corrupt only compressed payload bytes. The ZIP directory and original CSV
+# remain readable, and the checkpoint deliberately receives the new ZIP MD5.
+zip_path<-sources[1L]
+original_zip<-readBin(zip_path,what="raw",n=file.info(zip_path)$size)
+little16<-function(x)sum(as.integer(x)*c(1,256))
+name_length<-little16(original_zip[27:28]);extra_length<-little16(original_zip[29:30])
+payload_start<-31L+name_length+extra_length
+broken_zip<-original_zip;broken_zip[payload_start+2L]<-as.raw(bitwXor(as.integer(broken_zip[payload_start+2L]),127L))
+writeBin(broken_zip,zip_path)
+stopifnot(nrow(zip::zip_list(zip_path))==1L) # Central index still readable.
+broken_record<-record;broken_record$fingerprints[[1L]]$md5<-unname(tools::md5sum(zip_path))
+historical_write_json(broken_record,historical_checkpoint_path(root,2022L,"AC"))
+rm(list=ls(envir=historical_md5_cache),envir=historical_md5_cache)
+err<-tryCatch({historical_cleanup_state(2022L,"AC",root,TRUE);NULL},error=conditionMessage)
+stopifnot(is.character(err),grepl("ZIP decompression verification failed",err),all(file.exists(preview$target)))
+writeBin(original_zip,zip_path)
+historical_write_json(record,historical_checkpoint_path(root,2022L,"AC"))
+rm(list=ls(envir=historical_md5_cache),envir=historical_md5_cache)
+removed<-historical_cleanup_state(2022L,"AC",root,TRUE)
+stopifnot(all(removed$status=="removed"),!any(file.exists(removed$target)),all(file.exists(sources)),file.exists(probe),
+ historical_cleanup_state(2022L,"AC",root,TRUE)$status=="already_clean")
+message("PASS cleanup: exact archive members only; incomplete checkpoints, modified CSVs and bad hashes rejected; ZIPs/probes retained")
