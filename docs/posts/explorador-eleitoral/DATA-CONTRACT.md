@@ -7,12 +7,17 @@ Quarto preview or an HTTP server; browser `file://` blocks JSON fetches.
 Manifest fields:
 
 ```json
-{"schema_version":1,"offices":{"1":{"pt":"Presidente","en":"President"}},"series":[{"id":"2026-1-1-BR","year":2026,"round":1,"office":"1","office_label":{"pt":"Presidente","en":"President"},"uf":"BR","url":"2026-1-1-BR.json","status":"available"}]}
+{"schema_version":1,"offices":{"1":{"pt":"Presidente","en":"President"}},"series":[{"id":"2026-1-1-BR","year":2026,"round":1,"office":"1","office_label":{"pt":"Presidente","en":"President"},"uf":"BR","income_reference":"national","url":"2026-1-1-BR.json","status":"available"}]}
 ```
 
 URLs are relative to the directory containing the manifest. Only entries
 with `status: "available"` appear in selectors. One series per combination
-of year, round, office and territory. Add municipal scope as a new field and
+of year, round, office, territory and `income_reference`. The latter is
+`"national"` or `"state"`; missing values in older manifests mean national.
+A state-reference series uses its national counterpart's ID plus `-state`.
+The BR territory supports national reference only. Never publish duplicate
+entries for the same five dimensions: the UI rejects ambiguous selections.
+Add municipal scope as a new field and
 control before publishing municipal series. A national aggregation of
 subnational offices needs an explicit definition of candidate comparability.
 
@@ -30,10 +35,16 @@ Each series has the following fields (metadata text may be a string or
 All numbers must be JSON numbers (never localized strings). `votacao` is
 on a 0–100 scale. Every candidate must have exactly 100 points and unique
 centils 1–100. Candidate IDs must match; names are plain text. The expanded
-series use `metadata.percentile_scope: "BR"`: rank ALL census tracts with
-eligible income, before any electoral/spatial exclusions, by mean income
-of household heads with income, using Census 2022 V06004. These national
-groups remain fixed between elections and within UF filters. `renda_sm`
+series use one of two fixed Census 2022 income references. National reference
+(`income_reference: "national"`, `metadata.percentile_scope: "BR"`) ranks
+ALL Brazilian census tracts with eligible income before any electoral/spatial
+exclusions, using mean income of household heads with income (V06004). Its
+national groups remain fixed between elections and within UF filters.
+State reference (`income_reference: "state"`, `metadata.percentile_scope:
+"AC"` for Acre, `"SP"` for São Paulo, or the corresponding actual UF code)
+instead ranks all income-eligible tracts within the selected UF before
+the same exclusions, with approximately 1% of that state's tracts in each
+group. Its state groups likewise remain fixed between elections. `renda_sm`
 describes the complete income-eligible group in the selected territory,
 before vote/spatial exclusions. `n_setores_total`
 is the number of eligible income tracts in the selected territory/group;
@@ -43,6 +54,23 @@ BRL 1,212. `n_setores` is repeated for each candidate and must sum to
 `included_tracts` separately for every candidate. Document any changed
 universe, percentile ranking, weighting or income variable in metadata;
 never silently mix these estimators in one chart.
+
+The scope value is the exact UF abbreviation, never the literal `"UF"`.
+Before displaying curves, the UI requires `percentile_scope` to equal `"BR"`
+for a national reference or the selected territory code for a state reference.
+Missing or conflicting scope metadata are rejected visibly; the UI must not
+silently relabel an incompatible series. If `metadata.income_reference` is
+present, it must also match the manifest entry.
+
+The fifth selector, after year/round/office/territory, chooses income reference.
+Presidential contests default to national reference, including their UF
+filters; other offices default to state reference when available. Changing
+office resets this default. Changing UF retains the user's preferred reference;
+when unavailable (including BR with a state preference), the UI explicitly
+announces the available fallback and retains the preference for a later UF
+change. Candidate selections are preserved across reference changes when
+their IDs still exist. Manifest requests use `cache: "no-cache"` so a newly
+deployed list of available references is revalidated by the browser.
 
 `metadata.vote_audit` records the mandatory independent reconciliation with
 official TSE electoral totals, not certification of spatial attribution:
@@ -83,7 +111,7 @@ infer zero votes from absent candidates or absent years. Candidate selection
 affects only visible curves: the denominator remains all valid votes for
 the selected office, as defined by the upstream estimator.
 
-The manifest contains only series with fixed national income ranks and
+The manifest contains only series with fixed national or state income ranks and
 reconciled official valid-vote inputs. It must not include the older
 matched-sample centiles from the initial reconstruction.
 

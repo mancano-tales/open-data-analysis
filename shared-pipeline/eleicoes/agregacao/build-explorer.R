@@ -15,14 +15,25 @@ eleicao_cache_index <- function(cache_dir) {
 
 eleicao_targets <- function(years = c(2010L, 2014L, 2018L, 2022L, 2026L),
                             rounds = c(1L, 2L), state_years = years,
-                            ufs = unname(eleicao_ufs), state_offices = c(3L, 5L, 6L, 7L, 8L)) {
+                            ufs = unname(eleicao_ufs), state_offices = c(3L, 5L, 6L, 7L, 8L),
+                            income_references = "national") {
   pres <- expand.grid(year = as.integer(years), round = as.integer(rounds), office = 1L,
                        uf = c("BR", ufs), stringsAsFactors = FALSE)
   state <- expand.grid(year = as.integer(intersect(years, state_years)), round = as.integer(rounds),
                         office = as.integer(state_offices), uf = ufs, stringsAsFactors = FALSE)
   state <- state[(state$office != 8L | state$uf == "DF") &
     (state$office != 7L | state$uf != "DF") & (state$round == 1L | state$office == 3L), , drop = FALSE]
-  data.table::as.data.table(unique(rbind(pres, state)))
+  base <- data.table::as.data.table(unique(rbind(pres, state)))
+  if (!length(income_references) || any(!income_references %in% c("national", "state"))) stop("Invalid income references")
+  data.table::rbindlist(lapply(unique(income_references), function(reference) {
+    selected <- data.table::copy(base[reference != "state" | uf != "BR"])
+    selected[, income_reference := reference]
+    selected
+  }))
+}
+
+eleicao_target_id <- function(year, round, office, uf, income_reference = "national") {
+  paste0(paste(year, round, office, uf, sep = "-"), ifelse(income_reference == "state", "-state", ""))
 }
 
 eleicao_pick_cache <- function(index, year, office, uf) {
@@ -43,11 +54,15 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
     income_path = "data-raw/eleicoes-renda/renda2022.rds",
     targets = NULL, max_distance_m = 5000, incremental = FALSE, flush_progress = FALSE) {
   eleicao_require(); data.table::setDTthreads(2L)
-  if (is.null(targets)) targets <- eleicao_targets()
-  targets <- unique(data.table::as.data.table(targets)[, .(year, round, office, uf)])
+  if (is.null(targets)) targets <- eleicao_targets(income_references = c("national", "state"))
+  targets <- data.table::copy(data.table::as.data.table(targets))
+  if (!"income_reference" %in% names(targets)) targets[, income_reference := "national"]
+  targets <- unique(targets[, .(year, round, office, uf, income_reference)])
   targets[, `:=`(year = as.integer(year), round = as.integer(round), office = as.integer(office), uf = toupper(uf))]
   data.table::setorder(targets, year, round, office, uf)
-  if (anyNA(targets) || any(!targets$uf %in% c("BR", unname(eleicao_ufs)))) stop("Invalid targets")
+  if (anyNA(targets) || any(!targets$uf %in% c("BR", unname(eleicao_ufs))) ||
+      any(!targets$income_reference %in% c("national", "state")) ||
+      any(targets$income_reference == "state" & targets$uf == "BR")) stop("Invalid targets")
   index <- eleicao_cache_index(cache_dir)
   # Read each potentially large vote cache once per year/round, not per office.
   targets[, processing_source := vapply(seq_len(.N), function(i) {
@@ -69,8 +84,8 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
     stats::setNames(items,ids)
   }
   series <- index_items(prior$series); availability <- index_items(prior$availability)
-  valid_scope <- eleicao_targets()
-  valid_ids <- with(valid_scope,paste(year,round,office,uf,sep="-"))
+  valid_scope <- eleicao_targets(income_references = c("national", "state"))
+  valid_ids <- with(valid_scope,eleicao_target_id(year,round,office,uf,income_reference))
   series <- series[names(series) %in% valid_ids]
   availability <- availability[names(availability) %in% valid_ids]
   write_manifest <- function(manifest) {
@@ -89,7 +104,8 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
   last_vote_path <- NULL; votes <- NULL; vote_error <- NULL
   for (i in seq_len(nrow(targets))) {
     target <- targets[i]; yr <- target$year; tr <- target$round; oc <- target$office; state <- target$uf
-    id <- paste(yr, tr, oc, state, sep = "-")
+    reference <- target$income_reference
+    id <- eleicao_target_id(yr, tr, oc, state, reference)
     status <- "unavailable"; reason <- NULL; item <- NULL
     selected <- eleicao_pick_cache(index, yr, oc, state)
     link_path <- file.path(spatial_dir, paste0("links-", yr, "-", tr, ".rds"))
@@ -117,14 +133,14 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
         outcome <- tryCatch({
           name <- paste0(id, ".json")
           destination <- file.path(output_dir,"series",name)
-          fingerprint <- paste("fixed-income-valid-v1",income_hash,link_hash,vote_hash,max_distance_m,id,sep=":")
+          fingerprint <- paste(if(reference == "state") "state-income-valid-v1" else "fixed-income-valid-v1",income_hash,link_hash,vote_hash,max_distance_m,id,sep=":")
           cached <- if(file.exists(destination))tryCatch(jsonlite::read_json(destination),error=function(e)NULL) else NULL
           if(!is.null(cached) && identical(cached$metadata$export_fingerprint,fingerprint) &&
              identical(cached$metadata$vote_audit$status,"reconciled")) {
             item <- eleicao_manifest_item(cached,paste0("series/",name))
           } else {
             dataset <- eleicao_aggregate_contest(votes, universe, links, yr, tr, oc, state,
-              max_distance_m = max_distance_m, sources = sources)
+              max_distance_m = max_distance_m, sources = sources, income_reference = reference)
             dataset$metadata$vote_source_md5 <- attr(votes, "source_md5")
             dataset$metadata$vote_cache <- basename(selected$path)
             dataset$metadata$spatial <- attr(links, "metadata")
@@ -141,7 +157,7 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
         }
       }
     }
-    availability[[id]] <- list(id = id, year = yr, round = tr, office = as.character(oc), uf = state,
+    availability[[id]] <- list(id = id, year = yr, round = tr, office = as.character(oc), uf = state, income_reference = reference,
       office_label = unname(eleicao_office_labels[as.character(oc)]), status = status,
       reason = if (is.null(reason)) "Dados processados com universo de renda fixo e cobertura documentada" else reason)
     if(status!="available") series[[id]] <- NULL
@@ -154,8 +170,9 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
     }
   }
   manifest <- list(schema_version = 1L, series = unname(series), availability = unname(availability),
-    metadata = list(percentile_scope = "BR", income_year = 2022L,
-      method = "Universo nacional fixo de setores com renda do Censo 2022, média simples de percentuais eleitorais atribuídos pelo local mais próximo no mesmo município.",
+    metadata = list(percentile_scope = if(any(vapply(series,function(item)identical(item$income_reference,"state"),logical(1)))) "selectable" else "BR", income_year = 2022L,
+      income_references = c("national", "state"),
+      method = "Setores com renda do Censo 2022 ordenados no Brasil ou na UF escolhida antes das exclusões; média simples de percentuais eleitorais atribuídos pelo local mais próximo no mesmo município.",
       income_definition = "V06004, renda nominal média dos responsáveis; salários mínimos de 2022 (R$ 1.212).",
       sources = sources,
       coverage = list(total_eligible_tracts = nrow(universe)),

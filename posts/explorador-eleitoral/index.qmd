@@ -13,7 +13,7 @@ format:
     include-after-body:
       text: |
         <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-        <script src="app.js"></script>
+        <script src="app.js?v=income-reference-20261015"></script>
 ---
 
 Which candidates receive more support in poorer and richer areas? Explore
@@ -73,7 +73,14 @@ Territorial association does not establish how individual income groups
 voted. Historical comparisons must keep the 2022 income reference fixed and
 document changes in coverage and polling-place locations. Expanded historical
 series rank all tracts with eligible Census 2022 income before electoral
-exclusions and preserve national percentile groups when filtering by state.
+exclusions. In **Income reference**, “Within state” ranks only that state's
+tracts: the richest end represents the richest tracts within the state.
+This is the default for state offices. “Brazil” retains their position in
+the national income distribution, supporting comparisons of income levels
+across territories. A tract can be rich within its state and occupy a middle
+position nationally. Switching references changes the groups, while keeping
+each tract's assigned vote shares; these curves do not count votes by income
+group. Keep the same reference when comparing elections.
 A percentile's mean income describes its complete
 income-eligible group in the selected territory; its covered tract count
 can be smaller. No local estimate is shown as a zero vote share merely

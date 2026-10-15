@@ -117,6 +117,68 @@ attr(certified_senate, "vote_audit") <- senate_audit
 senate_certified <- eleicao_vote_audit(certified_senate, 2026, 1, 5, "SP")
 stopifnot(!senate_certified$provisional, !length(senate_certified$snapshots))
 
+# National and state income references share votes/audit/coverage, but use
+# different COMPLETE income universes. SP incomes 1..100 and RJ 101..200
+# deliberately differ, so a national percentile is not a state percentile.
+universe_before_reference <- copy(universe)
+explicit_national <- fixture_aggregate(votes, universe, links, 2026, 1, 1,
+                                      income_reference = "national")
+stopifnot(identical(result$points, explicit_national$points),
+          identical(result$candidates, explicit_national$candidates),
+          identical(result$metadata$coverage, explicit_national$metadata$coverage))
+state_result <- eleicao_aggregate_contest(certified_deputies, universe, links, 2026, 1, 6,
+                                         uf = "SP", income_reference = "state")
+state_points <- as.data.table(state_result$points)
+stopifnot(identical(universe, universe_before_reference),
+          identical(state_result$metadata$vote_audit, provisional_result$metadata$vote_audit),
+          identical(state_result$metadata$coverage, provisional_result$metadata$coverage),
+          state_result$metadata$income_reference == "state", state_result$metadata$percentile_scope == "SP",
+          provisional_result$metadata$income_reference == "national", provisional_result$metadata$percentile_scope == "BR",
+          state_points[centil == 2 & candidate_id == "1313", n_setores] == 0L,
+          state_points[centil == 2 & candidate_id == "1313", n_setores_total] == 1L,
+          state_points[centil == 2 & candidate_id == "1313", renda_sm] == 2,
+          is.na(state_points[centil == 2 & candidate_id == "1313", votacao]),
+          state_points[centil == 100 & candidate_id == "1313", renda_sm] == 100)
+
+# Independent base-R rank and tract-level calculation for the state reference.
+state_universe <- as.data.frame(universe[uf == "SP"])
+state_universe <- state_universe[order(state_universe$income, state_universe$code_tract), ]
+state_universe$centil <- floor((seq_len(nrow(state_universe)) - 1L) * 100 / nrow(state_universe)) + 1L
+state_votes <- as.data.table(certified_deputies)[vote_type %in% c("candidate", "party")]
+state_votes[, place_key := paste(uf, municipality_tse, zone, place, sep = ":")]
+state_denominator <- state_votes[, .(denominator = sum(votes)), by = place_key]
+state_matched <- merge(state_universe, as.data.frame(links), by = "code_tract")
+state_matched <- merge(state_matched, as.data.frame(state_denominator), by = "place_key")
+for (candidate in c(1313, 2222)) {
+  nominal <- state_votes[candidate_id == candidate, .(numerator = sum(votes)), by = place_key]
+  brute_state <- merge(state_matched, as.data.frame(nominal), by = "place_key", all.x = TRUE)
+  brute_state$numerator[is.na(brute_state$numerator)] <- 0
+  expected <- tapply(100 * brute_state$numerator / brute_state$denominator, brute_state$centil, mean)
+  actual <- state_points[candidate_id == as.character(candidate)]
+  stopifnot(max(abs(actual$votacao[match(as.integer(names(expected)), actual$centil)] - as.numeric(expected))) < 1e-12)
+}
+# Excluding the poorest observed tract must not move the second/third tract.
+state_filtered_links <- copy(links)
+state_filtered_links[code_tract == state_universe$code_tract[[1L]], distancia_m := 6000]
+state_filtered <- eleicao_aggregate_contest(certified_deputies, universe, state_filtered_links,
+  2026, 1, 6, uf = "SP", income_reference = "state")
+state_filtered_points <- as.data.table(state_filtered$points)
+stopifnot(state_filtered$metadata$coverage$included_tracts == 49L,
+          state_filtered_points[centil == 1 & candidate_id == "1313", n_setores] == 0L,
+          state_filtered_points[centil == 1 & candidate_id == "1313", renda_sm] == 1,
+          state_filtered_points[centil == 3 & candidate_id == "1313", renda_sm] == 3,
+          state_filtered_points[centil == 3 & candidate_id == "1313", votacao] == 30)
+
+national_item <- eleicao_manifest_item(provisional_result, "national.json")
+state_item <- eleicao_manifest_item(state_result, "state.json")
+legacy_metadata <- provisional_result; legacy_metadata$metadata$income_reference <- NULL
+legacy_item <- eleicao_manifest_item(legacy_metadata, "legacy.json")
+stopifnot(national_item$id == "2026-1-6-SP", national_item$income_reference == "national",
+          state_item$id == "2026-1-6-SP-state", state_item$income_reference == "state",
+          legacy_item$id == national_item$id, legacy_item$income_reference == "national")
+expect_error(fixture_aggregate(votes, universe, links, 2026, 1, 1, income_reference = "state"))
+expect_error(fixture_aggregate(votes, universe, links, 2026, 1, 1, uf = "SP", income_reference = "municipality"))
+
 # Essential rejection paths avoid pooling UFs or duplicating census weights.
 expect_error(fixture_aggregate(deputies, universe, links, 2026, 1, 6))
 expect_error(fixture_aggregate(votes, universe, rbind(links, links[1]), 2026, 1, 1))
@@ -133,4 +195,4 @@ stopifnot(identical(roundtrip$metadata$percentile_scope, "BR"),
           item$office == "1", item$status == "available", nrow(roundtrip$points) == 300L,
           anyNA(roundtrip$points$votacao), is.data.frame(roundtrip$candidates))
 unlink(path)
-message("PASS: fixed ranks, complete denominators, zero versus missing, state scope, brute-force equivalence, senate, party votes and JSON.")
+message("PASS: national/state fixed ranks, audit/coverage invariance, complete denominators, zero versus missing, brute-force equivalence, senate, party votes and JSON.")

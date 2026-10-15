@@ -44,6 +44,27 @@ e desempate pelo código. Filtros de UF/cargo/ano não recalculam o ranking.
 A renda de cada ponto considera o grupo completo da UF ou do Brasil,
 conforme a série, antes das exclusões por distância e disponibilidade de votos.
 
+O argumento `income_reference = "state"` de `eleicao_aggregate_contest()`
+reordena o universo completo da UF por renda e código do setor, formando
+cem grupos dentro daquela UF, também antes das exclusões. O padrão do núcleo,
+`"national"`, preserva os resultados anteriores. Referência estadual exige UF
+explícita; não existe uma série estadual para Brasil. A votação continua sendo
+uma média de proporções, e não uma contagem de votos nas faixas de renda.
+`percentile_scope` identifica Brasil (`BR`) ou a UF e `income_reference`
+identifica a classificação. Séries estaduais têm sufixo `-state` no ID.
+
+Para exportar ambas as referências de 2026 sem repetir o processamento nacional:
+
+```r
+targets <- eleicao_targets(years = 2026L, rounds = 1L,
+                          income_references = "state")
+eleicao_build_explorer(targets = targets, incremental = TRUE,
+                      flush_progress = TRUE)
+```
+
+Os seletores usam a referência estadual como padrão para cargos estaduais,
+mantendo a nacional para presidência e para comparação entre territórios.
+
 A agregação primeiro soma os votos por local/candidato, calcula o
 denominador completo do cargo/local e conta setores por local/centil.
 Depois multiplica percentuais por essa contagem. Assim evita materializar

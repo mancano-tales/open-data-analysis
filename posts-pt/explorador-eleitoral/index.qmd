@@ -13,7 +13,7 @@ format:
     include-after-body:
       text: |
         <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-        <script src="../../posts/explorador-eleitoral/app.js"></script>
+        <script src="../../posts/explorador-eleitoral/app.js?v=income-reference-20261015"></script>
 ---
 
 Em quais faixas de renda cada candidato recebe mais apoio? Explore as curvas
@@ -73,7 +73,14 @@ A associação territorial não identifica como pessoas de determinada renda
 votaram. A comparação entre eleições deve manter a referência de renda de
 2022 e documentar mudanças na cobertura e nos locais de votação. As séries
 históricas ampliadas ordenam todos os setores com renda elegível antes das
-exclusões eleitorais e preservam os grupos nacionais quando se filtra uma UF.
+exclusões eleitorais. Em **Referência de renda**, “Dentro da UF” ordena
+somente os setores daquela UF: o extremo rico significa os mais ricos do
+próprio estado. Essa é a opção padrão para cargos estaduais. “Brasil” mantém
+a posição dos setores na distribuição nacional, permitindo comparar níveis
+de renda entre territórios. Um setor rico dentro de um estado pode ocupar
+uma posição intermediária no Brasil. A referência escolhida altera os grupos,
+sem alterar os votos atribuídos a cada setor; não é uma contagem de votos
+por faixa de renda. Compare eleições mantendo a mesma referência selecionada.
 A renda média do centil considera
 o grupo completo com renda elegível no território selecionado; o número de
 setores com votação estimada pode ser menor. Ausência de ligação espacial
