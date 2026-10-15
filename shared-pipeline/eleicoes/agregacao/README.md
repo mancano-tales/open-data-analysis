@@ -116,6 +116,27 @@ estadual; segundo turno estadual é considerado somente para governador.
 Somente disputas com votos e mapa efetivamente disponíveis são exportadas.
 Um turno não encontrado recebe razão explícita, sem fabricar resultado.
 
+Para incorporar um ano de cada vez, preservando os demais no manifesto:
+
+```sh
+Rscript shared-pipeline/eleicoes/agregacao/export-historical-year.R 2022
+node shared-pipeline/eleicoes/agregacao/acceptance-historical.cjs --years=2022
+```
+
+Repita com 2018, 2014 e 2010. A opção `--presidency-only` permite publicar
+primeiro a presidência quando os cargos estaduais ainda estão sendo preparados.
+O verificador histórico exige as 110 séries presidenciais de cada ano (dois
+turnos, Brasil/UF e referências nacional/estadual); não certifica completude
+dos cargos estaduais. Cada disputa adicional é validada, mas disponibilidade
+e razões de exclusão devem ser examinadas separadamente.
+
+Esta expansão usa **renda e setores do Censo 2022 em todos os anos**. Não
+equivale a incorporar o Censo 2010. As coordenadas são dos locais de votação
+do ano eleitoral; o cadastro do primeiro turno pode ser reutilizado no segundo,
+com aviso explícito nos metadados. Totais nacionais cobrem as 27 UFs, sem ZZ.
+Após exportar e renderizar, publique os arquivos compartilhados compactados
+seguindo `posts/explorador-eleitoral/PUBLISHING.md`.
+
 O destino padrão é `posts/explorador-eleitoral/data/`. Contém `manifest.json`
 com `schema_version: 1`, `series`, `availability` e `metadata`, uma tabela
 `availability.csv` e os JSONs em `series/ANO-TURNO-CARGO-UF.json`.
