@@ -1,7 +1,7 @@
 // Isolated TEST-ONLY files; never reads or changes source electoral datasets.
 'use strict';
 const fs=require('node:fs/promises'),path=require('node:path'),assert=require('node:assert/strict'),zlib=require('node:zlib');
-const {publish}=require('./publish-static.cjs');
+const {publish,lfBlobHash}=require('./publish-static.cjs');
 (async()=>{
   const parent=path.resolve(__dirname,'../../data-raw/eleicoes-renda');await fs.mkdir(parent,{recursive:true});
   const root=await fs.mkdtemp(path.join(parent,'publish-static-test-'));
@@ -18,6 +18,9 @@ const {publish}=require('./publish-static.cjs');
   await publish({repoRoot:root,apply:true});assert.deepEqual(await fs.readFile(gzipFile),first);
   assert.equal(await fs.readFile(path.join(source,'manifest.json'),'utf8'),manifest);assert.equal(await fs.readFile(path.join(source,'series/fixture.json'),'utf8'),input);
   await fs.writeFile(path.join(published,'series/fixture.json'),input);
+  const crypto=require('node:crypto');
+  await fs.writeFile(path.join(source,'line-endings.txt'),'a\r\nb\r\n');
+  assert.equal(await lfBlobHash(path.join(source,'line-endings.txt')),crypto.createHash('sha1').update('blob 4\0a\nb\n').digest('hex'));
   await assert.rejects(publish({repoRoot:root,apply:true,pruneJson:true}),/HEAD|backup|preserved/);
   assert.equal(await fs.readFile(path.join(published,'series/fixture.json'),'utf8'),input);
   await assert.rejects(publish({repoRoot:root,pruneJson:true}),/require --apply/);

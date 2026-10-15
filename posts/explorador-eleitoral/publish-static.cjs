@@ -11,6 +11,7 @@ function below(root,relative){if(path.isAbsolute(relative))throw Error('Absolute
 async function exists(file){try{await fs.access(file);return true;}catch{return false;}}
 async function atomicText(file,text){await fs.mkdir(path.dirname(file),{recursive:true});await fs.writeFile(file+'.part',text);await fs.rename(file+'.part',file);}
 async function blobHash(file){const stat=await fs.stat(file),hash=crypto.createHash('sha1');hash.update(`blob ${stat.size}\0`);for await(const chunk of nativeFs.createReadStream(file))hash.update(chunk);return hash.digest('hex');}
+async function lfBlobHash(file){const bytes=Buffer.from((await fs.readFile(file,'utf8')).replace(/\r\n/g,'\n'),'utf8');return crypto.createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex');}
 function git(root,args){return execFileSync('git',args,{cwd:root,encoding:'utf8',maxBuffer:32*1024*1024});}
 function headBlobs(root){const result=new Map();for(const record of git(root,['ls-tree','-rz','--full-tree','HEAD','--',relativeSource,relativePublished,relativePortuguese]).split('\0')){if(!record)continue;const [header,file]=record.split('\t');const [mode,type,hash]=header.split(' ');if(type==='blob'&&mode!=='120000')result.set(file,hash);}return result;}
 async function trackedPortuguese(root){return git(root,['ls-files','-z','--',relativePortuguese]).split('\0').filter(Boolean).map(relative=>({file:below(root,relative),relative})).filter(item=>/\.(json|csv)$/i.test(item.relative));}
@@ -20,7 +21,12 @@ async function verifyBackup(root,deletions){
     const hash=await blobHash(item.file);
     const suffix=item.relative.startsWith(relativePortuguese+'/')?item.relative.slice(relativePortuguese.length+1):item.relative.slice(relativePublished.length+1);
     const candidates=[item.relative,relativeSource+'/'+suffix,relativePublished+'/'+suffix];
-    if(!candidates.some(candidate=>blobs.get(candidate)===hash))throw Error('Pruning refused: no byte-identical original preserved in HEAD for '+item.relative);
+    if(!candidates.some(candidate=>blobs.get(candidate)===hash)){
+      // Git normalizes text line endings on Windows; accept only that exact
+      // transformation, never changes to JSON values or arbitrary whitespace.
+      const normalized=await lfBlobHash(item.file);
+      if(!candidates.some(candidate=>blobs.get(candidate)===normalized))throw Error('Pruning refused: no equivalent original preserved in HEAD for '+item.relative);
+    }
   }
 }
 async function publish({repoRoot=path.resolve(__dirname,'../..'),apply=false,pruneJson=false,prunePt=false}={}){
@@ -64,7 +70,7 @@ async function publish({repoRoot=path.resolve(__dirname,'../..'),apply=false,pru
   for(const item of deletions)await fs.unlink(item.file);
   return {mode:'published',series:files.length,sourceBytes,compressedBytes,ratio:compressedBytes/sourceBytes,removedFiles:deletions.length,removedBytes,publishedRoot:relativePublished};
 }
-module.exports={publish};
+module.exports={publish,lfBlobHash};
 if(require.main===module){
   const allowed=new Set(['--apply','--prune-json','--prune-pt']);
   for(const argument of process.argv.slice(2))if(!allowed.has(argument))throw Error('Unknown option: '+argument);

@@ -17,7 +17,8 @@ would save little and unnecessarily break existing asset URLs.
 2. Render EN and PT with Quarto. Quarto may copy the raw EN JSON again.
 3. Commit an exact Git backup of the original aggregate JSON and any
    previously published files that will be removed. The publisher checks
-   content against `HEAD`; a staged-only backup is insufficient.
+   content against `HEAD` (allowing only Git's CRLF-to-LF normalization);
+   a staged-only backup is insufficient.
 4. Inspect the default dry run:
 
    ```sh
