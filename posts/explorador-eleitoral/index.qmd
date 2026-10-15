@@ -1,0 +1,102 @@
+---
+title: "Explore elections across the income distribution"
+date: 2026-10-15
+draft: false
+image: thumbnail.png
+categories: [Elections, Census, Income, Distribution]
+description: "Interactive vote-share curves across Census 2022 tract-income percentiles, with downloadable aggregates and explicit spatial coverage."
+resources:
+  - data/**
+format:
+  html:
+    css: app.css
+    include-after-body:
+      text: |
+        <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+        <script src="app.js"></script>
+---
+
+Which candidates receive more support in poorer and richer areas? Explore
+the curves below. The horizontal axis ranks **census tracts** by the mean
+income of household heads with income in Census 2022, from the poorest 1%
+of eligible tracts to the richest 1%. These are groups of tracts, rather
+than population or voter percentiles.
+
+::: {.callout-note}
+This is an **independent spatial reconstruction** of the approach illustrated
+by [Daniel Mariani's analysis in Folha de S.Paulo](https://www1.folha.uol.com.br/poder/2026/10/flavio-bolsonaro-supera-votos-do-pai-em-todas-as-rendas-e-lula-cresce-entre-mais-ricos.shtml).
+The selectors show only processed series. Their availability varies by
+election, round, office and territory; absent combinations are unavailable.
+The coverage and vote-reconciliation panels describe the selected series.
+This page does not claim an exact replication of the newspaper's estimator.
+:::
+
+```{=html}
+<section class="election-explorer" data-lang="en" data-base="data/" aria-label="Election and income explorer">
+  <div class="explorer-controls"></div>
+  <fieldset><legend>Candidates</legend><div class="candidate-list"></div></fieldset>
+  <p class="chart-status" role="status" aria-live="polite">Loading aggregate data…</p>
+  <div class="chart" role="region" aria-label="Interactive vote-share curves across tract income percentiles"></div>
+  <div class="coverage"></div>
+  <div class="download-links"><a href="data/manifest.json">Available series (JSON)</a></div>
+  <noscript>This interactive chart requires JavaScript. <a href="data/availability.csv">Download availability (CSV)</a> and use the JSON data downloads.</noscript>
+</section>
+```
+
+## Read the chart
+
+Hover over a curve to inspect vote share, mean income in 2022 minimum wages,
+and the number of tracts. Toggle candidates to compare curves. The chart's
+camera button exports a PNG. Candidate search accepts names, ballot numbers
+and parties; the initial selection shows the six highest mean tract shares
+when more than six candidates are available. Search results do not clear
+the selected curves. This ordering is not a ranking of total votes.
+Download links provide the displayed aggregate
+series and the complete availability manifest.
+
+Each tract receives the vote shares of its nearest eligible polling place,
+within the same municipality and at most 5 km away. The displayed share is
+the unweighted mean across tracts in each percentile. The denominator includes
+**all legally valid nominal and party-list votes applicable to that office**,
+including candidates whose curves are hidden. Blank and invalid votes are
+excluded. Senate vote percentages use valid votes, rather than unique voters;
+the number of senatorial choices varies by election. A polling place may
+supply estimates for multiple tracts.
+
+The reconciliation panel concerns electoral input totals: it compares the
+processed votes with official TSE aggregates for the selected contest. A
+successful check does not validate the geocoding, the proximity estimator,
+the vote attribution to tracts or the newspaper reproduction. Unreconciled
+or unaudited data must not be described as reconciled.
+
+Territorial association does not establish how individual income groups
+voted. Historical comparisons must keep the 2022 income reference fixed and
+document changes in coverage and polling-place locations. Expanded historical
+series rank all tracts with eligible Census 2022 income before electoral
+exclusions and preserve national percentile groups when filtering by state.
+A percentile's mean income describes its complete
+income-eligible group in the selected territory; its covered tract count
+can be smaller. No local estimate is shown as a zero vote share merely
+because the spatial match is missing.
+
+Income is measured in 2022 for every election. The historical curves therefore
+describe earlier voting patterns across areas ranked by their 2022 income;
+they do not measure income at the time of each election. Source and method
+records must document the geography used and any polling-place proxies.
+When only a first-round register is available, second-round votes use that
+same year's register, with a notice in the coverage panel. Address changes
+under an unchanged place key cannot be detected in that case.
+
+## Reproduce and expand
+
+The [original reconstruction](../votacao-renda-centil/index.qmd) documents
+the upstream pipeline, exclusions, proximity sensitivity and numerical checks.
+This explorer reads small static JSON files and requires no application
+server. Its [data contract](DATA-CONTRACT.md) defines how validated series for
+additional elections, rounds, offices and states enter the same interface.
+The source is [app.js](app.js); all downloaded files contain aggregate values.
+
+For state elections, candidates and their denominators must be compared within
+the relevant state and office. A national curve for a state-level candidate
+would require a separate, explicitly justified aggregation rule. Missing
+series are unavailable, rather than zero votes.
