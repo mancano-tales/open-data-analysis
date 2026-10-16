@@ -12,6 +12,8 @@ historical_script <- "shared-pipeline/eleicoes/historico/prepare-historical-all-
 historical_sources <- c(historical_script,"shared-pipeline/eleicoes/historico/tse.R",
  "shared-pipeline/eleicoes/historico/legal-validity.R",
  "shared-pipeline/eleicoes/historico/legal-historical-null-totals.R",
+ "shared-pipeline/eleicoes/historico/historical-senate-nonvalid.R",
+ "shared-pipeline/eleicoes/historico/historical-contest-isolation.R",
  "shared-pipeline/eleicoes/agregacao/validacao/legal-party-technical-wrapper.R",
  "shared-pipeline/eleicoes/agregacao/validacao/candidate-group-fastpath.R",
  "shared-pipeline/eleicoes/historico/cleanup-historical-extractions.R")
@@ -84,9 +86,15 @@ historical_worker <- function(year,uf,cache_dir="data-raw/eleicoes-renda/histori
    source("shared-pipeline/eleicoes/historico/cleanup-historical-extractions.R")
    if(identical(as.integer(year),2018L)) {
      source("shared-pipeline/eleicoes/historico/legal-historical-null-totals.R")
+     source("shared-pipeline/eleicoes/historico/historical-senate-nonvalid.R")
      env<-historical_null_environment()
+     env<-historical_senate_nonvalid_environment(env)
    } else env<-legal_party_technical_environment()
    env<-legal_candidate_fast_environment(base_environment=env)
+   if(identical(as.integer(year),2018L)) {
+     source("shared-pipeline/eleicoes/historico/historical-contest-isolation.R")
+     env<-historical_isolation_environment(env)
+   }
    data.table::setDTthreads(2L)
    x<-env$legal_reconcile_places(year,uf,offices,cache_dir)
    audit<-attr(x,"vote_audit")
@@ -118,7 +126,7 @@ historical_worker <- function(year,uf,cache_dir="data-raw/eleicoes-renda/histori
  record<-c(base,result,list(finished_at=as.character(Sys.time()),elapsed_seconds=as.numeric(difftime(Sys.time(),start,units="secs")),
    fingerprints=c(loaded_code,historical_identity(setdiff(c(sources,if(file.exists(output))output),historical_sources))),
    technical_rule=if(identical(as.integer(year),2018L))
-     "Historical TOTAL NULL reconciliation with section code96 and integral official party/zone conversions, subtracting known conversions; exact nominal/party/valid/null totals, pending categories blocked; no allocation" else
+     "Historical per-dispute exact nominal/party/valid and COMBINED NULL PLUS ANNULLED ledger; separate components official only; annulled extension Senate only, pending/separate blocked; integral explicit party conversions, no allocation" else
      "Unregistered nominal and party ballots are excluded only after exact technical-null and nominal/party/valid checks in every municipality-zone; no allocation"))
  historical_write_json(record,checkpoint_path)
  if(identical(record$status,"complete")) {
