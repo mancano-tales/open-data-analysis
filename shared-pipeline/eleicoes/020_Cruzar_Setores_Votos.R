@@ -8,6 +8,8 @@ suppressPackageStartupMessages({
 })
 options(timeout = max(600, getOption("timeout")))
 setDTthreads(2L)
+source(here("shared-pipeline", "eleicoes", "parametros.R"))
+source(here("shared-pipeline", "eleicoes", "validacao", "cobertura-votos.R"))
 dest <- here("data-raw", "eleicoes-renda")
 max_distance <- as.numeric(Sys.getenv("VOTOS_MAX_DIST_M", "5000"))
 stopifnot(length(max_distance) == 1L, is.finite(max_distance), max_distance > 0)
@@ -43,10 +45,12 @@ read_zip_csv <- function(zip, pattern, columns) {
 
 votes <- read_zip_csv("votos2026.zip", "votacao_secao_2026_BR[.]csv$",
   c("ANO_ELEICAO", "NR_TURNO", "SG_UF", "CD_MUNICIPIO", "NR_ZONA", "NR_SECAO",
-    "CD_CARGO", "NR_VOTAVEL", "QT_VOTOS", "NR_LOCAL_VOTACAO"))
+    "CD_CARGO", "NR_VOTAVEL", "NM_VOTAVEL", "QT_VOTOS", "NR_LOCAL_VOTACAO"))
 message("Presidential CSV loaded: ", nrow(votes), " rows.")
-votes <- votes[ANO_ELEICAO == 2026L & NR_TURNO == 1L & CD_CARGO == 1L & SG_UF != "ZZ"]
+votes <- votes[ANO_ELEICAO == ELEICAO_ANO & NR_TURNO == ELEICAO_TURNO &
+                 CD_CARGO == ELEICAO_CARGO & SG_UF != "ZZ"]
 if (!nrow(votes) || anyNA(votes$QT_VOTOS) || any(votes$QT_VOTOS < 0)) stop("Invalid presidential votes.")
+validar_candidatos_presidenciais(votes)
 # TSE special codes 95+ are not candidates. Other valid candidates stay in denominator.
 votes <- votes[NR_VOTAVEL > 0L & NR_VOTAVEL < 95L,
   .(validos = sum(as.numeric(QT_VOTOS)),
@@ -110,6 +114,8 @@ message("Distinct unambiguous polling places: ", nrow(poll), ".")
 places[, place_key := paste(SG_UF, CD_MUNICIPIO, NR_ZONA, NR_LOCAL_VOTACAO, sep = ":")]
 idx <- match(poll$place_key, places$place_key)
 poll$validos <- places$validos[idx]
+poll$lula <- places$lula[idx]
+poll$flavio <- places$flavio[idx]
 poll$p_lula <- 100 * places$lula[idx] / poll$validos
 poll$p_flavio <- 100 * places$flavio[idx] / poll$validos
 poll <- poll[!is.na(validos) & validos > 0]
@@ -117,6 +123,7 @@ poll <- poll[!is.na(validos) & validos > 0]
 poll <- poll[is.finite(longitude) & is.finite(latitude) &
              longitude >= -74 & longitude <= -28 & latitude >= -34 & latitude <= 6]
 poll <- st_as_sf(poll, coords = c("longitude", "latitude"), crs = 4326)
+coordinate_keys <- poll$place_key
 mun_path <- file.path(dest, "municipios2022.rds")
 mun_raw <- read_cache(mun_path)
 if (is.null(mun_raw)) {
@@ -138,7 +145,12 @@ in_muni <- vapply(seq_len(nrow(poll)), function(i) {
 }, logical(1))
 fwrite(data.table(locais_com_votos = nrow(poll),
                   locais_fora_municipio = sum(!in_muni)), file.path(dest, "cobertura-locais.csv"))
+outside <- as.data.table(st_drop_geometry(poll[!in_muni, ]))
+outside <- outside[, .(SG_UF = abbrev_state, place_key, code_muni, validos, lula, flavio)]
+fwrite(outside, file.path(dest, "locais-fora-municipio.csv"))
 poll <- poll[in_muni, ]
+saveRDS(poll, file.path(dest, "locais-elegiveis.rds"))
+saveRDS(places, file.path(dest, "votos-por-local.rds"))
 
 renda <- as.data.table(readRDS(file.path(dest, "renda2022.rds")))
 renda[, code_tract := sprintf("%.0f", code_tract)]
@@ -192,6 +204,10 @@ tracts[, motivo := fifelse(!elegivel_renda, "sem_renda_elegivel",
   fifelse(distancia_m > max_distance, "alem_distancia_maxima", "incluido")))]
 fwrite(tracts[, .(setores = .N), by = motivo], file.path(dest, "cobertura-setores.csv"))
 saveRDS(tracts, file.path(dest, "setores-votos.rds"))
+coverage <- calcular_cobertura_votos(votes, places, coordinate_keys, poll$place_key,
+                                    unique(tracts[motivo == "incluido", place_key]))
+fwrite(coverage$br, file.path(dest, "cobertura-votos.csv"))
+fwrite(coverage$uf, file.path(dest, "cobertura-votos-uf.csv"))
 
 aggregate_percentiles <- function(limit) {
   x <- copy(tracts[elegivel_renda & is.finite(distancia_m) & distancia_m <= limit])
@@ -199,7 +215,7 @@ aggregate_percentiles <- function(limit) {
   setorder(x, V06004, code_tract)
   # Equal tract counts, with explicit deterministic tie-breaking (not population weights).
   x[, centil := as.integer(floor((seq_len(.N) - 1) * 100 / .N) + 1)]
-  x[, .(renda_sm = mean(V06004) / 1212, n_setores = .N,
+  x[, .(renda_sm = mean(V06004) / SALARIO_MINIMO_CENSO_2022, n_setores = .N,
          lula = mean(p_lula), flavio = mean(p_flavio)), by = centil]
 }
 wide <- aggregate_percentiles(max_distance)
