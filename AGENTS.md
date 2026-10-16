@@ -59,3 +59,8 @@
 ## Específico deste repositório
 
 _(regras próprias deste repositório; prevalecem sobre o bloco acima em caso de conflito)_
+
+> **AVISO TEMPORÁRIO — tarefa pendente para o Codex (autor, 2026-10-16).** Implementar as correções
+> da auditoria metodológica do post `votacao-renda-centil` descritas em
+> `shared-pipeline/eleicoes/validacao/AUDITORIA-2026-10-16-votacao-renda-centil.md` (plano na
+> seção 4). Abrir PR para revisão do Claude. **Ao concluir, apague este aviso** no mesmo PR.
