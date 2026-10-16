@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "tre-ro-2018-retotalizacao-20221205",
+      "url": "https://www.tre-ro.jus.br/eleicoes/eleicoes-2018/retotalizacao-05-12-22/retotalizacao-05-12-22/@@display-file/file/relatorio-resultado-totalizacao-05-12-2022.pdf",
+      "source_date": "2022-12-05",
+      "retrieved_at": "2026-10-16T13:45:28.059Z",
+      "cache_path": "provenance-ro-2018/relatorio-resultado-totalizacao-05-12-2022.pdf",
+      "sha256": "feb8696e8e62a9fd072693f1fc8aea50d2e0e69aff178ffeba5758d511e9b41f",
+      "bytes": 2846726
+    }
+  ],
+  "mappings": [
+    {
+      "year": 2018,
+      "uf": "RO",
+      "round": 1,
+      "office": 7,
+      "candidate_id": 15800,
+      "candidate_name": "EDSON MARTINS DE PAULA",
+      "party_id": 15,
+      "destination": "party",
+      "source_destination": "Válido (legenda)",
+      "official_total_votes": 11687,
+      "source_id": "tre-ro-2018-retotalizacao-20221205",
+      "source_page": 43,
+      "source_total_page": 83
+    },
+    {
+      "year": 2018,
+      "uf": "RO",
+      "round": 1,
+      "office": 7,
+      "candidate_id": 15000,
+      "candidate_name": "SAULO MOREIRA DA SILVA",
+      "party_id": 15,
+      "destination": "null",
+      "source_destination": "Nulo",
+      "official_total_votes": 10911,
+      "source_id": "tre-ro-2018-retotalizacao-20221205",
+      "source_page": 42,
+      "source_total_page": 83
+    }
+  ]
+}

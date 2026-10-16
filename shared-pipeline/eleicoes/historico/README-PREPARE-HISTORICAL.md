@@ -77,3 +77,19 @@ Probes reais separados comprovaram todas as zonas de AP (17), RR (16), MS (88) e
 As fixtures `test-historical-senate-nonvalid.R` e `test-historical-contest-isolation.R` cobrem diferença de um voto, componentes oficiais sem inferência individual, guardas de pendência/cargo, isolamento de disputa bloqueada, soma real dos votos contra certificado, restauração do ambiente privado e transição de certificado anterior para falha total. A repetição operacional usa uma lista explícita de UFs faltantes; certificados anteriores completos mantêm a proveniência da versão que os produziu.
 
 Conversões de um subconjunto de candidatos ausentes continuam indisponíveis sem fonte oficial independente de destinação. Mesmo que um subconjunto de candidatos inteiros seja a única solução, distribuições parciais entre candidatos/locais podem preservar os mesmos totais de zona e alterar os centis. Não há fallback de busca de subconjunto por encaixe numérico.
+
+## Destinações expressamente documentadas
+
+`official-vote-destinations.json` é a tabela versionada de evidências primárias. Ela separa documentos (URL, data, caminho relativo de cache, bytes e SHA256) de mapeamentos por ano/UF/turno/cargo/número de urna/partido, destino expresso, total nominal e páginas. Os PDFs ficam no cache ignorado, sem incluir documentos externos no Git. O comando abaixo obtém somente os bytes exatos declarados; uma nova versão do documento exige revisão explícita da tabela, pois assinatura, tamanho e hash divergentes causam erro.
+
+```sh
+node shared-pipeline/eleicoes/historico/fetch-official-destinations.cjs
+node shared-pipeline/eleicoes/historico/fetch-official-destinations.cjs --check-only
+Rscript --vanilla shared-pipeline/eleicoes/historico/test-official-vote-destinations.R
+```
+
+O adaptador opt-in `official_destination_environment()` aplica somente destinações de candidatos ausentes da alocação nominal. Não sobrepõe uma alocação existente, exige o total integral do candidato na UF e recusa múltiplas identidades sob o número. As linhas explicitamente nulas e convertidas saem do pool de conversões desconhecidas; conversões documentadas preservam exatamente o vetor original de locais. A quantidade convertida continua sujeita aos campos explícitos partidários em cada município/zona e a todas as demais equações. O audit preserva `official_destination_sources`, filtrável por `year`, `uf`, `round`, `office`, com documento, páginas e hash. Não há inferência por situação de candidatura ou por busca de subconjuntos.
+
+A evidência inicial é o relatório oficial TRE-RO de retotalização de 05/12/2022, referente a 2018: página 43 destina os 11.687 votos de 15800 a legenda; página 42 destina os 10.911 votos de 15000 a nulos; página 83 confirma os totais. PDF de 2.846.726 bytes, SHA256 `feb8696e8e62a9fd072693f1fc8aea50d2e0e69aff178ffeba5758d511e9b41f`. O probe real isolado comprovou todos os cinco recortes de RO em 56 zonas cada: estadual 744.799 válidos = 679.360 nominais + 65.439 legenda, sem divergências ou indisponibilidades.
+
+A fixture demonstra que um encaixe numérico único (candidatos com 7 e 3 votos, conversão oficial 7) continua bloqueado sem documento. Só a destinação primária permite converter o candidato identificado; o teste também recusa total incorreto, reutilização de candidato explicitamente nulo, documento alterado, caminho fora do cache e identidades múltiplas. Esse mecanismo não libera AL nem outra disputa sem sua própria evidência primária.
