@@ -11,6 +11,7 @@ historical_version <- 1L
 historical_script <- "shared-pipeline/eleicoes/historico/prepare-historical-all-ufs.R"
 historical_sources <- c(historical_script,"shared-pipeline/eleicoes/historico/tse.R",
  "shared-pipeline/eleicoes/historico/legal-validity.R",
+ "shared-pipeline/eleicoes/historico/legal-historical-null-totals.R",
  "shared-pipeline/eleicoes/agregacao/validacao/legal-party-technical-wrapper.R",
  "shared-pipeline/eleicoes/agregacao/validacao/candidate-group-fastpath.R",
  "shared-pipeline/eleicoes/historico/cleanup-historical-extractions.R")
@@ -81,7 +82,10 @@ historical_worker <- function(year,uf,cache_dir="data-raw/eleicoes-renda/histori
    source("shared-pipeline/eleicoes/agregacao/validacao/legal-party-technical-wrapper.R")
    source("shared-pipeline/eleicoes/agregacao/validacao/candidate-group-fastpath.R")
    source("shared-pipeline/eleicoes/historico/cleanup-historical-extractions.R")
-   env<-legal_party_technical_environment()
+   if(identical(as.integer(year),2018L)) {
+     source("shared-pipeline/eleicoes/historico/legal-historical-null-totals.R")
+     env<-historical_null_environment()
+   } else env<-legal_party_technical_environment()
    env<-legal_candidate_fast_environment(base_environment=env)
    data.table::setDTthreads(2L)
    x<-env$legal_reconcile_places(year,uf,offices,cache_dir)
@@ -113,7 +117,9 @@ historical_worker <- function(year,uf,cache_dir="data-raw/eleicoes-renda/histori
  }
  record<-c(base,result,list(finished_at=as.character(Sys.time()),elapsed_seconds=as.numeric(difftime(Sys.time(),start,units="secs")),
    fingerprints=c(loaded_code,historical_identity(setdiff(c(sources,if(file.exists(output))output),historical_sources))),
-   technical_rule="Unregistered nominal and party ballots are excluded only after exact technical-null and nominal/party/valid checks in every municipality-zone; no allocation"))
+   technical_rule=if(identical(as.integer(year),2018L))
+     "Historical TOTAL NULL reconciliation with section code96 and integral official party/zone conversions, subtracting known conversions; exact nominal/party/valid/null totals, pending categories blocked; no allocation" else
+     "Unregistered nominal and party ballots are excluded only after exact technical-null and nominal/party/valid checks in every municipality-zone; no allocation"))
  historical_write_json(record,checkpoint_path)
  if(identical(record$status,"complete")) {
    record$cleanup<-tryCatch({
