@@ -111,7 +111,14 @@ legal_reconcile_places <- function(year,uf,offices=c(3L,5L,6L,7L,8L),cache_dir="
     party_path <- legal_resource_csv(year,"votacao_partido_munzona",uf,cache_dir)
     party_cols <- c("ANO_ELEICAO","NR_TURNO","CD_ELEICAO","SG_UF","CD_MUNICIPIO","NR_ZONA","CD_CARGO",
       "NR_PARTIDO","QT_VOTOS_LEGENDA_VALIDOS","QT_VOTOS_LEGENDA_ANUL_SUBJUD","QT_VOTOS_LEGENDA_ANULADOS")
-    party_official <- data.table::fread(party_path,select=party_cols,encoding="Latin-1")
+    party_header <- names(data.table::fread(party_path,nrows=0L,encoding="Latin-1"))
+    required_party <- setdiff(party_cols,"QT_VOTOS_LEGENDA_ANULADOS")
+    if(!all(required_party %in% party_header))stop("Missing required official party columns")
+    party_official <- data.table::fread(party_path,select=intersect(party_cols,party_header),encoding="Latin-1")
+    # Some historical releases omit the annulled-party category. Published
+    # valid + pending counts are then only a provisional subtotal: the exact
+    # raw-party comparison below rejects ANY unexplained extra ballot.
+    if(!"QT_VOTOS_LEGENDA_ANULADOS" %in% party_header)party_official[,QT_VOTOS_LEGENDA_ANULADOS:=0]
     data.table::setnames(party_official,party_cols,c(basekeys,"candidate_id","party_valid","party_pending","party_void"))
     party_official[,municipality_tse:=as.character(municipality_tse)]
     pkeys <- c(basekeys,"candidate_id")
