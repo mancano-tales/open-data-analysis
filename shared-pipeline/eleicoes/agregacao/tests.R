@@ -107,6 +107,36 @@ stopifnot(isTRUE(provisional_json$metadata$vote_audit$provisional),
           provisional_json$metadata$vote_audit$snapshots[[1]]$md5 == "fixture-md5")
 unlink(provisional_path)
 
+# Documented destinations survive aggregation and JSON, without leaking the
+# evidence of another year, round, office or state from a combined cache.
+sourced_votes <- copy(certified_deputies)
+sourced_audit <- attr(sourced_votes, "vote_audit")
+source_rows <- data.frame(year = c(2026L, 2018L, 2026L, 2026L, 2026L),
+  round = c(1L, 1L, 2L, 1L, 1L), office = c(6L, 6L, 6L, 5L, 6L),
+  uf = c("SP", "SP", "SP", "SP", "RO"),
+  source_id = c("selected", "other-year", "other-round", "other-office", "other-state"),
+  url = "https://example.invalid/official-report.pdf", source_date = "2026-10-01",
+  source_page = 43L, source_total_page = 83L, sha256 = strrep("a", 64), bytes = 12345L)
+sourced_audit$official_destination_sources <- source_rows
+attr(sourced_votes, "vote_audit") <- sourced_audit
+sourced_result <- eleicao_aggregate_contest(sourced_votes, universe, links, 2026, 1, 6, uf = "SP")
+stopifnot(identical(sourced_result$metadata$vote_audit$official_destination_sources$source_id, "selected"),
+  nrow(attr(sourced_votes, "vote_audit")$official_destination_sources) == 5L)
+sourced_path <- tempfile(fileext = ".json")
+eleicao_write_dataset(sourced_result, sourced_path, "test-only.json")
+sourced_json <- jsonlite::read_json(sourced_path)
+source_json <- sourced_json$metadata$vote_audit$official_destination_sources
+stopifnot(length(source_json) == 1L, source_json[[1L]]$source_id == "selected",
+  source_json[[1L]]$sha256 == strrep("a", 64), source_json[[1L]]$source_page == 43,
+  source_json[[1L]]$url == source_rows$url[[1L]])
+unlink(sourced_path)
+sourced_audit$official_destination_sources <- data.frame()
+attr(sourced_votes, "vote_audit") <- sourced_audit
+stopifnot(is.null(eleicao_vote_audit(sourced_votes, 2026, 1, 6, "SP")$official_destination_sources))
+sourced_audit$official_destination_sources <- source_rows[, setdiff(names(source_rows), "uf")]
+attr(sourced_votes, "vote_audit") <- sourced_audit
+expect_error(eleicao_vote_audit(sourced_votes, 2026, 1, 6, "SP"))
+
 # The same combined-cache flag must not mark an unrelated office provisional.
 certified_senate <- copy(senate)
 senate_audit <- attr(certified_deputies, "vote_audit")
