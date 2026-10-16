@@ -3,15 +3,25 @@
 'use strict';
 const fs=require('node:fs/promises'),nativeFs=require('node:fs'),path=require('node:path');
 const zlib=require('node:zlib'),crypto=require('node:crypto');
+const {Transform}=require('node:stream');
 const {pipeline}=require('node:stream/promises'),{execFileSync}=require('node:child_process');
 const relativeSource='posts/explorador-eleitoral/data';
 const relativePublished='docs/posts/explorador-eleitoral/data';
 const relativePortuguese='docs/pt/posts/explorador-eleitoral/data';
+const relativeCache='data-raw/eleicoes-renda/publication-cache.json';
+const compression='gzip-level9-v1';
 function below(root,relative){if(path.isAbsolute(relative))throw Error('Absolute path rejected');const target=path.resolve(root,relative);if(!target.startsWith(root+path.sep))throw Error('Path escapes intended directory: '+relative);return target;}
 async function exists(file){try{await fs.access(file);return true;}catch{return false;}}
 async function atomicText(file,text){await fs.mkdir(path.dirname(file),{recursive:true});await fs.writeFile(file+'.part',text);await fs.rename(file+'.part',file);}
 async function blobHash(file){const stat=await fs.stat(file),hash=crypto.createHash('sha1');hash.update(`blob ${stat.size}\0`);for await(const chunk of nativeFs.createReadStream(file))hash.update(chunk);return hash.digest('hex');}
 async function lfBlobHash(file){const bytes=Buffer.from((await fs.readFile(file,'utf8')).replace(/\r\n/g,'\n'),'utf8');return crypto.createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex');}
+async function sha256(file){const hash=crypto.createHash('sha256');for await(const chunk of nativeFs.createReadStream(file))hash.update(chunk);return hash.digest('hex');}
+function digestStream(){const hash=crypto.createHash('sha256');const stream=new Transform({transform(chunk,encoding,done){hash.update(chunk);done(null,chunk);}});return {stream,digest:()=>hash.digest('hex')};}
+async function loadCache(file){
+  try{const cache=JSON.parse(await fs.readFile(file,'utf8'));if(cache.version!==1||cache.compression!==compression||!cache.files||typeof cache.files!=='object'||Array.isArray(cache.files))return {status:'invalid',files:{}};return {status:'loaded',files:cache.files};}
+  catch(error){return {status:error.code==='ENOENT'?'missing':'invalid',files:{}};}
+}
+function validDigest(value){return typeof value==='string'&&/^[a-f0-9]{64}$/.test(value);}
 function git(root,args){return execFileSync('git',args,{cwd:root,encoding:'utf8',maxBuffer:32*1024*1024});}
 function headBlobs(root){const result=new Map();for(const record of git(root,['ls-tree','-rz','--full-tree','HEAD','--',relativeSource,relativePublished,relativePortuguese]).split('\0')){if(!record)continue;const [header,file]=record.split('\t');const [mode,type,hash]=header.split(' ');if(type==='blob'&&mode!=='120000')result.set(file,hash);}return result;}
 async function trackedPortuguese(root){return git(root,['ls-files','-z','--',relativePortuguese]).split('\0').filter(Boolean).map(relative=>({file:below(root,relative),relative})).filter(item=>/\.(json|csv)$/i.test(item.relative));}
@@ -50,16 +60,37 @@ async function publish({repoRoot=path.resolve(__dirname,'../..'),apply=false,pru
   const sourceBytes=files.reduce((sum,file)=>sum+file.size,0);
   const removedBytes=(await Promise.all(deletions.map(item=>fs.stat(item.file)))).reduce((sum,stat)=>sum+stat.size,0);
   if(!apply)return {mode:'dry-run',series:files.length,sourceBytes,publishedRoot:relativePublished,plannedFormat:'json.gz',deletions:0};
-  let compressedBytes=0;
+  const cacheFile=below(repoRoot,relativeCache),cache=await loadCache(cacheFile),nextCache={version:1,compression,files:Object.create(null)};
+  let compressedBytes=0,reusedSeries=0,compressedSeries=0;
   for(const file of files){
     await fs.mkdir(path.dirname(file.destination),{recursive:true});
     const before=await fs.stat(file.source);
-    try{
-      // Node's gzip header has zero mtime and no source filename: deterministic bytes.
-      await pipeline(nativeFs.createReadStream(file.source),zlib.createGzip({level:9}),nativeFs.createWriteStream(file.destination+'.part'));
+    const key=path.relative(sourceRoot,file.source).split(path.sep).join('/'),cached=cache.files[key];
+    let sourceHash=null,gzipHash=null,reuse=false;
+    if(cached&&validDigest(cached.source_sha256)&&validDigest(cached.gzip_sha256)){
+      const destinationStat=await fs.lstat(file.destination).catch(error=>{if(error.code==='ENOENT')return null;throw error;});
+      if(destinationStat?.isFile()&&!destinationStat.isSymbolicLink()){
+        // Always hash both actual contents. Timestamps/lengths are not proof,
+        // including when a file was changed or corrupted without changing size.
+        sourceHash=await sha256(file.source);
+        if(sourceHash===cached.source_sha256){gzipHash=await sha256(file.destination);reuse=gzipHash===cached.gzip_sha256;}
+      }
+    }
+    if(reuse){
       const after=await fs.stat(file.source);
       if(before.size!==after.size||before.mtimeMs!==after.mtimeMs)throw Error('Source changed during publication: '+file.source);
+      nextCache.files[key]={source_sha256:sourceHash,gzip_sha256:gzipHash};
+      compressedBytes+=(await fs.stat(file.destination)).size;reusedSeries++;continue;
+    }
+    try{
+      // Node's gzip header has zero mtime and no source filename: deterministic bytes.
+      const sourceDigest=digestStream(),gzipDigest=digestStream();
+      await pipeline(nativeFs.createReadStream(file.source),sourceDigest.stream,zlib.createGzip({level:9}),gzipDigest.stream,nativeFs.createWriteStream(file.destination+'.part'));
+      const after=await fs.stat(file.source);
+      const actualSourceHash=sourceDigest.digest();
+      if(before.size!==after.size||before.mtimeMs!==after.mtimeMs||(sourceHash!==null&&sourceHash!==actualSourceHash))throw Error('Source changed during publication: '+file.source);
       await fs.rename(file.destination+'.part',file.destination);
+      nextCache.files[key]={source_sha256:actualSourceHash,gzip_sha256:gzipDigest.digest()};compressedSeries++;
     }catch(error){await fs.unlink(file.destination+'.part').catch(()=>{});throw error;}
     compressedBytes+=(await fs.stat(file.destination)).size;
   }
@@ -68,7 +99,8 @@ async function publish({repoRoot=path.resolve(__dirname,'../..'),apply=false,pru
   await atomicText(below(publishedRoot,'manifest.json'),JSON.stringify(transformed)+'\n');
   // No recursive removal: these are the individually validated targets above.
   for(const item of deletions)await fs.unlink(item.file);
-  return {mode:'published',series:files.length,sourceBytes,compressedBytes,ratio:compressedBytes/sourceBytes,removedFiles:deletions.length,removedBytes,publishedRoot:relativePublished};
+  await atomicText(cacheFile,JSON.stringify(nextCache)+'\n');
+  return {mode:'published',series:files.length,sourceBytes,compressedBytes,ratio:compressedBytes/sourceBytes,reusedSeries,compressedSeries,cacheStatus:cache.status,removedFiles:deletions.length,removedBytes,publishedRoot:relativePublished};
 }
 module.exports={publish,lfBlobHash};
 if(require.main===module){
