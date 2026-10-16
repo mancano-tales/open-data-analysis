@@ -27,6 +27,17 @@ env$legal_resource_csv<-function(year,dataset_prefix,uf,cache_dir)file.path(fold
 x<-env$legal_reconcile_places(2022L,"AC",6L,folder)
 stopifnot(sum(x$votes)==60,!any(x$candidate_id==29L),all(x$election_id==546L),all(attr(x,"vote_audit")$checks$difference==0),
  identical(attr(x,"vote_audit")$election_ids,546L))
+# Historical party releases may omit the annulled category. The published
+# subtotal must still explain every known-party ballot, without allocation.
+party[,QT_VOTOS_LEGENDA_ANULADOS:=NULL];supp_party[,QT_VOTOS_LEGENDA_ANULADOS:=NULL]
+write_sources()
+x<-env$legal_reconcile_places(2022L,"AC",6L,folder)
+stopifnot(sum(x$votes)==60,all(attr(x,"vote_audit")$checks$difference==0))
+raw[candidate_id==13L&place==1L,votes:=6]
+saveRDS(raw,file.path(folder,"places-2022-AC-6.rds"))
+err<-tryCatch({env$legal_reconcile_places(2022L,"AC",6L,folder);NULL},error=conditionMessage)
+stopifnot(is.character(err),grepl("Raw section and official party totals differ",err))
+raw[candidate_id==13L&place==1L,votes:=5]
 # A single extra unregistered vote must fail; no rate or municipal redistribution.
 raw[candidate_id==29L&place==1L,votes:=2]
 saveRDS(raw,file.path(folder,"places-2022-AC-6.rds"))

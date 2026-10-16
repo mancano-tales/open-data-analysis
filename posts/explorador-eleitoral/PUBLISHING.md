@@ -50,6 +50,24 @@ source manifest, estimates and coverage remain unchanged. The published
 manifest is compact JSON with the same schema and metadata. Availability
 CSV remains available in the shared directory.
 
+## Incremental publication cache
+
+The ignored local file `data-raw/eleicoes-renda/publication-cache.json` records
+the SHA256 of each source JSON and its generated gzip. On a later wave, the
+publisher reuses a compressed file only after hashing both current contents
+and matching both digests to the cache. File length or modification time is
+never sufficient evidence of integrity. A same-size source edit triggers
+compression; a same-size corrupted gzip is repaired.
+
+Missing, malformed or incompatible caches and invalid entries safely fall
+back to recompression. The first run after this change populates the cache;
+subsequent runs report `reusedSeries` and `compressedSeries`. The cache is
+written atomically after successful publication and contains no changes to
+the source manifest, published manifest schema or numerical data. It is an
+optimization, rather than a data source: deleting it costs compression time
+but never makes an existing gzip trusted without verification. Concurrent
+source writers remain prohibited, and source-change checks remain active.
+
 ## Browser and URL behavior
 
 `app.js` fetches compressed series and uses the browser's
