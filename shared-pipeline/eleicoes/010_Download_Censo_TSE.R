@@ -40,6 +40,8 @@ if (!file.exists(renda_path)) {
 }
 manifest <- rbindlist(list(
   fetch_resource("resultados-2026", "/votacao_secao_2026_BR[.]zip$", "votos2026.zip"),
+  fetch_resource("resultados-2026", "/votacao_candidato_munzona_2026[.]zip$", "candidatos2026.zip"),
+  fetch_resource("resultados-2026", "/detalhe_votacao_munzona_2026[.]zip$", "detalhe2026.zip"),
   fetch_resource("eleitorado-2026", "/eleitorado_local_votacao_2026[.]zip$", "locais2026.zip")
 ))
 fwrite(manifest, file.path(dest, "manifest.csv"))

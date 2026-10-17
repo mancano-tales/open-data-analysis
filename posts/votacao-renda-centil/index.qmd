@@ -102,6 +102,12 @@ the [TSE results dataset](https://dadosabertos.tse.jus.br/dataset/resultados-202
 through its public CKAN API. It selects the first round and presidency. Valid
 votes for all candidates form the denominator; blank and invalid votes are
 excluded. The two displayed candidates therefore need not sum to 100%.
+Validity is checked against the official candidate and vote-detail tables for
+each municipality and electoral zone. A candidate number in the raw section
+file does not establish validity. Each candidate group must be entirely valid
+or entirely excluded; partial validity stops the calculation because it cannot
+be allocated to sections. Unmatched records must reconcile exactly with the
+official technical null votes, and valid totals must agree in every zone.
 [`electionsBR::vote_section()`](https://github.com/silvadenisson/electionsBR)
 is a related R option, but the consulted source documents years through 2024;
 the pipeline uses the official 2026 download directly.

@@ -7,7 +7,7 @@ post_snapshot_files <- function() c(
   "diagnostico-renda.csv", "centis-originais-comparacao.csv", "confronto-metodos.csv", "verificacao-metodos.csv",
   "bootstrap-municipios.csv", "bootstrap-replicas.csv", "bootstrap-cruzamentos.csv", "bootstrap-metodo.txt",
   "verificacao-bootstrap.csv", "verificacao-espacial-chaves.csv", "verificacao-espacial-insumos.csv",
-  "comparacao-folha.csv", "versoes.csv", "checksums.csv", "verificacao-zip-csv.csv")
+  "comparacao-folha.csv", "versoes.csv", "checksums.csv", "verificacao-zip-csv.csv", "validade-votos-excluidos.csv")
 
 post_snapshot_path <- function(root, relative, must_exist = TRUE) {
   relative <- gsub("\\", "/", relative, fixed = TRUE)
@@ -37,7 +37,7 @@ post_snapshot_gate <- function(root = ".", source = "data-raw/eleicoes-renda") {
   if (!file.exists(marker)) stop("Run 030 successfully before preparing the snapshot")
   cert <- jsonlite::read_json(marker, simplifyVector = FALSE)
   if (!identical(cert$status, "passed") || !identical(as.integer(cert$schema_version), 1L)) stop("Independent validation is not passed")
-  required_checks <- c("raw_year_and_vote_shares", "baseline_centiles", "spatial_sample_and_k3",
+  required_checks <- c("raw_year_and_vote_shares", "official_legal_validity_every_zone", "baseline_centiles", "spatial_sample_and_k3",
     "coverage_and_outside_municipality", "fixed_weighted_ratio_idw_exclusions", "income_count_unavailable",
     "bootstrap_500_and_three_independent_resamples")
   if (!all(required_checks %in% unlist(cert$checks))) stop("Missing independent checks in publication certificate")

@@ -47,7 +47,7 @@ utils::write.csv(data.frame(centil = 46, candidato = "Lula (PT)", votacao_refere
 writeLines("input", file.path(root, "input.txt"))
 # Extra certified private outputs must still never enter the public snapshot.
 put("links-metodos.csv", data.frame(code_tract = "private", place_key = "private"))
-checks <- c("raw_year_and_vote_shares", "baseline_centiles", "spatial_sample_and_k3",
+checks <- c("raw_year_and_vote_shares", "official_legal_validity_every_zone", "baseline_centiles", "spatial_sample_and_k3",
   "coverage_and_outside_municipality", "fixed_weighted_ratio_idw_exclusions", "income_count_unavailable",
   "bootstrap_500_and_three_independent_resamples")
 output_names <- c(post_snapshot_files(), "verificacao-espacial.csv", "locais-fora-municipio.csv", "links-metodos.csv")
@@ -59,6 +59,8 @@ save_marker <- function(x = cert) jsonlite::write_json(x, marker, auto_unbox = T
 reject(preparar_post(root = root, destination = "published"), "Run 030")
 bad <- cert;bad$status <- "failed";save_marker(bad)
 reject(preparar_post(root = root, destination = "published"), "not passed")
+bad <- cert;bad$checks <- setdiff(bad$checks,"official_legal_validity_every_zone");save_marker(bad)
+reject(preparar_post(root = root, destination = "published"), "Missing independent checks")
 save_marker();writeLines("changed input", file.path(root, "input.txt"))
 reject(preparar_post(root = root, destination = "published"), "Stale input")
 writeLines("input", file.path(root, "input.txt"))

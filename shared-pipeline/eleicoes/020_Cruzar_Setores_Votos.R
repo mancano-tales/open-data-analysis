@@ -11,6 +11,7 @@ setDTthreads(2L)
 source(here("shared-pipeline", "eleicoes", "parametros.R"))
 source(here("shared-pipeline", "eleicoes", "validacao", "cobertura-votos.R"))
 source(here("shared-pipeline", "eleicoes", "validacao", "metodos-post.R"))
+source(here("shared-pipeline", "eleicoes", "validacao", "validade-presidencial.R"))
 dest <- here("data-raw", "eleicoes-renda")
 unlink(file.path(dest, "validacao-metodologica.json"))
 max_distance <- as.numeric(Sys.getenv("VOTOS_MAX_DIST_M", "5000"))
@@ -38,7 +39,13 @@ read_zip_csv <- function(zip, pattern, columns) {
   if (length(member) != 1L) stop("Expected exactly one national CSV in ", zip)
   folder <- file.path(dest, sub("[.]zip$", "", zip))
   target <- file.path(folder, member)
-  if (!file.exists(target)) unzip(path, files = member, exdir = folder)
+  # Re-extract when the current archive differs from its cached CSV.
+  index <- zip::zip_list(path)
+  expected <- index[index$filename == member, ]
+  crc <- tolower(as.character(expected$crc32))
+  crc <- substr(paste0("00000000", crc), nchar(crc) + 1L, nchar(crc) + 8L)
+  if (!file.exists(target) || file.info(target)$size != expected$uncompressed_size ||
+      digest::digest(file=target, algo="crc32") != crc) unzip(path, files = member, exdir = folder, overwrite=TRUE)
   header <- names(fread(target, nrows = 0, encoding = "Latin-1"))
   if (!all(columns %in% header)) stop("Unexpected TSE schema in ", zip, ": ",
                                      paste(setdiff(columns, header), collapse = ", "))
@@ -46,15 +53,25 @@ read_zip_csv <- function(zip, pattern, columns) {
 }
 
 votes <- read_zip_csv("votos2026.zip", "votacao_secao_2026_BR[.]csv$",
-  c("ANO_ELEICAO", "NR_TURNO", "SG_UF", "CD_MUNICIPIO", "NR_ZONA", "NR_SECAO",
+  c("ANO_ELEICAO", "NR_TURNO", "CD_ELEICAO", "CD_TIPO_ELEICAO", "SG_UF", "CD_MUNICIPIO", "NR_ZONA", "NR_SECAO",
     "CD_CARGO", "NR_VOTAVEL", "NM_VOTAVEL", "QT_VOTOS", "NR_LOCAL_VOTACAO"))
 message("Presidential CSV loaded: ", nrow(votes), " rows.")
 votes <- votes[ANO_ELEICAO == ELEICAO_ANO & NR_TURNO == ELEICAO_TURNO &
-                 CD_CARGO == ELEICAO_CARGO & SG_UF != "ZZ"]
+                 CD_CARGO == ELEICAO_CARGO & CD_TIPO_ELEICAO == 2L & SG_UF != "ZZ"]
 if (!nrow(votes) || anyNA(votes$QT_VOTOS) || any(votes$QT_VOTOS < 0)) stop("Invalid presidential votes.")
 validar_candidatos_presidenciais(votes)
-# TSE special codes 95+ are not candidates. Other valid candidates stay in denominator.
-votes <- votes[NR_VOTAVEL > 0L & NR_VOTAVEL < 95L,
+# Ballot numbers alone do not establish legal validity. Reconcile every zone.
+candidatos <- read_zip_csv("candidatos2026.zip", "votacao_candidato_munzona_2026_BR[.]csv$",
+  c("ANO_ELEICAO","NR_TURNO","CD_ELEICAO","SG_UF","CD_MUNICIPIO","NR_ZONA","CD_CARGO",
+    "NR_CANDIDATO","QT_VOTOS_NOMINAIS","QT_VOTOS_NOMINAIS_VALIDOS"))
+detalhe <- read_zip_csv("detalhe2026.zip", "detalhe_votacao_munzona_2026_BR[.]csv$",
+  c("ANO_ELEICAO","NR_TURNO","CD_ELEICAO","SG_UF","CD_MUNICIPIO","NR_ZONA","CD_CARGO",
+    "QT_TOTAL_VOTOS_VALIDOS","QT_VOTOS_NOMINAIS_VALIDOS","QT_TOTAL_VOTOS_LEG_VALIDOS","QT_VOTOS_NULOS_TECNICOS"))
+validade <- filtrar_validade_presidencial(votes, candidatos, detalhe,
+  ano=ELEICAO_ANO, turno=ELEICAO_TURNO, cargo=ELEICAO_CARGO)
+fwrite(validade$checks, file.path(dest,"validade-votos-zonas.csv"))
+fwrite(validade$excluidos, file.path(dest,"validade-votos-excluidos.csv"))
+votes <- votes[validade$keep,
   .(validos = sum(as.numeric(QT_VOTOS)),
     lula = sum(as.numeric(QT_VOTOS[NR_VOTAVEL == 13L])),
     flavio = sum(as.numeric(QT_VOTOS[NR_VOTAVEL == 22L]))),
