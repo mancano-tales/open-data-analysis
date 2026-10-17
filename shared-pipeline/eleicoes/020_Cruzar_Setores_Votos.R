@@ -229,6 +229,23 @@ sens <- rbindlist(lapply(sort(unique(c(1000, 2000, 5000, max_distance))), functi
   x
 }))
 fwrite(sens, file.path(dest, "sensibilidade.csv"))
+source(here("shared-pipeline", "eleicoes", "validacao", "bootstrap-municipios.R"))
+message("Exploratory municipality bootstrap (500 replicates, fixed seed) ...")
+bootstrap <- bootstrap_municipios(tracts[motivo == "incluido"],
+  replicas = 500L, seed = 20261016L, salario = SALARIO_MINIMO_CENSO_2022)
+fwrite(bootstrap$centis, file.path(dest, "bootstrap-municipios.csv"))
+fwrite(bootstrap$cruzamentos, file.path(dest, "bootstrap-cruzamentos.csv"))
+fwrite(bootstrap$replicas, file.path(dest, "bootstrap-replicas.csv"))
+fwrite(verificar_bootstrap_municipios(tracts[motivo == "incluido"], bootstrap,
+  salario = SALARIO_MINIMO_CENSO_2022), file.path(dest, "verificacao-bootstrap.csv"))
+writeLines(bootstrap$metodo, file.path(dest, "bootstrap-metodo.txt"))
+reference <- fread(here("posts", "votacao-renda-centil", "data", "referencia-folha.csv"),
+                   encoding = "UTF-8")
+comparison <- merge(reference, centis[, .(centil, candidato, votacao)],
+                    by = c("centil", "candidato"), all.x = TRUE)
+comparison[, diferenca_pp := votacao - votacao_referencia]
+comparison[, erro_absoluto_pp := abs(diferenca_pp)]
+fwrite(comparison, file.path(dest, "comparacao-folha.csv"))
 writeLines(c(paste("maximum_distance_m:", max_distance),
              paste("polling2026.rds md5:", tools::md5sum(poll_path)),
              capture.output(sessionInfo())), file.path(dest, "session-spatial.txt"))

@@ -7,6 +7,15 @@ image: ../../posts/votacao-renda-centil/thumbnail.png
 description: "Reprodução independente da relação entre renda dos setores e votação presidencial em 2026, com Censo 2022 e TSE."
 ---
 
+::: {.callout-warning}
+**A renda é do setor censitário; o voto observado é do local de votação.**
+O gráfico associa a renda média de setores à votação dos locais próximos.
+Uma votação maior em setores de renda alta **não demonstra que eleitores
+de renda alta votaram naquele candidato**. Não há renda individual dos
+eleitores nem identificação de onde os moradores de cada setor votaram.
+A proximidade espacial é uma aproximação e não identifica o eleitorado do setor.
+:::
+
 ![](../../posts/votacao-renda-centil/thumbnail.png)
 
 ## Visão geral
@@ -69,11 +78,14 @@ A renda vem de `censobr::read_tracts(year = 2022,
 dataset = "ResponsavelRenda")`. A variável `V06004` é o **valor do rendimento
 nominal médio mensal das pessoas responsáveis com rendimentos por domicílios
 particulares permanentes ocupados**. Não é renda domiciliar per capita nem
-renda média de todos os moradores. `V06001` identifica o número de responsáveis;
-setores sem responsáveis, com renda ausente ou sob sigilo são excluídos.
+renda média de todos os moradores. `V06001` identifica o número de responsáveis,
+incluindo aqueles sem rendimento; não é a quantidade de responsáveis com renda.
+A tabela disponibilizada não informa essa última quantidade, portanto não
+é possível calcular a proporção sem rendimento com essas variáveis.
+Setores sem responsáveis, com renda ausente ou sob sigilo são excluídos.
 O [dicionário oficial do IBGE](https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios_Rendimento_do_Responsavel/dicionario_de_dados_renda_responsavel_20260508.xlsx)
 define as variáveis. Para exibir a renda em salários mínimos de 2022, divide-se
-o valor nominal por R$ 1.212.
+o valor nominal por R$ 1.212, salário mínimo de julho de 2022, referência do Censo.
 
 Os votos vêm do arquivo **Presidente — Votação por seção eleitoral — 2026**,
 disponível em [Resultados 2026, no TSE](https://dadosabertos.tse.jus.br/dataset/resultados-2026).
@@ -109,6 +121,11 @@ configurável. Soma-se a votação das seções de cada local antes de calcular
 os percentuais. Essa estimativa descreve a vizinhança eleitoral, não o voto
 observado dos moradores do setor. A regra não reproduz necessariamente o
 procedimento de geocodificação e interpolação usado pela Folha.
+
+O endereço de cadastro eleitoral pode estar desatualizado ou diferir da
+residência efetiva. Mesmo uma coordenada correta de local não informa a área
+de residência de seus eleitores. Essa limitação permanece nas alternativas
+de ponderação e interpolação e não é eliminada por aumentar a cobertura.
 
 Os setores elegíveis são ordenados por renda, com código do setor como
 desempate, e separados em 100 grupos com números de setores tão próximos
