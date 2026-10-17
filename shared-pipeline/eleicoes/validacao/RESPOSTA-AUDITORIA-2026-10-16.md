@@ -44,11 +44,23 @@ explicitamente pelo Claude: não houve relaxamento silencioso do limiar.
 
 ## Reprodução e publicação
 
-Execução nacional concluída em 16/10/2026: `020` passou nas 27 UFs, `030`
+A conferência adicional da validade eleitoral identificou 5.123 votos
+tecnicamente nulos dentro dos números nominais do arquivo bruto. O filtro
+por número inferior a 95 não estabelecia validade. O total doméstico oficial
+é 118.969.906 votos válidos. A correção consulta as tabelas de candidatos e
+detalhe da votação por município/zona do mesmo ano, turno e eleição, exige
+validade integral ou zero e fechamento dos válidos e nulos técnicos em cada
+zona. A implementação independente em R base reconstrói a classificação,
+sem consultar o cache legal do explorador nem a máscara da produção.
+Os quatro CSVs extraídos são vinculados aos ZIPs por tamanho e CRC32;
+os ZIPs, CSVs e códigos entram nos hashes do certificado. O `040` exige
+explicitamente essa nova verificação antes de aceitar o snapshot.
+
+Snapshot corrigido validado em 17/10/2026: `020` passou nas 27 UFs, `030`
 aprovou as tabelas e os 2.000 setores da amostra, e `040` reconferiu os hashes
 antes de preparar o snapshot. Alguns resultados auditados:
 
-- 108.715.207 de 118.975.029 votos válidos domésticos cobertos (91,38%),
+- 108.710.471 de 118.969.906 votos válidos domésticos cobertos (91,38%),
   em 81.076 locais utilizados. Diferenças de composição: Lula −0,32 p.p.
   e Flávio +0,25 p.p. frente aos percentuais nacionais de votos.
 - Exclusão por distância de 5 km: 36,51% dos setores rurais elegíveis e

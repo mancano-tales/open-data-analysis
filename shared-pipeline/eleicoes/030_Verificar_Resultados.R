@@ -70,7 +70,7 @@ verificar_resultados_post <- function(dest="data-raw/eleicoes-renda",spatial_siz
   if(file.exists(marker) && !file.remove(marker))stop("Cannot invalidate previous validation marker")
   raw_path <- file.path(dest,"votos2026","votacao_secao_2026_BR.csv")
   input_paths <- c(file.path(dest,c("renda2022.rds","polling2026.rds","municipios2022.rds",
-    "votos2026.zip","locais2026.zip","candidatos2026.zip","detalhe2026.zip","setores-votos.rds")),raw_path,
+    "votos2026.zip","locais2026.zip","candidatos2026.zip","detalhe2026.zip","manifest.csv","setores-votos.rds")),raw_path,
     "shared-pipeline/eleicoes/010_Download_Censo_TSE.R","shared-pipeline/eleicoes/020_Cruzar_Setores_Votos.R","shared-pipeline/eleicoes/030_Verificar_Resultados.R",
     "shared-pipeline/eleicoes/parametros.R","posts/votacao-renda-centil/data/referencia-folha.csv",file.path("shared-pipeline/eleicoes/validacao",
       c("metodos-post.R","cobertura-votos.R","050_Verificar_Espacial_Independente.R","060_Verificar_Metricas_Post.R","bootstrap-municipios.R",
