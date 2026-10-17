@@ -1,0 +1,15 @@
+source("shared-pipeline/eleicoes/030_Verificar_Resultados.R",encoding="UTF-8")
+folder<-tempfile("zip-proof-");dir.create(folder)
+raw<-file.path(folder,"votes.csv");archive<-file.path(folder,"votes.zip")
+writeLines(c("number,votes","13,10"),raw)
+zip::zipr(archive,raw)
+proof<-verificar_csv_do_zip(archive,"votes[.]csv$",folder)
+stopifnot(proof$status=="pass",proof$bytes==file.info(raw)$size)
+# Same byte length, different content must still fail CRC.
+writeLines(c("number,votes","13,11"),raw)
+stopifnot(inherits(try(verificar_csv_do_zip(archive,"votes[.]csv$",folder),silent=TRUE),"try-error"))
+# Replacing the archive must reject an older extracted copy.
+file.remove(archive);zip::zipr(archive,raw)
+writeLines(c("number,votes","13,10"),raw)
+stopifnot(inherits(try(verificar_csv_do_zip(archive,"votes[.]csv$",folder),silent=TRUE),"try-error"))
+message("PASS: ZIP CRC32/size matches bytes; same-size CSV alteration and replaced ZIP rejected")
