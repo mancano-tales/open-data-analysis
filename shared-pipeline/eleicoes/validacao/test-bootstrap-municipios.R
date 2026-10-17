@@ -18,4 +18,12 @@ stopifnot(any(b$centis$p975 > b$centis$p025))
 stopifnot(all(verificar_bootstrap_municipios(x, b)$status == "pass"))
 b$replicas$lula[1L] <- b$replicas$lula[1L] + 1
 stopifnot(inherits(try(verificar_bootstrap_municipios(x, b), silent = TRUE), "try-error"))
+unequal <- data.frame(code_tract = sprintf("%06d", 1:513),
+  code_muni = rep(1:4, c(101, 109, 137, 166)),
+  V06004 = rep(c(1212, 2424, 3636), length.out = 513),
+  p_lula = rep(c(20, 40, 60, 80), c(101, 109, 137, 166)))
+unequal$p_flavio <- 100 - unequal$p_lula
+unequal <- unequal[513:1, ]
+variable_size <- bootstrap_municipios(unequal, replicas = 17L)
+stopifnot(all(verificar_bootstrap_municipios(unequal, variable_size)$status == "pass"))
 cat("PASS: municipality bootstrap preserves cluster multiplicity, seed and constant curves.\n")

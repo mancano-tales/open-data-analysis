@@ -10,7 +10,9 @@ options(timeout = max(600, getOption("timeout")))
 setDTthreads(2L)
 source(here("shared-pipeline", "eleicoes", "parametros.R"))
 source(here("shared-pipeline", "eleicoes", "validacao", "cobertura-votos.R"))
+source(here("shared-pipeline", "eleicoes", "validacao", "metodos-post.R"))
 dest <- here("data-raw", "eleicoes-renda")
+unlink(file.path(dest, "validacao-metodologica.json"))
 max_distance <- as.numeric(Sys.getenv("VOTOS_MAX_DIST_M", "5000"))
 stopifnot(length(max_distance) == 1L, is.finite(max_distance), max_distance > 0)
 
@@ -161,6 +163,7 @@ eligible <- renda[elegivel_renda == TRUE]
 cache <- file.path(dest, "malhas")
 dir.create(cache, showWarnings = FALSE)
 rows <- list()
+neighbor_rows <- list()
 for (uf in sort(unique(eligible$code_state))) {
   message("Matching census tracts, UF ", uf, " ...")
   shape_path <- file.path(cache, paste0("setores2022-", uf, ".rds"))
@@ -188,15 +191,21 @@ for (uf in sort(unique(eligible$code_state))) {
                          distancia_m = NA_real_, p_lula = NA_real_, p_flavio = NA_real_)
     if (nrow(pp)) {
       pp <- pp[order(pp$place_key), ] # deterministic handling of equal-distance sites
-      nearest <- st_nearest_feature(tr, pp)
-      result[, `:=`(place_key = pp$place_key[nearest],
-                     distancia_m = as.numeric(st_distance(tr, pp[nearest, ], by_element = TRUE)),
-                     p_lula = pp$p_lula[nearest], p_flavio = pp$p_flavio[nearest])]
+      neighbors <- post_k_nearest(tr, pp, k = 3L)
+      neighbor_rows[[length(neighbor_rows) + 1L]] <- neighbors
+      first <- neighbors[rank == 1L]
+      index <- match(result$code_tract, first$code_tract)
+      location <- match(first$place_key[index], pp$place_key)
+      result[, `:=`(place_key = first$place_key[index],
+                     distancia_m = first$distancia_m[index],
+                     p_lula = pp$p_lula[location], p_flavio = pp$p_flavio[location])]
     }
     rows[[length(rows) + 1L]] <- result
   }
 }
 links <- rbindlist(rows)
+links3 <- rbindlist(neighbor_rows)
+saveRDS(links3, file.path(dest, "links-tres-vizinhos.rds"))
 if (anyDuplicated(links$code_tract)) stop("Duplicate tract geometry.")
 tracts <- merge(renda, links, by = "code_tract", all.x = TRUE, sort = FALSE)
 tracts[, motivo := fifelse(!elegivel_renda, "sem_renda_elegivel",
@@ -229,6 +238,9 @@ sens <- rbindlist(lapply(sort(unique(c(1000, 2000, 5000, max_distance))), functi
   x
 }))
 fwrite(sens, file.path(dest, "sensibilidade.csv"))
+post_write_methods(tracts, links3, places, dest,
+  limits = sort(unique(c(1000, 2000, 5000, 10000, Inf, max_distance))),
+  universe = "linked", minimum_wage = SALARIO_MINIMO_CENSO_2022)
 source(here("shared-pipeline", "eleicoes", "validacao", "bootstrap-municipios.R"))
 message("Exploratory municipality bootstrap (500 replicates, fixed seed) ...")
 bootstrap <- bootstrap_municipios(tracts[motivo == "incluido"],
