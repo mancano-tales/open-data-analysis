@@ -1,4 +1,4 @@
-Os locais usados representam 108.715.207 de 118.975.029 votos do denominador nacional (91,38%), em 81.076 locais. Nesse conjunto, Lula tem 44,84% e Flávio Bolsonaro 47,29%, diferenças de -0,32 e 0,25 p.p. em relação aos percentuais nacionais de 45,15% e 47,04%.
+Os locais usados representam 108.710.471 de 118.969.906 votos do denominador nacional (91,38%), em 81.076 locais. Nesse conjunto, Lula tem 44,84% e Flávio Bolsonaro 47,29%, diferenças de -0,32 e 0,25 p.p. em relação aos percentuais nacionais de 45,16% e 47,04%.
 
 A figura principal mantém a média simples por setor e os centis recalculados na amostra incluída. As tabelas abaixo preservam os cortes definidos antes do filtro de distância; são exercícios distintos.
 
@@ -53,7 +53,7 @@ No bootstrap exploratório de 500 reamostragens de municípios, 500 réplicas ti
 
 A auditoria geométrica independente aprovou 2.000 de 2.000 setores amostrados e 2.000 verificações k3. A discordância da projeção EPSG:5880 permaneceu como diagnóstico em 502 casos, sem substituir a referência geodésica.
 
-Foram excluídos 818 locais com coordenadas fora do respectivo município na malha de 2022, contendo 269.471 votos do denominador nacional (0,23%). Renda e malha de 2022 não captam todas as mudanças até a eleição de 2026.
+Foram excluídos 818 locais com coordenadas fora do respectivo município na malha de 2022, contendo 269.462 votos do denominador nacional (0,23%). Renda e malha de 2022 não captam todas as mudanças até a eleição de 2026.
 
 V06004 considera responsáveis com rendimento. O arquivo ResponsavelRenda não fornece a contagem desse grupo; portanto não calculamos a fração de responsáveis sem rendimento. V06002 conta moradores e não permite recuperar essa fração.
 
@@ -62,6 +62,6 @@ V06004 considera responsáveis com rendimento. O arquivo ResponsavelRenda não f
 | Candidato | Pontos legíveis | MAE (p.p.) |
 | --- | --- | --- |
 | Flávio Bolsonaro (PL) | 6 | 0,82 |
-| Lula (PT) | 7 | 1,18 |
+| Lula (PT) | 7 | 1,19 |
 
 Os pontos vêm de leitura visual manual e do tooltip da imagem, com arredondamento e regiões encobertas. Esse MAE não valida a curva completa nem demonstra equivalência ao método da Folha.

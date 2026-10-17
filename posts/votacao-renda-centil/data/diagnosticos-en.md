@@ -1,4 +1,4 @@
-Used polling places represent 108,715,207 of 118,975,029 votes in the national denominator (91.38%), across 81,076 places. Within that subset, Lula has 44.84% and Flávio Bolsonaro 47.29%, differences of -0.32 and 0.25 percentage points from national shares of 45.15% and 47.04%.
+Used polling places represent 108,710,471 of 118,969,906 votes in the national denominator (91.38%), across 81,076 places. Within that subset, Lula has 44.84% and Flávio Bolsonaro 47.29%, differences of -0.32 and 0.25 percentage points from national shares of 45.16% and 47.04%.
 
 The main figure retains the simple mean across tracts and percentile ranks recomputed in the included sample. The tables below preserve ranks defined before distance exclusions; these are distinct exercises.
 
@@ -53,7 +53,7 @@ In the exploratory bootstrap of 500 municipality resamples, 500 replicates had a
 
 The independent geometric audit passed 2,000 of 2,000 sampled tracts and 2,000 k3 checks. EPSG:5880 projection disagreement remained a diagnostic in 502 cases and did not replace the geodesic reference.
 
-818 polling places with coordinates outside their municipality in the 2022 boundary layer were excluded, containing 269,471 votes in the national denominator (0.23%). Income and boundaries from 2022 do not capture every change through the 2026 election.
+818 polling places with coordinates outside their municipality in the 2022 boundary layer were excluded, containing 269,462 votes in the national denominator (0.23%). Income and boundaries from 2022 do not capture every change through the 2026 election.
 
 V06004 covers household heads with income. ResponsavelRenda does not provide the count of this group, so the share of heads without income is unavailable. V06002 counts residents and cannot recover that share.
 
@@ -62,6 +62,6 @@ V06004 covers household heads with income. ResponsavelRenda does not provide the
 | Candidate | Readable points | MAE (pp) |
 | --- | --- | --- |
 | Flávio Bolsonaro (PL) | 6 | 0.82 |
-| Lula (PT) | 7 | 1.18 |
+| Lula (PT) | 7 | 1.19 |
 
 The reference points come from manual visual readings and the image tooltip, including rounding and obscured regions. This MAE neither validates the complete curve nor establishes equivalence to Folha’s method.

@@ -1,15 +1,15 @@
 centil,candidato,votacao_referencia,incerteza_visual_pp,origem,votacao,diferenca_pp,erro_absoluto_pp
-1,Flávio Bolsonaro (PL),21,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,19.637590959706,-1.36240904029398,1.36240904029398
-1,Lula (PT),75,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,77.1446895979371,2.14468959793712,2.14468959793712
-10,Flávio Bolsonaro (PL),30,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,28.7069198964831,-1.29308010351686,1.29308010351686
-10,Lula (PT),65,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,66.5128618112716,1.51286181127158,1.51286181127158
-20,Flávio Bolsonaro (PL),39,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,38.1271520651105,-0.872847934889521,0.872847934889521
-20,Lula (PT),54,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,55.4694498136323,1.4694498136323,1.4694498136323
-46,Flávio Bolsonaro (PL),,,curva encoberta pelo tooltip; sem leitura,49.4227906055684,,
-46,Lula (PT),41.12,0.005,imagem fornecida pelo autor; valor textual do tooltip com arredondamento a duas casas,42.3503226646204,1.23032266462044,1.23032266462044
-75,Flávio Bolsonaro (PL),56,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,55.2809176710862,-0.719082328913828,0.719082328913828
-75,Lula (PT),35,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,35.8255787012935,0.825578701293466,0.825578701293466
-90,Flávio Bolsonaro (PL),54,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,54.2149136480989,0.214913648098843,0.214913648098843
-90,Lula (PT),36,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,36.2072086452657,0.207208645265723,0.207208645265723
-100,Flávio Bolsonaro (PL),50,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,49.5261875465332,-0.473812453466806,0.473812453466806
-100,Lula (PT),38,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,38.8999359006359,0.899935900635924,0.899935900635924
+1,Flávio Bolsonaro (PL),21,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,19.638340158522,-1.36165984147801,1.36165984147801
+1,Lula (PT),75,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,77.1469752532174,2.14697525321741,2.14697525321741
+10,Flávio Bolsonaro (PL),30,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,28.7081471884272,-1.29185281157281,1.29185281157281
+10,Lula (PT),65,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,66.5153046354527,1.51530463545269,1.51530463545269
+20,Flávio Bolsonaro (PL),39,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,38.1288627136827,-0.871137286317321,0.871137286317321
+20,Lula (PT),54,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,55.4719126895571,1.47191268955712,1.47191268955712
+46,Flávio Bolsonaro (PL),,,curva encoberta pelo tooltip; sem leitura,49.4256660976424,,
+46,Lula (PT),41.12,0.005,imagem fornecida pelo autor; valor textual do tooltip com arredondamento a duas casas,42.3528413896455,1.23284138964549,1.23284138964549
+75,Flávio Bolsonaro (PL),56,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,55.2835509042667,-0.716449095733331,0.716449095733331
+75,Lula (PT),35,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,35.8273633021311,0.827363302131097,0.827363302131097
+90,Flávio Bolsonaro (PL),54,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,54.2171633691165,0.217163369116456,0.217163369116456
+90,Lula (PT),36,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,36.2087603580702,0.208760358070151,0.208760358070151
+100,Flávio Bolsonaro (PL),50,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,49.5274163289734,-0.472583671026634,0.472583671026634
+100,Lula (PT),38,1.5,imagem fornecida pelo autor; leitura visual manual aproximada,38.9010271271441,0.90102712714409,0.90102712714409
