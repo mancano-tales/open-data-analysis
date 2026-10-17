@@ -3,6 +3,7 @@
 if (.Platform$OS.type == "windows" && !isTRUE(l10n_info()[["UTF-8"]]))
   invisible(Sys.setlocale("LC_CTYPE", ".UTF-8"))
 source("shared-pipeline/eleicoes/agregacao/centis.R", encoding = "UTF-8")
+source("shared-pipeline/eleicoes/agregacao/legacy-export-guard.R", encoding = "UTF-8")
 
 eleicao_cache_index <- function(cache_dir) {
   paths <- list.files(cache_dir, pattern = "^places-[0-9]{4}-[A-Z]{2}-[0-9_]+(-legal)?[.]rds$", full.names = TRUE)
@@ -52,7 +53,8 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
     cache_dir = "data-raw/eleicoes-renda/historico",
     spatial_dir = "data-raw/eleicoes-renda/espacial",
     income_path = "data-raw/eleicoes-renda/renda2022.rds",
-    targets = NULL, max_distance_m = 5000, incremental = FALSE, flush_progress = FALSE) {
+    targets = NULL, max_distance_m = 5000, incremental = FALSE, flush_progress = FALSE,
+    legacy_cache_dir = NULL) {
   eleicao_require(); data.table::setDTthreads(2L)
   if (is.null(targets)) targets <- eleicao_targets(income_references = c("national", "state"))
   targets <- data.table::copy(data.table::as.data.table(targets))
@@ -64,9 +66,16 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
       any(!targets$income_reference %in% c("national", "state")) ||
       any(targets$income_reference == "state" & targets$uf == "BR")) stop("Invalid targets")
   index <- eleicao_cache_index(cache_dir)
+  if (!is.null(legacy_cache_dir) && (length(legacy_cache_dir) != 1L || is.na(legacy_cache_dir) || !nzchar(legacy_cache_dir))) stop("Invalid explicit LEGACY cache directory")
+  legacy_index <- if (!is.null(legacy_cache_dir)) eleicao_cache_index(legacy_cache_dir) else NULL
+  if (!is.null(legacy_index)) legacy_index <- legacy_index[legacy_index$year %in% c(2010L, 2014L) &
+    legacy_index$legal & legacy_index$offices == "3_5_6_7_8", , drop = FALSE]
+  is_legacy <- function(year, office) !is.null(legacy_cache_dir) && year %in% c(2010L, 2014L) && office != 1L
+  legacy_snapshot_required <- !is.null(legacy_cache_dir) && any(targets$year %in% c(2010L, 2014L) & targets$office != 1L)
+  select_cache <- function(year, office, uf) eleicao_pick_cache(if (is_legacy(year, office)) legacy_index else index, year, office, uf)
   # Read each potentially large vote cache once per year/round, not per office.
   targets[, processing_source := vapply(seq_len(.N), function(i) {
-    selected <- eleicao_pick_cache(index, year[[i]], office[[i]], uf[[i]])
+    selected <- select_cache(year[[i]], office[[i]], uf[[i]])
     if (is.null(selected)) "" else selected$path[[1L]]
   }, character(1))]
   data.table::setorder(targets, year, round, processing_source, office, uf)
@@ -102,15 +111,56 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
   link_hash <- vote_hash <- NULL
   last_link_path <- NULL; links <- NULL; link_error <- NULL
   last_vote_path <- NULL; votes <- NULL; vote_error <- NULL
+  # Certificate records are small; large vote frames retain the existing
+  # one-source-at-a-time lifecycle. Hash ZIPs/selected CSVs once per UF per
+  # invocation, binding reuse to the current checkpoint and RDS digests.
+  legacy_certificates <- new.env(parent = emptyenv())
   for (i in seq_len(nrow(targets))) {
     target <- targets[i]; yr <- target$year; tr <- target$round; oc <- target$office; state <- target$uf
     reference <- target$income_reference
     id <- eleicao_target_id(yr, tr, oc, state, reference)
     status <- "unavailable"; reason <- NULL; item <- NULL
-    selected <- eleicao_pick_cache(index, yr, oc, state)
+    selected <- select_cache(yr, oc, state)
+    legacy <- is_legacy(yr, oc); legacy_context <- NULL; legacy_error <- NULL
+    if (legacy && !is.null(selected)) {
+      if (!identical(last_vote_path, selected$path)) {
+        votes <- NULL; invisible(gc())
+        vote_result <- tryCatch(list(value = eleicao_legacy_read_cache(selected$path), error = NULL), error = function(e) list(value = NULL, error = conditionMessage(e)))
+        votes <- vote_result$value$votes; vote_hash <- vote_result$value$md5
+        vote_error <- vote_result$error; last_vote_path <- selected$path
+      }
+      if (!is.null(vote_error)) legacy_error <- paste("LEGACY: falha ao ler votos:", vote_error)
+      else {
+        checkpoint_path <- file.path(legacy_cache_dir, "status", as.character(yr), paste0(state, ".json"))
+        checkpoint_hash <- if (file.exists(checkpoint_path)) unname(tools::md5sum(checkpoint_path)) else NA_character_
+        key <- selected$path[[1L]]
+        certificate <- if (exists(key, envir = legacy_certificates, inherits = FALSE)) get(key, envir = legacy_certificates) else NULL
+        if (is.null(certificate) || !identical(certificate$checkpoint_md5, checkpoint_hash) || !identical(certificate$vote_md5, vote_hash)) {
+          checked <- tryCatch({
+            if (!is.null(certificate) && !identical(certificate$checkpoint_md5, checkpoint_hash)) {
+              # A new checkpoint can accompany a replaced canonical file at the
+              # same path. Never certify the preceding in-memory vote frame.
+              loaded <- eleicao_legacy_read_cache(key); votes <- loaded$votes; vote_hash <- loaded$md5
+            }
+            list(value = eleicao_legacy_certificate(votes, key, legacy_cache_dir, yr, state, cache_md5 = vote_hash), error = NULL)
+          },
+            error = function(e) list(value = NULL, error = conditionMessage(e)))
+          certificate <- list(value = checked$value, error = checked$error, checkpoint_md5 = checkpoint_hash, vote_md5 = vote_hash)
+          assign(key, certificate, envir = legacy_certificates)
+        }
+        if (!is.null(certificate$error)) legacy_error <- certificate$error
+        else {
+          legacy_context <- certificate$value
+          legacy_target <- eleicao_legacy_target(legacy_context, yr, tr, oc, state)
+          if (!legacy_target$available) legacy_error <- legacy_target$reason
+        }
+      }
+    }
     link_path <- file.path(spatial_dir, paste0("links-", yr, "-", tr, ".rds"))
     if (is.null(selected)) {
-      reason <- "Sem cache normalizado de votação por local para esta disputa"
+      reason <- if (legacy) "LEGACY: sem cache canônico isolado para esta disputa; nenhum fallback à raiz histórica" else "Sem cache normalizado de votação por local para esta disputa"
+    } else if (!is.null(legacy_error)) {
+      reason <- legacy_error
     } else if (!file.exists(link_path)) {
       reason <- if (yr < 2010L) "Sem georreferenciamento contemporâneo disponível antes de 2010" else "Mapa setorial completo do ano/turno ainda não disponível; fragmentos por UF não são apresentados como cobertura nacional"
     } else {
@@ -134,10 +184,13 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
           name <- paste0(id, ".json")
           destination <- file.path(output_dir,"series",name)
           fingerprint <- paste(if(reference == "state") "state-income-valid-v1" else "fixed-income-valid-v1",income_hash,link_hash,vote_hash,max_distance_m,id,sep=":")
+          if (legacy) fingerprint <- paste(fingerprint, legacy_context$protocol, legacy_context$checkpoint_md5, sep = ":")
           cached <- if(file.exists(destination))tryCatch(jsonlite::read_json(destination),error=function(e)NULL) else NULL
           if(!is.null(cached) && identical(cached$metadata$export_fingerprint,fingerprint) &&
              identical(cached$metadata$vote_audit$status,"reconciled") &&
-             !"ZZ" %in% cached$metadata$vote_audit$ufs) {
+             !"ZZ" %in% cached$metadata$vote_audit$ufs && (!legacy ||
+               (identical(cached$metadata$vote_cache_protocol, legacy_context$protocol) &&
+                identical(cached$metadata$vote_checkpoint_md5, legacy_context$checkpoint_md5)))) {
             item <- eleicao_manifest_item(cached,paste0("series/",name))
           } else {
             dataset <- eleicao_aggregate_contest(votes, universe, links, yr, tr, oc, state,
@@ -146,6 +199,15 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
             dataset$metadata$vote_cache <- basename(selected$path)
             dataset$metadata$spatial <- attr(links, "metadata")
             dataset$metadata$export_fingerprint <- fingerprint
+            if (legacy) {
+              dataset$metadata$vote_cache_protocol <- legacy_context$protocol
+              dataset$metadata$vote_checkpoint_md5 <- legacy_context$checkpoint_md5
+              dataset$metadata$vote_certificate <- list(protocol = legacy_context$protocol,
+                checkpoint = paste0("status/", yr, "/", state, ".json"), checkpoint_md5 = legacy_context$checkpoint_md5,
+                status = legacy_context$status, election_id = legacy_target$election_id,
+                certified_contests = nrow(legacy_context$checks), unavailable_contests = nrow(legacy_context$unavailable),
+                official_members = legacy_context$provenance$official_members)
+            }
             item <- eleicao_write_dataset(dataset,destination,paste0("series/",name))
             rm(dataset);invisible(gc())
           }
@@ -164,11 +226,18 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
     if(status!="available") series[[id]] <- NULL
     boundary <- i==nrow(targets) || targets$processing_source[[i+1L]]!=targets$processing_source[[i]] ||
       targets$year[[i+1L]]!=yr || targets$round[[i+1L]]!=tr
-    if(flush_progress && boundary) {
+    if(flush_progress && boundary && !legacy_snapshot_required) {
       progress_metadata <- if(!is.null(prior$metadata))prior$metadata else list(percentile_scope="BR",income_year=2022L,sources=sources)
       write_manifest(list(schema_version=1L,series=unname(series),availability=unname(availability),metadata=progress_metadata))
       message("Manifest updated: ",length(series)," available series")
     }
+  }
+  if (legacy_snapshot_required) {
+    certificates <- lapply(as.list(legacy_certificates), function(x) x$value)
+    certificates <- Filter(Negate(is.null), certificates)
+    # Defer progress manifests for explicit LEGACY batches so a late snapshot
+    # failure preserves the previous incremental manifest byte for byte.
+    eleicao_legacy_verify_snapshot(certificates)
   }
   manifest <- list(schema_version = 1L, series = unname(series), availability = unname(availability),
     metadata = list(percentile_scope = if(any(vapply(series,function(item)identical(item$income_reference,"state"),logical(1)))) "selectable" else "BR", income_year = 2022L,
