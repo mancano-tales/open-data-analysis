@@ -30,8 +30,20 @@ nas respectivas notas técnicas; a descrição de V001 não é idêntica à de V
 
 ## Integração a realizar
 
-- Ler Basico 2010 com `censobr`, preservando códigos, sigilo e ausências;
-  conferir V007 contra a fonte original e registrar o hash do download.
+O produtor `prepare-income-2010.R` foi executado com censobr 0.6.0.902,
+release de dados `v0.6.0`: 310.120 setores, dos quais 308.993 têm V001 e
+V007 elegíveis. O parquet baixado tem MD5
+`ea8cdc487e934837e5034b004ce2166e`. Chaves setoriais únicas e seus prefixos
+de município/UF foram conferidos. Os dados e metadados ficam isolados em
+`data-raw/eleicoes-renda/censo2010/`, sem alterar curvas já publicadas.
+
+```powershell
+Rscript shared-pipeline/eleicoes/historico/prepare-income-2010.R
+```
+
+- A leitura inicial de Basico 2010 está preparada, preservando códigos,
+  sigilo e ausências. Conferir uma amostra dos valores de V007 contra os
+  arquivos originais do IBGE antes de promover a nova referência.
 - Usar malhas setoriais e municipais de 2010 para essa referência. Não unir
   códigos setoriais de 2010 diretamente aos de 2022 ou reaproveitar os seus
   pontos internos em cache.
