@@ -7,6 +7,15 @@ image: thumbnail.png
 description: "An independent reconstruction of the association between tract income and the 2026 presidential vote using Census 2022 and TSE data."
 ---
 
+::: {.callout-warning}
+**Income belongs to census tracts; observed votes belong to polling places.**
+The chart associates mean tract income with voting at nearby polling places.
+A higher vote share in higher-income tracts **does not establish that
+higher-income individuals voted for that candidate**. Individual voters'
+incomes and the polling places used by each tract's residents are unknown.
+Spatial proximity is an approximation and does not identify a tract's electorate.
+:::
+
 ![](thumbnail.png)
 
 ## Overview
@@ -66,10 +75,13 @@ The [100 calculated percentiles](data/centis.csv),
 `censobr::read_tracts(year = 2022, dataset = "ResponsavelRenda")` provides
 tract income. `V06004` measures mean nominal monthly income of household
 heads **with income** in occupied permanent private households; `V06001`
-counts household heads. This is neither per capita household income nor
+counts household heads, including those without income. It does not count
+heads with income. The available table does not provide that latter count,
+so the share without income cannot be derived from these variables.
+This is neither per capita household income nor
 mean income of all residents. Tracts without household heads or with missing
 or suppressed income are excluded. Income is divided by BRL 1,212 to express
-it in 2022 minimum wages. Definitions follow the
+it in July 2022 minimum wages, the Census reference period. Definitions follow the
 [official IBGE dictionary](https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios_Rendimento_do_Responsavel/dicionario_de_dados_renda_responsavel_20260508.xlsx).
 
 The pipeline downloads **2026 presidential votes by electoral section** from
@@ -98,6 +110,11 @@ Votes are summed across sections at each polling place before computing
 shares. These are neighbourhood estimates, not observed votes of tract
 residents. This differs from the original article's unspecified proximity
 and geocoding details.
+
+Registered electoral addresses may be outdated or differ from actual residence.
+Even a correctly located polling place does not reveal where its voters live.
+Alternative weights and interpolation do not resolve this limitation, and
+increasing coverage does not remove it.
 
 Eligible tracts are ranked by income, with tract code breaking ties, then
 divided into 100 groups as equal in tract count as possible. Group vote
