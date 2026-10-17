@@ -11,6 +11,13 @@ historical_version <- 1L
 historical_script <- "shared-pipeline/eleicoes/historico/prepare-historical-all-ufs.R"
 historical_sources <- c(historical_script,"shared-pipeline/eleicoes/historico/tse.R",
  "shared-pipeline/eleicoes/historico/legal-validity.R",
+ "shared-pipeline/eleicoes/historico/legal-historical-null-totals.R",
+ "shared-pipeline/eleicoes/historico/historical-senate-nonvalid.R",
+ "shared-pipeline/eleicoes/historico/historical-party-aggregates.R",
+ "shared-pipeline/eleicoes/historico/historical-separate-votes.R",
+ "shared-pipeline/eleicoes/historico/official-vote-destinations.R",
+ "shared-pipeline/eleicoes/historico/official-vote-destinations.json",
+ "shared-pipeline/eleicoes/historico/historical-contest-isolation.R",
  "shared-pipeline/eleicoes/agregacao/validacao/legal-party-technical-wrapper.R",
  "shared-pipeline/eleicoes/agregacao/validacao/candidate-group-fastpath.R",
  "shared-pipeline/eleicoes/historico/cleanup-historical-extractions.R")
@@ -58,13 +65,61 @@ historical_current_checkpoint <- function(record) {
 }
 historical_contest_status <- function(expected,checks,unavailable) {
  keys<-c("year","round","election_id","office","uf")
- signature<-function(x)if(!nrow(x))character() else do.call(paste,c(x[,keys,drop=FALSE],sep=":"))
- if(!nrow(checks)||anyNA(checks$difference)||any(checks$difference!=0)||
-    anyNA(checks$computed_valid_votes)||any(checks$computed_valid_votes!=checks$official_valid_votes))stop("Invalid certified audit")
+ signature<-function(x) {
+   if(!nrow(x))return(character())
+   if(!all(keys %in% names(x))||anyNA(x[,keys,drop=FALSE]))stop("Invalid contest scope keys")
+   value<-do.call(paste,c(x[,keys,drop=FALSE],sep=":"))
+   if(anyDuplicated(value))stop("Duplicate contest scope")
+   value
+ }
+ if(nrow(checks)&&(!all(c("difference","computed_valid_votes","official_valid_votes") %in% names(checks))||
+    anyNA(checks[,c("difference","computed_valid_votes","official_valid_votes"),drop=FALSE])||any(checks$difference!=0)||
+    any(!is.finite(checks$computed_valid_votes))||any(checks$computed_valid_votes<0)||
+    any(checks$computed_valid_votes!=checks$official_valid_votes)))stop("Invalid certified audit")
+ if(nrow(unavailable)&&(!"reason" %in% names(unavailable)||anyNA(unavailable$reason)||any(!nzchar(unavailable$reason))))
+   stop("Unavailable contest needs an explicit reason")
  required<-signature(expected);certified<-signature(checks);blocked<-signature(unavailable)
+ if(!length(required))stop("No expected official contests")
+ if(any(!c(certified,blocked) %in% required))stop("Unexpected contest in certified or unavailable audit")
  if(any(!required %in% c(certified,blocked)))stop("Official contest missing from both certified and unavailable audit")
  if(any(certified %in% blocked))stop("Contest is both certified and unavailable")
  if(all(required %in% certified))"complete" else "partial"
+}
+historical_destination_inputs <- function(year,uf,cache_dir) {
+ if(!identical(as.integer(year),2018L))return(character())
+ info<-jsonlite::read_json("shared-pipeline/eleicoes/historico/official-vote-destinations.json",simplifyVector=TRUE)
+ mappings<-as.data.frame(info$mappings)
+ selected<-mappings[mappings$year==year & mappings$uf==uf,,drop=FALSE]
+ if(!nrow(selected))return(character())
+ documents<-as.data.frame(info$sources)
+ paths<-documents$cache_path[documents$id %in% selected$source_id]
+ if(!length(paths)||anyNA(paths)||any(!file.exists(file.path(cache_dir,paths))))stop("Missing official destination document input")
+ file.path(cache_dir,unique(paths))
+}
+historical_output_status <- function(x,audit) {
+ if(!identical(attr(x,"normalizer_version"),2L))stop("Uncertified normalized output")
+ if(identical(audit$status,"reconciled")) {
+   if(!nrow(x)||!nrow(as.data.frame(audit$checks)))stop("Empty reconciled output")
+ } else if(identical(audit$status,"unavailable")) {
+   if(nrow(x)||nrow(as.data.frame(audit$checks)))stop("Unavailable output must be empty and uncertified")
+ } else stop("Uncertified normalized output")
+ invisible(TRUE)
+}
+historical_2018_environment <- function(cache_dir) {
+ source("shared-pipeline/eleicoes/historico/legal-historical-null-totals.R")
+ source("shared-pipeline/eleicoes/historico/historical-senate-nonvalid.R")
+ source("shared-pipeline/eleicoes/historico/historical-party-aggregates.R")
+ source("shared-pipeline/eleicoes/historico/historical-separate-votes.R")
+ source("shared-pipeline/eleicoes/historico/official-vote-destinations.R")
+ source("shared-pipeline/eleicoes/agregacao/validacao/candidate-group-fastpath.R")
+ source("shared-pipeline/eleicoes/historico/historical-contest-isolation.R")
+ env<-historical_null_environment()
+ env<-historical_senate_nonvalid_environment(env)
+ env<-historical_party_aggregate_environment(env)
+ env<-historical_separate_vote_environment(env)
+ env<-official_destination_environment(env,source_cache=cache_dir)
+ env<-legal_candidate_fast_environment(base_environment=env)
+ historical_isolation_environment(env)
 }
 historical_worker <- function(year,uf,cache_dir="data-raw/eleicoes-renda/historico") {
  if(nrow(historical_plan(year,uf))!=1L)stop("Worker expects one year and UF")
@@ -77,16 +132,24 @@ historical_worker <- function(year,uf,cache_dir="data-raw/eleicoes-renda/histori
  sources<-c(historical_sources,file.path(cache_dir,paste0("resultados-",year,"-metadata.json")),
   file.path(cache_dir,paste0("votacao_secao_",year,"_",uf,".zip")),
   file.path(cache_dir,paste0(c("votacao_candidato_munzona","votacao_partido_munzona","detalhe_votacao_munzona"),"_",year,".zip")))
+ loaded_documents<-list()
  result<-tryCatch({
+   destination_inputs<-historical_destination_inputs(year,uf,cache_dir)
+   loaded_documents<-historical_identity(destination_inputs)
+   sources<-c(sources,destination_inputs)
    source("shared-pipeline/eleicoes/agregacao/validacao/legal-party-technical-wrapper.R")
    source("shared-pipeline/eleicoes/agregacao/validacao/candidate-group-fastpath.R")
    source("shared-pipeline/eleicoes/historico/cleanup-historical-extractions.R")
-   env<-legal_party_technical_environment()
-   env<-legal_candidate_fast_environment(base_environment=env)
+   if(identical(as.integer(year),2018L)) {
+     env<-historical_2018_environment(cache_dir)
+   } else {
+     env<-legal_party_technical_environment()
+     env<-legal_candidate_fast_environment(base_environment=env)
+   }
    data.table::setDTthreads(2L)
    x<-env$legal_reconcile_places(year,uf,offices,cache_dir)
    audit<-attr(x,"vote_audit")
-   if(!identical(audit$status,"reconciled")||!identical(attr(x,"normalizer_version"),2L))stop("Uncertified normalized output")
+   historical_output_status(x,audit)
    source_md5<-unname(tools::md5sum(file.path(cache_dir,paste0("votacao_secao_",year,"_",uf,".zip"))))
    if(!identical(source_md5,attr(x,"source_md5")))stop("Section-source MD5 mismatch")
    checks<-as.data.frame(audit$checks);unavailable<-as.data.frame(audit$unavailable)
@@ -104,16 +167,20 @@ historical_worker <- function(year,uf,cache_dir="data-raw/eleicoes-renda/histori
    state<-historical_contest_status(as.data.frame(expected),checks,unavailable)
    rows<-nrow(x);rm(x,detail);invisible(gc())
    list(status=state,certified=checks,unavailable=unavailable,rows=rows,
-    method=audit$method,source_md5=source_md5)
+    audit_status=audit$status,method=audit$method,source_md5=source_md5)
  },error=function(e)list(status="failed",error=conditionMessage(e)))
  current_code<-historical_identity(historical_sources)
- if(!identical(lapply(loaded_code,`[[`,"md5"),lapply(current_code,`[[`,"md5"))) {
+ current_documents<-historical_identity(vapply(loaded_documents,`[[`,character(1),"path"))
+ if(!identical(lapply(loaded_code,`[[`,"md5"),lapply(current_code,`[[`,"md5"))||
+    !identical(lapply(loaded_documents,`[[`,"md5"),lapply(current_documents,`[[`,"md5"))) {
    result$status<-"failed"
    result$error<-"Implementation changed while worker was active; rerun to certify its exact source provenance"
  }
  record<-c(base,result,list(finished_at=as.character(Sys.time()),elapsed_seconds=as.numeric(difftime(Sys.time(),start,units="secs")),
    fingerprints=c(loaded_code,historical_identity(setdiff(c(sources,if(file.exists(output))output),historical_sources))),
-   technical_rule="Unregistered nominal and party ballots are excluded only after exact technical-null and nominal/party/valid checks in every municipality-zone; no allocation"))
+   technical_rule=if(identical(as.integer(year),2018L))
+     "Historical per-dispute exact nominal/party/valid and COMBINED NULL PLUS ANNULLED ledger; separate components official only; annulled extension Senate only; section97 independently closes APU_SEP; pending blocked; explicit party-grain aggregates and independently documented candidate destinations, no inferred partial allocation" else
+     "Unregistered nominal and party ballots are excluded only after exact technical-null and nominal/party/valid checks in every municipality-zone; no allocation"))
  historical_write_json(record,checkpoint_path)
  if(identical(record$status,"complete")) {
    record$cleanup<-tryCatch({

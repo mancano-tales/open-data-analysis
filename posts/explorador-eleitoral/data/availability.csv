@@ -1035,3 +1035,273 @@ id,year,round,office,uf,income_reference,office_label,status,reason
 2022-2-3-SE-state,2022,2,3,SE,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
 2022-2-3-TO,2022,2,3,TO,national,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
 2022-2-3-TO-state,2022,2,3,TO,state,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-1-3-AC,2018,1,3,AC,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-AC-state,2018,1,3,AC,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-AC,2018,1,5,AC,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-AC-state,2018,1,5,AC,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-AC,2018,1,6,AC,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-AC-state,2018,1,6,AC,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-AC,2018,1,7,AC,national,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-AC-state,2018,1,7,AC,state,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-AL,2018,1,3,AL,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-AL-state,2018,1,3,AL,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-AL,2018,1,5,AL,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-AL-state,2018,1,5,AL,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-AL,2018,1,6,AL,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-AL-state,2018,1,6,AL,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-AL,2018,1,7,AL,national,Deputado estadual,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-1-7-AL-state,2018,1,7,AL,state,Deputado estadual,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-1-3-AM,2018,1,3,AM,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-AM-state,2018,1,3,AM,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-AM,2018,1,5,AM,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-AM-state,2018,1,5,AM,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-AM,2018,1,6,AM,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-AM-state,2018,1,6,AM,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-AM,2018,1,7,AM,national,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-AM-state,2018,1,7,AM,state,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-AP,2018,1,3,AP,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-AP-state,2018,1,3,AP,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-AP,2018,1,5,AP,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-AP-state,2018,1,5,AP,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-AP,2018,1,6,AP,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-AP-state,2018,1,6,AP,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-AP,2018,1,7,AP,national,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-AP-state,2018,1,7,AP,state,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-BA,2018,1,3,BA,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-BA-state,2018,1,3,BA,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-BA,2018,1,5,BA,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-BA-state,2018,1,5,BA,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-BA,2018,1,6,BA,national,Deputado federal,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-1-6-BA-state,2018,1,6,BA,state,Deputado federal,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-1-7-BA,2018,1,7,BA,national,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-BA-state,2018,1,7,BA,state,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-CE,2018,1,3,CE,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-CE-state,2018,1,3,CE,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-CE,2018,1,5,CE,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-CE-state,2018,1,5,CE,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-CE,2018,1,6,CE,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-CE-state,2018,1,6,CE,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-CE,2018,1,7,CE,national,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-CE-state,2018,1,7,CE,state,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-DF,2018,1,3,DF,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-DF-state,2018,1,3,DF,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-DF,2018,1,5,DF,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-DF-state,2018,1,5,DF,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-DF,2018,1,6,DF,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-DF-state,2018,1,6,DF,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-8-DF,2018,1,8,DF,national,Deputado distrital,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-8-DF-state,2018,1,8,DF,state,Deputado distrital,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-ES,2018,1,3,ES,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-ES-state,2018,1,3,ES,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-ES,2018,1,5,ES,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-ES-state,2018,1,5,ES,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-ES,2018,1,6,ES,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-ES-state,2018,1,6,ES,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-ES,2018,1,7,ES,national,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-ES-state,2018,1,7,ES,state,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-GO,2018,1,3,GO,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-GO-state,2018,1,3,GO,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-GO,2018,1,5,GO,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-GO-state,2018,1,5,GO,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-GO,2018,1,6,GO,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-GO-state,2018,1,6,GO,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-GO,2018,1,7,GO,national,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-GO-state,2018,1,7,GO,state,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-MA,2018,1,3,MA,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-MA-state,2018,1,3,MA,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-MA,2018,1,5,MA,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-MA-state,2018,1,5,MA,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-MA,2018,1,6,MA,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-MA-state,2018,1,6,MA,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-MA,2018,1,7,MA,national,Deputado estadual,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-1-7-MA-state,2018,1,7,MA,state,Deputado estadual,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-1-3-MG,2018,1,3,MG,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-MG-state,2018,1,3,MG,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-MG,2018,1,5,MG,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-MG-state,2018,1,5,MG,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-MG,2018,1,6,MG,national,Deputado federal,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-1-6-MG-state,2018,1,6,MG,state,Deputado federal,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-1-7-MG,2018,1,7,MG,national,Deputado estadual,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-1-7-MG-state,2018,1,7,MG,state,Deputado estadual,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-1-3-MS,2018,1,3,MS,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-MS-state,2018,1,3,MS,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-MS,2018,1,5,MS,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-MS-state,2018,1,5,MS,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-MS,2018,1,6,MS,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-MS-state,2018,1,6,MS,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-MS,2018,1,7,MS,national,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-MS-state,2018,1,7,MS,state,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-MT,2018,1,3,MT,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-MT-state,2018,1,3,MT,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-MT,2018,1,5,MT,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-MT-state,2018,1,5,MT,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-MT,2018,1,6,MT,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-MT-state,2018,1,6,MT,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-MT,2018,1,7,MT,national,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-MT-state,2018,1,7,MT,state,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-PA,2018,1,3,PA,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-PA-state,2018,1,3,PA,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-PA,2018,1,5,PA,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-PA-state,2018,1,5,PA,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-PA,2018,1,6,PA,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-PA-state,2018,1,6,PA,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-PA,2018,1,7,PA,national,Deputado estadual,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-1-7-PA-state,2018,1,7,PA,state,Deputado estadual,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-1-3-PB,2018,1,3,PB,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-PB-state,2018,1,3,PB,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-PB,2018,1,5,PB,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-PB-state,2018,1,5,PB,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-PB,2018,1,6,PB,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-PB-state,2018,1,6,PB,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-PB,2018,1,7,PB,national,Deputado estadual,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-1-7-PB-state,2018,1,7,PB,state,Deputado estadual,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-1-3-PE,2018,1,3,PE,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-PE-state,2018,1,3,PE,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-PE,2018,1,5,PE,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-PE-state,2018,1,5,PE,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-PE,2018,1,6,PE,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-PE-state,2018,1,6,PE,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-PE,2018,1,7,PE,national,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-PE-state,2018,1,7,PE,state,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-PI,2018,1,3,PI,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-PI-state,2018,1,3,PI,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-PI,2018,1,5,PI,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-PI-state,2018,1,5,PI,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-PI,2018,1,6,PI,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-PI-state,2018,1,6,PI,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-PI,2018,1,7,PI,national,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-PI-state,2018,1,7,PI,state,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-PR,2018,1,3,PR,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-PR-state,2018,1,3,PR,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-PR,2018,1,5,PR,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-PR-state,2018,1,5,PR,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-PR,2018,1,6,PR,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-PR-state,2018,1,6,PR,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-PR,2018,1,7,PR,national,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-PR-state,2018,1,7,PR,state,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-RJ,2018,1,3,RJ,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-RJ-state,2018,1,3,RJ,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-RJ,2018,1,5,RJ,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-RJ-state,2018,1,5,RJ,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-RJ,2018,1,6,RJ,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-RJ-state,2018,1,6,RJ,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-RJ,2018,1,7,RJ,national,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-RJ-state,2018,1,7,RJ,state,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-RN,2018,1,3,RN,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-RN-state,2018,1,3,RN,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-RN,2018,1,5,RN,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-RN-state,2018,1,5,RN,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-RN,2018,1,6,RN,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-RN-state,2018,1,6,RN,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-RN,2018,1,7,RN,national,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-RN-state,2018,1,7,RN,state,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-RO,2018,1,3,RO,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-RO-state,2018,1,3,RO,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-RO,2018,1,5,RO,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-RO-state,2018,1,5,RO,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-RO,2018,1,6,RO,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-RO-state,2018,1,6,RO,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-RO,2018,1,7,RO,national,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-RO-state,2018,1,7,RO,state,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-RR,2018,1,3,RR,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-RR-state,2018,1,3,RR,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-RR,2018,1,5,RR,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-RR-state,2018,1,5,RR,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-RR,2018,1,6,RR,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-RR-state,2018,1,6,RR,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-RR,2018,1,7,RR,national,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-RR-state,2018,1,7,RR,state,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-RS,2018,1,3,RS,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-RS-state,2018,1,3,RS,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-RS,2018,1,5,RS,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-RS-state,2018,1,5,RS,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-RS,2018,1,6,RS,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-RS-state,2018,1,6,RS,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-RS,2018,1,7,RS,national,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-RS-state,2018,1,7,RS,state,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-SC,2018,1,3,SC,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-SC-state,2018,1,3,SC,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-SC,2018,1,5,SC,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-SC-state,2018,1,5,SC,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-SC,2018,1,6,SC,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-SC-state,2018,1,6,SC,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-SC,2018,1,7,SC,national,Deputado estadual,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-1-7-SC-state,2018,1,7,SC,state,Deputado estadual,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-1-3-SE,2018,1,3,SE,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-SE-state,2018,1,3,SE,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-SE,2018,1,5,SE,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-SE-state,2018,1,5,SE,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-SE,2018,1,6,SE,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-SE-state,2018,1,6,SE,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-SE,2018,1,7,SE,national,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-SE-state,2018,1,7,SE,state,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-SP,2018,1,3,SP,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-SP-state,2018,1,3,SP,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-SP,2018,1,5,SP,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-SP-state,2018,1,5,SP,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-SP,2018,1,6,SP,national,Deputado federal,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-1-6-SP-state,2018,1,6,SP,state,Deputado federal,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-1-7-SP,2018,1,7,SP,national,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-SP-state,2018,1,7,SP,state,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-TO,2018,1,3,TO,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-3-TO-state,2018,1,3,TO,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-TO,2018,1,5,TO,national,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-5-TO-state,2018,1,5,TO,state,Senador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-TO,2018,1,6,TO,national,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-6-TO-state,2018,1,6,TO,state,Deputado federal,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-TO,2018,1,7,TO,national,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-1-7-TO-state,2018,1,7,TO,state,Deputado estadual,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-AC,2018,2,3,AC,national,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-AC-state,2018,2,3,AC,state,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-AL,2018,2,3,AL,national,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-AL-state,2018,2,3,AL,state,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-AM,2018,2,3,AM,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-AM-state,2018,2,3,AM,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-AP,2018,2,3,AP,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-AP-state,2018,2,3,AP,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-BA,2018,2,3,BA,national,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-BA-state,2018,2,3,BA,state,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-CE,2018,2,3,CE,national,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-CE-state,2018,2,3,CE,state,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-DF,2018,2,3,DF,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-DF-state,2018,2,3,DF,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-ES,2018,2,3,ES,national,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-ES-state,2018,2,3,ES,state,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-GO,2018,2,3,GO,national,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-GO-state,2018,2,3,GO,state,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-MA,2018,2,3,MA,national,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-MA-state,2018,2,3,MA,state,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-MG,2018,2,3,MG,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-MG-state,2018,2,3,MG,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-MS,2018,2,3,MS,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-MS-state,2018,2,3,MS,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-MT,2018,2,3,MT,national,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-MT-state,2018,2,3,MT,state,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-PA,2018,2,3,PA,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-PA-state,2018,2,3,PA,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-PB,2018,2,3,PB,national,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-PB-state,2018,2,3,PB,state,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-PE,2018,2,3,PE,national,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-PE-state,2018,2,3,PE,state,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-PI,2018,2,3,PI,national,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-PI-state,2018,2,3,PI,state,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-PR,2018,2,3,PR,national,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-PR-state,2018,2,3,PR,state,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-RJ,2018,2,3,RJ,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-RJ-state,2018,2,3,RJ,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-RN,2018,2,3,RN,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-RN-state,2018,2,3,RN,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-RO,2018,2,3,RO,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-RO-state,2018,2,3,RO,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-RR,2018,2,3,RR,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-RR-state,2018,2,3,RR,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-RS,2018,2,3,RS,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-RS-state,2018,2,3,RS,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-SC,2018,2,3,SC,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-SC-state,2018,2,3,SC,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-SE,2018,2,3,SE,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-SE-state,2018,2,3,SE,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-SP,2018,2,3,SP,national,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-SP-state,2018,2,3,SP,state,Governador,available,Dados processados com universo de renda fixo e cobertura documentada
+2018-2-3-TO,2018,2,3,TO,national,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
+2018-2-3-TO-state,2018,2,3,TO,state,Governador,unavailable,Auditoria não cobre todas as UFs desta disputa
