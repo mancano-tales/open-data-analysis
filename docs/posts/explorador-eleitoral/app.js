@@ -23,6 +23,7 @@
     status.textContent=t.loading;
     let manifest, selected, data, request=0, activeIds=new Set(), rankedCandidates=[], preferredReference=null, previousOffice=null, loadedContestKey=null;
     const referenceNotice=document.createElement('p');referenceNotice.className='reference-notice';referenceNotice.setAttribute('role','status');controls.after(referenceNotice);
+    const territoryNotice=document.createElement('p');territoryNotice.className='territory-notice';territoryNotice.setAttribute('role','status');territoryNotice.hidden=true;referenceNotice.after(territoryNotice);
     const searchLabel=text('label',lang==='pt'?'Buscar candidato por nome, número ou partido':'Search candidates by name, number or party',root.querySelector('fieldset'));
     const search=document.createElement('input');search.type='search';search.placeholder=lang==='pt'?'Digite um nome ou número…':'Enter a name or number…';search.setAttribute('aria-label',searchLabel.textContent);searchLabel.append(search);searchLabel.className='candidate-search';
     const candidateTools=document.createElement('div');candidateTools.className='candidate-tools';
@@ -73,6 +74,7 @@
       }
     }
     function resolve(changedIndex=-1) {
+      const wantedTerritory=selects.uf.value;
       let subset=manifest.series.filter(s=>s.status==='available'&&!(s.uf==='BR'&&referenceOf(s)==='state'));
       keys.slice(0,4).forEach(key=>{
         const wanted=selects[key].value;
@@ -82,7 +84,7 @@
         if(key==='uf')values.sort((a,b)=>a==='BR'?-1:b==='BR'?1:a.localeCompare(b));
         selects[key].replaceChildren();
         values.forEach(value=>{const officeLabel=manifest.offices?.[value]||subset.find(s=>String(s.office)===value)?.office_label||value;const option=text('option',key==='round'?t.roundLabel(value):key==='uf'&&value==='BR'?t.national:key==='office'?localized(officeLabel):value,selects[key]);option.value=value;});
-        if(values.includes(wanted))selects[key].value=wanted;
+        selects[key].value=values.includes(wanted)?wanted:(values[0]||'');
         subset=subset.filter(s=>String(s[key])===selects[key].value);
       });
       const office=selects.office.value;
@@ -96,6 +98,9 @@
       selects.income_reference.value=actualReference;
       referenceNotice.textContent=actualReference===preferredReference?'':(lang==='pt'?`A referência ${preferredReference==='state'?'estadual':'nacional'} não está disponível nesta combinação${selects.uf.value==='BR'?' (Brasil permite somente a referência nacional)':''}. Exibindo ${referenceLabel(actualReference)}. A preferência será mantida ao trocar de UF.`:`The ${preferredReference==='state'?'state':'national'} reference is unavailable for this selection${selects.uf.value==='BR'?' (Brazil allows the national reference only)':''}. Showing ${referenceLabel(actualReference)}. Your preference is retained when changing state.`);
       const matches=subset.filter(s=>referenceOf(s)===actualReference);
+      const territoryChanged=Boolean(wantedTerritory&&wantedTerritory!==selects.uf.value&&changedIndex!==3);
+      territoryNotice.hidden=!territoryChanged;
+      territoryNotice.textContent=territoryChanged?(lang==='pt'?`Não há série disponível para ${wantedTerritory} nesta combinação de eleição, turno e cargo. O território exibido mudou para ${selects.uf.value}.`:`No series is available for ${wantedTerritory} under this election, round and office. The displayed territory changed to ${selects.uf.value}.`):'';
       if(matches.length!==1){status.textContent=t.error;status.classList.add('error');console.error(new Error('Missing or duplicate series for selected income reference'));return;}
       selected=matches[0];
       return load();
