@@ -4,6 +4,7 @@ source("shared-pipeline/eleicoes/parametros.R", encoding="UTF-8")
 source("shared-pipeline/eleicoes/validacao/050_Verificar_Espacial_Independente.R", encoding="UTF-8")
 source("shared-pipeline/eleicoes/validacao/060_Verificar_Metricas_Post.R", encoding="UTF-8")
 source("shared-pipeline/eleicoes/validacao/bootstrap-municipios.R", encoding="UTF-8")
+source("shared-pipeline/eleicoes/validacao/verificar-validade-presidencial.R", encoding="UTF-8")
 
 verificar_csv_do_zip <- function(archive, member_pattern, extracted_folder) {
   index <- zip::zip_list(archive)
@@ -69,15 +70,18 @@ verificar_resultados_post <- function(dest="data-raw/eleicoes-renda",spatial_siz
   if(file.exists(marker) && !file.remove(marker))stop("Cannot invalidate previous validation marker")
   raw_path <- file.path(dest,"votos2026","votacao_secao_2026_BR.csv")
   input_paths <- c(file.path(dest,c("renda2022.rds","polling2026.rds","municipios2022.rds",
-    "votos2026.zip","locais2026.zip","setores-votos.rds")),raw_path,
-    "shared-pipeline/eleicoes/020_Cruzar_Setores_Votos.R","shared-pipeline/eleicoes/030_Verificar_Resultados.R",
+    "votos2026.zip","locais2026.zip","candidatos2026.zip","detalhe2026.zip","setores-votos.rds")),raw_path,
+    "shared-pipeline/eleicoes/010_Download_Censo_TSE.R","shared-pipeline/eleicoes/020_Cruzar_Setores_Votos.R","shared-pipeline/eleicoes/030_Verificar_Resultados.R",
     "shared-pipeline/eleicoes/parametros.R","posts/votacao-renda-centil/data/referencia-folha.csv",file.path("shared-pipeline/eleicoes/validacao",
-      c("metodos-post.R","cobertura-votos.R","050_Verificar_Espacial_Independente.R","060_Verificar_Metricas_Post.R","bootstrap-municipios.R")))
+      c("metodos-post.R","cobertura-votos.R","050_Verificar_Espacial_Independente.R","060_Verificar_Metricas_Post.R","bootstrap-municipios.R",
+        "validade-presidencial.R","verificar-validade-presidencial.R")))
   stopifnot(all(file.exists(input_paths)))
   before <- tools::md5sum(input_paths)
   provenance <- rbind(
     verificar_csv_do_zip(file.path(dest,"votos2026.zip"),"votacao_secao_2026_BR[.]csv$",file.path(dest,"votos2026")),
-    verificar_csv_do_zip(file.path(dest,"locais2026.zip"),"eleitorado_local_votacao_2026_BRASIL[.]csv$",file.path(dest,"locais2026")))
+    verificar_csv_do_zip(file.path(dest,"locais2026.zip"),"eleitorado_local_votacao_2026_BRASIL[.]csv$",file.path(dest,"locais2026")),
+    verificar_csv_do_zip(file.path(dest,"candidatos2026.zip"),"votacao_candidato_munzona_2026_BR[.]csv$",file.path(dest,"candidatos2026")),
+    verificar_csv_do_zip(file.path(dest,"detalhe2026.zip"),"detalhe_votacao_munzona_2026_BR[.]csv$",file.path(dest,"detalhe2026")))
   input_paths <- unique(c(input_paths,provenance$file))
   before <- tools::md5sum(input_paths)
   write.csv(provenance,file.path(dest,"verificacao-zip-csv.csv"),row.names=FALSE)
@@ -86,7 +90,8 @@ verificar_resultados_post <- function(dest="data-raw/eleicoes-renda",spatial_siz
     "sensibilidade-cortes-fixos.csv","centis-ponderados.csv","centis-razao.csv","conservacao-votos.csv",
     "sensibilidade-ligacao.csv","exclusoes-distancia.csv","cruzamentos-cortes-fixos.csv","diagnostico-renda.csv",
     "centis-originais-comparacao.csv","confronto-metodos.csv","bootstrap-municipios.csv","bootstrap-replicas.csv",
-    "bootstrap-cruzamentos.csv","verificacao-bootstrap.csv","bootstrap-metodo.txt","comparacao-folha.csv")
+    "bootstrap-cruzamentos.csv","verificacao-bootstrap.csv","bootstrap-metodo.txt","comparacao-folha.csv",
+    "validade-votos-zonas.csv","validade-votos-excluidos.csv")
   guarded_paths <- file.path(dest,guarded_names)
   stopifnot(all(file.exists(guarded_paths)))
   guarded_before <- tools::md5sum(guarded_paths)
@@ -94,9 +99,29 @@ verificar_resultados_post <- function(dest="data-raw/eleicoes-renda",spatial_siz
   tracts$code_tract <- if(is.numeric(tracts$code_tract))sprintf("%.0f",tracts$code_tract) else as.character(tracts$code_tract)
   stopifnot(!anyDuplicated(tracts$code_tract))
   message("Independent raw election aggregation, explicit year/round/office ...")
-  raw <- data.table::fread(raw_path,select=c("ANO_ELEICAO","NR_TURNO","CD_CARGO","SG_UF","CD_MUNICIPIO","NR_ZONA","NR_LOCAL_VOTACAO","NR_VOTAVEL","QT_VOTOS"))
+  raw <- data.table::fread(raw_path,select=c("ANO_ELEICAO","NR_TURNO","CD_ELEICAO","CD_TIPO_ELEICAO","CD_CARGO","SG_UF","CD_MUNICIPIO","NR_ZONA","NR_LOCAL_VOTACAO","NR_VOTAVEL","QT_VOTOS"))
   raw <- as.data.frame(raw[ANO_ELEICAO==ELEICAO_ANO & NR_TURNO==ELEICAO_TURNO &
-    CD_CARGO==ELEICAO_CARGO & SG_UF!="ZZ" & NR_VOTAVEL>0L & NR_VOTAVEL<95L])
+    CD_CARGO==ELEICAO_CARGO & CD_TIPO_ELEICAO==2L & SG_UF!="ZZ"])
+  candidatos <- as.data.frame(data.table::fread(provenance$file[3L],encoding="Latin-1"))
+  detalhe <- as.data.frame(data.table::fread(provenance$file[4L],encoding="Latin-1"))
+  legal <- verificar_validade_presidencial(raw,candidatos,detalhe,
+    ano=ELEICAO_ANO,turno=ELEICAO_TURNO,cargo=ELEICAO_CARGO)
+  zone_keys <- c("ANO_ELEICAO","NR_TURNO","CD_ELEICAO","SG_UF","CD_MUNICIPIO","NR_ZONA","CD_CARGO")
+  zone_expected <- legal$checks[,c(zone_keys,"computed_valid","computed_technical","excluded_known_nominal",
+    "QT_TOTAL_VOTOS_VALIDOS","QT_VOTOS_NOMINAIS_VALIDOS","QT_TOTAL_VOTOS_LEG_VALIDOS","QT_VOTOS_NULOS_TECNICOS","reconciled")]
+  names(zone_expected)[match(c("computed_valid","computed_technical","QT_TOTAL_VOTOS_VALIDOS",
+    "QT_VOTOS_NOMINAIS_VALIDOS","QT_TOTAL_VOTOS_LEG_VALIDOS","QT_VOTOS_NULOS_TECNICOS"),names(zone_expected))] <-
+    c("computed_valid_votes","technical_computed","official_valid_votes","official_nominal_valid","official_party_valid","technical_official")
+  for(field in setdiff(zone_keys,"SG_UF"))zone_expected[[field]]<-as.numeric(zone_expected[[field]])
+  verificacao_comparar_tabela(zone_expected,read.csv(file.path(dest,"validade-votos-zonas.csv")),zone_keys,"validade-votos-zonas.csv",tolerance=0)
+  excluded <- raw[!legal$keep,,drop=FALSE]
+  excluded$linhas <- 1L;excluded$votos_excluidos <- excluded$QT_VOTOS
+  excluded_expected <- aggregate(excluded[,c("linhas","votos_excluidos")],list(NR_VOTAVEL=excluded$NR_VOTAVEL),sum)
+  excluded_actual <- read.csv(file.path(dest,"validade-votos-excluidos.csv"))
+  excluded_actual <- aggregate(excluded_actual[,c("linhas","votos_excluidos")],list(NR_VOTAVEL=excluded_actual$NR_VOTAVEL),sum)
+  verificacao_comparar_tabela(excluded_expected,excluded_actual,"NR_VOTAVEL","validade-votos-excluidos.csv",tolerance=0)
+  raw <- raw[legal$keep,,drop=FALSE]
+  rm(candidatos,detalhe,legal,excluded);invisible(gc())
   stopifnot(nrow(raw)>0L,all(is.finite(raw$QT_VOTOS)),all(raw$QT_VOTOS>=0))
   key <- with(raw,paste(SG_UF,CD_MUNICIPIO,NR_ZONA,NR_LOCAL_VOTACAO,sep=":"))
   positive <- is.finite(raw$NR_LOCAL_VOTACAO)&raw$NR_LOCAL_VOTACAO>0
@@ -173,13 +198,14 @@ verificar_resultados_post <- function(dest="data-raw/eleicoes-renda",spatial_siz
     "centis-originais-comparacao.csv","confronto-metodos.csv","verificacao-metodos.csv",
     "bootstrap-municipios.csv","bootstrap-replicas.csv","bootstrap-cruzamentos.csv","verificacao-bootstrap.csv",
     "verificacao-espacial.csv","verificacao-espacial-chaves.csv","verificacao-espacial-insumos.csv","versoes.csv","checksums.csv",
-    "cobertura-setores.csv","comparacao-folha.csv","bootstrap-metodo.txt","verificacao-zip-csv.csv")
+    "cobertura-setores.csv","comparacao-folha.csv","bootstrap-metodo.txt","verificacao-zip-csv.csv",
+    "validade-votos-zonas.csv","validade-votos-excluidos.csv")
   # Original per-UF shapes were independently read during the geometric audit.
   shape_hashes <- read.csv(file.path(dest,"verificacao-espacial-insumos.csv"))
   stopifnot(identical(unname(tools::md5sum(shape_hashes$file)),shape_hashes$md5))
   all_inputs <- c(before,setNames(shape_hashes$md5,shape_hashes$file));all_inputs<-all_inputs[!duplicated(names(all_inputs))]
   certificate <- list(schema_version=1L,status="passed",validated_at_utc=format(Sys.time(),"%Y-%m-%dT%H:%M:%SZ",tz="UTC"),
-    checks=c("raw_year_and_vote_shares","baseline_centiles","spatial_sample_and_k3","coverage_and_outside_municipality",
+    checks=c("raw_year_and_vote_shares","official_legal_validity_every_zone","baseline_centiles","spatial_sample_and_k3","coverage_and_outside_municipality",
       "fixed_weighted_ratio_idw_exclusions","income_count_unavailable","bootstrap_500_and_three_independent_resamples","manual_folha_reference_arithmetic","extracted_csv_zip_crc32_and_size"),
     inputmd5=as.list(all_inputs),outputmd5=as.list(setNames(unname(tools::md5sum(file.path(dest,outputs))),outputs)))
   temporary <- paste0(marker,".part")

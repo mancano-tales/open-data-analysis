@@ -105,6 +105,13 @@ Os votos vêm do arquivo **Presidente — Votação por seção eleitoral — 20
 disponível em [Resultados 2026, no TSE](https://dadosabertos.tse.jus.br/dataset/resultados-2026).
 Selecionam-se o primeiro turno e o cargo de presidente. O denominador contém
 os votos válidos de **todos** os candidatos, excluindo brancos e nulos.
+Essa classificação é conferida nas tabelas oficiais de candidatos e de
+detalhe da votação por município e zona: um número de candidato no arquivo
+bruto não garante que seus votos sejam válidos. Cada grupo precisa ser
+integralmente válido ou integralmente excluído; uma validade parcial bloqueia
+o cálculo, pois não se pode distribuí-la entre seções. Os registros sem
+candidato correspondente precisam fechar exatamente com os nulos técnicos
+oficiais em cada zona. Os totais válidos também precisam fechar em todas as zonas.
 As duas curvas exibidas são Lula (PT) e Flávio Bolsonaro (PL); por isso,
 não precisam somar 100%.
 
