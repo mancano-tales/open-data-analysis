@@ -1,0 +1,1 @@
+Municipalities sampled with replacement; all their tracts repeated; income ranks recomputed in each replicate; exploratory distribution, not census sampling uncertainty.

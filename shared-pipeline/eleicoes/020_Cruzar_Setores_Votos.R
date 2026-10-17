@@ -8,7 +8,12 @@ suppressPackageStartupMessages({
 })
 options(timeout = max(600, getOption("timeout")))
 setDTthreads(2L)
+source(here("shared-pipeline", "eleicoes", "parametros.R"))
+source(here("shared-pipeline", "eleicoes", "validacao", "cobertura-votos.R"))
+source(here("shared-pipeline", "eleicoes", "validacao", "metodos-post.R"))
+source(here("shared-pipeline", "eleicoes", "validacao", "validade-presidencial.R"))
 dest <- here("data-raw", "eleicoes-renda")
+unlink(file.path(dest, "validacao-metodologica.json"))
 max_distance <- as.numeric(Sys.getenv("VOTOS_MAX_DIST_M", "5000"))
 stopifnot(length(max_distance) == 1L, is.finite(max_distance), max_distance > 0)
 
@@ -34,7 +39,13 @@ read_zip_csv <- function(zip, pattern, columns) {
   if (length(member) != 1L) stop("Expected exactly one national CSV in ", zip)
   folder <- file.path(dest, sub("[.]zip$", "", zip))
   target <- file.path(folder, member)
-  if (!file.exists(target)) unzip(path, files = member, exdir = folder)
+  # Re-extract when the current archive differs from its cached CSV.
+  index <- zip::zip_list(path)
+  expected <- index[index$filename == member, ]
+  crc <- tolower(as.character(expected$crc32))
+  crc <- substr(paste0("00000000", crc), nchar(crc) + 1L, nchar(crc) + 8L)
+  if (!file.exists(target) || file.info(target)$size != expected$uncompressed_size ||
+      digest::digest(file=target, algo="crc32") != crc) unzip(path, files = member, exdir = folder, overwrite=TRUE)
   header <- names(fread(target, nrows = 0, encoding = "Latin-1"))
   if (!all(columns %in% header)) stop("Unexpected TSE schema in ", zip, ": ",
                                      paste(setdiff(columns, header), collapse = ", "))
@@ -42,13 +53,25 @@ read_zip_csv <- function(zip, pattern, columns) {
 }
 
 votes <- read_zip_csv("votos2026.zip", "votacao_secao_2026_BR[.]csv$",
-  c("ANO_ELEICAO", "NR_TURNO", "SG_UF", "CD_MUNICIPIO", "NR_ZONA", "NR_SECAO",
-    "CD_CARGO", "NR_VOTAVEL", "QT_VOTOS", "NR_LOCAL_VOTACAO"))
+  c("ANO_ELEICAO", "NR_TURNO", "CD_ELEICAO", "CD_TIPO_ELEICAO", "SG_UF", "CD_MUNICIPIO", "NR_ZONA", "NR_SECAO",
+    "CD_CARGO", "NR_VOTAVEL", "NM_VOTAVEL", "QT_VOTOS", "NR_LOCAL_VOTACAO"))
 message("Presidential CSV loaded: ", nrow(votes), " rows.")
-votes <- votes[ANO_ELEICAO == 2026L & NR_TURNO == 1L & CD_CARGO == 1L & SG_UF != "ZZ"]
+votes <- votes[ANO_ELEICAO == ELEICAO_ANO & NR_TURNO == ELEICAO_TURNO &
+                 CD_CARGO == ELEICAO_CARGO & CD_TIPO_ELEICAO == 2L & SG_UF != "ZZ"]
 if (!nrow(votes) || anyNA(votes$QT_VOTOS) || any(votes$QT_VOTOS < 0)) stop("Invalid presidential votes.")
-# TSE special codes 95+ are not candidates. Other valid candidates stay in denominator.
-votes <- votes[NR_VOTAVEL > 0L & NR_VOTAVEL < 95L,
+validar_candidatos_presidenciais(votes)
+# Ballot numbers alone do not establish legal validity. Reconcile every zone.
+candidatos <- read_zip_csv("candidatos2026.zip", "votacao_candidato_munzona_2026_BR[.]csv$",
+  c("ANO_ELEICAO","NR_TURNO","CD_ELEICAO","SG_UF","CD_MUNICIPIO","NR_ZONA","CD_CARGO",
+    "NR_CANDIDATO","QT_VOTOS_NOMINAIS","QT_VOTOS_NOMINAIS_VALIDOS"))
+detalhe <- read_zip_csv("detalhe2026.zip", "detalhe_votacao_munzona_2026_BR[.]csv$",
+  c("ANO_ELEICAO","NR_TURNO","CD_ELEICAO","SG_UF","CD_MUNICIPIO","NR_ZONA","CD_CARGO",
+    "QT_TOTAL_VOTOS_VALIDOS","QT_VOTOS_NOMINAIS_VALIDOS","QT_TOTAL_VOTOS_LEG_VALIDOS","QT_VOTOS_NULOS_TECNICOS"))
+validade <- filtrar_validade_presidencial(votes, candidatos, detalhe,
+  ano=ELEICAO_ANO, turno=ELEICAO_TURNO, cargo=ELEICAO_CARGO)
+fwrite(validade$checks, file.path(dest,"validade-votos-zonas.csv"))
+fwrite(validade$excluidos, file.path(dest,"validade-votos-excluidos.csv"))
+votes <- votes[validade$keep,
   .(validos = sum(as.numeric(QT_VOTOS)),
     lula = sum(as.numeric(QT_VOTOS[NR_VOTAVEL == 13L])),
     flavio = sum(as.numeric(QT_VOTOS[NR_VOTAVEL == 22L]))),
@@ -110,6 +133,8 @@ message("Distinct unambiguous polling places: ", nrow(poll), ".")
 places[, place_key := paste(SG_UF, CD_MUNICIPIO, NR_ZONA, NR_LOCAL_VOTACAO, sep = ":")]
 idx <- match(poll$place_key, places$place_key)
 poll$validos <- places$validos[idx]
+poll$lula <- places$lula[idx]
+poll$flavio <- places$flavio[idx]
 poll$p_lula <- 100 * places$lula[idx] / poll$validos
 poll$p_flavio <- 100 * places$flavio[idx] / poll$validos
 poll <- poll[!is.na(validos) & validos > 0]
@@ -117,6 +142,7 @@ poll <- poll[!is.na(validos) & validos > 0]
 poll <- poll[is.finite(longitude) & is.finite(latitude) &
              longitude >= -74 & longitude <= -28 & latitude >= -34 & latitude <= 6]
 poll <- st_as_sf(poll, coords = c("longitude", "latitude"), crs = 4326)
+coordinate_keys <- poll$place_key
 mun_path <- file.path(dest, "municipios2022.rds")
 mun_raw <- read_cache(mun_path)
 if (is.null(mun_raw)) {
@@ -138,7 +164,12 @@ in_muni <- vapply(seq_len(nrow(poll)), function(i) {
 }, logical(1))
 fwrite(data.table(locais_com_votos = nrow(poll),
                   locais_fora_municipio = sum(!in_muni)), file.path(dest, "cobertura-locais.csv"))
+outside <- as.data.table(st_drop_geometry(poll[!in_muni, ]))
+outside <- outside[, .(SG_UF = abbrev_state, place_key, code_muni, validos, lula, flavio)]
+fwrite(outside, file.path(dest, "locais-fora-municipio.csv"))
 poll <- poll[in_muni, ]
+saveRDS(poll, file.path(dest, "locais-elegiveis.rds"))
+saveRDS(places, file.path(dest, "votos-por-local.rds"))
 
 renda <- as.data.table(readRDS(file.path(dest, "renda2022.rds")))
 renda[, code_tract := sprintf("%.0f", code_tract)]
@@ -149,6 +180,7 @@ eligible <- renda[elegivel_renda == TRUE]
 cache <- file.path(dest, "malhas")
 dir.create(cache, showWarnings = FALSE)
 rows <- list()
+neighbor_rows <- list()
 for (uf in sort(unique(eligible$code_state))) {
   message("Matching census tracts, UF ", uf, " ...")
   shape_path <- file.path(cache, paste0("setores2022-", uf, ".rds"))
@@ -176,15 +208,21 @@ for (uf in sort(unique(eligible$code_state))) {
                          distancia_m = NA_real_, p_lula = NA_real_, p_flavio = NA_real_)
     if (nrow(pp)) {
       pp <- pp[order(pp$place_key), ] # deterministic handling of equal-distance sites
-      nearest <- st_nearest_feature(tr, pp)
-      result[, `:=`(place_key = pp$place_key[nearest],
-                     distancia_m = as.numeric(st_distance(tr, pp[nearest, ], by_element = TRUE)),
-                     p_lula = pp$p_lula[nearest], p_flavio = pp$p_flavio[nearest])]
+      neighbors <- post_k_nearest(tr, pp, k = 3L)
+      neighbor_rows[[length(neighbor_rows) + 1L]] <- neighbors
+      first <- neighbors[rank == 1L]
+      index <- match(result$code_tract, first$code_tract)
+      location <- match(first$place_key[index], pp$place_key)
+      result[, `:=`(place_key = first$place_key[index],
+                     distancia_m = first$distancia_m[index],
+                     p_lula = pp$p_lula[location], p_flavio = pp$p_flavio[location])]
     }
     rows[[length(rows) + 1L]] <- result
   }
 }
 links <- rbindlist(rows)
+links3 <- rbindlist(neighbor_rows)
+saveRDS(links3, file.path(dest, "links-tres-vizinhos.rds"))
 if (anyDuplicated(links$code_tract)) stop("Duplicate tract geometry.")
 tracts <- merge(renda, links, by = "code_tract", all.x = TRUE, sort = FALSE)
 tracts[, motivo := fifelse(!elegivel_renda, "sem_renda_elegivel",
@@ -192,6 +230,10 @@ tracts[, motivo := fifelse(!elegivel_renda, "sem_renda_elegivel",
   fifelse(distancia_m > max_distance, "alem_distancia_maxima", "incluido")))]
 fwrite(tracts[, .(setores = .N), by = motivo], file.path(dest, "cobertura-setores.csv"))
 saveRDS(tracts, file.path(dest, "setores-votos.rds"))
+coverage <- calcular_cobertura_votos(votes, places, coordinate_keys, poll$place_key,
+                                    unique(tracts[motivo == "incluido", place_key]))
+fwrite(coverage$br, file.path(dest, "cobertura-votos.csv"))
+fwrite(coverage$uf, file.path(dest, "cobertura-votos-uf.csv"))
 
 aggregate_percentiles <- function(limit) {
   x <- copy(tracts[elegivel_renda & is.finite(distancia_m) & distancia_m <= limit])
@@ -199,7 +241,7 @@ aggregate_percentiles <- function(limit) {
   setorder(x, V06004, code_tract)
   # Equal tract counts, with explicit deterministic tie-breaking (not population weights).
   x[, centil := as.integer(floor((seq_len(.N) - 1) * 100 / .N) + 1)]
-  x[, .(renda_sm = mean(V06004) / 1212, n_setores = .N,
+  x[, .(renda_sm = mean(V06004) / SALARIO_MINIMO_CENSO_2022, n_setores = .N,
          lula = mean(p_lula), flavio = mean(p_flavio)), by = centil]
 }
 wide <- aggregate_percentiles(max_distance)
@@ -213,6 +255,26 @@ sens <- rbindlist(lapply(sort(unique(c(1000, 2000, 5000, max_distance))), functi
   x
 }))
 fwrite(sens, file.path(dest, "sensibilidade.csv"))
+post_write_methods(tracts, links3, places, dest,
+  limits = sort(unique(c(1000, 2000, 5000, 10000, Inf, max_distance))),
+  universe = "linked", minimum_wage = SALARIO_MINIMO_CENSO_2022)
+source(here("shared-pipeline", "eleicoes", "validacao", "bootstrap-municipios.R"))
+message("Exploratory municipality bootstrap (500 replicates, fixed seed) ...")
+bootstrap <- bootstrap_municipios(tracts[motivo == "incluido"],
+  replicas = 500L, seed = 20261016L, salario = SALARIO_MINIMO_CENSO_2022)
+fwrite(bootstrap$centis, file.path(dest, "bootstrap-municipios.csv"))
+fwrite(bootstrap$cruzamentos, file.path(dest, "bootstrap-cruzamentos.csv"))
+fwrite(bootstrap$replicas, file.path(dest, "bootstrap-replicas.csv"))
+fwrite(verificar_bootstrap_municipios(tracts[motivo == "incluido"], bootstrap,
+  salario = SALARIO_MINIMO_CENSO_2022), file.path(dest, "verificacao-bootstrap.csv"))
+writeLines(bootstrap$metodo, file.path(dest, "bootstrap-metodo.txt"))
+reference <- fread(here("posts", "votacao-renda-centil", "data", "referencia-folha.csv"),
+                   encoding = "UTF-8")
+comparison <- merge(reference, centis[, .(centil, candidato, votacao)],
+                    by = c("centil", "candidato"), all.x = TRUE)
+comparison[, diferenca_pp := votacao - votacao_referencia]
+comparison[, erro_absoluto_pp := abs(diferenca_pp)]
+fwrite(comparison, file.path(dest, "comparacao-folha.csv"))
 writeLines(c(paste("maximum_distance_m:", max_distance),
              paste("polling2026.rds md5:", tools::md5sum(poll_path)),
              capture.output(sessionInfo())), file.path(dest, "session-spatial.txt"))

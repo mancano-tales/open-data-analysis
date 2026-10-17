@@ -1,0 +1,4 @@
+check,status,replicas,seed
+first_three_cluster_resamples,pass,500,20261016
+all_quantiles,pass,500,20261016
+all_crossings,pass,500,20261016

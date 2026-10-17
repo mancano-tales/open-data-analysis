@@ -1,0 +1,11 @@
+primeiro_centil,primeiro_centil_sustentado,n_intervalos_superacao,distancia_maxima_m,regra
+40,40,1,1000,"nearest"
+39,39,1,1000,"idw3"
+38,38,1,2000,"nearest"
+37,37,1,2000,"idw3"
+37,37,1,5000,"nearest"
+37,37,1,5000,"idw3"
+37,37,1,10000,"nearest"
+37,37,1,10000,"idw3"
+37,37,1,Inf,"nearest"
+37,37,1,Inf,"idw3"

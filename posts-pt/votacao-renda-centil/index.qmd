@@ -7,6 +7,15 @@ image: ../../posts/votacao-renda-centil/thumbnail.png
 description: "Reprodução independente da relação entre renda dos setores e votação presidencial em 2026, com Censo 2022 e TSE."
 ---
 
+::: {.callout-warning}
+**A renda é do setor censitário; o voto observado é do local de votação.**
+O gráfico associa a renda média de setores à votação dos locais próximos.
+Uma votação maior em setores de renda alta **não demonstra que eleitores
+de renda alta votaram naquele candidato**. Não há renda individual dos
+eleitores nem identificação de onde os moradores de cada setor votaram.
+A proximidade espacial é uma aproximação e não identifica o eleitorado do setor.
+:::
+
 ![](../../posts/votacao-renda-centil/thumbnail.png)
 
 ## Visão geral
@@ -63,22 +72,46 @@ a [análise de sensibilidade](../../posts/votacao-renda-centil/data/sensibilidad
 e os [registros de cobertura e proveniência](../../posts/votacao-renda-centil/data/README.md)
 acompanham o post.
 
+## Diagnósticos da auditoria
+
+{{< include ../../posts/votacao-renda-centil/data/diagnosticos-pt.md >}}
+
+A [nota da verificação espacial](../../shared-pipeline/eleicoes/validacao/VERIFICACAO-ESPACIAL.md)
+documenta a distorção da projeção nacional e a referência esférica independente
+adotada para conferir os vínculos. As exclusões por incompatibilidade municipal
+podem refletir geocodificação, cadastro ou mudanças na malha; o teste não
+identifica a causa de cada divergência.
+
 ## Metodologia
 
 A renda vem de `censobr::read_tracts(year = 2022,
 dataset = "ResponsavelRenda")`. A variável `V06004` é o **valor do rendimento
 nominal médio mensal das pessoas responsáveis com rendimentos por domicílios
 particulares permanentes ocupados**. Não é renda domiciliar per capita nem
-renda média de todos os moradores. `V06001` identifica o número de responsáveis;
-setores sem responsáveis, com renda ausente ou sob sigilo são excluídos.
+renda média de todos os moradores. `V06001` identifica o número de responsáveis,
+incluindo aqueles sem rendimento; não é a quantidade de responsáveis com renda.
+A tabela disponibilizada não informa essa última quantidade, portanto não
+é possível calcular a proporção sem rendimento com essas variáveis.
+Setores sem responsáveis ou com renda média ausente, sob sigilo ou não
+positiva são excluídos.
 O [dicionário oficial do IBGE](https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios_Rendimento_do_Responsavel/dicionario_de_dados_renda_responsavel_20260508.xlsx)
 define as variáveis. Para exibir a renda em salários mínimos de 2022, divide-se
-o valor nominal por R$ 1.212.
+o valor nominal por R$ 1.212, salário mínimo de julho de 2022, referência do Censo.
+A renda descreve os setores em 2022 e não mede a renda de seus moradores em
+2026. Mudanças de composição, residência e renda entre os dois anos permanecem
+fora do alcance deste cruzamento.
 
 Os votos vêm do arquivo **Presidente — Votação por seção eleitoral — 2026**,
 disponível em [Resultados 2026, no TSE](https://dadosabertos.tse.jus.br/dataset/resultados-2026).
 Selecionam-se o primeiro turno e o cargo de presidente. O denominador contém
 os votos válidos de **todos** os candidatos, excluindo brancos e nulos.
+Essa classificação é conferida nas tabelas oficiais de candidatos e de
+detalhe da votação por município e zona: um número de candidato no arquivo
+bruto não garante que seus votos sejam válidos. Cada grupo precisa ser
+integralmente válido ou integralmente excluído; uma validade parcial bloqueia
+o cálculo, pois não se pode distribuí-la entre seções. Os registros sem
+candidato correspondente precisam fechar exatamente com os nulos técnicos
+oficiais em cada zona. Os totais válidos também precisam fechar em todas as zonas.
 As duas curvas exibidas são Lula (PT) e Flávio Bolsonaro (PL); por isso,
 não precisam somar 100%.
 
@@ -110,6 +143,11 @@ os percentuais. Essa estimativa descreve a vizinhança eleitoral, não o voto
 observado dos moradores do setor. A regra não reproduz necessariamente o
 procedimento de geocodificação e interpolação usado pela Folha.
 
+O endereço de cadastro eleitoral pode estar desatualizado ou diferir da
+residência efetiva. Mesmo uma coordenada correta de local não informa a área
+de residência de seus eleitores. Essa limitação permanece nas alternativas
+de ponderação e interpolação e não é eliminada por aumentar a cobertura.
+
 Os setores elegíveis são ordenados por renda, com código do setor como
 desempate, e separados em 100 grupos com números de setores tão próximos
 quanto possível. Cada setor tem o mesmo peso na média dos percentuais
@@ -119,6 +157,59 @@ diferentes distâncias máximas.
 A renda exibida para cada centil é a média simples das rendas médias
 setoriais, em salários mínimos. Empates na distância entre locais são
 resolvidos pela ordem do código composto de UF, município, zona e local.
+
+## Sensibilidade e limitações
+
+### O que muda nas análises de sensibilidade
+
+A curva principal preserva a média simples dos percentuais atribuídos aos
+setores, com centis recalculados depois do corte de distância. Um mesmo local
+pode representar vários setores; portanto essa média não equivale à proporção
+nacional de votos. A comparação por **cortes fixos** mantém o universo dos
+setores com renda elegível e alguma ligação espacial, mesmo além de 5 km,
+e define os centis uma única vez. Compara limites de 1, 2, 5 e 10 km e sem
+limite; a quantidade de setores efetivamente observados acompanha cada grupo.
+
+A alternativa **ponderada por responsáveis** ordena pela mesma renda e cria
+os grupos pelo acumulado de `V06001` antes de cada setor. Nenhum setor é
+dividido entre grupos, de modo que não há exatamente 1% dos responsáveis em
+cada centil. Renda e votação são médias ponderadas por essa contagem, que
+inclui responsáveis sem renda. Esse peso não é o número de eleitores.
+Também não recupera a renda média individual agregada: não se conhece a
+quantidade de responsáveis com rendimento em cada setor.
+
+A **razão de votos alocados** distribui uma única vez os votos de cada local
+entre os setores elegíveis ligados a ele, proporcionalmente a `V06001`,
+e divide a soma de votos do candidato pela soma de válidos de cada grupo.
+Os totais dos locais utilizados são conservados, mas a distribuição entre
+setores é uma hipótese de alocação, não uma observação dos votos de moradores.
+
+A alternativa espacial usa até **três locais próximos do mesmo município**,
+com pesos inversamente proporcionais à distância e restritos ao limite
+adotado. Entre os até três selecionados, se há distância zero, somente os
+locais coincidentes recebem peso, dividido igualmente. A comparação mantém os mesmos grupos de renda. Usar
+três vizinhos testa a regra de interpolação; não identifica onde os moradores
+efetivamente votam.
+
+As bandas da reamostragem municipal vêm de 500 réplicas com semente fixa:
+sorteiam-se municípios com reposição, mantêm-se todos os seus setores e
+recalculam-se os centis. Os quantis de 2,5% e 97,5% são **bandas exploratórias
+pontuais**, sem interpretação de erro amostral do Censo ou de incerteza da
+ligação espacial. O primeiro centil de superação é a primeira ocorrência;
+não exige que o candidato permaneça à frente nos centis seguintes.
+
+A comparação com a Folha usa sete posições da imagem fornecida, com leituras
+visuais arredondadas e tolerância de leitura declarada de 1,5 ponto percentual.
+Essa tolerância não é um intervalo estatístico. O único valor textual exato
+é o tooltip de Lula no centil 46; a curva encoberta permanece sem valor.
+Não se dispõe da base original da reportagem. A figura deste post é sempre
+calculada a partir do TSE e do IBGE, sem traçar a imagem de referência.
+
+![Sensibilidade da ligação espacial com cortes de renda fixos.](../../posts/votacao-renda-centil/sensibilidade-cortes-fixos-pt.png)
+
+![Comparação entre formas de agregação e interpolação, com limite de 5 km.](../../posts/votacao-renda-centil/comparacao-metodos-pt.png)
+
+![Bandas exploratórias pontuais da reamostragem municipal, mantendo a ligação espacial fixa.](../../posts/votacao-renda-centil/bootstrap-municipios-pt.png)
 
 ## Pipeline
 
@@ -132,8 +223,12 @@ Execute a partir da raiz do repositório:
    `data-raw/eleicoes-renda/centis.csv`.
 3. [`030_Verificar_Resultados.R`](../../shared-pipeline/eleicoes/030_Verificar_Resultados.R)
    — confere os percentuais, os 100 centis, as contagens e as médias usando
-   um cálculo independente com funções de base do R.
-4. [`plot.R`](../../posts/votacao-renda-centil/plot.R)
+   cálculos independentes em R base; refaz as geometrias de 2.000 setores e
+   confere os três vizinhos sem usar os pontos internos salvos pelo estimador.
+4. [`040_Preparar_Post.R`](../../shared-pipeline/eleicoes/040_Preparar_Post.R)
+   — verifica o certificado e os hashes do `030`, prepara os resultados agregados
+   do post e gera os diagnósticos em português e inglês.
+5. [`plot.R`](../../posts/votacao-renda-centil/plot.R)
    — gera PNG e PDF em `output/figures/votacao-renda-centil/`.
 
 O gráfico usa linhas sem suavização, eixo de renda no topo, cores próximas à
