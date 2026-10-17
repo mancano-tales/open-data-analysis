@@ -39,7 +39,7 @@ historical_isolation_environment <- function(base_environment) {
     assign("tse_download",download_override,envir=private)
     assign("legal_resource_csv",resource_override,envir=private)
     assign("historical_null_sections",null_override,envir=private)
-    results<-checks<-zone_audits<-blocked<-list();method<-character()
+    results<-checks<-zone_audits<-blocked<-destination_sources<-list();method<-character()
     run_id<-paste0("run-",Sys.getpid(),"-",format(Sys.time(),"%Y%m%d%H%M%OS6"))
     for(i in seq_len(nrow(expected))) {
       contest<-expected[i]
@@ -59,12 +59,25 @@ historical_isolation_environment <- function(base_environment) {
         if(nrow(merge(a,contest,by=keys))!=1L||any(!do.call(paste,c(x[,..keys],sep=":")) %in%
             do.call(paste,c(contest[,..keys],sep=":"))))stop("Unexpected isolated contest scope")
         if(sum(x$votes)!=a$computed_valid_votes)stop("Isolated votes differ from certified audit")
-        list(x=x,checks=a,method=audit$method)
+        evidence<-audit$official_destination_sources
+        if(!is.null(evidence)&&nrow(data.table::as.data.table(evidence))) {
+          evidence<-data.table::copy(data.table::as.data.table(evidence))
+          evidence_keys<-c("year","round","office","uf")
+          if(!all(evidence_keys %in% names(evidence))||anyNA(evidence[,..evidence_keys]))
+            stop("Official destination evidence lacks complete scope")
+          # A document may describe several races: retain only this certified
+          # race, without leaking another race's evidence into its metadata.
+          evidence<-evidence[evidence$year==contest$year & evidence$round==contest$round &
+            evidence$office==contest$office & evidence$uf==contest$uf]
+          if("election_id" %in% names(evidence))evidence<-evidence[election_id==contest$election_id]
+        }
+        list(x=x,checks=a,method=audit$method,evidence=evidence)
       },error=function(e)list(error=conditionMessage(e)))
       if(!is.null(result$error)) {
         blocked[[length(blocked)+1L]]<-data.table::copy(contest)[,`:=`(reconciled=FALSE,reason=result$error)]
       } else {
         results[[length(results)+1L]]<-result$x;checks[[length(checks)+1L]]<-result$checks
+        if(!is.null(result$evidence)&&nrow(result$evidence))destination_sources[[length(destination_sources)+1L]]<-result$evidence
         method<-unique(c(method,result$method))
       }
       zone_path<-file.path(work,paste0("places-",year,"-",uf,"-",contest$office,"-legal-audit.csv"))
@@ -82,16 +95,21 @@ historical_isolation_environment <- function(base_environment) {
         stop("Cannot preserve superseded historical certificate")
       empty<-raw[0]
       attr(empty,"normalizer_version")<-2L;attr(empty,"source_md5")<-source_md5
-      attr(empty,"vote_audit")<-list(status="unreconciled",method="No isolated historical dispute passed current controls",
+      attr(empty,"vote_audit")<-list(status="unavailable",method="No isolated historical dispute passed current controls; all expected disputes explicitly unavailable",
         checks=data.frame(),unavailable=as.data.frame(unavailable),election_ids=unique(expected$election_id))
       saveRDS(empty,output)
-      stop("No reconciled historical contest; all isolated disputes explicitly blocked")
+      return(empty)
     }
     x<-data.table::rbindlist(results,use.names=TRUE)
     attr(x,"normalizer_version")<-2L;attr(x,"source_md5")<-source_md5
     attr(x,"vote_audit")<-list(status="reconciled",method=paste(c(method,"Disputes isolated by ordinary election ID, round and office; blocked disputes explicitly unavailable"),collapse="; "),
       checks=as.data.frame(data.table::rbindlist(checks)),unavailable=as.data.frame(unavailable),
       election_ids=unique(expected$election_id),election_scope="Ordinary election IDs selected from official detail; each dispute independently reconciled")
+    if(length(destination_sources)) {
+      audit<-attr(x,"vote_audit")
+      audit$official_destination_sources<-as.data.frame(unique(data.table::rbindlist(destination_sources,use.names=TRUE,fill=TRUE)))
+      attr(x,"vote_audit")<-audit
+    }
     saveRDS(x,output)
     x
   }
