@@ -185,6 +185,7 @@ post_snapshot_fragment <- function(summary, language = c("pt", "en")) {
       cbind(summary$reference$candidato, number(summary$reference$pontos), number(summary$reference$mae_pp, 2))),
     text("Os pontos vêm de leitura visual manual e do tooltip da imagem, com arredondamento e regiões encobertas. Esse MAE não valida a curva completa nem demonstra equivalência ao método da Folha.",
       "The reference points come from manual visual readings and the image tooltip, including rounding and obscured regions. This MAE neither validates the complete curve nor establishes equivalence to Folha’s method."), "")
+  while (length(result) && identical(tail(result, 1L), "")) result <- head(result, -1L)
   result
 }
 

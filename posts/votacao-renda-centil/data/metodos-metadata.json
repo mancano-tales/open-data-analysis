@@ -1,0 +1,15 @@
+{
+  "universe": "linked",
+  "percentile_scope": "BR",
+  "weight": "V06001: pessoas responsaveis em domicilios particulares permanentes ocupados",
+  "weighted_cut": "floor(100*cumulative preceding V06001/total)+1; no tract splitting",
+  "ratio_allocation": "nearest linked included tracts; V06001 share within each place and distance scenario",
+  "idw": "three nearest places; within-limit renormalization; exact zeros share weight and exclude positive distances",
+  "schema_version": 1,
+  "limits_m": ["1000", "2000", "5000", "10000", "Inf"],
+  "minimum_wage_2022_brl": 1212,
+  "income_dictionary": "https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios_Rendimento_do_Responsavel/dicionario_de_dados_renda_responsavel_20260508.xlsx",
+  "income_dictionary_md5": "634dd1e839200c1724d6caca75626c69",
+  "income_count_status": "unavailable: ResponsavelRenda has no count of responsible people WITH income; V06002 counts residents",
+  "situation_source": "Census 2022 ResponsavelRenda situacao attribute supplied by censobr"
+}

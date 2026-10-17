@@ -1,0 +1,3 @@
+"archive","member","file","bytes","crc32","status"
+"data-raw/eleicoes-renda/votos2026.zip","votacao_secao_2026_BR.csv","data-raw/eleicoes-renda/votos2026/votacao_secao_2026_BR.csv",1052510851,"c631477a","pass"
+"data-raw/eleicoes-renda/locais2026.zip","eleitorado_local_votacao_2026_BRASIL.csv","data-raw/eleicoes-renda/locais2026/eleitorado_local_votacao_2026_BRASIL.csv",426537676,"e8fc6f6f","pass"
