@@ -71,8 +71,10 @@ const textContent=element=>[element.textContent||'',...(element.children||[]).ma
   const fixtureEntries=[
     {uf:'BR',office:'1'}, {uf:'AC',office:'1'}, {uf:'AC',office:'1',income_reference:'state'},
     {uf:'DF',office:'1'}, {uf:'DF',office:'1',income_reference:'state'},
-    {uf:'AC',office:'6'}, {uf:'AC',office:'6',income_reference:'state'}, {uf:'DF',office:'6'}
-  ].map(entry=>{const id=`fixture-2026-1-${entry.office}-${entry.uf}${entry.income_reference==='state'?'-state':''}`;return {...entry,id,year:2026,round:1,office_label:entry.office==='1'?'Presidente':'Deputado federal',status:'available',url:`${id}.json`};});
+    {uf:'AC',office:'6'}, {uf:'AC',office:'6',income_reference:'state'}, {uf:'DF',office:'6'},
+    {uf:'AC',office:'3'}, {uf:'AC',office:'3',income_reference:'state'},
+    {uf:'BA',office:'3'}, {uf:'BA',office:'3',income_reference:'state'}
+  ].map(entry=>{const id=`fixture-2026-1-${entry.office}-${entry.uf}${entry.income_reference==='state'?'-state':''}`;return {...entry,id,year:2026,round:1,office_label:entry.office==='1'?'Presidente':entry.office==='3'?'Governador':'Deputado federal',status:'available',url:`${id}.json`};});
   const fixtures={'data/manifest.json':{schema_version:1,series:fixtureEntries}};
   for(const entry of fixtureEntries){const state=entry.income_reference==='state';fixtures[`data/${entry.url}`]={metadata:{percentile_scope:state?entry.uf:'BR',method:'TEST FIXTURE ONLY',income_definition:'TEST FIXTURE ONLY',coverage:{included_tracts:100,total_tracts:100},sources:[]},candidates:[{id:'13',name:'Fixture Alpha'},{id:'22',name:'Fixture Beta'}],points:['13','22'].flatMap(candidate_id=>Array.from({length:100},(_,index)=>({candidate_id,centil:index+1,renda_sm:state?1:100,n_setores:1,n_setores_total:1,votacao:candidate_id==='13'?(state?60:70):(state?40:30)})))};}
   for(const lang of ['pt','en']){
@@ -95,6 +97,13 @@ const textContent=element=>[element.textContent||'',...(element.children||[]).ma
     await change(3,'AC');await change(4,'state');await change(3,'DF');assert.equal(controls[4].value,'national');
     await change(3,'AC');assert.equal(controls[4].value,'state');
     await change(2,'1');assert.equal(controls[4].value,'national');
+    await change(2,'3');await change(3,'BA');assert.equal(controls[3].value,'BA');
+    await change(2,'6');assert.equal(controls[3].value,'AC');
+    const territoryNotice=h.root.children.find(el=>el.className==='territory-notice');
+    assert.equal(territoryNotice.hidden,false);assert.match(textContent(territoryNotice),/BA/);assert.match(textContent(territoryNotice),/AC/);
+    assert.match(textContent(territoryNotice),lang==='pt'?/território exibido mudou/:/displayed territory changed/);
+    assert.match(h.draws.at(-1).layout.xaxis.title.text,/AC/);
+    await change(3,'DF');assert.equal(territoryNotice.hidden,true);assert.equal(territoryNotice.textContent,'');
     assert.equal(h.errors.length,0);
   }
   // Browser gzip decoding, including a host that already decoded transport gzip.
