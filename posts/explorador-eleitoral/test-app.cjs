@@ -43,8 +43,9 @@ const root=new Element('section');root.dataset={lang,base:'data/'};
 const selectors={};for(const s of ['.chart-status','.chart','.explorer-controls','.coverage','.candidate-list','legend','fieldset','.download-links'])selectors[s]=new Element(s);
 selectors.fieldset.append(selectors.legend,selectors['.candidate-list']);
 root.append(selectors['.explorer-controls'],selectors.fieldset,selectors['.chart-status'],selectors['.chart'],selectors['.coverage'],selectors['.download-links']);root.querySelector=s=>selectors[s];
-const errors=[],draws=[],fetchCalls=[],purges=[];
-const context={URL,Set,Map,Uint8Array,TextDecoder,Response,Blob,DecompressionStream,console:{error:e=>errors.push(e)},window:{innerWidth:1200},document:{baseURI:base,createElement:t=>new Element(t),createTextNode:t=>({textContent:t}),querySelectorAll:()=>[root]},Plotly:{react:(chart,traces,layout)=>draws.push({traces,layout}),purge:chart=>purges.push(chart)},fetch:async (url,options)=>{fetchCalls.push({url:String(url),options});const relative=new URL(url).pathname.replace('/posts/explorador-eleitoral/','');const bytes=fixtures?(Buffer.isBuffer(fixtures[relative])?fixtures[relative]:Buffer.from(JSON.stringify(fixtures[relative]))):fs.readFileSync(path.join(source,relative));return {ok:true,arrayBuffer:async()=>bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),json:async()=>{const data=JSON.parse(bytes.toString('utf8'));if(data.metadata&&auditOverride)data.metadata.vote_audit={...data.metadata.vote_audit,...auditOverride};return data;}};}};
+const errors=[],draws=[],fetchCalls=[],purges=[],documentEvents={};
+const document={baseURI:base,createElement:t=>new Element(t),createTextNode:t=>({textContent:t}),querySelectorAll:()=>[root],addEventListener:(type,handler)=>{documentEvents[type]=handler;},dispatchEvent:event=>documentEvents[event.type]?.(event)};
+const context={URL,Set,Map,Uint8Array,TextDecoder,Response,Blob,DecompressionStream,console:{error:e=>errors.push(e)},window:{innerWidth:1200},document,Plotly:{react:(chart,traces,layout)=>draws.push({traces,layout}),purge:chart=>purges.push(chart)},fetch:async (url,options)=>{fetchCalls.push({url:String(url),options});const relative=new URL(url).pathname.replace('/posts/explorador-eleitoral/','');const bytes=fixtures?(Buffer.isBuffer(fixtures[relative])?fixtures[relative]:Buffer.from(JSON.stringify(fixtures[relative]))):fs.readFileSync(path.join(source,relative));return {ok:true,arrayBuffer:async()=>bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),json:async()=>{const data=JSON.parse(bytes.toString('utf8'));if(data.metadata&&auditOverride)data.metadata.vote_audit={...data.metadata.vote_audit,...auditOverride};return data;}};}};
 return {root,selectors,errors,draws,context,fetchCalls,purges};
 }
 const flush=()=>new Promise(resolve=>setImmediate(resolve));
@@ -58,9 +59,15 @@ const textContent=element=>[element.textContent||'',...(element.children||[]).ma
   const search=selectors.fieldset.children.find(el=>el.className==='candidate-search').children[0];
   search.value=draws.at(-1).traces[0].name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();search.events.input();
   assert.equal(selectors['.candidate-list'].children.length,1);
-  const checkbox=selectors['.candidate-list'].children[0].children[0];assert.ok(checkbox.checked);checkbox.checked=false;checkbox.events.change();assert.equal(draws.at(-1).traces.length,n-1);
+  const checkbox=selectors['.candidate-list'].children[0].children[0],selectedId=checkbox.value;assert.ok(checkbox.checked);checkbox.checked=false;checkbox.events.change();assert.equal(draws.at(-1).traces.length,n-1);
   search.value='unmatched-name';search.events.input();assert.equal(draws.at(-1).traces.length,n-1);
   const tools=selectors.fieldset.children.find(el=>el.className==='candidate-tools');tools.children[1].events.click();assert.equal(draws.at(-1).traces.length,0);assert.match(selectors['.chart-status'].textContent,/Selecione/);
+  root.querySelector('.chart').scrollIntoView=()=>{};
+  context.document.dispatchEvent({type:'explorer:select',detail:{id:selectedId}});
+  assert.equal(draws.at(-1).traces.length,1,'loaded candidate is added from concentration row');
+  const validDrawCount=draws.length;
+  context.document.dispatchEvent({type:'explorer:select',detail:{id:'not-in-loaded-series'}});
+  assert.equal(draws.length,validDrawCount,'unknown id is ignored');
   tools.children[0].events.click();assert.equal(draws.at(-1).traces.length,n);
   // Bulk actions include every record, independently of the active search.
   tools.children[2].events.click();

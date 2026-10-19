@@ -7,7 +7,7 @@
       loading:'Carregando…',error:'Não foi possível carregar os dados. Recarregue a página ou baixe os arquivos abaixo.',
       total:'Despesa contratada',meta:'Meta (direto)',inter:'Intermediários de pagamento',boost:'Impulsionamento',records:'lançamentos',
       cands:'candidatos',supplier:'Fornecedor',share:'do total',noCand:'Nenhum candidato encontrado.',pf:'pessoa física',
-      metaParty:'Pagamentos diretos à Meta por partido (R$ milhões)',metaCargo:'Pagamentos diretos à Meta por cargo (R$ milhões)',
+      metaParty:'Contratado diretamente com a Meta por partido (R$ milhões)',metaCargo:'Contratado diretamente com a Meta por cargo (R$ milhões)',
       metaTop:'Candidatos que mais contrataram a Meta diretamente',rank:'#',value:'Meta (R$)',pct:'% da despesa',
       partyChart:'Principais fornecedores',x:'R$ milhões',national:'Brasil (presidente)',showing:n=>`${n} candidatos na lista`,
       metaShare:'Parcela da despesa'},
@@ -15,7 +15,7 @@
       loading:'Loading…',error:'The data could not load. Reload the page or download the files below.',
       total:'Contracted spending',meta:'Meta (direct)',inter:'Payment intermediaries',boost:'Content boosting',records:'entries',
       cands:'candidates',supplier:'Supplier',share:'of total',noCand:'No candidates found.',pf:'individual',
-      metaParty:'Direct payments to Meta by party (R$ millions)',metaCargo:'Direct payments to Meta by office (R$ millions)',
+      metaParty:'Contracted directly with Meta by party (R$ millions)',metaCargo:'Contracted directly with Meta by office (R$ millions)',
       metaTop:'Candidates with the largest direct Meta contracts',rank:'#',value:'Meta (R$)',pct:'% of spending',
       partyChart:'Leading suppliers',x:'R$ millions',national:'Brazil (president)',showing:n=>`${n} candidates listed`,
       metaShare:'Share of spending'}

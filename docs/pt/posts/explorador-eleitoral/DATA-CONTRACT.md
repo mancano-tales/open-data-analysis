@@ -124,3 +124,64 @@ matched-sample centiles from the initial reconstruction.
 first-round polling register to match second-round votes of that same year.
 The source date and round are recorded in `polling_reference_date` and
 `polling_reference_round`. The UI displays this approximation explicitly.
+
+## Census reference (`census_year`)
+
+Each manifest entry may carry `census_year` (`2022` or `2010`). A missing
+value means `2022`, so every existing series keeps its meaning and URL. The
+selector "Censo de referência / Reference census" sits between territory and
+income reference and only lists censuses available for that contest; Census
+2022 is the default. One series per combination of year, round, office,
+territory, `census_year` and `income_reference`.
+
+A Census 2010 series:
+
+- uses the ID of its 2022 counterpart plus `-c2010` (for example
+  `2014-1-3-SP-state-c2010`);
+- sets `metadata.income_year` to `2010`; the UI rejects a series whose
+  `income_year` differs from the selected census;
+- ranks Census 2010 tracts with V007 (mean nominal income of heads WITH
+  income, Basico dataset) and heads V001, with the same eligibility rule and
+  the same fixed-universe percentiles as 2022;
+- reports `renda_sm` in 2010 minimum wages (BRL 510);
+- uses 2010 tract and municipality geometry; polling places still come from
+  the election year;
+- is published only for the elections enabled in
+  `shared-pipeline/eleicoes/agregacao/censo-referencia.R` (2010 and 2014).
+
+Census 2010 and Census 2022 tracts do not match one to one. Curves from
+different censuses must never be subtracted or drawn as one series.
+
+## Comparator (`compare.js`)
+
+The comparator below the explorer reads the same manifest and series; it adds
+no data files. It subtracts party curves of two series (B − A) only when both
+share office, territory, `income_reference` and `census_year`. A party curve
+is the sum, per centile, of the shares of every candidate and legend row whose
+ballot number starts with that two-digit party number (or whose
+`party_number` field says so). A centile missing in either series stays
+`null`. The optional manifest field `parties` maps
+`{"<year>": {"<number>": "<acronym>"}}` for labels only; matching always uses
+the number.
+
+## Concentration (`concentration.js`)
+
+The table below the explorer reads the series already loaded by `app.js`
+(event `explorer:series`, detail `{series, entry, manifest}`); it fetches
+nothing and never redraws the main chart. A row click dispatches
+`explorer:select` with `{id}`; `app.js` adds that candidate only if the id
+belongs to the loaded series.
+
+For each candidate, the standard concentration index is computed over the
+100 centile groups in income order: `CI = (2 / mu) * sum(f_t * y_t * R_t) - 1`,
+with `f_t` the share of observed tracts (`n_setores`) in group t, `y_t` its
+`votacao`, `R_t` the fractional rank at the group midpoint and
+`mu = sum(f_t * y_t)`. The table shows the Wagstaff (2005) normalization
+`CI_W = CI / (1 - mu / 100)` (vote shares are bounded by 100%); the CSV keeps
+both (`indice_concentracao_wagstaff`, `indice_concentracao_padrao`). Groups with
+null `votacao` or no observed tracts are skipped; a candidate with `mu = 0`
+has no index. The mean vote share in the table is the tract-weighted mean of
+`votacao`. The table starts at a minimum mean share of 0.1% (selectable).
+Party labels fall back to `manifest.parties[year][number]` when a series has
+no `party` field; `app.js` applies the same fallback, so the candidate search
+also matches party acronyms.

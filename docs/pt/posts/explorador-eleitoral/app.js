@@ -57,6 +57,8 @@
     }
     function updateSelectionInfo(matches) {selectionInfo.textContent=lang==='pt'?`${activeIds.size} curvas selecionadas · ${matches} candidatos encontrados${matches>100?' (lista limitada a 100; refine a busca)':''}`:`${activeIds.size} curves selected · ${matches} candidates found${matches>100?' (showing 100; refine search)':''}`;}
     search.addEventListener('input',renderCandidates);
+    // The concentration table asks to show a candidate; only ids of the loaded series are accepted.
+    document.addEventListener?.('explorer:select',event=>{const id=event.detail?.id;if(!data||!data.candidates.some(c=>c.id===id))return;activeIds.add(id);renderCandidates();draw();chart.scrollIntoView?.({behavior:'smooth',block:'center'});});
     topButton.addEventListener('click',()=>{activeIds=new Set(rankedCandidates.slice(0,6).map(c=>c.id));renderCandidates();draw();});
     clearButton.addEventListener('click',()=>{activeIds.clear();renderCandidates();draw();});
     allButton.addEventListener('click',()=>{activeIds=new Set(data.candidates.map(c=>c.id));renderCandidates();draw();});
@@ -138,6 +140,8 @@
       try {
         const preserveSelection=loadedContestKey===contestKey(selected),previousSelection=new Set(activeIds);
         const loaded=await read(seriesUrl(selected));if(current!==request)return;validateIncomeScope(selected,loaded.metadata);data=loaded;
+        // Deputy series carry no party field: label (and search) by the manifest acronym of the ballot-number prefix.
+        data.candidates.forEach(c=>{if(!c.party&&/^\d{2,5}$/.test(String(c.id))){const acronym=manifest.parties?.[String(selected.year)]?.[String(c.id).slice(0,2)];if(acronym)c.party=acronym;}});
         const scores=new Map(data.candidates.map(c=>[c.id,0]));
         data.points.forEach(point=>scores.set(point.candidate_id,(scores.get(point.candidate_id)||0)+(point.votacao||0)));
         rankedCandidates=embeddedPanel?[...data.candidates]:[...data.candidates].sort((a,b)=>scores.get(b.id)-scores.get(a.id));
@@ -184,6 +188,7 @@
         (meta.sources||[]).forEach((source,index)=>{if(index)sources.append(document.createTextNode(' · '));link(sources,source.label||source.name||source.url,source.url);});
         const downloads=root.querySelector('.download-links');downloads.replaceChildren();link(downloads,new URL(seriesUrl(selected)).pathname.endsWith('.json.gz')?(lang==='pt'?'Baixar esta série (JSON.gz compactado)':'Download this series (compressed JSON.gz)'):t.download,seriesUrl(selected));link(downloads,t.manifest,new URL('manifest.json',base));
         draw();
+        if(typeof CustomEvent==='function')document.dispatchEvent?.(new CustomEvent('explorer:series',{detail:{series:data,entry:selected,manifest}}));
       }catch(error){if(current!==request)return;status.textContent=error.userMessage||t.error;status.classList.add('error');if(error.userMessage){if(typeof Plotly.purge==='function')Plotly.purge(chart);coverage.replaceChildren();auditPanel.replaceChildren();candidateBox.replaceChildren();topButton.disabled=true;clearButton.disabled=true;allButton.disabled=true;search.disabled=true;}console.error(error);}
     }
     try {

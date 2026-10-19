@@ -15,8 +15,9 @@ format:
     include-after-body:
       text: |
         <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-        <script src="app.js?v=census-compare-v2"></script>
-        <script src="compare.js?v=census-compare-v2"></script>
+        <script src="app.js?v=concentration-v1"></script>
+        <script src="compare.js?v=concentration-v1"></script>
+        <script src="concentration.js?v=concentration-v2"></script>
         <script>
         document.querySelectorAll('.navbar .nav-link').forEach(link => {
           if (link.textContent.trim() === 'Português') link.href = document.querySelector('.language-switch').href;
@@ -76,6 +77,112 @@ This page does not claim an exact replication of the newspaper's estimator.
   <noscript>This interactive chart requires JavaScript. <a href="data/availability.csv">Download availability (CSV)</a> and use the JSON data downloads.</noscript>
 </section>
 ```
+
+## Income concentration of the vote
+
+The table below summarizes, for each candidate in the series selected in the
+explorer, the **concentration index** of the vote by income. It ranges from
+**−1** (all of the vote in the poorest tracts) to **+1** (all in the richest);
+**0** means equal vote shares across income groups. This is the
+concentration index with the Wagstaff (2005) normalization, explained below,
+which puts a deputy with 30,000 votes and a presidential candidate with half
+of the vote on the same scale.
+
+::: {.callout-warning title="What the index measures"}
+A positive index means **higher vote shares in richer areas**, not that the
+candidate was chosen by wealthy voters: the association is territorial, as in
+the chart. The index uses the income reference and census of the selected
+series. For deputies, the within-state reference compares each candidate with
+the state's own income distribution. Candidates with very small or highly
+localized votes get extreme and unstable indices, so the table starts from a
+minimum mean vote share of 0.1%, which can be changed.
+:::
+
+```{=html}
+<section class="election-concentration" data-lang="en" aria-label="Income concentration index of the vote">
+  <div class="concentration-controls"></div>
+  <p class="concentration-status" role="status" aria-live="polite">Waiting for the selected series…</p>
+  <div class="concentration-scroll"><table class="concentration-table"></table></div>
+  <div class="concentration-downloads"></div>
+</section>
+```
+
+Click a candidate's name to add their curve to the chart.
+
+### How the index is computed
+
+For one candidate, number the income percentiles in increasing order,
+$t = 1, \dots, 100$. In each percentile, $n_t$ is the number of tracts with a
+vote estimate and $y_t \in [0, 1]$ is the candidate's mean vote share in those
+tracts (the chart's value, as a proportion). Weights, the fractional rank at
+each percentile's midpoint and the mean are
+
+$$
+f_t = \frac{n_t}{\sum_s n_s}, \qquad
+R_t = \sum_{s<t} f_s + \frac{f_t}{2}, \qquad
+\mu = \sum_t f_t\, y_t .
+$$
+
+The standard concentration index (Kakwani et al., 1997) is
+
+$$
+C = \frac{2}{\mu} \sum_t f_t\, y_t\, R_t - 1 = \frac{2\,\operatorname{cov}_f(y, R)}{\mu},
+$$
+
+which equals $C = 1 - 2\int_0^1 L(p)\,dp$, where $L(p)$ is the concentration
+curve: the cumulative share of the candidate's vote against the cumulative
+share of tracts, from poorest to richest. The table shows the Wagstaff (2005)
+normalized index:
+
+$$
+C_W = \frac{C}{1 - \mu}.
+$$
+
+Percentiles without observed tracts are left out; they never count as zero
+votes.
+
+### Why the Wagstaff normalization
+
+A tract's vote share cannot exceed 100%. With a variable bounded this way,
+the standard index lies between $\mu - 1$ and $1 - \mu$ (Wagstaff, 2005): a
+candidate with half of the vote cannot go beyond $\pm 0.5$, however
+concentrated the vote, while a deputy with 1% can come close to $\pm 1$.
+Dividing by $1 - \mu$ gives every candidate the same range, $-1$ to $1$, and
+makes candidates of very different sizes comparable.
+
+- **Deputies.** With mean shares usually below 2%, $1/(1-\mu)$ is close to 1
+  and the index nearly equals the standard one.
+- **Majoritarian offices.** In a two-candidate runoff, shares add up to 100%
+  in every tract, and one candidate's Wagstaff index is exactly the negative
+  of the other's ($C_{W,A} = -C_{W,B}$). In the 2022 presidential runoff, with
+  the national reference, the standard index is $-0.109$ for Lula and
+  $+0.115$ for Bolsonaro; the Wagstaff index is $-0.224$ and $+0.224$.
+- **Why not Erreygers (2009).** The Erreygers correction multiplies the index
+  by $4\mu$ and measures **absolute** inequality: a candidate with twice the
+  vote would get nearly twice the index with the same distribution across
+  income groups. The table asks something else: where each candidate's vote
+  comes from, relative to the candidate's own mean.
+
+The standard index remains in the table's CSV, in the
+`indice_concentracao_padrao` column.
+
+### References
+
+Erreygers, G. (2009). Correcting the concentration index. *Journal of Health
+Economics, 28*(2), 504–515.
+
+Kakwani, N., Wagstaff, A., & van Doorslaer, E. (1997). Socioeconomic
+inequalities in health: Measurement, computation, and statistical inference.
+*Journal of Econometrics, 77*(1), 87–103.
+
+O'Donnell, O., van Doorslaer, E., Wagstaff, A., & Lindelow, M. (2008).
+*Analyzing health equity using household survey data: A guide to techniques
+and their implementation*. World Bank.
+
+Wagstaff, A. (2005). The bounds of the concentration index when the variable
+of interest is binary, with an application to immunization inequality.
+*Health Economics, 14*(4), 429–432.
+
 
 ## Read the chart
 

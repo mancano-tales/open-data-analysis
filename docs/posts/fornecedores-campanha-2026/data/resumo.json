@@ -3,14 +3,14 @@
   "fonte": "https://cdn.tse.jus.br/estatistica/sead/odsele/prestacao_contas/prestacao_de_contas_eleitorais_candidatos_2026.zip",
   "geral": {
     "total": 4639796370.02,
-    "meta": 289365540.07,
+    "meta": 289361971.07,
     "intermediario": 114944978.68,
     "intermediario_meta": 35242163.51,
     "impulsionamento": 415042486.2,
     "candidatos": 14867,
     "candidatos_meta": 6131
   },
-  "pessoas_fisicas": 1399805082.44,
+  "pessoas_fisicas": 1404205375.36,
   "prestacao": [
     {
       "tipo": "Parcial",
@@ -46,14 +46,14 @@
     {
       "cargo": "Senador",
       "total": 394449569.62,
-      "meta": 35302776.15,
+      "meta": 35302207.15,
       "candidatos": 260,
       "candidatos_meta": 162
     },
     {
       "cargo": "Deputado Federal",
       "total": 2335390528.47,
-      "meta": 127124401.08,
+      "meta": 127121401.08,
       "candidatos": 6036,
       "candidatos_meta": 2586
     },
@@ -124,7 +124,7 @@
     {
       "partido": "PP",
       "total": 342705499.88,
-      "meta": 14331781.79,
+      "meta": 14328781.79,
       "candidatos": 629,
       "candidatos_meta": 304,
       "share": 0.0418
@@ -260,10 +260,10 @@
     {
       "partido": "DEMOCRATA",
       "total": 3385776.63,
-      "meta": 609017.13,
+      "meta": 608448.13,
       "candidatos": 111,
       "candidatos_meta": 28,
-      "share": 0.1799
+      "share": 0.1797
     },
     {
       "partido": "DC",

@@ -8,6 +8,7 @@ const {publish,lfBlobHash}=require('./publish-static.cjs');
   await fs.mkdir(path.join(source,'series'),{recursive:true});
   await fs.mkdir(path.join(root,'posts/explorador-eleitoral'),{recursive:true});
   await fs.writeFile(path.join(root,'posts/explorador-eleitoral/compare.js'),'// TEST FIXTURE ONLY\n');
+  await fs.writeFile(path.join(root,'posts/explorador-eleitoral/concentration.js'),'// TEST CONCENTRATION FIXTURE ONLY\n');
   await fs.writeFile(path.join(root,'posts/explorador-eleitoral/app.js'),'// TEST APP FIXTURE ONLY\n');
   await fs.writeFile(path.join(root,'posts/explorador-eleitoral/app.css'),'/* TEST CSS FIXTURE ONLY */\n');
   const input=JSON.stringify({TEST_FIXTURE_ONLY:true,values:Array.from({length:1000},(_,i)=>i%10)})+'\n';
@@ -20,6 +21,7 @@ const {publish,lfBlobHash}=require('./publish-static.cjs');
   const output=JSON.parse(await fs.readFile(path.join(published,'manifest.json'),'utf8'));assert.equal(output.series[0].url,'series/fixture.json.gz');
   for(const directory of ['docs/posts/explorador-eleitoral','docs/pt/posts/explorador-eleitoral']){
     assert.equal(await fs.readFile(path.join(root,directory,'compare.js'),'utf8'),'// TEST FIXTURE ONLY\n');
+    assert.equal(await fs.readFile(path.join(root,directory,'concentration.js'),'utf8'),'// TEST CONCENTRATION FIXTURE ONLY\n');
     assert.equal(await fs.readFile(path.join(root,directory,'app.js'),'utf8'),'// TEST APP FIXTURE ONLY\n');
     assert.equal(await fs.readFile(path.join(root,directory,'app.css'),'utf8'),'/* TEST CSS FIXTURE ONLY */\n');
   }
