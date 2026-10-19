@@ -177,3 +177,43 @@ Verifique o orquestrador sem usar dados nacionais:
 ```sh
 Rscript shared-pipeline/eleicoes/agregacao/tests-build.R
 ```
+
+## Estaduais de 2014 e 2010: protocolo isolado
+
+Os caches produzidos por `historico/prepare-legacy-all-ufs.R` usam o protocolo
+`legacy-canonic-v1`, descrito em `historico/PREPARE-LEGACY.md`. Para consumi-los,
+o argumento `legacy_cache_dir` é obrigatório. Ele muda exclusivamente a fonte
+dos cargos estaduais desses dois anos; presidenciais e 2018 continuam no
+fluxo anterior. Não há fallback para caches diagnósticos antigos nem busca
+recursiva em staging. Exemplo, depois de preparar as UFs de 2014:
+
+```r
+source("shared-pipeline/eleicoes/agregacao/build-explorer.R")
+alvos <- eleicao_targets(years = 2014L, state_years = 2014L,
+  income_references = c("national", "state"))[office != 1L]
+eleicao_build_explorer(targets = alvos, incremental = TRUE,
+  legacy_cache_dir = "data-raw/eleicoes-renda/historico/legacy-canonic")
+```
+
+Antes de reutilizar um JSON, o exportador confere checkpoint, identidade
+eleitoral, partição das disputas, votos, candidatos e fingerprints de código,
+ZIPs, CSVs e RDS. Apenas cargos presentes na certificação podem ser publicados;
+o status parcial de uma UF não libera os cargos bloqueados. Uma barreira final
+reconfere os arquivos únicos de todas as UFs antes de trocar o manifesto.
+Nesse protocolo, `flush_progress` é adiado até essa barreira. Os metadados
+registram `vote_cache_protocol`, `vote_checkpoint_md5` e `vote_certificate`.
+
+O gate de conteúdo compara as séries ao checkpoint armazenado e ao seu MD5;
+ele **não** recalcula a integridade dos ZIPs/RDS, tarefa do guard R anterior.
+O modo `--certified` exige todas as UFs processadas e todas as séries das
+disputas certificadas, mantendo explícitas as indisponibilidades legítimas:
+
+```sh
+Rscript shared-pipeline/eleicoes/agregacao/test-legacy-export.R
+node shared-pipeline/eleicoes/agregacao/acceptance-legacy-historical.cjs --self-test
+node shared-pipeline/eleicoes/agregacao/acceptance-legacy-historical.cjs --years=2014 --certified
+```
+
+Use `--progress` apenas para acompanhar uma exportação incompleta. Esta etapa
+continua usando **renda do Censo 2022**, mesmo para votos de 2014 ou 2010;
+não corresponde à integração das malhas e da renda do Censo 2010.
