@@ -1,0 +1,8 @@
+body.embedded-explorer { padding: 0 !important; }
+body.embedded-explorer :is(#quarto-header,#quarto-sidebar,#quarto-margin-sidebar,.language-switch,#quarto-back-to-top) { display: none !important; }
+body.embedded-explorer #quarto-content { display: block; padding: 0 !important; }
+body.embedded-explorer main.content { margin: 0 !important; padding: 0 !important; width: 100%; max-width: none; }
+body.embedded-explorer main.content > :not(.election-explorer) { display: none !important; }
+body.embedded-explorer .election-explorer { margin: 0; border: 0; border-radius: 0; }
+body.embedded-explorer .explorer-controls { grid-template-columns: repeat(2,minmax(0,1fr)); }
+.embedded-note { margin: 0 0 1rem; font-size: .85rem; }

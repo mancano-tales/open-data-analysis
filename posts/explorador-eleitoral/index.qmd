@@ -9,11 +9,13 @@ resources:
   - data/**
 format:
   html:
-    css: app.css
+    css:
+      - app.css
+      - panel-embed-v1.css
     include-after-body:
       text: |
         <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-        <script src="app.js?v=candidate-controls-v1"></script>
+        <script src="app.js?v=independent-panels-v1"></script>
         <script>
         document.querySelectorAll('.navbar .nav-link').forEach(link => {
           if (link.textContent.trim() === 'Português') link.href = document.querySelector('.language-switch').href;
@@ -59,6 +61,8 @@ election, round, office and territory; absent combinations are unavailable.
 The coverage and vote-reconciliation panels describe the selected series.
 This page does not claim an exact replication of the newspaper's estimator.
 :::
+
+[Open two independent panels](two-panels.qmd)
 
 ```{=html}
 <section class="election-explorer" data-lang="en" data-base="data/" aria-label="Election and income explorer">
