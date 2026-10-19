@@ -58,6 +58,23 @@ Meta por outros caminhos:
 O valor direto é, portanto, um piso do que a Meta recebeu das campanhas.
 :::
 
+::: {.callout-tip title="Estimativa: entre R\$ 289 e R\$ 404 milhões para a Meta"}
+As campanhas contrataram **R\$ 415 milhões em impulsionamento de conteúdo**
+(categoria do TSE), por 7.557 candidatos. A Meta recebeu diretamente R\$ 288
+milhões desse valor; dLocal e Ebanx, outros R\$ 114 milhões.
+
+Somando os intermediários, a Meta teria recebido **até R\$ 404 milhões, 8,7% de
+toda a despesa contratada e cerca de 97% do impulsionamento**. O teto supõe que
+todo o valor pago aos intermediários foi para a Meta. É plausível: nenhuma
+descrição desses pagamentos cita outra plataforma, o Google deixou de vender
+anúncios políticos no Brasil em 2024 e o TikTok não aceita anúncios políticos.
+Mas os dados não comprovam o destino final de cada pagamento.
+
+O impulsionamento no WhatsApp, quando existe, é comprado pela própria Meta
+(anúncios que abrem conversa) e já entra nessa conta. O Kwai (Joyo Tecnologia)
+recebeu R\$ 2 milhões.
+:::
+
 ## A Meta nas campanhas
 
 ```{=html}

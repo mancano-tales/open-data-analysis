@@ -60,6 +60,22 @@ other routes:
 The direct amount is therefore a lower bound on what Meta received.
 :::
 
+::: {.callout-tip title="Estimate: between R\$ 289 and R\$ 404 million for Meta"}
+Campaigns contracted **R\$ 415 million in content boosting** (a TSE expense
+category), across 7,557 candidates. Meta received R\$ 288 million of this
+directly; dLocal and Ebanx received another R\$ 114 million.
+
+Adding the intermediaries, Meta would have received **up to R\$ 404 million,
+8.7% of all contracted spending and about 97% of boosting**. The upper bound
+assumes that everything paid to the intermediaries went to Meta. This is
+plausible: no description of these payments names another platform, Google
+stopped selling political ads in Brazil in 2024 and TikTok does not accept
+political ads. The data do not establish the final destination of each payment.
+
+WhatsApp boosting, where it exists, is bought from Meta itself (ads that open a
+chat) and is already counted. Kwai (Joyo Tecnologia) received R\$ 2 million.
+:::
+
 ## Meta in the campaigns
 
 ```{=html}
