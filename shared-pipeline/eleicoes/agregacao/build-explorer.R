@@ -3,6 +3,7 @@
 if (.Platform$OS.type == "windows" && !isTRUE(l10n_info()[["UTF-8"]]))
   invisible(Sys.setlocale("LC_CTYPE", ".UTF-8"))
 source("shared-pipeline/eleicoes/agregacao/centis.R", encoding = "UTF-8")
+source("shared-pipeline/eleicoes/agregacao/censo-referencia.R", encoding = "UTF-8")
 source("shared-pipeline/eleicoes/agregacao/legacy-export-guard.R", encoding = "UTF-8")
 
 eleicao_cache_index <- function(cache_dir) {
@@ -49,6 +50,33 @@ eleicao_pick_cache <- function(index, year, office, uf) {
   match[order(!match$legal, preference, lengths(codes), basename(match$path)), , drop = FALSE][1L, , drop = FALSE]
 }
 
+eleicao_manifest_parties <- function(cache_dir, years) {
+  result <- list()
+  for (year in sort(unique(years))) {
+    zip <- file.path(cache_dir,paste0("votacao_candidato_munzona_",year,".zip"))
+    if (!file.exists(zip)) stop("Official candidate ZIP missing for party labels: ",zip)
+    members <- unzip(zip,list=TRUE)$Name
+    members <- members[grepl(paste0("(^|/)votacao_candidato_munzona_",year,"_[A-Z]{2}[.]csv$"),members)]
+    if (!length(members)) stop("Official candidate tables missing in ",zip)
+    scratch <- tempfile(paste0("parties-",year,"-")); dir.create(scratch)
+    annual <- tryCatch(data.table::rbindlist(lapply(members,function(member) {
+      unpacked <- unzip(zip,files=member,exdir=scratch,overwrite=FALSE)
+      path <- file.path(scratch,member)
+      if (!file.exists(path)) stop("Could not extract candidate table: ",member)
+      rows <- data.table::fread(path,select=c("NR_PARTIDO","SG_PARTIDO"),encoding="Latin-1")
+      unlink(path)
+      rows
+    }),use.names=TRUE),finally=unlink(scratch,recursive=TRUE))
+    rows <- unique(annual[!is.na(NR_PARTIDO) & !is.na(SG_PARTIDO) & nzchar(SG_PARTIDO),
+      .(number=as.character(NR_PARTIDO),acronym=as.character(SG_PARTIDO))])
+    # A party renamed during the year (e.g. 51 in 2018) keeps every official
+    # acronym; labels only, matching always uses the number.
+    rows <- rows[, .(acronym=paste(sort(unique(acronym)),collapse="/")),by=number]
+    result[[as.character(year)]] <- stats::setNames(as.list(rows$acronym),rows$number)
+  }
+  result
+}
+
 eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data",
     cache_dir = "data-raw/eleicoes-renda/historico",
     spatial_dir = "data-raw/eleicoes-renda/espacial",
@@ -59,12 +87,14 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
   if (is.null(targets)) targets <- eleicao_targets(income_references = c("national", "state"))
   targets <- data.table::copy(data.table::as.data.table(targets))
   if (!"income_reference" %in% names(targets)) targets[, income_reference := "national"]
-  targets <- unique(targets[, .(year, round, office, uf, income_reference)])
-  targets[, `:=`(year = as.integer(year), round = as.integer(round), office = as.integer(office), uf = toupper(uf))]
+  if (!"census_year" %in% names(targets)) targets[, census_year := 2022L]
+  targets <- unique(targets[, .(year, round, office, uf, income_reference, census_year)])
+  targets[, `:=`(year = as.integer(year), round = as.integer(round), office = as.integer(office), uf = toupper(uf), census_year = as.integer(census_year))]
   data.table::setorder(targets, year, round, office, uf)
   if (anyNA(targets) || any(!targets$uf %in% c("BR", unname(eleicao_ufs))) ||
       any(!targets$income_reference %in% c("national", "state")) ||
-      any(targets$income_reference == "state" & targets$uf == "BR")) stop("Invalid targets")
+      any(targets$income_reference == "state" & targets$uf == "BR") ||
+      any(!vapply(seq_len(nrow(targets)), function(i) eleicao_censo_allowed(targets$census_year[i],targets$year[i]), logical(1)))) stop("Invalid targets")
   index <- eleicao_cache_index(cache_dir)
   if (!is.null(legacy_cache_dir) && (length(legacy_cache_dir) != 1L || is.na(legacy_cache_dir) || !nzchar(legacy_cache_dir))) stop("Invalid explicit LEGACY cache directory")
   legacy_index <- if (!is.null(legacy_cache_dir)) eleicao_cache_index(legacy_cache_dir) else NULL
@@ -79,7 +109,8 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
     if (is.null(selected)) "" else selected$path[[1L]]
   }, character(1))]
   data.table::setorder(targets, year, round, processing_source, office, uf)
-  universe <- eleicao_income_universe(readRDS(income_path))
+  universes <- new.env(parent=emptyenv())
+  income_paths <- c(`2022`=income_path,`2010`="data-raw/eleicoes-renda/censo2010/renda2010-basico.rds")
   sources <- list(
     list(label = "TSE — resultados por seção", url = "https://dadosabertos.tse.jus.br/"),
     list(label = "Censo 2022 — renda dos responsáveis, censobr", url = "https://ipeagit.github.io/censobr/"),
@@ -95,9 +126,13 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
   series <- index_items(prior$series); availability <- index_items(prior$availability)
   valid_scope <- eleicao_targets(income_references = c("national", "state"))
   valid_ids <- with(valid_scope,eleicao_target_id(year,round,office,uf,income_reference))
+  valid_ids <- c(valid_ids, paste0(valid_ids[grepl("^2010-|^2014-",valid_ids)],"-c2010"))
   series <- series[names(series) %in% valid_ids]
   availability <- availability[names(availability) %in% valid_ids]
+  party_years <- unique(c(targets$year,vapply(series,function(item) as.integer(item$year),integer(1))))
+  party_maps <- eleicao_manifest_parties(cache_dir,party_years)
   write_manifest <- function(manifest) {
+    manifest$parties <- party_maps
     dir.create(output_dir,recursive=TRUE,showWarnings=FALSE)
     temporary <- paste0(manifest_path,".part")
     jsonlite::write_json(manifest,temporary,auto_unbox=TRUE,dataframe="rows",
@@ -107,7 +142,6 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
     frame <- if(length(manifest$availability)) data.table::rbindlist(manifest$availability,fill=TRUE) else data.table::data.table()
     data.table::fwrite(frame,file.path(output_dir,"availability.csv"))
   }
-  income_hash <- unname(tools::md5sum(income_path))
   link_hash <- vote_hash <- NULL
   last_link_path <- NULL; links <- NULL; link_error <- NULL
   last_vote_path <- NULL; votes <- NULL; vote_error <- NULL
@@ -117,8 +151,16 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
   legacy_certificates <- new.env(parent = emptyenv())
   for (i in seq_len(nrow(targets))) {
     target <- targets[i]; yr <- target$year; tr <- target$round; oc <- target$office; state <- target$uf
-    reference <- target$income_reference
-    id <- eleicao_target_id(yr, tr, oc, state, reference)
+    reference <- target$income_reference; census_year <- target$census_year
+    census <- eleicao_censo(census_year)
+    current_sources <- sources
+    if (census_year != 2022L) current_sources[[2L]]$label <- "Censo 2010 — renda dos responsáveis, censobr"
+    current_income_path <- unname(income_paths[as.character(census_year)])
+    if (!exists(as.character(census_year),envir=universes,inherits=FALSE))
+      assign(as.character(census_year),eleicao_reference_universe(readRDS(current_income_path),census_year),envir=universes)
+    universe <- get(as.character(census_year),envir=universes)
+    income_hash <- unname(tools::md5sum(current_income_path))
+    id <- eleicao_censo_series_id(eleicao_target_id(yr, tr, oc, state, reference),census_year)
     status <- "unavailable"; reason <- NULL; item <- NULL
     selected <- select_cache(yr, oc, state)
     legacy <- is_legacy(yr, oc); legacy_context <- NULL; legacy_error <- NULL
@@ -156,7 +198,8 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
         }
       }
     }
-    link_path <- file.path(spatial_dir, paste0("links-", yr, "-", tr, ".rds"))
+    link_path <- file.path(spatial_dir, paste0("links-", yr, "-", tr,
+      if(census_year == 2022L) "" else paste0("-c",census_year), ".rds"))
     if (is.null(selected)) {
       reason <- if (legacy) "LEGACY: sem cache canônico isolado para esta disputa; nenhum fallback à raiz histórica" else "Sem cache normalizado de votação por local para esta disputa"
     } else if (!is.null(legacy_error)) {
@@ -194,7 +237,8 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
             item <- eleicao_manifest_item(cached,paste0("series/",name))
           } else {
             dataset <- eleicao_aggregate_contest(votes, universe, links, yr, tr, oc, state,
-              max_distance_m = max_distance_m, sources = sources, income_reference = reference)
+              max_distance_m = max_distance_m, sources = current_sources, income_reference = reference,
+              census_year = census_year)
             dataset$metadata$vote_source_md5 <- attr(votes, "source_md5")
             dataset$metadata$vote_cache <- basename(selected$path)
             dataset$metadata$spatial <- attr(links, "metadata")
@@ -221,6 +265,7 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
       }
     }
     availability[[id]] <- list(id = id, year = yr, round = tr, office = as.character(oc), uf = state, income_reference = reference,
+      census_year = census_year,
       office_label = unname(eleicao_office_labels[as.character(oc)]), status = status,
       reason = if (is.null(reason)) "Dados processados com universo de renda fixo e cobertura documentada" else reason)
     if(status!="available") series[[id]] <- NULL
@@ -240,7 +285,7 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
     eleicao_legacy_verify_snapshot(certificates)
   }
   manifest <- list(schema_version = 1L, series = unname(series), availability = unname(availability),
-    metadata = list(percentile_scope = if(any(vapply(series,function(item)identical(item$income_reference,"state"),logical(1)))) "selectable" else "BR", income_year = 2022L,
+    metadata = if(incremental && !is.null(prior$metadata)) prior$metadata else list(percentile_scope = if(any(vapply(series,function(item)identical(item$income_reference,"state"),logical(1)))) "selectable" else "BR", income_year = 2022L,
       income_references = c("national", "state"),
       method = "Setores com renda do Censo 2022 ordenados no Brasil ou na UF escolhida antes das exclusões; média simples de percentuais eleitorais atribuídos pelo local mais próximo no mesmo município.",
       income_definition = "V06004, renda nominal média dos responsáveis; salários mínimos de 2022 (R$ 1.212).",

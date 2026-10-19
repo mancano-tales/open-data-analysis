@@ -3,11 +3,25 @@ const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),asse
 const source=__dirname,base='http://localhost/posts/explorador-eleitoral/';
 const manifest=JSON.parse(fs.readFileSync(path.join(source,'data/manifest.json'),'utf8'));
 assert.ok(manifest.series.length>0);
+if(manifest.parties)for(const [year,map] of Object.entries(manifest.parties)){
+  assert.match(year,/^20\d{2}$/);
+  for(const [number,acronym] of Object.entries(map)){
+    assert.match(number,/^\d{2}$/);assert.ok(typeof acronym==='string'&&acronym.length>0);
+  }
+}
 for(const item of process.argv.includes('--ui-only')?[]:manifest.series){
   const data=JSON.parse(fs.readFileSync(path.join(source,'data',item.url),'utf8'));
   assert.equal(data.metadata.vote_audit.status,'reconciled');
   assert.equal(data.metadata.vote_audit.difference,0);
   assert.equal(data.metadata.percentile_scope,(item.income_reference||'national')==='state'?item.uf:'BR');
+  if(item.census_year===2010){
+    assert.match(item.id,/-c2010$/);
+    assert.equal(data.metadata.income_year,2010);
+    assert.equal(data.metadata.minimum_wage_brl,510);
+    assert.match(JSON.stringify(data.metadata.income_definition),/V007/);
+    for(const candidate of data.candidates)
+      assert.equal(data.points.filter(p=>p.candidate_id===candidate.id).reduce((n,p)=>n+p.n_setores,0),data.metadata.coverage.included_tracts);
+  }
   assert.equal(data.points.length,100*data.candidates.length);
   const centils=new Map(data.candidates.map(c=>[c.id,new Set()]));
   for(const p of data.points){assert.ok(centils.has(p.candidate_id));centils.get(p.candidate_id).add(p.centil);}
