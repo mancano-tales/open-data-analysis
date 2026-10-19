@@ -5,8 +5,7 @@
 (function (global) {
   'use strict';
 
-  // Standard concentration index for grouped data (no Wagstaff or Erreygers
-  // adjustment): CI = (2 / mu) * sum(f_t * y_t * R_t) - 1, where groups t follow
+  // Standard concentration index for grouped data (Kakwani et al., 1997): CI = (2 / mu) * sum(f_t * y_t * R_t) - 1, where groups t follow
   // income order, f_t is the share of observed tracts in group t, y_t the mean
   // vote share of those tracts and R_t the fractional rank at the group midpoint.
   // -1: all of the candidate's share in the poorest tracts; 0: equal across
@@ -22,6 +21,17 @@
       mu += f * p.votacao; weighted += f * p.votacao * rank; cumulative += f;
     }
     return mu > 0 ? 2 * weighted / mu - 1 : null;
+  }
+
+  // Wagstaff (2005) normalization for a variable bounded by 0-100%: CI / (1 - mu),
+  // mu as a proportion. Lets high-share candidates reach +/-1 like small ones.
+  function wagstaffIndex(points) {
+    const ci = concentrationIndex(points);
+    if (ci == null) return null;
+    const rows = points.filter(p => p.votacao != null && Number.isFinite(p.votacao) && p.n_setores > 0);
+    const total = rows.reduce((s, p) => s + p.n_setores, 0);
+    const mu = rows.reduce((s, p) => s + p.n_setores * p.votacao, 0) / total / 100;
+    return mu < 1 ? ci / (1 - mu) : null;
   }
 
   function partyNumber(candidate) {
@@ -45,7 +55,7 @@
       const observed = points.filter(p => p.votacao != null && p.n_setores > 0);
       const tracts = observed.reduce((s, p) => s + p.n_setores, 0);
       const mean = tracts ? observed.reduce((s, p) => s + p.votacao * p.n_setores, 0) / tracts : null;
-      return {id: c.id, name: c.name, party: partyOf(c, manifest, year), ci: concentrationIndex(points), mean_share: mean};
+      return {id: c.id, name: c.name, party: partyOf(c, manifest, year), ci: wagstaffIndex(points), ci_standard: concentrationIndex(points), mean_share: mean};
     });
   }
 
@@ -70,10 +80,10 @@
 
   function toCsv(rows) {
     const cell = v => v == null ? '' : /[",\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v);
-    return ['candidato_id,nome,partido,indice_concentracao,votacao_media', ...rows.map(r => [r.id, r.name, r.party, r.ci, r.mean_share].map(cell).join(','))].join('\n');
+    return ['candidato_id,nome,partido,indice_concentracao_wagstaff,indice_concentracao_padrao,votacao_media', ...rows.map(r => [r.id, r.name, r.party, r.ci, r.ci_standard, r.mean_share].map(cell).join(','))].join('\n');
   }
 
-  const api = {concentrationIndex, partyNumber, partyOf, candidateRows, filterRows, sortRows, toCsv};
+  const api = {concentrationIndex, wagstaffIndex, partyNumber, partyOf, candidateRows, filterRows, sortRows, toCsv};
   if (typeof module === 'object' && module.exports) module.exports = api;
   if (typeof document === 'undefined') return;
   global.ElectionConcentration = api;

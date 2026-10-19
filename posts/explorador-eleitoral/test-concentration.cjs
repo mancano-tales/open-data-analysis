@@ -48,3 +48,14 @@ assert.equal(real['13'].party, 'PT');
 console.log('test-concentration OK', real['13'].ci.toFixed(3), real['22'].ci.toFixed(3));
 assert.deepEqual(c.filterRows(rows, {minShare: 1}).map(r => r.id), ['1311', '2211'], 'minimum mean share');
 console.log('test-concentration minShare OK');
+
+// Wagstaff (2005): y = (0, 10)% in two equal groups: CI = 0.5, mu = 5% = 0.05, CI_W = 0.5 / 0.95.
+close(c.wagstaffIndex(pts([0, 10])), 0.5 / 0.95, 'Wagstaff normalization');
+close(c.wagstaffIndex(pts([7, 7])), 0, 'Wagstaff of equal shares');
+// A 50% candidate fully in the richer half: CI = 0.5 (bound 1 - mu), CI_W = 1.
+close(c.wagstaffIndex(pts([0, 100])), 1, 'Wagstaff reaches the bound');
+assert.equal(c.wagstaffIndex(pts([100, 100])), null, 'mu = 100%: undefined');
+const realRows = c.candidateRows(series, manifest, 2022);
+for (const r of realRows) if (r.ci != null) assert.ok(Math.abs(r.ci) >= Math.abs(r.ci_standard) - 1e-12);
+assert.match(c.toCsv(realRows).split('\n')[0], /indice_concentracao_wagstaff,indice_concentracao_padrao/);
+console.log('test-concentration Wagstaff OK');

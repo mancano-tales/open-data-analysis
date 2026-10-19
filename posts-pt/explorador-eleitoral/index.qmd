@@ -81,11 +81,10 @@ Esta página não afirma reproduzir exatamente o estimador do jornal.
 A tabela abaixo resume, para cada candidato da série escolhida no explorador,
 o **índice de concentração** da votação por renda. Ele vai de **−1** (votação
 toda nos setores mais pobres) a **+1** (toda nos mais ricos); **0** indica
-votação igual em todas as faixas de renda. É o índice de concentração
-tradicional: duas vezes a covariância entre a votação e o posto de renda dos
-setores, dividida pela votação média, sem as correções de Wagstaff ou de
-Erreygers. Por não depender do tamanho do candidato, permite comparar um
-deputado com 30 mil votos a outro com 300 mil.
+votação igual em todas as faixas de renda. É o índice de concentração com a
+normalização de Wagstaff (2005), explicada abaixo, que permite comparar na
+mesma escala um deputado com 30 mil votos e um candidato a presidente com
+metade dos votos.
 
 ::: {.callout-warning title="O que o índice mede"}
 Um índice positivo indica **votação maior em áreas mais ricas**, não que o
@@ -108,6 +107,81 @@ pode ser alterada.
 ```
 
 Clique no nome de um candidato para acrescentar a curva dele ao gráfico.
+
+### Como o índice é calculado
+
+Para um candidato, numere os centis de renda em ordem crescente,
+$t = 1, \dots, 100$. Em cada centil, $n_t$ é o número de setores com votação
+estimada e $y_t \in [0, 1]$ é a votação média do candidato nesses setores
+(a do gráfico, em proporção). Os pesos, o posto fracionário no ponto médio de
+cada centil e a média são
+
+$$
+f_t = \frac{n_t}{\sum_s n_s}, \qquad
+R_t = \sum_{s<t} f_s + \frac{f_t}{2}, \qquad
+\mu = \sum_t f_t\, y_t .
+$$
+
+O índice de concentração tradicional (Kakwani et al., 1997) é
+
+$$
+C = \frac{2}{\mu} \sum_t f_t\, y_t\, R_t - 1 = \frac{2\,\operatorname{cov}_f(y, R)}{\mu},
+$$
+
+o que equivale a $C = 1 - 2\int_0^1 L(p)\,dp$, em que $L(p)$ é a curva de
+concentração: a parcela acumulada da votação do candidato contra a parcela
+acumulada de setores, dos mais pobres aos mais ricos. A tabela mostra o índice
+normalizado de Wagstaff (2005):
+
+$$
+C_W = \frac{C}{1 - \mu}.
+$$
+
+Centis sem setores observados ficam de fora do cálculo; não entram como
+votação zero.
+
+### Por que a normalização de Wagstaff
+
+A votação de um setor não passa de 100%. Com uma variável limitada assim, o
+índice tradicional fica preso entre $\mu - 1$ e $1 - \mu$ (Wagstaff, 2005):
+um candidato com metade dos votos não pode passar de $\pm 0{,}5$, por mais
+concentrada que seja sua votação, enquanto um deputado com 1% pode chegar
+perto de $\pm 1$. Dividir por $1 - \mu$ devolve a todos o mesmo intervalo,
+de $-1$ a $1$, e torna comparáveis candidatos de tamanhos muito diferentes.
+
+- **Deputados.** Com votação média em geral abaixo de 2%, $1/(1-\mu)$ fica
+  perto de 1, e o índice quase coincide com o tradicional.
+- **Cargos majoritários.** Num segundo turno com dois candidatos, as votações
+  somam 100% em cada setor, e o índice de Wagstaff de um é exatamente o
+  simétrico do outro ($C_{W,A} = -C_{W,B}$). No segundo turno presidencial de
+  2022, com referência nacional, o tradicional dá $-0{,}109$ para Lula e
+  $+0{,}115$ para Bolsonaro; o de Wagstaff, $-0{,}224$ e $+0{,}224$.
+- **Por que não Erreygers (2009).** A correção de Erreygers multiplica o
+  índice por $4\mu$ e mede desigualdade **absoluta**: um candidato com o dobro
+  da votação teria quase o dobro do índice com a mesma distribuição entre as
+  faixas de renda. A tabela pergunta outra coisa: de onde vem a votação de
+  cada candidato em relação à sua própria média.
+
+O índice tradicional continua no CSV da tabela, na coluna
+`indice_concentracao_padrao`.
+
+### Referências
+
+Erreygers, G. (2009). Correcting the concentration index. *Journal of Health
+Economics, 28*(2), 504–515.
+
+Kakwani, N., Wagstaff, A., & van Doorslaer, E. (1997). Socioeconomic
+inequalities in health: Measurement, computation, and statistical inference.
+*Journal of Econometrics, 77*(1), 87–103.
+
+O'Donnell, O., van Doorslaer, E., Wagstaff, A., & Lindelow, M. (2008).
+*Analyzing health equity using household survey data: A guide to techniques
+and their implementation*. World Bank.
+
+Wagstaff, A. (2005). The bounds of the concentration index when the variable
+of interest is binary, with an application to immunization inequality.
+*Health Economics, 14*(4), 429–432.
+
 
 ## Como ler o gráfico
 
