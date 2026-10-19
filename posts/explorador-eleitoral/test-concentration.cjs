@@ -43,6 +43,9 @@ assert.match(c.toCsv(rows).split('\n')[0], /indice_concentracao/);
 // Real data sanity: 2022 presidential runoff, national reference.
 const series = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/series/2022-2-1-BR.json'), 'utf8'));
 const real = Object.fromEntries(c.candidateRows(series, manifest, 2022).map(r => [r.id, r]));
+const withLegend = {...series, candidates: [...series.candidates, {id: '13', name: 'Legenda', vote_type: 'party'}]};
+assert.equal(c.candidateRows(withLegend, manifest, 2022).length, series.candidates.length,
+  'party-list votes do not appear as candidates in the concentration table');
 assert.ok(real['13'].ci < 0 && real['22'].ci > 0, `Lula concentrated in poorer tracts, Bolsonaro in richer: ${real['13'].ci}, ${real['22'].ci}`);
 assert.equal(real['13'].party, 'PT');
 console.log('test-concentration OK', real['13'].ci.toFixed(3), real['22'].ci.toFixed(3));

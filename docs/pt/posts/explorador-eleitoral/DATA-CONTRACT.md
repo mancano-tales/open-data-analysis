@@ -164,6 +164,23 @@ ballot number starts with that two-digit party number (or whose
 `{"<year>": {"<number>": "<acronym>"}}` for labels only; matching always uses
 the number.
 
+For offices 6, 7 and 8, the exporter includes party-list rows with
+`vote_type: "party"` and the two-digit party number as `id`. The manifest marks
+these series `party_series_complete: true`; the comparator offers proportional
+offices only with that marker, so older nominal-only exports cannot yield an
+incomplete party curve. The explorer's candidate controls and concentration
+table exclude party-list rows. The table therefore reports candidate indices
+only; party-list votes remain in the vote-share denominator.
+
+The 2010/2014 availability ledger still lists 210 proportional series as
+unavailable because the legacy official zone totals do not determine each
+polling place's final party-list votes. It also lists 80 governor series without
+an accepted certificate: 62 lack a certified ordinary contest and 18 have
+different official candidate and party nominal totals. These counts include
+both income references and reflect the existing ledger, not new source-file
+verification. The legal evidence and counterexample are recorded in
+`shared-pipeline/eleicoes/agregacao/validacao/LEGACY-2010-2014.md`.
+
 ## Concentration (`concentration.js`)
 
 The table below the explorer reads the series already loaded by `app.js`

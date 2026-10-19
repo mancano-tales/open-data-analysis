@@ -134,6 +134,23 @@ const textContent=element=>[element.textContent||'',...(element.children||[]).ma
     await change(3,'DF');assert.equal(territoryNotice.hidden,true);assert.equal(territoryNotice.textContent,'');
     assert.equal(h.errors.length,0);
   }
+  // Party-list rows are present in the downloaded series but are never candidate controls.
+  for(const lang of ['pt','en']){
+    const entry=fixtureEntries.find(e=>e.office==='6'&&e.uf==='AC'&&!e.income_reference);
+    const payload=JSON.parse(JSON.stringify(fixtures[`data/${entry.url}`]));
+    payload.candidates[0].id='13111';
+    payload.points.forEach(point=>{if(point.candidate_id==='13')point.candidate_id='13111';});
+    payload.candidates.push({id:'13',name:'Party list',vote_type:'party'});
+    payload.points.push(...Array.from({length:100},(_,i)=>({candidate_id:'13',centil:i+1,renda_sm:1,n_setores:1,n_setores_total:1,votacao:2})));
+    const only={'data/manifest.json':{schema_version:1,series:[entry]},[`data/${entry.url}`]:payload};
+    const h=harness(lang,null,only);vm.runInNewContext(fs.readFileSync(path.join(source,'app.js'),'utf8'),h.context);await flush();await flush();
+    const controls=h.selectors.fieldset.children.find(el=>el.className==='candidate-tools');
+    assert.equal(h.selectors['.candidate-list'].children.length,2);
+    assert.equal(h.draws.at(-1).traces.length,2);
+    controls.children[2].events.click();assert.equal(h.draws.at(-1).traces.length,2);
+    controls.children[0].events.click();assert.equal(h.draws.at(-1).traces.length,2);
+    assert.equal(h.errors.length,0);
+  }
   // More than the visible-list cap: bulk selection must include hidden records.
   for(const lang of ['pt','en']){
     const many=JSON.parse(JSON.stringify(fixtures));const entry=fixtureEntries[0];

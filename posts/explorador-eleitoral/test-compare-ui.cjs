@@ -21,13 +21,13 @@ const entries=[entry(2010,'1','BR','national',2022),entry(2014,'1','BR','nationa
   entry(2010,'3','AC','state',2022),entry(2014,'3','AC','state',2022),
   entry(2010,'3','AC','state',2010),entry(2014,'3','AC','state',2010),
   entry(2010,'3','DF','national',2022),entry(2014,'3','DF','national',2022)];
-for(const office of ['6','7','8'])entries.push(entry(2010,office,'BR','national',2022));
+for(const office of ['6','7','8'])for(const year of [2010,2014])entries.push({...entry(year,office,'BR','national',2022),party_series_complete:true});
 for(const e of entries)e.url=`${e.id}.json`;
 const payload=e=>({metadata:{income_year:e.census_year,income_reference:e.income_reference,
   percentile_scope:e.income_reference==='national'?'BR':e.uf,office:e.office,uf:e.uf,year:e.year,round:e.round},
-  candidates:[{id:'13',party_number:13},{id:'22',party_number:22}],
-  points:[13,22].flatMap(id=>Array.from({length:100},(_,i)=>({candidate_id:String(id),centil:i+1,
-    votacao:i===49?null:(id===13?(e.year===2010?30:40):(e.year===2010?20:10)),
+  candidates:[{id:'13',party_number:13,vote_type:'party'},{id:'13111',party_number:13,vote_type:'candidate'},{id:'22',party_number:22}],
+  points:['13','13111','22'].flatMap(id=>Array.from({length:100},(_,i)=>({candidate_id:id,centil:i+1,
+    votacao:i===49?null:(id==='13'?2:id==='13111'?(e.year===2010?30:40):(e.year===2010?20:10)),
     n_setores:8,n_setores_total:10,renda_sm:1})))});
 const files=new Map(entries.map(e=>[`data/${e.url}`,payload(e)]));
 files.set('data/manifest.json',{schema_version:1,series:entries,parties:{'2010':{'13':'PT'},'2014':{'13':'PT'}}});
@@ -47,11 +47,10 @@ async function run(lang){
   const controls=Object.fromEntries(['office','uf','income_reference','census_year','a','b','party'].map((k,i)=>[k,elements['.compare-controls'].children[i].children[0]]));
   const change=async(key,value)=>{controls[key].value=value;controls[key].events.change();await flush();await flush();};
   assert.equal(errors.length,0);
-  assert.deepEqual(controls.office.children.map(o=>o.value),['1','3']);
-  assert.ok(['6','7','8'].every(office=>!controls.office.children.some(o=>o.value===office)));
+  assert.deepEqual(controls.office.children.map(o=>o.value),['1','3','6','7','8']);
   assert.equal(root.children[1].textContent,
-    lang==='pt'?'O comparador inclui só cargos majoritários (presidente, governador e senador). Nos cargos proporcionais, as séries publicadas não separam os votos de legenda, e a curva de um partido ficaria incompleta.':
-      'The comparator covers majoritarian offices only (president, governor and senator). For proportional offices, the published series do not separate party-list votes, so a party curve would be incomplete.');
+    lang==='pt'?'Nos cargos proporcionais, a curva do partido soma votos nominais e de legenda.':
+      'For proportional offices, the party curve adds candidate and party-list votes.');
   assert.match(controls.party.children.find(o=>o.value==='13').textContent,/13.*PT/);
   assert.ok(draws.length);assert.ok(draws.every(d=>d.chart===elements['.compare-chart']&&d.chart!==mainChart));
   assert.equal(draws.at(-1).traces[0].y[0],10,'B minus A');
@@ -79,6 +78,11 @@ async function run(lang){
   assert.equal(controls.office.value,'3');assert.equal(controls.uf.value,'AC');assert.equal(controls.income_reference.value,'state');
   await change('census_year','2022');await change('uf','DF');assert.equal(controls.uf.value,'DF');
   assert.equal(controls.income_reference.value,'national');
+  for(const office of ['6','7','8']){
+    await change('office',office);
+    assert.equal(controls.office.value,office);
+    assert.equal(draws.at(-1).traces[0].customdata[0][0],(32).toFixed(2).replace('.',lang==='pt'?',':'.'));
+  }
   // A party missing from one election must never be offered or plotted.
   const missing=files.get(`data/${entries[1].url}`);missing.candidates=missing.candidates.filter(c=>c.id!=='22');
   missing.points=missing.points.filter(p=>p.candidate_id!=='22');
