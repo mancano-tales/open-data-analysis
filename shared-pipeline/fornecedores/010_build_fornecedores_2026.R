@@ -46,7 +46,9 @@ stopifnot(!anyNA(d$v))
 d <- d[v > 0 & DS_TIPO_FORNECEDOR != "#NULO"]
 
 # Identidade do fornecedor: CNPJ (pessoa jurídica) ou grupo anônimo (pessoa física).
-d[, pf := DS_TIPO_FORNECEDOR == "PESSOA FÍSICA"]
+# Qualquer documento com 11 dígitos é CPF, mesmo quando o tipo vem com outro rótulo.
+d[, doc_digits := gsub("[^0-9]", "", NR_CPF_CNPJ_FORNECEDOR)]
+d[, pf := DS_TIPO_FORNECEDOR == "PESSOA FÍSICA" | nchar(doc_digits) <= 11]
 d[, nome := fifelse(NM_FORNECEDOR_RFB %in% c("", "#NULO"), NM_FORNECEDOR, NM_FORNECEDOR_RFB)]
 d[, chave := fifelse(pf, "PF", NR_CPF_CNPJ_FORNECEDOR)]
 d[(pf), nome := "Pessoas físicas (soma, nomes omitidos)"]
@@ -150,6 +152,11 @@ resumo <- list(
   ufs = sort(unique(cand$uf))
 )
 write_json(resumo, file.path(out, "resumo.json"), auto_unbox = TRUE, digits = NA, pretty = TRUE)
+
+# Trava de privacidade: nenhum documento publicado pode ter formato de CPF.
+json_text <- vapply(list.files(out, "[.]json$", recursive = TRUE, full.names = TRUE),
+                    function(f) paste(readLines(f, warn = FALSE), collapse = ""), "")
+if (any(grepl('"doc":"[0-9]{1,11}"', json_text))) stop("CPF-shaped supplier document in published data.")
 
 cat(sprintf("TSE %s | total R$ %.1f mi | Meta direta R$ %.1f mi (%.1f%%) | %d candidatos\n",
             generated, geral$total / 1e6, geral$meta / 1e6, 100 * geral$meta / geral$total,

@@ -3,7 +3,7 @@ title: "Quem são os fornecedores das campanhas de 2026"
 date: 2026-10-19
 draft: false
 categories: [Eleições, Financiamento de campanha, TSE]
-description: "Os maiores fornecedores de cada candidato e partido em 2026, segundo as despesas contratadas declaradas ao TSE, com um recorte do que a Meta recebeu diretamente."
+description: "Os maiores fornecedores de cada candidato e partido em 2026, segundo as despesas contratadas declaradas ao TSE, com um recorte do que foi contratado diretamente com a Meta."
 format:
   html:
     css:
@@ -26,7 +26,7 @@ format:
 Até 18 de outubro de 2026, 14.867 candidatos declararam ao TSE
 **R\$ 4,64 bilhões em despesas contratadas**. O maior fornecedor individual das
 campanhas é a **Meta** (Facebook Serviços Online do Brasil): **R\$ 289 milhões
-pagos diretamente, 6,2% de tudo o que foi contratado**, por 6.131 candidatos.
+contratados diretamente, 6,2% de tudo o que foi contratado**, por 6.131 candidatos.
 Nenhuma gráfica, agência ou produtora chega perto: a segunda empresa da lista é
 a dLocal, intermediária de pagamentos de anúncios, com R\$ 102 milhões.
 
@@ -45,7 +45,7 @@ de lançamento, duplicidades e retificações posteriores são possíveis.
 :::
 
 ::: {.callout-note title="O que conta como “Meta direta”"}
-Somamos só os pagamentos feitos aos CNPJs da Facebook Serviços Online do Brasil
+Somamos só as despesas contratadas com os CNPJs da Facebook Serviços Online do Brasil
 (raiz 13.347.016) e da Meta Platforms. **Ficam de fora** os anúncios que chegam à
 Meta por outros caminhos:
 
@@ -55,24 +55,24 @@ Meta por outros caminhos:
 - **Agências** que compram mídia em nome da campanha. Para o TSE, a fornecedora é
   a agência, não a plataforma.
 
-O valor direto é, portanto, um piso do que a Meta recebeu das campanhas.
+O valor direto é, portanto, um piso do que as campanhas contrataram com a Meta.
 :::
 
-::: {.callout-tip title="Estimativa: entre R\$ 289 e R\$ 404 milhões para a Meta"}
+::: {.callout-tip title="Estimativa: entre R\$ 289 e R\$ 404 milhões contratados com a Meta"}
 As campanhas contrataram **R\$ 415 milhões em impulsionamento de conteúdo**
-(categoria do TSE), por 7.557 candidatos. A Meta recebeu diretamente R\$ 288
-milhões desse valor; dLocal e Ebanx, outros R\$ 114 milhões.
+(categoria do TSE), por 7.557 candidatos. Desse valor, R\$ 288 milhões foram
+contratados diretamente com a Meta e R\$ 114 milhões com dLocal e Ebanx.
 
-Somando os intermediários, a Meta teria recebido **até R\$ 404 milhões, 8,7% de
+Somando os intermediários, as campanhas teriam contratado com a Meta **até R\$ 404 milhões, 8,7% de
 toda a despesa contratada e cerca de 97% do impulsionamento**. O teto supõe que
-todo o valor pago aos intermediários foi para a Meta. É plausível: nenhuma
-descrição desses pagamentos cita outra plataforma, o Google deixou de vender
+todo o valor contratado com os intermediários foi para a Meta. É plausível: nenhuma
+descrição dessas despesas cita outra plataforma, o Google deixou de vender
 anúncios políticos no Brasil em 2024 e o TikTok não aceita anúncios políticos.
-Mas os dados não comprovam o destino final de cada pagamento.
+Mas os dados não comprovam o destino final de cada despesa.
 
 O impulsionamento no WhatsApp, quando existe, é comprado pela própria Meta
 (anúncios que abrem conversa) e já entra nessa conta. O Kwai (Joyo Tecnologia)
-recebeu R\$ 2 milhões.
+teve R\$ 2 milhões contratados.
 :::
 
 ## A Meta nas campanhas
@@ -83,7 +83,7 @@ recebeu R\$ 2 milhões.
 
 O peso da Meta varia por cargo: 5% da despesa de governador e deputado federal,
 7% de presidente e deputado estadual, 9% de senador e 14% de deputado distrital.
-Por partido, o PL é quem mais pagou à Meta em valor (R\$ 64 milhões); PT e PL
+Por partido, o PL é quem mais contratou com a Meta em valor (R\$ 64 milhões); PT e PL
 destinam uma parcela parecida do que gastam, perto de 7,5%. A porcentagem na
 tabela é a parte da despesa total do candidato que foi para a Meta.
 
@@ -129,5 +129,5 @@ baixa o arquivo e produz os agregados usados aqui:
 
 - [Resumo geral (JSON)](../../../posts/fornecedores-campanha-2026/data/resumo.json)
 - [Totais por candidato, com a Meta (CSV)](../../../posts/fornecedores-campanha-2026/data/candidatos.csv)
-- [Candidatos que pagaram a Meta (CSV)](../../../posts/fornecedores-campanha-2026/data/meta-candidatos.csv)
+- [Candidatos que contrataram a Meta (CSV)](../../../posts/fornecedores-campanha-2026/data/meta-candidatos.csv)
 - [Fornecedores por partido (JSON)](../../../posts/fornecedores-campanha-2026/data/partidos.json)
