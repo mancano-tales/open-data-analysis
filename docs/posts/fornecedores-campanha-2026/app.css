@@ -12,7 +12,14 @@
 .fornecedores-app .kpis div:nth-child(2) { background: #e8f0fa; }
 .fornecedores-app dt { font-size: .75rem; font-weight: 600; color: #4d5d6b; }
 .fornecedores-app dd { margin: .15rem 0 0; font-size: 1.05rem; font-weight: 700; font-variant-numeric: tabular-nums; }
-.fornecedores-app .chart { width: 100%; min-height: 260px; }
+.fornecedores-app .chart { width: 100%; margin: 1.4rem 0 .4rem; }
+.fornecedores-app .fig-head { margin-bottom: .3rem; }
+.fornecedores-app .fig-title { margin: 0; font-size: 1rem; font-weight: 700; color: #222; }
+.fornecedores-app .fig-sub { margin: .1rem 0 0; font-size: .85rem; color: #555; }
+.fornecedores-app .fig-legend { display: flex; flex-wrap: wrap; gap: .3rem 1rem; margin: .45rem 0 0; font-size: .8rem; color: #444; }
+.fornecedores-app .fig-legend i { display: inline-block; width: .75rem; height: .75rem; margin-right: .35rem; border-radius: 2px; vertical-align: -.08rem; }
+.fornecedores-app .fig-plot { width: 100%; }
+.fornecedores-app .fig-caption { margin: .2rem 0 0; font-size: .75rem; color: #666; }
 .fornecedores-app .table-wrap { max-height: 520px; overflow: auto; border: 1px solid #e0e4e8; border-radius: 8px; }
 .fornecedores-app table { width: 100%; border-collapse: collapse; font-size: .85rem; }
 .fornecedores-app th { position: sticky; top: 0; background: #f4f6f8; text-align: left; padding: 0; }
