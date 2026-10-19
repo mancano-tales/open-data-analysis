@@ -48,6 +48,13 @@ const textContent=element=>[element.textContent||'',...(element.children||[]).ma
   search.value='unmatched-name';search.events.input();assert.equal(draws.at(-1).traces.length,n-1);
   const tools=selectors.fieldset.children.find(el=>el.className==='candidate-tools');tools.children[1].events.click();assert.equal(draws.at(-1).traces.length,0);assert.match(selectors['.chart-status'].textContent,/Selecione/);
   tools.children[0].events.click();assert.equal(draws.at(-1).traces.length,n);
+  // Bulk actions include every record, independently of the active search.
+  tools.children[2].events.click();
+  const allCount=draws.at(-1).traces.length;assert.ok(allCount>n);
+  assert.match(selectors.fieldset.children.find(el=>el.className==='candidate-tools').children[2].textContent,/Incluir todos/);
+  assert.equal(selectors['.candidate-list'].children.length,1,'Search stays active');
+  tools.children[1].events.click();assert.equal(draws.at(-1).traces.length,0);
+  tools.children[0].events.click();
   selects[0].events.change();await flush();await flush();assert.equal(draws.at(-1).traces.length,n);
   assert.equal(selectors['.download-links'].children.length,2);assert.equal(errors.length,0);
   // Explicit in-memory fixture: numeric reconciliation remains successful,
@@ -104,6 +111,23 @@ const textContent=element=>[element.textContent||'',...(element.children||[]).ma
     assert.match(textContent(territoryNotice),lang==='pt'?/território exibido mudou/:/displayed territory changed/);
     assert.match(h.draws.at(-1).layout.xaxis.title.text,/AC/);
     await change(3,'DF');assert.equal(territoryNotice.hidden,true);assert.equal(territoryNotice.textContent,'');
+    assert.equal(h.errors.length,0);
+  }
+  // More than the visible-list cap: bulk selection must include hidden records.
+  for(const lang of ['pt','en']){
+    const many=JSON.parse(JSON.stringify(fixtures));const entry=fixtureEntries[0];
+    const payload=many[`data/${entry.url}`];
+    payload.candidates=Array.from({length:105},(_,i)=>({id:`record-${i}`,name:`Test record ${i}`}));
+    payload.points=payload.candidates.map(c=>({candidate_id:c.id,centil:1,renda_sm:1,n_setores:1,n_setores_total:1,votacao:1}));
+    const h=harness(lang,null,many);vm.runInNewContext(fs.readFileSync(path.join(source,'app.js'),'utf8'),h.context);await flush();await flush();
+    const tools=h.selectors.fieldset.children.find(el=>el.className==='candidate-tools');
+    const search=h.selectors.fieldset.children.find(el=>el.className==='candidate-search').children[0];
+    search.value='Test record 104';search.events.input();
+    tools.children[2].events.click();assert.equal(h.draws.at(-1).traces.length,105);
+    assert.equal(search.value,'Test record 104');assert.equal(h.selectors['.candidate-list'].children.length,1);
+    tools.children[1].events.click();assert.equal(h.draws.at(-1).traces.length,0);
+    search.value='';search.events.input();assert.equal(h.selectors['.candidate-list'].children.length,100);
+    assert.equal(h.selectors['.candidate-list'].children.filter(x=>x.children[0]?.checked).length,0);
     assert.equal(h.errors.length,0);
   }
   // Browser gzip decoding, including a host that already decoded transport gzip.

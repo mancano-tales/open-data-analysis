@@ -196,6 +196,7 @@ Nota
 </section>
 <section id="como-ler-o-gráfico" class="level2">
 <h2 class="anchored" data-anchor-id="como-ler-o-gráfico">Como ler o gráfico</h2>
+<p><strong>Incluir todos</strong> e <strong>Limpar seleção</strong> afetam todos os candidatos da disputa selecionada, mesmo os ocultos pela busca. A busca continua ativa e os botões não alteram os votos nem os denominadores.</p>
 <p>Passe o cursor sobre uma curva para consultar a votação, a renda média em salários mínimos de 2022 e o número de setores. Marque ou desmarque os candidatos para comparar as curvas. O botão de câmera exporta uma imagem PNG. A busca aceita nome, número e partido. A seleção inicial mostra os seis candidatos com maior média das proporções dos centis quando há mais de seis; essa ordem não é um ranking dos totais de votos. Buscar não apaga as curvas já selecionadas. Os links permitem baixar os valores exibidos e o manifesto das séries disponíveis.</p>
 <p>Cada setor recebe a proporção de votos do local de votação elegível mais próximo, dentro do mesmo município e a até 5 km. A curva mostra a média não ponderada entre os setores de cada centil. O denominador inclui <strong>todos os votos nominais e de legenda legalmente válidos para o cargo</strong>, inclusive os de candidatos cujas curvas estejam ocultas. Votos brancos e nulos são excluídos. No Senado, os percentuais usam votos válidos, não eleitores únicos; o número de escolhas para senador varia entre eleições. Um local de votação pode fornecer estimativas para mais de um setor.</p>
 <p>O painel de reconciliação trata dos totais eleitorais de entrada: compara os votos processados com os agregados oficiais do TSE para a disputa selecionada. A aprovação dessa conferência não valida a geocodificação, o estimador de proximidade, a atribuição aos setores ou a reprodução do jornal. Dados sem reconciliação não devem ser descritos como reconciliados.</p>
@@ -613,7 +614,7 @@ Nota
   </script>
 </div> <!-- /content -->
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-<script src="../../posts/explorador-eleitoral/app.js?v=historical-2018-v2"></script>
+<script src="../../posts/explorador-eleitoral/app.js?v=candidate-controls-v1"></script>
 <script>
 document.querySelectorAll('.navbar .nav-link').forEach(link => {
   if (link.textContent.trim() === 'English') link.href = document.querySelector('.language-switch').href;

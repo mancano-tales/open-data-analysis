@@ -197,6 +197,7 @@ Note
 </section>
 <section id="read-the-chart" class="level2">
 <h2 class="anchored" data-anchor-id="read-the-chart">Read the chart</h2>
+<p><strong>Include all</strong> and <strong>Clear selection</strong> affect every candidate in the selected contest, including those hidden by search. Search stays active and the buttons do not change votes or denominators.</p>
 <p>Hover over a curve to inspect vote share, mean income in 2022 minimum wages, and the number of tracts. Toggle candidates to compare curves. The chart’s camera button exports a PNG. Candidate search accepts names, ballot numbers and parties; the initial selection shows the six highest mean tract shares when more than six candidates are available. Search results do not clear the selected curves. This ordering is not a ranking of total votes. Download links provide the displayed aggregate series and the complete availability manifest.</p>
 <p>Each tract receives the vote shares of its nearest eligible polling place, within the same municipality and at most 5 km away. The displayed share is the unweighted mean across tracts in each percentile. The denominator includes <strong>all legally valid nominal and party-list votes applicable to that office</strong>, including candidates whose curves are hidden. Blank and invalid votes are excluded. Senate vote percentages use valid votes, rather than unique voters; the number of senatorial choices varies by election. A polling place may supply estimates for multiple tracts.</p>
 <p>The reconciliation panel concerns electoral input totals: it compares the processed votes with official TSE aggregates for the selected contest. A successful check does not validate the geocoding, the proximity estimator, the vote attribution to tracts or the newspaper reproduction. Unreconciled or unaudited data must not be described as reconciled.</p>
@@ -614,7 +615,7 @@ Note
   </script>
 </div> <!-- /content -->
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-<script src="app.js?v=historical-2018-v2"></script>
+<script src="app.js?v=candidate-controls-v1"></script>
 <script>
 document.querySelectorAll('.navbar .nav-link').forEach(link => {
   if (link.textContent.trim() === 'Português') link.href = document.querySelector('.language-switch').href;
