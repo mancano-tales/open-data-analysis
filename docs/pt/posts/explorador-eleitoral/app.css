@@ -36,3 +36,15 @@
 .language-switch:focus-visible { outline: 3px solid #dd9e00; outline-offset: 3px; }
 body:has(.language-switch) { padding-bottom: 5rem; }
 @media print { .language-switch { display: none; } }
+.election-compare { margin: 1.5rem 0; padding: clamp(.7rem, 2vw, 1.6rem); border: 1px solid #e0e4e8; border-radius: 12px; background: #fff; color: #253441; }
+.election-compare .compare-controls { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 1rem; }
+.election-compare label { display: grid; min-width: 0; gap: .3rem; font-size: .85rem; font-weight: 600; }
+.election-compare label[hidden] { display: none; }
+.election-compare select { width: 100%; min-height: 42px; padding: .55rem; background: #fff; color: inherit; border: 1px solid #aeb9c2; border-radius: 5px; font: inherit; }
+.election-compare :is(a,select):focus-visible { outline: 3px solid #225a9b; outline-offset: 3px; }
+.election-compare .compare-status { padding: .5rem 0; font-size: .9rem; }
+.election-compare .compare-notice { margin: .75rem 0; color: #634700; font-size: .9rem; line-height: 1.5; }
+.election-compare .compare-chart { width: 100%; min-height: 340px; }
+.election-compare .compare-downloads { font-size: .9rem; }
+.election-compare .error { color: #9e2626; }
+@media(max-width:600px) { .election-compare .compare-controls { grid-template-columns: repeat(2,minmax(0,1fr)); gap: .6rem; } }

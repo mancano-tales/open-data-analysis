@@ -203,7 +203,30 @@ Nota
 <p>Cada setor recebe a proporção de votos do local de votação elegível mais próximo, dentro do mesmo município e a até 5 km. A curva mostra a média não ponderada entre os setores de cada centil. O denominador inclui <strong>todos os votos nominais e de legenda legalmente válidos para o cargo</strong>, inclusive os de candidatos cujas curvas estejam ocultas. Votos brancos e nulos são excluídos. No Senado, os percentuais usam votos válidos, não eleitores únicos; o número de escolhas para senador varia entre eleições. Um local de votação pode fornecer estimativas para mais de um setor.</p>
 <p>O painel de reconciliação trata dos totais eleitorais de entrada: compara os votos processados com os agregados oficiais do TSE para a disputa selecionada. A aprovação dessa conferência não valida a geocodificação, o estimador de proximidade, a atribuição aos setores ou a reprodução do jornal. Dados sem reconciliação não devem ser descritos como reconciliados.</p>
 <p>A associação territorial não identifica como pessoas de determinada renda votaram. A comparação entre eleições deve manter a referência de renda de 2022 e documentar mudanças na cobertura e nos locais de votação. As séries históricas ampliadas ordenam todos os setores com renda elegível antes das exclusões eleitorais. Em <strong>Referência de renda</strong>, “Dentro da UF” ordena somente os setores daquela UF: o extremo rico significa os mais ricos do próprio estado. Essa é a opção padrão para cargos estaduais. “Brasil” mantém a posição dos setores na distribuição nacional, permitindo comparar níveis de renda entre territórios. Um setor rico dentro de um estado pode ocupar uma posição intermediária no Brasil. A referência escolhida altera os grupos, sem alterar os votos atribuídos a cada setor; não é uma contagem de votos por faixa de renda. Compare eleições mantendo a mesma referência selecionada. A renda média do centil considera o grupo completo com renda elegível no território selecionado; o número de setores com votação estimada pode ser menor. Ausência de ligação espacial não é representada como votação zero.</p>
-<p>A renda é medida em 2022 em todas as eleições. As curvas históricas descrevem votações passadas em áreas ordenadas pela renda de 2022; não medem a renda na época de cada eleição. Fontes e metodologia devem documentar a geografia utilizada e eventuais aproximações dos locais de votação históricos. Quando a fonte oferece somente o cadastro do primeiro turno, o segundo usa esse cadastro do mesmo ano, com aviso no painel de cobertura. Mudanças de endereço com a mesma chave de local não podem ser identificadas nesse caso.</p>
+<p>Por padrão, a renda é medida em 2022 em todas as eleições. Para 2010 e 2014, o seletor <strong>Censo de referência</strong> também oferece a renda e os setores do Censo 2010, contemporâneos dessas eleições; curvas de censos diferentes não devem ser comparadas entre si, porque os setores e as variáveis de renda mudaram. As curvas históricas descrevem votações passadas em áreas ordenadas pela renda de 2022; não medem a renda na época de cada eleição. Fontes e metodologia devem documentar a geografia utilizada e eventuais aproximações dos locais de votação históricos. Quando a fonte oferece somente o cadastro do primeiro turno, o segundo usa esse cadastro do mesmo ano, com aviso no painel de cobertura. Mudanças de endereço com a mesma chave de local não podem ser identificadas nesse caso.</p>
+</section>
+<section id="comparar-eleições" class="level2">
+<h2 class="anchored" data-anchor-id="comparar-eleições">Comparar eleições</h2>
+<p>Abaixo do explorador, o comparador mostra <strong>quanto a votação de um partido mudou entre duas eleições em cada centil de renda</strong>. Cada barra é a votação na eleição B menos a votação na eleição A, em pontos percentuais. Barras azuis indicam ganho; barras cor de tijolo, perda. Centis sem estimativa em uma das eleições ficam em cinza, sem valor.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="O que a diferença mede">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>O que a diferença mede
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A comparação usa <strong>os mesmos grupos de setores</strong> nas duas eleições, com a renda do censo selecionado. Ela não mede a renda da época de cada eleição. A diferença combina mudanças de voto, de eleitorado e da rede de locais de votação; não mostra que as mesmas pessoas mudaram de voto. Só podem ser comparadas séries do mesmo cargo, território, referência de renda e censo. A comparação é feita pelo número do partido: quando um partido mudou de nome ou se fundiu a outro, o número pode representar organizações diferentes em cada eleição.</p>
+</div>
+</div>
+<section class="election-compare" data-lang="pt" data-base="../../../posts/explorador-eleitoral/data/" aria-label="Comparador de eleições por centil de renda">
+  <div class="compare-controls"></div>
+  <p class="compare-status" role="status" aria-live="polite">Carregando a comparação…</p>
+  <div class="compare-chart" role="region" aria-label="Diferença de votação por centil de renda entre duas eleições"></div>
+  <div class="compare-downloads"></div>
+</section>
 </section>
 <section id="reprodução-e-expansão" class="level2">
 <h2 class="anchored" data-anchor-id="reprodução-e-expansão">Reprodução e expansão</h2>
@@ -616,7 +639,8 @@ Nota
   </script>
 </div> <!-- /content -->
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-<script src="../../posts/explorador-eleitoral/app.js?v=independent-panels-v1"></script>
+<script src="../../posts/explorador-eleitoral/app.js?v=census-compare-v2"></script>
+<script src="../../posts/explorador-eleitoral/compare.js?v=census-compare-v2"></script>
 <script>
 document.querySelectorAll('.navbar .nav-link').forEach(link => {
   if (link.textContent.trim() === 'English') link.href = document.querySelector('.language-switch').href;

@@ -1,5 +1,6 @@
 # Fixed Census-2022 income ranks and memory-bounded electoral aggregation.
 # Source from the repository root. No downloads or side effects on source().
+source("shared-pipeline/eleicoes/agregacao/censo-referencia.R", encoding="UTF-8")
 eleicao_require <- function() {
   for (pkg in c("data.table", "jsonlite")) {
     if (!requireNamespace(pkg, quietly = TRUE)) stop("Install package: ", pkg)
@@ -26,6 +27,17 @@ eleicao_income_universe <- function(renda) {
   if (anyNA(x$code_tract) || anyDuplicated(x$code_tract)) stop("Missing/duplicate census tract")
   x <- x[!is.na(V06001) & V06001 > 0 & is.finite(V06004) & V06004 > 0,
          .(code_tract, income = V06004)]
+  if (nrow(x) < 100L) stop("At least 100 eligible tracts required")
+  x[, uf := unname(eleicao_ufs[substr(code_tract, 1L, 2L)])]
+  if (anyNA(x$uf)) stop("Unknown IBGE state code in census tracts")
+  data.table::setorder(x, income, code_tract)
+  x[, centil := as.integer(floor((seq_len(.N) - 1L) * 100 / .N) + 1L)]
+  x[]
+}
+
+eleicao_reference_universe <- function(renda, census_year = 2022L) {
+  if (as.integer(census_year) == 2022L) return(eleicao_income_universe(renda))
+  x <- eleicao_censo_universe(renda, census_year)[, .(code_tract, income)]
   if (nrow(x) < 100L) stop("At least 100 eligible tracts required")
   x[, uf := unname(eleicao_ufs[substr(code_tract, 1L, 2L)])]
   if (anyNA(x$uf)) stop("Unknown IBGE state code in census tracts")
@@ -104,8 +116,11 @@ eleicao_vote_audit <- function(votes, year, round, office, uf = "BR") {
 eleicao_aggregate_contest <- function(votes, universe, links, year, round, office,
                                       uf = "BR", max_distance_m = 5000,
                                       sources = list(), include_party_series = FALSE,
-                                      require_reconciled = TRUE, income_reference = "national") {
+                                      require_reconciled = TRUE, income_reference = "national",
+                                      census_year = 2022L) {
   eleicao_require()
+  census <- eleicao_censo(census_year)
+  if (!eleicao_censo_allowed(census_year, year)) stop("Census reference unavailable for election")
   year_arg <- as.integer(year); round_arg <- as.integer(round); office_arg <- as.integer(office)
   uf_arg <- toupper(uf)
   income_reference <- as.character(income_reference)
@@ -162,7 +177,7 @@ eleicao_aggregate_contest <- function(votes, universe, links, year, round, offic
     u[, centil := as.integer(floor((seq_len(.N) - 1L) * 100 / .N) + 1L)]
   }
   # Census labels are computed from the COMPLETE group, before vote/spatial exclusions.
-  census_groups <- u[, .(renda_sm = mean(income) / 1212, n_setores_total = .N), by = centil]
+  census_groups <- u[, .(renda_sm = mean(income) / census$minimum_wage_brl, n_setores_total = .N), by = centil]
   census_groups <- merge(data.table::data.table(centil = 1:100), census_groups, by = "centil", all.x = TRUE)
   census_groups[is.na(n_setores_total), n_setores_total := 0L]
   l <- data.table::copy(data.table::as.data.table(links))
@@ -201,7 +216,7 @@ eleicao_aggregate_contest <- function(votes, universe, links, year, round, offic
     income_definition = "Rendimento nominal médio mensal dos responsáveis pelos domicílios do setor (V06004), Censo 2022; salários mínimos de 2022 (R$ 1.212).",
     income_reference = income_reference,
     percentile_scope = if (income_reference == "state") uf_arg else "BR",
-    income_year = 2022L, minimum_wage_brl = 1212,
+    income_year = census$census_year, minimum_wage_brl = census$minimum_wage_brl,
     year = year_arg, round = round_arg, office = as.character(office_arg), uf = uf_arg,
     max_distance_m = max_distance_m,
     denominator = if (proportional) "Soma dos votos nominais e de legenda do cargo/local, excluídos os códigos especiais 95/96/97" else "Soma dos votos dos candidatos do cargo/local, excluídos os códigos especiais 95/96/97",
@@ -211,6 +226,7 @@ eleicao_aggregate_contest <- function(votes, universe, links, year, round, offic
     coverage = list(included_tracts = sum(base$n_setores), total_tracts = sum(base$n_setores_total),
       observed_places = data.table::uniqueN(weights$place_key), unlocated_valid_votes = unlocated_votes),
     sources = sources)
+  if (census$census_year != 2022L) metadata$income_definition <- census$income_definition
   list(metadata = metadata, candidates = as.data.frame(candidates), points = as.data.frame(points))
 }
 
@@ -219,12 +235,15 @@ eleicao_manifest_item <- function(dataset, url) {
   income_reference <- if (is.null(m$income_reference)) "national" else m$income_reference
   id <- paste(m$year, m$round, m$office, m$uf, sep = "-")
   if (income_reference == "state") id <- paste0(id, "-state")
+  if (!is.null(m$income_year) && m$income_year != 2022L) id <- eleicao_censo_series_id(id, m$income_year)
   office_label <- unname(eleicao_office_labels[m$office])
-  list(id = id, year = m$year,
+  item <- list(id = id, year = m$year,
        round = m$round, office = m$office, office_label = office_label, uf = m$uf,
        income_reference = income_reference,
        label = paste(m$year, paste0(m$round, "º turno"), office_label, m$uf, sep = " · "),
        url = url, status = "available")
+  if (!is.null(m$income_year) && m$income_year != 2022L) item$census_year <- m$income_year
+  item
 }
 
 eleicao_write_dataset <- function(dataset, path, url = basename(path)) {

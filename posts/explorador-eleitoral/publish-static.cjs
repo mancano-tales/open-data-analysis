@@ -95,6 +95,15 @@ async function publish({repoRoot=path.resolve(__dirname,'../..'),apply=false,pru
     compressedBytes+=(await fs.stat(file.destination)).size;
   }
   if(await exists(below(sourceRoot,'availability.csv')))await fs.copyFile(below(sourceRoot,'availability.csv'),below(publishedRoot,'availability.csv'));
+  for(const asset of ['app.js','app.css','compare.js']){
+    const source=below(repoRoot,'posts/explorador-eleitoral/'+asset);
+    if(!await exists(source))continue;
+    for(const directory of ['docs/posts/explorador-eleitoral','docs/pt/posts/explorador-eleitoral']){
+      const destination=below(repoRoot,directory+'/'+asset);
+      await fs.mkdir(path.dirname(destination),{recursive:true});
+      await fs.copyFile(source,destination);
+    }
+  }
   // Switch the manifest only after all compressed series are ready.
   await atomicText(below(publishedRoot,'manifest.json'),JSON.stringify(transformed)+'\n');
   // No recursive removal: these are the individually validated targets above.

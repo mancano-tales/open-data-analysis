@@ -1,12 +1,15 @@
 // Isolated TEST-ONLY files; never reads or changes source electoral datasets.
 'use strict';
-const fs=require('node:fs/promises'),path=require('node:path'),assert=require('node:assert/strict'),zlib=require('node:zlib');
+const fs=require('node:fs/promises'),path=require('node:path'),os=require('node:os'),assert=require('node:assert/strict'),zlib=require('node:zlib');
 const {publish,lfBlobHash}=require('./publish-static.cjs');
 (async()=>{
-  const parent=path.resolve(__dirname,'../../data-raw/eleicoes-renda');await fs.mkdir(parent,{recursive:true});
-  const root=await fs.mkdtemp(path.join(parent,'publish-static-test-'));
+  const root=await fs.mkdtemp(path.join(os.tmpdir(),'publish-static-test-'));
   const source=path.join(root,'posts/explorador-eleitoral/data'),published=path.join(root,'docs/posts/explorador-eleitoral/data');
   await fs.mkdir(path.join(source,'series'),{recursive:true});
+  await fs.mkdir(path.join(root,'posts/explorador-eleitoral'),{recursive:true});
+  await fs.writeFile(path.join(root,'posts/explorador-eleitoral/compare.js'),'// TEST FIXTURE ONLY\n');
+  await fs.writeFile(path.join(root,'posts/explorador-eleitoral/app.js'),'// TEST APP FIXTURE ONLY\n');
+  await fs.writeFile(path.join(root,'posts/explorador-eleitoral/app.css'),'/* TEST CSS FIXTURE ONLY */\n');
   const input=JSON.stringify({TEST_FIXTURE_ONLY:true,values:Array.from({length:1000},(_,i)=>i%10)})+'\n';
   const manifest=JSON.stringify({schema_version:1,series:[{id:'fixture',status:'available',url:'series/fixture.json'}]});
   await fs.writeFile(path.join(source,'series/fixture.json'),input);await fs.writeFile(path.join(source,'manifest.json'),manifest);await fs.writeFile(path.join(source,'availability.csv'),'TEST_FIXTURE_ONLY\n');
@@ -15,6 +18,11 @@ const {publish,lfBlobHash}=require('./publish-static.cjs');
   const gzipFile=path.join(published,'series/fixture.json.gz'),first=await fs.readFile(gzipFile);
   assert.equal(zlib.gunzipSync(first).toString('utf8'),input);assert.equal(first.readUInt32LE(4),0);
   const output=JSON.parse(await fs.readFile(path.join(published,'manifest.json'),'utf8'));assert.equal(output.series[0].url,'series/fixture.json.gz');
+  for(const directory of ['docs/posts/explorador-eleitoral','docs/pt/posts/explorador-eleitoral']){
+    assert.equal(await fs.readFile(path.join(root,directory,'compare.js'),'utf8'),'// TEST FIXTURE ONLY\n');
+    assert.equal(await fs.readFile(path.join(root,directory,'app.js'),'utf8'),'// TEST APP FIXTURE ONLY\n');
+    assert.equal(await fs.readFile(path.join(root,directory,'app.css'),'utf8'),'/* TEST CSS FIXTURE ONLY */\n');
+  }
   const cached=await publish({repoRoot:root,apply:true});assert.equal(cached.reusedSeries,1);assert.equal(cached.compressedSeries,0);assert.deepEqual(await fs.readFile(gzipFile),first);
   assert.equal(await fs.readFile(path.join(source,'manifest.json'),'utf8'),manifest);assert.equal(await fs.readFile(path.join(source,'series/fixture.json'),'utf8'),input);
   const cachePath=path.join(root,'data-raw/eleicoes-renda/publication-cache.json');

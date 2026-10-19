@@ -3,11 +3,25 @@ const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),asse
 const source=__dirname,base='http://localhost/posts/explorador-eleitoral/';
 const manifest=JSON.parse(fs.readFileSync(path.join(source,'data/manifest.json'),'utf8'));
 assert.ok(manifest.series.length>0);
+if(manifest.parties)for(const [year,map] of Object.entries(manifest.parties)){
+  assert.match(year,/^20\d{2}$/);
+  for(const [number,acronym] of Object.entries(map)){
+    assert.match(number,/^\d{2}$/);assert.ok(typeof acronym==='string'&&acronym.length>0);
+  }
+}
 for(const item of process.argv.includes('--ui-only')?[]:manifest.series){
   const data=JSON.parse(fs.readFileSync(path.join(source,'data',item.url),'utf8'));
   assert.equal(data.metadata.vote_audit.status,'reconciled');
   assert.equal(data.metadata.vote_audit.difference,0);
   assert.equal(data.metadata.percentile_scope,(item.income_reference||'national')==='state'?item.uf:'BR');
+  if(item.census_year===2010){
+    assert.match(item.id,/-c2010$/);
+    assert.equal(data.metadata.income_year,2010);
+    assert.equal(data.metadata.minimum_wage_brl,510);
+    assert.match(JSON.stringify(data.metadata.income_definition),/V007/);
+    for(const candidate of data.candidates)
+      assert.equal(data.points.filter(p=>p.candidate_id===candidate.id).reduce((n,p)=>n+p.n_setores,0),data.metadata.coverage.included_tracts);
+  }
   assert.equal(data.points.length,100*data.candidates.length);
   const centils=new Map(data.candidates.map(c=>[c.id,new Set()]));
   for(const p of data.points){assert.ok(centils.has(p.candidate_id));centils.get(p.candidate_id).add(p.centil);}
@@ -39,7 +53,7 @@ const textContent=element=>[element.textContent||'',...(element.children||[]).ma
   const {root,selectors,errors,draws,context}=harness();
   vm.runInNewContext(fs.readFileSync(path.join(source,'app.js'),'utf8'),context);await flush();await flush();
   assert.equal(errors.length,0);const n=draws.at(-1).traces.length;assert.ok(n>0&&n<=6);
-  assert.equal(selectors['.explorer-controls'].children.length,5);
+  assert.equal(selectors['.explorer-controls'].children.length,6);
   const selects=selectors['.explorer-controls'].children.map(x=>x.children[0]);assert.equal(selects[2].value,'1');assert.equal(selects[3].value,'BR');
   const search=selectors.fieldset.children.find(el=>el.className==='candidate-search').children[0];
   search.value=draws.at(-1).traces[0].name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();search.events.input();
@@ -88,22 +102,22 @@ const textContent=element=>[element.textContent||'',...(element.children||[]).ma
     const h=harness(lang,null,fixtures);vm.runInNewContext(fs.readFileSync(path.join(source,'app.js'),'utf8'),h.context);await flush();await flush();
     const controls=h.selectors['.explorer-controls'].children.map(label=>label.children[0]);
     const change=async(index,value)=>{controls[index].value=value;controls[index].events.change();await flush();await flush();};
-    assert.equal(controls[4].value,'national');assert.equal(h.draws.at(-1).traces[0].y[0],70);
+    assert.equal(controls[5].value,'national');assert.equal(h.draws.at(-1).traces[0].y[0],70);
     assert.equal(h.fetchCalls.find(call=>call.url.endsWith('manifest.json')).options.cache,'no-cache');
-    await change(3,'AC');assert.equal(controls[4].value,'national');
+    await change(3,'AC');assert.equal(controls[5].value,'national');
     const checkbox=h.selectors['.candidate-list'].children[0].children[0];checkbox.checked=false;checkbox.events.change();
     const candidateKept=h.draws.at(-1).traces[0].name;
-    await change(4,'state');assert.equal(h.draws.at(-1).traces.length,1);assert.equal(h.draws.at(-1).traces[0].name,candidateKept);assert.equal(h.draws.at(-1).traces[0].y[0],40);
+    await change(5,'state');assert.equal(h.draws.at(-1).traces.length,1);assert.equal(h.draws.at(-1).traces[0].name,candidateKept);assert.equal(h.draws.at(-1).traces[0].y[0],40);
     assert.match(h.draws.at(-1).layout.xaxis.title.text,/AC/);assert.match(textContent(h.selectors['.coverage']),lang==='pt'?/Referência estadual/:/State reference/);
-    await change(3,'DF');assert.equal(controls[4].value,'state');
-    await change(3,'BR');assert.equal(controls[4].value,'national');assert.equal(controls[4].children.length,1);
+    await change(3,'DF');assert.equal(controls[5].value,'state');
+    await change(3,'BR');assert.equal(controls[5].value,'national');assert.equal(controls[5].children.length,1);
     assert.match(textContent(h.root.children.find(el=>el.className==='reference-notice')),lang==='pt'?/não está disponível/:/unavailable/);
-    await change(3,'AC');assert.equal(controls[4].value,'state');
-    await change(2,'6');assert.equal(controls[4].value,'state');
-    await change(4,'national');await change(3,'DF');assert.equal(controls[4].value,'national');
-    await change(3,'AC');await change(4,'state');await change(3,'DF');assert.equal(controls[4].value,'national');
-    await change(3,'AC');assert.equal(controls[4].value,'state');
-    await change(2,'1');assert.equal(controls[4].value,'national');
+    await change(3,'AC');assert.equal(controls[5].value,'state');
+    await change(2,'6');assert.equal(controls[5].value,'state');
+    await change(5,'national');await change(3,'DF');assert.equal(controls[5].value,'national');
+    await change(3,'AC');await change(5,'state');await change(3,'DF');assert.equal(controls[5].value,'national');
+    await change(3,'AC');assert.equal(controls[5].value,'state');
+    await change(2,'1');assert.equal(controls[5].value,'national');
     await change(2,'3');await change(3,'BA');assert.equal(controls[3].value,'BA');
     await change(2,'6');assert.equal(controls[3].value,'AC');
     const territoryNotice=h.root.children.find(el=>el.className==='territory-notice');
@@ -162,7 +176,7 @@ const textContent=element=>[element.textContent||'',...(element.children||[]).ma
     const h=harness('pt',null,mismatch);vm.runInNewContext(fs.readFileSync(path.join(source,'app.js'),'utf8'),h.context);await flush();await flush();
     const controls=h.selectors['.explorer-controls'].children.map(label=>label.children[0]);
     controls[3].value='AC';controls[3].events.change();await flush();await flush();
-    const before=h.draws.length;controls[4].value='state';controls[4].events.change();await flush();await flush();
+    const before=h.draws.length;controls[5].value='state';controls[5].events.change();await flush();await flush();
     assert.equal(h.errors.length,1);assert.equal(h.draws.length,before);assert.equal(h.purges.length,1);
     assert.match(h.selectors['.chart-status'].textContent,/Série recusada.*universo AC/);
     assert.equal(h.selectors['.coverage'].children.length,0);

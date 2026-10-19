@@ -204,7 +204,30 @@ Note
 <p>Each tract receives the vote shares of its nearest eligible polling place, within the same municipality and at most 5 km away. The displayed share is the unweighted mean across tracts in each percentile. The denominator includes <strong>all legally valid nominal and party-list votes applicable to that office</strong>, including candidates whose curves are hidden. Blank and invalid votes are excluded. Senate vote percentages use valid votes, rather than unique voters; the number of senatorial choices varies by election. A polling place may supply estimates for multiple tracts.</p>
 <p>The reconciliation panel concerns electoral input totals: it compares the processed votes with official TSE aggregates for the selected contest. A successful check does not validate the geocoding, the proximity estimator, the vote attribution to tracts or the newspaper reproduction. Unreconciled or unaudited data must not be described as reconciled.</p>
 <p>Territorial association does not establish how individual income groups voted. Historical comparisons must keep the 2022 income reference fixed and document changes in coverage and polling-place locations. Expanded historical series rank all tracts with eligible Census 2022 income before electoral exclusions. In <strong>Income reference</strong>, “Within state” ranks only that state’s tracts: the richest end represents the richest tracts within the state. This is the default for state offices. “Brazil” retains their position in the national income distribution, supporting comparisons of income levels across territories. A tract can be rich within its state and occupy a middle position nationally. Switching references changes the groups, while keeping each tract’s assigned vote shares; these curves do not count votes by income group. Keep the same reference when comparing elections. A percentile’s mean income describes its complete income-eligible group in the selected territory; its covered tract count can be smaller. No local estimate is shown as a zero vote share merely because the spatial match is missing.</p>
-<p>Income is measured in 2022 for every election. The historical curves therefore describe earlier voting patterns across areas ranked by their 2022 income; they do not measure income at the time of each election. Source and method records must document the geography used and any polling-place proxies. When only a first-round register is available, second-round votes use that same year’s register, with a notice in the coverage panel. Address changes under an unchanged place key cannot be detected in that case.</p>
+<p>By default, income is measured in 2022 for every election. For 2010 and 2014, the <strong>Reference census</strong> selector also offers Census 2010 income and tracts, contemporary with those elections; curves from different censuses should not be compared with each other, because tracts and income variables changed. The historical curves therefore describe earlier voting patterns across areas ranked by their 2022 income; they do not measure income at the time of each election. Source and method records must document the geography used and any polling-place proxies. When only a first-round register is available, second-round votes use that same year’s register, with a notice in the coverage panel. Address changes under an unchanged place key cannot be detected in that case.</p>
+</section>
+<section id="compare-elections" class="level2">
+<h2 class="anchored" data-anchor-id="compare-elections">Compare elections</h2>
+<p>Below the explorer, the comparator shows <strong>how much a party’s vote share changed between two elections in each income percentile</strong>. Each bar is the share in election B minus the share in election A, in percentage points. Blue bars show gains; brick-red bars show losses. Percentiles without an estimate in either election are grey and carry no value.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="What the difference measures">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>What the difference measures
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The comparison uses <strong>the same tract groups</strong> in both elections, ranked by the income of the selected census. It does not measure income at the time of each election. The difference combines changes in votes, in the electorate and in the polling-place network; it does not show that the same people changed their vote. Only series with the same office, territory, income reference and census can be compared. Parties are matched by ballot number: after a renaming or merger, one number may stand for different organizations in different elections.</p>
+</div>
+</div>
+<section class="election-compare" data-lang="en" data-base="data/" aria-label="Election comparator by income percentile">
+  <div class="compare-controls"></div>
+  <p class="compare-status" role="status" aria-live="polite">Loading the comparison…</p>
+  <div class="compare-chart" role="region" aria-label="Vote-share difference by income percentile between two elections"></div>
+  <div class="compare-downloads"></div>
+</section>
 </section>
 <section id="reproduce-and-expand" class="level2">
 <h2 class="anchored" data-anchor-id="reproduce-and-expand">Reproduce and expand</h2>
@@ -617,7 +640,8 @@ Note
   </script>
 </div> <!-- /content -->
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-<script src="app.js?v=independent-panels-v1"></script>
+<script src="app.js?v=census-compare-v2"></script>
+<script src="compare.js?v=census-compare-v2"></script>
 <script>
 document.querySelectorAll('.navbar .nav-link').forEach(link => {
   if (link.textContent.trim() === 'Português') link.href = document.querySelector('.language-switch').href;

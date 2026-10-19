@@ -29,6 +29,7 @@ assert.match(css,/@media\(max-width:900px\)/);
 for(const file of ['docs/posts/explorador-eleitoral/index.html','docs/pt/posts-pt/explorador-eleitoral/index.html']){
   const html=fs.readFileSync(path.join(repo,file),'utf8');
   assert.ok(html.includes('panel-embed-v1.css'));
-  assert.ok(html.includes('independent-panels-v1'));
+  assert.ok(html.includes('app.js?v=census-compare-v2'));
+  assert.ok(html.includes('compare.js?v=census-compare-v2'));
 }
 console.log('PASS: two same-origin independent frames; PT/EN links with project prefixes; notice before frames; responsive layout; embed assets.');
