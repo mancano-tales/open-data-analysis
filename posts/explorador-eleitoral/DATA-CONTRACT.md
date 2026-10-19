@@ -163,3 +163,25 @@ ballot number starts with that two-digit party number (or whose
 `null`. The optional manifest field `parties` maps
 `{"<year>": {"<number>": "<acronym>"}}` for labels only; matching always uses
 the number.
+
+## Concentration (`concentration.js`)
+
+The table below the explorer reads the series already loaded by `app.js`
+(event `explorer:series`, detail `{series, entry, manifest}`); it fetches
+nothing and never redraws the main chart. A row click dispatches
+`explorer:select` with `{id}`; `app.js` adds that candidate only if the id
+belongs to the loaded series.
+
+For each candidate, the standard concentration index is computed over the
+100 centile groups in income order: `CI = (2 / mu) * sum(f_t * y_t * R_t) - 1`,
+with `f_t` the share of observed tracts (`n_setores`) in group t, `y_t` its
+`votacao`, `R_t` the fractional rank at the group midpoint and
+`mu = sum(f_t * y_t)`. The table shows the Wagstaff (2005) normalization
+`CI_W = CI / (1 - mu / 100)` (vote shares are bounded by 100%); the CSV keeps
+both (`indice_concentracao_wagstaff`, `indice_concentracao_padrao`). Groups with
+null `votacao` or no observed tracts are skipped; a candidate with `mu = 0`
+has no index. The mean vote share in the table is the tract-weighted mean of
+`votacao`. The table starts at a minimum mean share of 0.1% (selectable).
+Party labels fall back to `manifest.parties[year][number]` when a series has
+no `party` field; `app.js` applies the same fallback, so the candidate search
+also matches party acronyms.

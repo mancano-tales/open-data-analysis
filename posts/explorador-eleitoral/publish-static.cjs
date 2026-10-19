@@ -95,7 +95,7 @@ async function publish({repoRoot=path.resolve(__dirname,'../..'),apply=false,pru
     compressedBytes+=(await fs.stat(file.destination)).size;
   }
   if(await exists(below(sourceRoot,'availability.csv')))await fs.copyFile(below(sourceRoot,'availability.csv'),below(publishedRoot,'availability.csv'));
-  for(const asset of ['app.js','app.css','compare.js']){
+  for(const asset of ['app.js','app.css','compare.js','concentration.js']){
     const source=below(repoRoot,'posts/explorador-eleitoral/'+asset);
     if(!await exists(source))continue;
     for(const directory of ['docs/posts/explorador-eleitoral','docs/pt/posts/explorador-eleitoral']){
