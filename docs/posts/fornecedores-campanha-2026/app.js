@@ -8,7 +8,7 @@
       total:'Despesa contratada',meta:'Meta (direto)',inter:'Intermediários de pagamento',boost:'Impulsionamento',records:'lançamentos',
       cands:'candidatos',supplier:'Fornecedor',share:'do total',noCand:'Nenhum candidato encontrado.',pf:'pessoa física',
       metaParty:'Contratado diretamente com a Meta por partido (R$ milhões)',metaCargo:'Contratado diretamente com a Meta por cargo (R$ milhões)',
-      metaTop:'Candidatos que mais contrataram a Meta diretamente',rank:'#',value:'Meta (R$)',pct:'% da despesa',
+      metaTop:'Candidatos que mais contrataram a Meta diretamente',rank:'#',value:'Meta (R$)',pct:'% da despesa',totalCol:'Despesa total (R$)',sortHint:'Clique no cabeçalho para ordenar',
       partyChart:'Principais fornecedores',x:'R$ milhões',national:'Brasil (presidente)',showing:n=>`${n} candidatos na lista`,
       metaShare:'Parcela da despesa'},
     en: {uf:'Territory',cargo:'Office',all:'All',candidate:'Candidate',party:'Party',search:'Search by name, number or party',
@@ -16,7 +16,7 @@
       total:'Contracted spending',meta:'Meta (direct)',inter:'Payment intermediaries',boost:'Content boosting',records:'entries',
       cands:'candidates',supplier:'Supplier',share:'of total',noCand:'No candidates found.',pf:'individual',
       metaParty:'Contracted directly with Meta by party (R$ millions)',metaCargo:'Contracted directly with Meta by office (R$ millions)',
-      metaTop:'Candidates with the largest direct Meta contracts',rank:'#',value:'Meta (R$)',pct:'% of spending',
+      metaTop:'Candidates with the largest direct Meta contracts',rank:'#',value:'Meta (R$)',pct:'% of spending',totalCol:'Total spending (R$)',sortHint:'Click a header to sort',
       partyChart:'Leading suppliers',x:'R$ millions',national:'Brazil (president)',showing:n=>`${n} candidates listed`,
       metaShare:'Share of spending'}
   };
@@ -106,15 +106,37 @@
           hover: `${cargoName(c.cargo)}<br>${t.meta}: ${brl(c.meta)}<br>${pct(c.meta / c.total)} ${t.share}<br>${c.candidatos_meta} / ${c.candidatos} ${t.cands}`})), t.metaCargo);
         const filter = el('input', {type: 'search', placeholder: t.search, 'aria-label': t.search});
         const table = el('table', {class: 'meta-table'});
+        rows.forEach((r, i) => { r.rank = i + 1; r.meta = +r.meta; r.total = +r.total; r.share = +r.share; });
+        const cols = [
+          {key: 'rank', label: t.rank, num: true, show: r => r.rank},
+          {key: 'nome', label: t.candidate, show: r => r.nome},
+          {key: 'partido', label: t.party, show: r => r.partido},
+          {key: 'uf', label: t.uf, show: r => r.uf},
+          {key: 'cargo', label: t.cargo, show: r => cargoName(r.cargo)},
+          {key: 'total', label: t.totalCol, num: true, show: r => brl(r.total)},
+          {key: 'meta', label: t.value, num: true, show: r => brl(r.meta)},
+          {key: 'share', label: t.pct, num: true, show: r => pct(r.share)}];
+        let sortKey = 'meta', sortDir = -1;
         const draw = () => {
           const q = norm(filter.value.trim());
-          const hits = rows.filter(r => !q || norm(`${r.nome} ${r.numero} ${r.partido} ${r.uf}`).includes(q)).slice(0, 50);
-          table.replaceChildren(el('thead', {}, el('tr', {}, ...[t.rank, t.candidate, t.party, t.uf, t.cargo, t.value, t.pct].map(h => el('th', {text: h})))),
-            el('tbody', {}, ...hits.map(r => el('tr', {}, el('td', {text: rows.indexOf(r) + 1}), el('td', {text: r.nome}), el('td', {text: r.partido}),
-              el('td', {text: r.uf}), el('td', {text: cargoName(r.cargo)}), el('td', {class: 'num', text: brl(r.meta)}), el('td', {class: 'num', text: pct(+r.share)})))));
+          const col = cols.find(c => c.key === sortKey);
+          const cmp = col.num ? (a, b) => a[sortKey] - b[sortKey] : (a, b) => String(a[sortKey]).localeCompare(String(b[sortKey]), loc);
+          const hits = rows.filter(r => !q || norm(`${r.nome} ${r.numero} ${r.partido} ${r.uf}`).includes(q))
+            .sort((a, b) => sortDir * cmp(a, b) || a.rank - b.rank).slice(0, 50);
+          const head = cols.map(c => {
+            const active = c.key === sortKey;
+            const button = el('button', {type: 'button', class: 'sort' + (active ? ' active' : '')}, c.label, el('span', {'aria-hidden': 'true', text: active ? (sortDir > 0 ? ' ▲' : ' ▼') : ' ↕'}));
+            button.addEventListener('click', () => {
+              if (sortKey === c.key) sortDir = -sortDir; else { sortKey = c.key; sortDir = c.num && c.key !== 'rank' ? -1 : 1; }
+              draw();
+            });
+            return el('th', {class: c.num ? 'num' : '', 'aria-sort': active ? (sortDir > 0 ? 'ascending' : 'descending') : 'none'}, button);
+          });
+          table.replaceChildren(el('thead', {}, el('tr', {}, ...head)),
+            el('tbody', {}, ...hits.map(r => el('tr', {}, ...cols.map(c => el('td', {class: c.num ? 'num' : '', text: c.show(r)}))))));
         };
         filter.addEventListener('input', draw); draw();
-        root.append(el('h3', {text: t.metaTop}), el('label', {class: 'search'}, filter), el('div', {class: 'table-wrap'}, table));
+        root.append(el('h3', {text: t.metaTop}), el('p', {class: 'who', text: t.sortHint}), el('label', {class: 'search'}, filter), el('div', {class: 'table-wrap'}, table));
       }
 
       if (view === 'candidato') {

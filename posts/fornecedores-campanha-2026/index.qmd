@@ -14,7 +14,7 @@ format:
     include-after-body:
       text: |
         <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-        <script src="app.js?v=1"></script>
+        <script src="app.js?v=2"></script>
         <script>
         document.querySelectorAll('.navbar .nav-link').forEach(link => {
           if (link.textContent.trim() === 'Português') link.href = document.querySelector('.language-switch').href;

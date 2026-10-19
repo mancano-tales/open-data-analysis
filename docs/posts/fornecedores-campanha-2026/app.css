@@ -15,7 +15,12 @@
 .fornecedores-app .chart { width: 100%; min-height: 260px; }
 .fornecedores-app .table-wrap { max-height: 520px; overflow: auto; border: 1px solid #e0e4e8; border-radius: 8px; }
 .fornecedores-app table { width: 100%; border-collapse: collapse; font-size: .85rem; }
-.fornecedores-app th { position: sticky; top: 0; background: #f4f6f8; text-align: left; padding: .45rem; }
+.fornecedores-app th { position: sticky; top: 0; background: #f4f6f8; text-align: left; padding: 0; }
+.fornecedores-app th.num { text-align: right; }
+.fornecedores-app th .sort { width: 100%; padding: .45rem; border: 0; background: none; color: inherit; font: inherit; font-weight: 700; text-align: inherit; cursor: pointer; white-space: nowrap; }
+.fornecedores-app th .sort:hover { background: #e7ebef; }
+.fornecedores-app th .sort.active { color: #1f5fa8; }
+.fornecedores-app th .sort:focus-visible { outline: 3px solid #225a9b; outline-offset: -3px; }
 .fornecedores-app td { padding: .4rem .45rem; border-top: 1px solid #edf0f2; }
 .fornecedores-app .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .fornecedores-app .status { font-size: .9rem; }
