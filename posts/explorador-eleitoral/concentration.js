@@ -127,7 +127,7 @@
         th.append(button); head.append(th);
       }
       const body = document.createElement('tbody');
-      for (const r of shown.slice(0, 200)) {
+      for (const r of shown) {
         const tr = document.createElement('tr');
         const nameCell = document.createElement('td');
         const add = document.createElement('button'); add.type = 'button'; add.className = 'concentration-add';
