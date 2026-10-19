@@ -78,12 +78,27 @@ eleicao_vote_audit <- function(votes, year, round, office, uf = "BR") {
         (is.null(snapshot$status) && is.null(snapshot$final_totalization) && isTRUE(audit$provisional))
     }, logical(1)))
   } else provisional <- isTRUE(audit$provisional)
-  list(status = "reconciled", scope = "official-valid-votes", method = audit$method,
+  result <- list(status = "reconciled", scope = "official-valid-votes", method = audit$method,
        source = list(label = "TSE — resultados oficiais", url = "https://dadosabertos.tse.jus.br/"),
        official_valid_votes = sum(checks$official_valid_votes),
        computed_valid_votes = sum(checks$computed_valid_votes),
        difference = sum(checks$difference), checked_units = nrow(checks), ufs = sort(unique(checks$uf)),
        provisional = provisional, snapshots = snapshots)
+  # Explicit historical destinations can be needed to reconstruct a missing
+  # nominal record. Keep their document evidence only for the displayed race.
+  destination_sources <- audit$official_destination_sources
+  if (!is.null(destination_sources)) {
+    destination_sources <- data.table::copy(data.table::as.data.table(destination_sources))
+    source_keys <- c("year", "round", "office", "uf")
+    if (nrow(destination_sources) && (!all(source_keys %in% names(destination_sources)) ||
+        anyNA(destination_sources[, ..source_keys]))) stop("Proveniência de destinação oficial sem escopo completo")
+    if (nrow(destination_sources)) {
+      destination_sources <- destination_sources[year == yr & round == tr & office == oc &
+        toupper(uf) %in% expected]
+      if (nrow(destination_sources)) result$official_destination_sources <- as.data.frame(destination_sources)
+    }
+  }
+  result
 }
 
 eleicao_aggregate_contest <- function(votes, universe, links, year, round, office,
