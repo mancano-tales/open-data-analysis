@@ -148,7 +148,7 @@
         const draw = () => {
           const q = norm(filter.value.trim());
           const col = cols.find(c => c.key === sortKey);
-          const cmp = col.num ? (a, b) => a[sortKey] - b[sortKey] : (a, b) => String(a[sortKey]).localeCompare(String(b[sortKey]), loc);
+          const cmp = col.num ? (a, b) => a[sortKey] - b[sortKey] : (a, b) => String(col.show(a)).localeCompare(String(col.show(b)), loc);
           const hits = rows.filter(r => !q || norm(`${r.nome} ${r.numero} ${r.partido} ${r.uf}`).includes(q))
             .sort((a, b) => sortDir * cmp(a, b) || a.rank - b.rank).slice(0, 50);
           const head = cols.map(c => {
