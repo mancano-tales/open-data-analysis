@@ -13,7 +13,7 @@ format:
     include-after-body:
       text: |
         <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-        <script src="app.js?v=historical-2018-v2"></script>
+        <script src="app.js?v=candidate-controls-v1"></script>
         <script>
         document.querySelectorAll('.navbar .nav-link').forEach(link => {
           if (link.textContent.trim() === 'Português') link.href = document.querySelector('.language-switch').href;
@@ -73,6 +73,10 @@ This page does not claim an exact replication of the newspaper's estimator.
 ```
 
 ## Read the chart
+
+**Include all** and **Clear selection** affect every candidate in the selected contest, including those hidden by search. Search stays active and the buttons do not change votes or denominators.
+
+
 
 Hover over a curve to inspect vote share, mean income in 2022 minimum wages,
 and the number of tracts. Toggle candidates to compare curves. The chart's

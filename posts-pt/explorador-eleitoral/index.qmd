@@ -11,7 +11,7 @@ format:
     include-after-body:
       text: |
         <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-        <script src="../../posts/explorador-eleitoral/app.js?v=historical-2018-v2"></script>
+        <script src="../../posts/explorador-eleitoral/app.js?v=candidate-controls-v1"></script>
         <script>
         document.querySelectorAll('.navbar .nav-link').forEach(link => {
           if (link.textContent.trim() === 'English') link.href = document.querySelector('.language-switch').href;
@@ -71,6 +71,10 @@ Esta página não afirma reproduzir exatamente o estimador do jornal.
 ```
 
 ## Como ler o gráfico
+
+**Incluir todos** e **Limpar seleção** afetam todos os candidatos da disputa selecionada, mesmo os ocultos pela busca. A busca continua ativa e os botões não alteram os votos nem os denominadores.
+
+
 
 Passe o cursor sobre uma curva para consultar a votação, a renda média em
 salários mínimos de 2022 e o número de setores. Marque ou desmarque os

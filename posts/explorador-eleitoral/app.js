@@ -29,7 +29,9 @@
     const candidateTools=document.createElement('div');candidateTools.className='candidate-tools';
     const topButton=text('button',lang==='pt'?'Mostrar 6 principais':'Show leading 6',candidateTools);topButton.type='button';
     const clearButton=text('button',lang==='pt'?'Limpar seleção':'Clear selection',candidateTools);clearButton.type='button';
-    topButton.disabled=true;clearButton.disabled=true;search.disabled=true;
+    const allButton=text('button',lang==='pt'?'Incluir todos':'Include all',candidateTools);allButton.type='button';
+    allButton.title=lang==='pt'?'Inclui todos os candidatos desta disputa, mesmo os ocultos pela busca.':'Includes every candidate in this contest, including those hidden by search.';
+    topButton.disabled=true;clearButton.disabled=true;allButton.disabled=true;search.disabled=true;
     const selectionInfo=text('span','',candidateTools);selectionInfo.setAttribute('aria-live','polite');
     candidateBox.before(searchLabel,candidateTools);
     function candidateLabel(candidate) {const number=candidate.number??(/^\d+$/.test(candidate.id)?candidate.id:null);return `${number==null?'':`${number} · `}${candidate.name}${candidate.party?` (${candidate.party})`:''}`;}
@@ -47,6 +49,7 @@
     search.addEventListener('input',renderCandidates);
     topButton.addEventListener('click',()=>{activeIds=new Set(rankedCandidates.slice(0,6).map(c=>c.id));renderCandidates();draw();});
     clearButton.addEventListener('click',()=>{activeIds.clear();renderCandidates();draw();});
+    allButton.addEventListener('click',()=>{activeIds=new Set(data.candidates.map(c=>c.id));renderCandidates();draw();});
     const seriesUrl=entry=>new URL(entry.url,base);
     function link(parent,label,url) { const a=text('a',label,parent);a.href=url;return a; }
     function localized(value) { return typeof value==='object' ? (value[lang]||value.pt||value.en||'') : value; }
@@ -127,7 +130,7 @@
         const retained=[...previousSelection].filter(id=>scores.has(id));
         activeIds=new Set(preserveSelection&&(retained.length||previousSelection.size===0)?retained:(data.metadata.default_candidates||rankedCandidates.slice(0,6).map(c=>c.id)).filter(id=>scores.has(id)));
         loadedContestKey=contestKey(selected);
-        if(!preserveSelection)search.value='';topButton.disabled=false;clearButton.disabled=false;search.disabled=false;renderCandidates();
+        if(!preserveSelection)search.value='';topButton.disabled=false;clearButton.disabled=false;allButton.disabled=false;search.disabled=false;renderCandidates();
         coverage.replaceChildren();
         const meta=data.metadata,cov=meta.coverage;
         auditPanel.replaceChildren();auditPanel.className='audit';
@@ -167,7 +170,7 @@
         (meta.sources||[]).forEach((source,index)=>{if(index)sources.append(document.createTextNode(' · '));link(sources,source.label||source.name||source.url,source.url);});
         const downloads=root.querySelector('.download-links');downloads.replaceChildren();link(downloads,new URL(seriesUrl(selected)).pathname.endsWith('.json.gz')?(lang==='pt'?'Baixar esta série (JSON.gz compactado)':'Download this series (compressed JSON.gz)'):t.download,seriesUrl(selected));link(downloads,t.manifest,new URL('manifest.json',base));
         draw();
-      }catch(error){if(current!==request)return;status.textContent=error.userMessage||t.error;status.classList.add('error');if(error.userMessage){if(typeof Plotly.purge==='function')Plotly.purge(chart);coverage.replaceChildren();auditPanel.replaceChildren();candidateBox.replaceChildren();topButton.disabled=true;clearButton.disabled=true;search.disabled=true;}console.error(error);}
+      }catch(error){if(current!==request)return;status.textContent=error.userMessage||t.error;status.classList.add('error');if(error.userMessage){if(typeof Plotly.purge==='function')Plotly.purge(chart);coverage.replaceChildren();auditPanel.replaceChildren();candidateBox.replaceChildren();topButton.disabled=true;clearButton.disabled=true;allButton.disabled=true;search.disabled=true;}console.error(error);}
     }
     try {
       manifest=await read(new URL('manifest.json',base),{cache:'no-cache'});
