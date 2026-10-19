@@ -101,7 +101,7 @@ intermediários de pagamento; em dourado, a soma das pessoas físicas.
 ## Fornecedores por partido
 
 Soma das despesas de todos os candidatos do partido, no total ou por cargo. O
-gráfico mostra os 25 maiores fornecedores; a dica ao passar o mouse informa
+gráfico mostra os 15 maiores fornecedores; a dica ao passar o mouse informa
 quantos candidatos do partido contrataram cada um.
 
 ```{=html}

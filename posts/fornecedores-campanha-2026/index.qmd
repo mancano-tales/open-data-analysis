@@ -103,7 +103,7 @@ intermediaries and gold is the sum of individuals.
 ## Suppliers by party
 
 Spending summed across all of a party's candidates, in total or by office. The
-chart shows the 25 largest suppliers; hovering shows how many of the party's
+chart shows the 15 largest suppliers; hovering shows how many of the party's
 candidates contracted each one.
 
 ```{=html}
