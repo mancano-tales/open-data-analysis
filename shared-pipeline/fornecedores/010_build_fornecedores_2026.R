@@ -10,14 +10,22 @@ suppressPackageStartupMessages({
   library(jsonlite)
 })
 
-dest <- file.path("data-raw", "fornecedores-2026")
+# O zip (~190 MB) fica no SSD externo (ver AGENTS.md e .data-source). Um zip já
+# baixado em data-raw/fornecedores-2026/ é reaproveitado; downloads novos só vão
+# para o SSD, nunca para o disco interno.
 out <- file.path("posts", "fornecedores-campanha-2026", "data")
-dir.create(dest, recursive = TRUE, showWarnings = FALSE)
 dir.create(file.path(out, "candidatos"), recursive = TRUE, showWarnings = FALSE)
 
 url <- "https://cdn.tse.jus.br/estatistica/sead/odsele/prestacao_contas/prestacao_de_contas_eleitorais_candidatos_2026.zip"
-zip <- file.path(dest, basename(url))
+local_zip <- file.path("data-raw", "fornecedores-2026", basename(url))
+ssd <- Sys.getenv("MANCANO_SSD_ROOT")
+ssd_dest <- if (nzchar(ssd)) file.path(ssd, "projects", "open-data-analysis", "fornecedores-2026") else ""
+zip <- if (file.exists(local_zip)) local_zip else file.path(ssd_dest, basename(url))
 if (!file.exists(zip)) {
+  if (!nzchar(ssd) || !dir.exists(ssd)) {
+    stop("SSD externo indisponível: conecte-o e defina MANCANO_SSD_ROOT antes de baixar o arquivo do TSE.")
+  }
+  dir.create(ssd_dest, recursive = TRUE, showWarnings = FALSE)
   options(timeout = max(900, getOption("timeout")))
   download.file(url, paste0(zip, ".part"), mode = "wb")
   file.rename(paste0(zip, ".part"), zip)

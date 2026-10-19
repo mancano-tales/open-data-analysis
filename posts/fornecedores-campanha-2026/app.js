@@ -147,8 +147,11 @@
           bars(chart, supplierRows(c.fornecedores, c.total), `${t.partyChart}: ${c.nome}`);
         };
         const load = async () => {
+          const wanted = uf.value;
           status.textContent = t.loading; root.prepend(status);
-          data = cache[uf.value] ||= (await get(`candidatos/${uf.value}.json`)).candidatos;
+          const rows = cache[wanted] ||= (await get(`candidatos/${wanted}.json`)).candidatos;
+          if (wanted !== uf.value) return; // a newer territory was selected meanwhile
+          data = rows;
           status.remove();
           const cargos = [...new Set(data.map(c => c.cargo))];
           const prev = cargo.value;
