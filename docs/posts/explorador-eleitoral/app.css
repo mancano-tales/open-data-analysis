@@ -48,3 +48,17 @@ body:has(.language-switch) { padding-bottom: 5rem; }
 .election-compare .compare-downloads { font-size: .9rem; }
 .election-compare .error { color: #9e2626; }
 @media(max-width:600px) { .election-compare .compare-controls { grid-template-columns: repeat(2,minmax(0,1fr)); gap: .6rem; } }
+.election-concentration { margin: 1.5rem 0; padding: clamp(.7rem, 2vw, 1.6rem); border: 1px solid #e0e4e8; border-radius: 12px; background: #fff; color: #253441; }
+.election-concentration .concentration-controls { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1rem; }
+.election-concentration label { display: grid; min-width: 0; gap: .3rem; font-size: .85rem; font-weight: 600; }
+.election-concentration :is(input,select) { width: 100%; min-height: 42px; padding: .5rem; border: 1px solid #aeb9c2; border-radius: 5px; background: #fff; color: inherit; font: inherit; }
+.election-concentration .concentration-status { padding: .5rem 0; font-size: .9rem; }
+.election-concentration .concentration-scroll { max-height: 480px; overflow: auto; border-top: 1px solid #e0e4e8; }
+.election-concentration table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.election-concentration th { position: sticky; top: 0; background: #f4f6f8; text-align: left; }
+.election-concentration th button { width: 100%; padding: .5rem; border: 0; background: none; font: inherit; font-weight: 600; text-align: inherit; color: inherit; cursor: pointer; }
+.election-concentration td { padding: .4rem .5rem; border-bottom: 1px solid #edf0f2; }
+.election-concentration td:nth-child(n+3), .election-concentration th:nth-child(n+3) { text-align: right; font-variant-numeric: tabular-nums; }
+.election-concentration .concentration-add { padding: 0; border: 0; background: none; color: #225a9b; font: inherit; text-align: left; text-decoration: underline; cursor: pointer; }
+.election-concentration :is(a,button,input,select):focus-visible { outline: 3px solid #225a9b; outline-offset: 3px; }
+@media(max-width:600px) { .election-concentration .concentration-controls { grid-template-columns: 1fr 1fr; } .election-concentration .concentration-controls label:first-child { grid-column: span 2; } }

@@ -196,6 +196,30 @@ Nota
   <div class="download-links"><a href="../../../posts/explorador-eleitoral/data/manifest.json">Séries disponíveis (JSON)</a></div>
   <noscript>Este gráfico interativo requer JavaScript. <a href="../../../posts/explorador-eleitoral/data/availability.csv">Consulte a disponibilidade (CSV)</a> e os arquivos JSON.gz para download.</noscript>
 </section>
+<section id="concentração-da-votação-por-renda" class="level2">
+<h2 class="anchored" data-anchor-id="concentração-da-votação-por-renda">Concentração da votação por renda</h2>
+<p>A tabela abaixo resume, para cada candidato da série escolhida no explorador, o <strong>índice de concentração</strong> da votação por renda. Ele vai de <strong>−1</strong> (votação toda nos setores mais pobres) a <strong>+1</strong> (toda nos mais ricos); <strong>0</strong> indica votação igual em todas as faixas de renda. É o índice de concentração tradicional: duas vezes a covariância entre a votação e o posto de renda dos setores, dividida pela votação média, sem as correções de Wagstaff ou de Erreygers. Por não depender do tamanho do candidato, permite comparar um deputado com 30 mil votos a outro com 300 mil.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="O que o índice mede">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>O que o índice mede
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Um índice positivo indica <strong>votação maior em áreas mais ricas</strong>, não que o candidato tenha sido votado por eleitores ricos: a associação é territorial, como no gráfico. O índice usa a mesma referência de renda e o mesmo censo da série selecionada. Para deputados, a referência dentro da UF compara cada candidato com a distribuição de renda do próprio estado. Candidatos com votação muito pequena ou concentrada em poucos lugares têm índices extremos e instáveis; por isso a tabela parte de uma votação média mínima de 0,1%, que pode ser alterada.</p>
+</div>
+</div>
+<section class="election-concentration" data-lang="pt" aria-label="Índice de concentração da votação por renda">
+  <div class="concentration-controls"></div>
+  <p class="concentration-status" role="status" aria-live="polite">Aguardando a série selecionada…</p>
+  <div class="concentration-scroll"><table class="concentration-table"></table></div>
+  <div class="concentration-downloads"></div>
+</section>
+<p>Clique no nome de um candidato para acrescentar a curva dele ao gráfico.</p>
+</section>
 <section id="como-ler-o-gráfico" class="level2">
 <h2 class="anchored" data-anchor-id="como-ler-o-gráfico">Como ler o gráfico</h2>
 <p><strong>Incluir todos</strong> e <strong>Limpar seleção</strong> afetam todos os candidatos da disputa selecionada, mesmo os ocultos pela busca. A busca continua ativa e os botões não alteram os votos nem os denominadores.</p>
@@ -639,8 +663,9 @@ Nota
   </script>
 </div> <!-- /content -->
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-<script src="../../posts/explorador-eleitoral/app.js?v=census-compare-v2"></script>
-<script src="../../posts/explorador-eleitoral/compare.js?v=census-compare-v2"></script>
+<script src="../../posts/explorador-eleitoral/app.js?v=concentration-v1"></script>
+<script src="../../posts/explorador-eleitoral/compare.js?v=concentration-v1"></script>
+<script src="../../posts/explorador-eleitoral/concentration.js?v=concentration-v1"></script>
 <script>
 document.querySelectorAll('.navbar .nav-link').forEach(link => {
   if (link.textContent.trim() === 'English') link.href = document.querySelector('.language-switch').href;
