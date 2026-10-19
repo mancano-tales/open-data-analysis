@@ -2,3 +2,4 @@
 # data-raw/eleicoes-renda/historico é uma junção NTFS para o destino abaixo (MANCANO_SSD_ROOT).
 # Inventário: README.md e MANIFEST.tsv no destino.
 tse_historico = ssd:projects/open-data-analysis/eleicoes-renda/historico
+fornecedores_2026 = ssd:projects/open-data-analysis/fornecedores-2026

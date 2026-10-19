@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Os maiores fornecedores de cada candidato e partido em 2026, segundo as despesas contratadas declaradas ao TSE, com um recorte do que foi contratado diretamente com a Meta.">
+
+<title>Quem são os fornecedores das campanhas de 2026 – Open Data Analysis</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../posts/fornecedores-campanha-2026/app.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Open Data Analysis</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index-pt.html"> 
+<span class="menu-text">Análises</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">English</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Quem são os fornecedores das campanhas de 2026</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Eleições</div>
+    <div class="quarto-category">Financiamento de campanha</div>
+    <div class="quarto-category">TSE</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Os maiores fornecedores de cada candidato e partido em 2026, segundo as despesas contratadas declaradas ao TSE, com um recorte do que foi contratado diretamente com a Meta.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Data de Publicação</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">19 de outubro de 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<a class="language-switch" href="../../../posts/fornecedores-campanha-2026/" hreflang="en" lang="en" aria-label="Switch to the English version of this page"><span aria-hidden="true">EN ↗</span> English</a>
+<p>Até 18 de outubro de 2026, 14.867 candidatos declararam ao TSE <strong>R$ 4,64 bilhões em despesas contratadas</strong>. O maior fornecedor individual das campanhas é a <strong>Meta</strong> (Facebook Serviços Online do Brasil): <strong>R$ 289 milhões contratados diretamente, 6,2% de tudo o que foi contratado</strong>, por 6.131 candidatos. Nenhuma gráfica, agência ou produtora chega perto: a segunda empresa da lista é a dLocal, intermediária de pagamentos de anúncios, com R$ 102 milhões.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Despesa contratada, declarada e ainda parcial">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Aviso</span>Despesa contratada, declarada e ainda parcial
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Os valores são despesas contratadas, não pagas.</strong> Incluem compromissos que ainda podem não ter saído da conta da campanha. O TSE publica as despesas pagas em outro arquivo, com totais menores.</p>
+<p><strong>A prestação de contas ainda não terminou.</strong> Os dados misturam prestações parciais, relatórios financeiros e prestações finais, e mudam a cada atualização do TSE. Candidatos que não declararam nada não aparecem; números de segundo turno estão incluídos para quem disputou.</p>
+<p><strong>É o que as campanhas declararam.</strong> O TSE ainda não julgou essas contas. Erros de lançamento, duplicidades e retificações posteriores são possíveis.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="O que conta como “Meta direta”">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>O que conta como “Meta direta”
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Somamos só as despesas contratadas com os CNPJs da Facebook Serviços Online do Brasil (raiz 13.347.016) e da Meta Platforms. <strong>Ficam de fora</strong> os anúncios que chegam à Meta por outros caminhos:</p>
+<ul>
+<li><strong>Intermediários de pagamento</strong> (dLocal e Ebanx, R$ 115 milhões). Parte desse valor paga anúncios na Meta, mas a descrição só cita Facebook, Instagram ou Meta em R$ 35 milhões. Os painéis mostram esses intermediários à parte.</li>
+<li><strong>Agências</strong> que compram mídia em nome da campanha. Para o TSE, a fornecedora é a agência, não a plataforma.</li>
+</ul>
+<p>O valor direto é, portanto, um piso do que as campanhas contrataram com a Meta.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Estimativa: entre R$ 289 e R$ 404 milhões contratados com a Meta">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Dica</span>Estimativa: entre R$ 289 e R$ 404 milhões contratados com a Meta
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>As campanhas contrataram <strong>R$ 415 milhões em impulsionamento de conteúdo</strong> (categoria do TSE), por 7.557 candidatos. Desse valor, R$ 288 milhões foram contratados diretamente com a Meta e R$ 114 milhões com dLocal e Ebanx.</p>
+<p>Somando os intermediários, as campanhas teriam contratado com a Meta <strong>até R$ 404 milhões, 8,7% de toda a despesa contratada e cerca de 97% do impulsionamento</strong>. O teto supõe que todo o valor contratado com os intermediários foi para a Meta. É plausível: nenhuma descrição dessas despesas cita outra plataforma, o Google deixou de vender anúncios políticos no Brasil em 2024 e o TikTok não aceita anúncios políticos. Mas os dados não comprovam o destino final de cada despesa.</p>
+<p>O impulsionamento no WhatsApp, quando existe, é comprado pela própria Meta (anúncios que abrem conversa) e já entra nessa conta. O Kwai (Joyo Tecnologia) teve R$ 2 milhões contratados.</p>
+</div>
+</div>
+<section id="a-meta-nas-campanhas" class="level2">
+<h2 class="anchored" data-anchor-id="a-meta-nas-campanhas">A Meta nas campanhas</h2>
+<section class="fornecedores-app" data-view="meta" data-lang="pt" data-base="../../../posts/fornecedores-campanha-2026/data/" aria-label="Pagamentos diretos à Meta"></section>
+<p>O peso da Meta varia por cargo: 5% da despesa de governador e deputado federal, 7% de presidente e deputado estadual, 9% de senador e 14% de deputado distrital. Por partido, o PL é quem mais contratou com a Meta em valor (R$ 64 milhões); PT e PL destinam uma parcela parecida do que gastam, perto de 7,5%. A porcentagem na tabela é a parte da despesa total do candidato que foi para a Meta.</p>
+</section>
+<section id="fornecedores-por-candidato" class="level2">
+<h2 class="anchored" data-anchor-id="fornecedores-por-candidato">Fornecedores por candidato</h2>
+<p>Escolha o território e o cargo e busque o candidato. O gráfico mostra os dez maiores fornecedores pelo valor contratado; a porcentagem é a parte da despesa total do candidato. Barras em azul escuro são a Meta; em azul claro, intermediários de pagamento; em dourado, a soma das pessoas físicas.</p>
+<section class="fornecedores-app" data-view="candidato" data-lang="pt" data-base="../../../posts/fornecedores-campanha-2026/data/" aria-label="Fornecedores por candidato"></section>
+</section>
+<section id="fornecedores-por-partido" class="level2">
+<h2 class="anchored" data-anchor-id="fornecedores-por-partido">Fornecedores por partido</h2>
+<p>Soma das despesas de todos os candidatos do partido, no total ou por cargo. O gráfico mostra os 25 maiores fornecedores; a dica ao passar o mouse informa quantos candidatos do partido contrataram cada um.</p>
+<section class="fornecedores-app" data-view="partido" data-lang="pt" data-base="../../../posts/fornecedores-campanha-2026/data/" aria-label="Fornecedores por partido"></section>
+</section>
+<section id="como-ler" class="level2">
+<h2 class="anchored" data-anchor-id="como-ler">Como ler</h2>
+<ul>
+<li><strong>Pessoas físicas</strong> (cabos eleitorais, militância, prestadores autônomos) somam R$ 1,40 bilhão. Elas aparecem numa única barra, sem nome nem CPF.</li>
+<li><strong>Despesas do partido</strong> com o candidato não entram: a base cobre só as contas de campanha de cada candidato. Doações de um candidato a outro aparecem como despesa de quem doou.</li>
+<li>Fornecedores são identificados pelo CNPJ. O nome exibido é o da Receita Federal quando o TSE o informa.</li>
+<li>Um fornecedor grande pode repassar parte do valor a terceiros. A base não mostra esse caminho.</li>
+</ul>
+</section>
+<section id="dados-e-reprodução" class="level2">
+<h2 class="anchored" data-anchor-id="dados-e-reprodução">Dados e reprodução</h2>
+<p>Fonte: Tribunal Superior Eleitoral, <a href="https://dadosabertos.tse.jus.br/dataset/prestacao-de-contas-eleitorais-2026">Portal de Dados Abertos</a>, arquivo <code>despesas_contratadas_candidatos_2026_BRASIL.csv</code> gerado em 18/10/2026. O script <a href="https://github.com/mancano-tales/open-data-analysis/blob/main/shared-pipeline/fornecedores/010_build_fornecedores_2026.R"><code>shared-pipeline/fornecedores/010_build_fornecedores_2026.R</code></a> baixa o arquivo e produz os agregados usados aqui:</p>
+<ul>
+<li><a href="../../../posts/fornecedores-campanha-2026/data/resumo.json">Resumo geral (JSON)</a></li>
+<li><a href="../../../posts/fornecedores-campanha-2026/data/candidatos.csv">Totais por candidato, com a Meta (CSV)</a></li>
+<li><a href="../../../posts/fornecedores-campanha-2026/data/meta-candidatos.csv">Candidatos que contrataram a Meta (CSV)</a></li>
+<li><a href="../../../posts/fornecedores-campanha-2026/data/partidos.json">Fornecedores por partido (JSON)</a></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<script src="../../../posts/fornecedores-campanha-2026/app.js?v=1"></script>
+<script>
+document.querySelectorAll('.navbar .nav-link').forEach(link => {
+  if (link.textContent.trim() === 'English') link.href = document.querySelector('.language-switch').href;
+});
+</script>
+
+
+
+
+</body></html>
