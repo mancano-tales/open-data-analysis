@@ -11,7 +11,8 @@ format:
     include-after-body:
       text: |
         <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-        <script src="../../posts/explorador-eleitoral/app.js?v=candidate-controls-v1"></script>
+        <script src="../../posts/explorador-eleitoral/app.js?v=census-compare-v1"></script>
+        <script src="../../posts/explorador-eleitoral/compare.js?v=census-compare-v1"></script>
         <script>
         document.querySelectorAll('.navbar .nav-link').forEach(link => {
           if (link.textContent.trim() === 'English') link.href = document.querySelector('.language-switch').href;
@@ -117,13 +118,41 @@ o grupo completo com renda elegível no território selecionado; o número de
 setores com votação estimada pode ser menor. Ausência de ligação espacial
 não é representada como votação zero.
 
-A renda é medida em 2022 em todas as eleições. As curvas históricas descrevem
+Por padrão, a renda é medida em 2022 em todas as eleições. Para 2010 e 2014, o seletor **Censo de referência** também oferece a renda e os setores do Censo 2010, contemporâneos dessas eleições; curvas de censos diferentes não devem ser comparadas entre si, porque os setores e as variáveis de renda mudaram. As curvas históricas descrevem
 votações passadas em áreas ordenadas pela renda de 2022; não medem a renda na
 época de cada eleição. Fontes e metodologia devem documentar a geografia
 utilizada e eventuais aproximações dos locais de votação históricos. Quando
 a fonte oferece somente o cadastro do primeiro turno, o segundo usa esse
 cadastro do mesmo ano, com aviso no painel de cobertura. Mudanças de endereço
 com a mesma chave de local não podem ser identificadas nesse caso.
+
+## Comparar eleições
+
+Abaixo do explorador, o comparador mostra **quanto a votação de um partido
+mudou entre duas eleições em cada centil de renda**. Cada barra é a votação
+na eleição B menos a votação na eleição A, em pontos percentuais. Barras
+azuis indicam ganho; barras cor de tijolo, perda. Centis sem estimativa em
+uma das eleições ficam em cinza, sem valor.
+
+::: {.callout-warning title="O que a diferença mede"}
+A comparação usa **os mesmos grupos de setores** nas duas eleições, com a
+renda do censo selecionado. Ela não mede a renda da época de cada eleição.
+A diferença combina mudanças de voto, de eleitorado e da rede de locais de
+votação; não mostra que as mesmas pessoas mudaram de voto. Só podem ser
+comparadas séries do mesmo cargo, território, referência de renda e censo.
+A comparação é feita pelo número do partido: quando um partido mudou de
+nome ou se fundiu a outro, o número pode representar organizações
+diferentes em cada eleição.
+:::
+
+```{=html}
+<section class="election-compare" data-lang="pt" data-base="../../../posts/explorador-eleitoral/data/" aria-label="Comparador de eleições por centil de renda">
+  <div class="compare-controls"></div>
+  <p class="compare-status" role="status" aria-live="polite">Carregando a comparação…</p>
+  <div class="compare-chart" role="region" aria-label="Diferença de votação por centil de renda entre duas eleições"></div>
+  <div class="compare-downloads"></div>
+</section>
+```
 
 ## Reprodução e expansão
 

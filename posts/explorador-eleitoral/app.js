@@ -16,8 +16,8 @@
     const availability=document.createElement('p');availability.className='available-series';controls.before(availability);
     const auditPanel=document.createElement('div');auditPanel.className='audit';auditPanel.setAttribute('role','status');coverage.before(auditPanel);
     root.querySelector('legend').textContent=t.candidates;
-    const keys=['year','round','office','uf','income_reference'], selects={};
-    t.income_reference=lang==='pt'?'Referência de renda':'Income reference';
+    const keys=['year','round','office','uf','census_year','income_reference'], selects={};
+    t.income_reference=lang==='pt'?'Referência de renda':'Income reference';t.census_year=lang==='pt'?'Censo de referência':'Reference census';
     const text=(tag,value,parent)=>{const el=document.createElement(tag);el.textContent=value;parent.append(el);return el;};
     keys.forEach(key=>{const label=text('label',t[key],controls);const select=document.createElement('select');select.setAttribute('aria-label',t[key]);label.append(select);selects[key]=select;});
     status.textContent=t.loading;
@@ -66,10 +66,13 @@
       return new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).json();
     }
     const referenceOf=entry=>entry.income_reference||'national';
+    // Series without census_year predate the 2010 reference and use Census 2022.
+    const censusOf=entry=>String(entry.census_year||2022);
     const referenceLabel=value=>value==='state'?(lang==='pt'?'UF — renda relativa ao estado':'State — income relative to state'):(lang==='pt'?'Brasil — renda relativa ao país':'Brazil — income relative to country');
-    const contestKey=entry=>['year','round','office','uf'].map(key=>entry[key]).join('|');
+    const contestKey=entry=>['year','round','office','uf'].map(key=>entry[key]).join('|')+'|'+censusOf(entry);
     function validateIncomeScope(entry,metadata) {
       const expected=referenceOf(entry)==='state'?entry.uf:'BR';
+      if(String(metadata?.income_year||2022)!==censusOf(entry)){const error=new Error(`Census mismatch: expected ${censusOf(entry)}, received ${metadata?.income_year}`);error.userMessage=lang==='pt'?`Série recusada: o censo dos metadados não corresponde ao Censo ${censusOf(entry)} selecionado. Nenhuma curva desta série foi exibida.`:`Series rejected: its metadata census does not match the selected Census ${censusOf(entry)}. No curves from this series were displayed.`;throw error;}
       if(metadata?.percentile_scope!==expected||(referenceOf(entry)==='state'&&entry.uf==='BR')||(metadata.income_reference&&metadata.income_reference!==referenceOf(entry))){
         const error=new Error(`Income reference mismatch: expected ${expected}, received ${metadata?.percentile_scope}`);
         error.userMessage=lang==='pt'?`Série recusada: a referência de renda selecionada exige o universo ${expected}, mas os metadados não correspondem. Nenhuma curva desta série foi exibida.`:`Series rejected: the selected income reference requires scope ${expected}, but its metadata do not match. No curves from this series were displayed.`;
@@ -79,20 +82,21 @@
     function resolve(changedIndex=-1) {
       const wantedTerritory=selects.uf.value;
       let subset=manifest.series.filter(s=>s.status==='available'&&!(s.uf==='BR'&&referenceOf(s)==='state'));
-      keys.slice(0,4).forEach(key=>{
+      keys.slice(0,5).forEach(key=>{
         const wanted=selects[key].value;
-        const values=[...new Set(subset.map(s=>String(s[key])))];
+        const values=[...new Set(subset.map(s=>key==='census_year'?censusOf(s):String(s[key])))];
+        if(key==='census_year')values.sort((a,b)=>Number(b)-Number(a));
         if(key==='year')values.sort((a,b)=>Number(b)-Number(a));
         if(key==='office'||key==='round')values.sort((a,b)=>Number(a)-Number(b));
         if(key==='uf')values.sort((a,b)=>a==='BR'?-1:b==='BR'?1:a.localeCompare(b));
         selects[key].replaceChildren();
-        values.forEach(value=>{const officeLabel=manifest.offices?.[value]||subset.find(s=>String(s.office)===value)?.office_label||value;const option=text('option',key==='round'?t.roundLabel(value):key==='uf'&&value==='BR'?t.national:key==='office'?localized(officeLabel):value,selects[key]);option.value=value;});
+        values.forEach(value=>{const officeLabel=manifest.offices?.[value]||subset.find(s=>String(s.office)===value)?.office_label||value;const option=text('option',key==='round'?t.roundLabel(value):key==='uf'&&value==='BR'?t.national:key==='office'?localized(officeLabel):key==='census_year'?`${lang==='pt'?'Censo':'Census'} ${value}`:value,selects[key]);option.value=value;});
         selects[key].value=values.includes(wanted)?wanted:(values[0]||'');
-        subset=subset.filter(s=>String(s[key])===selects[key].value);
+        subset=subset.filter(s=>(key==='census_year'?censusOf(s):String(s[key]))===selects[key].value);
       });
       const office=selects.office.value;
       if(preferredReference===null||office!==previousOffice||changedIndex===2)preferredReference=office==='1'||office==='presidente'?'national':'state';
-      if(changedIndex===4)preferredReference=selects.income_reference.value;
+      if(changedIndex===5)preferredReference=selects.income_reference.value;
       previousOffice=office;
       const references=[...new Set(subset.map(referenceOf))].sort((a,b)=>a==='national'?-1:b==='national'?1:a.localeCompare(b));
       selects.income_reference.replaceChildren();
@@ -112,7 +116,7 @@
       const checked=activeIds;
       const traces=data.candidates.filter(c=>checked.has(c.id)).map(candidate=>{
         const rows=data.points.filter(p=>p.candidate_id===candidate.id).sort((a,b)=>a.centil-b.centil);
-        return {type:'scatter',mode:'lines',name:`${candidate.name}${candidate.party?` (${candidate.party})`:''}`,x:rows.map(p=>p.centil),y:rows.map(p=>p.votacao),customdata:rows.map(p=>[fmt(p.renda_sm,2),fmt(p.n_setores),p.n_setores_total==null?'':` / ${fmt(p.n_setores_total)}`]),line:{width:3,color:candidate.color},connectgaps:false,hovertemplate:`<b>%{fullData.name}</b><br>${t.centil} %{x}<br><b>%{y:.2f}%</b> ${t.votes}<br>${t.income}: %{customdata[0]} SM (2022)<br>${t.tracts}: %{customdata[1]}%{customdata[2]}<extra></extra>`};
+        return {type:'scatter',mode:'lines',name:`${candidate.name}${candidate.party?` (${candidate.party})`:''}`,x:rows.map(p=>p.centil),y:rows.map(p=>p.votacao),customdata:rows.map(p=>[fmt(p.renda_sm,2),fmt(p.n_setores),p.n_setores_total==null?'':` / ${fmt(p.n_setores_total)}`]),line:{width:3,color:candidate.color},connectgaps:false,hovertemplate:`<b>%{fullData.name}</b><br>${t.centil} %{x}<br><b>%{y:.2f}%</b> ${t.votes}<br>${t.income}: %{customdata[0]} SM (${data.metadata.income_year||2022})<br>${t.tracts}: %{customdata[1]}%{customdata[2]}<extra></extra>`};
       });
       status.textContent=traces.length?'':t.none;
       const incomeScope=data.metadata.percentile_scope;

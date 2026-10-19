@@ -13,7 +13,8 @@ format:
     include-after-body:
       text: |
         <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-        <script src="app.js?v=candidate-controls-v1"></script>
+        <script src="app.js?v=census-compare-v1"></script>
+        <script src="compare.js?v=census-compare-v1"></script>
         <script>
         document.querySelectorAll('.navbar .nav-link').forEach(link => {
           if (link.textContent.trim() === 'Português') link.href = document.querySelector('.language-switch').href;
@@ -119,13 +120,41 @@ income-eligible group in the selected territory; its covered tract count
 can be smaller. No local estimate is shown as a zero vote share merely
 because the spatial match is missing.
 
-Income is measured in 2022 for every election. The historical curves therefore
+By default, income is measured in 2022 for every election. For 2010 and 2014, the **Reference census** selector also offers Census 2010 income and tracts, contemporary with those elections; curves from different censuses should not be compared with each other, because tracts and income variables changed. The historical curves therefore
 describe earlier voting patterns across areas ranked by their 2022 income;
 they do not measure income at the time of each election. Source and method
 records must document the geography used and any polling-place proxies.
 When only a first-round register is available, second-round votes use that
 same year's register, with a notice in the coverage panel. Address changes
 under an unchanged place key cannot be detected in that case.
+
+## Compare elections
+
+Below the explorer, the comparator shows **how much a party's vote share
+changed between two elections in each income percentile**. Each bar is the
+share in election B minus the share in election A, in percentage points.
+Blue bars show gains; brick-red bars show losses. Percentiles without an
+estimate in either election are grey and carry no value.
+
+::: {.callout-warning title="What the difference measures"}
+The comparison uses **the same tract groups** in both elections, ranked by
+the income of the selected census. It does not measure income at the time of
+each election. The difference combines changes in votes, in the electorate
+and in the polling-place network; it does not show that the same people
+changed their vote. Only series with the same office, territory, income
+reference and census can be compared. Parties are matched by ballot number:
+after a renaming or merger, one number may stand for different organizations
+in different elections.
+:::
+
+```{=html}
+<section class="election-compare" data-lang="en" data-base="data/" aria-label="Election comparator by income percentile">
+  <div class="compare-controls"></div>
+  <p class="compare-status" role="status" aria-live="polite">Loading the comparison…</p>
+  <div class="compare-chart" role="region" aria-label="Vote-share difference by income percentile between two elections"></div>
+  <div class="compare-downloads"></div>
+</section>
+```
 
 ## Reproduce and expand
 
