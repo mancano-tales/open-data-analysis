@@ -15,7 +15,7 @@ format:
         <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
         <script src="../../posts/explorador-eleitoral/app.js?v=concentration-v1"></script>
         <script src="../../posts/explorador-eleitoral/compare.js?v=concentration-v1"></script>
-        <script src="../../posts/explorador-eleitoral/concentration.js?v=concentration-v2"></script>
+        <script src="../../posts/explorador-eleitoral/concentration.js?v=concentration-v3"></script>
         <script>
         document.querySelectorAll('.navbar .nav-link').forEach(link => {
           if (link.textContent.trim() === 'English') link.href = document.querySelector('.language-switch').href;
@@ -78,8 +78,9 @@ Esta página não afirma reproduzir exatamente o estimador do jornal.
 
 ## Concentração da votação por renda
 
-A tabela abaixo resume, para cada candidato da série escolhida no explorador,
-o **índice de concentração** da votação por renda. Ele vai de **−1** (votação
+A tabela abaixo tem seletores próprios, independentes do explorador acima.
+Para cada candidato da série escolhida, ela resume
+o **índice de concentração** da votação por renda. O índice vai de **−1** (votação
 toda nos setores mais pobres) a **+1** (toda nos mais ricos); **0** indica
 votação igual em todas as faixas de renda. É o índice de concentração com a
 normalização de Wagstaff (2005), explicada abaixo, que permite comparar na
@@ -98,15 +99,15 @@ pode ser alterada.
 :::
 
 ```{=html}
-<section class="election-concentration" data-lang="pt" aria-label="Índice de concentração da votação por renda">
+<section class="election-concentration" data-lang="pt" data-base="../../../posts/explorador-eleitoral/data/" aria-label="Índice de concentração da votação por renda">
   <div class="concentration-controls"></div>
-  <p class="concentration-status" role="status" aria-live="polite">Aguardando a série selecionada…</p>
+  <div class="concentration-filters"></div>
+  <p class="concentration-status" role="status" aria-live="polite">Carregando a série…</p>
   <div class="concentration-scroll"><table class="concentration-table"></table></div>
   <div class="concentration-downloads"></div>
 </section>
 ```
 
-Clique no nome de um candidato para acrescentar a curva dele ao gráfico.
 
 ### Como o índice é calculado
 
