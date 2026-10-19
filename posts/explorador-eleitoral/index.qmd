@@ -15,8 +15,9 @@ format:
     include-after-body:
       text: |
         <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-        <script src="app.js?v=census-compare-v2"></script>
-        <script src="compare.js?v=census-compare-v2"></script>
+        <script src="app.js?v=concentration-v1"></script>
+        <script src="compare.js?v=concentration-v1"></script>
+        <script src="concentration.js?v=concentration-v1"></script>
         <script>
         document.querySelectorAll('.navbar .nav-link').forEach(link => {
           if (link.textContent.trim() === 'Português') link.href = document.querySelector('.language-switch').href;
@@ -76,6 +77,38 @@ This page does not claim an exact replication of the newspaper's estimator.
   <noscript>This interactive chart requires JavaScript. <a href="data/availability.csv">Download availability (CSV)</a> and use the JSON data downloads.</noscript>
 </section>
 ```
+
+## Income concentration of the vote
+
+The table below summarizes, for each candidate in the series selected in the
+explorer, the **concentration index** of the vote by income. It ranges from
+**−1** (all of the vote in the poorest tracts) to **+1** (all in the richest);
+**0** means equal vote shares across income groups. This is the standard
+concentration index: twice the covariance between vote share and the tracts'
+income rank, divided by the mean vote share, without the Wagstaff or Erreygers
+corrections. Because it does not depend on a candidate's size, a deputy with
+30,000 votes can be compared with one with 300,000.
+
+::: {.callout-warning title="What the index measures"}
+A positive index means **higher vote shares in richer areas**, not that the
+candidate was chosen by wealthy voters: the association is territorial, as in
+the chart. The index uses the income reference and census of the selected
+series. For deputies, the within-state reference compares each candidate with
+the state's own income distribution. Candidates with very small or highly
+localized votes get extreme and unstable indices, so the table starts from a
+minimum mean vote share of 0.1%, which can be changed.
+:::
+
+```{=html}
+<section class="election-concentration" data-lang="en" aria-label="Income concentration index of the vote">
+  <div class="concentration-controls"></div>
+  <p class="concentration-status" role="status" aria-live="polite">Waiting for the selected series…</p>
+  <div class="concentration-scroll"><table class="concentration-table"></table></div>
+  <div class="concentration-downloads"></div>
+</section>
+```
+
+Click a candidate's name to add their curve to the chart.
 
 ## Read the chart
 
