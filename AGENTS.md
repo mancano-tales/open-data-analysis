@@ -59,3 +59,22 @@
 ## Específico deste repositório
 
 _(regras próprias deste repositório; prevalecem sobre o bloco acima em caso de conflito)_
+
+### Dados volumosos ficam no SSD externo (autor, 2026-10-19)
+
+Em 19/10/2026 o disco interno (C:) chegou a 99% de uso: só `data-raw/eleicoes-renda/historico/`
+ocupava 76 GB, com zips do TSE e CSVs extraídos de todas as UFs de 2010 a 2026.
+
+- **Onde estão:** `data-raw/eleicoes-renda/historico/` é uma **junção NTFS** para o SSD externo
+  (`MANCANO_SSD_ROOT`, em `projects/open-data-analysis/eleicoes-renda/historico/`), declarada no
+  `.data-source`. Os scripts continuam usando o mesmo caminho relativo. Sem o SSD conectado, a pasta
+  fica inacessível: conecte o SSD em vez de baixar tudo de novo.
+- **Antes de baixar ou extrair dados grandes:** confira o espaço livre (`df -h /c`). Downloads
+  novos do TSE vão para o SSD (pela junção), nunca para o C:.
+- **Reaproveite o cache:** não baixe de novo um zip que já está lá. Extraia só o membro necessário
+  (uma UF, um arquivo), e apague o CSV extraído depois de usar. `staging/*/raw-extracted/` é
+  regenerável a partir dos zips e não deve se acumular.
+- **Worktrees:** um worktree novo liga `data-raw/` ao cache compartilhado por junção
+  (`mklink /J`). Não copie o cache.
+- **Certificados legados (2010/2014):** guardam o md5 dos scripts byte a byte. Uma cópia com
+  quebra de linha diferente (CRLF/LF) invalida o certificado.

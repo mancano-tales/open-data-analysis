@@ -1,0 +1,4 @@
+# Dados fora do git (convenção .data-source; resolvedor canônico em tools/data-source/ do hub).
+# data-raw/eleicoes-renda/historico é uma junção NTFS para o destino abaixo (MANCANO_SSD_ROOT).
+# Inventário: README.md e MANIFEST.tsv no destino.
+tse_historico = ssd:projects/open-data-analysis/eleicoes-renda/historico

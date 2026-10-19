@@ -50,6 +50,13 @@ open-data-analysis/
    `output/figures/<fig-label>/`. Nenhum script depende de caminho fora do
    repositório; se um `plot.R` não encontra seu dado, ele para com a mensagem
    de qual script de `shared-pipeline/` rodar antes.
+
+   **Cache eleitoral no SSD externo.** Na máquina do autor,
+   `data-raw/eleicoes-renda/historico/` (cerca de 76 GB de arquivos do TSE)
+   é uma junção para o SSD externo, declarada em [`.data-source`](.data-source),
+   com inventário (`README.md` e `MANIFEST.tsv`) no destino. Quem clona o
+   repositório baixa esses arquivos do TSE pelos scripts. Antes de reconstruir
+   tudo, confira o espaço livre: os dados eleitorais completos passam de 70 GB.
 3. Rode os scripts upstream **na ordem listada na seção "Pipeline" do post**
    que você quer reproduzir (cada post lista a cadeia completa, do download ao
    dado intermediário, e o que cada script grava). Para reconstruir de uma vez
