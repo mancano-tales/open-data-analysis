@@ -1,0 +1,15 @@
+centil,candidato,votacao_referencia,incerteza_visual_pp,origem
+1,Lula (PT),75,1.5,imagem fornecida pelo autor; leitura visual manual aproximada
+1,Flávio Bolsonaro (PL),21,1.5,imagem fornecida pelo autor; leitura visual manual aproximada
+10,Lula (PT),65,1.5,imagem fornecida pelo autor; leitura visual manual aproximada
+10,Flávio Bolsonaro (PL),30,1.5,imagem fornecida pelo autor; leitura visual manual aproximada
+20,Lula (PT),54,1.5,imagem fornecida pelo autor; leitura visual manual aproximada
+20,Flávio Bolsonaro (PL),39,1.5,imagem fornecida pelo autor; leitura visual manual aproximada
+46,Lula (PT),41.12,0.005,imagem fornecida pelo autor; valor textual do tooltip com arredondamento a duas casas
+46,Flávio Bolsonaro (PL),,,curva encoberta pelo tooltip; sem leitura
+75,Lula (PT),35,1.5,imagem fornecida pelo autor; leitura visual manual aproximada
+75,Flávio Bolsonaro (PL),56,1.5,imagem fornecida pelo autor; leitura visual manual aproximada
+90,Lula (PT),36,1.5,imagem fornecida pelo autor; leitura visual manual aproximada
+90,Flávio Bolsonaro (PL),54,1.5,imagem fornecida pelo autor; leitura visual manual aproximada
+100,Lula (PT),38,1.5,imagem fornecida pelo autor; leitura visual manual aproximada
+100,Flávio Bolsonaro (PL),50,1.5,imagem fornecida pelo autor; leitura visual manual aproximada

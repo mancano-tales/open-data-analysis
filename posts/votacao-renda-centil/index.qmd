@@ -3,11 +3,20 @@ title: "Presidential vote by census tract income percentile"
 date: 2026-10-14
 draft: true
 categories: [Eleições, Censo, Renda, Distribuição]
-image: thumbnail.png
+image: thumbnail-en.png
 description: "An independent reconstruction of the association between tract income and the 2026 presidential vote using Census 2022 and TSE data."
 ---
 
-![](thumbnail.png)
+::: {.callout-warning}
+**Income belongs to census tracts; observed votes belong to polling places.**
+The chart associates mean tract income with voting at nearby polling places.
+A higher vote share in higher-income tracts **does not establish that
+higher-income individuals voted for that candidate**. Individual voters'
+incomes and the polling places used by each tract's residents are unknown.
+Spatial proximity is an approximation and does not identify a tract's electorate.
+:::
+
+![](thumbnail-en.png)
 
 ## Overview
 
@@ -61,22 +70,44 @@ The [100 calculated percentiles](data/centis.csv),
 [sensitivity estimates](data/sensibilidade.csv) and
 [coverage and provenance records](data/README.md) accompany the post.
 
+## Audit diagnostics
+
+{{< include data/diagnosticos-en.md >}}
+
+The [spatial validation note](../../shared-pipeline/eleicoes/validacao/VERIFICACAO-ESPACIAL.md)
+documents national projection distortion and the independent spherical
+reference used to verify links. Municipal incompatibilities may reflect
+geocoding, registration or boundary changes; the test does not identify the
+cause of each discrepancy.
+
 ## Methodology
 
 `censobr::read_tracts(year = 2022, dataset = "ResponsavelRenda")` provides
 tract income. `V06004` measures mean nominal monthly income of household
 heads **with income** in occupied permanent private households; `V06001`
-counts household heads. This is neither per capita household income nor
-mean income of all residents. Tracts without household heads or with missing
-or suppressed income are excluded. Income is divided by BRL 1,212 to express
-it in 2022 minimum wages. Definitions follow the
+counts household heads, including those without income. It does not count
+heads with income. The available table does not provide that latter count,
+so the share without income cannot be derived from these variables.
+This is neither per capita household income nor
+mean income of all residents. Tracts without household heads or with missing,
+suppressed or nonpositive mean income are excluded. Income is divided by BRL 1,212 to express
+it in July 2022 minimum wages, the Census reference period. Definitions follow the
 [official IBGE dictionary](https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios_Rendimento_do_Responsavel/dicionario_de_dados_renda_responsavel_20260508.xlsx).
+Income describes tracts in 2022, not their residents' incomes in 2026.
+Changes in residence, composition and income between the two years remain
+outside this linkage.
 
 The pipeline downloads **2026 presidential votes by electoral section** from
 the [TSE results dataset](https://dadosabertos.tse.jus.br/dataset/resultados-2026)
 through its public CKAN API. It selects the first round and presidency. Valid
 votes for all candidates form the denominator; blank and invalid votes are
 excluded. The two displayed candidates therefore need not sum to 100%.
+Validity is checked against the official candidate and vote-detail tables for
+each municipality and electoral zone. A candidate number in the raw section
+file does not establish validity. Each candidate group must be entirely valid
+or entirely excluded; partial validity stops the calculation because it cannot
+be allocated to sections. Unmatched records must reconcile exactly with the
+official technical null votes, and valid totals must agree in every zone.
 [`electionsBR::vote_section()`](https://github.com/silvadenisson/electionsBR)
 is a related R option, but the consulted source documents years through 2024;
 the pipeline uses the official 2026 download directly.
@@ -99,6 +130,11 @@ shares. These are neighbourhood estimates, not observed votes of tract
 residents. This differs from the original article's unspecified proximity
 and geocoding details.
 
+Registered electoral addresses may be outdated or differ from actual residence.
+Even a correctly located polling place does not reveal where its voters live.
+Alternative weights and interpolation do not resolve this limitation, and
+increasing coverage does not remove it.
+
 Eligible tracts are ranked by income, with tract code breaking ties, then
 divided into 100 groups as equal in tract count as possible. Group vote
 shares are unweighted means of tract percentages. These are tract percentiles,
@@ -107,6 +143,58 @@ maximum-distance sensitivity is examined explicitly.
 Reported centile income is the unweighted mean of tract mean incomes, in
 minimum wages. Distance ties between polling places are broken by the
 ordered composite state, municipality, electoral zone and place code.
+
+## Sensitivity and limitations
+
+### What changes in the sensitivity analyses
+
+The main curve preserves the simple mean of the shares assigned to tracts,
+with percentiles reranked after the distance cutoff. A polling place may
+represent several tracts, so this mean is not the national vote share.
+The **fixed-cutoff** comparison ranks income-eligible tracts with any spatial
+link once, including links beyond 5 km, then applies 1, 2, 5 and 10 km limits
+and no limit. Counts show how many tracts remain observed in each group.
+
+The **household-head weighted** alternative defines groups using cumulative
+`V06001` before each tract in the income ranking. Tracts are never split, so
+groups need not contain exactly 1% of heads. Income and vote shares are
+weighted means using that count, which includes heads without income.
+These weights do not count voters.
+They also do not recover an aggregate individual mean income: the number
+of heads with income in each tract is unknown.
+
+The **allocated vote ratio** distributes each polling place's votes once
+among its eligible linked tracts in proportion to `V06001`, then divides
+allocated candidate votes by allocated valid votes in each group. It conserves
+the totals of used polling places. Allocation between tracts is an assumption,
+not an observation of residents' votes.
+
+The spatial alternative uses up to **three nearby polling places in the same
+municipality**, with inverse-distance weights restricted to the chosen limit.
+Among the up to three selected neighbours, at zero distance only coincident
+places receive equal weights. Income groups
+stay fixed. Three neighbours test interpolation choices; they do not identify
+where residents actually vote.
+
+The municipality bootstrap uses 500 fixed-seed replicates, drawing municipalities
+with replacement, retaining all their tracts and reranking income each time.
+The 2.5% and 97.5% quantiles are **exploratory pointwise bands**. They do not
+measure census sampling error or uncertainty in spatial links. The first
+percentile of a lead means its first occurrence, not a sustained lead at every
+higher percentile.
+
+Comparison with Folha uses seven positions in the supplied image, with rounded
+visual readings and a stated 1.5 percentage point reading tolerance. That
+tolerance is not a statistical interval. The only exact textual value is Lula's
+tooltip at percentile 46; the obscured curve remains missing. The article's
+original data are unavailable. This post's figure is always computed from TSE
+and IBGE data, without tracing the reference image.
+
+![Spatial-linkage sensitivity with fixed income cutoffs.](sensibilidade-cortes-fixos-en.png)
+
+![Comparison of aggregation and interpolation methods with a 5 km limit.](comparacao-metodos-en.png)
+
+![Exploratory pointwise municipality-resampling bands, retaining the observed spatial links.](bootstrap-municipios-en.png)
 
 ## Pipeline
 
@@ -121,8 +209,12 @@ Run from the repository root:
    `data-raw/eleicoes-renda/centis.csv`.
 3. [`030_Verificar_Resultados.R`](../../shared-pipeline/eleicoes/030_Verificar_Resultados.R)
    — checks percentages, 100 centiles, counts and means using independent
-   calculations with base R functions.
-4. [`plot.R`](plot.R) — writes PNG and PDF to
+   base R calculations; reconstructs the geometry of 2,000 tracts and checks
+   their three neighbours without using the estimator's cached interior points.
+4. [`040_Preparar_Post.R`](../../shared-pipeline/eleicoes/040_Preparar_Post.R)
+   — verifies the `030` certificate and hashes, prepares the post's aggregate
+   snapshot and produces Portuguese and English diagnostics.
+5. [`plot.R`](plot.R) — writes PNG and PDF to
    `output/figures/votacao-renda-centil/`.
 
 The figure uses unsmoothed lines, a top income axis, direct labels and colours

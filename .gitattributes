@@ -1,0 +1,6 @@
+# Preserve published byte hashes across Windows/Linux checkouts.
+/posts/votacao-renda-centil/data/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+# The audit certificate also records the exact executed numerical source.
+/shared-pipeline/eleicoes/0*.R text eol=lf
+/shared-pipeline/eleicoes/parametros.R text eol=lf
+/shared-pipeline/eleicoes/validacao/*.R text eol=lf
