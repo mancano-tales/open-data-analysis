@@ -8,6 +8,11 @@ async function listFiles(directory){const files=[];try{for(const item of await f
 (async()=>{
   const qmd=await fs.readFile(path.join(root,'posts-pt/explorador-eleitoral/index.qmd'),'utf8');
   const html=await fs.readFile(path.join(root,'docs/pt/posts-pt/explorador-eleitoral/index.html'),'utf8');
+  for(const asset of ['app.js','app.css','compare.js']){
+    const source=await fs.readFile(path.join(__dirname,asset));
+    for(const directory of ['docs/posts/explorador-eleitoral','docs/pt/posts/explorador-eleitoral'])
+      assert.deepEqual(await fs.readFile(path.join(root,directory,asset)),source,`Stale published ${asset} in ${directory}`);
+  }
   const relative=html.match(/data-base="([^"]+)"/)[1];
   assert.equal(relative,'../../../posts/explorador-eleitoral/data/');
   assert.ok(!qmd.includes('../../posts/explorador-eleitoral/data/**'));
