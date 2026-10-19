@@ -9,6 +9,7 @@ class Element {
   setAttribute(key,value){this[key]=value;}
   addEventListener(key,handler){this.events[key]=handler;}
   closest(){return this.parent;}
+  after(node){if(!this.parent)return;node.parent=this.parent;this.parent.children.splice(this.parent.children.indexOf(this)+1,0,node);}
   toggleAttribute(key,present){this[key]=present;}
   get value(){return this._value||this.children[0]?.value||'';}
   set value(value){this._value=String(value);}
@@ -20,8 +21,11 @@ const entries=[entry(2010,'1','BR','national',2022),entry(2014,'1','BR','nationa
   entry(2010,'3','AC','state',2022),entry(2014,'3','AC','state',2022),
   entry(2010,'3','AC','state',2010),entry(2014,'3','AC','state',2010),
   entry(2010,'3','DF','national',2022),entry(2014,'3','DF','national',2022)];
+for(const office of ['6','7','8'])entries.push(entry(2010,office,'BR','national',2022));
 for(const e of entries)e.url=`${e.id}.json`;
-const payload=e=>({candidates:[{id:'13',party_number:13},{id:'22',party_number:22}],
+const payload=e=>({metadata:{income_year:e.census_year,income_reference:e.income_reference,
+  percentile_scope:e.income_reference==='national'?'BR':e.uf,office:e.office,uf:e.uf,year:e.year,round:e.round},
+  candidates:[{id:'13',party_number:13},{id:'22',party_number:22}],
   points:[13,22].flatMap(id=>Array.from({length:100},(_,i)=>({candidate_id:String(id),centil:i+1,
     votacao:i===49?null:(id===13?(e.year===2010?30:40):(e.year===2010?20:10)),
     n_setores:8,n_setores_total:10,renda_sm:1})))});
@@ -30,6 +34,7 @@ files.set('data/manifest.json',{schema_version:1,series:entries,parties:{'2010':
 async function run(lang){
   const root=new Element('section');root.dataset={lang,base:'data/'};
   const elements=Object.fromEntries(['.compare-controls','.compare-chart','.compare-status','.compare-downloads'].map(k=>[k,new Element(k)]));
+  root.append(...Object.values(elements));
   root.querySelector=key=>elements[key];
   const draws=[],purges=[],mainChart=new Element('main-chart'),errors=[];
   const url=class extends URL {static createObjectURL(blob){run.lastCsv=blob;return 'blob:fixture';}};
@@ -42,6 +47,11 @@ async function run(lang){
   const controls=Object.fromEntries(['office','uf','income_reference','census_year','a','b','party'].map((k,i)=>[k,elements['.compare-controls'].children[i].children[0]]));
   const change=async(key,value)=>{controls[key].value=value;controls[key].events.change();await flush();await flush();};
   assert.equal(errors.length,0);
+  assert.deepEqual(controls.office.children.map(o=>o.value),['1','3']);
+  assert.ok(['6','7','8'].every(office=>!controls.office.children.some(o=>o.value===office)));
+  assert.equal(root.children[1].textContent,
+    lang==='pt'?'O comparador inclui só cargos majoritários (presidente, governador e senador). Nos cargos proporcionais, as séries publicadas não separam os votos de legenda, e a curva de um partido ficaria incompleta.':
+      'The comparator covers majoritarian offices only (president, governor and senator). For proportional offices, the published series do not separate party-list votes, so a party curve would be incomplete.');
   assert.match(controls.party.children.find(o=>o.value==='13').textContent,/13.*PT/);
   assert.ok(draws.length);assert.ok(draws.every(d=>d.chart===elements['.compare-chart']&&d.chart!==mainChart));
   assert.equal(draws.at(-1).traces[0].y[0],10,'B minus A');
@@ -49,6 +59,16 @@ async function run(lang){
   assert.equal(draws.at(-1).layout.hovermode,'x unified');
   assert.equal(elements['.compare-downloads'].children.length,1);
   assert.match(await run.lastCsv.text(),/centil,votacao_a,votacao_b,diferenca_pp/);
+  const swapped=files.get(`data/${entries[1].url}`), originalYear=swapped.metadata.year;
+  swapped.metadata.year=2010;
+  const drawCount=draws.length;
+  await change('party','13');
+  assert.equal(draws.length,drawCount,'swapped payload must not draw');
+  assert.match(elements['.compare-status'].textContent,lang==='pt'?/não podem ser comparadas/:/cannot be compared/);
+  assert.equal(elements['.compare-downloads'].children.length,0);
+  swapped.metadata.year=originalYear;
+  await change('party','13');
+  assert.ok(draws.length>drawCount);
   await change('b',controls.a.value);
   assert.match(elements['.compare-status'].textContent,lang==='pt'?/não podem ser comparadas/:/cannot be compared/);
   assert.equal(elements['.compare-downloads'].children.length,0);

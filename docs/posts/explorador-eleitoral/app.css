@@ -43,6 +43,7 @@ body:has(.language-switch) { padding-bottom: 5rem; }
 .election-compare select { width: 100%; min-height: 42px; padding: .55rem; background: #fff; color: inherit; border: 1px solid #aeb9c2; border-radius: 5px; font: inherit; }
 .election-compare :is(a,select):focus-visible { outline: 3px solid #225a9b; outline-offset: 3px; }
 .election-compare .compare-status { padding: .5rem 0; font-size: .9rem; }
+.election-compare .compare-notice { margin: .75rem 0; color: #634700; font-size: .9rem; line-height: 1.5; }
 .election-compare .compare-chart { width: 100%; min-height: 340px; }
 .election-compare .compare-downloads { font-size: .9rem; }
 .election-compare .error { color: #9e2626; }

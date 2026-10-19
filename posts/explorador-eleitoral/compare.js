@@ -57,6 +57,19 @@
     return {ok: true};
   }
 
+  const majoritarianOffices = new Set(['1', '3', '5']);
+  function matchesMetadata(series, entry) {
+    const metadata = series?.metadata;
+    if (!metadata || !entry) return false;
+    const expectedScope = referenceOf(entry) === 'national' ? 'BR' : entry.uf;
+    if (referenceOf(entry) === 'state' && entry.uf === 'BR') return false;
+    if (String(metadata.income_year ?? 2022) !== String(censusOf(entry)) ||
+        metadata.percentile_scope !== expectedScope ||
+        (metadata.income_reference != null && metadata.income_reference !== referenceOf(entry))) return false;
+    return ['office', 'uf', 'year', 'round'].every(key =>
+      metadata[key] != null && String(metadata[key]) === String(entry[key]));
+  }
+
   function partyLabel(manifest, entry, number) {
     const sigla = manifest.parties?.[String(entry.year)]?.[number];
     return sigla ? `${number} · ${sigla}` : number;
@@ -68,7 +81,7 @@
     return [header.join(','), ...rows.map(r => [r.centil, r.a, r.b, r.diferenca_pp, r.n_setores_a, r.n_setores_b, r.n_setores_total].map(cell).join(','))].join('\n');
   }
 
-  const api = {partyNumber, partyCurve, differenceCurve, compatible, partyLabel, toCsv, censusOf, referenceOf, contestLabel};
+  const api = {partyNumber, partyCurve, differenceCurve, compatible, matchesMetadata, partyLabel, toCsv, censusOf, referenceOf, contestLabel};
   if (typeof module === 'object' && module.exports) module.exports = api;
   if (typeof document === 'undefined') return;
   global.ElectionCompare = api;
@@ -78,12 +91,14 @@
       loading: 'Carregando a comparação…', error: 'Não foi possível montar a comparação.', y: 'Diferença B − A (p.p.)',
       x: 'Centis dos setores por renda (mais pobres → mais ricos)', missingParty: 'O partido escolhido não tem votos em uma das eleições.',
       incompatible: 'Essas séries não podem ser comparadas: os grupos de setores são diferentes.', download: 'Baixar a diferença (CSV)',
+      notice: 'O comparador inclui só cargos majoritários (presidente, governador e senador). Nos cargos proporcionais, as séries publicadas não separam os votos de legenda, e a curva de um partido ficaria incompleta.',
       national: 'Brasil', state: 'Dentro da UF', round: n => `${n}º turno`,
       summary: (party, a, b) => `Diferença na votação do partido ${party} entre ${a} e ${b}, por centil de renda.`},
     en: {office: 'Office', uf: 'Territory', income_reference: 'Income reference', census_year: 'Census', a: 'Election A (before)', b: 'Election B (after)', party: 'Party',
       loading: 'Loading the comparison…', error: 'The comparison could not be built.', y: 'Difference B − A (p.p.)',
       x: 'Tract income percentiles (poorest → richest)', missingParty: 'The selected party has no votes in one of the elections.',
       incompatible: 'These series cannot be compared: their tract groups differ.', download: 'Download the difference (CSV)',
+      notice: 'The comparator covers majoritarian offices only (president, governor and senator). For proportional offices, the published series do not separate party-list votes, so a party curve would be incomplete.',
       national: 'Brazil', state: 'Within state', round: n => `Round ${n}`,
       summary: (party, a, b) => `Change in ${party}'s vote share between ${a} and ${b}, by income percentile.`}
   };
@@ -99,6 +114,9 @@
       const select = document.createElement('select'); select.setAttribute('aria-label', t[key]);
       label.append(select); controls.append(label); selects[key] = select;
     }
+    const notice = document.createElement('p');
+    notice.className = 'compare-notice'; notice.textContent = t.notice;
+    controls.after(notice);
     status.textContent = t.loading;
     const cache = new Map();
     async function read(url, options) {
@@ -119,7 +137,7 @@
     };
     let manifest, request = 0;
     function entriesFor() {
-      let subset = manifest.series.filter(s => s.status === 'available' && !(s.uf === 'BR' && referenceOf(s) === 'state'));
+      let subset = manifest.series.filter(s => s.status === 'available' && majoritarianOffices.has(String(s.office)) && !(s.uf === 'BR' && referenceOf(s) === 'state'));
       const offices = [...new Set(subset.map(s => String(s.office)))].sort((x, y) => Number(x) - Number(y));
       fill('office', offices, v => { const l = manifest.offices?.[v] || subset.find(s => String(s.office) === v)?.office_label || v; return typeof l === 'object' ? (l[lang] || l.pt) : l; }, '1');
       subset = subset.filter(s => String(s.office) === selects.office.value);
@@ -146,6 +164,9 @@
         if (!check.ok) { status.textContent = t.incompatible; Plotly.purge?.(chart); downloads.replaceChildren(); return; }
         const [seriesA, seriesB] = await Promise.all([load(entryA), load(entryB)]);
         if (current !== request) return;
+        if (!matchesMetadata(seriesA, entryA) || !matchesMetadata(seriesB, entryB)) {
+          status.textContent = t.incompatible; Plotly.purge?.(chart); downloads.replaceChildren(); return;
+        }
         const numbersA = new Set(seriesA.candidates.map(partyNumber).filter(Boolean));
         const parties = [...new Set(seriesB.candidates.map(partyNumber).filter(n => n && numbersA.has(n)))].sort((x, y) => Number(x) - Number(y));
         if (changed !== 'party') fill('party', parties, n => partyLabel(manifest, entryB, n), parties.includes(selects.party.value) ? selects.party.value : '13');

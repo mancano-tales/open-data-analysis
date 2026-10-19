@@ -32,6 +32,18 @@ assert.equal(c.compatible(base, {...base, id: 'x', income_reference: 'state'}).r
 assert.equal(c.compatible(base, {...base, id: 'x', census_year: 2010}).reason, 'census_year');
 assert.ok(c.compatible(base, {...base, id: 'x', census_year: 2022}).ok, 'missing census_year means 2022');
 
+const metadata = {income_year: 2022, income_reference: 'national', percentile_scope: 'BR', office: '1', uf: 'BR', year: 2022, round: 1};
+assert.ok(c.matchesMetadata({metadata}, base));
+assert.ok(c.matchesMetadata({metadata: {...metadata, income_year: undefined, income_reference: undefined}}, base));
+for (const key of ['income_year', 'income_reference', 'percentile_scope', 'office', 'uf', 'year', 'round']) {
+  assert.equal(c.matchesMetadata({metadata: {...metadata, [key]: 'wrong'}}, base), false, `${key} mismatch`);
+}
+assert.equal(c.matchesMetadata({metadata: {...metadata, year: 2026}}, base), false, 'swapped election payload');
+assert.ok(c.matchesMetadata({metadata: {...metadata, percentile_scope: 'AC', uf: 'AC', income_reference: 'state'}},
+  {...base, uf: 'AC', income_reference: 'state'}));
+assert.equal(c.matchesMetadata({metadata: {...metadata, percentile_scope: 'BR', uf: 'AC', income_reference: 'state'}},
+  {...base, uf: 'AC', income_reference: 'state'}), false);
+
 // Real published data: PT 2022 vs 2026, national presidential series.
 const a = c.partyCurve(data('2022-1-1-BR.json'), '13'), b = c.partyCurve(data('2026-1-1-BR.json'), '13');
 const real = c.differenceCurve(a, b);
