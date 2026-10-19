@@ -5,24 +5,32 @@
   const T = {
     pt: {uf:'Território',cargo:'Cargo',all:'Todos',candidate:'Candidato',party:'Partido',search:'Buscar por nome, número ou partido',
       loading:'Carregando…',error:'Não foi possível carregar os dados. Recarregue a página ou baixe os arquivos abaixo.',
-      total:'Despesa contratada',meta:'Meta (direto)',inter:'Intermediários de pagamento',boost:'Impulsionamento',records:'lançamentos',
+      total:'Despesa contratada',meta:'Facebook (direto)',inter:'Intermediários de pagamento',boost:'Impulsionamento',records:'lançamentos',
       cands:'candidatos',supplier:'Fornecedor',share:'do total',noCand:'Nenhum candidato encontrado.',pf:'pessoa física',
-      metaParty:'Contratado diretamente com a Meta por partido (R$ milhões)',metaCargo:'Contratado diretamente com a Meta por cargo (R$ milhões)',
-      metaTop:'Candidatos que mais contrataram a Meta diretamente',rank:'#',value:'Meta (R$)',pct:'% da despesa',
-      partyChart:'Principais fornecedores',x:'R$ milhões',national:'Brasil (presidente)',showing:n=>`${n} candidatos na lista`,
+      metaParty:'Contratado diretamente com o Facebook, por partido (20 maiores)',metaCargo:'Contratado diretamente com o Facebook, por cargo',metaSub:'Valor contratado e parcela da despesa total do grupo',supSub:'Valor contratado e parcela da despesa total',pfLegend:'Pessoas físicas (soma)',pfLabel:'Pessoas físicas (soma, sem nomes)',others:'Demais fornecedores',caption:'Fonte: TSE, prestação de contas de candidatos 2026 (despesas contratadas, dados de 18/10/2026).',
+      metaTop:'Candidatos que mais contrataram o Facebook diretamente',rank:'#',value:'Facebook (R$)',pct:'% da despesa',totalCol:'Despesa total (R$)',sortHint:'Clique no cabeçalho para ordenar',
+      partyChart:'Maiores fornecedores',x:'R$ milhões',national:'Brasil (presidente)',showing:n=>`${n} candidatos na lista`,
       metaShare:'Parcela da despesa'},
     en: {uf:'Territory',cargo:'Office',all:'All',candidate:'Candidate',party:'Party',search:'Search by name, number or party',
       loading:'Loading…',error:'The data could not load. Reload the page or download the files below.',
-      total:'Contracted spending',meta:'Meta (direct)',inter:'Payment intermediaries',boost:'Content boosting',records:'entries',
+      total:'Contracted spending',meta:'Facebook (direct)',inter:'Payment intermediaries',boost:'Content boosting',records:'entries',
       cands:'candidates',supplier:'Supplier',share:'of total',noCand:'No candidates found.',pf:'individual',
-      metaParty:'Contracted directly with Meta by party (R$ millions)',metaCargo:'Contracted directly with Meta by office (R$ millions)',
-      metaTop:'Candidates with the largest direct Meta contracts',rank:'#',value:'Meta (R$)',pct:'% of spending',
-      partyChart:'Leading suppliers',x:'R$ millions',national:'Brazil (president)',showing:n=>`${n} candidates listed`,
+      metaParty:'Contracted directly with Facebook, by party (top 20)',metaCargo:'Contracted directly with Facebook, by office',metaSub:'Contracted value and share of the group’s total spending',supSub:'Contracted value and share of total spending',pfLegend:'Individuals (sum)',pfLabel:'Individuals (sum, names withheld)',others:'Other suppliers',caption:'Source: TSE, 2026 candidate accounts (contracted expenses, data as of 18 Oct 2026).',
+      metaTop:'Candidates with the largest direct Facebook contracts',rank:'#',value:'Facebook (R$)',pct:'% of spending',totalCol:'Total spending (R$)',sortHint:'Click a header to sort',
+      partyChart:'Largest suppliers',x:'R$ millions',national:'Brazil (president)',showing:n=>`${n} candidates listed`,
       metaShare:'Share of spending'}
   };
   const CARGO_EN = {'Presidente':'President','Governador':'Governor','Senador':'Senator','Deputado Federal':'Federal deputy',
     'Deputado Estadual':'State deputy','Deputado Distrital':'District deputy','Todos':'All'};
-  const META = '#1f5fa8', OTHER = '#8a96a3', PF = '#c2a35a', INTER = '#6f8fb8';
+  // Okabe-Ito, as in shared-pipeline/utils/plot_theme.R; gray carries the context.
+  const META = '#0072B2', INTER = '#56B4E9', PF = '#E69F00', OTHER = '#C4CAD0', INK = '#333333', MUTED = '#666666', GRID = '#EEEEEE';
+  const KEEP_UPPER = new Set(['LTDA','LTDA.','S.A.','S.A','S/A','SA','ME','EPP','EIRELI','SPE','LLC','PT','PL','PSD','MDB','PP','PSB','PDT','PSDB','PSOL','PV','DC','PRTB','PSTU','PCO','UP','PCB','PMB','PRD','II','III','IV','TV','S/S']);
+  const LOWER = new Set(['de','da','do','das','dos','e','em','para','por','a','o']);
+  const titleCase = s => String(s).toLowerCase().split(/(\s+)/).map((w, i) => {
+    if (KEEP_UPPER.has(w.toUpperCase())) return w.toUpperCase();
+    if (i > 0 && LOWER.has(w)) return w;
+    return w.charAt(0).toUpperCase() + w.slice(1);
+  }).join('');
   const norm = s => String(s).normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
 
   function el(tag, attrs = {}, ...kids) {
@@ -54,7 +62,10 @@
     const lang = root.dataset.lang === 'en' ? 'en' : 'pt', t = T[lang], loc = lang === 'pt' ? 'pt-BR' : 'en-US';
     const base = new URL(root.dataset.base, document.baseURI);
     const brl = v => 'R$ ' + Number(v).toLocaleString(loc, {maximumFractionDigits: 0});
-    const mi = v => 'R$ ' + (v / 1e6).toLocaleString(loc, {minimumFractionDigits: 1, maximumFractionDigits: 1}) + (lang === 'pt' ? ' mi' : ' M');
+    // Millions from R$ 1 mi up; thousands below, so small campaigns don't read as 0,0.
+    const mi = v => v >= 1e6 || v === 0
+      ? 'R$ ' + (v / 1e6).toLocaleString(loc, {minimumFractionDigits: 1, maximumFractionDigits: 1}) + (lang === 'pt' ? ' mi' : ' M')
+      : 'R$ ' + (v / 1e3).toLocaleString(loc, {maximumFractionDigits: v < 1e4 ? 1 : 0}) + (lang === 'pt' ? ' mil' : 'k');
     const pct = v => (100 * v).toLocaleString(loc, {maximumFractionDigits: 1}) + '%';
     const cargoName = c => lang === 'en' ? (CARGO_EN[c] || c) : c;
     const get = async (path, type = 'json') => { const r = await fetch(new URL(path, base)); if (!r.ok) throw new Error(r.status); return r[type](); };
@@ -62,26 +73,43 @@
     root.append(status);
     const config = {responsive: true, displaylogo: false, modeBarButtonsToRemove: ['lasso2d', 'select2d']};
 
-    function bars(div, rows, title) {
-      // rows: [{label, v, color, hover}] in descending order
+    // Thesis-style horizontal bars: title and subtitle above in HTML, one hue for
+    // the highlighted series and gray for context, values labelled at bar ends.
+    function bars(div, rows, title, opts = {}) {
+      const head = el('div', {class: 'fig-head'}, el('p', {class: 'fig-title', text: title}));
+      if (opts.subtitle) head.append(el('p', {class: 'fig-sub', text: opts.subtitle}));
+      if (opts.legend) head.append(el('p', {class: 'fig-legend'}, ...opts.legend.map(([c, l]) =>
+        el('span', {}, el('i', {style: `background:${c}`}), l))));
+      const plot = el('div', {class: 'fig-plot'});
+      div.replaceChildren(head, plot, el('p', {class: 'fig-caption', text: t.caption}));
       const r = rows.slice().reverse();
-      const maxV = Math.max(...rows.map(d => d.v)) / 1e6, longest = Math.max(...rows.map(d => d.label.length));
-      Plotly.react(div, [{type: 'bar', orientation: 'h', x: r.map(d => d.v / 1e6), y: r.map(d => d.label),
-        marker: {color: r.map(d => d.color)}, hovertext: r.map(d => d.hover), hoverinfo: 'text',
-        text: r.map(d => d.text || ''), textposition: 'outside', cliponaxis: false}], {
-        title: {text: title, font: {size: 15}, x: 0, xanchor: 'left'},
-        height: Math.max(260, 70 + 28 * rows.length), margin: {l: Math.min(320, 16 + 7.4 * longest), r: 20, t: 46, b: 40},
-        xaxis: {title: t.x, range: [0, maxV * 1.18], gridcolor: '#e6e9ec'}, yaxis: {automargin: false, tickfont: {size: 11}},
-        font: {family: 'inherit', color: '#253441'}, paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)'
-      }, config);
+      const big = Math.max(...rows.map(d => d.v)) >= 1e6, unit = big ? 1e6 : 1e3;
+      const maxV = Math.max(...rows.map(d => d.v)) / unit;
+      const longest = Math.max(...rows.map(d => d.label.length));
+      const narrow = div.clientWidth < 560;
+      Plotly.react(plot, [{type: 'bar', orientation: 'h', x: r.map(d => d.v / unit), y: r.map((d, i) => i),
+        marker: {color: r.map(d => d.color), line: {width: 0}}, width: 0.62,
+        hovertext: r.map(d => d.hover), hoverinfo: 'text', hoverlabel: {bgcolor: '#fff', bordercolor: '#ccc', font: {color: INK}},
+        textposition: 'none'}], {
+        annotations: r.map((d, i) => ({...d, i})).filter(d => d.text).map(d => ({x: d.v / unit, y: d.i, text: d.text, xanchor: 'left', xshift: 14,
+          showarrow: false, font: {color: MUTED, size: 11}})),
+        height: Math.max(220, 34 + 26 * rows.length), bargap: 0.3,
+        margin: {l: Math.min(narrow ? 180 : 310, 24 + 6.6 * longest), r: 34, t: 6, b: 34},
+        xaxis: {range: [0, maxV * (narrow ? 1.5 : 1.3)], gridcolor: GRID, zeroline: true, zerolinecolor: '#CCCCCC',
+                tickfont: {color: MUTED, size: 11}, tickprefix: 'R$ ', ticksuffix: big ? (lang === 'pt' ? ' mi' : ' M') : (lang === 'pt' ? ' mil' : 'k'), fixedrange: true},
+        yaxis: {tickvals: r.map((d, i) => i), ticktext: r.map(d => d.label), automargin: false, tickfont: {color: INK, size: 12}, ticks: 'outside', ticklen: 8, tickcolor: 'rgba(0,0,0,0)', fixedrange: true},
+        separators: lang === 'pt' ? ',.' : '.,',
+        font: {family: 'inherit', color: INK}, paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)', showlegend: false
+      }, {responsive: true, displaylogo: false, modeBarButtons: [['toImage']], displayModeBar: 'hover',
+          toImageButtonOptions: {format: 'png', scale: 2, filename: 'fornecedores-2026'}});
     }
-    const short = s => s.length > 40 ? s.slice(0, 38) + '…' : s;
+    const short = s => { s = titleCase(s); return s.length > 38 ? s.slice(0, 36) + '…' : s; };
     const isMeta = f => f.doc && (f.doc.startsWith('13347016') || /^META PLATFORMS/.test(f.nome));
     const isInter = f => f.doc && (f.doc.startsWith('25021356') || /^EBANX/.test(f.nome));
     const supplierRows = (list, total) => list.map(f => ({
-      label: short(f.pf ? (lang === 'pt' ? f.nome : 'Individuals (sum, names withheld)') : f.nome), v: f.v,
-      color: isMeta(f) ? META : isInter(f) ? INTER : f.pf ? PF : OTHER, text: pct(f.v / total),
-      hover: `${f.pf ? (lang === 'pt' ? f.nome : 'Individuals (sum, names withheld)') : f.nome}${f.doc ? '<br>CNPJ ' + f.doc : ''}<br>${brl(f.v)} · ${pct(f.v / total)} ${t.share}<br>${f.n.toLocaleString(loc)} ${t.records}${f.candidatos ? ' · ' + f.candidatos.toLocaleString(loc) + ' ' + t.cands : ''}`
+      label: f.pf ? t.pfLabel : short(f.nome), v: f.v,
+      color: isMeta(f) ? META : isInter(f) ? INTER : f.pf ? PF : OTHER, text: `${mi(f.v)} · ${pct(f.v / total)}`,
+      hover: `<b>${f.pf ? (lang === 'pt' ? f.nome : 'Individuals (sum, names withheld)') : titleCase(f.nome)}</b>${f.doc ? '<br>CNPJ ' + f.doc : ''}<br>${brl(f.v)} · ${pct(f.v / total)} ${t.share}<br>${f.n.toLocaleString(loc)} ${t.records}${f.candidatos ? ' · ' + f.candidatos.toLocaleString(loc) + ' ' + t.cands : ''}`
     }));
     function summary(x) {
       return el('dl', {class: 'kpis'},
@@ -100,21 +128,43 @@
         const d1 = el('div', {class: 'chart'}), d2 = el('div', {class: 'chart'});
         root.append(d2, d1);
         const parties = res.por_partido.filter(p => p.meta > 0).slice(0, 20);
-        bars(d1, parties.map(p => ({label: p.partido, v: p.meta, color: META, text: pct(p.share),
-          hover: `${p.partido}<br>${t.meta}: ${brl(p.meta)}<br>${pct(p.share)} ${t.share} (${mi(p.total)})<br>${p.candidatos_meta} / ${p.candidatos} ${t.cands}`})), t.metaParty);
-        bars(d2, res.por_cargo.map(c => ({label: cargoName(c.cargo), v: c.meta, color: META, text: pct(c.meta / c.total),
-          hover: `${cargoName(c.cargo)}<br>${t.meta}: ${brl(c.meta)}<br>${pct(c.meta / c.total)} ${t.share}<br>${c.candidatos_meta} / ${c.candidatos} ${t.cands}`})), t.metaCargo);
+        bars(d1, parties.map(p => ({label: p.partido, v: p.meta, color: META, text: `${mi(p.meta)} · ${pct(p.share)}`,
+          hover: `${p.partido}<br>${t.meta}: ${brl(p.meta)}<br>${pct(p.share)} ${t.share} (${mi(p.total)})<br>${p.candidatos_meta} / ${p.candidatos} ${t.cands}`})), t.metaParty, {subtitle: t.metaSub});
+        bars(d2, res.por_cargo.map(c => ({label: cargoName(c.cargo), v: c.meta, color: META, text: `${mi(c.meta)} · ${pct(c.meta / c.total)}`,
+          hover: `${cargoName(c.cargo)}<br>${t.meta}: ${brl(c.meta)}<br>${pct(c.meta / c.total)} ${t.share}<br>${c.candidatos_meta} / ${c.candidatos} ${t.cands}`})), t.metaCargo, {subtitle: t.metaSub});
         const filter = el('input', {type: 'search', placeholder: t.search, 'aria-label': t.search});
         const table = el('table', {class: 'meta-table'});
+        rows.forEach((r, i) => { r.rank = i + 1; r.meta = +r.meta; r.total = +r.total; r.share = +r.share; });
+        const cols = [
+          {key: 'rank', label: t.rank, num: true, show: r => r.rank},
+          {key: 'nome', label: t.candidate, show: r => r.nome},
+          {key: 'partido', label: t.party, show: r => r.partido},
+          {key: 'uf', label: t.uf, show: r => r.uf},
+          {key: 'cargo', label: t.cargo, show: r => cargoName(r.cargo)},
+          {key: 'total', label: t.totalCol, num: true, show: r => brl(r.total)},
+          {key: 'meta', label: t.value, num: true, show: r => brl(r.meta)},
+          {key: 'share', label: t.pct, num: true, show: r => pct(r.share)}];
+        let sortKey = 'meta', sortDir = -1;
         const draw = () => {
           const q = norm(filter.value.trim());
-          const hits = rows.filter(r => !q || norm(`${r.nome} ${r.numero} ${r.partido} ${r.uf}`).includes(q)).slice(0, 50);
-          table.replaceChildren(el('thead', {}, el('tr', {}, ...[t.rank, t.candidate, t.party, t.uf, t.cargo, t.value, t.pct].map(h => el('th', {text: h})))),
-            el('tbody', {}, ...hits.map(r => el('tr', {}, el('td', {text: rows.indexOf(r) + 1}), el('td', {text: r.nome}), el('td', {text: r.partido}),
-              el('td', {text: r.uf}), el('td', {text: cargoName(r.cargo)}), el('td', {class: 'num', text: brl(r.meta)}), el('td', {class: 'num', text: pct(+r.share)})))));
+          const col = cols.find(c => c.key === sortKey);
+          const cmp = col.num ? (a, b) => a[sortKey] - b[sortKey] : (a, b) => String(col.show(a)).localeCompare(String(col.show(b)), loc);
+          const hits = rows.filter(r => !q || norm(`${r.nome} ${r.numero} ${r.partido} ${r.uf}`).includes(q))
+            .sort((a, b) => sortDir * cmp(a, b) || a.rank - b.rank).slice(0, 50);
+          const head = cols.map(c => {
+            const active = c.key === sortKey;
+            const button = el('button', {type: 'button', class: 'sort' + (active ? ' active' : '')}, c.label, el('span', {'aria-hidden': 'true', text: active ? (sortDir > 0 ? ' ▲' : ' ▼') : ' ↕'}));
+            button.addEventListener('click', () => {
+              if (sortKey === c.key) sortDir = -sortDir; else { sortKey = c.key; sortDir = c.num && c.key !== 'rank' ? -1 : 1; }
+              draw();
+            });
+            return el('th', {class: c.num ? 'num' : '', 'aria-sort': active ? (sortDir > 0 ? 'ascending' : 'descending') : 'none'}, button);
+          });
+          table.replaceChildren(el('thead', {}, el('tr', {}, ...head)),
+            el('tbody', {}, ...hits.map(r => el('tr', {}, ...cols.map(c => el('td', {class: c.num ? 'num' : '', text: c.show(r)}))))));
         };
         filter.addEventListener('input', draw); draw();
-        root.append(el('h3', {text: t.metaTop}), el('label', {class: 'search'}, filter), el('div', {class: 'table-wrap'}, table));
+        root.append(el('h3', {text: t.metaTop}), el('p', {class: 'who', text: t.sortHint}), el('label', {class: 'search'}, filter), el('div', {class: 'table-wrap'}, table));
       }
 
       if (view === 'candidato') {
@@ -144,7 +194,7 @@
         const draw = () => {
           const c = data.find(x => x.id === cand.value); if (!c) return;
           info.replaceChildren(el('p', {class: 'who', text: `${c.nome} · ${c.partido} · ${cargoName(c.cargo)} · ${uf.value === 'BR' ? t.national : uf.value} · ${c.n.toLocaleString(loc)} ${t.records} · ${info.dataset.count}`}), summary(c));
-          bars(chart, supplierRows(c.fornecedores, c.total), `${t.partyChart}: ${c.nome}`);
+          bars(chart, supplierRows(c.fornecedores, c.total), `${t.partyChart}: ${titleCase(c.nome)}`, {subtitle: t.supSub, legend: [[META, t.meta], [INTER, t.inter], [PF, t.pfLegend], [OTHER, t.others]]});
         };
         const load = async () => {
           const wanted = uf.value;
@@ -184,7 +234,7 @@
         const draw = () => {
           const p = all.find(x => x.partido === party.value && x.cargo === cargo.value);
           info.replaceChildren(el('p', {class: 'who', text: `${p.partido} · ${cargoName(p.cargo)} · ${p.candidatos.toLocaleString(loc)} ${t.cands} · ${p.n.toLocaleString(loc)} ${t.records}`}), summary(p));
-          bars(chart, supplierRows(p.fornecedores, p.total), `${t.partyChart}: ${p.partido} (${cargoName(p.cargo)})`);
+          bars(chart, supplierRows(p.fornecedores.slice(0, 15), p.total), `${t.partyChart}: ${p.partido} (${cargoName(p.cargo)})`, {subtitle: t.supSub, legend: [[META, t.meta], [INTER, t.inter], [PF, t.pfLegend], [OTHER, t.others]]});
         };
         party.addEventListener('change', fill); cargo.addEventListener('change', draw);
         fill();

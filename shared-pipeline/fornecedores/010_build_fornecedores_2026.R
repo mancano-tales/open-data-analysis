@@ -31,7 +31,8 @@ if (!file.exists(zip)) {
   file.rename(paste0(zip, ".part"), zip)
 }
 member <- "despesas_contratadas_candidatos_2026_BRASIL.csv"
-tmp <- tempfile(); dir.create(tmp)
+# Extrai ao lado do zip (SSD), não no temporário do sistema, que fica no C:.
+tmp <- tempfile(tmpdir = dirname(zip)); dir.create(tmp)
 unzip(zip, member, exdir = tmp)
 d <- fread(file.path(tmp, member), encoding = "Latin-1", colClasses = "character",
            select = c("DT_GERACAO", "SG_UF", "DS_CARGO", "SQ_CANDIDATO", "NR_CANDIDATO",
@@ -74,12 +75,13 @@ cand <- d[, .(total = sum(v), n = .N, meta = sum(v[meta]),
               impulsionamento = sum(v[impulsionamento])),
           .(uf = SG_UF, cargo = DS_CARGO, id = SQ_CANDIDATO, numero = NR_CANDIDATO,
             nome = NM_CANDIDATO, partido = SG_PARTIDO)]
-forn <- d[, .(v = sum(v), n = .N), .(id = SQ_CANDIDATO, chave, nome, pf)]
+forn <- d[, .(v = sum(v), n = .N, destaque = any(meta | intermediario)), .(id = SQ_CANDIDATO, chave, nome, pf)]
 setorder(forn, id, -v)
 forn[, rank := seq_len(.N), id]
 for (u in sort(unique(cand$uf))) {
   cu <- cand[uf == u][order(match(cargo, cargo_ordem), -total)]
-  fu <- forn[id %in% cu$id & rank <= top_n]
+  # Top 10 mais Meta, intermediários e pessoas físicas, que o post sempre destaca.
+  fu <- forn[id %in% cu$id & (rank <= top_n | destaque | pf)]
   lst <- lapply(seq_len(nrow(cu)), function(i) {
     x <- cu[i]
     f <- fu[id == x$id]
