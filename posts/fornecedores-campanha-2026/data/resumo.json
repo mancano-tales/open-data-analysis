@@ -1,0 +1,500 @@
+{
+  "gerado_tse": "18/10/2026",
+  "fonte": "https://cdn.tse.jus.br/estatistica/sead/odsele/prestacao_contas/prestacao_de_contas_eleitorais_candidatos_2026.zip",
+  "geral": {
+    "total": 4639796370.02,
+    "meta": 289365540.07,
+    "intermediario": 114944978.68,
+    "intermediario_meta": 35242163.51,
+    "impulsionamento": 415042486.2,
+    "candidatos": 14867,
+    "candidatos_meta": 6131
+  },
+  "pessoas_fisicas": 1399805082.44,
+  "prestacao": [
+    {
+      "tipo": "Parcial",
+      "total": 1432447674.77,
+      "candidatos": 6696
+    },
+    {
+      "tipo": "Final",
+      "total": 83018380.07,
+      "candidatos": 765
+    },
+    {
+      "tipo": "Relatório Financeiro",
+      "total": 3124330315.18,
+      "candidatos": 7406
+    }
+  ],
+  "por_cargo": [
+    {
+      "cargo": "Presidente",
+      "total": 174430116.54,
+      "meta": 12163200,
+      "candidatos": 12,
+      "candidatos_meta": 10
+    },
+    {
+      "cargo": "Governador",
+      "total": 500425406.01,
+      "meta": 26585061.97,
+      "candidatos": 153,
+      "candidatos_meta": 91
+    },
+    {
+      "cargo": "Senador",
+      "total": 394449569.62,
+      "meta": 35302776.15,
+      "candidatos": 260,
+      "candidatos_meta": 162
+    },
+    {
+      "cargo": "Deputado Federal",
+      "total": 2335390528.47,
+      "meta": 127124401.08,
+      "candidatos": 6036,
+      "candidatos_meta": 2586
+    },
+    {
+      "cargo": "Deputado Estadual",
+      "total": 1201323292.33,
+      "meta": 83468596.26,
+      "candidatos": 8064,
+      "candidatos_meta": 3121
+    },
+    {
+      "cargo": "Deputado Distrital",
+      "total": 33777457.05,
+      "meta": 4721504.61,
+      "candidatos": 342,
+      "candidatos_meta": 161
+    }
+  ],
+  "por_partido": [
+    {
+      "partido": "PL",
+      "total": 858732229.07,
+      "meta": 63872598.73,
+      "candidatos": 1465,
+      "candidatos_meta": 788,
+      "share": 0.0744
+    },
+    {
+      "partido": "PT",
+      "total": 499257407.82,
+      "meta": 37886720.6,
+      "candidatos": 937,
+      "candidatos_meta": 496,
+      "share": 0.0759
+    },
+    {
+      "partido": "PSD",
+      "total": 499587885.53,
+      "meta": 30260266.37,
+      "candidatos": 977,
+      "candidatos_meta": 490,
+      "share": 0.0606
+    },
+    {
+      "partido": "UNIÃO",
+      "total": 463241463.92,
+      "meta": 23359817.16,
+      "candidatos": 761,
+      "candidatos_meta": 339,
+      "share": 0.0504
+    },
+    {
+      "partido": "REPUBLICANOS",
+      "total": 411207365.79,
+      "meta": 19670687.71,
+      "candidatos": 1109,
+      "candidatos_meta": 463,
+      "share": 0.0478
+    },
+    {
+      "partido": "MDB",
+      "total": 357746563.84,
+      "meta": 15350372.46,
+      "candidatos": 1154,
+      "candidatos_meta": 391,
+      "share": 0.0429
+    },
+    {
+      "partido": "PP",
+      "total": 342705499.88,
+      "meta": 14331781.79,
+      "candidatos": 629,
+      "candidatos_meta": 304,
+      "share": 0.0418
+    },
+    {
+      "partido": "PODE",
+      "total": 199735853.71,
+      "meta": 14248562.92,
+      "candidatos": 902,
+      "candidatos_meta": 368,
+      "share": 0.0713
+    },
+    {
+      "partido": "NOVO",
+      "total": 92570236.27,
+      "meta": 12747988.89,
+      "candidatos": 968,
+      "candidatos_meta": 449,
+      "share": 0.1377
+    },
+    {
+      "partido": "PSB",
+      "total": 176610996.35,
+      "meta": 12555173.79,
+      "candidatos": 707,
+      "candidatos_meta": 292,
+      "share": 0.0711
+    },
+    {
+      "partido": "PSDB",
+      "total": 149390829.58,
+      "meta": 12148493.4,
+      "candidatos": 740,
+      "candidatos_meta": 286,
+      "share": 0.0813
+    },
+    {
+      "partido": "PSOL",
+      "total": 90886371.08,
+      "meta": 6499966.54,
+      "candidatos": 627,
+      "candidatos_meta": 191,
+      "share": 0.0715
+    },
+    {
+      "partido": "PDT",
+      "total": 156580355.16,
+      "meta": 5690051.21,
+      "candidatos": 805,
+      "candidatos_meta": 244,
+      "share": 0.0363
+    },
+    {
+      "partido": "AVANTE",
+      "total": 62593544.06,
+      "meta": 4823127.76,
+      "candidatos": 556,
+      "candidatos_meta": 199,
+      "share": 0.0771
+    },
+    {
+      "partido": "PRD",
+      "total": 62606480.82,
+      "meta": 2757922.73,
+      "candidatos": 323,
+      "candidatos_meta": 116,
+      "share": 0.0441
+    },
+    {
+      "partido": "PCDOB",
+      "total": 49973782.44,
+      "meta": 2650436.35,
+      "candidatos": 132,
+      "candidatos_meta": 61,
+      "share": 0.053
+    },
+    {
+      "partido": "SOLIDARIEDADE",
+      "total": 54440813.93,
+      "meta": 1791547.64,
+      "candidatos": 386,
+      "candidatos_meta": 106,
+      "share": 0.0329
+    },
+    {
+      "partido": "REDE",
+      "total": 19825649.42,
+      "meta": 1776165.64,
+      "candidatos": 199,
+      "candidatos_meta": 44,
+      "share": 0.0896
+    },
+    {
+      "partido": "PV",
+      "total": 45124966.73,
+      "meta": 1515552.03,
+      "candidatos": 183,
+      "candidatos_meta": 61,
+      "share": 0.0336
+    },
+    {
+      "partido": "MISSÃO",
+      "total": 6818600.63,
+      "meta": 1372677.23,
+      "candidatos": 473,
+      "candidatos_meta": 206,
+      "share": 0.2013
+    },
+    {
+      "partido": "MOBILIZA",
+      "total": 8547895.2,
+      "meta": 1238340.52,
+      "candidatos": 159,
+      "candidatos_meta": 54,
+      "share": 0.1449
+    },
+    {
+      "partido": "AGIR",
+      "total": 7847817.05,
+      "meta": 902598.98,
+      "candidatos": 153,
+      "candidatos_meta": 52,
+      "share": 0.115
+    },
+    {
+      "partido": "CIDADANIA",
+      "total": 11696518.88,
+      "meta": 668953.75,
+      "candidatos": 94,
+      "candidatos_meta": 33,
+      "share": 0.0572
+    },
+    {
+      "partido": "DEMOCRATA",
+      "total": 3385776.63,
+      "meta": 609017.13,
+      "candidatos": 111,
+      "candidatos_meta": 28,
+      "share": 0.1799
+    },
+    {
+      "partido": "DC",
+      "total": 3537216.68,
+      "meta": 466766.96,
+      "candidatos": 180,
+      "candidatos_meta": 45,
+      "share": 0.132
+    },
+    {
+      "partido": "PRTB",
+      "total": 899007.5,
+      "meta": 125000,
+      "candidatos": 2,
+      "candidatos_meta": 2,
+      "share": 0.139
+    },
+    {
+      "partido": "PSTU",
+      "total": 3044451.54,
+      "meta": 37207.63,
+      "candidatos": 73,
+      "candidatos_meta": 16,
+      "share": 0.0122
+    },
+    {
+      "partido": "UP",
+      "total": 1119618.71,
+      "meta": 7234.15,
+      "candidatos": 50,
+      "candidatos_meta": 5,
+      "share": 0.0065
+    },
+    {
+      "partido": "PCB",
+      "total": 80921.31,
+      "meta": 510,
+      "candidatos": 11,
+      "candidatos_meta": 2,
+      "share": 0.0063
+    },
+    {
+      "partido": "PCO",
+      "total": 250.49,
+      "meta": 0,
+      "candidatos": 1,
+      "candidatos_meta": 0,
+      "share": 0
+    }
+  ],
+  "top_fornecedores": [
+    {
+      "nome": "FACEBOOK SERVICOS ONLINE DO BRASIL LTDA.",
+      "doc": "13347016000117",
+      "v": 288715219.91,
+      "candidatos": 6122
+    },
+    {
+      "nome": "DLOCAL BRASIL INSTITUICAO DE PAGAMENTO S.A.",
+      "doc": "25021356000132",
+      "v": 101727675.59,
+      "candidatos": 1892
+    },
+    {
+      "nome": "DELTA3 COMUNICACAO E PROJETOS LTDA",
+      "doc": "63984717000135",
+      "v": 31000000,
+      "candidatos": 1
+    },
+    {
+      "nome": "EPOS BRASIL ESTRATEGIA, COMUNICACAO E TECNOLOGIA LTDA",
+      "doc": "55554460000153",
+      "v": 17000000,
+      "candidatos": 1
+    },
+    {
+      "nome": "KMK COMUNICACAO LTDA",
+      "doc": "67091238000140",
+      "v": 15000000,
+      "candidatos": 2
+    },
+    {
+      "nome": "F.A.R.O PROPAGANDA E PUBLICIDADE LTDA",
+      "doc": "09383641000147",
+      "v": 13400000,
+      "candidatos": 3
+    },
+    {
+      "nome": "EBANX PAGAMENTOS LTDA",
+      "doc": "24080493000185",
+      "v": 13210413.23,
+      "candidatos": 211
+    },
+    {
+      "nome": "MXM GRAFICA E EMBALAGENS LTDA",
+      "doc": "00758606000190",
+      "v": 9816590,
+      "candidatos": 31
+    },
+    {
+      "nome": "DS GRAFICA LTDA",
+      "doc": "67168797000101",
+      "v": 9592376,
+      "candidatos": 36
+    },
+    {
+      "nome": "WBL GRAFICA E EDITORA LTDA",
+      "doc": "08142850000136",
+      "v": 9223310.3,
+      "candidatos": 245
+    },
+    {
+      "nome": "URISSANE COMUNICACAO LTDA",
+      "doc": "28573576000167",
+      "v": 8920500,
+      "candidatos": 6
+    },
+    {
+      "nome": "EXACT INDUSTRIA E SERVICOS DE EMBALAGENS E ROTULOS LTDA",
+      "doc": "23412180000114",
+      "v": 7046893.63,
+      "candidatos": 62
+    },
+    {
+      "nome": "JM INDUSTRIA DE EMBALAGENS E ROTULOS LTDA",
+      "doc": "52336957000107",
+      "v": 6783691,
+      "candidatos": 21
+    },
+    {
+      "nome": "2026 COMUNICACAO SPE LTDA",
+      "doc": "66183521000130",
+      "v": 6379700,
+      "candidatos": 4
+    },
+    {
+      "nome": "PLTK COMUNICACAO ESTRATEGICA LTDA",
+      "doc": "52264807000135",
+      "v": 6350000,
+      "candidatos": 3
+    },
+    {
+      "nome": "SANTANA   ASSOCIADOS MARKETING E PROPAGANDA LTDA",
+      "doc": "05060706000324",
+      "v": 6000000,
+      "candidatos": 1
+    },
+    {
+      "nome": "IMPRINT 2001 GRAFICA E EDITORA LTDA",
+      "doc": "02495060000158",
+      "v": 5941049.63,
+      "candidatos": 83
+    },
+    {
+      "nome": "BRASPOR GRAFICA E EDITORA LTDA.",
+      "doc": "07263666000181",
+      "v": 5920684.42,
+      "candidatos": 53
+    },
+    {
+      "nome": "GRAFICA J B LTDA",
+      "doc": "08540403000135",
+      "v": 5804891.5,
+      "candidatos": 66
+    },
+    {
+      "nome": "ALGORITMO DADOS ESTRATEGIA E COMUNICACAO LTDA",
+      "doc": "67949812000159",
+      "v": 5400000,
+      "candidatos": 1
+    },
+    {
+      "nome": "GRAFICA NMC LTDA",
+      "doc": "35659497000139",
+      "v": 5092796.17,
+      "candidatos": 13
+    },
+    {
+      "nome": "PARANOA DIGITAL PRODUCAO CINEMATOGRAFICA, DE VIDEOS E PROGRAMAS LTDA",
+      "doc": "32951141000186",
+      "v": 5030000,
+      "candidatos": 1
+    },
+    {
+      "nome": "QUALIGRAF - EDITORA E GRAFICA LTDA",
+      "doc": "02933302000148",
+      "v": 4877523.9,
+      "candidatos": 39
+    },
+    {
+      "nome": "ALL MG26 COMUNICACAO E ESTRATEGIA SPE LTDA",
+      "doc": "67314597000110",
+      "v": 4800000,
+      "candidatos": 1
+    },
+    {
+      "nome": "LOCALIZA RENT A CAR SA",
+      "doc": "16670085000155",
+      "v": 4750853.58,
+      "candidatos": 223
+    },
+    {
+      "nome": "F7 COMUNICACAO LTDA",
+      "doc": "04986141000186",
+      "v": 4750000,
+      "candidatos": 5
+    },
+    {
+      "nome": "GRAFICA EDITORA J ANDRADE LTDA",
+      "doc": "13007646000142",
+      "v": 4685637.66,
+      "candidatos": 48
+    },
+    {
+      "nome": "SANTANA   ASSOCIADOS MARKETING E PROPAGANDA LTDA",
+      "doc": "05060706000162",
+      "v": 4600000,
+      "candidatos": 3
+    },
+    {
+      "nome": "AUREA TECNOLOGIA E SOLUCOES LTDA",
+      "doc": "57780367000192",
+      "v": 4500000,
+      "candidatos": 1
+    },
+    {
+      "nome": "POLIS PROPAGANDA   MARKETING LTDA",
+      "doc": "05018135000106",
+      "v": 4500000,
+      "candidatos": 1
+    }
+  ],
+  "ufs": ["AC", "AL", "AM", "AP", "BA", "BR", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO"]
+}
