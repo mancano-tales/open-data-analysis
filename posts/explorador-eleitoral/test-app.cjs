@@ -130,6 +130,19 @@ const textContent=element=>[element.textContent||'',...(element.children||[]).ma
     assert.equal(h.selectors['.candidate-list'].children.filter(x=>x.children[0]?.checked).length,0);
     assert.equal(h.errors.length,0);
   }
+  // Compact presentation is opt-in and restricted to an iframe context.
+  for(const requested of [false,true])for(const framed of [false,true]){
+    const h=harness('en',null,fixtures);const self={};const classes=[];
+    h.context.window.self=self;h.context.window.top=framed?{}:self;
+    h.context.document.baseURI=base+(requested?'?panel=1':'');
+    h.context.document.body={classList:{add:value=>classes.push(value)}};
+    vm.runInNewContext(fs.readFileSync(path.join(source,'app.js'),'utf8'),h.context);await flush();await flush();
+    assert.equal(classes.includes('embedded-explorer'),requested&&framed);
+    const note=h.root.children.find(el=>el.className==='embedded-note');
+    assert.equal(Boolean(note),requested&&framed);
+    if(note){assert.equal(h.draws.at(-1).traces.length,0);assert.equal(h.selectors.fieldset.children.find(el=>el.className==='candidate-tools').children[0].hidden,true);assert.equal(note.children.find(el=>el.tag==='a').href,base);assert.equal(note.children.find(el=>el.tag==='a').target,'_blank');}
+    assert.equal(h.errors.length,0);
+  }
   // Browser gzip decoding, including a host that already decoded transport gzip.
   const compressedEntry={...fixtureEntries[0],url:fixtureEntries[0].url+'.gz'};
   const originalBytes=Buffer.from(JSON.stringify(fixtures[`data/${fixtureEntries[0].url}`]));

@@ -1,0 +1,45 @@
+---
+title: "Dois painéis do explorador"
+description: "Duas visualizações independentes, com seletores e hover próprios."
+page-layout: full
+toc: false
+format:
+  html:
+    css:
+      - ../../posts/explorador-eleitoral/app.css
+      - ../../posts/explorador-eleitoral/two-panels.css
+    include-after-body:
+      text: |
+        <script>
+        document.querySelectorAll('.navbar .nav-link').forEach(link => {
+          if (link.textContent.trim() === 'English') link.href = document.querySelector('.language-switch').href;
+        });
+        </script>
+---
+
+Escolha a eleição, turno, cargo, território e referência de renda em cada
+painel. Cada visualização mantém sua própria seleção e seu próprio hover.
+Em telas pequenas, os painéis ficam um abaixo do outro.
+
+::: {.callout-warning title="A renda é do setor, não do eleitor"}
+Os painéis reutilizam a mesma metodologia do [explorador](index.qmd).
+A renda é a média setorial do Censo 2022, inclusive nas eleições antigas;
+não identifica a renda de quem votou. A cobertura espacial pode variar por
+eleição. Consulte os avisos, fontes e cobertura em cada painel.
+:::
+
+```{=html}
+<a class="language-switch" href="../../../posts/explorador-eleitoral/two-panels.html" hreflang="en" lang="en" aria-label="Switch to the English version of this page"><span aria-hidden="true">EN ↗</span> English</a>
+<div class="independent-panels">
+  <section aria-labelledby="panel-a-title">
+    <h2 id="panel-a-title">Painel A</h2>
+    <iframe src="./?panel=1" title="Painel A: explorador com seletores independentes" loading="eager"></iframe>
+    <a class="panel-link" href="./" target="_blank" rel="noopener">Abrir explorador em outra aba</a>
+  </section>
+  <section aria-labelledby="panel-b-title">
+    <h2 id="panel-b-title">Painel B</h2>
+    <iframe src="./?panel=1" title="Painel B: explorador com seletores independentes" loading="eager"></iframe>
+    <a class="panel-link" href="./" target="_blank" rel="noopener">Abrir explorador em outra aba</a>
+  </section>
+</div>
+```

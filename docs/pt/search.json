@@ -1397,7 +1397,7 @@
     "href": "posts-pt/explorador-eleitoral/index.html",
     "title": "Explore as eleições por faixa de renda",
     "section": "",
-    "text": "EN ↗ English\nComo varia a votação associada a áreas de diferentes rendas? Explore as curvas abaixo. Os percentis ordenam os setores censitários pela renda média dos responsáveis com rendimento, segundo o Censo 2022: do 1% mais pobre ao 1% mais rico dos setores elegíveis. São grupos de setores, não percentis da população ou do eleitorado."
+    "text": "EN ↗ English\nComo varia a votação associada a áreas de diferentes rendas? Explore as curvas abaixo. Os percentis ordenam os setores censitários pela renda média dos responsáveis com rendimento, segundo o Censo 2022: do 1% mais pobre ao 1% mais rico dos setores elegíveis. São grupos de setores, não percentis da população ou do eleitorado.\nAbrir dois painéis independentes"
   },
   {
     "objectID": "posts-pt/explorador-eleitoral/index.html#como-ler-o-gráfico",
@@ -1412,5 +1412,12 @@
     "title": "Explore as eleições por faixa de renda",
     "section": "Reprodução e expansão",
     "text": "Reprodução e expansão\nO post da reconstrução original documenta o pipeline, as exclusões, a sensibilidade à distância e as verificações numéricas. Este explorador lê pequenos arquivos JSON estáticos e dispensa servidor de aplicação. O contrato dos dados define como séries validadas de outras eleições, turnos, cargos e UFs entram na mesma interface. O código está em app.js; os arquivos para download contêm apenas valores agregados.\nNas eleições estaduais, os candidatos e seus denominadores devem ser comparados dentro da UF e do cargo correspondentes. Uma curva nacional para um candidato estadual exigiria uma regra de agregação específica e justificada. Série ausente significa indisponibilidade, nunca votação zero."
+  },
+  {
+    "objectID": "posts-pt/explorador-eleitoral/dois-paineis.html",
+    "href": "posts-pt/explorador-eleitoral/dois-paineis.html",
+    "title": "Dois painéis do explorador",
+    "section": "",
+    "text": "Escolha a eleição, turno, cargo, território e referência de renda em cada painel. Cada visualização mantém sua própria seleção e seu próprio hover. Em telas pequenas, os painéis ficam um abaixo do outro.\n\n\n\n\n\n\nAvisoA renda é do setor, não do eleitor\n\n\n\nOs painéis reutilizam a mesma metodologia do explorador. A renda é a média setorial do Censo 2022, inclusive nas eleições antigas; não identifica a renda de quem votou. A cobertura espacial pode variar por eleição. Consulte os avisos, fontes e cobertura em cada painel.\n\n\nEN ↗ English\n\n  \n    Painel A\n    \n    Abrir explorador em outra aba\n  \n  \n    Painel B\n    \n    Abrir explorador em outra aba"
   }
 ]

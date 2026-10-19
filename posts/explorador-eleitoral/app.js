@@ -1,6 +1,8 @@
 /* Aggregate-only static explorer. See DATA-CONTRACT.md for the input format. */
 (() => {
   'use strict';
+  const embeddedPanel=new URL(document.baseURI).searchParams.get('panel')==='1'&&window.self!==window.top;
+  if(embeddedPanel)document.body.classList.add('embedded-explorer');
   const copy = {
     pt: {year:'Eleição',round:'Turno',office:'Cargo',uf:'Território',candidates:'Candidatos: selecione as curvas',loading:'Carregando os dados agregados…',error:'Não foi possível carregar o explorador. Use os arquivos de dados abaixo ou recarregue a página.',x:'Centis dos setores por renda (mais pobres → mais ricos)',y:'Votação estimada (%)',income:'Renda média',tracts:'Setores no centil',centil:'Centil',coverage:'Cobertura',of:'de',included:'setores incluídos',download:'Baixar esta série (JSON)',manifest:'Ver séries disponíveis (JSON)',none:'Selecione ao menos um candidato para mostrar uma curva.',available:'Séries disponíveis',sources:'Fontes',roundLabel:n=>`${n}º turno`,national:'Brasil',votes:'dos votos válidos',method:'Estimador',incomeDef:'Renda',noPlotly:'A biblioteca do gráfico não carregou. Verifique a conexão e recarregue a página.'},
     en: {year:'Election',round:'Round',office:'Office',uf:'Territory',candidates:'Candidates: select curves',loading:'Loading aggregate data…',error:'The explorer could not load. Use the data files below or reload the page.',x:'Tract income percentiles (poorest → richest)',y:'Estimated vote share (%)',income:'Mean income',tracts:'Tracts in percentile',centil:'Percentile',coverage:'Coverage',of:'of',included:'tracts included',download:'Download this series (JSON)',manifest:'Available series (JSON)',none:'Select at least one candidate to display a curve.',available:'Available series',sources:'Sources',roundLabel:n=>`Round ${n}`,national:'Brazil',votes:'of valid votes',method:'Estimator',incomeDef:'Income',noPlotly:'The chart library did not load. Check your connection and reload the page.'}
@@ -19,6 +21,14 @@
     const keys=['year','round','office','uf','census_year','income_reference'], selects={};
     t.income_reference=lang==='pt'?'Referência de renda':'Income reference';t.census_year=lang==='pt'?'Censo de referência':'Reference census';
     const text=(tag,value,parent)=>{const el=document.createElement(tag);el.textContent=value;parent.append(el);return el;};
+    if(embeddedPanel){
+      const note=document.createElement('p');note.className='embedded-note';
+      note.append(document.createTextNode(lang==='pt'?'A renda é do setor, não do eleitor. ':'Income describes the tract, not the voter. '));
+      const full=text('a',lang==='pt'?'Página completa e metodologia':'Full page and methodology',note);
+      const url=new URL(document.baseURI);url.searchParams.delete('panel');full.href=url.href;full.target='_blank';full.rel='noopener';
+      controls.before(note);
+    }
+
     keys.forEach(key=>{const label=text('label',t[key],controls);const select=document.createElement('select');select.setAttribute('aria-label',t[key]);label.append(select);selects[key]=select;});
     status.textContent=t.loading;
     let manifest, selected, data, request=0, activeIds=new Set(), rankedCandidates=[], preferredReference=null, previousOffice=null, loadedContestKey=null;
@@ -27,7 +37,7 @@
     const searchLabel=text('label',lang==='pt'?'Buscar candidato por nome, número ou partido':'Search candidates by name, number or party',root.querySelector('fieldset'));
     const search=document.createElement('input');search.type='search';search.placeholder=lang==='pt'?'Digite um nome ou número…':'Enter a name or number…';search.setAttribute('aria-label',searchLabel.textContent);searchLabel.append(search);searchLabel.className='candidate-search';
     const candidateTools=document.createElement('div');candidateTools.className='candidate-tools';
-    const topButton=text('button',lang==='pt'?'Mostrar 6 principais':'Show leading 6',candidateTools);topButton.type='button';
+    const topButton=text('button',lang==='pt'?'Mostrar 6 principais':'Show leading 6',candidateTools);topButton.type='button';topButton.hidden=embeddedPanel;
     const clearButton=text('button',lang==='pt'?'Limpar seleção':'Clear selection',candidateTools);clearButton.type='button';
     const allButton=text('button',lang==='pt'?'Incluir todos':'Include all',candidateTools);allButton.type='button';
     allButton.title=lang==='pt'?'Inclui todos os candidatos desta disputa, mesmo os ocultos pela busca.':'Includes every candidate in this contest, including those hidden by search.';
@@ -130,9 +140,9 @@
         const loaded=await read(seriesUrl(selected));if(current!==request)return;validateIncomeScope(selected,loaded.metadata);data=loaded;
         const scores=new Map(data.candidates.map(c=>[c.id,0]));
         data.points.forEach(point=>scores.set(point.candidate_id,(scores.get(point.candidate_id)||0)+(point.votacao||0)));
-        rankedCandidates=[...data.candidates].sort((a,b)=>scores.get(b.id)-scores.get(a.id));
+        rankedCandidates=embeddedPanel?[...data.candidates]:[...data.candidates].sort((a,b)=>scores.get(b.id)-scores.get(a.id));
         const retained=[...previousSelection].filter(id=>scores.has(id));
-        activeIds=new Set(preserveSelection&&(retained.length||previousSelection.size===0)?retained:(data.metadata.default_candidates||rankedCandidates.slice(0,6).map(c=>c.id)).filter(id=>scores.has(id)));
+        activeIds=new Set(preserveSelection&&(retained.length||previousSelection.size===0)?retained:(embeddedPanel?[]:(data.metadata.default_candidates||rankedCandidates.slice(0,6).map(c=>c.id))).filter(id=>scores.has(id)));
         loadedContestKey=contestKey(selected);
         if(!preserveSelection)search.value='';topButton.disabled=false;clearButton.disabled=false;allButton.disabled=false;search.disabled=false;renderCandidates();
         coverage.replaceChildren();

@@ -7,12 +7,14 @@ categories: [Eleições, Censo, Renda, Distribuição]
 description: "Curvas interativas de votação por centil de renda dos setores censitários do Censo 2022, com agregados para download e cobertura explícita."
 format:
   html:
-    css: ../../posts/explorador-eleitoral/app.css
+    css:
+      - ../../posts/explorador-eleitoral/app.css
+      - ../../posts/explorador-eleitoral/panel-embed-v1.css
     include-after-body:
       text: |
         <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-        <script src="../../posts/explorador-eleitoral/app.js?v=census-compare-v1"></script>
-        <script src="../../posts/explorador-eleitoral/compare.js?v=census-compare-v1"></script>
+        <script src="../../posts/explorador-eleitoral/app.js?v=census-compare-v2"></script>
+        <script src="../../posts/explorador-eleitoral/compare.js?v=census-compare-v2"></script>
         <script>
         document.querySelectorAll('.navbar .nav-link').forEach(link => {
           if (link.textContent.trim() === 'English') link.href = document.querySelector('.language-switch').href;
@@ -58,6 +60,8 @@ por eleição, turno, cargo e território; combinações ausentes estão indispo
 Os painéis de cobertura e de reconciliação dos votos descrevem a série selecionada.
 Esta página não afirma reproduzir exatamente o estimador do jornal.
 :::
+
+[Abrir dois painéis independentes](dois-paineis.qmd)
 
 ```{=html}
 <section class="election-explorer" data-lang="pt" data-base="../../../posts/explorador-eleitoral/data/" aria-label="Explorador de eleições e renda">
