@@ -228,7 +228,7 @@ Note
 </section>
 <section id="income-concentration-of-the-vote" class="level2">
 <h2 class="anchored" data-anchor-id="income-concentration-of-the-vote">Income concentration of the vote</h2>
-<p>The table below summarizes, for each candidate in the series selected in the explorer, the <strong>concentration index</strong> of the vote by income. It ranges from <strong>−1</strong> (all of the vote in the poorest tracts) to <strong>+1</strong> (all in the richest); <strong>0</strong> means equal vote shares across income groups. This is the concentration index with the Wagstaff (2005) normalization, explained below, which puts a deputy with 30,000 votes and a presidential candidate with half of the vote on the same scale.</p>
+<p>The table below has its own selectors, independent of the explorer above. For each candidate in the selected series, it summarizes the <strong>concentration index</strong> of the vote by income. It ranges from <strong>−1</strong> (all of the vote in the poorest tracts) to <strong>+1</strong> (all in the richest); <strong>0</strong> means equal vote shares across income groups. This is the concentration index with the Wagstaff (2005) normalization, explained below, which puts a deputy with 30,000 votes and a presidential candidate with half of the vote on the same scale.</p>
 <div class="callout callout-style-default callout-warning callout-titled" title="What the index measures">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -242,13 +242,13 @@ Note
 <p>A positive index means <strong>higher vote shares in richer areas</strong>, not that the candidate was chosen by wealthy voters: the association is territorial, as in the chart. The index uses the income reference and census of the selected series. For deputies, the within-state reference compares each candidate with the state’s own income distribution. Candidates with very small or highly localized votes get extreme and unstable indices, so the table starts from a minimum mean vote share of 0.1%, which can be changed.</p>
 </div>
 </div>
-<section class="election-concentration" data-lang="en" aria-label="Income concentration index of the vote">
+<section class="election-concentration" data-lang="en" data-base="data/" aria-label="Income concentration index of the vote">
   <div class="concentration-controls"></div>
-  <p class="concentration-status" role="status" aria-live="polite">Waiting for the selected series…</p>
+  <div class="concentration-filters"></div>
+  <p class="concentration-status" role="status" aria-live="polite">Loading the series…</p>
   <div class="concentration-scroll"><table class="concentration-table"></table></div>
   <div class="concentration-downloads"></div>
 </section>
-<p>Click a candidate’s name to add their curve to the chart.</p>
 <section id="how-the-index-is-computed" class="level3">
 <h3 class="anchored" data-anchor-id="how-the-index-is-computed">How the index is computed</h3>
 <p>For one candidate, number the income percentiles in increasing order, <span class="math inline">\(t = 1, \dots, 100\)</span>. In each percentile, <span class="math inline">\(n_t\)</span> is the number of tracts with a vote estimate and <span class="math inline">\(y_t \in [0, 1]\)</span> is the candidate’s mean vote share in those tracts (the chart’s value, as a proportion). Weights, the fractional rank at each percentile’s midpoint and the mean are</p>
@@ -730,7 +730,7 @@ C_W = \frac{C}{1 - \mu}.
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 <script src="app.js?v=concentration-v1"></script>
 <script src="compare.js?v=concentration-v1"></script>
-<script src="concentration.js?v=concentration-v2"></script>
+<script src="concentration.js?v=concentration-v3"></script>
 <script>
 document.querySelectorAll('.navbar .nav-link').forEach(link => {
   if (link.textContent.trim() === 'Português') link.href = document.querySelector('.language-switch').href;

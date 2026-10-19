@@ -166,11 +166,12 @@ the number.
 
 ## Concentration (`concentration.js`)
 
-The table below the explorer reads the series already loaded by `app.js`
-(event `explorer:series`, detail `{series, entry, manifest}`); it fetches
-nothing and never redraws the main chart. A row click dispatches
-`explorer:select` with `{id}`; `app.js` adds that candidate only if the id
-belongs to the loaded series.
+The table below the explorer is independent of it (author's decision,
+2026-10-19): it has its own selectors (election, round, office, territory,
+census, income reference), reads the manifest, loads the chosen series and
+rejects a payload whose metadata do not match the selection. It never redraws
+the main chart. It opens on federal deputy, SP, 2022, round 1, Census 2022,
+state reference.
 
 For each candidate, the standard concentration index is computed over the
 100 centile groups in income order: `CI = (2 / mu) * sum(f_t * y_t * R_t) - 1`,

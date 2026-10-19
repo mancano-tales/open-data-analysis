@@ -227,7 +227,7 @@ Nota
 </section>
 <section id="concentração-da-votação-por-renda" class="level2">
 <h2 class="anchored" data-anchor-id="concentração-da-votação-por-renda">Concentração da votação por renda</h2>
-<p>A tabela abaixo resume, para cada candidato da série escolhida no explorador, o <strong>índice de concentração</strong> da votação por renda. Ele vai de <strong>−1</strong> (votação toda nos setores mais pobres) a <strong>+1</strong> (toda nos mais ricos); <strong>0</strong> indica votação igual em todas as faixas de renda. É o índice de concentração com a normalização de Wagstaff (2005), explicada abaixo, que permite comparar na mesma escala um deputado com 30 mil votos e um candidato a presidente com metade dos votos.</p>
+<p>A tabela abaixo tem seletores próprios, independentes do explorador acima. Para cada candidato da série escolhida, ela resume o <strong>índice de concentração</strong> da votação por renda. O índice vai de <strong>−1</strong> (votação toda nos setores mais pobres) a <strong>+1</strong> (toda nos mais ricos); <strong>0</strong> indica votação igual em todas as faixas de renda. É o índice de concentração com a normalização de Wagstaff (2005), explicada abaixo, que permite comparar na mesma escala um deputado com 30 mil votos e um candidato a presidente com metade dos votos.</p>
 <div class="callout callout-style-default callout-warning callout-titled" title="O que o índice mede">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -241,13 +241,13 @@ Nota
 <p>Um índice positivo indica <strong>votação maior em áreas mais ricas</strong>, não que o candidato tenha sido votado por eleitores ricos: a associação é territorial, como no gráfico. O índice usa a mesma referência de renda e o mesmo censo da série selecionada. Para deputados, a referência dentro da UF compara cada candidato com a distribuição de renda do próprio estado. Candidatos com votação muito pequena ou concentrada em poucos lugares têm índices extremos e instáveis; por isso a tabela parte de uma votação média mínima de 0,1%, que pode ser alterada.</p>
 </div>
 </div>
-<section class="election-concentration" data-lang="pt" aria-label="Índice de concentração da votação por renda">
+<section class="election-concentration" data-lang="pt" data-base="../../../posts/explorador-eleitoral/data/" aria-label="Índice de concentração da votação por renda">
   <div class="concentration-controls"></div>
-  <p class="concentration-status" role="status" aria-live="polite">Aguardando a série selecionada…</p>
+  <div class="concentration-filters"></div>
+  <p class="concentration-status" role="status" aria-live="polite">Carregando a série…</p>
   <div class="concentration-scroll"><table class="concentration-table"></table></div>
   <div class="concentration-downloads"></div>
 </section>
-<p>Clique no nome de um candidato para acrescentar a curva dele ao gráfico.</p>
 <section id="como-o-índice-é-calculado" class="level3">
 <h3 class="anchored" data-anchor-id="como-o-índice-é-calculado">Como o índice é calculado</h3>
 <p>Para um candidato, numere os centis de renda em ordem crescente, <span class="math inline">\(t = 1, \dots, 100\)</span>. Em cada centil, <span class="math inline">\(n_t\)</span> é o número de setores com votação estimada e <span class="math inline">\(y_t \in [0, 1]\)</span> é a votação média do candidato nesses setores (a do gráfico, em proporção). Os pesos, o posto fracionário no ponto médio de cada centil e a média são</p>
@@ -729,7 +729,7 @@ C_W = \frac{C}{1 - \mu}.
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 <script src="../../posts/explorador-eleitoral/app.js?v=concentration-v1"></script>
 <script src="../../posts/explorador-eleitoral/compare.js?v=concentration-v1"></script>
-<script src="../../posts/explorador-eleitoral/concentration.js?v=concentration-v2"></script>
+<script src="../../posts/explorador-eleitoral/concentration.js?v=concentration-v3"></script>
 <script>
 document.querySelectorAll('.navbar .nav-link').forEach(link => {
   if (link.textContent.trim() === 'English') link.href = document.querySelector('.language-switch').href;

@@ -31,6 +31,6 @@ for(const file of ['docs/posts/explorador-eleitoral/index.html','docs/pt/posts-p
   assert.ok(html.includes('panel-embed-v1.css'));
   assert.ok(html.includes('app.js?v=concentration-v1'));
   assert.ok(html.includes('compare.js?v=concentration-v1'));
-  assert.ok(html.includes('concentration.js?v=concentration-v2'));
+  assert.ok(html.includes('concentration.js?v=concentration-v3'));
 }
 console.log('PASS: two same-origin independent frames; PT/EN links with project prefixes; notice before frames; responsive layout; embed assets.');
