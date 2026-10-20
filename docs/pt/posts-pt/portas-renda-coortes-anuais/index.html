@@ -163,6 +163,13 @@ ul.task-list li input[type="checkbox"] {
 <p>Este post estende a comparação de duas coortes de <a href="../../posts-pt/portas-renda-coortes-empilhado/index.html">Portas de Entrada por Decil de Renda per Capita</a> e de <a href="../../posts-pt/portas-renda-coortes-ead/index.html">Modalidade de Ensino</a> a todas as coortes do ensino médio que os registros vinculados permitem, de 2012 a 2021. Cada linha é um decil de renda; cada ponto é a probabilidade de que um estudante daquele decil e daquela coorte tenha ingressado no ensino superior nos três anos seguintes ao último ano escolar. O primeiro painel é o ingresso total; os outros cinco o dividem por porta: instituição pública por reserva de vaga, instituição pública por ampla concorrência, ProUni, FIES ou instituição privada sem subsídio.</p>
 <p>Três movimentos se destacam. O FIES despenca entre as coortes de 2013 e 2015, de 7–15% de cada decil para 3–6%, e continua caindo. O ingresso privado sem subsídio sobe em todos os decis, de 12% para 30% no mais pobre e de 43% para 53% no mais rico entre as coortes de 2012 e 2021. E o ingresso total do decil mais pobre, estável em cerca de um terço até a coorte de 2016, sobe para 41% em 2019 e 58% em 2021, enquanto o decil mais rico fica perto de 90%. Essa última subida coincide com a queda da presença no ENEM nas edições da pandemia e não deve ser lida como mudança real sem levar em conta a figura de cobertura abaixo.</p>
 </section>
+<section id="composição-do-ingresso-coorte-a-coorte" class="level2">
+<h2 class="anchored" data-anchor-id="composição-do-ingresso-coorte-a-coorte">Composição do ingresso, coorte a coorte</h2>
+<p>Os mesmos números no desenho dos posts de duas coortes: em cada coorte, cada barra é um decil de renda, sua altura é a probabilidade total de ingresso do decil, e os segmentos a dividem por porta; a porcentagem em cada segmento é a parcela daquela porta entre os ingressantes do decil (segmentos com menos de 6 pontos ficam sem rótulo).</p>
+<p><img src="../../posts/portas-renda-coortes-anuais/fig-barras-vias-pt.png" class="img-fluid"></p>
+<p>Por modalidade, com a parcela da educação a distância entre os ingressantes do decil acima de cada barra:</p>
+<p><img src="../../posts/portas-renda-coortes-anuais/fig-barras-modalidade-pt.png" class="img-fluid"></p>
+</section>
 <section id="modalidade" class="level2">
 <h2 class="anchored" data-anchor-id="modalidade">Modalidade</h2>
 <p><img src="../../posts/portas-renda-coortes-anuais/fig-modalidade-pt.png" class="img-fluid"></p>
@@ -182,7 +189,8 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Limites.</strong></p>
 <ul>
 <li>A coorte de 2011 fica de fora: a questão de renda do ENEM 2011 usa outro conjunto de onze faixas, cujos pontos médios não foram conferidos.</li>
-<li><code>IN_RESERVA_VAGAS</code> está vazio no Censo da Educação Superior de 2024, então, na coorte de 2021, quem ingressou em 2024 não pode ser identificado como ingressante por reserva de vaga e cai em ampla concorrência; a queda dessa porta na última coorte é um artefato.</li>
+<li><code>IN_RESERVA_VAGAS</code> e <code>IN_RESERVA_ETNICO</code> estão vazios no Censo da Educação Superior de 2024. As demais variáveis de reserva (escola pública, renda, deficiência, outra) estão preenchidas em 2024 e, em 2023, só aparecem preenchidas para ingressantes por reserva; por isso a reserva de vaga é identificada por <code>IN_RESERVA_VAGAS</code> = 1 ou <code>IN_RESERVA_ENSINO_PUBLICO</code> preenchido. Até 2023 a regra é a mesma; em 2024 ela recupera os ingressantes por reserva da coorte de 2021, cuja parcela na coorte (10,3%) fica perto da coorte de 2020 (10,6%).</li>
+<li>O ingresso pelo ProUni da coorte de 2021 é maior que nas coortes vizinhas (6,5% da coorte, contra 4,5% em 2020, cerca de 40% mais bolsistas em números absolutos). A correção da reserva não o altera. Ainda não há explicação: a forte queda da presença no ENEM de 2021, que o ProUni exige, é uma candidata.</li>
 <li>Cursos a distância não exigem o ENEM, então as figuras descrevem quem fez o exame, não todos os ingressantes.</li>
 <li>As contagens trazem o ruído de privacidade diferencial da plataforma; a perda de linhas informada é de no máximo 2,3% por consulta (<code>data/row_loss.csv</code>).</li>
 </ul>

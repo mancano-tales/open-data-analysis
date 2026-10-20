@@ -14,6 +14,16 @@ Este post estende a comparação de duas coortes de [Portas de Entrada por Decil
 
 Três movimentos se destacam. O FIES despenca entre as coortes de 2013 e 2015, de 7–15% de cada decil para 3–6%, e continua caindo. O ingresso privado sem subsídio sobe em todos os decis, de 12% para 30% no mais pobre e de 43% para 53% no mais rico entre as coortes de 2012 e 2021. E o ingresso total do decil mais pobre, estável em cerca de um terço até a coorte de 2016, sobe para 41% em 2019 e 58% em 2021, enquanto o decil mais rico fica perto de 90%. Essa última subida coincide com a queda da presença no ENEM nas edições da pandemia e não deve ser lida como mudança real sem levar em conta a figura de cobertura abaixo.
 
+## Composição do ingresso, coorte a coorte
+
+Os mesmos números no desenho dos posts de duas coortes: em cada coorte, cada barra é um decil de renda, sua altura é a probabilidade total de ingresso do decil, e os segmentos a dividem por porta; a porcentagem em cada segmento é a parcela daquela porta entre os ingressantes do decil (segmentos com menos de 6 pontos ficam sem rótulo).
+
+![](../../posts/portas-renda-coortes-anuais/fig-barras-vias-pt.png)
+
+Por modalidade, com a parcela da educação a distância entre os ingressantes do decil acima de cada barra:
+
+![](../../posts/portas-renda-coortes-anuais/fig-barras-modalidade-pt.png)
+
 ## Modalidade
 
 ![](../../posts/portas-renda-coortes-anuais/fig-modalidade-pt.png)
@@ -39,7 +49,8 @@ A população por trás de cada probabilidade é a parte da coorte escolar que t
 **Limites.**
 
 - A coorte de 2011 fica de fora: a questão de renda do ENEM 2011 usa outro conjunto de onze faixas, cujos pontos médios não foram conferidos.
-- `IN_RESERVA_VAGAS` está vazio no Censo da Educação Superior de 2024, então, na coorte de 2021, quem ingressou em 2024 não pode ser identificado como ingressante por reserva de vaga e cai em ampla concorrência; a queda dessa porta na última coorte é um artefato.
+- `IN_RESERVA_VAGAS` e `IN_RESERVA_ETNICO` estão vazios no Censo da Educação Superior de 2024. As demais variáveis de reserva (escola pública, renda, deficiência, outra) estão preenchidas em 2024 e, em 2023, só aparecem preenchidas para ingressantes por reserva; por isso a reserva de vaga é identificada por `IN_RESERVA_VAGAS` = 1 ou `IN_RESERVA_ENSINO_PUBLICO` preenchido. Até 2023 a regra é a mesma; em 2024 ela recupera os ingressantes por reserva da coorte de 2021, cuja parcela na coorte (10,3%) fica perto da coorte de 2020 (10,6%).
+- O ingresso pelo ProUni da coorte de 2021 é maior que nas coortes vizinhas (6,5% da coorte, contra 4,5% em 2020, cerca de 40% mais bolsistas em números absolutos). A correção da reserva não o altera. Ainda não há explicação: a forte queda da presença no ENEM de 2021, que o ProUni exige, é uma candidata.
 - Cursos a distância não exigem o ENEM, então as figuras descrevem quem fez o exame, não todos os ingressantes.
 - As contagens trazem o ruído de privacidade diferencial da plataforma; a perda de linhas informada é de no máximo 2,3% por consulta (`data/row_loss.csv`).
 

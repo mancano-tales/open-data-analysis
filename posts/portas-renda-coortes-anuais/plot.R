@@ -164,6 +164,78 @@ salvar <- function(p, nome, altura) {
   ggsave(file.path(POST, nome), p, width = LARGURA_TEXTO, height = altura, dpi = 300, bg = "white")
 }
 
+# ------------------------------------------------------------------------------
+# Barras empilhadas por coorte: o desenho dos posts portas-renda-coortes-
+# empilhado (052) e portas-renda-coortes-ead (055), um painel por coorte.
+# ------------------------------------------------------------------------------
+# Ordem de empilhamento da 052: o primeiro nivel fica no topo da barra.
+ORDEM_VIAS <- c("1", "4", "3", "2", "5")
+COR_VIAS <- setNames(
+  c(PALETA_QUALITATIVA[[1]], PALETA_QUALITATIVA[[5]], PALETA_QUALITATIVA[[3]], PALETA_QUALITATIVA[[4]], PALETA_QUALITATIVA[[2]]),
+  ORDEM_VIAS
+)
+COR_MODAL <- setNames(c(PALETA_QUALITATIVA[[5]], PALETA_QUALITATIVA[[2]]), c("1", "2"))
+TAM_ROTULO <- 1.9
+LIMIAR_ROTULO <- 6 # pontos percentuais de altura; segmentos menores ficam sem rotulo
+
+cor_texto <- function(hex) {
+  rgb <- grDevices::col2rgb(hex) / 255
+  ifelse(0.299 * rgb[1, ] + 0.587 * rgb[2, ] + 0.114 * rgb[3, ] > 0.55, "#222222", "white")
+}
+
+TXT_BARRAS <- list(
+  en = list(x = "Decile of per-capita family income (1 = poorest)", y = "Entered within three years (%)", coorte = "Cohort of %d"),
+  pt = list(x = "Decil de renda familiar per capita (1 = mais pobre)", y = "Ingressou em até três anos (%)", coorte = "Coorte de %d")
+)
+
+barras_vias <- function(L, B) {
+  d <- vias |>
+    filter(cod %in% ORDEM_VIAS) |>
+    mutate(via = factor(cod, levels = ORDEM_VIAS))
+  # y do rotulo na ordem de position_stack (ultimo nivel embaixo), antes de filtrar.
+  rot <- d |>
+    arrange(coorte, decil, desc(as.integer(via))) |>
+    group_by(coorte, decil) |>
+    mutate(share = 100 * p / sum(p), y_mid = cumsum(p) - p / 2) |>
+    ungroup() |>
+    filter(p >= LIMIAR_ROTULO) |>
+    mutate(cor = cor_texto(COR_VIAS[as.character(via)]), rotulo = sprintf("%.0f%%", share))
+  ggplot(d, aes(factor(decil), p, fill = via)) +
+    geom_col(position = "stack", width = 0.8) +
+    geom_text(data = rot, aes(y = y_mid, label = rotulo, colour = cor), size = TAM_ROTULO, fontface = "bold", show.legend = FALSE) +
+    scale_colour_identity() +
+    facet_wrap(~coorte, ncol = 2, labeller = as_labeller(function(x) sprintf(B$coorte, as.integer(x)))) +
+    scale_fill_manual(name = NULL, values = COR_VIAS, labels = L$vias[ORDEM_VIAS]) +
+    scale_y_continuous(expand = expansion(mult = c(0, 0.06))) +
+    guides(fill = guide_legend(nrow = 2)) +
+    labs(x = B$x, y = B$y) +
+    theme(
+      panel.grid.minor = element_blank(), panel.grid.major.x = element_blank(),
+      legend.position = "bottom", legend.key.size = unit(0.7, "lines")
+    )
+}
+
+barras_modal <- function(L, B) {
+  d <- modal |>
+    filter(cod %in% c("1", "2")) |>
+    mutate(m = factor(cod, levels = c("1", "2")))
+  rot <- d |>
+    group_by(coorte, decil) |>
+    summarise(share = 100 * sum(p[cod == "1"]) / sum(p), topo = sum(p), .groups = "drop") |>
+    mutate(rotulo = sprintf("%.0f%%", share))
+  ggplot(d, aes(factor(decil), p, fill = m)) +
+    geom_col(position = "stack", width = 0.75) +
+    geom_text(data = rot, aes(factor(decil), topo, label = rotulo), inherit.aes = FALSE, vjust = -0.5, size = TAM_ROTULO, fontface = "bold") +
+    facet_wrap(~coorte, ncol = 2, labeller = as_labeller(function(x) sprintf(B$coorte, as.integer(x)))) +
+    scale_fill_manual(name = NULL, values = COR_MODAL, labels = L$modal) +
+    scale_y_continuous(expand = expansion(mult = c(0, 0.14))) +
+    labs(x = B$x, y = B$y) +
+    theme(
+      panel.grid.minor = element_blank(), panel.grid.major.x = element_blank(),
+      legend.position = "bottom", legend.key.size = unit(0.7, "lines")
+    )
+}
+
 for (lg in c("en", "pt")) {
   L <- TXT[[lg]]
   f1 <- grafico_decis(vias, L$vias, L, ncol = 2)
@@ -179,6 +251,8 @@ for (lg in c("en", "pt")) {
   salvar(f1, sprintf("fig-vias-%s.png", lg), 7.6)
   salvar(f2, sprintf("fig-modalidade-%s.png", lg), 3.6)
   salvar(f3, sprintf("fig-cobertura-%s.png", lg), 3.0)
+  salvar(barras_vias(L, TXT_BARRAS[[lg]]), sprintf("fig-barras-vias-%s.png", lg), 9.6)
+  salvar(barras_modal(L, TXT_BARRAS[[lg]]), sprintf("fig-barras-modalidade-%s.png", lg), 9.6)
 }
 file.copy(file.path(POST, "fig-vias-en.png"), file.path(POST, "thumbnail.png"), overwrite = TRUE)
 
