@@ -3,3 +3,5 @@
 # Inventário: README.md e MANIFEST.tsv no destino.
 tse_historico = ssd:projects/open-data-analysis/eleicoes-renda/historico
 fornecedores_2026 = ssd:projects/open-data-analysis/fornecedores-2026
+# Cópia canônica no Google Drive (MANCANO_DRIVE_ROOT), mesmo caminho relativo, conferida em 2026-10-19.
+tse_historico_drive = drive:projects/open-data-analysis/eleicoes-renda/historico
