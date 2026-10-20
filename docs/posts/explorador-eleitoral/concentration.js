@@ -48,9 +48,11 @@
 
   // One row per candidate with its CI and mean vote share across observed tracts.
   function candidateRows(series, manifest, year) {
-    const byCandidate = new Map(series.candidates.map(c => [c.id, []]));
+    // Legend rows belong to party curves, not the candidate table or its CSV.
+    const candidates = series.candidates.filter(c => c.vote_type !== 'party');
+    const byCandidate = new Map(candidates.map(c => [c.id, []]));
     for (const p of series.points) byCandidate.get(p.candidate_id)?.push(p);
-    return series.candidates.map(c => {
+    return candidates.map(c => {
       const points = byCandidate.get(c.id) || [];
       const observed = points.filter(p => p.votacao != null && p.n_setores > 0);
       const tracts = observed.reduce((s, p) => s + p.n_setores, 0);

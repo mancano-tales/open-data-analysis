@@ -281,3 +281,8 @@ Nas eleições estaduais, os candidatos e seus denominadores devem ser
 comparados dentro da UF e do cargo correspondentes. Uma curva nacional para
 um candidato estadual exigiria uma regra de agregação específica e justificada.
 Série ausente significa indisponibilidade, nunca votação zero.
+
+Em algumas disputas de deputado de 2010 e 2014, os totais oficiais por zona
+não identificam o destino dos votos de legenda por local. Disputas de
+governador sem igualdade entre os totais oficiais de candidatos e partidos
+também seguem indisponíveis. Não há rateio de votos.

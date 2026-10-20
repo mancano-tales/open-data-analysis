@@ -226,7 +226,9 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
         outcome <- tryCatch({
           name <- paste0(id, ".json")
           destination <- file.path(output_dir,"series",name)
-          fingerprint <- paste(if(reference == "state") "state-income-valid-v1" else "fixed-income-valid-v1",income_hash,link_hash,vote_hash,max_distance_m,id,sep=":")
+          fingerprint_version <- if (reference == "state") "state-income-valid-v1" else "fixed-income-valid-v1"
+          if (oc %in% c(6L, 7L, 8L)) fingerprint_version <- paste0(fingerprint_version, "-party")
+          fingerprint <- paste(fingerprint_version,income_hash,link_hash,vote_hash,max_distance_m,id,sep=":")
           if (legacy) fingerprint <- paste(fingerprint, legacy_context$protocol, legacy_context$checkpoint_md5, sep = ":")
           cached <- if(file.exists(destination))tryCatch(jsonlite::read_json(destination),error=function(e)NULL) else NULL
           if(!is.null(cached) && identical(cached$metadata$export_fingerprint,fingerprint) &&
@@ -238,11 +240,12 @@ eleicao_build_explorer <- function(output_dir = "posts/explorador-eleitoral/data
           } else {
             dataset <- eleicao_aggregate_contest(votes, universe, links, yr, tr, oc, state,
               max_distance_m = max_distance_m, sources = current_sources, income_reference = reference,
-              census_year = census_year)
+              census_year = census_year, include_party_series = oc %in% c(6L, 7L, 8L))
             dataset$metadata$vote_source_md5 <- attr(votes, "source_md5")
             dataset$metadata$vote_cache <- basename(selected$path)
             dataset$metadata$spatial <- attr(links, "metadata")
             dataset$metadata$export_fingerprint <- fingerprint
+            if (oc %in% c(6L, 7L, 8L)) dataset$metadata$party_series_complete <- TRUE
             if (legacy) {
               dataset$metadata$vote_cache_protocol <- legacy_context$protocol
               dataset$metadata$vote_checkpoint_md5 <- legacy_context$checkpoint_md5

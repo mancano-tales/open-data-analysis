@@ -243,6 +243,7 @@ eleicao_manifest_item <- function(dataset, url) {
        label = paste(m$year, paste0(m$round, "º turno"), office_label, m$uf, sep = " · "),
        url = url, status = "available")
   if (!is.null(m$income_year) && m$income_year != 2022L) item$census_year <- m$income_year
+  if (isTRUE(m$party_series_complete)) item$party_series_complete <- TRUE
   item
 }
 

@@ -58,10 +58,10 @@
     function updateSelectionInfo(matches) {selectionInfo.textContent=lang==='pt'?`${activeIds.size} curvas selecionadas · ${matches} candidatos encontrados${matches>100?' (lista limitada a 100; refine a busca)':''}`:`${activeIds.size} curves selected · ${matches} candidates found${matches>100?' (showing 100; refine search)':''}`;}
     search.addEventListener('input',renderCandidates);
     // The concentration table asks to show a candidate; only ids of the loaded series are accepted.
-    document.addEventListener?.('explorer:select',event=>{const id=event.detail?.id;if(!data||!data.candidates.some(c=>c.id===id))return;activeIds.add(id);renderCandidates();draw();chart.scrollIntoView?.({behavior:'smooth',block:'center'});});
+    document.addEventListener?.('explorer:select',event=>{const id=event.detail?.id;if(!rankedCandidates.some(c=>c.id===id))return;activeIds.add(id);renderCandidates();draw();chart.scrollIntoView?.({behavior:'smooth',block:'center'});});
     topButton.addEventListener('click',()=>{activeIds=new Set(rankedCandidates.slice(0,6).map(c=>c.id));renderCandidates();draw();});
     clearButton.addEventListener('click',()=>{activeIds.clear();renderCandidates();draw();});
-    allButton.addEventListener('click',()=>{activeIds=new Set(data.candidates.map(c=>c.id));renderCandidates();draw();});
+    allButton.addEventListener('click',()=>{activeIds=new Set(rankedCandidates.map(c=>c.id));renderCandidates();draw();});
     const seriesUrl=entry=>new URL(entry.url,base);
     function link(parent,label,url) { const a=text('a',label,parent);a.href=url;return a; }
     function localized(value) { return typeof value==='object' ? (value[lang]||value.pt||value.en||'') : value; }
@@ -126,7 +126,7 @@
     }
     function draw() {
       const checked=activeIds;
-      const traces=data.candidates.filter(c=>checked.has(c.id)).map(candidate=>{
+      const traces=rankedCandidates.filter(c=>checked.has(c.id)).map(candidate=>{
         const rows=data.points.filter(p=>p.candidate_id===candidate.id).sort((a,b)=>a.centil-b.centil);
         return {type:'scatter',mode:'lines',name:`${candidate.name}${candidate.party?` (${candidate.party})`:''}`,x:rows.map(p=>p.centil),y:rows.map(p=>p.votacao),customdata:rows.map(p=>[fmt(p.renda_sm,2),fmt(p.n_setores),p.n_setores_total==null?'':` / ${fmt(p.n_setores_total)}`]),line:{width:3,color:candidate.color},connectgaps:false,hovertemplate:`<b>%{fullData.name}</b><br>${t.centil} %{x}<br><b>%{y:.2f}%</b> ${t.votes}<br>${t.income}: %{customdata[0]} SM (${data.metadata.income_year||2022})<br>${t.tracts}: %{customdata[1]}%{customdata[2]}<extra></extra>`};
       });
@@ -142,9 +142,10 @@
         const loaded=await read(seriesUrl(selected));if(current!==request)return;validateIncomeScope(selected,loaded.metadata);data=loaded;
         // Deputy series carry no party field: label (and search) by the manifest acronym of the ballot-number prefix.
         data.candidates.forEach(c=>{if(!c.party&&/^\d{2,5}$/.test(String(c.id))){const acronym=manifest.parties?.[String(selected.year)]?.[String(c.id).slice(0,2)];if(acronym)c.party=acronym;}});
-        const scores=new Map(data.candidates.map(c=>[c.id,0]));
-        data.points.forEach(point=>scores.set(point.candidate_id,(scores.get(point.candidate_id)||0)+(point.votacao||0)));
-        rankedCandidates=embeddedPanel?[...data.candidates]:[...data.candidates].sort((a,b)=>scores.get(b.id)-scores.get(a.id));
+        const candidates=data.candidates.filter(c=>c.vote_type!=='party');
+        const scores=new Map(candidates.map(c=>[c.id,0]));
+        data.points.forEach(point=>{if(scores.has(point.candidate_id))scores.set(point.candidate_id,scores.get(point.candidate_id)+(point.votacao||0));});
+        rankedCandidates=embeddedPanel?[...candidates]:[...candidates].sort((a,b)=>scores.get(b.id)-scores.get(a.id));
         const retained=[...previousSelection].filter(id=>scores.has(id));
         activeIds=new Set(preserveSelection&&(retained.length||previousSelection.size===0)?retained:(embeddedPanel?[]:(data.metadata.default_candidates||rankedCandidates.slice(0,6).map(c=>c.id))).filter(id=>scores.has(id)));
         loadedContestKey=contestKey(selected);
