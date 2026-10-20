@@ -1482,5 +1482,40 @@
     "title": "Who supplies Brazil’s 2026 campaigns",
     "section": "Facebook in the campaigns",
     "text": "Facebook in the campaigns\n\nFacebook’s weight varies by office: 5% of spending for governors and federal deputies, 7% for president and state deputies, 9% for senators and 14% for district deputies. By party, PL contracted the most with Facebook (R$ 64 million); PT and PL devote a similar share of their spending, close to 7.5%. The table’s percentage is the share of the candidate’s total spending that went to Facebook."
+  },
+  {
+    "objectID": "posts/portas-renda-coortes-anuais/index.html#overview",
+    "href": "posts/portas-renda-coortes-anuais/index.html#overview",
+    "title": "Routes into Tertiary Education by Income Decile, Cohort by Cohort: 2012 to 2021",
+    "section": "Overview",
+    "text": "Overview\nThis post extends the two-cohort comparison of Routes into Tertiary Education by Per-Capita Income Decile and Mode of Study to every secondary-school cohort that the linked records allow, from 2012 to 2021. Each line is one income decile; each point is the probability that a student of that decile and cohort entered tertiary education within the three years after the final school year. The first panel is total entry; the other five split it by route: a public institution through a reserved seat, a public institution through open competition, ProUni, FIES, or a private institution with no subsidy.\nThree movements stand out. FIES collapses between the 2013 and 2015 cohorts, from 7–15% of each decile to 3–6%, and keeps falling. Unsubsidised private entry rises in every decile, from 12% to 30% in the poorest and from 43% to 53% in the richest between the 2012 and 2021 cohorts. And total entry of the poorest decile, flat at about a third until the 2016 cohort, climbs to 41% in 2019 and 58% in 2021, while the richest decile stays near 90%. The last rise coincides with the collapse of ENEM attendance in the pandemic editions and should not be read as a real change before the coverage figure below is taken into account."
+  },
+  {
+    "objectID": "posts/portas-renda-coortes-anuais/index.html#mode-of-study",
+    "href": "posts/portas-renda-coortes-anuais/index.html#mode-of-study",
+    "title": "Routes into Tertiary Education by Income Decile, Cohort by Cohort: 2012 to 2021",
+    "section": "Mode of study",
+    "text": "Mode of study\n\nDistance-learning entry rises in every decile, but much faster at the bottom: in the poorest decile from 5.5% (2012 cohort) to 17.5% (2019) and 24.5% (2021); in the richest from 1.3% to 7.8% and 7.2%. In-person entry falls in most deciles until the 2019 cohort and recovers afterwards, again in the cohorts with the lowest ENEM coverage."
+  },
+  {
+    "objectID": "posts/portas-renda-coortes-anuais/index.html#coverage",
+    "href": "posts/portas-renda-coortes-anuais/index.html#coverage",
+    "title": "Routes into Tertiary Education by Income Decile, Cohort by Cohort: 2012 to 2021",
+    "section": "Coverage",
+    "text": "Coverage\n\nThe population behind every probability is the part of the school cohort that has a linkable CPF and was present at all four objective ENEM tests of the cohort year. That part is about half of the final-year cohort from 2012 to 2017 and falls to 43% (2019), 27% (2020) and 23% (2021). The 2016 cohort is an exception within the stable years: only 47% of its final-year students have a CPF in the Censo Escolar, against 81–87% in the neighbouring years. When fewer and more selected students sit the ENEM, a decile of the remaining sample is a different group of people; the rises of the 2020 and 2021 cohorts in particular mix a change in entry with a change in who is observed."
+  },
+  {
+    "objectID": "posts/portas-renda-coortes-anuais/index.html#methodology",
+    "href": "posts/portas-renda-coortes-anuais/index.html#methodology",
+    "title": "Routes into Tertiary Education by Income Decile, Cohort by Cohort: 2012 to 2021",
+    "section": "Methodology",
+    "text": "Methodology\nCohort and linkage. Each cohort is every student enrolled in the final year of secondary education in the Censo Escolar of the cohort year (TP_ETAPA_ENSINO in 27, 28, 29, 32, 33, 34, 37, 38), aged 16–22, linked by masked CPF to the ENEM of the same year and to the Censo da Educação Superior of the three following years.\nENEM attendance (new). The earlier two-cohort posts linked the cohort to ENEM registration: the ENEM tables have one row per registered candidate, including those who missed the tests. Absence varies widely between editions (29% missed the mathematics test in 2012, 55% in 2020) and has an income gradient, so a yearly series built on registration would change its population from one year to the next. Here a student is counted only if present at all four objective tests (IN_PRESENCA_* up to 2014, TP_PRESENCA_* from 2015). For the 2013 cohort this lowers the population from 1,229,035 registered to 1,064,350 present.\nEntry, route and mode. A student counts as having entered if any enrolment record with a year of entry within the three following years appears in the Censo da Educação Superior. Each entrant receives one route by priority across all of that person’s records: public with a reserved seat (IN_RESERVA_VAGAS), public through open competition, ProUni, FIES, private with no subsidy. Mode is distance learning if any record in the window is distance learning (TP_MODALIDADE_ENSINO = 2).\nIncome deciles. Declared family income bracket (seventeen brackets, midpoints in minimum wages) divided by the midpoint of the declared household-size group, as in the two-cohort posts; deciles are cut within each cohort and cells straddling a boundary are split proportionally. Income questions are Q003/Q004 in 2012–2014 and Q006/Q005 from 2015, checked against the data by the probe script below.\nLimits.\n\nThe 2011 cohort is left out: its ENEM income question uses a different set of eleven brackets whose midpoints have not been checked.\nIN_RESERVA_VAGAS is empty in the 2024 Censo da Educação Superior, so in the 2021 cohort students who entered in 2024 cannot be identified as reserved-seat entrants and fall into open competition; the drop of that route in the last cohort is an artefact.\nDistance-learning programmes do not require the ENEM, so the figures describe students who sat it, not all entrants.\nCounts carry the platform’s differential-privacy noise; reported row loss is at most 2.3% per query (data/row_loss.csv)."
+  },
+  {
+    "objectID": "posts/portas-renda-coortes-anuais/index.html#reproduce",
+    "href": "posts/portas-renda-coortes-anuais/index.html#reproduce",
+    "title": "Routes into Tertiary Education by Income Decile, Cohort by Cohort: 2012 to 2021",
+    "section": "Reproduce",
+    "text": "Reproduce\n\nplot.R reads the aggregate tables in data/ and writes the three figures in English and Portuguese, plus data/probabilidades_por_decil.csv with every plotted value and data/cobertura.csv.\nshared-pipeline/sedap/portas-anuais/010_Sondagem_Anual.R checks, year by year, the ENEM income, household and attendance variables, the CPF coverage of the Censo Escolar and the route and mode flags of the Censo da Educação Superior (data/sondagem_*.csv).\nshared-pipeline/sedap/portas-anuais/020_Extrair_Coortes_Anuais.R runs the two queries per cohort and writes data/matriz_&lt;cohort&gt;_porta.csv and data/matriz_&lt;cohort&gt;_modalidade.csv. The extraction scripts only run with an approved INEP credential exported as SEDAP_TOKEN."
   }
 ]
