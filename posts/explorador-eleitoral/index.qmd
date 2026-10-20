@@ -17,7 +17,7 @@ format:
         <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
         <script src="app.js?v=concentration-v1"></script>
         <script src="compare.js?v=concentration-v1"></script>
-        <script src="concentration.js?v=concentration-v2"></script>
+        <script src="concentration.js?v=concentration-v3"></script>
         <script>
         document.querySelectorAll('.navbar .nav-link').forEach(link => {
           if (link.textContent.trim() === 'Português') link.href = document.querySelector('.language-switch').href;
@@ -80,8 +80,8 @@ This page does not claim an exact replication of the newspaper's estimator.
 
 ## Income concentration of the vote
 
-The table below summarizes, for each candidate in the series selected in the
-explorer, the **concentration index** of the vote by income. It ranges from
+The table below has its own selectors, independent of the explorer above.
+For each candidate in the selected series, it summarizes the **concentration index** of the vote by income. It ranges from
 **−1** (all of the vote in the poorest tracts) to **+1** (all in the richest);
 **0** means equal vote shares across income groups. This is the
 concentration index with the Wagstaff (2005) normalization, explained below,
@@ -99,15 +99,15 @@ minimum mean vote share of 0.1%, which can be changed.
 :::
 
 ```{=html}
-<section class="election-concentration" data-lang="en" aria-label="Income concentration index of the vote">
+<section class="election-concentration" data-lang="en" data-base="data/" aria-label="Income concentration index of the vote">
   <div class="concentration-controls"></div>
-  <p class="concentration-status" role="status" aria-live="polite">Waiting for the selected series…</p>
+  <div class="concentration-filters"></div>
+  <p class="concentration-status" role="status" aria-live="polite">Loading the series…</p>
   <div class="concentration-scroll"><table class="concentration-table"></table></div>
   <div class="concentration-downloads"></div>
 </section>
 ```
 
-Click a candidate's name to add their curve to the chart.
 
 ### How the index is computed
 
