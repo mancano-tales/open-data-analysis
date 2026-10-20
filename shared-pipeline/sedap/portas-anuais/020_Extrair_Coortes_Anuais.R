@@ -40,7 +40,14 @@ dir.create(OUT, showWarnings = FALSE, recursive = TRUE)
 
 COORTES <- as.integer(strsplit(Sys.getenv("COORTES", paste(2012:2021, collapse = ",")), ",")[[1]])
 ETAPAS <- paste(sprintf("'%d'", c(27, 28, 29, 32, 33, 34, 37, 38)), collapse = ", ")
-COND_COTA <- "CAST(IN_RESERVA_VAGAS AS STRING) = '1'"
+# Reserva de vagas. No Censo Superior de 2024, IN_RESERVA_VAGAS e
+# IN_RESERVA_ETNICO vem 100% NULL, mas as flags desagregadas (ensino publico,
+# renda, deficiencia, outra) estao preenchidas -- e so para cotistas: em 2023
+# os nao cotistas tem essas flags NULL (sondagem de 2026-10-20 sobre os
+# ingressantes de IES publicas). A condicao abaixo equivale a anterior ate 2023
+# e recupera os cotistas de 2024, inclusive os so etnicos, cujas flags
+# desagregadas restantes vem preenchidas com 0.
+COND_COTA <- "(CAST(IN_RESERVA_VAGAS AS STRING) = '1' OR IN_RESERVA_ENSINO_PUBLICO IS NOT NULL)"
 
 mapa_enem <- function(ano) {
   stopifnot(ano >= 2012)

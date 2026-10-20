@@ -13,6 +13,10 @@ resources:
   - fig-vias-pt.png
   - fig-modalidade-pt.png
   - fig-cobertura-pt.png
+  - fig-barras-vias-en.png
+  - fig-barras-vias-pt.png
+  - fig-barras-modalidade-en.png
+  - fig-barras-modalidade-pt.png
 ---
 
 ![](fig-vias-en.png)
@@ -22,6 +26,16 @@ resources:
 This post extends the two-cohort comparison of [Routes into Tertiary Education by Per-Capita Income Decile](../portas-renda-coortes-empilhado/index.qmd) and [Mode of Study](../portas-renda-coortes-ead/index.qmd) to every secondary-school cohort that the linked records allow, from 2012 to 2021. Each line is one income decile; each point is the probability that a student of that decile and cohort entered tertiary education within the three years after the final school year. The first panel is total entry; the other five split it by route: a public institution through a reserved seat, a public institution through open competition, ProUni, FIES, or a private institution with no subsidy.
 
 Three movements stand out. FIES collapses between the 2013 and 2015 cohorts, from 7–15% of each decile to 3–6%, and keeps falling. Unsubsidised private entry rises in every decile, from 12% to 30% in the poorest and from 43% to 53% in the richest between the 2012 and 2021 cohorts. And total entry of the poorest decile, flat at about a third until the 2016 cohort, climbs to 41% in 2019 and 58% in 2021, while the richest decile stays near 90%. The last rise coincides with the collapse of ENEM attendance in the pandemic editions and should not be read as a real change before the coverage figure below is taken into account.
+
+## Composition of entry, cohort by cohort
+
+The same numbers in the design of the two-cohort posts: for each cohort, each bar is an income decile, its height is the decile's total entry probability, and the segments split it by route; the percentage in each segment is that route's share of the decile's entrants (segments under 6 points are left unlabelled).
+
+![](fig-barras-vias-en.png)
+
+By mode of study, with distance learning's share of the decile's entrants above each bar:
+
+![](fig-barras-modalidade-en.png)
 
 ## Mode of study
 
@@ -48,7 +62,8 @@ The population behind every probability is the part of the school cohort that ha
 **Limits.**
 
 - The 2011 cohort is left out: its ENEM income question uses a different set of eleven brackets whose midpoints have not been checked.
-- `IN_RESERVA_VAGAS` is empty in the 2024 Censo da Educação Superior, so in the 2021 cohort students who entered in 2024 cannot be identified as reserved-seat entrants and fall into open competition; the drop of that route in the last cohort is an artefact.
+- `IN_RESERVA_VAGAS` and `IN_RESERVA_ETNICO` are empty in the 2024 Censo da Educação Superior. The other reservation flags (public school, income, disability, other) are filled in 2024, and in 2023 they are filled only for reserved-seat entrants, so a reserved seat is identified as `IN_RESERVA_VAGAS` = 1 or `IN_RESERVA_ENSINO_PUBLICO` filled. Up to 2023 this is the same rule; in 2024 it recovers the reserved-seat entrants of the 2021 cohort, whose share of the cohort (10.3%) is close to that of the 2020 cohort (10.6%).
+- ProUni entry of the 2021 cohort is higher than in the neighbouring cohorts (6.5% of the cohort against 4.5% in 2020, about 40% more grantees in absolute numbers). The reservation fix does not change it. It has not been explained: the sharp fall in ENEM attendance in 2021, which ProUni requires, is one candidate.
 - Distance-learning programmes do not require the ENEM, so the figures describe students who sat it, not all entrants.
 - Counts carry the platform's differential-privacy noise; reported row loss is at most 2.3% per query (`data/row_loss.csv`).
 
