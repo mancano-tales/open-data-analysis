@@ -54,7 +54,7 @@ Se você usar esta figura ou o pipeline que a gera, cite tanto a dissertação q
 
 @misc{Mancano2026_ipca_mensalidade_renda_mediana_pt,
   author       = {Man\c{c}ano, Tales},
-  title        = {Pre\c{c}os de mensalidades do ensino superior em rela\c{c}\~{a}o \`{a} infla\c{c}\~{a}o e ao salário m\'{\i}nimo},
+  title        = {Mensalidades do ensino superior em rela\c{c}\~{a}o \`{a} infla\c{c}\~{a}o e \`{a} renda mediana},
   year         = {2026},
   month        = nov,
   howpublished = {Open Data Analysis, \url{https://mancano-tales.github.io/open-data-analysis/pt/posts-pt/ipca-mensalidade-renda-mediana/}},
