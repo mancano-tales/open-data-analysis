@@ -8,7 +8,8 @@
 # de um ano para outro e a media mudaria de composicao.
 #
 # ENTRADA (data/, redistribuida):
-#   protecao_social.csv  iso3, ano, pct_pib, fonte. Gerado por
+#   protecao_social.csv  iso3, ano, pct_pib, fonte (FMI, OCDE, CEPAL ou
+#                        CEPAL-SPNF). Gerado por
 #                        shared-pipeline/cofog/010_COFOG_Protecao_Social.R
 #
 # SAIDAS: fig-en.png, fig-pt.png e thumbnail.png (a figura em ingles).
@@ -47,15 +48,17 @@ TXT <- list(
     decimal = ".", sufixo = "%"
   )
 )
+MARCA <- c(FMI = "", OCDE = "*", CEPAL = "†", `CEPAL-SPNF` = "‡")
 # vermelho (gasto baixo) -> amarelo -> verde -> azul (gasto alto)
 PALETA <- c("#D7191C", "#FDAE61", "#FFFFBF", "#ABDDA4", "#2B83BA")
 
 montar <- function(txt) {
   paises <- dados |>
     group_by(iso3) |>
-    mutate(linha = countrycode::countrycode(iso3, "iso3c", txt$nomes),
-           # asterisco: serie vinda da OCDE
-           linha = if (any(fonte == "OCDE")) paste0(linha, "*") else linha) |>
+    # marca no nome do pais: * OCDE; † CEPAL, governo geral; ‡ CEPAL, setor
+    # publico nao financeiro. Cada pais vem de uma so fonte.
+    mutate(linha = paste0(countrycode::countrycode(iso3[1], "iso3c", txt$nomes),
+                          paste(unique(MARCA[fonte]), collapse = ""))) |>
     ungroup() |>
     mutate(media = FALSE)
   medias <- paises |>

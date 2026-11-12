@@ -161,6 +161,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="quarto-category">COFOG</div>
     <div class="quarto-category">IMF</div>
     <div class="quarto-category">OECD</div>
+    <div class="quarto-category">ECLAC</div>
     <div class="quarto-category">Social protection</div>
     <div class="quarto-category">Welfare state</div>
   </div>
@@ -194,15 +195,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="fig-en.png" class="img-fluid"></p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>This figure compares Brazil’s general government spending on social protection with the Nordic countries, continental Europe and the Latin American countries with available data, year by year from 2010 to 2023. Brazil went from 13.1% of GDP in 2010 to 16.8% in 2023, with a peak of 21.0% in 2020, the first year of the pandemic. In 2023 the Nordic average was 18.5% and the continental European average 19.0%. Among the Latin American countries with data, Colombia spent 9.6% and Chile 8.5% in 2023.</p>
+<p>This figure compares Brazil’s general government spending on social protection with the Nordic countries, continental Europe and the Latin American countries with available data, year by year from 2010 to 2023. Brazil went from 13.1% of GDP in 2010 to 16.8% in 2023, with a peak of 21.0% in 2020, the first year of the pandemic. In 2023 the Nordic average was 18.5% and the continental European average 19.0%. In Latin America, Colombia spent 9.6%, Mexico 8.7% and Chile 8.5% in 2023, and Argentina 14.1% in 2022.</p>
 </section>
 <section id="methodology" class="level2">
 <h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
 <p><strong>The function.</strong> Social protection is division 710 of the Classification of the Functions of Government (COFOG). It covers sickness and disability, old age, survivors, family and children, unemployment, housing and social exclusion. In Brazil, it therefore includes both contributory pensions (RGPS and civil servants’ regimes) and social assistance programs.</p>
-<p><strong>Coverage of government.</strong> All values refer to general government (sector S13: central, state and local governments and social security funds), as a share of nominal GDP.</p>
-<p><strong>Sources.</strong> The main source is the IMF’s Government Finance Statistics (dataflow <code>IMF.STA:GFS_COFOG</code>, transformation <code>POGDP_PT</code>). Chile and Colombia have no general government series for this function in the IMF data; they come from the OECD national accounts: Table 11 (<code>DSD_NASEC10@DF_TABLE11</code>, total expenditure on function GF10, in national currency) divided by nominal GDP from Table 1 (<code>DSD_NAMAIN10@DF_TABLE1_EXPENDITURE</code>). These two countries carry an asterisk. As a check, the same OECD calculation for France matches the IMF value in every year from 2010 to 2023.</p>
+<p><strong>Coverage of government.</strong> Values refer to general government (sector S13: central, state and local governments and social security funds), as a share of nominal GDP. The exceptions are Argentina and Mexico, for which only the non-financial public sector is available; it adds non-financial public corporations to general government.</p>
+<p><strong>Sources.</strong> The main source is the IMF’s Government Finance Statistics (dataflow <code>IMF.STA:GFS_COFOG</code>, transformation <code>POGDP_PT</code>). Chile and Colombia have no general government series for this function in the IMF data; they come from the OECD national accounts: Table 11 (<code>DSD_NASEC10@DF_TABLE11</code>, total expenditure on function GF10, in national currency) divided by nominal GDP from Table 1 (<code>DSD_NAMAIN10@DF_TABLE1_EXPENDITURE</code>). These two countries carry an asterisk. As a check, the same OECD calculation for France matches the IMF value in every year from 2010 to 2023. Countries with data in neither the IMF nor the OECD come from ECLAC’s social expenditure database (CEPALSTAT, indicator 3127, division “Protección social”), compiled from each country’s finance ministry: Paraguay, Bolivia and Peru for general government (†), and Argentina and Mexico for the non-financial public sector (‡). For Brazil, ECLAC’s general government series matches the IMF (13.1% in 2010 and 21.0% in 2020).</p>
 <p><strong>Groups.</strong> Nordic countries: Denmark, Finland, Iceland, Norway and Sweden. Continental Europe: Austria, Belgium, France, Germany, Luxembourg, the Netherlands and Switzerland. Both European groups have data for every year, and their average row is a simple mean. Latin America has no average row, because the set of countries with data changes from year to year and the average would change composition along with it.</p>
-<p><strong>Limits.</strong> Argentina, Bolivia, Ecuador, Mexico, Paraguay, Peru and Uruguay have no general government series for this function between 2010 and 2023 in either source; blank cells mark missing years. For Costa Rica the IMF and the OECD diverge (2019: 4.8% in the IMF, 7.8% in the OECD); the figure uses the IMF, as for the other countries. Spending as a share of GDP measures fiscal effort, not coverage, benefit adequacy or the distribution of benefits.</p>
+<p><strong>Limits.</strong> Ecuador and Uruguay have only central government data, in ECLAC, and are left out; blank cells mark missing years. ECLAC notes that not every country uses the United Nations COFOG classifier and that recording may be on a cash or accrual basis, so the series marked † and ‡ are less comparable than the others. For Costa Rica the IMF and the OECD diverge (2019: 4.8% in the IMF, 7.8% in the OECD, 7.7% in ECLAC); the figure uses the IMF, as for the other countries. Spending as a share of GDP measures fiscal effort, not coverage, benefit adequacy or the distribution of benefits.</p>
 </section>
 <section id="how-to-cite" class="level2">
 <h2 class="anchored" data-anchor-id="how-to-cite">How to Cite</h2>
@@ -242,14 +243,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="pipeline">Pipeline</h2>
 <p>Scripts for this analysis:</p>
 <ul>
-<li>Upstream data: <a href="../../shared-pipeline/cofog/010_COFOG_Protecao_Social.R"><code>shared-pipeline/cofog/010_COFOG_Protecao_Social.R</code></a> — queries the IMF and OECD SDMX APIs and writes <code>data/protecao_social.csv</code>.</li>
+<li>Upstream data: <a href="../../shared-pipeline/cofog/010_COFOG_Protecao_Social.R"><code>shared-pipeline/cofog/010_COFOG_Protecao_Social.R</code></a> — queries the IMF and OECD SDMX APIs and the CEPALSTAT API and writes <code>data/protecao_social.csv</code>.</li>
 <li>Plotting: <a href="plot.R"><code>plot.R</code></a> — reads <code>data/</code> and writes <code>fig-en.png</code>, <code>fig-pt.png</code> and <code>thumbnail.png</code>.</li>
 </ul>
 </section>
 <section id="reproducibility" class="level2">
 <h2 class="anchored" data-anchor-id="reproducibility">Reproducibility</h2>
 <p><strong>Tier: A</strong></p>
-<p>This pipeline uses only public data from the IMF and OECD APIs, with no credential. The CSV in <code>data/</code> is enough to redraw the figure.</p>
+<p>This pipeline uses only public data from the IMF, OECD and ECLAC APIs, with no credential. The CSV in <code>data/</code> is enough to redraw the figure.</p>
 
 
 </section>

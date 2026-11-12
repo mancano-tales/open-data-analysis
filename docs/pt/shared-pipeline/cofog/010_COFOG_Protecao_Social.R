@@ -13,15 +13,23 @@
 #   (DSD_NAMAIN10@DF_TABLE1_EXPENDITURE, B1GQ a precos correntes). Usada so
 #   para paises sem o dado no FMI (Chile e Colombia). Para a Franca, a razao da
 #   OCDE coincide com o valor do FMI em todos os anos de 2010 a 2023.
+#   CEPAL, CEPALSTAT, indicador 3127 (gasto publico social por funcoes do
+#   governo, % do PIB), divisao "Protección social" (membro 57103). Usada so
+#   para paises sem o dado no FMI nem na OCDE. Governo geral (membro 57117):
+#   Paraguai, Bolivia e Peru. Setor publico nao financeiro (membro 57114),
+#   que soma ao governo geral as empresas publicas nao financeiras: Argentina
+#   e Mexico. O governo geral do Brasil na CEPAL coincide com o FMI (13,1% em
+#   2010; 21,0% em 2020).
 #
 # COBERTURA (conferida em 2026-11-12): na America Latina, o FMI tem o governo
 # geral so para Costa Rica, El Salvador, Guatemala, Panama e Republica
-# Dominicana no periodo; a OCDE acrescenta Chile (2018 em diante) e Colombia.
-# Argentina, Bolivia, Equador, Mexico, Paraguai, Peru e Uruguai nao tem o dado
-# de 2010 a 2023 em nenhuma das duas fontes.
+# Dominicana no periodo; a OCDE acrescenta Chile (2018 em diante) e Colombia;
+# a CEPAL, os cinco paises acima. Equador e Uruguai so tem o governo central,
+# na CEPAL, e ficam de fora.
 #
 # SAIDA: posts/protecao-social-brasil-europa-america-latina/data/protecao_social.csv
-#        (iso3, ano, pct_pib, fonte), redistribuido com o post.
+#        (iso3, ano, pct_pib, fonte), redistribuido com o post. fonte e "FMI",
+#        "OCDE", "CEPAL" (governo geral) ou "CEPAL-SPNF".
 # ==============================================================================
 
 suppressPackageStartupMessages({
@@ -80,7 +88,36 @@ ocde <- inner_join(
 ) |>
   transmute(iso3, ano, pct_pib = 100 * gasto / pib, fonte = "OCDE")
 
-dados <- bind_rows(fmi, ocde) |> arrange(iso3, ano)
+# CEPAL: so os paises que faltam no FMI e na OCDE. Os anos vem como codigos
+# de membro; a tabela de dimensoes traz o rotulo.
+cepalstat <- function(rota, ...) {
+  request(paste0("https://api-cepalstat.cepal.org/cepalstat/api/v1/indicator/3127/", rota)) |>
+    req_url_query(lang = "es", format = "json", ...) |>
+    req_retry(max_tries = 3) |>
+    req_perform() |>
+    resp_body_json(simplifyVector = TRUE)
+}
+dims <- cepalstat("dimensions")$body$dimensions
+anos <- dims$members[[which(dims$id == 29117)]] |>
+  transmute(dim_29117 = id, ano = as.integer(name))
+COBERTURA_CEPAL <- tibble::tribble(
+  ~iso3, ~dim_57113, ~fonte,
+  "PRY", 57117L, "CEPAL",
+  "BOL", 57117L, "CEPAL",
+  "PER", 57117L, "CEPAL",
+  "ARG", 57114L, "CEPAL-SPNF",
+  "MEX", 57114L, "CEPAL-SPNF"
+)
+cepal <- cepalstat("data", members = "57103")$body$data |>
+  as_tibble() |>
+  inner_join(COBERTURA_CEPAL, by = c("iso3", "dim_57113")) |>
+  inner_join(anos, by = "dim_29117") |>
+  transmute(iso3, ano, pct_pib = as.numeric(value), fonte) |>
+  filter(between(ano, ANO_INI, ANO_FIM), !is.na(pct_pib))
+# a Bolivia tem 2002-2007 no FMI, fora do periodo: a precedencia vale no periodo
+stopifnot(!any(cepal$iso3 %in% c(fmi$iso3, ocde$iso3)))
+
+dados <- bind_rows(fmi, ocde, cepal) |> arrange(iso3, ano)
 dir.create(dirname(SAIDA), recursive = TRUE, showWarnings = FALSE)
 write_csv(dados, SAIDA)
 print(count(dados, iso3, fonte), n = 50)

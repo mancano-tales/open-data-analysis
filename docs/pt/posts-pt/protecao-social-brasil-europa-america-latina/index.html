@@ -160,6 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="quarto-category">COFOG</div>
     <div class="quarto-category">FMI</div>
     <div class="quarto-category">OCDE</div>
+    <div class="quarto-category">CEPAL</div>
     <div class="quarto-category">Proteção social</div>
     <div class="quarto-category">Estado de bem-estar</div>
   </div>
@@ -193,15 +194,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="../../posts/protecao-social-brasil-europa-america-latina/fig-pt.png" class="img-fluid"></p>
 <section id="visão-geral" class="level2">
 <h2 class="anchored" data-anchor-id="visão-geral">Visão Geral</h2>
-<p>Esta figura compara o gasto do governo geral brasileiro em proteção social com o dos países nórdicos, da Europa continental e dos países latino-americanos com dados disponíveis, ano a ano, de 2010 a 2023. O Brasil passou de 13,1% do PIB em 2010 para 16,8% em 2023, com pico de 21,0% em 2020, primeiro ano da pandemia. Em 2023, a média nórdica foi de 18,5% e a da Europa continental, de 19,0%. Entre os latino-americanos com dados, a Colômbia gastou 9,6% e o Chile, 8,5% em 2023.</p>
+<p>Esta figura compara o gasto do governo geral brasileiro em proteção social com o dos países nórdicos, da Europa continental e dos países latino-americanos com dados disponíveis, ano a ano, de 2010 a 2023. O Brasil passou de 13,1% do PIB em 2010 para 16,8% em 2023, com pico de 21,0% em 2020, primeiro ano da pandemia. Em 2023, a média nórdica foi de 18,5% e a da Europa continental, de 19,0%. Entre os latino-americanos, a Colômbia gastou 9,6%, o México 8,7% e o Chile 8,5% em 2023, e a Argentina, 14,1% em 2022.</p>
 </section>
 <section id="metodologia" class="level2">
 <h2 class="anchored" data-anchor-id="metodologia">Metodologia</h2>
 <p><strong>A função.</strong> Proteção social é a divisão 710 da Classificação das Funções de Governo (COFOG). Ela reúne doença e invalidez, velhice, pensão por morte, família e crianças, desemprego, habitação e exclusão social. No Brasil, inclui, portanto, tanto a previdência (RGPS e regimes próprios dos servidores) quanto os programas de assistência social.</p>
-<p><strong>Cobertura de governo.</strong> Todos os valores se referem ao governo geral (setor S13: governos central, estaduais e municipais e fundos de seguridade social), como proporção do PIB nominal.</p>
-<p><strong>Fontes.</strong> A fonte principal são as Government Finance Statistics do FMI (dataflow <code>IMF.STA:GFS_COFOG</code>, transformação <code>POGDP_PT</code>). Chile e Colômbia não têm a série do governo geral para essa função nos dados do FMI; os valores vêm das contas nacionais da OCDE: Table 11 (<code>DSD_NASEC10@DF_TABLE11</code>, despesa total na função GF10, em moeda nacional) dividida pelo PIB nominal da Table 1 (<code>DSD_NAMAIN10@DF_TABLE1_EXPENDITURE</code>). Esses dois países levam asterisco. Como conferência, a mesma conta da OCDE para a França coincide com o valor do FMI em todos os anos de 2010 a 2023.</p>
+<p><strong>Cobertura de governo.</strong> Os valores se referem ao governo geral (setor S13: governos central, estaduais e municipais e fundos de seguridade social), como proporção do PIB nominal. As exceções são a Argentina e o México, para os quais só existe o setor público não financeiro, que soma ao governo geral as empresas públicas não financeiras.</p>
+<p><strong>Fontes.</strong> A fonte principal são as Government Finance Statistics do FMI (dataflow <code>IMF.STA:GFS_COFOG</code>, transformação <code>POGDP_PT</code>). Chile e Colômbia não têm a série do governo geral para essa função nos dados do FMI; os valores vêm das contas nacionais da OCDE: Table 11 (<code>DSD_NASEC10@DF_TABLE11</code>, despesa total na função GF10, em moeda nacional) dividida pelo PIB nominal da Table 1 (<code>DSD_NAMAIN10@DF_TABLE1_EXPENDITURE</code>). Esses dois países levam asterisco. Como conferência, a mesma conta da OCDE para a França coincide com o valor do FMI em todos os anos de 2010 a 2023. Os países sem o dado no FMI nem na OCDE vêm da base de gasto social da CEPAL (CEPALSTAT, indicador 3127, divisão “Protección social”), compilada a partir dos ministérios da Fazenda de cada país: Paraguai, Bolívia e Peru, com o governo geral (†), e Argentina e México, com o setor público não financeiro (‡). Para o Brasil, o governo geral da CEPAL coincide com o do FMI (13,1% em 2010 e 21,0% em 2020).</p>
 <p><strong>Grupos.</strong> Nórdicos: Dinamarca, Finlândia, Islândia, Noruega e Suécia. Europa continental: Alemanha, Áustria, Bélgica, França, Luxemburgo, Países Baixos e Suíça. Os dois grupos europeus têm dados em todos os anos, e a linha de média é uma média simples. A América Latina não tem linha de média, porque o conjunto de países com dados muda de um ano para outro e a média mudaria de composição junto com ele.</p>
-<p><strong>Limites.</strong> Argentina, Bolívia, Equador, México, Paraguai, Peru e Uruguai não têm a série do governo geral para essa função entre 2010 e 2023 em nenhuma das duas fontes; células vazias indicam anos sem dado. Para a Costa Rica, FMI e OCDE divergem (2019: 4,8% no FMI, 7,8% na OCDE); a figura usa o FMI, como para os demais países. O gasto em proporção do PIB mede o esforço fiscal, e não a cobertura, o valor dos benefícios ou a sua distribuição.</p>
+<p><strong>Limites.</strong> Equador e Uruguai só têm o governo central, na CEPAL, e ficam de fora; células vazias indicam anos sem dado. A CEPAL avisa que nem todos os países usam o classificador COFOG das Nações Unidas e que o registro pode ser de caixa ou de competência, de modo que as séries marcadas com † e ‡ são menos comparáveis que as demais. Para a Costa Rica, FMI e OCDE divergem (2019: 4,8% no FMI, 7,8% na OCDE, 7,7% na CEPAL); a figura usa o FMI, como para os demais países. O gasto em proporção do PIB mede o esforço fiscal, e não a cobertura, o valor dos benefícios ou a sua distribuição.</p>
 </section>
 <section id="como-citar" class="level2">
 <h2 class="anchored" data-anchor-id="como-citar">Como Citar</h2>
@@ -241,14 +242,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="pipeline">Pipeline</h2>
 <p>Scripts desta análise:</p>
 <ul>
-<li>Dados de origem: <a href="../../shared-pipeline/cofog/010_COFOG_Protecao_Social.R"><code>shared-pipeline/cofog/010_COFOG_Protecao_Social.R</code></a> — consulta as APIs SDMX do FMI e da OCDE e grava <code>data/protecao_social.csv</code>.</li>
+<li>Dados de origem: <a href="../../shared-pipeline/cofog/010_COFOG_Protecao_Social.R"><code>shared-pipeline/cofog/010_COFOG_Protecao_Social.R</code></a> — consulta as APIs SDMX do FMI e da OCDE e a API do CEPALSTAT e grava <code>data/protecao_social.csv</code>.</li>
 <li>Plotagem: <a href="../../posts/protecao-social-brasil-europa-america-latina/plot.R"><code>plot.R</code></a> — lê <code>data/</code> e grava <code>fig-en.png</code>, <code>fig-pt.png</code> e <code>thumbnail.png</code>.</li>
 </ul>
 </section>
 <section id="reprodutibilidade" class="level2">
 <h2 class="anchored" data-anchor-id="reprodutibilidade">Reprodutibilidade</h2>
 <p><strong>Tier: A</strong></p>
-<p>Este pipeline usa apenas dados públicos das APIs do FMI e da OCDE, sem credencial. O CSV em <code>data/</code> basta para redesenhar a figura.</p>
+<p>Este pipeline usa apenas dados públicos das APIs do FMI, da OCDE e da CEPAL, sem credencial. O CSV em <code>data/</code> basta para redesenhar a figura.</p>
 
 
 </section>
