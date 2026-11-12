@@ -2,8 +2,8 @@
 # SCRIPT: shared-pipeline/cofog/010_COFOG_Protecao_Social.R
 #
 # Despesa do governo geral em protecao social (funcao 710 da COFOG), em % do
-# PIB, 2010-2023, para o Brasil, os paises nordicos, a Europa continental e a
-# America Latina.
+# PIB, 2010-2023, para todos os paises com o dado no FMI, mais os
+# latino-americanos que so a OCDE ou a CEPAL tem.
 #
 # FONTES
 #   FMI, Government Finance Statistics, dataflow IMF.STA:GFS_COFOG (API SDMX
@@ -41,8 +41,7 @@ suppressPackageStartupMessages({
 
 ANO_INI <- 2010
 ANO_FIM <- 2023
-EUROPA <- c("DNK", "FIN", "ISL", "NOR", "SWE",                # nordicos
-            "AUT", "BEL", "FRA", "DEU", "LUX", "NLD", "CHE")  # Europa continental
+# paises latino-americanos procurados na OCDE e na CEPAL quando faltam no FMI
 AMERICA_LATINA <- c("ARG", "BOL", "BRA", "CHL", "COL", "CRI", "CUB", "DOM", "ECU",
                     "GTM", "HND", "HTI", "MEX", "NIC", "PAN", "PER", "PRY", "SLV",
                     "URY", "VEN")
@@ -62,14 +61,10 @@ sdmx_csv <- function(url) {
     read_csv(show_col_types = FALSE)
 }
 
-# FMI: um pedido por pais (o servidor recusa chaves muito longas)
-fmi <- lapply(c(EUROPA, AMERICA_LATINA), function(p) {
-  x <- sdmx_csv(paste0("https://api.imf.org/external/sdmx/2.1/data/IMF.STA,GFS_COFOG/",
-                       p, ".S13.G2MF.GF10_T.POGDP_PT.A"))
-  if (!"OBS_VALUE" %in% names(x)) return(NULL)
-  x |> transmute(iso3 = COUNTRY, ano = as.integer(TIME_PERIOD), pct_pib = as.numeric(OBS_VALUE))
-}) |>
-  bind_rows() |>
+# FMI: todos os paises num pedido so (chave com o pais em branco)
+fmi <- sdmx_csv(paste0("https://api.imf.org/external/sdmx/2.1/data/IMF.STA,GFS_COFOG/",
+                       ".S13.G2MF.GF10_T.POGDP_PT.A")) |>
+  transmute(iso3 = COUNTRY, ano = as.integer(TIME_PERIOD), pct_pib = as.numeric(OBS_VALUE)) |>
   filter(!is.na(pct_pib)) |>
   mutate(fonte = "FMI")
 

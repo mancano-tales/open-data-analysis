@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2026-11-12">
-<meta name="description" content="General government spending on social protection as a share of GDP, 2010–2023: Brazil, the Nordic countries, continental Europe and Latin America.">
+<meta name="description" content="General government spending on social protection as a share of GDP, 2010–2023, in all 88 countries with data, grouped by continent.">
 
-<title>Social Protection Spending: Brazil, Europe and Latin America – Open Data Analysis</title>
+<title>Social Protection Spending: Brazil Among the Countries with Data – Open Data Analysis</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -156,7 +156,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Social Protection Spending: Brazil, Europe and Latin America</h1>
+<h1 class="title">Social Protection Spending: Brazil Among the Countries with Data</h1>
   <div class="quarto-categories">
     <div class="quarto-category">COFOG</div>
     <div class="quarto-category">IMF</div>
@@ -169,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div>
   <div class="description">
-    General government spending on social protection as a share of GDP, 2010–2023: Brazil, the Nordic countries, continental Europe and Latin America.
+    General government spending on social protection as a share of GDP, 2010–2023, in all 88 countries with data, grouped by continent.
   </div>
 </div>
 
@@ -195,14 +195,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="fig-en.png" class="img-fluid"></p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>This figure compares Brazil’s general government spending on social protection with the Nordic countries, continental Europe and the Latin American countries with available data, year by year from 2010 to 2023. Brazil went from 13.1% of GDP in 2010 to 16.8% in 2023, with a peak of 21.0% in 2020, the first year of the pandemic. In 2023 the Nordic average was 18.5% and the continental European average 19.0%. In Latin America, Colombia spent 9.6%, Mexico 8.7% and Chile 8.5% in 2023, and Argentina 14.1% in 2022.</p>
+<p>This figure shows general government spending on social protection, year by year from 2010 to 2023, in all 88 countries with data. Brazil went from 13.1% of GDP in 2010 to 16.8% in 2023, with a peak of 21.0% in 2020, the first year of the pandemic. Among the countries with data in each year, Brazil moved from 32nd of 66 in 2010 to 16th of 72 in 2023. Finland (25.7%), France (23.2%) and Austria (21.4%) led in 2023. In the Americas, Brazil has the highest mean over the period; in 2023 the second highest was Canada (12.9%).</p>
 </section>
 <section id="methodology" class="level2">
 <h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
 <p><strong>The function.</strong> Social protection is division 710 of the Classification of the Functions of Government (COFOG). It covers sickness and disability, old age, survivors, family and children, unemployment, housing and social exclusion. In Brazil, it therefore includes both contributory pensions (RGPS and civil servants’ regimes) and social assistance programs.</p>
 <p><strong>Coverage of government.</strong> Values refer to general government (sector S13: central, state and local governments and social security funds), as a share of nominal GDP. The exceptions are Argentina and Mexico, for which only the non-financial public sector is available; it adds non-financial public corporations to general government.</p>
 <p><strong>Sources.</strong> The main source is the IMF’s Government Finance Statistics (dataflow <code>IMF.STA:GFS_COFOG</code>, transformation <code>POGDP_PT</code>). Chile and Colombia have no general government series for this function in the IMF data; they come from the OECD national accounts: Table 11 (<code>DSD_NASEC10@DF_TABLE11</code>, total expenditure on function GF10, in national currency) divided by nominal GDP from Table 1 (<code>DSD_NAMAIN10@DF_TABLE1_EXPENDITURE</code>). These two countries carry an asterisk. As a check, the same OECD calculation for France matches the IMF value in every year from 2010 to 2023. Countries with data in neither the IMF nor the OECD come from ECLAC’s social expenditure database (CEPALSTAT, indicator 3127, division “Protección social”), compiled from each country’s finance ministry: Paraguay, Bolivia and Peru for general government (†), and Argentina and Mexico for the non-financial public sector (‡). For Brazil, ECLAC’s general government series matches the IMF (13.1% in 2010 and 21.0% in 2020).</p>
-<p><strong>Groups.</strong> Nordic countries: Denmark, Finland, Iceland, Norway and Sweden. Continental Europe: Austria, Belgium, France, Germany, Luxembourg, the Netherlands and Switzerland. Both European groups have data for every year, and their average row is a simple mean. Latin America has no average row, because the set of countries with data changes from year to year and the average would change composition along with it.</p>
+<p><strong>Order.</strong> Countries are grouped by continent, following the <code>countrycode</code> package (Kosovo, coded KOS by the IMF, goes with Europe), and sorted within each continent by their mean over the years with data. There are no continent averages, because the set of countries with data changes from year to year and the average would change composition along with it.</p>
 <p><strong>Limits.</strong> Ecuador and Uruguay have only central government data, in ECLAC, and are left out; blank cells mark missing years. ECLAC notes that not every country uses the United Nations COFOG classifier and that recording may be on a cash or accrual basis, so the series marked † and ‡ are less comparable than the others. For Costa Rica the IMF and the OECD diverge (2019: 4.8% in the IMF, 7.8% in the OECD, 7.7% in ECLAC); the figure uses the IMF, as for the other countries. Spending as a share of GDP measures fiscal effort, not coverage, benefit adequacy or the distribution of benefits.</p>
 </section>
 <section id="how-to-cite" class="level2">
@@ -214,7 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <p><strong>This figure and pipeline:</strong></p>
 <blockquote class="blockquote">
-<p>Mançano, T. (2026, November 12). <em>Social protection spending: Brazil, Europe and Latin America</em> [Figure and reproducible pipeline]. Open Data Analysis. https://mancano-tales.github.io/open-data-analysis/posts/protecao-social-brasil-europa-america-latina/</p>
+<p>Mançano, T. (2026, November 12). <em>Social protection spending: Brazil among the countries with data</em> [Figure and reproducible pipeline]. Open Data Analysis. https://mancano-tales.github.io/open-data-analysis/posts/protecao-social-brasil-europa-america-latina/</p>
 </blockquote>
 <p><strong>In text:</strong> (Mançano, 2026) — when citing several analyses from this catalog in the same work, APA distinguishes them as 2026a, 2026b, … in the order they appear in the reference list.</p>
 <p><strong>BibTeX:</strong></p>
@@ -231,7 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">Mancano2026_protecao_social_brasil_europa_america_latina</span>,</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>       = {Man<span class="ch">\c</span>{c}ano, Tales},</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>        = {Social protection spending: Brazil, Europe and Latin America},</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>        = {Social protection spending: Brazil among the countries with data},</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>         = {2026},</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">month</span>        = <span class="st">nov</span>,</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">howpublished</span> = {Open Data Analysis, <span class="ch">\url</span>{https://mancano-tales.github.io/open-data-analysis/posts/protecao-social-brasil-europa-america-latina/}},</span>
