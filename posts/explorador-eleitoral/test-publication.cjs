@@ -2,13 +2,21 @@
 'use strict';
 const fs=require('node:fs/promises'),nativeFs=require('node:fs'),path=require('node:path');
 const assert=require('node:assert/strict'),zlib=require('node:zlib'),crypto=require('node:crypto');
+const {Readable}=require('node:stream');
+const {gitTextDigest}=require('../../tools/git-text-digest.cjs');
 const root=path.resolve(__dirname,'../..'),published=path.join(root,'docs/posts/explorador-eleitoral/data');
-async function digest(stream){const hash=crypto.createHash('sha256');for await(const chunk of stream)hash.update(chunk);return hash.digest('hex');}
 async function listFiles(directory){const files=[];try{for(const item of await fs.readdir(directory,{withFileTypes:true})){const file=path.join(directory,item.name);if(item.isDirectory())files.push(...await listFiles(file));else if(item.isFile())files.push(file);}}catch(error){if(error.code!=='ENOENT')throw error;}return files;}
 (async()=>{
+  // Regression for Windows publications checked out on Linux: boundaries can
+  // split both CRLF and UTF-8 characters. Numerical/content edits must differ.
+  const fixture=Buffer.from('São\r\n{"n":1,"escaped":"\\r\\n"}\rX\r');
+  const normalized=fixture.toString('utf8').replace(/\r\n/g,'\n');
+  const expected=crypto.createHash('sha256').update(normalized).digest('hex');
+  assert.equal(await gitTextDigest(Readable.from([...fixture].map(b=>Buffer.from([b])))),expected);
+  assert.notEqual(await gitTextDigest(Readable.from([Buffer.from(normalized.replace('"n":1','"n":2'))])),expected);
   const qmd=await fs.readFile(path.join(root,'posts-pt/explorador-eleitoral/index.qmd'),'utf8');
   const html=await fs.readFile(path.join(root,'docs/pt/posts-pt/explorador-eleitoral/index.html'),'utf8');
-  for(const asset of ['app.js','app.css','compare.js']){
+  for(const asset of ['app.js','app.css','compare.js','concentration.js']){
     const source=await fs.readFile(path.join(__dirname,asset));
     for(const directory of ['docs/posts/explorador-eleitoral','docs/pt/posts/explorador-eleitoral'])
       assert.deepEqual(await fs.readFile(path.join(root,directory,asset)),source,`Stale published ${asset} in ${directory}`);
@@ -34,11 +42,11 @@ async function listFiles(directory){const files=[];try{for(const item of await f
     const original=originals.get(entry.id);assert.ok(original);
     assert.deepEqual(entry,{...original,url:original.url+'.gz'});
     const file=path.join(published,entry.url);compressedBytes+=(await fs.stat(file)).size;
-    assert.equal(await digest(nativeFs.createReadStream(file).pipe(zlib.createGunzip())),await digest(nativeFs.createReadStream(path.join(__dirname,'data',original.url))));
+    assert.equal(await gitTextDigest(nativeFs.createReadStream(file).pipe(zlib.createGunzip())),await gitTextDigest(nativeFs.createReadStream(path.join(__dirname,'data',original.url))),`Published data differs after Git CRLF/LF normalization: ${entry.id}`);
     await assert.rejects(fs.access(path.join(published,original.url)),'Raw published dataset must be pruned after backup');
   }
   assert.equal((await listFiles(path.join(root,'docs/pt/posts/explorador-eleitoral/data'))).filter(file=>/\.(json|csv)$/.test(file)).length,0,'Redundant PT datasets remain');
   const files=await listFiles(path.join(root,'docs'));let bytes=0;for(const file of files)bytes+=(await fs.stat(file)).size;
   assert.ok(bytes<1_000_000_000,`Published directory too large: ${bytes} bytes`);
-  console.log(`PASS: ${manifest.series.length} shared gzip series match their sources exactly; ${compressedBytes} compressed bytes; whole site ${bytes} bytes; no redundant PT data.`);
+  console.log(`PASS: ${manifest.series.length} shared gzip series match their sources after Git CRLF/LF normalization; ${compressedBytes} compressed bytes; whole site ${bytes} bytes; no redundant PT data.`);
 })().catch(error=>{console.error(error);process.exitCode=1;});

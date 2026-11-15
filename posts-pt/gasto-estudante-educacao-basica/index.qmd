@@ -74,3 +74,5 @@ Scripts desta análise:
 **Tier: A**
 
 Este pipeline usa apenas dados públicos, acessíveis sem credencial. Os dois CSVs em `data/` bastam para redesenhar a figura.
+
+Baixe os agregados: [inep_investimento_estudante_nominal.csv](../../posts/gasto-estudante-educacao-basica/data/inep_investimento_estudante_nominal.csv) · [ipca_media_anual.csv](../../posts/gasto-estudante-educacao-basica/data/ipca_media_anual.csv).

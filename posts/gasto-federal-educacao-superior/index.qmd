@@ -4,6 +4,8 @@ date: 2026-11-14
 categories: [SIOP, Gasto Público, FIES, ProUni, Série Histórica]
 image: thumbnail.png
 description: "Federal spending on universities, excluding retirees and pensions, and on FIES student loans and the ProUni tax expenditure, in 2024 reais."
+resources:
+  - data/**
 ---
 
 ![](fig-en.png)
@@ -79,3 +81,5 @@ The SIOP updates recent years, so a new collection may differ from the one used 
 This pipeline uses only public data, accessible without any credential. The two CSV files in `data/` are enough to redraw the figure without running the collection.
 
 **Reference:** Carvalho, H. A. de (2011). *A política pública para a educação superior no Brasil (1995–2008): Ruptura e/ou continuidade?* [Doctoral dissertation, Universidade Estadual de Campinas]. https://doi.org/10.47749/T/UNICAMP.2011.784998 — Table VII, p. 331.
+
+Download the aggregates: [gasto_federal_es_anual.csv](data/gasto_federal_es_anual.csv) · [ipca_media_anual.csv](data/ipca_media_anual.csv).

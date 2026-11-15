@@ -1,0 +1,33 @@
+name: Site validation
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  publication:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check published links, search and language navigation
+        run: node tools/check-site.cjs
+      - name: Check shared publication and gzip integrity
+        run: node posts/explorador-eleitoral/test-publication.cjs
+      - name: Check explorer interactions and publisher safeguards
+        run: |
+          node posts/explorador-eleitoral/test-app.cjs --ui-only
+          node posts/explorador-eleitoral/test-compare.cjs
+          node posts/explorador-eleitoral/test-compare-ui.cjs
+          node posts/explorador-eleitoral/test-concentration.cjs
+          node posts/explorador-eleitoral/test-concentration-ui.cjs
+          node posts/explorador-eleitoral/test-two-panels.cjs
+          node posts/explorador-eleitoral/test-publish-static.cjs
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+      - name: Check cohort population and redistributed aggregates (base R)
+        run: Rscript shared-pipeline/sedap/portas-anuais/test-dados-populacao.R

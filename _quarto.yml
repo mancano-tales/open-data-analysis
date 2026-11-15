@@ -1,14 +1,23 @@
 project:
   type: website
   output-dir: docs
+  # Bound initial discovery before language profiles are applied. In particular,
+  # archived QMDs and generated output must never become project inputs.
+  render:
+    - index.qmd
+    - index-pt.qmd
+    - posts/**/index.qmd
+    - posts-pt/**/index.qmd
+    - posts/explorador-eleitoral/two-panels.qmd
+    - posts-pt/explorador-eleitoral/dois-paineis.qmd
+  post-render:
+    - node tools/finalize-site.cjs
 
 # Perfil padrao: `quarto render` puro produz a versao em INGLES (raiz de docs/).
 # Mesmo padrao usado no repositorio da dissertacao (ver
 # 9-vers/plan/2026-08-23_Plano_Dissertacao_Bilingue.md la): listas de
-# conteudo (aqui, `listing: contents:` e a pagina index) NAO ficam neste
-# arquivo base porque perfis do Quarto fundem alguns valores por chave —
-# manter tudo especifico de idioma em _quarto-en.yml/_quarto-pt.yml evita
-# qualquer risco de mistura entre os dois idiomas.
+# metadados da listagem e a selecao final de paginas ficam nos perfis por
+# idioma. A lista base apenas limita a descoberta inicial aos arquivos-fonte.
 profile:
   default: en
 

@@ -11,10 +11,9 @@ lang: pt
 project:
   output-dir: docs/pt
   render:
-    - "*.qmd"
-    - "posts-pt/**"
-    - "!index.qmd"
-    - "!posts/**"
+    - "index-pt.qmd"
+    - "posts-pt/**/index.qmd"
+    - "posts-pt/explorador-eleitoral/dois-paineis.qmd"
 
 website:
   title: "Open Data Analysis"
@@ -25,4 +24,4 @@ website:
         href: index-pt.qmd
     right:
       - text: "English"
-        href: /index.html
+        href: https://mancano-tales.github.io/open-data-analysis/

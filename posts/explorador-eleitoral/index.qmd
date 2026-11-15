@@ -5,8 +5,6 @@ draft: false
 image: thumbnail.png
 categories: [Elections, Census, Income, Distribution]
 description: "Interactive vote-share curves across Census 2022 tract-income percentiles, with downloadable aggregates and explicit spatial coverage."
-resources:
-  - data/**
 format:
   html:
     css:

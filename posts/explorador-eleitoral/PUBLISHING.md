@@ -14,12 +14,15 @@ would save little and unnecessarily break existing asset URLs.
 ## Build order
 
 1. Finish electoral exports and stop concurrent writers.
-2. Render EN and PT with Quarto. Quarto may copy the raw EN JSON again.
-3. Commit an exact Git backup of the original aggregate JSON and any
+2. Commit an exact Git backup of the original aggregate JSON and any
    previously published files that will be removed. The publisher checks
    content against `HEAD` (allowing only Git's CRLF-to-LF normalization);
    a staged-only backup is insufficient.
-4. Inspect the default dry run:
+3. Render EN and PT with `quarto render --profile en --no-clean` and
+   `quarto render --profile pt --no-clean`. The post-render hook
+   `tools/finalize-site.cjs` restores both languages' scripts and invokes the
+   protected gzip publisher. Raw EN data is no longer a Quarto resource glob.
+4. If running the publisher manually, inspect the default dry run:
 
    ```sh
    node posts/explorador-eleitoral/publish-static.cjs
@@ -31,8 +34,8 @@ would save little and unnecessarily break existing asset URLs.
    node posts/explorador-eleitoral/publish-static.cjs --apply --prune-json --prune-pt
    ```
 
-6. Validate the output and commit the resulting static publication. Do not
-   render again after this step without rerunning the publisher.
+6. Run `node tools/check-site.cjs` and the publication check below, then commit
+   the static publication. Later renders invoke the finalizer automatically.
 
 Without pruning flags, `--apply` generates gzip files and switches the
 published manifest, but leaves the original published JSON in place. This

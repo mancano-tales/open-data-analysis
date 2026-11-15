@@ -3,8 +3,8 @@
 #
 # Vias de ingresso no ensino superior por decil de renda per capita, coorte a
 # coorte, de 2012 a 2021. Estende os posts portas-renda-coortes-empilhado e
-# portas-renda-coortes-ead (so 2013 e 2020) e, diferente deles, conta apenas
-# quem esteve presente nas quatro provas objetivas do ENEM do ano da coorte
+# portas-renda-coortes-ead (so 2013 e 2020) e conta os inscritos no ENEM,
+# inclusive ausentes, como essas comparacoes de duas coortes
 # (ver shared-pipeline/sedap/portas-anuais/020_Extrair_Coortes_Anuais.R).
 #
 # Renda per capita e decis: mesmos pontos medios e mesma regra de 052/055
@@ -15,7 +15,7 @@
 # Figuras (cada uma em ingles, -en, e portugues, -pt):
 #   fig-vias       probabilidade de ingresso em ate 3 anos, total e por via
 #   fig-modalidade probabilidade de ingresso em EaD e presencial
-#   fig-cobertura  parcela da coorte com CPF e presente no ENEM
+#   fig-cobertura  parcela da coorte com CPF e inscrita no ENEM
 # thumbnail.png e a fig-vias em ingles.
 #
 # Le data/ (redistribuido) ou, se existir, a reextracao em data-raw/.
@@ -33,8 +33,24 @@ theme_set(thesis_theme())
 
 POST <- here::here("posts", "portas-renda-coortes-anuais")
 DIR_DATA <- file.path(POST, "data")
-DIR_RAW <- here::here("data-raw", "sedap", "portas-anuais")
 COORTES <- 2012:2021
+POPULACAO <- Sys.getenv("POPULACAO", "inscritos")
+source(here::here("shared-pipeline", "sedap", "portas-anuais", "dados-populacao.R"))
+snapshot <- resolver_dados_coortes(here::here(), POPULACAO, COORTES)
+# Sensitivity runs must not overwrite the published registered-student figure.
+DIR_FIG <- if (POPULACAO == "inscritos") POST else
+  here::here("output", "figures", "portas-renda-coortes-anuais", POPULACAO)
+DIR_TABELAS <- if (POPULACAO == "inscritos") DIR_DATA else file.path(DIR_FIG, "data")
+dir.create(DIR_FIG, recursive = TRUE, showWarnings = FALSE)
+dir.create(DIR_TABELAS, recursive = TRUE, showWarnings = FALSE)
+
+# Record the exact aggregates used alongside the figure for offline replication.
+if (normalizePath(snapshot$diretorio) != normalizePath(DIR_TABELAS)) {
+  stopifnot(all(file.copy(file.path(snapshot$diretorio, snapshot$arquivos),
+                         DIR_TABELAS, overwrite = TRUE)))
+}
+write.csv(data.frame(populacao = POPULACAO),
+          file.path(DIR_TABELAS, "populacao.csv"), row.names = FALSE)
 
 SM_17 <- c(
   A = 0, B = 0.5, C = 1.25, D = 1.75, E = 2.25, F = 2.75, G = 3.5,
@@ -44,8 +60,11 @@ SM_17 <- c(
 MOR_MEDIO <- c("1_2" = 1.8, "3_4" = 3.5, "5_6" = 5.4, "7_mais" = 7.8)
 
 ler <- function(nome) {
-  arq <- file.path(DIR_RAW, nome)
-  if (!file.exists(arq)) arq <- file.path(DIR_DATA, nome)
+  arq <- file.path(snapshot$diretorio, nome)
+  if (nome == "sondagem_bas.csv") {
+    arq <- here::here("data-raw", "sedap", "portas-anuais", nome)
+    if (!file.exists(arq)) arq <- file.path(DIR_DATA, nome)
+  }
   if (!file.exists(arq)) stop("Arquivo ausente: ", nome, ". Rode shared-pipeline/sedap/portas-anuais/.")
   read.csv(arq, stringsAsFactors = FALSE)
 }
@@ -94,7 +113,7 @@ vias <- bind_rows(vias |> filter(cod != "0"), vias_tot)
 write.csv(
   bind_rows(vias |> mutate(tipo = "via"), modal |> filter(cod != "0") |> mutate(tipo = "modalidade")) |>
     select(tipo, coorte, decil, cod, p) |> mutate(p = round(p, 2)),
-  file.path(DIR_DATA, "probabilidades_por_decil.csv"),
+  file.path(DIR_TABELAS, "probabilidades_por_decil.csv"),
   row.names = FALSE
 )
 
@@ -111,7 +130,7 @@ TXT <- list(
     x = "Secondary-school cohort (entry within the next three years)",
     y = "Probability of entry", decil = "Income decile",
     decis = c("1st", "2nd", "3rd", paste0(4:10, "th")),
-    cob = c(cpf = "With CPF (linkable)", enem = "Present at all four ENEM tests"),
+    cob = c(cpf = "With CPF (linkable)", enem = if (POPULACAO == "inscritos") "Registered for ENEM" else "Present at all four ENEM tests"),
     ycob = "Share of the final-year cohort",
     sep = "."
   ),
@@ -124,7 +143,7 @@ TXT <- list(
     x = "Coorte do ensino médio (ingresso nos três anos seguintes)",
     y = "Probabilidade de ingresso", decil = "Decil de renda",
     decis = paste0(1:10, "º"),
-    cob = c(cpf = "Com CPF (vinculável)", enem = "Presente nas quatro provas do ENEM"),
+    cob = c(cpf = "Com CPF (vinculável)", enem = if (POPULACAO == "inscritos") "Inscrito no ENEM" else "Presente nas quatro provas do ENEM"),
     ycob = "Parcela da coorte da série final",
     sep = ","
   )
@@ -158,10 +177,10 @@ n_enem <- vapply(COORTES, function(a) sum(ler(sprintf("matriz_%d_porta.csv", a))
 cob <- bas |>
   transmute(coorte = ano, cpf = N_COM_CPF / N_SERIE_FINAL, enem = n_enem[match(ano, COORTES)] / N_SERIE_FINAL) |>
   pivot_longer(c(cpf, enem), names_to = "serie", values_to = "s")
-write.csv(cob |> mutate(s = round(100 * s, 2)), file.path(DIR_DATA, "cobertura.csv"), row.names = FALSE)
+write.csv(cob |> mutate(s = round(100 * s, 2)), file.path(DIR_TABELAS, "cobertura.csv"), row.names = FALSE)
 
 salvar <- function(p, nome, altura) {
-  ggsave(file.path(POST, nome), p, width = LARGURA_TEXTO, height = altura, dpi = 300, bg = "white")
+  ggsave(file.path(DIR_FIG, nome), p, width = LARGURA_TEXTO, height = altura, dpi = 300, bg = "white")
 }
 
 # ------------------------------------------------------------------------------
@@ -254,6 +273,6 @@ for (lg in c("en", "pt")) {
   salvar(barras_vias(L, TXT_BARRAS[[lg]]), sprintf("fig-barras-vias-%s.png", lg), 9.6)
   salvar(barras_modal(L, TXT_BARRAS[[lg]]), sprintf("fig-barras-modalidade-%s.png", lg), 9.6)
 }
-file.copy(file.path(POST, "fig-vias-en.png"), file.path(POST, "thumbnail.png"), overwrite = TRUE)
+file.copy(file.path(DIR_FIG, "fig-vias-en.png"), file.path(DIR_FIG, "thumbnail.png"), overwrite = TRUE)
 
 cat("\n[OK] figuras gravadas em posts/portas-renda-coortes-anuais/\n")

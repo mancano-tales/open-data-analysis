@@ -1,0 +1,107 @@
+# Shared, compressed publication of the electoral explorer
+
+The raw aggregate JSON under `posts/explorador-eleitoral/data/` remains the
+reproducible source used by the R exporter and the source-data tests. It is
+not the deployment format. Publishing uses one canonical data directory,
+`docs/posts/explorador-eleitoral/data/`, shared by both languages. The PT
+page resolves `../../../posts/explorador-eleitoral/data/` relative to its
+published URL, preserving a GitHub Pages project prefix.
+
+The PT QMD does not declare the source data directory as a resource. Its
+small JS/CSS/thumbnail and documentation copies remain valid; removing them
+would save little and unnecessarily break existing asset URLs.
+
+## Build order
+
+1. Finish electoral exports and stop concurrent writers.
+2. Commit an exact Git backup of the original aggregate JSON and any
+   previously published files that will be removed. The publisher checks
+   content against `HEAD` (allowing only Git's CRLF-to-LF normalization);
+   a staged-only backup is insufficient.
+3. Render EN and PT with `quarto render --profile en --no-clean` and
+   `quarto render --profile pt --no-clean`. The post-render hook
+   `tools/finalize-site.cjs` restores both languages' scripts and invokes the
+   protected gzip publisher. Raw EN data is no longer a Quarto resource glob.
+4. If running the publisher manually, inspect the default dry run:
+
+   ```sh
+   node posts/explorador-eleitoral/publish-static.cjs
+   ```
+
+5. Publish compressed files and remove verified redundant copies:
+
+   ```sh
+   node posts/explorador-eleitoral/publish-static.cjs --apply --prune-json --prune-pt
+   ```
+
+6. Run `node tools/check-site.cjs` and the publication check below, then commit
+   the static publication. Later renders invoke the finalizer automatically.
+
+Without pruning flags, `--apply` generates gzip files and switches the
+published manifest, but leaves the original published JSON in place. This
+is useful to inspect the result, but does not achieve the intended size
+reduction. Only the explicitly named, individually validated files are
+removed; there is no recursive deletion. PT pruning covers tracked JSON/CSV
+copies only, so a new untracked redundant copy must be backed up/committed
+or inspected separately before it can be removed.
+
+The publisher streams one source file at a time through gzip level 9. Gzip
+headers contain no source filename and have zero timestamp. It writes each
+file atomically, changes only published manifest URLs to `.json.gz`, and
+switches the manifest after every compressed series is ready. Source JSON,
+source manifest, estimates and coverage remain unchanged. The published
+manifest is compact JSON with the same schema and metadata. Availability
+CSV remains available in the shared directory.
+
+## Incremental publication cache
+
+The ignored local file `data-raw/eleicoes-renda/publication-cache.json` records
+the SHA256 of each source JSON and its generated gzip. On a later wave, the
+publisher reuses a compressed file only after hashing both current contents
+and matching both digests to the cache. File length or modification time is
+never sufficient evidence of integrity. A same-size source edit triggers
+compression; a same-size corrupted gzip is repaired.
+
+Missing, malformed or incompatible caches and invalid entries safely fall
+back to recompression. The first run after this change populates the cache;
+subsequent runs report `reusedSeries` and `compressedSeries`. The cache is
+written atomically after successful publication and contains no changes to
+the source manifest, published manifest schema or numerical data. It is an
+optimization, rather than a data source: deleting it costs compression time
+but never makes an existing gzip trusted without verification. Concurrent
+source writers remain prohibited, and source-change checks remain active.
+
+## Browser and URL behavior
+
+`app.js` fetches compressed series and uses the browser's
+`DecompressionStream('gzip')` before parsing JSON. It also accepts a host
+that already decoded HTTP transport gzip. Download labels explicitly say
+JSON.gz. A browser without the decompression API receives an explanation;
+the compact manifest and downloadable gzip files remain public.
+
+Dataset URLs are obtained from the canonical manifest rather than assembled
+from candidate/year values. After pruning, old direct `.json` dataset URLs
+and old PT data URLs no longer exist. GitHub Pages cannot provide HTTP
+redirects for arbitrary static JSON paths; an HTML redirect is not usable by
+`fetch().json()`. Keeping those raw copies would defeat the size reduction.
+The post URLs, language switch and current download links remain valid.
+Consumers of older direct dataset links should migrate to the canonical
+manifest. Historical originals remain recoverable from Git history.
+
+Revalidate the manifest on each page load (`cache: 'no-cache'`), and bump
+the JS query version when deploying this loader alongside gzip manifests.
+Both QMD pages use `shared-gzip-v1` for this transition.
+
+## Checks
+
+```sh
+node posts/explorador-eleitoral/test-app.cjs --ui-only
+node posts/explorador-eleitoral/test-publish-static.cjs
+node posts/explorador-eleitoral/test-publication.cjs
+```
+
+The publisher test uses isolated, explicitly labelled fixtures; it verifies
+lossless deterministic compression and refuses pruning without a Git backup.
+The publication check verifies real shared URLs, gzip integrity and manifest
+targets after publishing. Run the publisher after exports stop; do not
+read or compress real source files concurrently with the R exporter.
