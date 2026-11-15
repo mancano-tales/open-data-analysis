@@ -1,8 +1,8 @@
 "arquivo","row_loss"
-"matriz_2013_porta.csv",0.00491400491400491
-"matriz_2013_modalidade.csv",0.00490196078431373
 "matriz_2012_porta.csv",0
 "matriz_2012_modalidade.csv",0
+"matriz_2013_porta.csv",0.00491400491400491
+"matriz_2013_modalidade.csv",0.00490196078431373
 "matriz_2014_porta.csv",0.00490196078431373
 "matriz_2014_modalidade.csv",0
 "matriz_2015_porta.csv",0.00491400491400491
@@ -15,7 +15,7 @@
 "matriz_2018_modalidade.csv",0
 "matriz_2019_porta.csv",0.0123152709359606
 "matriz_2019_modalidade.csv",0
-"matriz_2020_porta.csv",0.0225563909774436
+"matriz_2020_porta.csv",0.0224438902743142
 "matriz_2020_modalidade.csv",0
 "matriz_2021_porta.csv",0.0172839506172839
 "matriz_2021_modalidade.csv",0

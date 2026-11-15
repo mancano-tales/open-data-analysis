@@ -4,6 +4,8 @@ date: 2026-11-14
 categories: [PNAD/PNADC, Renda, Gini, Série Histórica]
 image: thumbnail.png
 description: "Gini index of per-capita household income and median real per-capita household income on a shared time axis, 1992–2025."
+resources:
+  - data/**
 ---
 
 ![](fig-en.png)
@@ -72,3 +74,5 @@ Scripts for this analysis:
 **Tier: A**
 
 This pipeline uses only public data, accessible without any credential (PNADcIBGE and the IBGE FTP). The two CSV files in `data/` are enough to redraw the figure.
+
+Download the aggregates: [gini_oficial_anual.csv](data/gini_oficial_anual.csv) · [renda_mediana_anual.csv](data/renda_mediana_anual.csv).

@@ -4,6 +4,8 @@ date: 2026-11-14
 categories: [INEP, Gasto Público, Educação Básica, Série Histórica]
 image: thumbnail.png
 description: "Direct public spending per student in basic and upper secondary education, federal, state and municipal governments combined, in 2024 reais."
+resources:
+  - data/**
 ---
 
 ![](fig-en.png)
@@ -74,3 +76,5 @@ Scripts for this analysis:
 **Tier: A**
 
 This pipeline uses only public data, accessible without any credential. The two CSV files in `data/` are enough to redraw the figure.
+
+Download the aggregates: [inep_investimento_estudante_nominal.csv](data/inep_investimento_estudante_nominal.csv) · [ipca_media_anual.csv](data/ipca_media_anual.csv).

@@ -72,3 +72,5 @@ Scripts desta análise:
 **Tier: A**
 
 Este pipeline usa apenas dados públicos, acessíveis sem credencial (PNADcIBGE e o FTP do IBGE). Os dois CSVs em `data/` bastam para redesenhar a figura.
+
+Baixe os agregados: [gini_oficial_anual.csv](../../posts/gini-renda-mediana/data/gini_oficial_anual.csv) · [renda_mediana_anual.csv](../../posts/gini-renda-mediana/data/renda_mediana_anual.csv).

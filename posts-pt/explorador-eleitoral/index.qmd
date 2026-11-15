@@ -5,6 +5,10 @@ draft: false
 image: ../../posts/explorador-eleitoral/thumbnail.png
 categories: [Eleições, Censo, Renda, Distribuição]
 description: "Curvas interativas de votação por centil de renda dos setores censitários do Censo 2022, com agregados para download e cobertura explícita."
+resources:
+  - ../../posts/explorador-eleitoral/app.js
+  - ../../posts/explorador-eleitoral/compare.js
+  - ../../posts/explorador-eleitoral/concentration.js
 format:
   html:
     css:

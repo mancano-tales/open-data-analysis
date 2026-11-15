@@ -74,6 +74,18 @@ source(here::here("shared-pipeline", "eleicoes", "010_Download_Censo_TSE.R"))
 source(here::here("shared-pipeline", "eleicoes", "020_Cruzar_Setores_Votos.R"))
 source(here::here("shared-pipeline", "eleicoes", "030_Verificar_Resultados.R"))
 
-cat("\nDone. Public datasets for every Tier A / Tier A (cross-repo) figure are",
-    "now in data-raw/. Tier B figures (shared-pipeline/sedap/) still require",
+# The recent public-spending posts redistribute their final aggregates under
+# posts/*/data/. Keep the upstream sources in their documented dependency order.
+cat("\n[bonus] Federal spending: SIOP, Revenue Service and annual series\n")
+source(here::here("shared-pipeline", "gasto-federal", "010_Coleta_SIOP_Execucao.R"))
+source(here::here("shared-pipeline", "gasto-federal", "015_Download_RFB_Gastos_Tributarios.R"))
+source(here::here("shared-pipeline", "gasto-federal", "020_ProUni_Renuncia_RFB.R"))
+source(here::here("shared-pipeline", "gasto-federal", "030_Monta_Series_Gasto.R"))
+cat("\n[bonus] Basic-education spending per student, INEP\n")
+source(here::here("shared-pipeline", "gasto-educacao-basica", "010_INEP_Investimento_Estudante.R"))
+cat("\n[bonus] Social protection, IMF/OECD/ECLAC\n")
+source(here::here("shared-pipeline", "cofog", "010_COFOG_Protecao_Social.R"))
+
+cat("\nDone. Public datasets are in data-raw/ and the posts' data/ directories.",
+    "Tier B figures (shared-pipeline/sedap/) still require",
     "an approved SEDAP+ credential — see their own posts.\n")

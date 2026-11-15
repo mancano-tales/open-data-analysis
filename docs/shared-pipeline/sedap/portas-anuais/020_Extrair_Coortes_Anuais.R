@@ -4,16 +4,9 @@
 # Estende as vias de ingresso dos posts portas-renda-coortes-empilhado e
 # portas-renda-coortes-ead (coortes de 2013 e 2020) a TODAS as coortes de 2012
 # a 2021, ano a ano, como pediu a orientadora (2026-10-20). O desenho e o de
-# shared-pipeline/sedap/portas/031 e 054, com uma mudanca:
-#
-# PRESENCA NO ENEM (nova). Os scripts 031/054 vinculam a coorte a INSCRICAO no
-# ENEM do mesmo ano, nao a presenca: a tabela ENEM_<ano>_SEDAP tem uma linha
-# por inscrito. A abstencao varia muito entre edicoes (55% faltaram a prova de
-# Matematica em 2020, contra 27% em 2012; 010_Sondagem_Anual.R) e tem gradiente
-# de renda, entao numa serie anual a populacao "quem fez o ENEM" mudaria de
-# definicao de um ano para o outro. Aqui o aluno so entra se esteve presente
-# nas quatro provas objetivas da edicao do ano da coorte ('1' em
-# IN_PRESENCA_* ate 2014 e em TP_PRESENCA_* desde 2015).
+# shared-pipeline/sedap/portas/031 e 054. A populacao padrao e a dos inscritos
+# no ENEM do mesmo ano, inclusive ausentes. POPULACAO=presentes restringe as
+# consultas aos presentes nas quatro provas objetivas e grava em outra pasta.
 #
 # REVISAO DE 2026-11-07: a populacao padrao volta a ser a de INSCRITOS, a
 # mesma de 031/054 e das figuras do capitulo. A renda vem do questionario
@@ -28,9 +21,8 @@
 #   - Coortes 2012-2021. 2011 fica fora: a renda do ENEM 2011 (Q004) tem 11
 #     faixas, outra escala, cujos pontos medios nao foram conferidos.
 #   - Renda e moradores: Q003/Q004 em 2012-2014; Q006/Q005 desde 2015.
-#   - IN_RESERVA_VAGAS e 100% NULL no Censo Superior de 2024: na coorte de
-#     2021, quem ingressou em 2024 nao tem a via "publica com reserva"
-#     identificavel e cai em "publica ampla". O plot.R marca essa coorte.
+#   - IN_RESERVA_VAGAS e 100% NULL no Censo Superior de 2024; o indicador
+#     desagregado IN_RESERVA_ENSINO_PUBLICO recupera a reserva (ver COND_COTA).
 #   - Cobertura de CPF da serie final varia de 47% (2016) a 87% (2012, 2017).
 #
 # Duas consultas por coorte, como em 031 e 054: via de ingresso (porta) e

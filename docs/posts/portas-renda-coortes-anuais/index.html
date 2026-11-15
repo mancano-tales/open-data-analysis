@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2026-10-20">
-<meta name="description" content="Probability of entering tertiary education within three years, by access route and by mode of study, for each per-capita income decile of every secondary-school cohort from 2012 to 2021, counting only students present at all four ENEM tests.">
+<meta name="description" content="Probability of entering tertiary education within three years, by access route and by mode of study, for each per-capita income decile of every secondary-school cohort from 2012 to 2021, including every student registered for ENEM, whether present or absent.">
 
 <title>Routes into Tertiary Education by Income Decile, Cohort by Cohort: 2012 to 2021 – Open Data Analysis</title>
 <style>
@@ -101,7 +101,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../pt/index.html"> 
+    <a class="nav-link" href="https://mancano-tales.github.io/open-data-analysis/pt/index-pt.html">
 <span class="menu-text">Português</span></a>
   </li>  
 </ul>
@@ -135,7 +135,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    Probability of entering tertiary education within three years, by access route and by mode of study, for each per-capita income decile of every secondary-school cohort from 2012 to 2021, counting only students present at all four ENEM tests.
+    Probability of entering tertiary education within three years, by access route and by mode of study, for each per-capita income decile of every secondary-school cohort from 2012 to 2021, including every student registered for ENEM, whether present or absent.
   </div>
 </div>
 
@@ -162,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p>This post extends the two-cohort comparison of <a href="../../posts/portas-renda-coortes-empilhado/index.html">Routes into Tertiary Education by Per-Capita Income Decile</a> and <a href="../../posts/portas-renda-coortes-ead/index.html">Mode of Study</a> to every secondary-school cohort that the linked records allow, from 2012 to 2021. Each line is one income decile; each point is the probability that a student of that decile and cohort entered tertiary education within the three years after the final school year. The first panel is total entry; the other five split it by route: a public institution through a reserved seat, a public institution through open competition, ProUni, FIES, or a private institution with no subsidy.</p>
-<p>Three movements stand out. FIES collapses between the 2013 and 2015 cohorts, from 7–15% of each decile to 3–6%, and keeps falling. Unsubsidised private entry rises in every decile, from 12% to 30% in the poorest and from 43% to 53% in the richest between the 2012 and 2021 cohorts. And total entry of the poorest decile, flat at about a third until the 2016 cohort, climbs to 41% in 2019 and 58% in 2021, while the richest decile stays near 90%. The last rise coincides with the collapse of ENEM attendance in the pandemic editions and should not be read as a real change before the coverage figure below is taken into account.</p>
+<p>With registered students as the denominator, total entry in the poorest income decile rises from 28.2% in the 2012 cohort to 36.2% in 2019 and 46.9% in 2021; in the richest decile it remains near 90%. Unsubsidised private entry rises from 10.9% to 26.9% in the poorest decile and from 43.5% to 53.8% in the richest. These are conditional probabilities among linked ENEM registrants, rather than rates for the whole school cohort.</p>
 </section>
 <section id="composition-of-entry-cohort-by-cohort" class="level2">
 <h2 class="anchored" data-anchor-id="composition-of-entry-cohort-by-cohort">Composition of entry, cohort by cohort</h2>
@@ -174,25 +174,25 @@ ul.task-list li input[type="checkbox"] {
 <section id="mode-of-study" class="level2">
 <h2 class="anchored" data-anchor-id="mode-of-study">Mode of study</h2>
 <p><img src="fig-modalidade-en.png" class="img-fluid"></p>
-<p>Distance-learning entry rises in every decile, but much faster at the bottom: in the poorest decile from 5.5% (2012 cohort) to 17.5% (2019) and 24.5% (2021); in the richest from 1.3% to 7.8% and 7.2%. In-person entry falls in most deciles until the 2019 cohort and recovers afterwards, again in the cohorts with the lowest ENEM coverage.</p>
+<p>Distance-learning entry in the poorest decile rises from 5.0% (2012) to 16.2% (2019) and 22.4% (2021); in the richest, from 1.5% to 8.5% and 8.2%. In-person entry in the poorest decile is 23.3%, 20.0% and 24.4% in those cohorts.</p>
 </section>
 <section id="coverage" class="level2">
 <h2 class="anchored" data-anchor-id="coverage">Coverage</h2>
 <p><img src="fig-cobertura-en.png" class="img-fluid"></p>
-<p>The population behind every probability is the part of the school cohort that has a linkable CPF and was present at all four objective ENEM tests of the cohort year. That part is about half of the final-year cohort from 2012 to 2017 and falls to 43% (2019), 27% (2020) and 23% (2021). The 2016 cohort is an exception within the stable years: only 47% of its final-year students have a CPF in the Censo Escolar, against 81–87% in the neighbouring years. When fewer and more selected students sit the ENEM, a decile of the remaining sample is a different group of people; the rises of the 2020 and 2021 cohorts in particular mix a change in entry with a change in who is observed.</p>
+<p>The population behind each probability consists of students in the school cohort with a linkable CPF who registered for ENEM that year, including those absent from the tests. They represent 57.9% of the final-year cohort in 2012, 49.8% in 2019, 41.8% in 2020 and 29.2% in 2021. CPF coverage itself falls to 46.8% in 2016 and 60.2% in 2021. Registration and linkage still select who is observed; these results cannot be extrapolated directly to all secondary-school students.</p>
 </section>
 <section id="methodology" class="level2">
 <h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
 <p><strong>Cohort and linkage.</strong> Each cohort is every student enrolled in the final year of secondary education in the Censo Escolar of the cohort year (<code>TP_ETAPA_ENSINO</code> in 27, 28, 29, 32, 33, 34, 37, 38), aged 16–22, linked by masked CPF to the ENEM of the same year and to the Censo da Educação Superior of the three following years.</p>
-<p><strong>ENEM attendance (new).</strong> The earlier two-cohort posts linked the cohort to ENEM <em>registration</em>: the ENEM tables have one row per registered candidate, including those who missed the tests. Absence varies widely between editions (29% missed the mathematics test in 2012, 55% in 2020) and has an income gradient, so a yearly series built on registration would change its population from one year to the next. Here a student is counted only if present at all four objective tests (<code>IN_PRESENCA_*</code> up to 2014, <code>TP_PRESENCA_*</code> from 2015). For the 2013 cohort this lowers the population from 1,229,035 registered to 1,064,350 present.</p>
+<p><strong>ENEM registration.</strong> The default is <code>POPULACAO=inscritos</code>, matching the two-cohort posts. Income is reported at registration, so absent students also have an income bracket. Requiring attendance would select on a behaviour associated with subsequent entry. <code>POPULACAO=presentes</code> remains available as a sensitivity analysis, with separate extraction and figure directories. The published figures and redistributed matrices now use registrants.</p>
 <p><strong>Entry, route and mode.</strong> A student counts as having entered if any enrolment record with a year of entry within the three following years appears in the Censo da Educação Superior. Each entrant receives one route by priority across all of that person’s records: public with a reserved seat (<code>IN_RESERVA_VAGAS</code>), public through open competition, ProUni, FIES, private with no subsidy. Mode is distance learning if any record in the window is distance learning (<code>TP_MODALIDADE_ENSINO</code> = 2).</p>
 <p><strong>Income deciles.</strong> Declared family income bracket (seventeen brackets, midpoints in minimum wages) divided by the midpoint of the declared household-size group, as in the two-cohort posts; deciles are cut within each cohort and cells straddling a boundary are split proportionally. Income questions are <code>Q003</code>/<code>Q004</code> in 2012–2014 and <code>Q006</code>/<code>Q005</code> from 2015, checked against the data by the probe script below.</p>
 <p><strong>Limits.</strong></p>
 <ul>
 <li>The 2011 cohort is left out: its ENEM income question uses a different set of eleven brackets whose midpoints have not been checked.</li>
-<li><code>IN_RESERVA_VAGAS</code> and <code>IN_RESERVA_ETNICO</code> are empty in the 2024 Censo da Educação Superior. The other reservation flags (public school, income, disability, other) are filled in 2024, and in 2023 they are filled only for reserved-seat entrants, so a reserved seat is identified as <code>IN_RESERVA_VAGAS</code> = 1 or <code>IN_RESERVA_ENSINO_PUBLICO</code> filled. Up to 2023 this is the same rule; in 2024 it recovers the reserved-seat entrants of the 2021 cohort, whose share of the cohort (10.3%) is close to that of the 2020 cohort (10.6%).</li>
-<li>ProUni entry of the 2021 cohort is higher than in the neighbouring cohorts (6.5% of the cohort against 4.5% in 2020, about 40% more grantees in absolute numbers). The reservation fix does not change it. It has not been explained: the sharp fall in ENEM attendance in 2021, which ProUni requires, is one candidate.</li>
-<li>Distance-learning programmes do not require the ENEM, so the figures describe students who sat it, not all entrants.</li>
+<li><code>IN_RESERVA_VAGAS</code> and <code>IN_RESERVA_ETNICO</code> are empty in the 2024 Censo da Educação Superior. The other reservation flags (public school, income, disability, other) are filled in 2024, and in 2023 they are filled only for reserved-seat entrants, so a reserved seat is identified as <code>IN_RESERVA_VAGAS</code> = 1 or <code>IN_RESERVA_ENSINO_PUBLICO</code> filled. This rule also recovers reserved-seat entrants recorded in 2024.</li>
+<li>Changes in ProUni entry and other routes can combine changes in access with changes in registration and record linkage; the aggregate tables do not identify a causal explanation.</li>
+<li>Distance-learning programmes do not require ENEM; these figures describe its registrants, including absentees, rather than all entrants.</li>
 <li>Counts carry the platform’s differential-privacy noise; reported row loss is at most 2.3% per query (<code>data/row_loss.csv</code>).</li>
 </ul>
 </section>
@@ -201,8 +201,9 @@ ul.task-list li input[type="checkbox"] {
 <ol type="1">
 <li><a href="plot.R"><code>plot.R</code></a> reads the aggregate tables in <code>data/</code> and writes the three figures in English and Portuguese, plus <code>data/probabilidades_por_decil.csv</code> with every plotted value and <code>data/cobertura.csv</code>.</li>
 <li><a href="../../shared-pipeline/sedap/portas-anuais/010_Sondagem_Anual.R"><code>shared-pipeline/sedap/portas-anuais/010_Sondagem_Anual.R</code></a> checks, year by year, the ENEM income, household and attendance variables, the CPF coverage of the Censo Escolar and the route and mode flags of the Censo da Educação Superior (<code>data/sondagem_*.csv</code>).</li>
-<li><a href="../../shared-pipeline/sedap/portas-anuais/020_Extrair_Coortes_Anuais.R"><code>shared-pipeline/sedap/portas-anuais/020_Extrair_Coortes_Anuais.R</code></a> runs the two queries per cohort and writes <code>data/matriz_&lt;cohort&gt;_porta.csv</code> and <code>data/matriz_&lt;cohort&gt;_modalidade.csv</code>. The extraction scripts only run with an approved INEP credential exported as <code>SEDAP_TOKEN</code>.</li>
+<li><a href="../../shared-pipeline/sedap/portas-anuais/020_Extrair_Coortes_Anuais.R"><code>shared-pipeline/sedap/portas-anuais/020_Extrair_Coortes_Anuais.R</code></a> runs the two queries per cohort and writes <code>data-raw/sedap/portas-anuais/inscritos/matriz_&lt;cohort&gt;_porta.csv</code> and <code>matriz_&lt;cohort&gt;_modalidade.csv</code>. The extraction scripts only run with an approved INEP credential exported as <code>SEDAP_TOKEN</code>.</li>
 </ol>
+<p>The plotter uses a complete extraction for the selected population, or the matching redistributed snapshot identified by <code>data/populacao.csv</code>. It refuses incomplete caches and population mismatches. The default run updates the published registrant aggregates and figures. A sensitivity run with <code>POPULACAO=presentes</code> writes only to <code>output/figures/portas-renda-coortes-anuais/presentes/</code>.</p>
 
 
 </section>

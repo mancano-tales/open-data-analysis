@@ -79,3 +79,5 @@ O SIOP atualiza os anos recentes; por isso, uma coleta nova pode diferir da usad
 Este pipeline usa apenas dados públicos, acessíveis sem credencial. Os dois CSVs em `data/` bastam para redesenhar a figura sem rodar a coleta.
 
 **Referência:** Carvalho, H. A. de (2011). *A política pública para a educação superior no Brasil (1995–2008): Ruptura e/ou continuidade?* [Tese de doutorado, Universidade Estadual de Campinas]. https://doi.org/10.47749/T/UNICAMP.2011.784998 — Tabela VII, p. 331.
+
+Baixe os agregados: [gasto_federal_es_anual.csv](../../posts/gasto-federal-educacao-superior/data/gasto_federal_es_anual.csv) · [ipca_media_anual.csv](../../posts/gasto-federal-educacao-superior/data/ipca_media_anual.csv).

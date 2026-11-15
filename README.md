@@ -110,10 +110,32 @@ acesso; depois, uma tag do Git e um DOI no Zenodo serão linkados aqui.
 
 O catálogo é publicado em dois idiomas a partir do mesmo repositório, via perfis do Quarto:
 
+A publicação requer Quarto e Node.js 22 ou mais recente, além do R usado nas análises.
+
 - **Inglês** (padrão): `quarto render --profile en` (ou simplesmente `quarto render`) publica em `docs/`.
 - **Português**: `quarto render --profile pt` publica em `docs/pt/`.
 
-Os dois perfis (`_quarto-en.yml`, `_quarto-pt.yml`) herdam a configuração comum de `_quarto.yml` e definem apenas o que é específico de idioma (título/descrição do site, `lang`, `output-dir` e o link de troca de idioma na navbar).
+Os dois perfis (`_quarto-en.yml`, `_quarto-pt.yml`) herdam a configuração comum de `_quarto.yml` e definem as páginas de cada idioma, o título/descrição do site, `lang`, `output-dir` e o link de troca de idioma na navbar. As listas positivas de páginas incluem também os dois painéis do explorador e deixam de fora os resultados locais de `output/`.
+
+Renderize os dois perfis com `--no-clean` para preservar a saída do outro idioma.
+O hook `tools/finalize-site.cjs` sincroniza os scripts para download e os CSVs dos
+posts recentes, restaura os JavaScripts do explorador em português e executa o
+publicador gzip com poda protegida por backup no Git. As fontes JSON do
+explorador precisam estar commitadas antes da poda; uma extração ainda não
+preservada faz a publicação parar, em vez de apagar dados sem backup.
+
+Antes de publicar, rode `node tools/check-site.cjs` e
+`node posts/explorador-eleitoral/test-publication.cjs`. O workflow
+`site-validation` também verifica as interações do explorador e os agregados de
+coortes, sem credenciais ou downloads de microdados. Uma falha nesses checks
+precisa ser corrigida mesmo quando o deploy do GitHub Pages aparece verde.
+
+Na análise anual das portas de entrada, extrator e gráfico usam
+`POPULACAO=inscritos` por padrão. O snapshot redistribuído identifica a população
+em `data/populacao.csv`; o gráfico recusa uma extração parcial ou de população
+divergente. `POPULACAO=presentes` é uma análise de sensibilidade com saída em
+`output/figures/portas-renda-coortes-anuais/presentes/`, sem substituir a figura
+publicada dos inscritos.
 
 Os posts em português vivem em `posts-pt/<fig-label>/index.qmd` e referenciam os mesmos `plot.R` e `thumbnail.png` já publicados em `posts/<fig-label>/` — os arquivos de script e imagem **não são duplicados**, apenas linkados com caminho relativo (`../../posts/<fig-label>/...`). Para atualizar uma figura, basta editar o script/imagem uma única vez em `posts/<fig-label>/`; os dois posts (EN e PT) passam a apontar para a versão atualizada automaticamente. Ao criar uma nova figura em `posts/`, replique a página em `posts-pt/` traduzindo Overview/Metodologia e ajustando os caminhos relativos.
 

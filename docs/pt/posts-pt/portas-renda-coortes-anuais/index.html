@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Probabilidade de ingressar no ensino superior em até três anos, por porta de entrada e por modalidade, para cada decil de renda per capita de todas as coortes do ensino médio de 2012 a 2021, contando só os estudantes presentes nas quatro provas do ENEM.">
+<meta name="description" content="Probabilidade de ingressar no ensino superior em até três anos, por porta de entrada e por modalidade, para cada decil de renda per capita de todas as coortes do ensino médio de 2012 a 2021, incluindo todos os inscritos no ENEM, presentes ou ausentes.">
 
 <title>Portas de Entrada no Ensino Superior por Decil de Renda, Coorte a Coorte: 2012 a 2021 – Open Data Analysis</title>
 <style>
@@ -100,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="https://mancano-tales.github.io/open-data-analysis/">
 <span class="menu-text">English</span></a>
   </li>  
 </ul>
@@ -134,7 +134,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    Probabilidade de ingressar no ensino superior em até três anos, por porta de entrada e por modalidade, para cada decil de renda per capita de todas as coortes do ensino médio de 2012 a 2021, contando só os estudantes presentes nas quatro provas do ENEM.
+    Probabilidade de ingressar no ensino superior em até três anos, por porta de entrada e por modalidade, para cada decil de renda per capita de todas as coortes do ensino médio de 2012 a 2021, incluindo todos os inscritos no ENEM, presentes ou ausentes.
   </div>
 </div>
 
@@ -161,7 +161,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="visão-geral" class="level2">
 <h2 class="anchored" data-anchor-id="visão-geral">Visão Geral</h2>
 <p>Este post estende a comparação de duas coortes de <a href="../../posts-pt/portas-renda-coortes-empilhado/index.html">Portas de Entrada por Decil de Renda per Capita</a> e de <a href="../../posts-pt/portas-renda-coortes-ead/index.html">Modalidade de Ensino</a> a todas as coortes do ensino médio que os registros vinculados permitem, de 2012 a 2021. Cada linha é um decil de renda; cada ponto é a probabilidade de que um estudante daquele decil e daquela coorte tenha ingressado no ensino superior nos três anos seguintes ao último ano escolar. O primeiro painel é o ingresso total; os outros cinco o dividem por porta: instituição pública por reserva de vaga, instituição pública por ampla concorrência, ProUni, FIES ou instituição privada sem subsídio.</p>
-<p>Três movimentos se destacam. O FIES despenca entre as coortes de 2013 e 2015, de 7–15% de cada decil para 3–6%, e continua caindo. O ingresso privado sem subsídio sobe em todos os decis, de 12% para 30% no mais pobre e de 43% para 53% no mais rico entre as coortes de 2012 e 2021. E o ingresso total do decil mais pobre, estável em cerca de um terço até a coorte de 2016, sobe para 41% em 2019 e 58% em 2021, enquanto o decil mais rico fica perto de 90%. Essa última subida coincide com a queda da presença no ENEM nas edições da pandemia e não deve ser lida como mudança real sem levar em conta a figura de cobertura abaixo.</p>
+<p>Com os inscritos como denominador, o ingresso total no decil mais pobre sobe de 28,2% na coorte de 2012 para 36,2% em 2019 e 46,9% em 2021; no mais rico, permanece perto de 90%. O ingresso privado sem subsídio sobe de 10,9% para 26,9% no mais pobre e de 43,5% para 53,8% no mais rico. São probabilidades condicionais entre inscritos no ENEM com vínculo, e não taxas para toda a coorte escolar.</p>
 </section>
 <section id="composição-do-ingresso-coorte-a-coorte" class="level2">
 <h2 class="anchored" data-anchor-id="composição-do-ingresso-coorte-a-coorte">Composição do ingresso, coorte a coorte</h2>
@@ -173,25 +173,25 @@ ul.task-list li input[type="checkbox"] {
 <section id="modalidade" class="level2">
 <h2 class="anchored" data-anchor-id="modalidade">Modalidade</h2>
 <p><img src="../../posts/portas-renda-coortes-anuais/fig-modalidade-pt.png" class="img-fluid"></p>
-<p>O ingresso em educação a distância sobe em todos os decis, mas muito mais rápido na base: no decil mais pobre, de 5,5% (coorte de 2012) para 17,5% (2019) e 24,5% (2021); no mais rico, de 1,3% para 7,8% e 7,2%. O ingresso presencial cai na maioria dos decis até a coorte de 2019 e se recupera depois, de novo nas coortes com menor cobertura do ENEM.</p>
+<p>O ingresso a distância no decil mais pobre sobe de 5,0% (2012) para 16,2% (2019) e 22,4% (2021); no mais rico, de 1,5% para 8,5% e 8,2%. O ingresso presencial no decil mais pobre é de 23,3%, 20,0% e 24,4% nessas coortes.</p>
 </section>
 <section id="cobertura" class="level2">
 <h2 class="anchored" data-anchor-id="cobertura">Cobertura</h2>
 <p><img src="../../posts/portas-renda-coortes-anuais/fig-cobertura-pt.png" class="img-fluid"></p>
-<p>A população por trás de cada probabilidade é a parte da coorte escolar que tem CPF vinculável e esteve presente nas quatro provas objetivas do ENEM do ano da coorte. Essa parte é cerca de metade da coorte da série final de 2012 a 2017 e cai para 43% (2019), 27% (2020) e 23% (2021). A coorte de 2016 é uma exceção dentro dos anos estáveis: só 47% dos seus estudantes da série final têm CPF no Censo Escolar, contra 81–87% nos anos vizinhos. Quando menos estudantes, e mais selecionados, fazem o ENEM, um decil da amostra restante é outro grupo de pessoas; as subidas das coortes de 2020 e 2021, em particular, misturam mudança no ingresso com mudança em quem é observado.</p>
+<p>A população por trás de cada probabilidade reúne os estudantes da coorte escolar com CPF vinculável inscritos no ENEM daquele ano, inclusive ausentes. Eles representam 57,9% da coorte da série final em 2012, 49,8% em 2019, 41,8% em 2020 e 29,2% em 2021. A própria cobertura de CPF cai para 46,8% em 2016 e 60,2% em 2021. Inscrição e vínculo ainda selecionam quem é observado; os resultados não podem ser extrapolados diretamente para todos os estudantes do ensino médio.</p>
 </section>
 <section id="metodologia" class="level2">
 <h2 class="anchored" data-anchor-id="metodologia">Metodologia</h2>
 <p><strong>Coorte e vínculo.</strong> Cada coorte é todo estudante matriculado na última série do ensino médio no Censo Escolar do ano da coorte (<code>TP_ETAPA_ENSINO</code> em 27, 28, 29, 32, 33, 34, 37, 38), com 16 a 22 anos, vinculado por CPF mascarado ao ENEM do mesmo ano e ao Censo da Educação Superior dos três anos seguintes.</p>
-<p><strong>Presença no ENEM (novo).</strong> Os posts anteriores, de duas coortes, vinculavam a coorte à <em>inscrição</em> no ENEM: as tabelas do ENEM têm uma linha por inscrito, inclusive quem faltou. A abstenção varia muito entre edições (29% faltaram à prova de matemática em 2012, 55% em 2020) e tem gradiente de renda, então uma série anual construída sobre a inscrição mudaria de população de um ano para o outro. Aqui o estudante só entra se esteve presente nas quatro provas objetivas (<code>IN_PRESENCA_*</code> até 2014, <code>TP_PRESENCA_*</code> desde 2015). Na coorte de 2013, isso reduz a população de 1.229.035 inscritos para 1.064.350 presentes.</p>
+<p><strong>Inscrição no ENEM.</strong> O padrão é <code>POPULACAO=inscritos</code>, como nos posts de duas coortes. A renda é informada na inscrição, então os ausentes também têm faixa de renda. Exigir presença selecionaria por um comportamento associado ao ingresso posterior. <code>POPULACAO=presentes</code> permanece disponível como análise de sensibilidade, com pastas separadas para a extração e as figuras. As figuras e matrizes redistribuídas neste post agora usam os inscritos.</p>
 <p><strong>Ingresso, porta e modalidade.</strong> Conta como ingressante quem tem algum registro no Censo da Educação Superior com ano de ingresso nos três anos seguintes. Cada ingressante recebe uma porta por prioridade entre todos os seus registros: pública com reserva de vaga (<code>IN_RESERVA_VAGAS</code>), pública por ampla concorrência, ProUni, FIES, privada sem subsídio. A modalidade é EaD se algum registro na janela for a distância (<code>TP_MODALIDADE_ENSINO</code> = 2).</p>
 <p><strong>Decis de renda.</strong> Faixa de renda familiar declarada (dezessete faixas, pontos médios em salários mínimos) dividida pelo ponto médio do grupo de moradores declarado, como nos posts de duas coortes; os decis são cortados dentro de cada coorte, e as células na fronteira são divididas proporcionalmente. As questões de renda são <code>Q003</code>/<code>Q004</code> em 2012–2014 e <code>Q006</code>/<code>Q005</code> desde 2015, conferidas contra os dados pelo script de sondagem abaixo.</p>
 <p><strong>Limites.</strong></p>
 <ul>
 <li>A coorte de 2011 fica de fora: a questão de renda do ENEM 2011 usa outro conjunto de onze faixas, cujos pontos médios não foram conferidos.</li>
-<li><code>IN_RESERVA_VAGAS</code> e <code>IN_RESERVA_ETNICO</code> estão vazios no Censo da Educação Superior de 2024. As demais variáveis de reserva (escola pública, renda, deficiência, outra) estão preenchidas em 2024 e, em 2023, só aparecem preenchidas para ingressantes por reserva; por isso a reserva de vaga é identificada por <code>IN_RESERVA_VAGAS</code> = 1 ou <code>IN_RESERVA_ENSINO_PUBLICO</code> preenchido. Até 2023 a regra é a mesma; em 2024 ela recupera os ingressantes por reserva da coorte de 2021, cuja parcela na coorte (10,3%) fica perto da coorte de 2020 (10,6%).</li>
-<li>O ingresso pelo ProUni da coorte de 2021 é maior que nas coortes vizinhas (6,5% da coorte, contra 4,5% em 2020, cerca de 40% mais bolsistas em números absolutos). A correção da reserva não o altera. Ainda não há explicação: a forte queda da presença no ENEM de 2021, que o ProUni exige, é uma candidata.</li>
-<li>Cursos a distância não exigem o ENEM, então as figuras descrevem quem fez o exame, não todos os ingressantes.</li>
+<li><code>IN_RESERVA_VAGAS</code> e <code>IN_RESERVA_ETNICO</code> estão vazios no Censo da Educação Superior de 2024. As demais variáveis de reserva (escola pública, renda, deficiência, outra) estão preenchidas em 2024 e, em 2023, só aparecem preenchidas para ingressantes por reserva; por isso a reserva de vaga é identificada por <code>IN_RESERVA_VAGAS</code> = 1 ou <code>IN_RESERVA_ENSINO_PUBLICO</code> preenchido. A regra também recupera ingressantes por reserva registrados em 2024.</li>
+<li>Mudanças no ProUni e nas demais portas podem combinar alterações no acesso, na inscrição e no vínculo dos registros; os agregados não identificam uma explicação causal.</li>
+<li>Cursos a distância não exigem o ENEM; as figuras descrevem seus inscritos, inclusive ausentes, e não todos os ingressantes.</li>
 <li>As contagens trazem o ruído de privacidade diferencial da plataforma; a perda de linhas informada é de no máximo 2,3% por consulta (<code>data/row_loss.csv</code>).</li>
 </ul>
 </section>
@@ -200,8 +200,9 @@ ul.task-list li input[type="checkbox"] {
 <ol type="1">
 <li><a href="../../posts/portas-renda-coortes-anuais/plot.R"><code>plot.R</code></a> lê as tabelas agregadas em <code>data/</code> e grava as três figuras em inglês e português, mais <code>data/probabilidades_por_decil.csv</code>, com todos os valores desenhados, e <code>data/cobertura.csv</code>.</li>
 <li><a href="../../shared-pipeline/sedap/portas-anuais/010_Sondagem_Anual.R"><code>shared-pipeline/sedap/portas-anuais/010_Sondagem_Anual.R</code></a> confere, ano a ano, as variáveis de renda, moradores e presença do ENEM, a cobertura de CPF do Censo Escolar e as variáveis de porta e modalidade do Censo da Educação Superior (<code>data/sondagem_*.csv</code>).</li>
-<li><a href="../../shared-pipeline/sedap/portas-anuais/020_Extrair_Coortes_Anuais.R"><code>shared-pipeline/sedap/portas-anuais/020_Extrair_Coortes_Anuais.R</code></a> roda as duas consultas por coorte e grava <code>data/matriz_&lt;coorte&gt;_porta.csv</code> e <code>data/matriz_&lt;coorte&gt;_modalidade.csv</code>. Os scripts de extração só rodam com credencial aprovada do INEP exportada como <code>SEDAP_TOKEN</code>.</li>
+<li><a href="../../shared-pipeline/sedap/portas-anuais/020_Extrair_Coortes_Anuais.R"><code>shared-pipeline/sedap/portas-anuais/020_Extrair_Coortes_Anuais.R</code></a> roda as duas consultas por coorte e grava <code>data-raw/sedap/portas-anuais/inscritos/matriz_&lt;coorte&gt;_porta.csv</code> e <code>matriz_&lt;coorte&gt;_modalidade.csv</code>. Os scripts de extração só rodam com credencial aprovada do INEP exportada como <code>SEDAP_TOKEN</code>.</li>
 </ol>
+<p>O gráfico usa uma extração completa da população selecionada ou o snapshot redistribuído correspondente, identificado por <code>data/populacao.csv</code>. Ele recusa caches incompletos e populações divergentes. A execução padrão atualiza os agregados e figuras publicados dos inscritos. Uma análise com <code>POPULACAO=presentes</code> grava apenas em <code>output/figures/portas-renda-coortes-anuais/presentes/</code>.</p>
 
 
 </section>
