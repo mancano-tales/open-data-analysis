@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>data-contract – Open Data Analysis</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../../../">
+<script src="../../../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../../../site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../../../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../../../../index.html">
+    <span class="navbar-title">Open Data Analysis</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../../index.html"> 
+<span class="menu-text">Analyses</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../../../pt/index.html"> 
+<span class="menu-text">Português</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="static-aggregate-explorer-data-contract-version-1" class="level1">
+<h1>Static aggregate explorer data contract, version 1</h1>
+<p><code>app.js</code> reads <code>data/manifest.json</code>, then fetches only the selected series. No raw electoral or census microdata belong in this directory. Serve through Quarto preview or an HTTP server; browser <code>file://</code> blocks JSON fetches.</p>
+<p>Manifest fields:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span><span class="dt">"schema_version"</span><span class="fu">:</span><span class="dv">1</span><span class="fu">,</span><span class="dt">"offices"</span><span class="fu">:{</span><span class="dt">"1"</span><span class="fu">:{</span><span class="dt">"pt"</span><span class="fu">:</span><span class="st">"Presidente"</span><span class="fu">,</span><span class="dt">"en"</span><span class="fu">:</span><span class="st">"President"</span><span class="fu">}},</span><span class="dt">"series"</span><span class="fu">:</span><span class="ot">[</span><span class="fu">{</span><span class="dt">"id"</span><span class="fu">:</span><span class="st">"2026-1-1-BR"</span><span class="fu">,</span><span class="dt">"year"</span><span class="fu">:</span><span class="dv">2026</span><span class="fu">,</span><span class="dt">"round"</span><span class="fu">:</span><span class="dv">1</span><span class="fu">,</span><span class="dt">"office"</span><span class="fu">:</span><span class="st">"1"</span><span class="fu">,</span><span class="dt">"office_label"</span><span class="fu">:{</span><span class="dt">"pt"</span><span class="fu">:</span><span class="st">"Presidente"</span><span class="fu">,</span><span class="dt">"en"</span><span class="fu">:</span><span class="st">"President"</span><span class="fu">},</span><span class="dt">"uf"</span><span class="fu">:</span><span class="st">"BR"</span><span class="fu">,</span><span class="dt">"income_reference"</span><span class="fu">:</span><span class="st">"national"</span><span class="fu">,</span><span class="dt">"url"</span><span class="fu">:</span><span class="st">"2026-1-1-BR.json"</span><span class="fu">,</span><span class="dt">"status"</span><span class="fu">:</span><span class="st">"available"</span><span class="fu">}</span><span class="ot">]</span><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>URLs are relative to the directory containing the manifest. Only entries with <code>status: "available"</code> appear in selectors. One series per combination of year, round, office, territory and <code>income_reference</code>. The latter is <code>"national"</code> or <code>"state"</code>; missing values in older manifests mean national. A state-reference series uses its national counterpart’s ID plus <code>-state</code>. The BR territory supports national reference only. Never publish duplicate entries for the same five dimensions: the UI rejects ambiguous selections. Add municipal scope as a new field and control before publishing municipal series. A national aggregation of subnational offices needs an explicit definition of candidate comparability.</p>
+<p>Office codes follow the TSE (<code>"1"</code>, <code>"3"</code>, <code>"5"</code>, <code>"6"</code>, <code>"7"</code>, <code>"8"</code>), as strings. The interface tolerates legacy office slugs and reads friendly labels from <code>offices</code> or each entry’s <code>office_label</code>.</p>
+<p>Each series has the following fields (metadata text may be a string or <code>{"pt":"…","en":"…"}</code>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span><span class="dt">"metadata"</span><span class="fu">:{</span><span class="dt">"percentile_scope"</span><span class="fu">:</span><span class="st">"BR"</span><span class="fu">,</span><span class="dt">"method"</span><span class="fu">:{</span><span class="dt">"pt"</span><span class="fu">:</span><span class="st">"…"</span><span class="fu">,</span><span class="dt">"en"</span><span class="fu">:</span><span class="st">"…"</span><span class="fu">},</span><span class="dt">"income_definition"</span><span class="fu">:{</span><span class="dt">"pt"</span><span class="fu">:</span><span class="st">"…"</span><span class="fu">,</span><span class="dt">"en"</span><span class="fu">:</span><span class="st">"…"</span><span class="fu">},</span><span class="dt">"warning"</span><span class="fu">:{</span><span class="dt">"pt"</span><span class="fu">:</span><span class="st">"…"</span><span class="fu">,</span><span class="dt">"en"</span><span class="fu">:</span><span class="st">"…"</span><span class="fu">},</span><span class="dt">"coverage"</span><span class="fu">:{</span><span class="dt">"included_tracts"</span><span class="fu">:</span><span class="dv">410010</span><span class="fu">,</span><span class="dt">"total_tracts"</span><span class="fu">:</span><span class="dv">458772</span><span class="fu">},</span><span class="dt">"sources"</span><span class="fu">:</span><span class="ot">[</span><span class="fu">{</span><span class="dt">"label"</span><span class="fu">:</span><span class="st">"TSE"</span><span class="fu">,</span><span class="dt">"url"</span><span class="fu">:</span><span class="st">"https://dadosabertos.tse.jus.br/"</span><span class="fu">}</span><span class="ot">]</span><span class="fu">},</span><span class="dt">"candidates"</span><span class="fu">:</span><span class="ot">[</span><span class="fu">{</span><span class="dt">"id"</span><span class="fu">:</span><span class="st">"lula"</span><span class="fu">,</span><span class="dt">"name"</span><span class="fu">:</span><span class="st">"Lula"</span><span class="fu">,</span><span class="dt">"party"</span><span class="fu">:</span><span class="st">"PT"</span><span class="fu">,</span><span class="dt">"color"</span><span class="fu">:</span><span class="st">"#e63d65"</span><span class="fu">}</span><span class="ot">]</span><span class="fu">,</span><span class="dt">"points"</span><span class="fu">:</span><span class="ot">[</span><span class="fu">{</span><span class="dt">"centil"</span><span class="fu">:</span><span class="dv">1</span><span class="fu">,</span><span class="dt">"renda_sm"</span><span class="fu">:</span><span class="fl">0.58</span><span class="fu">,</span><span class="dt">"n_setores"</span><span class="fu">:</span><span class="dv">4101</span><span class="fu">,</span><span class="dt">"n_setores_total"</span><span class="fu">:</span><span class="dv">4495</span><span class="fu">,</span><span class="dt">"candidate_id"</span><span class="fu">:</span><span class="st">"lula"</span><span class="fu">,</span><span class="dt">"votacao"</span><span class="fu">:</span><span class="fl">77.14</span><span class="fu">}</span><span class="ot">]</span><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>All numbers must be JSON numbers (never localized strings). <code>votacao</code> is on a 0–100 scale. Every candidate must have exactly 100 points and unique centils 1–100. Candidate IDs must match; names are plain text. The expanded series use one of two fixed Census 2022 income references. National reference (<code>income_reference: "national"</code>, <code>metadata.percentile_scope: "BR"</code>) ranks ALL Brazilian census tracts with eligible income before any electoral/spatial exclusions, using mean income of household heads with income (V06004). Its national groups remain fixed between elections and within UF filters. State reference (<code>income_reference: "state"</code>, <code>metadata.percentile_scope: "AC"</code> for Acre, <code>"SP"</code> for São Paulo, or the corresponding actual UF code) instead ranks all income-eligible tracts within the selected UF before the same exclusions, with approximately 1% of that state’s tracts in each group. Its state groups likewise remain fixed between elections. <code>renda_sm</code> describes the complete income-eligible group in the selected territory, before vote/spatial exclusions. <code>n_setores_total</code> is the number of eligible income tracts in the selected territory/group; <code>n_setores</code> counts those covered by the electoral estimator. Missing vote shares use JSON null, never zero. <code>renda_sm</code> uses the 2022 minimum wage, BRL 1,212. <code>n_setores</code> is repeated for each candidate and must sum to <code>included_tracts</code> separately for every candidate. Document any changed universe, percentile ranking, weighting or income variable in metadata; never silently mix these estimators in one chart.</p>
+<p>The scope value is the exact UF abbreviation, never the literal <code>"UF"</code>. Before displaying curves, the UI requires <code>percentile_scope</code> to equal <code>"BR"</code> for a national reference or the selected territory code for a state reference. Missing or conflicting scope metadata are rejected visibly; the UI must not silently relabel an incompatible series. If <code>metadata.income_reference</code> is present, it must also match the manifest entry.</p>
+<p>The fifth selector, after year/round/office/territory, chooses income reference. Presidential contests default to national reference, including their UF filters; other offices default to state reference when available. Changing office resets this default. Changing UF retains the user’s preferred reference; when unavailable (including BR with a state preference), the UI explicitly announces the available fallback and retains the preference for a later UF change. Candidate selections are preserved across reference changes when their IDs still exist. Manifest requests use <code>cache: "no-cache"</code> so a newly deployed list of available references is revalidated by the browser.</p>
+<p><code>metadata.vote_audit</code> records the mandatory independent reconciliation with official TSE electoral totals, not certification of spatial attribution:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span><span class="dt">"status"</span><span class="fu">:</span><span class="st">"reconciled"</span><span class="fu">,</span><span class="dt">"method"</span><span class="fu">:</span><span class="st">"Municipality/zone/candidate valid votes compared with official TSE aggregates"</span><span class="fu">,</span><span class="dt">"official_valid_votes"</span><span class="fu">:</span><span class="dv">12345</span><span class="fu">,</span><span class="dt">"computed_valid_votes"</span><span class="fu">:</span><span class="dv">12345</span><span class="fu">,</span><span class="dt">"difference"</span><span class="fu">:</span><span class="dv">0</span><span class="fu">,</span><span class="dt">"checked_units"</span><span class="fu">:</span><span class="dv">100</span><span class="fu">,</span><span class="dt">"ufs"</span><span class="fu">:</span><span class="ot">[</span><span class="st">"DF"</span><span class="ot">]</span><span class="fu">,</span><span class="dt">"scope"</span><span class="fu">:</span><span class="st">"official-valid-votes"</span><span class="fu">,</span><span class="dt">"source"</span><span class="fu">:{</span><span class="dt">"label"</span><span class="fu">:</span><span class="st">"TSE"</span><span class="fu">,</span><span class="dt">"url"</span><span class="fu">:</span><span class="st">"https://dadosabertos.tse.jus.br/"</span><span class="fu">}}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The UI displays reconciled status only when <code>status</code> is <code>reconciled</code>, <code>difference</code> is zero and the two totals agree. <code>not_run</code>, missing audit, <code>unreconciled</code>, <code>failed</code> and inconsistent totals never show a passed status. <code>scope</code> and <code>source</code> are optional for backward compatibility. Nominal and party-list votes count as legally applicable; blank/invalid votes do not. The builder, rather than the UI, enforces which disputes may be published.</p>
+<p><code>vote_audit.provisional: true</code> requires a visible provisional-results warning even when vote totals reconcile exactly. <code>vote_audit.snapshots</code> may be an array or an object keyed by office. Preserve each relevant snapshot’s URL, MD5, <code>generation_date</code>, <code>generation_time</code>, <code>idg</code>, <code>final_totalization</code>, <code>progress</code> and <code>status</code>. Combined caches must scope this evidence to the selected contest: provisional deputy snapshots must not label unrelated governor or senate contests provisional. Numerical agreement with a later CSV never establishes final legal totalization of an earlier EA20 snapshot.</p>
+<p>Optional <code>candidates[].number</code> adds the ballot number to labels and search. Optional <code>metadata.default_candidates</code> is an array of candidate IDs to show initially. Otherwise the interface selects the six candidates with greatest mean tract vote share across the percentile points (this ordering is NOT a ranking of national vote totals). Candidate search ignores accents and matches name, number and party. Only the first 100 matching checkboxes are rendered; refine the query to find others. Selection is independent of the visible search results, and no raw data or alternative denominators are created by these display controls.</p>
+<p><code>metadata.warning</code> must distinguish neighbourhood estimates from actual votes of tract residents and identify incomplete candidate coverage. Do not infer zero votes from absent candidates or absent years. Candidate selection affects only visible curves: the denominator remains all valid votes for the selected office, as defined by the upstream estimator.</p>
+<p>The manifest contains only series with fixed national or state income ranks and reconciled official valid-vote inputs. It must not include the older matched-sample centiles from the initial reconstruction.</p>
+<p><code>metadata.spatial.within_year_register_reused: true</code> identifies use of the first-round polling register to match second-round votes of that same year. The source date and round are recorded in <code>polling_reference_date</code> and <code>polling_reference_round</code>. The UI displays this approximation explicitly.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
