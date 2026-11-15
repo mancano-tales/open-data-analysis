@@ -1,0 +1,76 @@
+---
+title: "Federal Spending on Universities and on Private-Sector Students, Brazil 1995–2025"
+date: 2026-11-14
+categories: [SIOP, Gasto Público, FIES, ProUni, Série Histórica]
+image: thumbnail.png
+description: "Federal spending on universities, excluding retirees and pensions, and on FIES student loans and the ProUni tax expenditure, in 2024 reais."
+---
+
+![](fig-en.png)
+
+## Overview
+
+This figure compares the two ways the federal government pays for tertiary education in Brazil: by funding its own universities, which are tuition-free, and by subsidizing students in private institutions. Spending on federal universities, excluding retirees and pensions, roughly doubled between 2003 and 2014 and has since fluctuated below that peak. Disbursements of FIES student loans rose from about R$ 5 billion in 2011 to almost R$ 28 billion in 2017, at 2024 prices, and fell back to about R$ 4 billion by 2022, while the tax expenditure of ProUni never exceeded R$ 4 billion a year.
+
+## Methodology
+
+**Panel A, federal universities.** Spending by the budget units of federal universities, excluding retirees and pensions, court-ordered payments, the employer pension contribution recorded in the budget since 2006 and staff benefits, following the concept of Carvalho (2011, Table VII). From 2000 to 2025 the series is built from executed (*liquidado*) spending in the federal budget, retrieved from the SIOP open data through its public SPARQL endpoint in October 2026. For 1995–2008 the figure also shows Carvalho's own series, converted from 2008 to 2024 prices with the same deflator; the two overlap in 2000–2008.
+
+**Panel B, subsidies to private-sector students.** FIES: executed spending on new and ongoing loan disbursements (budget actions 0579 and 00IG), excluding the administration of the fund and payments into guarantee funds. ProUni: the tax expenditure from the federal taxes waived for participating institutions (IRPJ, CSLL, PIS-Pasep and Cofins), taken from the Federal Revenue Service's *Demonstrativo dos Gastos Tributários – Bases Efetivas*, using for each year the edition of that same year (2006–2023).
+
+**Deflator.** Annual average of the IPCA (*Índice Nacional de Preços ao Consumidor Amplo*, IBGE's broad consumer price index, SIDRA table 1737), 2024 prices. Government labels indicate the president in office.
+
+## How to Cite
+
+If you use this figure or the pipeline behind it, please cite both the dissertation and this specific analysis. References follow APA 7th edition.
+
+**Dissertation (in preparation; the entry will be updated after the defense):**
+
+> Mançano, T. (2026). *Inequality in access to tertiary education in Brazil: Household incomes, reforming policies, and the politics of who gets in (1990s–2020s)* [Unpublished master's thesis]. University of São Paulo.
+
+**This figure and pipeline:**
+
+> Mançano, T. (2026, November 14). *Federal spending on universities and on private-sector students, Brazil 1995–2025* [Figure and reproducible pipeline]. Open Data Analysis. https://mancano-tales.github.io/open-data-analysis/posts/gasto-federal-educacao-superior/
+
+**In text:** (Mançano, 2026) — when citing several analyses from this catalog in the same work, APA distinguishes them as 2026a, 2026b, … in the order they appear in the reference list.
+
+**BibTeX:**
+
+```bibtex
+@mastersthesis{Mancano2026Thesis,
+  author = {Man\c{c}ano, Tales},
+  title  = {Inequality in Access to Tertiary Education in Brazil: Household
+            Incomes, Reforming Policies, and the Politics of Who Gets In
+            (1990s--2020s)},
+  school = {University of S\~{a}o Paulo},
+  year   = {2026},
+  type   = {Master's thesis},
+  note   = {Unpublished; Graduate Program in Political Science}
+}
+
+@misc{Mancano2026_gasto_federal_educacao_superior,
+  author       = {Man\c{c}ano, Tales},
+  title        = {Federal spending on universities and on private-sector students, Brazil 1995--2025},
+  year         = {2026},
+  month        = nov,
+  howpublished = {Open Data Analysis, \url{https://mancano-tales.github.io/open-data-analysis/posts/gasto-federal-educacao-superior/}},
+  note         = {Figure and reproducible pipeline. Source code: \url{https://github.com/mancano-tales/open-data-analysis}, folder posts/gasto-federal-educacao-superior/. Accessed YYYY-MM-DD}
+}
+```
+
+A permanent version (Git tag + Zenodo DOI) will be linked here once the dissertation is defended; until then, cite the page URL above and add the date you accessed it (source code: https://github.com/mancano-tales/open-data-analysis, folder `posts/gasto-federal-educacao-superior/`).
+
+## Pipeline
+
+Scripts for this analysis:
+
+- Plotting: [`plot.R`](plot.R) — reads `data/` and writes `fig-en.png`, `fig-pt.png` and `thumbnail.png`. Carvalho's (2011) Table VII values are typed into the script.
+- Data: `data/gasto_federal_es_anual.csv` holds the three annual series in current and 2024 reais, assembled from the SIOP budget execution and from the Federal Revenue Service's tax expenditure statements ([*Gastos Tributários – Bases Efetivas*](https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/relatorios/renuncia/gastos-tributarios-bases-efetivas)), and `data/ipca_media_anual.csv` is the annual average of the IPCA index from SIDRA table 1737.
+
+## Reproducibility
+
+**Tier: A**
+
+This pipeline uses only public data, accessible without any credential. The two CSV files in `data/` are enough to redraw the figure.
+
+**Reference:** Carvalho, H. A. de (2011). *A política pública para a educação superior no Brasil (1995–2008): Ruptura e/ou continuidade?* [Doctoral dissertation, Universidade Estadual de Campinas]. https://doi.org/10.47749/T/UNICAMP.2011.784998 — Table VII, p. 331.
