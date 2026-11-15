@@ -238,16 +238,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="pipeline" class="level2">
 <h2 class="anchored" data-anchor-id="pipeline">Pipeline</h2>
-<p>Scripts for this analysis:</p>
-<ul>
-<li>Plotting: <a href="plot.R"><code>plot.R</code></a> — reads <code>data/</code> and writes <code>fig-en.png</code>, <code>fig-pt.png</code> and <code>thumbnail.png</code>. Carvalho’s (2011) Table VII values are typed into the script.</li>
-<li>Data: <code>data/gasto_federal_es_anual.csv</code> holds the three annual series in current and 2024 reais, assembled from the SIOP budget execution and from the Federal Revenue Service’s tax expenditure statements (<a href="https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/relatorios/renuncia/gastos-tributarios-bases-efetivas"><em>Gastos Tributários – Bases Efetivas</em></a>), and <code>data/ipca_media_anual.csv</code> is the annual average of the IPCA index from SIDRA table 1737.</li>
-</ul>
+<p>Run these scripts in this order, from the project root (each one writes to <code>data-raw/gasto-federal/</code>, which the next one reads):</p>
+<ol type="1">
+<li><a href="../../shared-pipeline/gasto-federal/010_Coleta_SIOP_Execucao.R"><code>shared-pipeline/gasto-federal/010_Coleta_SIOP_Execucao.R</code></a> — queries the public SPARQL endpoint of the federal budget open data (SIOP) and saves, for each year from 2000 to 2025, the budget execution of every Ministry of Education unit and of the FIES unit by action and expenditure group; takes 20 to 40 minutes</li>
+<li><a href="../../shared-pipeline/gasto-federal/015_Download_RFB_Gastos_Tributarios.R"><code>shared-pipeline/gasto-federal/015_Download_RFB_Gastos_Tributarios.R</code></a> — downloads the 2008–2023 editions of the Federal Revenue Service’s <em>Demonstrativo dos Gastos Tributários – Bases Efetivas</em> (about 33 MB)</li>
+<li><a href="../../shared-pipeline/gasto-federal/020_ProUni_Renuncia_RFB.R"><code>shared-pipeline/gasto-federal/020_ProUni_Renuncia_RFB.R</code></a> — reads the ProUni tax expenditure from the spreadsheet editions (2016–2023) and from the documented transcription of the PDF editions (2008–2015), <a href="../../shared-pipeline/gasto-federal/prouni_transcricao_pdf.csv"><code>prouni_transcricao_pdf.csv</code></a>, with page and table for each value</li>
+<li><a href="../../shared-pipeline/gasto-federal/030_Monta_Series_Gasto.R"><code>shared-pipeline/gasto-federal/030_Monta_Series_Gasto.R</code></a> — assembles the annual series, deflates them by the IPCA from SIDRA and writes this post’s <code>data/</code> files</li>
+<li><a href="plot.R"><code>plot.R</code></a> — reads <code>data/</code> and writes <code>fig-en.png</code>, <code>fig-pt.png</code> and <code>thumbnail.png</code>. Carvalho’s (2011) Table VII values are typed into the script.</li>
+</ol>
+<p>The SIOP updates recent years, so a new collection may differ from the one used here (10 October 2026) in the last years of the series.</p>
 </section>
 <section id="reproducibility" class="level2">
 <h2 class="anchored" data-anchor-id="reproducibility">Reproducibility</h2>
 <p><strong>Tier: A</strong></p>
-<p>This pipeline uses only public data, accessible without any credential. The two CSV files in <code>data/</code> are enough to redraw the figure.</p>
+<p>This pipeline uses only public data, accessible without any credential. The two CSV files in <code>data/</code> are enough to redraw the figure without running the collection.</p>
 <p><strong>Reference:</strong> Carvalho, H. A. de (2011). <em>A política pública para a educação superior no Brasil (1995–2008): Ruptura e/ou continuidade?</em> [Doctoral dissertation, Universidade Estadual de Campinas]. https://doi.org/10.47749/T/UNICAMP.2011.784998 — Table VII, p.&nbsp;331.</p>
 
 

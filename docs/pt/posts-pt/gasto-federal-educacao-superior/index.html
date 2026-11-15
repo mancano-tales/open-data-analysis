@@ -237,16 +237,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="pipeline" class="level2">
 <h2 class="anchored" data-anchor-id="pipeline">Pipeline</h2>
-<p>Scripts desta análise:</p>
-<ul>
-<li>Plotagem: <a href="../../posts/gasto-federal-educacao-superior/plot.R"><code>plot.R</code></a> — lê <code>data/</code> e grava <code>fig-en.png</code>, <code>fig-pt.png</code> e <code>thumbnail.png</code>. Os valores da Tabela VII de Carvalho (2011) estão digitados no script.</li>
-<li>Dados: <code>data/gasto_federal_es_anual.csv</code> traz as três séries anuais em reais correntes e de 2024, montadas a partir da execução orçamentária do SIOP e dos demonstrativos de gastos tributários da Receita Federal (<a href="https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/relatorios/renuncia/gastos-tributarios-bases-efetivas">Gastos Tributários – Bases Efetivas</a>), e <code>data/ipca_media_anual.csv</code> é a média anual do número-índice do IPCA, da tabela 1737 do SIDRA.</li>
-</ul>
+<p>Rode estes scripts nesta ordem, a partir da raiz do projeto (cada um grava em <code>data-raw/gasto-federal/</code>, que o seguinte lê):</p>
+<ol type="1">
+<li><a href="../../shared-pipeline/gasto-federal/010_Coleta_SIOP_Execucao.R"><code>shared-pipeline/gasto-federal/010_Coleta_SIOP_Execucao.R</code></a> — consulta o endpoint SPARQL público dos dados abertos do orçamento federal (SIOP) e grava, para cada ano de 2000 a 2025, a execução de todas as unidades do Ministério da Educação e da unidade do FIES por ação e grupo de despesa; leva de 20 a 40 minutos</li>
+<li><a href="../../shared-pipeline/gasto-federal/015_Download_RFB_Gastos_Tributarios.R"><code>shared-pipeline/gasto-federal/015_Download_RFB_Gastos_Tributarios.R</code></a> — baixa as edições de 2008 a 2023 do Demonstrativo dos Gastos Tributários – Bases Efetivas da Receita Federal (cerca de 33 MB)</li>
+<li><a href="../../shared-pipeline/gasto-federal/020_ProUni_Renuncia_RFB.R"><code>shared-pipeline/gasto-federal/020_ProUni_Renuncia_RFB.R</code></a> — lê a renúncia do ProUni nas edições em planilha (2016–2023) e na transcrição documentada das edições em PDF (2008–2015), <a href="../../shared-pipeline/gasto-federal/prouni_transcricao_pdf.csv"><code>prouni_transcricao_pdf.csv</code></a>, com página e quadro de cada valor</li>
+<li><a href="../../shared-pipeline/gasto-federal/030_Monta_Series_Gasto.R"><code>shared-pipeline/gasto-federal/030_Monta_Series_Gasto.R</code></a> — monta as séries anuais, deflaciona pelo IPCA do SIDRA e grava os arquivos de <code>data/</code> deste post</li>
+<li><a href="../../posts/gasto-federal-educacao-superior/plot.R"><code>plot.R</code></a> — lê <code>data/</code> e grava <code>fig-en.png</code>, <code>fig-pt.png</code> e <code>thumbnail.png</code>. Os valores da Tabela VII de Carvalho (2011) estão digitados no script.</li>
+</ol>
+<p>O SIOP atualiza os anos recentes; por isso, uma coleta nova pode diferir da usada aqui (10 de outubro de 2026) nos últimos anos da série.</p>
 </section>
 <section id="reprodutibilidade" class="level2">
 <h2 class="anchored" data-anchor-id="reprodutibilidade">Reprodutibilidade</h2>
 <p><strong>Tier: A</strong></p>
-<p>Este pipeline usa apenas dados públicos, acessíveis sem credencial. Os dois CSVs em <code>data/</code> bastam para redesenhar a figura.</p>
+<p>Este pipeline usa apenas dados públicos, acessíveis sem credencial. Os dois CSVs em <code>data/</code> bastam para redesenhar a figura sem rodar a coleta.</p>
 <p><strong>Referência:</strong> Carvalho, H. A. de (2011). <em>A política pública para a educação superior no Brasil (1995–2008): Ruptura e/ou continuidade?</em> [Tese de doutorado, Universidade Estadual de Campinas]. https://doi.org/10.47749/T/UNICAMP.2011.784998 — Tabela VII, p.&nbsp;331.</p>
 
 

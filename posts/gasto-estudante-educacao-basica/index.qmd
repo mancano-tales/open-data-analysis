@@ -67,7 +67,7 @@ A permanent version (Git tag + Zenodo DOI) will be linked here once the disserta
 Scripts for this analysis:
 
 - Plotting: [`plot.R`](plot.R) — reads `data/` and writes `fig-en.png`, `fig-pt.png` and `thumbnail.png`.
-- Data: `data/inep_investimento_estudante_nominal.csv` transcribes INEP's spreadsheet ([INEP financial indicators](https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/indicadores-educacionais/indicadores-financeiros-educacionais)), and `data/ipca_media_anual.csv` is the annual average of the IPCA index from SIDRA table 1737.
+- Data: [`shared-pipeline/gasto-educacao-basica/010_INEP_Investimento_Estudante.R`](../../shared-pipeline/gasto-educacao-basica/010_INEP_Investimento_Estudante.R) downloads INEP's spreadsheet ([INEP financial indicators](https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/indicadores-educacionais/indicadores-financeiros-educacionais)) and the IPCA from SIDRA table 1737, and writes the two files in `data/`. The spreadsheet matches the md5 checksum INEP publishes with it.
 
 ## Reproducibility
 

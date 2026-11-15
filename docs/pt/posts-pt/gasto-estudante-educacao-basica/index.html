@@ -240,7 +240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Scripts desta análise:</p>
 <ul>
 <li>Plotagem: <a href="../../posts/gasto-estudante-educacao-basica/plot.R"><code>plot.R</code></a> — lê <code>data/</code> e grava <code>fig-en.png</code>, <code>fig-pt.png</code> e <code>thumbnail.png</code>.</li>
-<li>Dados: <code>data/inep_investimento_estudante_nominal.csv</code> transcreve a planilha do INEP (<a href="https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/indicadores-educacionais/indicadores-financeiros-educacionais">Indicadores Financeiros Educacionais</a>), e <code>data/ipca_media_anual.csv</code> é a média anual do número-índice do IPCA, da tabela 1737 do SIDRA.</li>
+<li>Dados: <a href="../../shared-pipeline/gasto-educacao-basica/010_INEP_Investimento_Estudante.R"><code>shared-pipeline/gasto-educacao-basica/010_INEP_Investimento_Estudante.R</code></a> baixa a planilha do INEP (<a href="https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/indicadores-educacionais/indicadores-financeiros-educacionais">Indicadores Financeiros Educacionais</a>) e o IPCA da tabela 1737 do SIDRA, e grava os dois arquivos de <code>data/</code>. A planilha confere com o md5 que o INEP publica junto com ela.</li>
 </ul>
 </section>
 <section id="reprodutibilidade" class="level2">

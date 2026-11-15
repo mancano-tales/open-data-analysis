@@ -36,6 +36,10 @@ source(here::here("shared-pipeline", "utils", "plot_theme.R"))
 theme_set(thesis_theme())
 
 POST <- here::here("posts", "gasto-estudante-educacao-basica")
+if (!file.exists(file.path(POST, "data", "inep_investimento_estudante_nominal.csv"))) {
+  stop("Dados ausentes em data/. Rode antes: ",
+       "shared-pipeline/gasto-educacao-basica/010_INEP_Investimento_Estudante.R", call. = FALSE)
+}
 inep <- read.csv(file.path(POST, "data", "inep_investimento_estudante_nominal.csv"))
 ipca <- read.csv(file.path(POST, "data", "ipca_media_anual.csv"))
 fator <- function(ano) ipca$indice[ipca$ano == 2024] / ipca$indice[match(ano, ipca$ano)]

@@ -62,15 +62,20 @@ Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que
 
 ## Pipeline
 
-Scripts desta análise:
+Rode estes scripts nesta ordem, a partir da raiz do projeto (cada um grava em `data-raw/gasto-federal/`, que o seguinte lê):
 
-- Plotagem: [`plot.R`](../../posts/gasto-federal-educacao-superior/plot.R) — lê `data/` e grava `fig-en.png`, `fig-pt.png` e `thumbnail.png`. Os valores da Tabela VII de Carvalho (2011) estão digitados no script.
-- Dados: `data/gasto_federal_es_anual.csv` traz as três séries anuais em reais correntes e de 2024, montadas a partir da execução orçamentária do SIOP e dos demonstrativos de gastos tributários da Receita Federal ([Gastos Tributários – Bases Efetivas](https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/relatorios/renuncia/gastos-tributarios-bases-efetivas)), e `data/ipca_media_anual.csv` é a média anual do número-índice do IPCA, da tabela 1737 do SIDRA.
+1. [`shared-pipeline/gasto-federal/010_Coleta_SIOP_Execucao.R`](../../shared-pipeline/gasto-federal/010_Coleta_SIOP_Execucao.R) — consulta o endpoint SPARQL público dos dados abertos do orçamento federal (SIOP) e grava, para cada ano de 2000 a 2025, a execução de todas as unidades do Ministério da Educação e da unidade do FIES por ação e grupo de despesa; leva de 20 a 40 minutos
+2. [`shared-pipeline/gasto-federal/015_Download_RFB_Gastos_Tributarios.R`](../../shared-pipeline/gasto-federal/015_Download_RFB_Gastos_Tributarios.R) — baixa as edições de 2008 a 2023 do Demonstrativo dos Gastos Tributários – Bases Efetivas da Receita Federal (cerca de 33 MB)
+3. [`shared-pipeline/gasto-federal/020_ProUni_Renuncia_RFB.R`](../../shared-pipeline/gasto-federal/020_ProUni_Renuncia_RFB.R) — lê a renúncia do ProUni nas edições em planilha (2016–2023) e na transcrição documentada das edições em PDF (2008–2015), [`prouni_transcricao_pdf.csv`](../../shared-pipeline/gasto-federal/prouni_transcricao_pdf.csv), com página e quadro de cada valor
+4. [`shared-pipeline/gasto-federal/030_Monta_Series_Gasto.R`](../../shared-pipeline/gasto-federal/030_Monta_Series_Gasto.R) — monta as séries anuais, deflaciona pelo IPCA do SIDRA e grava os arquivos de `data/` deste post
+5. [`plot.R`](../../posts/gasto-federal-educacao-superior/plot.R) — lê `data/` e grava `fig-en.png`, `fig-pt.png` e `thumbnail.png`. Os valores da Tabela VII de Carvalho (2011) estão digitados no script.
+
+O SIOP atualiza os anos recentes; por isso, uma coleta nova pode diferir da usada aqui (10 de outubro de 2026) nos últimos anos da série.
 
 ## Reprodutibilidade
 
 **Tier: A**
 
-Este pipeline usa apenas dados públicos, acessíveis sem credencial. Os dois CSVs em `data/` bastam para redesenhar a figura.
+Este pipeline usa apenas dados públicos, acessíveis sem credencial. Os dois CSVs em `data/` bastam para redesenhar a figura sem rodar a coleta.
 
 **Referência:** Carvalho, H. A. de (2011). *A política pública para a educação superior no Brasil (1995–2008): Ruptura e/ou continuidade?* [Tese de doutorado, Universidade Estadual de Campinas]. https://doi.org/10.47749/T/UNICAMP.2011.784998 — Tabela VII, p. 331.

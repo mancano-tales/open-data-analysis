@@ -67,7 +67,7 @@ Uma versão permanente (tag do Git + DOI no Zenodo) será linkada aqui assim que
 Scripts desta análise:
 
 - Plotagem: [`plot.R`](../../posts/gasto-estudante-educacao-basica/plot.R) — lê `data/` e grava `fig-en.png`, `fig-pt.png` e `thumbnail.png`.
-- Dados: `data/inep_investimento_estudante_nominal.csv` transcreve a planilha do INEP ([Indicadores Financeiros Educacionais](https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/indicadores-educacionais/indicadores-financeiros-educacionais)), e `data/ipca_media_anual.csv` é a média anual do número-índice do IPCA, da tabela 1737 do SIDRA.
+- Dados: [`shared-pipeline/gasto-educacao-basica/010_INEP_Investimento_Estudante.R`](../../shared-pipeline/gasto-educacao-basica/010_INEP_Investimento_Estudante.R) baixa a planilha do INEP ([Indicadores Financeiros Educacionais](https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/indicadores-educacionais/indicadores-financeiros-educacionais)) e o IPCA da tabela 1737 do SIDRA, e grava os dois arquivos de `data/`. A planilha confere com o md5 que o INEP publica junto com ela.
 
 ## Reprodutibilidade
 

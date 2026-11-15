@@ -29,6 +29,10 @@ source(here::here("shared-pipeline", "utils", "plot_theme.R"))
 theme_set(thesis_theme())
 
 POST <- here::here("posts", "gini-renda-mediana")
+if (!file.exists(file.path(POST, "data", "gini_oficial_anual.csv"))) {
+  stop("Dados ausentes em data/. As series vem de shared-pipeline/pnadc/",
+       "238_Serie_Desigualdade_Oficial.R e de posts/renda-mediana-domiciliar-pc/plot.R", call. = FALSE)
+}
 segmentos <- function(d) d |> arrange(ano) |> mutate(seg = cumsum(c(1L, as.integer(diff(ano) > 1L))))
 gini <- read.csv(file.path(POST, "data", "gini_oficial_anual.csv")) |> segmentos()
 renda <- read.csv(file.path(POST, "data", "renda_mediana_anual.csv")) |> segmentos()

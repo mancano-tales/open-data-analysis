@@ -62,15 +62,20 @@ A permanent version (Git tag + Zenodo DOI) will be linked here once the disserta
 
 ## Pipeline
 
-Scripts for this analysis:
+Run these scripts in this order, from the project root (each one writes to `data-raw/gasto-federal/`, which the next one reads):
 
-- Plotting: [`plot.R`](plot.R) — reads `data/` and writes `fig-en.png`, `fig-pt.png` and `thumbnail.png`. Carvalho's (2011) Table VII values are typed into the script.
-- Data: `data/gasto_federal_es_anual.csv` holds the three annual series in current and 2024 reais, assembled from the SIOP budget execution and from the Federal Revenue Service's tax expenditure statements ([*Gastos Tributários – Bases Efetivas*](https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/relatorios/renuncia/gastos-tributarios-bases-efetivas)), and `data/ipca_media_anual.csv` is the annual average of the IPCA index from SIDRA table 1737.
+1. [`shared-pipeline/gasto-federal/010_Coleta_SIOP_Execucao.R`](../../shared-pipeline/gasto-federal/010_Coleta_SIOP_Execucao.R) — queries the public SPARQL endpoint of the federal budget open data (SIOP) and saves, for each year from 2000 to 2025, the budget execution of every Ministry of Education unit and of the FIES unit by action and expenditure group; takes 20 to 40 minutes
+2. [`shared-pipeline/gasto-federal/015_Download_RFB_Gastos_Tributarios.R`](../../shared-pipeline/gasto-federal/015_Download_RFB_Gastos_Tributarios.R) — downloads the 2008–2023 editions of the Federal Revenue Service's *Demonstrativo dos Gastos Tributários – Bases Efetivas* (about 33 MB)
+3. [`shared-pipeline/gasto-federal/020_ProUni_Renuncia_RFB.R`](../../shared-pipeline/gasto-federal/020_ProUni_Renuncia_RFB.R) — reads the ProUni tax expenditure from the spreadsheet editions (2016–2023) and from the documented transcription of the PDF editions (2008–2015), [`prouni_transcricao_pdf.csv`](../../shared-pipeline/gasto-federal/prouni_transcricao_pdf.csv), with page and table for each value
+4. [`shared-pipeline/gasto-federal/030_Monta_Series_Gasto.R`](../../shared-pipeline/gasto-federal/030_Monta_Series_Gasto.R) — assembles the annual series, deflates them by the IPCA from SIDRA and writes this post's `data/` files
+5. [`plot.R`](plot.R) — reads `data/` and writes `fig-en.png`, `fig-pt.png` and `thumbnail.png`. Carvalho's (2011) Table VII values are typed into the script.
+
+The SIOP updates recent years, so a new collection may differ from the one used here (10 October 2026) in the last years of the series.
 
 ## Reproducibility
 
 **Tier: A**
 
-This pipeline uses only public data, accessible without any credential. The two CSV files in `data/` are enough to redraw the figure.
+This pipeline uses only public data, accessible without any credential. The two CSV files in `data/` are enough to redraw the figure without running the collection.
 
 **Reference:** Carvalho, H. A. de (2011). *A política pública para a educação superior no Brasil (1995–2008): Ruptura e/ou continuidade?* [Doctoral dissertation, Universidade Estadual de Campinas]. https://doi.org/10.47749/T/UNICAMP.2011.784998 — Table VII, p. 331.

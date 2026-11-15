@@ -35,6 +35,11 @@ source(here::here("shared-pipeline", "utils", "plot_theme.R"))
 theme_set(thesis_theme())
 
 POST <- here::here("posts", "gasto-federal-educacao-superior")
+if (!file.exists(file.path(POST, "data", "gasto_federal_es_anual.csv"))) {
+  stop("Dados ausentes em data/. Rode antes, em ordem: shared-pipeline/gasto-federal/",
+       "010_Coleta_SIOP_Execucao.R, 015_Download_RFB_Gastos_Tributarios.R, ",
+       "020_ProUni_Renuncia_RFB.R e 030_Monta_Series_Gasto.R", call. = FALSE)
+}
 s <- read.csv(file.path(POST, "data", "gasto_federal_es_anual.csv")) |>
   mutate(bi = valor_real / 1e9)
 ipca <- read.csv(file.path(POST, "data", "ipca_media_anual.csv"))

@@ -241,7 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Scripts for this analysis:</p>
 <ul>
 <li>Plotting: <a href="plot.R"><code>plot.R</code></a> — reads <code>data/</code> and writes <code>fig-en.png</code>, <code>fig-pt.png</code> and <code>thumbnail.png</code>.</li>
-<li>Data: <code>data/inep_investimento_estudante_nominal.csv</code> transcribes INEP’s spreadsheet (<a href="https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/indicadores-educacionais/indicadores-financeiros-educacionais">INEP financial indicators</a>), and <code>data/ipca_media_anual.csv</code> is the annual average of the IPCA index from SIDRA table 1737.</li>
+<li>Data: <a href="../../shared-pipeline/gasto-educacao-basica/010_INEP_Investimento_Estudante.R"><code>shared-pipeline/gasto-educacao-basica/010_INEP_Investimento_Estudante.R</code></a> downloads INEP’s spreadsheet (<a href="https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/indicadores-educacionais/indicadores-financeiros-educacionais">INEP financial indicators</a>) and the IPCA from SIDRA table 1737, and writes the two files in <code>data/</code>. The spreadsheet matches the md5 checksum INEP publishes with it.</li>
 </ul>
 </section>
 <section id="reproducibility" class="level2">
