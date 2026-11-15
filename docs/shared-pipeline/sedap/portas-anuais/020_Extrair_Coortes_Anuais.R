@@ -15,6 +15,15 @@
 # nas quatro provas objetivas da edicao do ano da coorte ('1' em
 # IN_PRESENCA_* ate 2014 e em TP_PRESENCA_* desde 2015).
 #
+# REVISAO DE 2026-11-07: a populacao padrao volta a ser a de INSCRITOS, a
+# mesma de 031/054 e das figuras do capitulo. A renda vem do questionario
+# respondido na inscricao, entao os ausentes tambem tem decil; e a presenca
+# esta ligada ao proprio resultado (faltar a prova e, em boa parte, ja ter
+# desistido do ingresso), de modo que restringir aos presentes infla as taxas
+# e torna as coortes da pandemia muito mais selecionadas que as anteriores.
+# POPULACAO=presentes reproduz a versao anterior. Cada populacao grava numa
+# subpasta propria de OUT.
+#
 # O que a sondagem (010) fixou:
 #   - Coortes 2012-2021. 2011 fica fora: a renda do ENEM 2011 (Q004) tem 11
 #     faixas, outra escala, cujos pontos medios nao foram conferidos.
@@ -30,12 +39,15 @@
 # Pre-requisito: SEDAP_TOKEN no ambiente.
 # Uso: Rscript shared-pipeline/sedap/portas-anuais/020_Extrair_Coortes_Anuais.R
 #      COORTES=2012,2013 Rscript ...   (subconjunto)
+#      POPULACAO=presentes Rscript ... (versao anterior, so presentes)
 # ==============================================================================
 
 suppressPackageStartupMessages({ library(here) })
 source(here::here("shared-pipeline", "sedap", "010_SEDAP_Cliente.R"))
 
-OUT <- here::here("data-raw", "sedap", "portas-anuais")
+POPULACAO <- Sys.getenv("POPULACAO", "inscritos")
+stopifnot(POPULACAO %in% c("inscritos", "presentes"))
+OUT <- here::here("data-raw", "sedap", "portas-anuais", POPULACAO)
 dir.create(OUT, showWarnings = FALSE, recursive = TRUE)
 
 COORTES <- as.integer(strsplit(Sys.getenv("COORTES", paste(2012:2021, collapse = ",")), ",")[[1]])
@@ -55,7 +67,11 @@ mapa_enem <- function(ano) {
   list(
     renda = if (ano <= 2014) "Q003" else "Q006",
     moradores = if (ano <= 2014) "Q004" else "Q005",
-    presenca = paste(sprintf(paste0("CAST(", pres, " AS STRING) = '1'"), c("CN", "CH", "LC", "MT")), collapse = " AND ")
+    presenca = if (POPULACAO == "presentes") {
+      paste(sprintf(paste0("CAST(", pres, " AS STRING) = '1'"), c("CN", "CH", "LC", "MT")), collapse = " AND ")
+    } else {
+      "TRUE"
+    }
   )
 }
 

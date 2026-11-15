@@ -31,7 +31,7 @@ source(here::here("shared-pipeline", "sedap", "senkevics", "015_Especificacao.R"
 cortes <- read_csv(file.path(DIR_DADOS, "025_pontos_corte.csv"), show_col_types = FALSE)
 base_r <- read_csv(file.path(DIR_DADOS, "025_base_faixa_real.csv"), show_col_types = FALSE)
 
-# Todos os helpers de SQL (filtro_coorte, expr_media, expr_presenca,
+# Todos os helpers de SQL (filtro_coorte, expr_media, expr_nota_bin, expr_presenca,
 # join_ultima_edicao, expr_rfpc, expr_decil, expr_destino, join_censup) e a
 # config de coorte vem de 015_Especificacao.R.
 
@@ -57,7 +57,7 @@ WHERE %s
 GROUP BY income_D, performance, choice
 ",
     expr_decil(expr_rfpc(ano, base_r$sm_real[base_r$ano_enem == ano]), cortes$corte_renda),
-    expr_decil(expr_media(ano), cortes$corte_nota),
+    expr_decil(expr_nota_bin(ano), cortes$corte_nota),
     expr_destino(),
     TABELA_COORTE, ano, ue$join, join_censup,
     filtro_coorte("b"), expr_presenca(ano), ue$where

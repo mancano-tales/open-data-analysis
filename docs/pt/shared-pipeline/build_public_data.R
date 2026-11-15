@@ -16,7 +16,7 @@
 #
 # PREREQUISITES: R packages used across these scripts — arrow, dplyr, tidyr,
 # Hmisc, deflateBR, here, PNADcIBGE, censobr, sidrar, ipeadatar, httr2,
-# archive, readr, readxl, stringr, survey.
+# archive, readr, readxl, stringr, survey, data.table, geobr, sf, jsonlite.
 # ==============================================================================
 
 here_root <- here::here()
@@ -65,6 +65,14 @@ source(here::here("shared-pipeline", "ipca", "010_IPCA_Curso_Superior_Series.R")
 # public R package `educabr2`, which embeds its own data:
 #   remotes::install_github("mancano-tales/educabr2")
 # No script here builds it — install the package instead.
+
+# ── 6. Presidential vote by tract income, 2026 ──────────────────────────────
+# The results' place codes take precedence over the current register. See the
+# post for the independent nearest-place method and distance sensitivity.
+cat("\n[bonus] TSE 2026 votes + Census 2022 tract income and spatial validation\n")
+source(here::here("shared-pipeline", "eleicoes", "010_Download_Censo_TSE.R"))
+source(here::here("shared-pipeline", "eleicoes", "020_Cruzar_Setores_Votos.R"))
+source(here::here("shared-pipeline", "eleicoes", "030_Verificar_Resultados.R"))
 
 cat("\nDone. Public datasets for every Tier A / Tier A (cross-repo) figure are",
     "now in data-raw/. Tier B figures (shared-pipeline/sedap/) still require",

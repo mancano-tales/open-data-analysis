@@ -136,13 +136,21 @@ expr_media <- function(ano, a = "e") {
   sprintf("(%s)/4.0", paste(sprintf("%s.%s", a, cols), collapse = " + "))
 }
 
+# Nota no mesmo bin em que o 025 calculou os cortes: FLOOR(media) + 0,5. Com a
+# media exata, quem tem 415,7 e corte 415,5 caia no decil de cima, embora o 025
+# o tenha contado no de baixo.
+expr_nota_bin <- function(ano, a = "e") {
+  sprintf("(FLOOR(%s) + 0.5)", expr_media(ano, a))
+}
+
 expr_presenca <- function(ano, a = "e") {
   cols <- sprintf(SCHEMA_ENEM[[as.character(ano)]]$presenca, AREAS)
   paste(sprintf("%s.%s = '1'", a, cols), collapse = " AND ")
 }
 
 # Deduplicacao entre edicoes: cada individuo entra UMA vez, pela ultima edicao
-# em que aparece — a regra de fallback dos autores (`ultimoenem`). A alternativa
+# em que esteve presente nas quatro provas — a regra de fallback dos autores
+# (`ultimoenem`). A alternativa
 # (MAX do ano agregando por CPF) e impossivel: agrupar por individuo cria grupos
 # de tamanho 1, exatamente o que a privacidade diferencial suprime.
 # A ausencia e detectada por NU_ANO, nao por CPF_MASC (unidade de privacidade).
@@ -152,9 +160,14 @@ join_ultima_edicao <- function(ano) {
     return(list(join = "", where = ""))
   }
   list(
+    # A presenca nas 4 provas vai no ON: so conta como "edicao posterior" a
+    # que o aluno de fato fez. Ate 2026-10-20 bastava estar inscrito, e quem
+    # se inscreveu numa edicao posterior e faltou sumia da amostra (saia da
+    # edicao feita pelo anti-join e da posterior pelo filtro de presenca).
     join = paste(sprintf(
-      "LEFT JOIN raw.ENEM_%d_SEDAP n%d ON b.CPF_MASC = n%d.CPF_MASC",
-      post, post, post
+      "LEFT JOIN raw.ENEM_%d_SEDAP n%d ON b.CPF_MASC = n%d.CPF_MASC AND %s",
+      post, post, post,
+      vapply(post, function(p) expr_presenca(p, sprintf("n%d", p)), character(1))
     ), collapse = "\n"),
     where = paste(sprintf("  AND n%d.NU_ANO IS NULL", post), collapse = "\n")
   )
@@ -176,8 +189,13 @@ expr_rfpc <- function(ano, base_real, a = "e") {
 # WHEN e o NULL caia no ELSE '10D': quem nao declarou renda era codificado
 # como 10o decil. Na edicao 2023 da coorte 2019, 83% da celula
 # 10D x desempenho 1 era isso (170_Verificar_Figura_SEDAP.R, V4). Desvio D7.
+#
+# Fronteira: valor IGUAL ao corte vai para o decil de BAIXO, como no cut() do
+# R (intervalos (a, b]) que o 025 e os autores usam. Ate 2026-10-20 o SQL
+# usava "<" e mandava o empate para o decil de cima. A tolerancia de 1e-4
+# cobre o arredondamento do corte a 6 casas.
 expr_decil <- function(valor, cortes_vec) {
-  ramos <- paste(sprintf("WHEN %s < %.6f THEN '%dD'", valor, cortes_vec[2:10], 1:9), collapse = " ")
+  ramos <- paste(sprintf("WHEN %s <= %.6f THEN '%dD'", valor, cortes_vec[2:10] + 1e-4, 1:9), collapse = " ")
   sprintf("CASE WHEN %s IS NULL THEN 'NA' %s ELSE '10D' END", valor, ramos)
 }
 
