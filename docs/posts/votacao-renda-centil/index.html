@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-10-14">
+<meta name="description" content="An independent reconstruction of the association between tract income and the 2026 presidential vote using Census 2022 and TSE data.">
+
+<title>Presidential vote by census tract income percentile – Open Data Analysis</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<meta name="quarto:status" content="draft">
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draft</div>
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Open Data Analysis</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Analyses</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../pt/index.html"> 
+<span class="menu-text">Português</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Presidential vote by census tract income percentile</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Eleições</div>
+    <div class="quarto-category">Censo</div>
+    <div class="quarto-category">Renda</div>
+    <div class="quarto-category">Distribuição</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    An independent reconstruction of the association between tract income and the 2026 presidential vote using Census 2022 and TSE data.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 14, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Income belongs to census tracts; observed votes belong to polling places.</strong> The chart associates mean tract income with voting at nearby polling places. A higher vote share in higher-income tracts <strong>does not establish that higher-income individuals voted for that candidate</strong>. Individual voters’ incomes and the polling places used by each tract’s residents are unknown. Spatial proximity is an approximation and does not identify a tract’s electorate.</p>
+</div>
+</div>
+<p><img src="thumbnail-en.png" class="img-fluid"></p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This post reconstructs the income–vote chart published by Daniel Mariani, Paula Soprana and Nicholas Pretto in <a href="https://www1.folha.uol.com.br/poder/2026/10/flavio-bolsonaro-supera-votos-do-pai-em-todas-as-rendas-e-lula-cresce-entre-mais-ricos.shtml">Folha de S.Paulo on October 12, 2026</a>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Approximate reproduction.</strong> National processing and numerical checks were completed with public data. The spatial assignment is an independent implementation because the article does not specify all proximity parameters. The resulting curves differ from the reference image, and the maximum-distance choice has a material effect.</p>
+</div>
+</div>
+</section>
+<section id="results-and-coverage" class="level2">
+<h2 class="anchored" data-anchor-id="results-and-coverage">Results and coverage</h2>
+<p>The main 5 km estimate includes <strong>410,010 tracts</strong> out of the 458,772 in the income table (89.37%). Exclusions comprise 9,241 without eligible income, 39,483 beyond the distance limit and 38 without an available spatial match. Each percentile contains 4,100 or 4,101 tracts.</p>
+<p>At percentile 46, Lula receives <strong>42.35%</strong>, with mean tract income of <strong>1.68 minimum wages</strong>; the supplied reference image shows 41.12% and 1.69. The vote share difference is 1.23 percentage points. At percentile 100, estimates are 38.90% for Lula and 49.53% for Flávio, with income of 16.52 minimum wages. Flávio first exceeds Lula at percentile 35 under this implementation. These percentiles rank tracts and do not identify fractions of the population voting for either candidate.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Maximum distance</th>
+<th style="text-align: right;">Included tracts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 km</td>
+<td style="text-align: right;">326,951</td>
+</tr>
+<tr class="even">
+<td>2 km</td>
+<td style="text-align: right;">368,147</td>
+</tr>
+<tr class="odd">
+<td>5 km (main figure)</td>
+<td style="text-align: right;">410,010</td>
+</tr>
+</tbody>
+</table>
+<p>Comparing equally numbered percentiles under 1 and 5 km gives maximum differences of 6.32 percentage points for Lula and 5.51 for Flávio. Each distance recalculates its sample and percentile ranking, so these differences combine coverage and composition. Excluding tracts far from polling places requires care, particularly when interpreting rural areas. The association is territorial and descriptive.</p>
+<p>The audit found <strong>6,588 polling-place discrepancies across 497,897 sections</strong> between results and the current voter register. Calculations use the place recorded in results. Of 91,087 locations with votes and usable coordinates, 818 were incompatible with the 2022 municipal boundaries and excluded; 90,269 places remained eligible for spatial assignment.</p>
+<p>The <a href="data/centis.csv">100 calculated percentiles</a>, <a href="data/sensibilidade.csv">sensitivity estimates</a> and <a href="data/README.md">coverage and provenance records</a> accompany the post.</p>
+</section>
+<section id="audit-diagnostics" class="level2">
+<h2 class="anchored" data-anchor-id="audit-diagnostics">Audit diagnostics</h2>
+<p>Used polling places represent 108,710,471 of 118,969,906 votes in the national denominator (91.38%), across 81,076 places. Within that subset, Lula has 44.84% and Flávio Bolsonaro 47.29%, differences of -0.32 and 0.25 percentage points from national shares of 45.16% and 47.04%.</p>
+<p>The main figure retains the simple mean across tracts and percentile ranks recomputed in the included sample. The tables below preserve ranks defined before distance exclusions; these are distinct exercises.</p>
+<p><strong>Exclusions at 5.0 km.</strong> National income deciles of all income-eligible tracts, including those without a geographic link:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Decile</th>
+<th>Eligible</th>
+<th>Beyond limit</th>
+<th>Share</th>
+<th>No place/boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>44,954</td>
+<td>10,827</td>
+<td>24.08%</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>44,953</td>
+<td>6,546</td>
+<td>14.56%</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>44,953</td>
+<td>3,934</td>
+<td>8.75%</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>44,953</td>
+<td>3,370</td>
+<td>7.50%</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>44,953</td>
+<td>3,253</td>
+<td>7.24%</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>44,953</td>
+<td>3,289</td>
+<td>7.32%</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>44,953</td>
+<td>3,055</td>
+<td>6.80%</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>44,953</td>
+<td>2,707</td>
+<td>6.02%</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>44,953</td>
+<td>1,852</td>
+<td>4.12%</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>44,953</td>
+<td>650</td>
+<td>1.45%</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Situation</th>
+<th>Eligible</th>
+<th>Beyond limit</th>
+<th>Share</th>
+<th>No place/boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Rural</td>
+<td>102,167</td>
+<td>37,299</td>
+<td>36.51%</td>
+<td>19</td>
+</tr>
+<tr class="even">
+<td>Urban</td>
+<td>347,364</td>
+<td>2,184</td>
+<td>0.63%</td>
+<td>19</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Crossings under fixed ranks.</strong> The first crossing may differ from a crossing sustained through the end of the distribution:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Limit</th>
+<th>First percentile</th>
+<th>First sustained percentile</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 km</td>
+<td>40</td>
+<td>40</td>
+</tr>
+<tr class="even">
+<td>2 km</td>
+<td>38</td>
+<td>38</td>
+</tr>
+<tr class="odd">
+<td>5 km</td>
+<td>37</td>
+<td>37</td>
+</tr>
+<tr class="even">
+<td>10 km</td>
+<td>37</td>
+<td>37</td>
+</tr>
+<tr class="odd">
+<td>Unlimited</td>
+<td>37</td>
+<td>37</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Maximum method differences</strong>, at the main distance limit, comparing the same percentile index under each definition:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Reference</th>
+<th>Comparison</th>
+<th>Candidate</th>
+<th>Maximum (pp)</th>
+<th>Compared percentiles</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Original reranked</td>
+<td>Fixed ranks</td>
+<td>Lula</td>
+<td>2.90</td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td>Original reranked</td>
+<td>Fixed ranks</td>
+<td>Flávio Bolsonaro</td>
+<td>2.59</td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td>Original reranked</td>
+<td>V06001 weighted</td>
+<td>Lula</td>
+<td>3.48</td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td>Original reranked</td>
+<td>V06001 weighted</td>
+<td>Flávio Bolsonaro</td>
+<td>3.04</td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td>Original reranked</td>
+<td>Ratio of sums</td>
+<td>Lula</td>
+<td>3.90</td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td>Original reranked</td>
+<td>Ratio of sums</td>
+<td>Flávio Bolsonaro</td>
+<td>3.37</td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td>Original reranked</td>
+<td>IDW k3</td>
+<td>Lula</td>
+<td>2.52</td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td>Original reranked</td>
+<td>IDW k3</td>
+<td>Flávio Bolsonaro</td>
+<td>2.25</td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td>Fixed ranks</td>
+<td>IDW k3</td>
+<td>Lula</td>
+<td>0.51</td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td>Fixed ranks</td>
+<td>IDW k3</td>
+<td>Flávio Bolsonaro</td>
+<td>0.45</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<p>V06001 weights household heads, not voters. The ratio-of-sums method preserves the votes of used polling places and allocates them across linked tracts in proportion to V06001; this approximation does not identify voters’ residences. IDW k3 also measures proximity rather than actual electoral registration.</p>
+<p>In the exploratory bootstrap of 500 municipality resamples, 500 replicates had an observed crossing. The 2.5%, 50% and 97.5% quantiles of the first crossing percentile were 33.0, 36.0 and 39.0. Percentile bands are pointwise, not simultaneous; they measure neither census sampling error nor uncertainty in the spatial linkage.</p>
+<p>The independent geometric audit passed 2,000 of 2,000 sampled tracts and 2,000 k3 checks. EPSG:5880 projection disagreement remained a diagnostic in 502 cases and did not replace the geodesic reference.</p>
+<p>818 polling places with coordinates outside their municipality in the 2022 boundary layer were excluded, containing 269,462 votes in the national denominator (0.23%). Income and boundaries from 2022 do not capture every change through the 2026 election.</p>
+<p>V06004 covers household heads with income. ResponsavelRenda does not provide the count of this group, so the share of heads without income is unavailable. V06002 counts residents and cannot recover that share.</p>
+<p><strong>Approximate visual Folha reference.</strong> Mean absolute error over readable points is:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Candidate</th>
+<th>Readable points</th>
+<th>MAE (pp)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Flávio Bolsonaro (PL)</td>
+<td>6</td>
+<td>0.82</td>
+</tr>
+<tr class="even">
+<td>Lula (PT)</td>
+<td>7</td>
+<td>1.19</td>
+</tr>
+</tbody>
+</table>
+<p>The reference points come from manual visual readings and the image tooltip, including rounding and obscured regions. This MAE neither validates the complete curve nor establishes equivalence to Folha’s method.</p>
+<p>The <a href="../../shared-pipeline/eleicoes/validacao/VERIFICACAO-ESPACIAL.md">spatial validation note</a> documents national projection distortion and the independent spherical reference used to verify links. Municipal incompatibilities may reflect geocoding, registration or boundary changes; the test does not identify the cause of each discrepancy.</p>
+</section>
+<section id="methodology" class="level2">
+<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
+<p><code>censobr::read_tracts(year = 2022, dataset = "ResponsavelRenda")</code> provides tract income. <code>V06004</code> measures mean nominal monthly income of household heads <strong>with income</strong> in occupied permanent private households; <code>V06001</code> counts household heads, including those without income. It does not count heads with income. The available table does not provide that latter count, so the share without income cannot be derived from these variables. This is neither per capita household income nor mean income of all residents. Tracts without household heads or with missing, suppressed or nonpositive mean income are excluded. Income is divided by BRL 1,212 to express it in July 2022 minimum wages, the Census reference period. Definitions follow the <a href="https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios_Rendimento_do_Responsavel/dicionario_de_dados_renda_responsavel_20260508.xlsx">official IBGE dictionary</a>. Income describes tracts in 2022, not their residents’ incomes in 2026. Changes in residence, composition and income between the two years remain outside this linkage.</p>
+<p>The pipeline downloads <strong>2026 presidential votes by electoral section</strong> from the <a href="https://dadosabertos.tse.jus.br/dataset/resultados-2026">TSE results dataset</a> through its public CKAN API. It selects the first round and presidency. Valid votes for all candidates form the denominator; blank and invalid votes are excluded. The two displayed candidates therefore need not sum to 100%. Validity is checked against the official candidate and vote-detail tables for each municipality and electoral zone. A candidate number in the raw section file does not establish validity. Each candidate group must be entirely valid or entirely excluded; partial validity stops the calculation because it cannot be allocated to sections. Unmatched records must reconcile exactly with the official technical null votes, and valid totals must agree in every zone. <a href="https://github.com/silvadenisson/electionsBR"><code>electionsBR::vote_section()</code></a> is a related R option, but the consulted source documents years through 2024; the pipeline uses the official 2026 download directly.</p>
+<p>Electoral sections and census tracts have different boundaries and codes. The results file itself links sections to polling places. The <a href="https://dadosabertos.tse.jus.br/dataset/eleitorado-2026">2026 polling-place register</a> provides an independent audit: when the two disagree, the results’ place code takes precedence, preserving the location recorded in the count rather than overwriting it with the current register. Coordinates come from <a href="https://ipea.github.io/geobr/reference/read_polling_places.html"><code>geobr::read_polling_places(year = 2026)</code></a>, which combines TSE coordinates and <code>geocodebr</code> geocoding. Repeated records with identical coordinates are collapsed; conflicting locations are excluded. Points must lie within their municipalities’ 2022 boundaries from <code>geobr</code>. The independent spatial estimator assigns each tract the vote shares of the nearest valid polling place to an interior point, within the same municipality and a configurable maximum distance. Votes are summed across sections at each polling place before computing shares. These are neighbourhood estimates, not observed votes of tract residents. This differs from the original article’s unspecified proximity and geocoding details.</p>
+<p>Registered electoral addresses may be outdated or differ from actual residence. Even a correctly located polling place does not reveal where its voters live. Alternative weights and interpolation do not resolve this limitation, and increasing coverage does not remove it.</p>
+<p>Eligible tracts are ranked by income, with tract code breaking ties, then divided into 100 groups as equal in tract count as possible. Group vote shares are unweighted means of tract percentages. These are tract percentiles, not percentiles of people, voters or households. Exclusions are recorded; maximum-distance sensitivity is examined explicitly. Reported centile income is the unweighted mean of tract mean incomes, in minimum wages. Distance ties between polling places are broken by the ordered composite state, municipality, electoral zone and place code.</p>
+</section>
+<section id="sensitivity-and-limitations" class="level2">
+<h2 class="anchored" data-anchor-id="sensitivity-and-limitations">Sensitivity and limitations</h2>
+<section id="what-changes-in-the-sensitivity-analyses" class="level3">
+<h3 class="anchored" data-anchor-id="what-changes-in-the-sensitivity-analyses">What changes in the sensitivity analyses</h3>
+<p>The main curve preserves the simple mean of the shares assigned to tracts, with percentiles reranked after the distance cutoff. A polling place may represent several tracts, so this mean is not the national vote share. The <strong>fixed-cutoff</strong> comparison ranks income-eligible tracts with any spatial link once, including links beyond 5 km, then applies 1, 2, 5 and 10 km limits and no limit. Counts show how many tracts remain observed in each group.</p>
+<p>The <strong>household-head weighted</strong> alternative defines groups using cumulative <code>V06001</code> before each tract in the income ranking. Tracts are never split, so groups need not contain exactly 1% of heads. Income and vote shares are weighted means using that count, which includes heads without income. These weights do not count voters. They also do not recover an aggregate individual mean income: the number of heads with income in each tract is unknown.</p>
+<p>The <strong>allocated vote ratio</strong> distributes each polling place’s votes once among its eligible linked tracts in proportion to <code>V06001</code>, then divides allocated candidate votes by allocated valid votes in each group. It conserves the totals of used polling places. Allocation between tracts is an assumption, not an observation of residents’ votes.</p>
+<p>The spatial alternative uses up to <strong>three nearby polling places in the same municipality</strong>, with inverse-distance weights restricted to the chosen limit. Among the up to three selected neighbours, at zero distance only coincident places receive equal weights. Income groups stay fixed. Three neighbours test interpolation choices; they do not identify where residents actually vote.</p>
+<p>The municipality bootstrap uses 500 fixed-seed replicates, drawing municipalities with replacement, retaining all their tracts and reranking income each time. The 2.5% and 97.5% quantiles are <strong>exploratory pointwise bands</strong>. They do not measure census sampling error or uncertainty in spatial links. The first percentile of a lead means its first occurrence, not a sustained lead at every higher percentile.</p>
+<p>Comparison with Folha uses seven positions in the supplied image, with rounded visual readings and a stated 1.5 percentage point reading tolerance. That tolerance is not a statistical interval. The only exact textual value is Lula’s tooltip at percentile 46; the obscured curve remains missing. The article’s original data are unavailable. This post’s figure is always computed from TSE and IBGE data, without tracing the reference image.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="sensibilidade-cortes-fixos-en.png" class="img-fluid figure-img"></p>
+<figcaption>Spatial-linkage sensitivity with fixed income cutoffs.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="comparacao-metodos-en.png" class="img-fluid figure-img"></p>
+<figcaption>Comparison of aggregation and interpolation methods with a 5 km limit.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="bootstrap-municipios-en.png" class="img-fluid figure-img"></p>
+<figcaption>Exploratory pointwise municipality-resampling bands, retaining the observed spatial links.</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="pipeline">Pipeline</h2>
+<p>Run from the repository root:</p>
+<ol type="1">
+<li><a href="../../shared-pipeline/eleicoes/010_Download_Censo_TSE.R"><code>010_Download_Censo_TSE.R</code></a> — downloads tract income through <code>censobr</code> and official 2026 votes and polling places through TSE, retaining source metadata and checksums.</li>
+<li><a href="../../shared-pipeline/eleicoes/020_Cruzar_Setores_Votos.R"><code>020_Cruzar_Setores_Votos.R</code></a> — downloads boundaries and locations through <code>geobr</code>, validates keys, matches places and tracts, records exclusions and writes <code>data-raw/eleicoes-renda/centis.csv</code>.</li>
+<li><a href="../../shared-pipeline/eleicoes/030_Verificar_Resultados.R"><code>030_Verificar_Resultados.R</code></a> — checks percentages, 100 centiles, counts and means using independent base R calculations; reconstructs the geometry of 2,000 tracts and checks their three neighbours without using the estimator’s cached interior points.</li>
+<li><a href="../../shared-pipeline/eleicoes/040_Preparar_Post.R"><code>040_Preparar_Post.R</code></a> — verifies the <code>030</code> certificate and hashes, prepares the post’s aggregate snapshot and produces Portuguese and English diagnostics.</li>
+<li><a href="plot.R"><code>plot.R</code></a> — writes PNG and PDF to <code>output/figures/votacao-renda-centil/</code>.</li>
+</ol>
+<p>The figure uses unsmoothed lines, a top income axis, direct labels and colours similar to the reference. The screenshot’s 41.12% at percentile 46 and income of 1.69 minimum wages are comparison targets, not hard-coded observations.</p>
+<p>The default maximum distance is 5 km. Set <code>VOTOS_MAX_DIST_M</code> in metres before running <code>020</code> to choose another limit. <code>sensibilidade.csv</code> includes the 1, 2 and 5 km curves plus the selected limit. National processing downloads detailed boundaries and may take time and several gigabytes of memory; inputs are cached. The three data stages are also included in <a href="../../shared-pipeline/build_public_data.R"><code>build_public_data.R</code></a>.</p>
+</section>
+<section id="reproducibility" class="level2">
+<h2 class="anchored" data-anchor-id="reproducibility">Reproducibility</h2>
+<p><strong>Tier: A — public sources.</strong> National output passed independent checks of place-level shares, valid-vote denominators, 100 percentile groups, counts, means and income units. This remains an editorial draft with the spatial approximation and sensitivity documented. The aggregate output requires no credentials or identifiable individual data.</p>
+<p>To redraw the figure without upstream downloads, run <code>plot.R</code> alone: it uses the aggregate snapshot in <code>posts/votacao-renda-centil/data/</code> when recalculated data are absent from <code>data-raw/eleicoes-renda/</code>. Package versions and input checksums accompany the snapshot.</p>
+</section>
+<section id="how-to-cite" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-cite">How to cite</h2>
+<blockquote class="blockquote">
+<p>Mançano, T. (2026, October 14). <em>Presidential vote by census tract income percentile</em> [Figure and approximate-reproduction pipeline]. Open Data Analysis.</p>
+</blockquote>
+<p>Credit the original analysis to Mariani, Soprana and Pretto (Folha de S.Paulo, 2026). Cite this independent implementation separately; it does not imply validation by the original authors.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
