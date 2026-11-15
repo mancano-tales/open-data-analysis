@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Reprodução independente da relação entre renda dos setores e votação presidencial em 2026, com Censo 2022 e TSE.">
+
+<title>Votação presidencial por centil de renda dos setores censitários – Open Data Analysis</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<meta name="quarto:status" content="draft">
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Rascunho</div>
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Open Data Analysis</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Procurar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Alternar de navegação" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index-pt.html"> 
+<span class="menu-text">Análises</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">English</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Votação presidencial por centil de renda dos setores censitários</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Eleições</div>
+    <div class="quarto-category">Censo</div>
+    <div class="quarto-category">Renda</div>
+    <div class="quarto-category">Distribuição</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Reprodução independente da relação entre renda dos setores e votação presidencial em 2026, com Censo 2022 e TSE.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Data de Publicação</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">14 de outubro de 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Aviso
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>A renda é do setor censitário; o voto observado é do local de votação.</strong> O gráfico associa a renda média de setores à votação dos locais próximos. Uma votação maior em setores de renda alta <strong>não demonstra que eleitores de renda alta votaram naquele candidato</strong>. Não há renda individual dos eleitores nem identificação de onde os moradores de cada setor votaram. A proximidade espacial é uma aproximação e não identifica o eleitorado do setor.</p>
+</div>
+</div>
+<p><img src="../../posts/votacao-renda-centil/thumbnail.png" class="img-fluid"></p>
+<section id="visão-geral" class="level2">
+<h2 class="anchored" data-anchor-id="visão-geral">Visão geral</h2>
+<p>Este post reconstrói a relação entre renda e votação presidencial apresentada por Daniel Mariani, Paula Soprana e Nicholas Pretto na <a href="https://www1.folha.uol.com.br/poder/2026/10/flavio-bolsonaro-supera-votos-do-pai-em-todas-as-rendas-e-lula-cresce-entre-mais-ricos.shtml">Folha de S.Paulo, em 12 de outubro de 2026</a>. O eixo horizontal ordena setores censitários pela renda dos responsáveis pelos domicílios; o vertical mostra a votação estimada em cada grupo de setores.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Reprodução aproximada.</strong> O cruzamento nacional e as verificações numéricas foram executados com dados públicos. A regra espacial é uma implementação própria: a reportagem não especifica todos os parâmetros da atribuição por proximidade. As curvas calculadas apresentam diferenças em relação à imagem de referência, e a escolha da distância máxima tem efeito relevante.</p>
+</div>
+</div>
+</section>
+<section id="resultados-e-cobertura" class="level2">
+<h2 class="anchored" data-anchor-id="resultados-e-cobertura">Resultados e cobertura</h2>
+<p>A estimativa principal, com limite de 5 km, inclui <strong>410.010 setores</strong> dos 458.772 presentes na tabela de renda (89,37%). Foram excluídos 9.241 sem renda elegível, 39.483 por distância e 38 sem associação espacial disponível. Os percentis têm 4.100 ou 4.101 setores cada.</p>
+<p>No centil 46, Lula obtém <strong>42,35%</strong>, com renda média setorial de <strong>1,68 salário mínimo</strong>; a imagem fornecida mostra 41,12% e 1,69. A diferença de votação é de 1,23 ponto percentual. No centil 100, a estimativa é de 38,90% para Lula e 49,53% para Flávio, com renda de 16,52 salários mínimos. Flávio passa a superar Lula no centil 35 nesta implementação. Esses centis ordenam setores, sem permitir concluir qual fração da população votou em cada candidato.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Distância máxima</th>
+<th style="text-align: right;">Setores incluídos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 km</td>
+<td style="text-align: right;">326.951</td>
+</tr>
+<tr class="even">
+<td>2 km</td>
+<td style="text-align: right;">368.147</td>
+</tr>
+<tr class="odd">
+<td>5 km (figura principal)</td>
+<td style="text-align: right;">410.010</td>
+</tr>
+</tbody>
+</table>
+<p>Entre as curvas de 1 e 5 km, a maior diferença entre centis de mesmo número é de 6,32 pontos percentuais para Lula e 5,51 para Flávio. As amostras e os grupos de renda são recalculados em cada limite, de modo que essa diferença combina cobertura e composição dos centis. A exclusão de setores distantes dos locais de votação exige cuidado, especialmente na interpretação de áreas rurais. A associação mostrada é territorial e descritiva.</p>
+<p>A auditoria encontrou <strong>6.588 divergências de local em 497.897 seções</strong> entre o arquivo de resultados e o cadastro atual do TSE. O cálculo usa o local registrado nos resultados. Das 91.087 localizações com votos e coordenadas utilizáveis, 818 foram excluídas por incompatibilidade com a malha municipal de 2022; 90.269 locais permaneceram elegíveis à associação espacial.</p>
+<p>Os <a href="../../posts/votacao-renda-centil/data/centis.csv">100 centis calculados</a>, a <a href="../../posts/votacao-renda-centil/data/sensibilidade.csv">análise de sensibilidade</a> e os <a href="../../posts/votacao-renda-centil/data/README.md">registros de cobertura e proveniência</a> acompanham o post.</p>
+</section>
+<section id="diagnósticos-da-auditoria" class="level2">
+<h2 class="anchored" data-anchor-id="diagnósticos-da-auditoria">Diagnósticos da auditoria</h2>
+<p>Os locais usados representam 108.710.471 de 118.969.906 votos do denominador nacional (91,38%), em 81.076 locais. Nesse conjunto, Lula tem 44,84% e Flávio Bolsonaro 47,29%, diferenças de -0,32 e 0,25 p.p. em relação aos percentuais nacionais de 45,16% e 47,04%.</p>
+<p>A figura principal mantém a média simples por setor e os centis recalculados na amostra incluída. As tabelas abaixo preservam os cortes definidos antes do filtro de distância; são exercícios distintos.</p>
+<p><strong>Exclusões a 5,0 km.</strong> Decis nacionais de todos os setores com renda elegível, incluindo os sem ligação geográfica:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Decil</th>
+<th>Elegíveis</th>
+<th>Além do limite</th>
+<th>Fração</th>
+<th>Sem local/malha</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>44.954</td>
+<td>10.827</td>
+<td>24,08%</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>44.953</td>
+<td>6.546</td>
+<td>14,56%</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>44.953</td>
+<td>3.934</td>
+<td>8,75%</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>44.953</td>
+<td>3.370</td>
+<td>7,50%</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>44.953</td>
+<td>3.253</td>
+<td>7,24%</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>44.953</td>
+<td>3.289</td>
+<td>7,32%</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>44.953</td>
+<td>3.055</td>
+<td>6,80%</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>44.953</td>
+<td>2.707</td>
+<td>6,02%</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>44.953</td>
+<td>1.852</td>
+<td>4,12%</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>44.953</td>
+<td>650</td>
+<td>1,45%</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Situação</th>
+<th>Elegíveis</th>
+<th>Além do limite</th>
+<th>Fração</th>
+<th>Sem local/malha</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Rural</td>
+<td>102.167</td>
+<td>37.299</td>
+<td>36,51%</td>
+<td>19</td>
+</tr>
+<tr class="even">
+<td>Urbana</td>
+<td>347.364</td>
+<td>2.184</td>
+<td>0,63%</td>
+<td>19</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cruzamentos com cortes fixos.</strong> A primeira superação e a superação sustentada até o fim da distribuição podem diferir:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Limite</th>
+<th>Primeiro centil</th>
+<th>Primeiro sustentado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 km</td>
+<td>40</td>
+<td>40</td>
+</tr>
+<tr class="even">
+<td>2 km</td>
+<td>38</td>
+<td>38</td>
+</tr>
+<tr class="odd">
+<td>5 km</td>
+<td>37</td>
+<td>37</td>
+</tr>
+<tr class="even">
+<td>10 km</td>
+<td>37</td>
+<td>37</td>
+</tr>
+<tr class="odd">
+<td>Sem limite</td>
+<td>37</td>
+<td>37</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Diferenças máximas entre métodos</strong>, no limite principal, comparando o mesmo índice de centil de cada definição:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Referência</th>
+<th>Comparação</th>
+<th>Candidato</th>
+<th>Máximo (p.p.)</th>
+<th>Centis comparados</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Original reranqueada</td>
+<td>Cortes fixos</td>
+<td>Lula</td>
+<td>2,90</td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td>Original reranqueada</td>
+<td>Cortes fixos</td>
+<td>Flávio Bolsonaro</td>
+<td>2,59</td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td>Original reranqueada</td>
+<td>Ponderada por V06001</td>
+<td>Lula</td>
+<td>3,48</td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td>Original reranqueada</td>
+<td>Ponderada por V06001</td>
+<td>Flávio Bolsonaro</td>
+<td>3,04</td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td>Original reranqueada</td>
+<td>Razão das somas</td>
+<td>Lula</td>
+<td>3,90</td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td>Original reranqueada</td>
+<td>Razão das somas</td>
+<td>Flávio Bolsonaro</td>
+<td>3,37</td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td>Original reranqueada</td>
+<td>IDW k3</td>
+<td>Lula</td>
+<td>2,52</td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td>Original reranqueada</td>
+<td>IDW k3</td>
+<td>Flávio Bolsonaro</td>
+<td>2,25</td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td>Cortes fixos</td>
+<td>IDW k3</td>
+<td>Lula</td>
+<td>0,51</td>
+<td>100</td>
+</tr>
+<tr class="even">
+<td>Cortes fixos</td>
+<td>IDW k3</td>
+<td>Flávio Bolsonaro</td>
+<td>0,45</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<p>V06001 pondera pessoas responsáveis pelos domicílios, não eleitores. A razão das somas conserva os votos dos locais usados e os aloca entre setores proporcionalmente a V06001; essa aproximação não revela onde cada eleitor reside. O IDW k3 também mede proximidade, não a inscrição eleitoral real.</p>
+<p>No bootstrap exploratório de 500 reamostragens de municípios, 500 réplicas tiveram cruzamento observado. Os quantis 2,5%, 50% e 97,5% do primeiro centil de superação foram 33,0, 36,0 e 39,0. As bandas por centil são pontuais, não simultâneas, e não medem erro amostral do Censo nem incerteza da ligação espacial.</p>
+<p>A auditoria geométrica independente aprovou 2.000 de 2.000 setores amostrados e 2.000 verificações k3. A discordância da projeção EPSG:5880 permaneceu como diagnóstico em 502 casos, sem substituir a referência geodésica.</p>
+<p>Foram excluídos 818 locais com coordenadas fora do respectivo município na malha de 2022, contendo 269.462 votos do denominador nacional (0,23%). Renda e malha de 2022 não captam todas as mudanças até a eleição de 2026.</p>
+<p>V06004 considera responsáveis com rendimento. O arquivo ResponsavelRenda não fornece a contagem desse grupo; portanto não calculamos a fração de responsáveis sem rendimento. V06002 conta moradores e não permite recuperar essa fração.</p>
+<p><strong>Referência visual aproximada da Folha.</strong> O erro absoluto médio dos pontos legíveis é:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Candidato</th>
+<th>Pontos legíveis</th>
+<th>MAE (p.p.)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Flávio Bolsonaro (PL)</td>
+<td>6</td>
+<td>0,82</td>
+</tr>
+<tr class="even">
+<td>Lula (PT)</td>
+<td>7</td>
+<td>1,19</td>
+</tr>
+</tbody>
+</table>
+<p>Os pontos vêm de leitura visual manual e do tooltip da imagem, com arredondamento e regiões encobertas. Esse MAE não valida a curva completa nem demonstra equivalência ao método da Folha.</p>
+<p>A <a href="../../shared-pipeline/eleicoes/validacao/VERIFICACAO-ESPACIAL.md">nota da verificação espacial</a> documenta a distorção da projeção nacional e a referência esférica independente adotada para conferir os vínculos. As exclusões por incompatibilidade municipal podem refletir geocodificação, cadastro ou mudanças na malha; o teste não identifica a causa de cada divergência.</p>
+</section>
+<section id="metodologia" class="level2">
+<h2 class="anchored" data-anchor-id="metodologia">Metodologia</h2>
+<p>A renda vem de <code>censobr::read_tracts(year = 2022, dataset = "ResponsavelRenda")</code>. A variável <code>V06004</code> é o <strong>valor do rendimento nominal médio mensal das pessoas responsáveis com rendimentos por domicílios particulares permanentes ocupados</strong>. Não é renda domiciliar per capita nem renda média de todos os moradores. <code>V06001</code> identifica o número de responsáveis, incluindo aqueles sem rendimento; não é a quantidade de responsáveis com renda. A tabela disponibilizada não informa essa última quantidade, portanto não é possível calcular a proporção sem rendimento com essas variáveis. Setores sem responsáveis ou com renda média ausente, sob sigilo ou não positiva são excluídos. O <a href="https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios_Rendimento_do_Responsavel/dicionario_de_dados_renda_responsavel_20260508.xlsx">dicionário oficial do IBGE</a> define as variáveis. Para exibir a renda em salários mínimos de 2022, divide-se o valor nominal por R$ 1.212, salário mínimo de julho de 2022, referência do Censo. A renda descreve os setores em 2022 e não mede a renda de seus moradores em 2026. Mudanças de composição, residência e renda entre os dois anos permanecem fora do alcance deste cruzamento.</p>
+<p>Os votos vêm do arquivo <strong>Presidente — Votação por seção eleitoral — 2026</strong>, disponível em <a href="https://dadosabertos.tse.jus.br/dataset/resultados-2026">Resultados 2026, no TSE</a>. Selecionam-se o primeiro turno e o cargo de presidente. O denominador contém os votos válidos de <strong>todos</strong> os candidatos, excluindo brancos e nulos. Essa classificação é conferida nas tabelas oficiais de candidatos e de detalhe da votação por município e zona: um número de candidato no arquivo bruto não garante que seus votos sejam válidos. Cada grupo precisa ser integralmente válido ou integralmente excluído; uma validade parcial bloqueia o cálculo, pois não se pode distribuí-la entre seções. Os registros sem candidato correspondente precisam fechar exatamente com os nulos técnicos oficiais em cada zona. Os totais válidos também precisam fechar em todas as zonas. As duas curvas exibidas são Lula (PT) e Flávio Bolsonaro (PL); por isso, não precisam somar 100%.</p>
+<p>O pacote <a href="https://github.com/silvadenisson/electionsBR"><code>electionsBR</code></a> oferece <code>vote_section()</code>, mas o código consultado documenta anos até 2024. Para 2026, o pipeline consulta a API pública CKAN do TSE e baixa o ZIP oficial, evitando depender de suporte ainda não confirmado do pacote. Os metadados e checksums dos arquivos utilizados ficam junto ao cache em <code>data-raw/eleicoes-renda/</code>.</p>
+<section id="ligação-espacial-e-interpretação" class="level3">
+<h3 class="anchored" data-anchor-id="ligação-espacial-e-interpretação">Ligação espacial e interpretação</h3>
+<p>Uma seção eleitoral não é um setor censitário. A renda não deve ser anexada aos votos por igualdade entre esses códigos. O próprio arquivo de resultados identifica o local de cada seção. O cadastro de <a href="https://dadosabertos.tse.jus.br/dataset/eleitorado-2026">Eleitorado 2026, do TSE</a> é usado para auditoria: se houver divergência, prevalece o código de local do arquivo de votos, preservando a localização registrada na apuração. As coordenadas são obtidas por <a href="https://ipea.github.io/geobr/reference/read_polling_places.html"><code>geobr::read_polling_places(year = 2026)</code></a>, que combina coordenadas do TSE e geocodificação pelo <code>geocodebr</code>. Registros repetidos com coordenadas idênticas são consolidados; locais com coordenadas conflitantes são excluídos. Antes do uso, cada ponto precisa estar dentro da malha de seu município, obtida com <code>geobr::read_municipality(year = 2022)</code>.</p>
+<p>A versão independente usa o local de votação válido mais próximo do ponto interno de cada setor, dentro do mesmo município e de uma distância máxima configurável. Soma-se a votação das seções de cada local antes de calcular os percentuais. Essa estimativa descreve a vizinhança eleitoral, não o voto observado dos moradores do setor. A regra não reproduz necessariamente o procedimento de geocodificação e interpolação usado pela Folha.</p>
+<p>O endereço de cadastro eleitoral pode estar desatualizado ou diferir da residência efetiva. Mesmo uma coordenada correta de local não informa a área de residência de seus eleitores. Essa limitação permanece nas alternativas de ponderação e interpolação e não é eliminada por aumentar a cobertura.</p>
+<p>Os setores elegíveis são ordenados por renda, com código do setor como desempate, e separados em 100 grupos com números de setores tão próximos quanto possível. Cada setor tem o mesmo peso na média dos percentuais eleitorais do grupo. Os centis não representam centésimos da população, dos eleitores ou dos domicílios. O pipeline registra exclusões e compara diferentes distâncias máximas. A renda exibida para cada centil é a média simples das rendas médias setoriais, em salários mínimos. Empates na distância entre locais são resolvidos pela ordem do código composto de UF, município, zona e local.</p>
+</section>
+</section>
+<section id="sensibilidade-e-limitações" class="level2">
+<h2 class="anchored" data-anchor-id="sensibilidade-e-limitações">Sensibilidade e limitações</h2>
+<section id="o-que-muda-nas-análises-de-sensibilidade" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-muda-nas-análises-de-sensibilidade">O que muda nas análises de sensibilidade</h3>
+<p>A curva principal preserva a média simples dos percentuais atribuídos aos setores, com centis recalculados depois do corte de distância. Um mesmo local pode representar vários setores; portanto essa média não equivale à proporção nacional de votos. A comparação por <strong>cortes fixos</strong> mantém o universo dos setores com renda elegível e alguma ligação espacial, mesmo além de 5 km, e define os centis uma única vez. Compara limites de 1, 2, 5 e 10 km e sem limite; a quantidade de setores efetivamente observados acompanha cada grupo.</p>
+<p>A alternativa <strong>ponderada por responsáveis</strong> ordena pela mesma renda e cria os grupos pelo acumulado de <code>V06001</code> antes de cada setor. Nenhum setor é dividido entre grupos, de modo que não há exatamente 1% dos responsáveis em cada centil. Renda e votação são médias ponderadas por essa contagem, que inclui responsáveis sem renda. Esse peso não é o número de eleitores. Também não recupera a renda média individual agregada: não se conhece a quantidade de responsáveis com rendimento em cada setor.</p>
+<p>A <strong>razão de votos alocados</strong> distribui uma única vez os votos de cada local entre os setores elegíveis ligados a ele, proporcionalmente a <code>V06001</code>, e divide a soma de votos do candidato pela soma de válidos de cada grupo. Os totais dos locais utilizados são conservados, mas a distribuição entre setores é uma hipótese de alocação, não uma observação dos votos de moradores.</p>
+<p>A alternativa espacial usa até <strong>três locais próximos do mesmo município</strong>, com pesos inversamente proporcionais à distância e restritos ao limite adotado. Entre os até três selecionados, se há distância zero, somente os locais coincidentes recebem peso, dividido igualmente. A comparação mantém os mesmos grupos de renda. Usar três vizinhos testa a regra de interpolação; não identifica onde os moradores efetivamente votam.</p>
+<p>As bandas da reamostragem municipal vêm de 500 réplicas com semente fixa: sorteiam-se municípios com reposição, mantêm-se todos os seus setores e recalculam-se os centis. Os quantis de 2,5% e 97,5% são <strong>bandas exploratórias pontuais</strong>, sem interpretação de erro amostral do Censo ou de incerteza da ligação espacial. O primeiro centil de superação é a primeira ocorrência; não exige que o candidato permaneça à frente nos centis seguintes.</p>
+<p>A comparação com a Folha usa sete posições da imagem fornecida, com leituras visuais arredondadas e tolerância de leitura declarada de 1,5 ponto percentual. Essa tolerância não é um intervalo estatístico. O único valor textual exato é o tooltip de Lula no centil 46; a curva encoberta permanece sem valor. Não se dispõe da base original da reportagem. A figura deste post é sempre calculada a partir do TSE e do IBGE, sem traçar a imagem de referência.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../posts/votacao-renda-centil/sensibilidade-cortes-fixos-pt.png" class="img-fluid figure-img"></p>
+<figcaption>Sensibilidade da ligação espacial com cortes de renda fixos.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../posts/votacao-renda-centil/comparacao-metodos-pt.png" class="img-fluid figure-img"></p>
+<figcaption>Comparação entre formas de agregação e interpolação, com limite de 5 km.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../posts/votacao-renda-centil/bootstrap-municipios-pt.png" class="img-fluid figure-img"></p>
+<figcaption>Bandas exploratórias pontuais da reamostragem municipal, mantendo a ligação espacial fixa.</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="pipeline">Pipeline</h2>
+<p>Execute a partir da raiz do repositório:</p>
+<ol type="1">
+<li><a href="../../shared-pipeline/eleicoes/010_Download_Censo_TSE.R"><code>010_Download_Censo_TSE.R</code></a> — obtém renda setorial via <code>censobr</code>, votos presidenciais e locais de 2026 pela API pública do TSE, com cache e registro das fontes.</li>
+<li><a href="../../shared-pipeline/eleicoes/020_Cruzar_Setores_Votos.R"><code>020_Cruzar_Setores_Votos.R</code></a> — obtém malhas e locais via <code>geobr</code>, valida as chaves, associa locais e setores, documenta exclusões e produz <code>data-raw/eleicoes-renda/centis.csv</code>.</li>
+<li><a href="../../shared-pipeline/eleicoes/030_Verificar_Resultados.R"><code>030_Verificar_Resultados.R</code></a> — confere os percentuais, os 100 centis, as contagens e as médias usando cálculos independentes em R base; refaz as geometrias de 2.000 setores e confere os três vizinhos sem usar os pontos internos salvos pelo estimador.</li>
+<li><a href="../../shared-pipeline/eleicoes/040_Preparar_Post.R"><code>040_Preparar_Post.R</code></a> — verifica o certificado e os hashes do <code>030</code>, prepara os resultados agregados do post e gera os diagnósticos em português e inglês.</li>
+<li><a href="../../posts/votacao-renda-centil/plot.R"><code>plot.R</code></a> — gera PNG e PDF em <code>output/figures/votacao-renda-centil/</code>.</li>
+</ol>
+<p>O gráfico usa linhas sem suavização, eixo de renda no topo, cores próximas à referência e rótulos diretos. O valor de 41,12% no centil 46 e a renda de 1,69 salário mínimo, visíveis na imagem de referência, são pontos de comparação; não são constantes inseridas na série calculada.</p>
+<p>O limite padrão de distância é de 5 km. Para recalcular os centis com outro limite, defina <code>VOTOS_MAX_DIST_M</code> em metros antes de rodar o script <code>020</code>. <code>sensibilidade.csv</code> contém as curvas sob limites de 1, 2 e 5 km, além do limite escolhido. O cruzamento nacional baixa malhas detalhadas e pode levar tempo e consumir alguns gigabytes de memória; os insumos ficam em cache. As três etapas de dados também estão incluídas em <a href="../../shared-pipeline/build_public_data.R"><code>build_public_data.R</code></a>.</p>
+</section>
+<section id="reprodutibilidade" class="level2">
+<h2 class="anchored" data-anchor-id="reprodutibilidade">Reprodutibilidade</h2>
+<p><strong>Tier: A — fontes públicas.</strong> A execução nacional passou nas verificações independentes dos percentuais por local, dos denominadores de votos válidos, dos 100 centis, das contagens, das médias e das unidades de renda. O post permanece como rascunho editorial, com a aproximação espacial e sua sensibilidade explicitadas. Não há credencial nem dado individual identificável no produto agregado.</p>
+<p>Para redesenhar a figura sem os downloads upstream, execute apenas <code>plot.R</code>: o script usa o snapshot agregado em <code>posts/votacao-renda-centil/data/</code> quando não encontra uma versão recalculada em <code>data-raw/eleicoes-renda/</code>. As versões dos pacotes e os hashes dos insumos acompanham esse snapshot.</p>
+</section>
+<section id="como-citar" class="level2">
+<h2 class="anchored" data-anchor-id="como-citar">Como citar</h2>
+<blockquote class="blockquote">
+<p>Mançano, T. (2026, 14 de outubro). <em>Votação presidencial por centil de renda dos setores censitários</em> [Figura e pipeline de reprodução aproximada]. Open Data Analysis.</p>
+</blockquote>
+<p>A análise original é de Mariani, Soprana e Pretto (Folha de S.Paulo, 2026). Esta implementação independente deve ser citada separadamente e não implica validação pelos autores da reportagem.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
