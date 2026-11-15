@@ -1,301 +1,301 @@
 income_D,performance,choice,n
-10D,10D,No Access,1001
-10D,10D,Private,16463
-10D,10D,Public,24423
-10D,1D,No Access,323
-10D,1D,Private,903
-10D,1D,Public,48
-10D,2D,No Access,283
-10D,2D,Private,1358
-10D,2D,Public,49
-10D,3D,No Access,300
-10D,3D,Private,1749
-10D,3D,Public,99
-10D,4D,No Access,363
-10D,4D,Private,2298
-10D,4D,Public,140
-10D,5D,No Access,350
-10D,5D,Private,2955
-10D,5D,Public,199
-10D,6D,No Access,397
-10D,6D,Private,4282
-10D,6D,Public,444
-10D,7D,No Access,468
-10D,7D,Private,5858
-10D,7D,Public,790
-10D,8D,No Access,577
-10D,8D,Private,8758
-10D,8D,Public,1823
-10D,9D,No Access,698
-10D,9D,Private,13476
-10D,9D,Public,5303
-1D,10D,No Access,40
-1D,10D,Private,273
-1D,10D,Public,577
-1D,1D,No Access,21387
-1D,1D,Private,3699
-1D,1D,Public,514
-1D,2D,No Access,14230
-1D,2D,Private,4071
-1D,2D,Public,709
-1D,3D,No Access,10090
-1D,3D,Private,3838
-1D,3D,Public,844
-1D,4D,No Access,7527
-1D,4D,Private,3540
-1D,4D,Public,958
-1D,5D,No Access,5336
-1D,5D,Private,3142
-1D,5D,Public,1046
-1D,6D,No Access,3660
-1D,6D,Private,2634
-1D,6D,Public,1165
-1D,7D,No Access,2072
-1D,7D,Private,2009
-1D,7D,Public,1214
-1D,8D,No Access,950
-1D,8D,Private,1494
-1D,8D,Public,1247
-1D,9D,No Access,314
-1D,9D,Private,884
-1D,9D,Public,1015
-2D,10D,No Access,75
-2D,10D,Private,414
-2D,10D,Public,1091
-2D,1D,No Access,13343
-2D,1D,Private,4092
-2D,1D,Public,431
-2D,2D,No Access,11629
-2D,2D,Private,5513
-2D,2D,Public,679
-2D,3D,No Access,9957
-2D,3D,Private,5888
-2D,3D,Public,917
-2D,4D,No Access,8254
-2D,4D,Private,6106
-2D,4D,Public,1176
-2D,5D,No Access,6649
-2D,5D,Private,5715
-2D,5D,Public,1509
-2D,6D,No Access,4887
-2D,6D,Private,5298
-2D,6D,Public,1863
-2D,7D,No Access,3146
-2D,7D,Private,4222
-2D,7D,Public,2075
-2D,8D,No Access,1705
-2D,8D,Private,3281
-2D,8D,Public,2282
-2D,9D,No Access,562
-2D,9D,Private,1919
-2D,9D,Public,2156
-3D,10D,No Access,81
-3D,10D,Private,594
-3D,10D,Public,1248
-3D,1D,No Access,4760
-3D,1D,Private,2581
-3D,1D,Public,178
-3D,2D,No Access,4683
-3D,2D,Private,3684
-3D,2D,Public,310
-3D,3D,No Access,4313
-3D,3D,Private,4076
-3D,3D,Public,424
-3D,4D,No Access,4024
-3D,4D,Private,4474
-3D,4D,Public,542
-3D,5D,No Access,3343
-3D,5D,Private,4444
-3D,5D,Public,791
-3D,6D,No Access,2768
-3D,6D,Private,4439
-3D,6D,Public,1027
-3D,7D,No Access,1977
-3D,7D,Private,3941
-3D,7D,Public,1261
-3D,8D,No Access,1178
-3D,8D,Private,3312
-3D,8D,Public,1631
-3D,9D,No Access,476
-3D,9D,Private,2065
-3D,9D,Public,1757
-4D,10D,No Access,112
-4D,10D,Private,777
-4D,10D,Public,1633
-4D,1D,No Access,10207
-4D,1D,Private,4103
-4D,1D,Public,297
-4D,2D,No Access,8378
-4D,2D,Private,5148
-4D,2D,Public,499
-4D,3D,No Access,6850
-4D,3D,Private,5325
-4D,3D,Public,634
-4D,4D,No Access,5826
-4D,4D,Private,5492
-4D,4D,Public,831
-4D,5D,No Access,4694
-4D,5D,Private,5375
-4D,5D,Public,998
-4D,6D,No Access,3661
-4D,6D,Private,5237
-4D,6D,Public,1380
-4D,7D,No Access,2598
-4D,7D,Private,4682
-4D,7D,Public,1662
-4D,8D,No Access,1564
-4D,8D,Private,4062
-4D,8D,Public,1954
-4D,9D,No Access,573
-4D,9D,Private,2716
-4D,9D,Public,2184
-5D,10D,No Access,192
-5D,10D,Private,1403
-5D,10D,Public,2665
-5D,1D,No Access,4003
-5D,1D,Private,2843
-5D,1D,Public,161
-5D,2D,No Access,4538
-5D,2D,Private,4486
-5D,2D,Public,330
-5D,3D,No Access,4432
-5D,3D,Private,5360
-5D,3D,Public,473
-5D,4D,No Access,4418
-5D,4D,Private,6103
-5D,4D,Public,663
-5D,5D,No Access,4147
-5D,5D,Private,6755
-5D,5D,Public,941
-5D,6D,No Access,3629
-5D,6D,Private,7012
-5D,6D,Public,1295
-5D,7D,No Access,2722
-5D,7D,Private,6652
-5D,7D,Public,1730
-5D,8D,No Access,1829
-5D,8D,Private,6136
-5D,8D,Public,2460
-5D,9D,No Access,830
-5D,9D,Private,4360
-5D,9D,Public,3185
-6D,10D,No Access,202
-6D,10D,Private,1779
-6D,10D,Public,3410
-6D,1D,No Access,5648
-6D,1D,Private,3511
-6D,1D,Public,197
-6D,2D,No Access,5319
-6D,2D,Private,4946
-6D,2D,Public,356
-6D,3D,No Access,4726
-6D,3D,Private,5498
-6D,3D,Public,434
-6D,4D,No Access,4408
-6D,4D,Private,6165
-6D,4D,Public,709
-6D,5D,No Access,3765
-6D,5D,Private,6659
-6D,5D,Public,893
-6D,6D,No Access,3265
-6D,6D,Private,7201
-6D,6D,Public,1193
-6D,7D,No Access,2408
-6D,7D,Private,6872
-6D,7D,Public,1611
-6D,8D,No Access,1622
-6D,8D,Private,6808
-6D,8D,Public,2425
-6D,9D,No Access,786
-6D,9D,Private,5200
-6D,9D,Public,3426
-7D,10D,No Access,339
-7D,10D,Private,2666
-7D,10D,Public,4718
-7D,1D,No Access,2660
-7D,1D,Private,2531
-7D,1D,Public,130
-7D,2D,No Access,3252
-7D,2D,Private,3892
-7D,2D,Public,241
-7D,3D,No Access,3319
-7D,3D,Private,4956
-7D,3D,Public,378
-7D,4D,No Access,3460
-7D,4D,Private,6055
-7D,4D,Public,552
-7D,5D,No Access,3357
-7D,5D,Private,6914
-7D,5D,Public,787
-7D,6D,No Access,3157
-7D,6D,Private,7764
-7D,6D,Public,1105
-7D,7D,No Access,2680
-7D,7D,Private,8239
-7D,7D,Public,1657
-7D,8D,No Access,1985
-7D,8D,Private,8320
-7D,8D,Public,2533
-7D,9D,No Access,1068
-7D,9D,Private,6960
-7D,9D,Public,4061
-8D,10D,No Access,431
-8D,10D,Private,4259
-8D,10D,Public,7892
-8D,1D,No Access,2231
-8D,1D,Private,2670
-8D,1D,Public,117
-8D,2D,No Access,2312
-8D,2D,Private,3706
-8D,2D,Public,248
-8D,3D,No Access,2330
-8D,3D,Private,4651
-8D,3D,Public,321
-8D,4D,No Access,2385
-8D,4D,Private,5667
-8D,4D,Public,433
-8D,5D,No Access,2330
-8D,5D,Private,6562
-8D,5D,Public,662
-8D,6D,No Access,2150
-8D,6D,Private,7783
-8D,6D,Public,977
-8D,7D,No Access,1884
-8D,7D,Private,8902
-8D,7D,Public,1510
-8D,8D,No Access,1441
-8D,8D,Private,9963
-8D,8D,Public,2686
-8D,9D,No Access,909
-8D,9D,Private,9041
-8D,9D,Public,4824
-9D,10D,No Access,759
-9D,10D,Private,6522
-9D,10D,Public,11678
-9D,1D,No Access,938
-9D,1D,Private,1698
-9D,1D,Public,83
-9D,2D,No Access,1186
-9D,2D,Private,2692
-9D,2D,Public,146
-9D,3D,No Access,1292
-9D,3D,Private,3427
-9D,3D,Public,217
-9D,4D,No Access,1442
-9D,4D,Private,4528
-9D,4D,Public,315
-9D,5D,No Access,1462
-9D,5D,Private,5576
-9D,5D,Public,495
-9D,6D,No Access,1580
-9D,6D,Private,6966
-9D,6D,Public,878
-9D,7D,No Access,1422
-9D,7D,Private,8153
-9D,7D,Public,1373
-9D,8D,No Access,1248
-9D,8D,Private,10207
-9D,8D,Public,2473
-9D,9D,No Access,1066
-9D,9D,Private,10625
-9D,9D,Public,5470
+10D,10D,No Access,1342
+10D,10D,Private,22416
+10D,10D,Public,31774
+10D,1D,No Access,534
+10D,1D,Private,1413
+10D,1D,Public,74
+10D,2D,No Access,504
+10D,2D,Private,1935
+10D,2D,Public,75
+10D,3D,No Access,483
+10D,3D,Private,2577
+10D,3D,Public,140
+10D,4D,No Access,615
+10D,4D,Private,3255
+10D,4D,Public,226
+10D,5D,No Access,550
+10D,5D,Private,3990
+10D,5D,Public,289
+10D,6D,No Access,673
+10D,6D,Private,5932
+10D,6D,Public,639
+10D,7D,No Access,724
+10D,7D,Private,8050
+10D,7D,Public,1141
+10D,8D,No Access,791
+10D,8D,Private,11394
+10D,8D,Public,2492
+10D,9D,No Access,981
+10D,9D,Private,17555
+10D,9D,Public,7086
+1D,10D,No Access,56
+1D,10D,Private,378
+1D,10D,Public,825
+1D,1D,No Access,27062
+1D,1D,Private,5410
+1D,1D,Public,750
+1D,2D,No Access,17760
+1D,2D,Private,5562
+1D,2D,Public,966
+1D,3D,No Access,13055
+1D,3D,Private,5216
+1D,3D,Public,1126
+1D,4D,No Access,9849
+1D,4D,Private,4862
+1D,4D,Public,1290
+1D,5D,No Access,6714
+1D,5D,Private,4086
+1D,5D,Public,1313
+1D,6D,No Access,5011
+1D,6D,Private,3688
+1D,6D,Public,1573
+1D,7D,No Access,2901
+1D,7D,Private,2847
+1D,7D,Public,1672
+1D,8D,No Access,1329
+1D,8D,Private,2135
+1D,8D,Public,1662
+1D,9D,No Access,435
+1D,9D,Private,1231
+1D,9D,Public,1362
+2D,10D,No Access,55
+2D,10D,Private,533
+2D,10D,Public,1295
+2D,1D,No Access,18255
+2D,1D,Private,6089
+2D,1D,Public,554
+2D,2D,No Access,13410
+2D,2D,Private,6740
+2D,2D,Public,767
+2D,3D,No Access,10775
+2D,3D,Private,6856
+2D,3D,Public,1010
+2D,4D,No Access,8700
+2D,4D,Private,6670
+2D,4D,Public,1212
+2D,5D,No Access,6443
+2D,5D,Private,5858
+2D,5D,Public,1445
+2D,6D,No Access,4949
+2D,6D,Private,5744
+2D,6D,Public,1818
+2D,7D,No Access,3215
+2D,7D,Private,4746
+2D,7D,Public,2074
+2D,8D,No Access,1714
+2D,8D,Private,3723
+2D,8D,Public,2271
+2D,9D,No Access,621
+2D,9D,Private,2286
+2D,9D,Public,2369
+3D,10D,No Access,174
+3D,10D,Private,1105
+3D,10D,Public,2236
+3D,1D,No Access,8009
+3D,1D,Private,4582
+3D,1D,Public,352
+3D,2D,No Access,9103
+3D,2D,Private,6610
+3D,2D,Public,658
+3D,3D,No Access,9296
+3D,3D,Private,7878
+3D,3D,Public,952
+3D,4D,No Access,8700
+3D,4D,Private,8838
+3D,4D,Public,1235
+3D,5D,No Access,7033
+3D,5D,Private,8193
+3D,5D,Public,1628
+3D,6D,No Access,6076
+3D,6D,Private,8704
+3D,6D,Public,2271
+3D,7D,No Access,4220
+3D,7D,Private,7538
+3D,7D,Public,2711
+3D,8D,No Access,2399
+3D,8D,Private,6031
+3D,8D,Public,3210
+3D,9D,No Access,964
+3D,9D,Private,3854
+3D,9D,Public,3428
+4D,10D,No Access,145
+4D,10D,Private,1060
+4D,10D,Public,2113
+4D,1D,No Access,13313
+4D,1D,Private,5791
+4D,1D,Public,435
+4D,2D,No Access,10598
+4D,2D,Private,6622
+4D,2D,Public,629
+4D,3D,No Access,9087
+4D,3D,Private,7042
+4D,3D,Public,849
+4D,4D,No Access,7721
+4D,4D,Private,7246
+4D,4D,Public,1077
+4D,5D,No Access,5941
+4D,5D,Private,6771
+4D,5D,Public,1193
+4D,6D,No Access,5049
+4D,6D,Private,6964
+4D,6D,Public,1750
+4D,7D,No Access,3523
+4D,7D,Private,6255
+4D,7D,Public,2227
+4D,8D,No Access,2136
+4D,8D,Private,5318
+4D,8D,Public,2568
+4D,9D,No Access,832
+4D,9D,Private,3619
+4D,9D,Public,2833
+5D,10D,No Access,209
+5D,10D,Private,1980
+5D,10D,Public,3491
+5D,1D,No Access,5568
+5D,1D,Private,4296
+5D,1D,Public,228
+5D,2D,No Access,5691
+5D,2D,Private,6047
+5D,2D,Public,402
+5D,3D,No Access,5591
+5D,3D,Private,7162
+5D,3D,Public,631
+5D,4D,No Access,5476
+5D,4D,Private,7974
+5D,4D,Public,870
+5D,5D,No Access,4829
+5D,5D,Private,8236
+5D,5D,Public,1140
+5D,6D,No Access,4523
+5D,6D,Private,9073
+5D,6D,Public,1649
+5D,7D,No Access,3385
+5D,7D,Private,8749
+5D,7D,Public,2213
+5D,8D,No Access,2219
+5D,8D,Private,7860
+5D,8D,Public,3114
+5D,9D,No Access,1032
+5D,9D,Private,5760
+5D,9D,Public,4065
+6D,10D,No Access,297
+6D,10D,Private,2488
+6D,10D,Public,4279
+6D,1D,No Access,7353
+6D,1D,Private,4669
+6D,1D,Public,285
+6D,2D,No Access,6671
+6D,2D,Private,6153
+6D,2D,Public,446
+6D,3D,No Access,6122
+6D,3D,Private,7205
+6D,3D,Public,568
+6D,4D,No Access,5926
+6D,4D,Private,7911
+6D,4D,Public,884
+6D,5D,No Access,4840
+6D,5D,Private,8147
+6D,5D,Public,1099
+6D,6D,No Access,4527
+6D,6D,Private,9241
+6D,6D,Public,1582
+6D,7D,No Access,3403
+6D,7D,Private,9137
+6D,7D,Public,2150
+6D,8D,No Access,2292
+6D,8D,Private,8597
+6D,8D,Public,3082
+6D,9D,No Access,1155
+6D,9D,Private,6845
+6D,9D,Public,4326
+7D,10D,No Access,364
+7D,10D,Private,3562
+7D,10D,Public,6070
+7D,1D,No Access,3614
+7D,1D,Private,3579
+7D,1D,Public,189
+7D,2D,No Access,4092
+7D,2D,Private,5137
+7D,2D,Public,343
+7D,3D,No Access,4256
+7D,3D,Private,6592
+7D,3D,Public,487
+7D,4D,No Access,4414
+7D,4D,Private,7946
+7D,4D,Public,742
+7D,5D,No Access,4060
+7D,5D,Private,8469
+7D,5D,Public,983
+7D,6D,No Access,4076
+7D,6D,Private,10203
+7D,6D,Public,1442
+7D,7D,No Access,3370
+7D,7D,Private,10675
+7D,7D,Public,2171
+7D,8D,No Access,2434
+7D,8D,Private,10761
+7D,8D,Public,3213
+7D,9D,No Access,1294
+7D,9D,Private,9032
+7D,9D,Public,5076
+8D,10D,No Access,578
+8D,10D,Private,5206
+8D,10D,Public,8619
+8D,1D,No Access,2737
+8D,1D,Private,3074
+8D,1D,Public,138
+8D,2D,No Access,2958
+8D,2D,Private,4356
+8D,2D,Public,267
+8D,3D,No Access,3225
+8D,3D,Private,5740
+8D,3D,Public,399
+8D,4D,No Access,3385
+8D,4D,Private,7150
+8D,4D,Public,576
+8D,5D,No Access,3165
+8D,5D,Private,7894
+8D,5D,Public,781
+8D,6D,No Access,3155
+8D,6D,Private,10000
+8D,6D,Public,1308
+8D,7D,No Access,2807
+8D,7D,Private,11145
+8D,7D,Public,1994
+8D,8D,No Access,2125
+8D,8D,Private,12025
+8D,8D,Public,3244
+8D,9D,No Access,1380
+8D,9D,Private,10728
+8D,9D,Public,5740
+9D,10D,No Access,887
+9D,10D,Private,9205
+9D,10D,Public,15793
+9D,1D,No Access,1486
+9D,1D,Private,2640
+9D,1D,Public,132
+9D,2D,No Access,1655
+9D,2D,Private,3700
+9D,2D,Public,213
+9D,3D,No Access,1826
+9D,3D,Private,4848
+9D,3D,Public,310
+9D,4D,No Access,1987
+9D,4D,Private,6279
+9D,4D,Public,430
+9D,5D,No Access,1937
+9D,5D,Private,7194
+9D,5D,Public,672
+9D,6D,No Access,2165
+9D,6D,Private,9496
+9D,6D,Public,1189
+9D,7D,No Access,1980
+9D,7D,Private,11221
+9D,7D,Public,1941
+9D,8D,No Access,1716
+9D,8D,Private,13520
+9D,8D,Public,3411
+9D,9D,No Access,1342
+9D,9D,Private,14537
+9D,9D,Public,7273
